@@ -1,16 +1,15 @@
 module.exports = function(config) {
     var webpackConfig = require('./webpack.test.config');
     var envConfig = require('./env.config');
+
     var preprocessors = {};
 
-    preprocessors[envConfig.tests.entry] = ['webpack'];
+    preprocessors[envConfig.tests.entry] = ['coverage', 'webpack', 'sourcemap'];
 
     config.set({
-        basePath: envConfig.root.dir,
+        basePath: '',
 
-        frameworks: [ 'mocha', 'chai', 'chai-sinon' ],
-
-        exclude: [ ],
+        frameworks: [ 'jasmine' ],
 
         files: [ envConfig.tests.entry ],
 
@@ -18,11 +17,16 @@ module.exports = function(config) {
 
         webpack: webpackConfig,
 
-        webpackServer: {
-            noInfo: true
-        },
+        webpackServer: { noInfo: true },
 
-        reporters: [ 'mocha' ],
+        reporters: [ 'mocha', 'coverage' ],
+
+        coverageReporter: {
+            reporters: [
+                { type: 'text-summary' },
+                { type: 'html' }
+            ]
+        },
 
         colors: true,
 

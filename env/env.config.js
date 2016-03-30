@@ -1,20 +1,32 @@
 var path = require('path');
 var rootDir = path.resolve(__dirname, '..');
 
+function rootPath(relativePath) {
+    var args = [].slice.call(arguments, 0);
+    return path.join.apply(path, [rootDir].concat(args));
+}
+
 module.exports = {
+    path: rootPath,
     root: {
-        dir: rootDir,
-        nodeModulesDir: path.join(rootDir, 'node_modules')
+        dir: rootDir
+    },
+    nodeModules: {
+        dir: rootPath('node_modules')
+    },
+    env: {
+        dir: rootPath('env')
     },
     src: {
-        dir: path.join(rootDir, 'src'),
-        entry: path.join(rootDir, 'src', 'index.ts'),
-        htmlEntry: path.join(rootDir, 'src', 'index.html')
+        dir: rootPath('src'),
+        entry: rootPath('src', 'index.ts'),
+        indexHtml: rootPath('src', 'index.html')
     },
     tests: {
-        entry: path.join(rootDir, 'env', 'karma.start.js')
+        dir: rootPath('test'),
+        entry: rootPath('test', 'index.ts')
     },
     dist: {
-        dir: path.join(rootDir, 'dist')
+        dir: rootPath('dist')
     }
 };
