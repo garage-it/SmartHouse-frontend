@@ -1,30 +1,28 @@
-module.exports = function(config) {
-    var webpackConfig = require('./webpack.test.config');
-    var envConfig = require('./env.config');
-
-    var preprocessors = {};
-
-    preprocessors[envConfig.tests.entry] = ['coverage', 'webpack', 'sourcemap'];
+module.exports = (config) => {
+    const webpackConfig = require('./webpack.test.config');
+    const envConfig = require('./env.config');
 
     config.set({
         basePath: '',
 
-        frameworks: [ 'jasmine' ],
+        frameworks: ['jasmine'],
 
-        files: [ envConfig.tests.entry ],
+        files: [envConfig.tests.entry],
 
-        preprocessors: preprocessors,
+        preprocessors: {
+            [envConfig.tests.entry]: ['webpack', 'sourcemap']
+        },
 
         webpack: webpackConfig,
 
-        webpackServer: { noInfo: true },
+        webpackServer: {noInfo: true},
 
-        reporters: [ 'mocha', 'coverage' ],
+        reporters: ['mocha', 'coverage'],
 
         coverageReporter: {
             reporters: [
-                { type: 'text-summary' },
-                { type: 'html' }
+                {type: 'text-summary'},
+                {type: 'html'}
             ]
         },
 
@@ -34,9 +32,8 @@ module.exports = function(config) {
 
         autoWatch: false,
 
-        browsers: [ 'PhantomJS' ],
+        browsers: ['PhantomJS'],
 
         singleRun: true
     });
-
 };

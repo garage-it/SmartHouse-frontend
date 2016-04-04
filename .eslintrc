@@ -1,0 +1,40 @@
+{
+  "extends": "airbnb/base",
+  "parser": "babel-eslint",
+  "plugins": [
+    "babel"
+  ],
+  "env": {
+    "browser": true,
+    "jasmine": true
+  },
+  "rules": {
+    // Babel
+    "babel/new-cap": [
+      "error",
+      {
+        "newIsCap": true
+      }
+    ],
+    // Possible Errors
+    // Best Practices
+    // Strict Mode
+    // Variables
+    // Node.js and CommonJS
+    // Stylistic Issues
+    "object-curly-spacing": "off",
+    "array-bracket-spacing": "off",
+    "indent": [
+      "error",
+      4,
+      {
+        "SwitchCase": 1,
+        "VariableDeclarator": 1
+      }
+    ],
+    "comma-dangle": "off",
+    "padded-blocks": "warn",
+    "new-cap": "off"
+    // ECMAScript 6
+  }
+}

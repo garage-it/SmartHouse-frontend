@@ -1,5 +1,5 @@
 import {Component} from 'angular2/core';
-import {RouteConfig, Router} from 'angular2/router';
+import {RouteConfig} from 'angular2/router';
 
 import {Home} from './home';
 
@@ -10,5 +10,5 @@ import {Home} from './home';
     { path: '/', name: 'Index', component: Home, useAsDefault: true }
 ])
 export class App {
-    constructor() {}
+
 }

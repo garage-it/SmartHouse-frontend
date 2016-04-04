@@ -1,7 +1,7 @@
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-var envConfig = require('./env.config');
+const envConfig = require('./env.config');
 
 module.exports = {
     debug: true,
@@ -9,8 +9,8 @@ module.exports = {
     devtool: 'source-map',
 
     resolve: {
-        root: [ envConfig.src.dir ],
-        extensions: ['', '.ts', '.js', '.html']
+        root: [envConfig.src.dir],
+        extensions: ['', '.ts', '.js']
     },
 
     entry: {
@@ -26,22 +26,27 @@ module.exports = {
 
     module: {
         preLoaders: [
-            { test: /\.js/, loader: 'source-map' },
-            { test: /\.ts/, loader: 'tslint' }
+            {
+                test: /\.js/,
+                loader: 'source-map'
+            },
+            {
+                test: /\.(js|ts)/,
+                loader: 'eslint',
+                exclude: [/node_modules/]
+            }
         ],
         loaders: [
-            { test: /\.ts$/, loader: 'ts' }
+            {
+                test: /\.(ts|js)$/,
+                loader: 'babel',
+                exclude: [/node_modules/]
+            }
         ]
     },
 
     plugins: [
-        new CleanWebpackPlugin([ envConfig.dist.dir], { root: envConfig.root.dir }),
-        new HtmlWebpackPlugin({ template: envConfig.src.indexHtml })
-    ],
-
-    tslint: {
-        emitErrors: false,
-        failOnHint: false,
-        resourcePath: envConfig.src.dir
-    }
+        new CleanWebpackPlugin([envConfig.dist.dir], {root: envConfig.root.dir}),
+        new HtmlWebpackPlugin({template: envConfig.src.indexHtml})
+    ]
 };

@@ -1,5 +1,4 @@
-var webpack = require('webpack');
-var envConfig = require('./env.config');
+const envConfig = require('./env.config');
 
 module.exports = {
     debug: true,
@@ -7,20 +6,24 @@ module.exports = {
     devtool: 'source-map',
 
     resolve: {
-        root: [ envConfig.src.dir ],
+        root: [envConfig.src.dir],
         extensions: ['', '.ts', '.js']
     },
 
     module: {
-        loaders: [
-            { test: /\.ts$/, loader: 'ts' },
-            { test: /\.html$/, loader: 'raw', exclude: [ envConfig.src.indexHtml ] }
-        ],
-        postLoaders: [
+        preLoaders: [
             {
-                test: /\.(js|ts)$/, loader: 'istanbul-instrumenter',
+                test: /\.(js|ts)$/,
+                loader: 'isparta',
                 include: envConfig.src.dir,
-                exclude: [ /\.test\.ts$/ ]
+                exclude: [/\.test\.(ts|js)$/]
+            }
+        ],
+        loaders: [
+            {
+                test: /\.(ts|js)$/,
+                loader: 'babel',
+                exclude: [/node_modules/]
             }
         ]
     }

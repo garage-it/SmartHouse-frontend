@@ -1,13 +1,13 @@
-var path = require('path');
-var rootDir = path.resolve(__dirname, '..');
+const path = require('path');
+const rootDir = path.resolve(__dirname, '..');
 
-function rootPath(relativePath) {
-    var args = [].slice.call(arguments, 0);
-    return path.join.apply(path, [rootDir].concat(args));
+function rootPath(...args) {
+    return path.join(rootDir, ...args);
 }
 
 module.exports = {
     path: rootPath,
+
     root: {
         dir: rootDir
     },

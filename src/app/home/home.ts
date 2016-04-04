@@ -4,5 +4,5 @@ import {Component} from 'angular2/core';
     selector: 'sm-home'
 })
 export class Home {
-    constructor() {}
+
 }
