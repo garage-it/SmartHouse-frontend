@@ -7,13 +7,13 @@ module.exports = {
 
     resolve: {
         root: [envConfig.src.dir],
-        extensions: ['', '.ts', '.js']
+        extensions: ['', '.js']
     },
 
     module: {
         preLoaders: [
             {
-                test: /\.(js|ts)$/,
+                test: /\.js$/,
                 loader: 'isparta',
                 include: envConfig.src.dir,
                 exclude: [/\.test\.(ts|js)$/]
@@ -21,9 +21,18 @@ module.exports = {
         ],
         loaders: [
             {
-                test: /\.(ts|js)$/,
+                test: /\.js$/,
                 loader: 'babel',
                 exclude: [/node_modules/]
+            },
+
+            {
+                test: /\.html$/,
+                loader: 'raw'
+            },
+            {
+                test: /\.css$/,
+                loader: 'raw'
             }
         ]
     }
