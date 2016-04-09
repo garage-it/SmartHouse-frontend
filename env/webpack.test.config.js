@@ -16,7 +16,7 @@ module.exports = {
                 test: /\.js$/,
                 loader: 'isparta',
                 include: envConfig.src.dir,
-                exclude: [/\.test\.(ts|js)$/]
+                exclude: [/\.test\.js$/]
             }
         ],
         loaders: [

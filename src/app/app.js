@@ -7,6 +7,7 @@ import {Dashboard} from './dashboard';
 @Component({
     selector: 'sh-app',
     directives: [RouterLink, RouterOutlet],
+    styles: [require('./app.css')],
     template: `
       <h1>Smart House</h1>
       <nav>
