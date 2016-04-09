@@ -1,13 +1,21 @@
 import {Component} from 'angular2/core';
-import {RouteConfig} from 'angular2/router';
+import {RouteConfig, RouterLink} from 'angular2/router';
 
 import {Home} from './home';
 
 @Component({
-    selector: 'sh-app'
+    selector: 'sh-app',
+    directives: [RouterLink],
+    template: `
+      <h1>Smart House</h1>
+      <nav>
+        <a [routerLink]="['Home']">Home</a>
+      </nav>
+      <router-outlet></router-outlet>
+    `
 })
 @RouteConfig([
-    { path: '/', name: 'Index', component: Home, useAsDefault: true }
+    {path: '/', name: 'Home', component: Home, useAsDefault: true}
 ])
 export class App {
 

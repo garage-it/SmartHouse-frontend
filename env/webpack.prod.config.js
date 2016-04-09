@@ -45,16 +45,6 @@ module.exports = {
         ]
     },
 
-    devServer: {
-        port: 8000,
-        host: 'localhost',
-        historyApiFallback: true,
-        watchOptions: {
-            aggregateTimeout: 300,
-            poll: 1000
-        }
-    },
-
     plugins: [
         new CleanWebpackPlugin([envConfig.dist.dir], {root: envConfig.root.dir}),
         new HtmlWebpackPlugin({template: envConfig.src.indexHtml})
