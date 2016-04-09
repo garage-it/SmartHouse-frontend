@@ -1,5 +1,5 @@
 import {Component} from 'angular2/core';
-import {RouteConfig, RouterLink} from 'angular2/router';
+import {RouteConfig, RouterLink, RouterOutlet} from 'angular2/router';
 
 import {Home} from './home';
 import {Dashboard} from './dashboard';

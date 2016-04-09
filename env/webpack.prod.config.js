@@ -41,6 +41,10 @@ module.exports = {
                 test: /\.(ts|js)$/,
                 loader: 'babel',
                 exclude: [/node_modules/]
+            },
+            {
+                test: /\.html$/,
+                loader: 'raw'
             }
         ]
     },

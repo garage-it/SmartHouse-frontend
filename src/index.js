@@ -1,7 +1,5 @@
 // Polyfills
 import 'core-js';
-
-// Zone.js
 import 'zone.js/dist/zone';
 
 // Angular 2
@@ -12,6 +10,10 @@ import 'angular2/common';
 import 'angular2/http';
 import 'angular2/router';
 
+// RxJS
+import 'rxjs';
+
+// Bootstrap
 import {provide} from 'angular2/core';
 import {bootstrap} from 'angular2/platform/browser';
 import {ROUTER_PROVIDERS, APP_BASE_HREF} from 'angular2/router';
@@ -21,6 +23,6 @@ import {App} from './app';
 
 bootstrap(App, [
     ROUTER_PROVIDERS,
-    provide(APP_BASE_HREF, { useValue: '/' }),
+    provide(APP_BASE_HREF, {useValue: '/'}),
     provide(LocationStrategy, {useClass: HashLocationStrategy})
 ]);

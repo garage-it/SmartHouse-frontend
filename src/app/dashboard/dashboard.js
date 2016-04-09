@@ -2,7 +2,7 @@ import {Component} from 'angular2/core';
 
 @Component({
     selector: 'sm-dashboard',
-    template: '<h1>Dashboard</h1>'
+    template: require('./dashboard.html')
 })
 export class Dashboard {
     ngOnInit() {

@@ -6,7 +6,7 @@ const envConfig = require('./env.config');
 module.exports = {
     debug: true,
 
-    devtool: 'source-map',
+    devtool: 'cheap-source-map',
 
     resolve: {
         root: [envConfig.src.dir],
@@ -41,6 +41,10 @@ module.exports = {
                 test: /\.(ts|js)$/,
                 loader: 'babel',
                 exclude: [/node_modules/]
+            },
+            {
+                test: /\.html$/,
+                loader: 'raw'
             }
         ]
     },
