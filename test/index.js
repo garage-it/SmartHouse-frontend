@@ -7,6 +7,6 @@ testing.setBaseTestProviders(
     browser.TEST_BROWSER_PLATFORM_PROVIDERS,
     browser.TEST_BROWSER_APPLICATION_PROVIDERS);
 
-const appContext = require.context('../src', true, /\.test\.ts/);
+const appContext = require.context('../src', true, /\.test\.js/);
 
 appContext.keys().forEach(appContext);
