@@ -8,6 +8,9 @@ function rootPath(...args) {
 module.exports = {
     path: rootPath,
 
+    server: {
+        port: 8000
+    },
     root: {
         dir: rootDir
     },

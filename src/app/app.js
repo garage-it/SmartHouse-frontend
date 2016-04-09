@@ -1,5 +1,6 @@
 import {Component} from 'angular2/core';
 import {RouteConfig, RouterLink, RouterOutlet} from 'angular2/router';
+import io from 'socket.io-client';
 
 import {Home} from './home';
 import {Dashboard} from './dashboard';
@@ -24,6 +25,7 @@ import {Dashboard} from './dashboard';
 ])
 export class App {
     ngOnInit() {
+        io();
         console.log('Init App'); // eslint-disable-line
     }
 }
