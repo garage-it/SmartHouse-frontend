@@ -4,10 +4,10 @@
   "description": "Smart House",
   "main": "index.js",
   "scripts": {
+    "start": "webpack-dev-server --inline --progress --profile --watch",
     "test": "karma start",
     "validate": "eslint --ext .js,.ts --ignore-path .gitignore ./",
-    "build": "webpack --progress --profile",
-    "serve": "webpack-dev-server --inline --progress --profile --watch"
+    "build": "webpack --progress --profile"
   },
   "repository": {
     "type": "git",
