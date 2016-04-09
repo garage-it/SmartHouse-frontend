@@ -2,6 +2,7 @@ import {Component} from 'angular2/core';
 import {RouteConfig, RouterLink} from 'angular2/router';
 
 import {Home} from './home';
+import {Dashboard} from './dashboard';
 
 @Component({
     selector: 'sh-app',
@@ -10,13 +11,19 @@ import {Home} from './home';
       <h1>Smart House</h1>
       <nav>
         <a [routerLink]="['Home']">Home</a>
+        <a [routerLink]="['Dashboard']">Dashboard</a>
       </nav>
-      <router-outlet></router-outlet>
-    `
+      <main>
+        <router-outlet></router-outlet>
+      </main>`
 })
 @RouteConfig([
-    {path: '/', name: 'Home', component: Home, useAsDefault: true}
+    {path: '/', name: 'Index', component: Home, useAsDefault: true},
+    {path: '/home', name: 'Home', component: Home},
+    {path: '/dashboard', name: 'Dashboard', component: Dashboard}
 ])
 export class App {
-
+    ngOnInit() {
+        console.log('Init App'); // eslint-disable-line
+    }
 }
