@@ -9,7 +9,11 @@ module.exports = {
     path: rootPath,
 
     server: {
-        port: 8000
+        host: 'localhost',
+        port: 8000,
+        mock: {
+            port: 9000
+        }
     },
     root: {
         dir: rootDir
