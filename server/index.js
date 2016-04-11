@@ -1,18 +1,18 @@
 'use strict';
 
-const express = require('express');
-const path = require('path');
-const app = express();
 const bodyParser = require('body-parser');
+const path = require('path');
+const express = require('express');
+const app = express();
 const http = require('http').Server(app);
-const port = 9000;
 const io = require('socket.io')(http);
+const env = require('../env/env.config');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 
 io.on('connection', function(socket){
-    console.log('socket.io: a user connected');
+    console.log('socket.io: connected');
 });
 
 app.post('/emulate', (req, res) => {
@@ -22,10 +22,6 @@ app.post('/emulate', (req, res) => {
 
 app.use(express.static(path.join(__dirname, '/')));
 
-app.get('/dashboard', () => {
-
-});
-
-http.listen(port, () => {
-    console.log(`server listening on port ${port}`);
+http.listen(env.server.mock.port, env.server.host, () => {
+    console.log(`server listening on port ${env.server.mock.port}`);
 });
