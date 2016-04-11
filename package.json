@@ -4,13 +4,13 @@
   "description": "Smart House",
   "main": "index.js",
   "scripts": {
-    "start": "npm-run-all -s -p client server",
-    "client": "webpack-dev-server --inline --progress --profile --watch",
+    "start": "npm-run-all -p client server",
+    "client": "webpack-dev-server --inline --watch",
     "test": "karma start",
     "validate": "eslint --ext .js,.ts --ignore-path .gitignore ./",
     "build": "webpack --progress --profile",
     "serve": "webpack-dev-server --watch --inline",
-    "server": "node --harmony_destructuring server/index.js"
+    "server": "node --harmony_destructuring --harmony_rest_parameters server/index.js"
   },
   "repository": {
     "type": "git",
@@ -59,6 +59,7 @@
     "karma-phantomjs-launcher": "^1.0.0",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.7.0",
+    "npm-run-all": "^1.7.0",
     "phantomjs-prebuilt": "^2.1.6",
     "raw-loader": "^0.5.1",
     "source-map-loader": "^0.1.5",
