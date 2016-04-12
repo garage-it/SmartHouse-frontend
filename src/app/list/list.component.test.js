@@ -22,7 +22,8 @@ describe('ListComponent', () => {
 
         listDataPromise = Promise.resolve(listData);
 
-        listService = jasmine.createSpyComponent(ListService);
+        listService = jasmine.createSpyObj('listService',
+            Object.getOwnPropertyNames(ListService.prototype));
         listService.getObservableData.and.returnValue(listDataObserver);
         listService.getPromisedData.and.returnValue(listDataPromise);
 
@@ -40,11 +41,12 @@ describe('ListComponent', () => {
             expect(sut.asyncObservableList).toEqual(listDataObserver);
         });
 
-        it('should resolve observable list of data', () => {
+        it('should resolve observable list of data', (done) => {
             expect(listService.getObservableData).toHaveBeenCalledWith();
 
-            return listService.getObservableData().toPromise().then(() => {
+            return listService.getObservableData().subscribe(() => {
                 expect(sut.resolvedObservableList).toEqual(listData);
+                done();
             });
         });
 
