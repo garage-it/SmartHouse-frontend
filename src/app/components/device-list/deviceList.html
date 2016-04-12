@@ -1,0 +1,41 @@
+Device list:
+<table>
+    <thead>
+    <th [ngClass]="{active: isActive('number')}" (click) = "setSortBy('number')">
+        Number<div [ngClass]="{up: reverse, down: !reverse}"></div></th>
+    <th [ngClass]="{active: isActive('status')}"  (click) = "setSortBy('status')">Status
+        <div [ngClass]="{up: reverse, down: !reverse}"></div></th>
+    <th>Type</th>
+    <th>Description</th>
+    </thead>
+    <tbody>
+    <tr *ngFor="#item of deviceList">
+        <td>{{item.number}}</td>
+        <td>{{item.status}}</td>
+        <td>{{item.type}}</td>
+        <td>{{item.description}}</td>
+    </tr>
+    </tbody>
+</table>
+<style>
+
+    th {
+        cursor: pointer
+    }
+
+    .active .up {
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 5px solid black;
+    }
+    .active .down {
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid #f00;
+    }
+</style>
+
