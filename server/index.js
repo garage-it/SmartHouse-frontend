@@ -17,6 +17,7 @@ io.on('connection', function(socket){
 
 app.post('/emulate', (req, res) => {
     io.emit(req.body.eventName, JSON.parse(req.body.eventData));
+    console.log(`[socket.io] ${req.body.eventName}: ${req.body.eventData}`);
     res.redirect('/');
 });
 
