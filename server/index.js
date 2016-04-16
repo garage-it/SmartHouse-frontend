@@ -11,8 +11,8 @@ const env = require('../env/env.config');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 
-io.on('connection', function(socket){
-    console.log('socket.io: connected');
+io.on('connection', socket => {
+    _exampleRest(socket);
 });
 
 app.post('/emulate', (req, res) => {
@@ -26,3 +26,12 @@ app.use(express.static(path.join(__dirname, '/')));
 http.listen(env.server.mock.port, env.server.host, () => {
     console.log(`server listening on port ${env.server.mock.port}`);
 });
+
+function _exampleRest(socket) {
+    /* example rest */
+    socket.on('example/rest', (data, clientCb) => {
+        console.log(data);
+        data.source = 'server';
+        clientCb(Object.assign({}, data));
+    });
+}

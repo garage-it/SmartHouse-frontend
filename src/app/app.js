@@ -5,6 +5,17 @@ import io from 'socket.io-client';
 import {Home} from './home';
 import {Dashboard} from './dashboard';
 
+function _exampleRest(socket) {
+    const data = {
+        name: 'example',
+        description: 'rest',
+        source: 'client'
+    };
+    socket.emit('example/rest', data, resData => {
+        console.log(resData);
+    });
+}
+
 @Component({
     selector: 'sh-app',
     directives: [RouterLink, RouterOutlet],
@@ -24,9 +35,15 @@ import {Dashboard} from './dashboard';
     {path: '/home', name: 'Home', component: Home},
     {path: '/dashboard', name: 'Dashboard', component: Dashboard}
 ])
+
 export class App {
     ngOnInit() {
-        io();
+        const socket = io();
+        /* example rest */
+        socket.on('connect', () => {
+            _exampleRest(socket);
+        });
+
         console.log('Init App'); // eslint-disable-line
     }
 }

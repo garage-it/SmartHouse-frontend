@@ -9,7 +9,6 @@
     "test": "karma start",
     "validate": "eslint --ext .js,.ts --ignore-path .gitignore ./",
     "build": "webpack --progress --profile",
-    "serve": "webpack-dev-server --watch --inline",
     "server": "node --harmony_destructuring --harmony_rest_parameters server/index.js"
   },
   "repository": {
