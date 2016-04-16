@@ -5,6 +5,7 @@ import {Home} from './home';
 import {Dashboard} from './dashboard';
 import {DeviceList} from './components/device-list';
 import {ListComponent} from './list';
+import {SensorDetail} from './sensor-detail';
 
 import exampleRest from './example.rest.js';
 import style from './app.scss';
