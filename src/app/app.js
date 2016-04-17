@@ -1,20 +1,10 @@
 import {Component} from 'angular2/core';
 import {RouteConfig, RouterLink, RouterOutlet} from 'angular2/router';
-import io from 'socket.io-client';
 
 import {Home} from './home';
 import {Dashboard} from './dashboard';
 
-function _exampleRest(socket) {
-    const data = {
-        name: 'example',
-        description: 'rest',
-        source: 'client'
-    };
-    socket.emit('example/rest', data, resData => {
-        console.log(resData);
-    });
-}
+import exampleRest from './example.rest.js';
 
 @Component({
     selector: 'sh-app',
@@ -38,12 +28,7 @@ function _exampleRest(socket) {
 
 export class App {
     ngOnInit() {
-        const socket = io();
-        /* example rest */
-        socket.on('connect', () => {
-            _exampleRest(socket);
-        });
-
         console.log('Init App'); // eslint-disable-line
+        exampleRest();
     }
 }

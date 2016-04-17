@@ -10,10 +10,7 @@ module.exports = {
 
     server: {
         host: 'localhost',
-        port: 8000,
-        mock: {
-            port: 9000
-        }
+        port: 8000
     },
     root: {
         dir: rootDir
