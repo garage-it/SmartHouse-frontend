@@ -4,9 +4,8 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const express = require('express');
 const app = express();
-const http = require('http').Server(app);
+const http = require('http').Server(app); // eslint-disable-line
 const io = require('socket.io')(http);
-const env = require('../env/env.config');
 const mock = require('../env/env.mock.config');
 const routesConfig = require('./routes/index');
 
@@ -19,12 +18,12 @@ io.on('connection', socket => {
 
 app.post('/emulate', (req, res) => {
     io.emit(req.body.eventName, JSON.parse(req.body.eventData));
-    console.log(`[socket.io] ${req.body.eventName}: ${req.body.eventData}`);
+    console.log(`[socket.io] ${req.body.eventName}: ${req.body.eventData}`); // eslint-disable-line
     res.redirect('/');
 });
 
 app.use(express.static(path.join(__dirname, '/')));
 
 http.listen(mock.port, mock.host, () => {
-    console.log(`server listening on port ${mock.port}`);
+    console.log(`server listening on port ${mock.port}`); // eslint-disable-line
 });
