@@ -10,7 +10,7 @@ export default () => {
             source: 'client'
         };
         socket.emit('example/rest', data, resData => {
-            console.log(resData);
+            console.log(resData); // eslint-disable-line
         });
     });
 };
