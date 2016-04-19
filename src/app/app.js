@@ -4,6 +4,8 @@ import {RouteConfig, RouterLink, RouterOutlet} from 'angular2/router';
 import {Home} from './home';
 import {Dashboard} from './dashboard';
 
+import exampleRest from './example.rest.js';
+
 @Component({
     selector: 'sh-app',
     directives: [RouterLink, RouterOutlet],
@@ -23,8 +25,10 @@ import {Dashboard} from './dashboard';
     {path: '/home', name: 'Home', component: Home},
     {path: '/dashboard', name: 'Dashboard', component: Dashboard}
 ])
+
 export class App {
     ngOnInit() {
         console.log('Init App'); // eslint-disable-line
+        exampleRest();
     }
 }
