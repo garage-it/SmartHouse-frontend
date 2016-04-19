@@ -1,5 +1,5 @@
 # Smart House - Frontend
-[![Build Status](https://travis-ci.org/garage-it/SmartHouse-frontend.svg?branch=SH-10-travis)](https://travis-ci.org/garage-it/SmartHouse-frontend)
+[![Build Status](https://travis-ci.org/garage-it/SmartHouse-frontend.svg?branch=master)](https://travis-ci.org/garage-it/SmartHouse-frontend)
 
 # Description
 This is an awesome smart house project
