@@ -1,10 +1,10 @@
 export default class Sensor {
-    constructor(data) {
-        this.sensor = {
+    constructor(data = {}) {
+        Object.assign(this, {
             id: '',
             name: '',
-            description: '',
-            type: ''
-        };
+            type: '',
+            description: ''
+        }, data);
     }
 }

@@ -22,6 +22,22 @@ app.post('/emulate', (req, res) => {
     res.redirect('/');
 });
 
+app.get('/sensor/api/sensor/get/:id', (req, res) => {
+    console.log(req.params.id);
+    res.json({
+        id: req.params.id,
+        name: 'mock',
+        type: 'mock',
+        description: 'mock',
+        active: true
+    });
+});
+
+app.post('/sensor/api/sensor/save', (req, res) => {
+    console.log(req);
+    res.json(req.body);
+});
+
 app.use(express.static(path.join(__dirname, '/')));
 
 http.listen(mock.port, mock.host, () => {

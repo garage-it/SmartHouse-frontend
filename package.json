@@ -8,6 +8,7 @@
     "server": "node --harmony_destructuring --harmony_rest_parameters server/index.js",
     "client": "webpack-dev-server --inline --watch",
     "test": "karma start",
+    "tdd": "karma start --no-single-run --auto-watch --reporters nyan",
     "codecov": "npm codecov < coverage/lcov/lcov.info",
     "validate": "eslint --ext .js,.ts --ignore-path .gitignore ./",
     "build": "webpack --progress --profile"
@@ -59,6 +60,7 @@
     "karma-coverage": "^0.5.5",
     "karma-jasmine": "^0.3.8",
     "karma-mocha-reporter": "^2.0.0",
+    "karma-nyan-reporter": "^0.2.4",
     "karma-phantomjs-launcher": "^1.0.0",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.7.0",

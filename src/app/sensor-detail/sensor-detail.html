@@ -1,27 +1,29 @@
 <form class="sensor-edit" (ngSubmit)="save()">
     <div class="sensor-edit__id">
-        <label for="sensor-edit__id">id: </label>
         <input [(ngModel)]="sensor.id"
                ngControl="id"
                type="text" id="sensor-edit__id" placeholder="id"/>
     </div>
     <div class="sensor-edit__name">
-        <label for="sensor-edit__name">name: </label>
         <input [(ngModel)]="sensor.name"
                ngControl="name"
                type="text" id="sensor-edit__name" placeholder="name"/>
     </div>
     <div class="sensor-edit__type">
-        <label for="sensor-edit__type">type: </label>
         <input [(ngModel)]="sensor.type"
                ngControl="type"
                type="text" id="sensor-edit__type" placeholder="type"/>
     </div>
     <div class="sensor-edit__description">
-        <label for="sensor-edit__description">description: </label>
         <input [(ngModel)]="sensor.description"
+               ngControl="description"
+               type="text" id="sensor-edit__description" placeholder="description"/>
+    </div>
+    <div class="sensor-edit__active">
+        <label for="sensor-edit__active">active </label>
+        <input [(ngModel)]="sensor.active"
                ngControl="id"
-               type="text" id="sensor-edit__description" placeholder="id"/>
+               type="checkbox" id="sensor-edit__active"/>
     </div>
     <button type="submit" class="sensor-edit__save-btn">save</button>
     <button type="button" class="sensor-edit__cancel-btn">cancel</button>

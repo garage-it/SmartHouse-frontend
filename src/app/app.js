@@ -1,5 +1,5 @@
 import {Component, ViewEncapsulation} from 'angular2/core';
-import {RouteConfig, RouterLink, RouterOutlet} from 'angular2/router';
+import {RouteConfig, RouterLink, RouterOutlet, ROUTER_PROVIDERS} from 'angular2/router';
 
 import {Home} from './home';
 import {Dashboard} from './dashboard';
@@ -14,6 +14,7 @@ import style from './app.scss';
     selector: 'sh-app',
     directives: [RouterLink, RouterOutlet],
     styles: [style],
+    providers: [ROUTER_PROVIDERS],
     template: `
       <h1>Smart House</h1>
       <nav>
@@ -32,7 +33,8 @@ import style from './app.scss';
     {path: '/home', name: 'Home', component: Home},
     {path: '/dashboard', name: 'Dashboard', component: Dashboard},
     {path: '/device-list', name: 'DeviceList', component: DeviceList},
-    {path: '/list', name: 'List', component: ListComponent}
+    {path: '/list', name: 'List', component: ListComponent},
+    {path: '/sensor/:id', name: 'SensorDetail', component: SensorDetail}
 ])
 
 export class App {
