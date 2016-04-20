@@ -1,10 +1,10 @@
 import {Component} from 'angular2/core';
-import {DeviceList} from '../components/device-list';
+import template from './home.html';
 
+const selector = 'sm-home';
 @Component({
-    selector: 'sm-home',
-    template: require('./home.html'),
-    directives: [DeviceList]
+    selector,
+    template
 })
 export class Home {
     ngOnInit() {

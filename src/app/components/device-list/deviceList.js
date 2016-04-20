@@ -1,8 +1,13 @@
 import {Component} from 'angular2/core';
+import template from './deviceList.html';
+import style from './deviceList.css';
+
+const selector = 'device-list';
 
 @Component({
-    selector: 'device-list',
-    template: require('./deviceList.html')
+    selector,
+    template,
+    styles: [style]
 })
 export class DeviceList {
     deviceList = [{
