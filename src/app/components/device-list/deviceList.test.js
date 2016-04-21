@@ -8,7 +8,8 @@ describe('Device List', () => {
     });
 
     describe('Sorting list of devices', () => {
-        var list, numberArr;
+        let list;
+        let numberArr;
 
         beforeEach(() => {
             list = new DeviceList();
