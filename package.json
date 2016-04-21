@@ -8,6 +8,7 @@
     "server": "node --harmony_destructuring --harmony_rest_parameters server/index.js",
     "client": "webpack-dev-server --inline --watch",
     "test": "karma start",
+    "codecov": "npm codecov < coverage/lcov/lcov.info",
     "validate": "eslint --ext .js,.ts --ignore-path .gitignore ./",
     "build": "webpack --progress --profile"
   },
@@ -67,10 +68,11 @@
   },
   "dependencies": {
     "angular2": "^2.0.0-beta.14",
+    "codecov": "^1.0.1",
     "core-js": "^2.2.2",
     "reflect-metadata": "^0.1.3",
     "rxjs": "^5.0.0-beta.5",
-    "zone.js": "^0.6.10",
-    "socket.io": "^1.4.5"
+    "socket.io": "^1.4.5",
+    "zone.js": "^0.6.10"
   }
 }
