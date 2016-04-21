@@ -1,6 +1,7 @@
 import {Component} from 'angular2/core';
 import template from './deviceList.html';
 import style from './deviceList.css';
+import {DeviceListService} from './DeviceListService';
 
 const selector = 'device-list';
 
@@ -10,36 +11,16 @@ const selector = 'device-list';
     styles: [style]
 })
 export class DeviceList {
-    deviceList = [{
-        number: '0001',
-        type: 'move sensor',
-        status: 'active',
-        description: 'In the kitchen room'
-    }, {
-        number: '0004',
-        type: 'temperature sensor',
-        status: 'inactive',
-        description: 'In the kitchen room'
-    }, {
-        number: '0002',
-        type: 'move sensor',
-        status: 'active',
-        description: 'In the bathroom'
-    }, {
-        number: '0003',
-        type: 'temperature sensor',
-        status: 'shadow',
-        description: 'In the bathroom'
-    }]
-    sortBy = ''
-    reverse = false
+    deviceListService = new DeviceListService();
+    deviceList = this.deviceListService.getData();
+    sortBy = '';
+    reverse = false;
 
     setSortBy(sortByValue) {
         if (this.sortBy !== sortByValue) {
             this.reverse = false;
             this.sortBy = sortByValue;
-        }
-        else {
+        } else {
             this.reverse = !this.reverse;
         }
         this.deviceList.sort((a, b) => {
