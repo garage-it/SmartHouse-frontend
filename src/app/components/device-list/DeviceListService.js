@@ -1,6 +1,6 @@
 export class DeviceListService {
     getData() {
-        return [{
+        let sensorList = [{
             number: '0001',
             type: 'move sensor',
             status: 'active',
@@ -21,5 +21,8 @@ export class DeviceListService {
             status: 'shadow',
             description: 'In the bathroom'
         }];
+        return new Promise((resolve) => {
+            resolve(sensorList);
+        });
     }
 }

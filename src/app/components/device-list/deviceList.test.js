@@ -1,12 +1,6 @@
 import {DeviceList} from './deviceList';
 
 describe('Device List', () => {
-    describe('#constructor', () => {
-        it('should be defined', () => {
-            expect(DeviceList).toBeDefined();
-        });
-    });
-
     describe('Sorting list of devices', () => {
         let list;
         let numberArr;
@@ -39,15 +33,15 @@ describe('Device List', () => {
 
         it('will check active sort by column', () => {
             list.sortBy = 'status';
-            expect(list.isActive('status')).toBeTruthy();
-            expect(list.isActive('number')).toBeFalsy();
+            expect(list.isActive('status')).toBe(true);
+            expect(list.isActive('number')).toBe(false);
         });
 
         it('will change sorting order to opposite on sorting by the same column', () => {
             list.reverse = false;
             list.sortBy = 'status';
             list.setSortBy('status');
-            expect(list.reverse).toBeTruthy();
+            expect(list.reverse).toBe(true);
         });
 
 
@@ -55,7 +49,7 @@ describe('Device List', () => {
             list.reverse = true;
             list.sortBy = 'number';
             list.setSortBy('status');
-            expect(list.reverse).toBeFalsy();
+            expect(list.reverse).toBe(false);
         });
     });
 });

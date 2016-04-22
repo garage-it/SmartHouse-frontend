@@ -1,5 +1,5 @@
-th {
-    cursor: pointer
+.sortable {
+    cursor: pointer;
 }
 
 .active .up {
@@ -9,6 +9,7 @@ th {
     border-right: 5px solid transparent;
     border-bottom: 5px solid black;
 }
+
 .active .down {
     width: 0;
     height: 0;

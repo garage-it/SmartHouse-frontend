@@ -11,8 +11,14 @@ const selector = 'device-list';
     styles: [style]
 })
 export class DeviceList {
-    deviceListService = new DeviceListService();
-    deviceList = this.deviceListService.getData();
+
+    constructor() {
+        let deviceListService = new DeviceListService();
+        deviceListService.getData().then((data) => {
+            this.deviceList = data;
+        });
+    }
+
     sortBy = '';
     reverse = false;
 

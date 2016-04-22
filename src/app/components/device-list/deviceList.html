@@ -1,10 +1,13 @@
 Device list:
 <table>
     <thead>
-    <th [ngClass]="{active: isActive('number')}" (click) = "setSortBy('number')">
-        Number<div [ngClass]="{up: reverse, down: !reverse}"></div></th>
-    <th [ngClass]="{active: isActive('status')}"  (click) = "setSortBy('status')">Status
-        <div [ngClass]="{up: reverse, down: !reverse}"></div></th>
+    <th [ngClass]="{active: isActive('number')}" class="sortable" (click)="setSortBy('number')">
+        Number
+        <div [ngClass]="{up: reverse, down: !reverse}"></div>
+    </th>
+    <th [ngClass]="{active: isActive('status')}" class="sortable" (click)="setSortBy('status')">Status
+        <div [ngClass]="{up: reverse, down: !reverse}"></div>
+    </th>
     <th>Type</th>
     <th>Description</th>
     </thead>

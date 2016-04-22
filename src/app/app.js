@@ -5,11 +5,16 @@ import {Home} from './home';
 import {Dashboard} from './dashboard';
 import {DeviceList} from './components/device-list';
 
+import template from './app.html';
+import style from './app.css';
+
+const selector = 'sh-app';
+
 @Component({
-    selector: 'sh-app',
+    selector,
     directives: [RouterLink, RouterOutlet],
-    styles: [require('./app.css')],
-    template: require('./app.html'),
+    styles: [style],
+    template
 })
 @RouteConfig([
     {path: '/', name: 'Index', component: Home, useAsDefault: true},

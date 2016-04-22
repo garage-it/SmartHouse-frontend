@@ -10,7 +10,4 @@ export class Home {
     ngOnInit() {
         console.log('Init Home'); // eslint-disable-line
     }
-    test() {
-        console.log('Test Form Home');
-    }
 }
