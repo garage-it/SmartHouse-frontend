@@ -6,7 +6,7 @@ import {ListService} from './list.service';
 @Component({
     selector: 'sm-list',
     template,
-    providers: [ListService]
+    providers: [ ListService ]
 })
 export class ListComponent {
     constructor(listService: ListService) {
@@ -16,8 +16,16 @@ export class ListComponent {
     ngOnInit() {
         console.log('Init List'); // eslint-disable-line
 
-        this._listService.getData().then((list) => {
-            this.list = list;
+        this.asyncObservableList = this._listService.getObservableData();
+
+        this._listService.getObservableData().subscribe(data => {
+            this.resolvedObservableList = data;
+        });
+
+        this.asyncPromiseList = this._listService.getPromisedData();
+
+        this._listService.getPromisedData().then(data => {
+            this.resolvedPromiseList = data;
         });
     }
 }
