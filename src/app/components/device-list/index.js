@@ -1,1 +1,1 @@
-export * from './deviceList';
+export * from './deviceList.component';

@@ -1,19 +1,19 @@
 import {Component} from 'angular2/core';
 import template from './deviceList.html';
 import style from './deviceList.css';
-import {DeviceListService} from './DeviceListService';
+import {DeviceListService} from './DeviceList.service';
 
 const selector = 'device-list';
 
 @Component({
     selector,
     template,
-    styles: [style]
+    styles: [style],
+    providers: [DeviceListService]
 })
-export class DeviceList {
 
-    constructor() {
-        let deviceListService = new DeviceListService();
+export class DeviceList {
+    constructor(deviceListService: DeviceListService) {
         deviceListService.getData().then((data) => {
             this.deviceList = data;
         });

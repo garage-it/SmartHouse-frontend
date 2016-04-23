@@ -2,54 +2,83 @@ import {DeviceList} from './deviceList';
 
 describe('Device List', () => {
     describe('Sorting list of devices', () => {
-        let list;
+        let sut;
+        let listData;
+        let DeviceListService;
         let numberArr;
 
         beforeEach(() => {
-            list = new DeviceList();
             numberArr = [];
+            listData = [
+                {value: 'testValue1'},
+                {value: 'testValue2'}
+            ];
+
+            DeviceListService = jasmine.createSpyObj('DeviceListService', ['getData']);
+            DeviceListService.getData.and.returnValue(Promise.resolve(listData));
+
+            sut = new DeviceList(DeviceListService);
+        });
+
+        it('will call getData from service', () => {
+            expect(DeviceListService.getData).toHaveBeenCalled();
+        });
+
+        it('will return correct data from service', () => {
+            DeviceListService.getData().then((data) => {
+                expect(sut.deviceList).toEqual(data);
+            });
         });
 
         it('will sort by number column in  ascending order', () => {
-            list.sortBy = 'number';
-            list.reverse = true;
-            list.setSortBy('number');
-            list.deviceList.forEach((elem) => {
-                numberArr.push(elem.number);
+            sut.sortBy = 'number';
+            sut.reverse = true;
+
+
+            DeviceListService.getData().then(() => {
+                sut.setSortBy('number');
+                sut.deviceList.forEach((elem) => {
+                    numberArr.push(elem.number);
+                });
+                expect(numberArr).toEqual(['0001', '0002', '0003', '0004']);
             });
-            expect(numberArr).toEqual([ '0001', '0002', '0003', '0004']);
         });
 
         it('will sort by number column in  descending order', () => {
-            list.sortBy = 'number';
-            list.reverse = false;
-            list.setSortBy('number');
-            list.deviceList.forEach((elem) => {
-                numberArr.push(elem.number);
-            });
+            sut.sortBy = 'number';
+            sut.reverse = false;
 
-            expect(numberArr).toEqual(['0004', '0003', '0002', '0001']);
+            DeviceListService.getData().then(() => {
+                sut.setSortBy('number');
+                sut.deviceList.forEach((elem) => {
+                    numberArr.push(elem.number);
+                });
+                expect(numberArr).toEqual(['0004', '0003', '0002', '0001']);
+            });
         });
 
         it('will check active sort by column', () => {
-            list.sortBy = 'status';
-            expect(list.isActive('status')).toBe(true);
-            expect(list.isActive('number')).toBe(false);
+            sut.sortBy = 'status';
+            expect(sut.isActive('status')).toBe(true);
+            expect(sut.isActive('number')).toBe(false);
         });
 
         it('will change sorting order to opposite on sorting by the same column', () => {
-            list.reverse = false;
-            list.sortBy = 'status';
-            list.setSortBy('status');
-            expect(list.reverse).toBe(true);
+            sut.reverse = false;
+            sut.sortBy = 'status';
+            DeviceListService.getData().then(() => {
+                sut.setSortBy('status');
+                expect(sut.reverse).toBe(true);
+            });
         });
 
-
         it('will change sorting order to ascending on sorting by different column', () => {
-            list.reverse = true;
-            list.sortBy = 'number';
-            list.setSortBy('status');
-            expect(list.reverse).toBe(false);
+            sut.reverse = true;
+            sut.sortBy = 'number';
+            DeviceListService.getData().then(() => {
+                sut.setSortBy('status');
+                expect(sut.reverse).toBe(false);
+            });
         });
     });
 });
