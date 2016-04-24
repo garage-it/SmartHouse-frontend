@@ -1,4 +1,4 @@
-import {DeviceList} from './deviceList';
+import {DeviceList} from './deviceList.component';
 
 describe('Device List', () => {
     describe('Sorting list of devices', () => {
