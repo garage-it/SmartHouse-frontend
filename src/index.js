@@ -10,6 +10,9 @@ import 'angular2/common';
 import 'angular2/http';
 import 'angular2/router';
 
+// Socket.io
+import 'socket.io-client';
+
 // RxJS
 import 'rxjs';
 
