@@ -22,7 +22,7 @@ const selector = 'sh-app';
     {path: '/', name: 'Index', component: Home, useAsDefault: true},
     {path: '/home', name: 'Home', component: Home},
     {path: '/dashboard', name: 'Dashboard', component: Dashboard},
-    {path: '/device-list', name: 'DeviceList', component: DeviceList}
+    {path: '/device-list', name: 'DeviceList', component: DeviceList},
     {path: '/list', name: 'List', component: ListComponent}
 ])
 

@@ -10,8 +10,18 @@ describe('Device List', () => {
         beforeEach(() => {
             numberArr = [];
             listData = [
-                {value: 'testValue1'},
-                {value: 'testValue2'}
+                {
+                    number: '1',
+                    status: true
+                },
+                {
+                    number: '2',
+                    status: false
+                },
+                {
+                    number: '3',
+                    status: true
+                }
             ];
 
             DeviceListService = jasmine.createSpyObj('DeviceListService', ['getData']);
@@ -24,13 +34,14 @@ describe('Device List', () => {
             expect(DeviceListService.getData).toHaveBeenCalled();
         });
 
-        it('will return correct data from service', () => {
+        it('will return correct data from service', (done) => {
             DeviceListService.getData().then((data) => {
                 expect(sut.deviceList).toEqual(data);
+                done();
             });
         });
 
-        it('will sort by number column in  ascending order', () => {
+        it('will sort by number column in  ascending order', (done) => {
             sut.sortBy = 'number';
             sut.reverse = true;
 
@@ -40,11 +51,12 @@ describe('Device List', () => {
                 sut.deviceList.forEach((elem) => {
                     numberArr.push(elem.number);
                 });
-                expect(numberArr).toEqual(['0001', '0002', '0003', '0004']);
+                expect(numberArr).toEqual(['1', '2', '3']);
+                done();
             });
         });
 
-        it('will sort by number column in  descending order', () => {
+        it('will sort by number column in  descending order', (done) => {
             sut.sortBy = 'number';
             sut.reverse = false;
 
@@ -53,7 +65,8 @@ describe('Device List', () => {
                 sut.deviceList.forEach((elem) => {
                     numberArr.push(elem.number);
                 });
-                expect(numberArr).toEqual(['0004', '0003', '0002', '0001']);
+                expect(numberArr).toEqual(['3', '2', '1']);
+                done();
             });
         });
 
@@ -63,21 +76,23 @@ describe('Device List', () => {
             expect(sut.isActive('number')).toBe(false);
         });
 
-        it('will change sorting order to opposite on sorting by the same column', () => {
+        it('will change sorting order to opposite on sorting by the same column', (done) => {
             sut.reverse = false;
             sut.sortBy = 'status';
             DeviceListService.getData().then(() => {
                 sut.setSortBy('status');
                 expect(sut.reverse).toBe(true);
+                done();
             });
         });
 
-        it('will change sorting order to ascending on sorting by different column', () => {
+        it('will change sorting order to ascending on sorting by different column', (done) => {
             sut.reverse = true;
             sut.sortBy = 'number';
             DeviceListService.getData().then(() => {
                 sut.setSortBy('status');
                 expect(sut.reverse).toBe(false);
+                done();
             });
         });
     });
