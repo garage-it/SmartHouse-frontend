@@ -22,7 +22,8 @@ describe('ListComponent', () => {
 
         listDataPromise = Promise.resolve(listData);
 
-        listService = jasmine.createSpyObj('listService', Object.getOwnPropertyNames(ListService.prototype));
+        listService = jasmine.createSpyObj('listService',
+            Object.getOwnPropertyNames(ListService.prototype));
         listService.getObservableData.and.returnValue(listDataObserver);
         listService.getPromisedData.and.returnValue(listDataPromise);
 

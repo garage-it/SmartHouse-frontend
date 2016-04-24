@@ -1,8 +1,10 @@
 import {Component} from 'angular2/core';
+import template from './home.html';
 
+const selector = 'sm-home';
 @Component({
-    selector: 'sm-home',
-    template: require('./home.html')
+    selector,
+    template
 })
 export class Home {
     ngOnInit() {
