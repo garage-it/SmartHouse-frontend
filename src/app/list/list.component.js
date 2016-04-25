@@ -18,13 +18,13 @@ export class ListComponent {
 
         this.asyncObservableList = this._listService.getObservableData();
 
-        this._listService.getObservableData().subscribe(data => {
+        this.asyncObservableList.subscribe(data => {
             this.resolvedObservableList = data;
         });
 
         this.asyncPromiseList = this._listService.getPromisedData();
 
-        this._listService.getPromisedData().then(data => {
+        this.asyncPromiseList.then(data => {
             this.resolvedPromiseList = data;
         });
     }

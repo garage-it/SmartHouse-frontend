@@ -8,6 +8,11 @@
     "browser": true,
     "jasmine": true
   },
+  "global": {
+    "fakeAsync": true,
+    "flushMicrotasks": true,
+    "tick": true
+  },
   "rules": {
     // Babel
     "babel/new-cap": [
