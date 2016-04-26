@@ -31,17 +31,17 @@ describe('SensorDetailService', () => {
     });
 
     it('should get sensor data from the server', () => {
-        let idMock = 'mock';
+        const idMock = 'mock';
         sut.get(idMock);
         expect(httpMock.get).toHaveBeenCalledWith(`${sut.baseUrl}/get/${idMock}`);
     });
 
     it('should save sensor', () => {
-        let sensorMock = {};
-        let body = JSON.stringify(sensorMock);
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers });
+        const sensorMock = {};
+        const body = JSON.stringify(sensorMock);
+        const headers = new Headers({ 'Content-Type': 'application/json' });
+        const options = new RequestOptions({ headers });
         sut.save(sensorMock);
-        expect(httpMock.post).toHaveBeenCalledWith(`${sut.baseUrl}/save`, body, options)
-    })
+        expect(httpMock.post).toHaveBeenCalledWith(`${sut.baseUrl}/save`, body, options);
+    });
 });

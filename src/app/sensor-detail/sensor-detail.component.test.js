@@ -1,6 +1,5 @@
 import SensorDetailService from './sensor-detail.service';
 import {SensorDetail} from './sensor-detail.component';
-import Sensor from './sensor';
 
 import {RouteParams} from 'angular2/router';
 import {beforeEachProviders} from 'angular2/testing';
@@ -62,7 +61,7 @@ describe('sensor-detail module', () => {
     });
 
     it('should save sensor', () => {
-        let sensorMock = {};
+        const sensorMock = {};
         sut.sensor = sensorMock;
         sut.save();
         expect(sut.sensorDetailService.save).toHaveBeenCalledWith(sensorMock);
