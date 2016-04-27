@@ -7,14 +7,21 @@ import {DeviceList} from './components/device-list';
 import {ListComponent} from './list';
 import {SensorDetail} from './sensor-detail';
 
+import {Http, HTTP_PROVIDERS} from 'angular2/http';
+import ShHttp from './sh-http';
+
 import exampleRest from './example.rest.js';
 import style from './app.scss';
 
 @Component({
     selector: 'sh-app',
     directives: [RouterLink, RouterOutlet],
+    providers: [
+        ROUTER_PROVIDERS,
+        Http,
+        HTTP_PROVIDERS,
+        ShHttp],
     styles: [style],
-    providers: [ROUTER_PROVIDERS],
     template: `
       <h1>Smart House</h1>
       <nav>
@@ -22,6 +29,7 @@ import style from './app.scss';
         <a [routerLink]="['Dashboard']">Dashboard</a>
         <a [routerLink]="['List']">List</a>
         <a [routerLink]="['DeviceList']">Device List</a>
+        <a [routerLink]="['SensorDetail', {id: '41224d776a326fb40f000001'}]">SensorDetail</a>
       </nav>
       <main>
         <router-outlet></router-outlet>
@@ -34,9 +42,8 @@ import style from './app.scss';
     {path: '/dashboard', name: 'Dashboard', component: Dashboard},
     {path: '/device-list', name: 'DeviceList', component: DeviceList},
     {path: '/list', name: 'List', component: ListComponent},
-    {path: '/sensor/:id', name: 'SensorDetail', component: SensorDetail}
+    {path: '/sensors/:id', name: 'SensorDetail', component: SensorDetail}
 ])
-
 export class App {
     ngOnInit() {
         console.log('Init App'); // eslint-disable-line

@@ -1,16 +1,15 @@
 import {Injectable} from 'angular2/core';
-import {Http, RequestOptions, Headers} from 'angular2/http';
+import {RequestOptions, Headers} from 'angular2/http';
+import ShHttp from '../sh-http';
 
 @Injectable()
 export default class SensorDetailService {
-    constructor(http:Http) {
+    constructor(http: ShHttp) {
         this.http = http;
-        this.baseUrl = 'api/sensor';
     }
-
     get(id) {
         return this.http
-            .get(`${this.baseUrl}/get/${id}`)
+            .get(`/sensors/${id}`)
             .map(this.convertToJson);
     }
 

@@ -15,6 +15,13 @@ module.exports = webpackMerge(commonConfig, {
         },
         proxy: [
             {
+                path: 'api/*',
+                target: {
+                    port: 3000,
+                    host: 'localhost'
+                }
+            },
+            {
                 path: '*',
                 target: {
                     port: mock.port,
