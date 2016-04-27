@@ -15,6 +15,11 @@ import './jasmine/create-spy-component';
 import * as testing from 'angular2/testing';
 import * as browser from 'angular2/platform/testing/browser';
 
+// Zone
+import 'zone.js/dist/zone';
+import 'zone.js/dist/long-stack-trace-zone';
+import 'zone.js/dist/jasmine-patch';
+
 testing.setBaseTestProviders(
     browser.TEST_BROWSER_PLATFORM_PROVIDERS,
     browser.TEST_BROWSER_APPLICATION_PROVIDERS);

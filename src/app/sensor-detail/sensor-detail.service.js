@@ -1,5 +1,4 @@
 import {Injectable} from 'angular2/core';
-import {RequestOptions, Headers} from 'angular2/http';
 import ShHttp from '../sh-http';
 
 @Injectable()
@@ -15,10 +14,8 @@ export default class SensorDetailService {
 
     save(sensor) {
         const body = JSON.stringify(sensor);
-        const headers = new Headers({ 'Content-Type': 'application/json' });
-        const options = new RequestOptions({ headers });
         return this.http
-            .post(`${this.baseUrl}/save`, body, options)
+            .put(`/sensors/${sensor._id}`, body)
             .map(this.convertToJson);
     }
 

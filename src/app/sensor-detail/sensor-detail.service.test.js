@@ -1,5 +1,5 @@
 import SensorDetailService from './sensor-detail.service';
-import {Http, Headers, RequestOptions} from 'angular2/http';
+import {Http} from 'angular2/http';
 import {beforeEachProviders} from 'angular2/testing';
 import {provide} from 'angular2/core';
 
@@ -7,7 +7,7 @@ const observableMock = { map() {} };
 
 class HttpMock {
     get() { return observableMock; }
-    post() { return observableMock; }
+    put() { return observableMock; }
 }
 
 describe('SensorDetailService', () => {
@@ -21,9 +21,8 @@ describe('SensorDetailService', () => {
     beforeEach(() => {
         httpMock = new HttpMock();
         spyOn(httpMock, 'get').and.callThrough();
-        spyOn(httpMock, 'post').and.callThrough();
+        spyOn(httpMock, 'put').and.callThrough();
         sut = new SensorDetailService(httpMock);
-        sut.baseUrl = 'api/sensor';
     });
 
     it('should be defined', () => {
@@ -33,15 +32,13 @@ describe('SensorDetailService', () => {
     it('should get sensor data from the server', () => {
         const idMock = 'mock';
         sut.get(idMock);
-        expect(httpMock.get).toHaveBeenCalledWith(`${sut.baseUrl}/get/${idMock}`);
+        expect(httpMock.get).toHaveBeenCalledWith(`/sensors/${idMock}`);
     });
 
     it('should save sensor', () => {
-        const sensorMock = {};
+        const sensorMock = {_id: 'mock'};
         const body = JSON.stringify(sensorMock);
-        const headers = new Headers({ 'Content-Type': 'application/json' });
-        const options = new RequestOptions({ headers });
         sut.save(sensorMock);
-        expect(httpMock.post).toHaveBeenCalledWith(`${sut.baseUrl}/save`, body, options);
+        expect(httpMock.put).toHaveBeenCalledWith(`/sensors/${sensorMock._id}`, body);
     });
 });
