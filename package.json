@@ -11,6 +11,7 @@
     "codecov": "npm codecov < coverage/lcov/lcov.info",
     "validate": "eslint --ext .js,.ts --ignore-path .gitignore ./",
     "build": "webpack --progress --profile"
+	"protractor e2e testing": "webdriver-manager update & webdriver-manager start & protractor conf.js"
   },
   "repository": {
     "type": "git",
