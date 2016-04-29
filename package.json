@@ -12,7 +12,7 @@
     "codecov": "npm codecov < coverage/lcov/lcov.info",
     "validate": "eslint --ext .js,.ts --ignore-path .gitignore ./",
     "build": "webpack --progress --profile",
-	"e2e:start": "webdriver-manager start",
+    "e2e:start": "webdriver-manager start",
     "e2e:run": "protractor ./env/protractor.conf.js"
   },
   "repository": {
