@@ -2,10 +2,19 @@ sudo: false
 language: node_js
 node_js:
   - 5
+
+beforescript:
+- "export DISPLAY=:99.0"
+- sh -e /etc/init.d/xvfb start
+- nohup bash -c webdriver-manager start 2>&1 &
+- sleep 5
+
 script:
   - npm run validate
   - npm run test
   - npm run build
+  - npm run e2e:run
+
 after_success:
   - codecov
 deploy:
