@@ -1,10 +1,10 @@
 export default class Sensor {
     constructor(data = {}) {
         Object.assign(this, {
-            id: '',
-            name: '',
+            mqttId: '',
             type: '',
-            description: ''
+            description: '',
+            status: false
         }, data);
     }
 }
