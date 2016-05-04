@@ -31,8 +31,9 @@ module.exports = {
                 loader: 'raw'
             },
             {
-                test: /\.css$/,
-                loader: 'raw'
+                test: /\.(scss|css)$/,
+                exclude: [/node_modules/],
+                loaders: ['raw', 'sass']
             }
         ]
     }

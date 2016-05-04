@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component, ViewEncapsulation} from 'angular2/core';
 import {RouteConfig, RouterLink, RouterOutlet} from 'angular2/router';
 
 import {Home} from './home';
@@ -6,11 +6,12 @@ import {Dashboard} from './dashboard';
 import {ListComponent} from './list';
 
 import exampleRest from './example.rest.js';
+import style from './app.scss';
 
 @Component({
     selector: 'sh-app',
     directives: [RouterLink, RouterOutlet],
-    styles: [require('./app.css')],
+    styles: [style],
     template: `
       <h1>Smart House</h1>
       <nav>
@@ -20,7 +21,8 @@ import exampleRest from './example.rest.js';
       </nav>
       <main>
         <router-outlet></router-outlet>
-      </main>`
+      </main>`,
+    encapsulation: ViewEncapsulation.None
 })
 @RouteConfig([
     {path: '/', name: 'Index', component: Home, useAsDefault: true},

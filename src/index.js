@@ -1,3 +1,9 @@
+// Styles
+import './app/main.css';
+import 'materialize-css/dist/css/materialize.css';
+import 'materialize-css/dist/js/materialize.js';
+
+
 // Polyfills
 import 'core-js';
 import 'zone.js/dist/zone';
