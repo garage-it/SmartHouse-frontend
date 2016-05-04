@@ -14,7 +14,6 @@ import style from './app.scss';
     styles: [style],
     template: `
       <h1>Smart House</h1>
-      <a class="waves-effect waves-light btn">button</a>
       <nav>
         <a [routerLink]="['Home']">Home</a>
         <a [routerLink]="['Dashboard']">Dashboard</a>
