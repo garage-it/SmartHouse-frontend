@@ -67,7 +67,7 @@
     "webpack-merge": "^0.9.0"
   },
   "dependencies": {
-    "angular2": "^2.0.0-beta.14",
+    "angular2": "2.0.0-beta.15",
     "codecov": "^1.0.1",
     "core-js": "^2.2.2",
     "reflect-metadata": "^0.1.3",
