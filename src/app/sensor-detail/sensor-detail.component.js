@@ -6,12 +6,14 @@ import {Http, HTTP_PROVIDERS} from 'angular2/http';
 import Sensor from './sensor';
 import SensorDetailService from './sensor-detail.service';
 import template from './sensor-detail.html';
+import style from './sensor-detail.css';
 
 const selector = 'sh-sensor-detail';
 
 @Component({
     selector,
     template,
+    styles: [style],
     providers: [
         Http,
         HTTP_PROVIDERS,
@@ -39,13 +41,17 @@ export class SensorDetail {
     save() {
         this.sensorDetailService
             .save(this.sensor)
-            .subscribe(response => {
-                console.log(response);// eslint-disable-line
-            }, this._onError, this._onComplete);
+            .subscribe(() => this._navigateToList(),
+                this._onError,
+                this._onComplete);
     }
 
     cancel() {
-        this.router.navigate(['Home']);
+        this._navigateToList();
+    }
+
+    _navigateToList() {
+        this.router.navigate(['DeviceList']);
     }
 
     _onError(error) {

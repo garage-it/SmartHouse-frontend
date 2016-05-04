@@ -1,25 +1,25 @@
-<form class="sensor-edit" (ngSubmit)="save()">
-    <div class="sensor-edit__id">
+<form class="sensor-detail" (ngSubmit)="save()">
+    <div class="sensor-detail__id">
         <input [(ngModel)]="sensor.mqttId"
                ngControl="mqttId"
-               type="text" id="sensor-edit__id" placeholder="id"/>
+               type="text" id="sensor-detail__id" placeholder="id"/>
     </div>
-    <div class="sensor-edit__type">
+    <div class="sensor-detail__type">
         <input [(ngModel)]="sensor.type"
                ngControl="type"
-               type="text" id="sensor-edit__type" placeholder="type"/>
+               type="text" id="sensor-detail__type" placeholder="type"/>
     </div>
-    <div class="sensor-edit__description">
+    <div class="sensor-detail__description">
         <input [(ngModel)]="sensor.description"
                ngControl="description"
-               type="text" id="sensor-edit__description" placeholder="description"/>
+               type="text" id="sensor-detail__description" placeholder="description"/>
     </div>
-    <div class="sensor-edit__active">
-        <label for="sensor-edit__active">active </label>
+    <div class="sensor-detail__status">
+        <label for="sensor-detail__status">active </label>
         <input [(ngModel)]="sensor.status"
                ngControl="status"
-               type="checkbox" id="sensor-edit__active"/>
+               type="checkbox" id="sensor-detail__status" class="sensor-detail__status-value"/>
     </div>
-    <button type="submit" class="sensor-edit__save-btn">save</button>
-    <button type="button" class="sensor-edit__cancel-btn" (click)="cancel()">cancel</button>
+    <button type="submit" class="sensor-detail__save-btn">save</button>
+    <button type="button" class="sensor-detail__cancel-btn" (click)="cancel()">cancel</button>
 </form>
