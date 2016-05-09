@@ -1,5 +1,5 @@
 import {Injectable} from 'angular2/core';
-import ShHttpService from '../helpers/sh-http.service.js';
+import ShHttpService from '../sh-http/sh-http.service.js';
 
 @Injectable()
 export default class SensorDetailService {
@@ -7,19 +7,10 @@ export default class SensorDetailService {
         this.http = http;
     }
     get(id) {
-        return this.http
-            .get(`/sensors/${id}`)
-            .map(this.convertToJson);
+        return this.http.get(`/sensors/${id}`);
     }
 
     save(sensor) {
-        return this.http
-            .put(`/sensors/${sensor._id}`, sensor)
-            .map(this.convertToJson);
-    }
-
-    convertToJson(data) {
-        console.log(data);// eslint-disable-line
-        return data.json();
+        return this.http.put(`/sensors/${sensor._id}`, sensor);
     }
 }

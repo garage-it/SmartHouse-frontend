@@ -8,7 +8,7 @@ import {ListComponent} from './list';
 import {SensorDetail} from './sensor-detail';
 
 import {Http, HTTP_PROVIDERS} from 'angular2/http';
-import ShHttpService from './helpers/sh-http.service.js';
+import ShHttpService from './sh-http/sh-http.service.js';
 
 import exampleRest from './example.rest.js';
 import style from './app.scss';
