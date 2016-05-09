@@ -1,4 +1,4 @@
-import ShHttp from './sh-http';
+import ShHttp from './sh-http.service.js';
 import ShRequestOptions from './sh-request-options';
 
 import {Http, RequestMethod, Headers} from 'angular2/http';
@@ -12,7 +12,7 @@ class HttpMock {
     put() { return observableMock; }
 }
 
-describe('ShHttp', () => {
+describe('ShHttpService', () => {
     let sut;
     let httpMock;
 
@@ -55,6 +55,6 @@ describe('ShHttp', () => {
             url: urlMock
         });
         sut.put(urlMock, bodyMock);
-        expect(httpMock.put).toHaveBeenCalledWith(urlMock, bodyMock, options);
+        expect(httpMock.put).toHaveBeenCalledWith(urlMock, JSON.stringify(bodyMock), options);
     });
 });

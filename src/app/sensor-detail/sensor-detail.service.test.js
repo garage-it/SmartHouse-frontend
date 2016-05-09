@@ -37,8 +37,7 @@ describe('SensorDetailService', () => {
 
     it('should save sensor', () => {
         const sensorMock = {_id: 'mock'};
-        const body = JSON.stringify(sensorMock);
         sut.save(sensorMock);
-        expect(httpMock.put).toHaveBeenCalledWith(`/sensors/${sensorMock._id}`, body);
+        expect(httpMock.put).toHaveBeenCalledWith(`/sensors/${sensorMock._id}`, sensorMock);
     });
 });

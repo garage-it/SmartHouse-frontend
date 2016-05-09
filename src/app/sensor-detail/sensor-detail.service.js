@@ -1,9 +1,9 @@
 import {Injectable} from 'angular2/core';
-import ShHttp from '../sh-http';
+import ShHttpService from '../helpers/sh-http.service.js';
 
 @Injectable()
 export default class SensorDetailService {
-    constructor(http: ShHttp) {
+    constructor(http: ShHttpService) {
         this.http = http;
     }
     get(id) {
@@ -13,9 +13,8 @@ export default class SensorDetailService {
     }
 
     save(sensor) {
-        const body = JSON.stringify(sensor);
         return this.http
-            .put(`/sensors/${sensor._id}`, body)
+            .put(`/sensors/${sensor._id}`, sensor)
             .map(this.convertToJson);
     }
 

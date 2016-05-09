@@ -1,7 +1,5 @@
 import {BaseRequestOptions, RequestOptionsArgs} from 'angular2/http';
-
-const DEFAULT_URL = 'http://localhost';
-const DEFAULT_PORT = '3000';
+import {DEFAULT_URL, DEFAULT_PORT} from './sh-http.config.js';
 
 export default class ShRequestOptions extends BaseRequestOptions {
     constructor(options) {

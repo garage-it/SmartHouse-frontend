@@ -8,7 +8,7 @@ import {ListComponent} from './list';
 import {SensorDetail} from './sensor-detail';
 
 import {Http, HTTP_PROVIDERS} from 'angular2/http';
-import ShHttp from './sh-http';
+import ShHttpService from './helpers/sh-http.service.js';
 
 import exampleRest from './example.rest.js';
 import style from './app.scss';
@@ -20,7 +20,7 @@ import style from './app.scss';
         ROUTER_PROVIDERS,
         Http,
         HTTP_PROVIDERS,
-        ShHttp],
+        ShHttpService],
     styles: [style],
     template: `
       <h1>Smart House</h1>

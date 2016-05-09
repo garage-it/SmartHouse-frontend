@@ -3,7 +3,7 @@ import {Http, RequestMethod, Headers} from 'angular2/http';
 import ShRequestOptions from './sh-request-options';
 
 @Injectable()
-export default class ShHttp {
+export default class ShHttpService {
     constructor(http:Http) {
         this.http = http;
     }
@@ -14,7 +14,7 @@ export default class ShHttp {
     put(url, body) {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         this.options = new ShRequestOptions({ headers });
-        return this.http.put(url, body, this._getOptions('Put', url));
+        return this.http.put(url, JSON.stringify(body), this._getOptions('Put', url));
     }
     _getOptions(method, url) {
         return this.options.merge({
