@@ -1,0 +1,25 @@
+<form class="sensor-detail" (ngSubmit)="save()">
+    <div class="sensor-detail__id">
+        <input [(ngModel)]="sensor.mqttId"
+               ngControl="mqttId"
+               type="text" id="sensor-detail__id" placeholder="id"/>
+    </div>
+    <div class="sensor-detail__type">
+        <input [(ngModel)]="sensor.type"
+               ngControl="type"
+               type="text" id="sensor-detail__type" placeholder="type"/>
+    </div>
+    <div class="sensor-detail__description">
+        <input [(ngModel)]="sensor.description"
+               ngControl="description"
+               type="text" id="sensor-detail__description" placeholder="description"/>
+    </div>
+    <div class="sensor-detail__status">
+        <label for="sensor-detail__status">active </label>
+        <input [(ngModel)]="sensor.status"
+               ngControl="status"
+               type="checkbox" id="sensor-detail__status" class="sensor-detail__status-value"/>
+    </div>
+    <button type="submit" class="sensor-detail__save-btn">save</button>
+    <button type="button" class="sensor-detail__cancel-btn" (click)="cancel()">cancel</button>
+</form>
