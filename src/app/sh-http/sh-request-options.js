@@ -1,5 +1,5 @@
 import {BaseRequestOptions, RequestOptionsArgs} from 'angular2/http';
-import {DEFAULT_URL, DEFAULT_PORT} from './sh-http.config.js';
+import {BACK_END_REST} from '../shared/config';
 
 export default class ShRequestOptions extends BaseRequestOptions {
     constructor(options) {
@@ -11,7 +11,7 @@ export default class ShRequestOptions extends BaseRequestOptions {
         Object.assign(opts,
             this.options,
             options,
-            {url: `${DEFAULT_URL}:${DEFAULT_PORT}/api${options.url}`});
+            {url: `${BACK_END_REST}/api${options.url}`});
         return super.merge(opts);
     }
 }
