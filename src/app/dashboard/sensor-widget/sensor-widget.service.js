@@ -1,6 +1,8 @@
 import {Injectable} from 'angular2/core';
 import io from 'socket.io-client';
 
+import {BACK_END_WS} from '../../shared/config';
+
 @Injectable()
 export default class SensorWidgetService {
     constructor() {
@@ -9,9 +11,7 @@ export default class SensorWidgetService {
     }
 
     setupSocket() {
-        // TODO add dev config via webpack plugin to manage proper ws host and port
-        this.socket = this.io('ws://localhost:3000');    // real backEnd
-        // this.socket = this.io('ws://localhost:8000'); // fake backEnd
+        this.socket = this.io(BACK_END_WS);
     }
 
     subscribe(device, callback) {

@@ -1,5 +1,6 @@
 import ShRequestOptions from './sh-request-options';
 import {BaseRequestOptions} from 'angular2/http';
+import {BACK_END_REST} from '../shared/config';
 
 describe('ShRequestOptions', () => {
     let sut;
@@ -9,14 +10,13 @@ describe('ShRequestOptions', () => {
         sut = new ShRequestOptions();
     });
 
-    it('should be defined', () => {
-        expect(sut).toBeDefined();
-    });
-
-    it('should get sensor data from the server', () => {
+    it('should merge by preper options', () => {
         const passedOptionsMock = { url: 'mock' };
         sut.options = { mock: 'mock'};
         sut.merge(passedOptionsMock);
-        expect(BaseRequestOptions.prototype.merge).toHaveBeenCalled();
+        expect(BaseRequestOptions.prototype.merge).toHaveBeenCalledWith({
+            url: `${BACK_END_REST}/api${passedOptionsMock.url}`,
+            mock: 'mock',
+        });
     });
 });
