@@ -7,14 +7,17 @@ const app = express();
 const http = require('http').Server(app); // eslint-disable-line
 const io = require('socket.io')(http);
 const mock = require('../env/env.mock.config');
-const routesConfig = require('./routes/index');
+const socketConfig = require('./socket');
+const router = require('./routes');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 
 io.on('connection', socket => {
-    routesConfig(socket);
+    socketConfig(socket);
 });
+
+app.use('/api', router);
 
 app.post('/emulate', (req, res) => {
     io.emit(req.body.eventName, JSON.parse(req.body.eventData));
