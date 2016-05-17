@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -66,6 +67,9 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: envConfig.src.indexHtml
         }),
-        new ExtractTextPlugin('main.css')
+        new ExtractTextPlugin('main.css'),
+        new webpack.DefinePlugin({
+            ENV_PUBLIC_CONFIG: JSON.stringify(envConfig.public)
+        })
     ]
 };

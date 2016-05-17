@@ -1,5 +1,4 @@
 import SensorWidgetService from './sensor-widget.service';
-import {BACK_END_WS} from '../../shared/config';
 
 function mockSocketIo() {
     return {
@@ -27,7 +26,7 @@ describe('SensorWidgetService', () => {
         });
 
         it('should setup socket io', () => {
-            expect(sut.io).toHaveBeenCalledWith(BACK_END_WS);
+            expect(sut.io).toHaveBeenCalledWith(ENV_PUBLIC_CONFIG.backEndWebSocketUrl);
         });
     });
 

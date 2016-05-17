@@ -1,6 +1,5 @@
 import ShRequestOptions from './sh-request-options';
 import {BaseRequestOptions} from 'angular2/http';
-import {BACK_END_REST} from '../shared/config';
 
 describe('ShRequestOptions', () => {
     let sut;
@@ -15,7 +14,7 @@ describe('ShRequestOptions', () => {
         sut.options = { mock: 'mock'};
         sut.merge(passedOptionsMock);
         expect(BaseRequestOptions.prototype.merge).toHaveBeenCalledWith({
-            url: `${BACK_END_REST}/api${passedOptionsMock.url}`,
+            url: `${ENV_PUBLIC_CONFIG.backEndUrl}/api${passedOptionsMock.url}`,
             mock: 'mock',
         });
     });
