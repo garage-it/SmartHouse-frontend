@@ -10,9 +10,10 @@
     "test": "karma start",
     "tdd": "karma start --no-single-run --auto-watch --reporters nyan",
     "codecov": "npm codecov < coverage/lcov/lcov.info",
-    "validate": "eslint --ext .js,.ts --ignore-path .gitignore ./",
+    "validate": "eslint --ext .js ./src ./env ./server ./test",
     "build": "webpack --progress --profile",
     "e2e:start": "webdriver-manager start",
+    "e2e:update": "webdriver-manager update --standalone",
     "e2e:run": "protractor ./env/protractor.conf.js"
   },
   "repository": {
