@@ -13,12 +13,12 @@ Device list:
     </th>
     </thead>
     <tbody>
-    <tr *ngFor="#sensor of sensors"
-       [routerLink]="['SensorDetail', {id: sensor._id}]">
-        <td>{{sensor.mqttId}}</td>
-        <td>{{sensor.type}}</td>
-        <td>{{sensor.description}}</td>
-        <td>{{sensor.status}}</td>
+    <tr *ngFor="#item of deviceList"
+       [routerLink]="['SensorDetail', {id: item._id}]">
+        <td>{{item.mqttId}}</td>
+        <td>{{item.type}}</td>
+        <td>{{item.description}}</td>
+        <td>{{item.status}}</td>
     </tr>
     </tbody>
 </table>

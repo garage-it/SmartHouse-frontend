@@ -29,6 +29,6 @@ describe('DeviceListService', () => {
 
     it('should retrieve list of sensors from the server', () => {
         sut.getSensors();
-        expect(httpMock.getSensors).toHaveBeenCalledWith('/sensors');
+        expect(httpMock.get).toHaveBeenCalledWith('/sensors');
     });
 });

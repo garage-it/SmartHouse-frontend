@@ -1,11 +1,28 @@
 import DeviceListService from './device-list.service';
 import {DeviceList} from './device-list.component';
 
+import {beforeEachProviders} from 'angular2/testing';
+import {provide} from 'angular2/core';
+
+const observableSubscribe = {
+    subscribe() {}
+};
+
+class DeviceListServiceMock {
+    getSensors() {
+        return observableSubscribe;
+    }
+}
+
 describe('device-list component', () => {
     let sut;
     let deviceListService;
     let listData;
     let numberArr;
+
+    beforeEachProviders(() => [
+        provide(DeviceListService, {useClass: DeviceListServiceMock})
+    ]);
 
     beforeEach(() => {
         numberArr = [];
@@ -24,7 +41,7 @@ describe('device-list component', () => {
             }
         ];
 
-        deviceListService = new DeviceListService();
+        deviceListService = new DeviceListServiceMock();
         spyOn(deviceListService, 'getSensors').and.callThrough();
         sut = new DeviceList(deviceListService);
     });
@@ -41,9 +58,9 @@ describe('device-list component', () => {
         it('will sort by number column in  ascending order', () => {
             sut.sortBy = 'mqttId';
             sut.reverse = true;
-            sut.sensors = listData;
+            sut.deviceList = listData;
             sut.setSortBy('mqttId');
-            sut.sensors.forEach((elem) => {
+            sut.deviceList.forEach((elem) => {
                 numberArr.push(elem.mqttId);
             });
 

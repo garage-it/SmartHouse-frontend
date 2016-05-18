@@ -15,6 +15,10 @@ const selector = 'device-list';
 })
 
 export class DeviceList {
+    deviceList = [];
+    sortBy = '';
+    reverse = false;
+
     constructor(deviceListService: DeviceListService) {
         this.deviceListService = deviceListService;
     }
@@ -23,12 +27,9 @@ export class DeviceList {
         this.deviceListService
             .getSensors()
             .subscribe(data => {
-                this.sensors = data;
+                this.deviceList = data;
             });
     }
-
-    sortBy = '';
-    reverse = false;
 
     setSortBy(sortByValue) {
         if (this.sortBy !== sortByValue) {
@@ -37,7 +38,7 @@ export class DeviceList {
         } else {
             this.reverse = !this.reverse;
         }
-        this.sensors.sort((a, b) => {
+        this.deviceList.sort((a, b) => {
             if (a[sortByValue] < b[sortByValue]) {
                 return this.reverse ? 1 : -1;
             }
