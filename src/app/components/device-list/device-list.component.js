@@ -1,7 +1,8 @@
 import {Component} from 'angular2/core';
-import template from './deviceList.html';
-import style from './deviceList.css';
-import {DeviceListService} from './DeviceList.service';
+import template from './device-list.html';
+import style from './device-list.css';
+import {DeviceListService} from './device-list.service';
+import {RouterLink} from 'angular2/router';
 
 const selector = 'device-list';
 
@@ -9,14 +10,21 @@ const selector = 'device-list';
     selector,
     template,
     styles: [style],
-    providers: [DeviceListService]
+    providers: [DeviceListService],
+    directives: [RouterLink]
 })
 
 export class DeviceList {
     constructor(deviceListService: DeviceListService) {
-        deviceListService.getData().then((data) => {
-            this.deviceList = data;
-        });
+        this.deviceListService = deviceListService;
+    }
+
+    ngOnInit() {
+        this.deviceListService
+            .getSensors()
+            .subscribe(data => {
+                this.sensors = data;
+            });
     }
 
     sortBy = '';
@@ -29,7 +37,7 @@ export class DeviceList {
         } else {
             this.reverse = !this.reverse;
         }
-        this.deviceList.sort((a, b) => {
+        this.sensors.sort((a, b) => {
             if (a[sortByValue] < b[sortByValue]) {
                 return this.reverse ? 1 : -1;
             }

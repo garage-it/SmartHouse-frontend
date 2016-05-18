@@ -1,0 +1,26 @@
+Device list:
+<table>
+    <thead>
+    <th [ngClass]="{active: isActive('mqttId')}" class="sortable" (click)="setSortBy('mqttId')">
+        ID
+        <div [ngClass]="{up: reverse, down: !reverse}"></div>
+    </th>
+    <th>Type</th>
+    <th>Description</th>
+    <th [ngClass]="{active: isActive('status')}" class="sortable" (click)="setSortBy('status')">
+        Active
+        <div [ngClass]="{up: reverse, down: !reverse}"></div>
+    </th>
+    </thead>
+    <tbody>
+    <tr *ngFor="#sensor of sensors"
+       [routerLink]="['SensorDetail', {id: sensor._id}]">
+        <td>{{sensor.mqttId}}</td>
+        <td>{{sensor.type}}</td>
+        <td>{{sensor.description}}</td>
+        <td>{{sensor.status}}</td>
+    </tr>
+    </tbody>
+</table>
+
+
