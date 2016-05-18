@@ -7,6 +7,7 @@ const observableMock = { map() {} };
 
 class HttpMock {
     get() { return observableMock; }
+    post() { return observableMock; }
     put() { return observableMock; }
 }
 
@@ -21,6 +22,7 @@ describe('SensorDetailService', () => {
     beforeEach(() => {
         httpMock = new HttpMock();
         spyOn(httpMock, 'get').and.callThrough();
+        spyOn(httpMock, 'post').and.callThrough();
         spyOn(httpMock, 'put').and.callThrough();
         sut = new SensorDetailService(httpMock);
     });
@@ -37,7 +39,13 @@ describe('SensorDetailService', () => {
 
     it('should save sensor', () => {
         const sensorMock = {_id: 'mock'};
-        sut.save(sensorMock);
+        sut.save(sensorMock, false);
+        expect(httpMock.post).toHaveBeenCalledWith('/sensors', sensorMock);
+    });
+
+    it('should update sensor', () => {
+        const sensorMock = {_id: 'mock'};
+        sut.save(sensorMock, true);
         expect(httpMock.put).toHaveBeenCalledWith(`/sensors/${sensorMock._id}`, sensorMock);
     });
 });

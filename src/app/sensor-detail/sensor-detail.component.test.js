@@ -55,6 +55,13 @@ describe('sensor-detail module', () => {
         expect(sut.sensor).toBeDefined();
     });
 
+    it('should not make get request when creating new sensor', () => {
+        routeParams = new RouteParamsMock();
+        sut = new SensorDetail(sensorDetailService, routeParams);
+        sut.ngOnInit();
+        expect(sut.sensorDetailService.get).not.toHaveBeenCalled();
+    });
+
     it('should get sensor by given id', () => {
         sut.ngOnInit();
         expect(sut.sensorDetailService.get).toHaveBeenCalledWith(idMock);
@@ -64,6 +71,6 @@ describe('sensor-detail module', () => {
         const sensorMock = {};
         sut.sensor = sensorMock;
         sut.save();
-        expect(sut.sensorDetailService.save).toHaveBeenCalledWith(sensorMock);
+        expect(sut.sensorDetailService.save).toHaveBeenCalledWith(sensorMock, true);
     });
 });

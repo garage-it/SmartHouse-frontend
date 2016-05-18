@@ -1,4 +1,4 @@
-import ShHttp from './sh-http.service.js';
+import ShHttpService from './sh-http.service.js';
 import ShRequestOptions from './sh-request-options';
 
 import {Http, RequestMethod, Headers} from 'angular2/http';
@@ -9,6 +9,7 @@ const observableMock = { map() {} };
 
 class HttpMock {
     get() { return observableMock; }
+    post() { return observableMock; }
     put() { return observableMock; }
 }
 
@@ -23,8 +24,9 @@ describe('ShHttpService', () => {
     beforeEach(() => {
         httpMock = new HttpMock();
         spyOn(httpMock, 'get').and.callThrough();
+        spyOn(httpMock, 'post').and.callThrough();
         spyOn(httpMock, 'put').and.callThrough();
-        sut = new ShHttp(httpMock);
+        sut = new ShHttpService(httpMock);
     });
 
     it('should be defined', () => {
@@ -33,7 +35,9 @@ describe('ShHttpService', () => {
 
     it('should get sensor data from the server', () => {
         const urlMock = 'mock';
-        let options = new ShRequestOptions();
+        let options = new ShRequestOptions({
+            headers: new Headers({ 'Content-Type': 'application/json' })
+        });
         options = options.merge({
             method: RequestMethod.Get,
             url: urlMock
