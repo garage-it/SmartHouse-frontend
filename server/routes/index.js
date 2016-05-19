@@ -1,14 +1,8 @@
-'use strict';
+const express = require('express');
+const scenarioRoutes = require('./scenarios');
 
-const sensorEvents = require('./sensor-events');
+const router = new express.Router();    // eslint-disable-line new-cap
 
-module.exports = socket => {
-    socket.on('example/rest', (data, clientCb) => {
-        console.log(data); // eslint-disable-line
-        clientCb(Object.assign({}, data, {
-            source: 'server'
-        }));
-    });
+router.use('/scenarios', scenarioRoutes);
 
-    sensorEvents.initSensorEvents(socket);
-};
+module.exports = router;

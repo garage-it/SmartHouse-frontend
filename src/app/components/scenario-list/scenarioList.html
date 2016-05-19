@@ -1,0 +1,19 @@
+Scenario list:
+<table>
+    <thead>
+    <th [ngClass]="{active: isActive('name')}" class="sortable">
+        Name
+        <div [ngClass]="{up: reverse, down: !reverse}"></div>
+    </th>
+    <th [ngClass]="{active: isActive('status')}" class="sortable">Active
+        <div [ngClass]="{up: reverse, down: !reverse}"></div>
+    </th>
+    </thead>
+    <tbody>
+    <tr *ngFor="#item of scenarioList">
+        <td>{{item.number}}</td>
+        <td>{{item.status}}</td>
+    </tr>
+    </tbody>
+</table>
+

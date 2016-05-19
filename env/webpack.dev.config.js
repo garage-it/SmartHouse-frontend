@@ -17,7 +17,7 @@ module.exports = webpackMerge(commonConfig, {
             {
                 path: 'api/*',
                 target: {
-                    port: 3000,
+                    port: 9000,
                     host: 'localhost'
                 }
             },
