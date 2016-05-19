@@ -12,4 +12,3 @@ module.exports = socket => {
 
     sensorEvents.initSensorEvents(socket);
 };
-
