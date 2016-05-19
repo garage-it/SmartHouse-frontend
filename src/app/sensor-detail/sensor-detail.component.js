@@ -45,11 +45,12 @@ export class SensorDetail {
     }
 
     save() {
-        this.sensorDetailService
-            .save(this.sensor, this.needUpdate)
-            .subscribe(() => this._navigateToList(),
-                this._onError,
-                this._onComplete);
+        const observable = this.needUpdate ?
+            this.sensorDetailService.update(this.sensor) :
+            this.sensorDetailService.save(this.sensor);
+        observable.subscribe(() => this._navigateToList(),
+            this._onError,
+            this._onComplete);
     }
 
     cancel() {

@@ -39,13 +39,13 @@ describe('SensorDetailService', () => {
 
     it('should save sensor', () => {
         const sensorMock = {_id: 'mock'};
-        sut.save(sensorMock, false);
+        sut.save(sensorMock);
         expect(httpMock.post).toHaveBeenCalledWith('/sensors', sensorMock);
     });
 
     it('should update sensor', () => {
         const sensorMock = {_id: 'mock'};
-        sut.save(sensorMock, true);
+        sut.update(sensorMock);
         expect(httpMock.put).toHaveBeenCalledWith(`/sensors/${sensorMock._id}`, sensorMock);
     });
 });

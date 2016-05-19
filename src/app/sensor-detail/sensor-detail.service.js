@@ -11,9 +11,11 @@ export default class SensorDetailService {
         return this.http.get(`/sensors/${id}`);
     }
 
-    save(sensor, update) {
-        return !update ?
-            this.http.post('/sensors', sensor) :
-            this.http.put(`/sensors/${sensor._id}`, sensor);
+    save(sensor) {
+        return this.http.post('/sensors', sensor);
+    }
+
+    update(sensor) {
+        return this.http.put(`/sensors/${sensor._id}`, sensor);
     }
 }
