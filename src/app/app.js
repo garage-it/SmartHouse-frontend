@@ -4,7 +4,7 @@ import {RouteConfig, RouterLink, RouterOutlet, ROUTER_PROVIDERS} from 'angular2/
 import {Home} from './home';
 import {Dashboard} from './dashboard';
 import {DeviceList} from './components/device-list';
-import {ScenarioListComponent} from './components/scenario-list';
+import {ScenarioListComponent, EditScenarioComponent, CreateScenarioComponent} from './scenarios/';
 import {ListComponent} from './list';
 import {SensorDetail} from './sensor-detail';
 
@@ -33,9 +33,11 @@ import template from './app.html';
     {path: '/dashboard', name: 'Dashboard', component: Dashboard},
     {path: '/device-list', name: 'DeviceList', component: DeviceList},
     {path: '/list', name: 'List', component: ListComponent},
+    {path: '/scenarios', name: 'ScenarioList', component: ScenarioListComponent},
+    {path: '/scenarios/create', name: 'CreateScenario', component: CreateScenarioComponent},
+    {path: '/scenario/:id', name: 'EditScenario', component: EditScenarioComponent},
     {path: '/sensors/:id', name: 'SensorDetail', component: SensorDetail},
-    {path: '/sensors/create', name: 'SensorDetail', component: SensorDetail},
-    {path: '/scenario-list', name: 'ScenarioList', component: ScenarioListComponent}
+    {path: '/sensors/create', name: 'SensorDetail', component: SensorDetail}
 ])
 export class App {
     ngOnInit() {

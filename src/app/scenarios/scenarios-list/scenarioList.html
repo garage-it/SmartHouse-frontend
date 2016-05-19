@@ -1,0 +1,20 @@
+Scenario list:
+<table>
+    <thead>
+    <th>
+        Name
+    </th>
+    <th>
+        Active
+    </th>
+    </thead>
+    <tbody>
+    <tr *ngFor="#scenario of scenarioList" (click)="openScenario(scenario)">
+        <td>{{scenario.number}}</td>
+        <td>{{scenario.status}}</td>
+    </tr>
+    </tbody>
+</table>
+
+<a [routerLink]="['/CreateScenario']">Create a new scenario</a>
+
