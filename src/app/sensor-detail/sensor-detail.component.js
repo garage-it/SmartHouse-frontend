@@ -26,11 +26,17 @@ export class SensorDetail {
         this.sensorDetailService = sensorDetailService;
         this.routeParams = routeParams;
         this.router = router;
+
+        this.needUpdate = true;
         this.sensor = new Sensor();
     }
 
     ngOnInit() {
         const id = this.routeParams.get('id');
+        if (!id) {
+            this.needUpdate = false;
+            return;
+        }
         this.sensorDetailService
             .get(id)
             .subscribe(data => {
@@ -39,11 +45,12 @@ export class SensorDetail {
     }
 
     save() {
-        this.sensorDetailService
-            .save(this.sensor)
-            .subscribe(() => this._navigateToList(),
-                this._onError,
-                this._onComplete);
+        const observable = this.needUpdate ?
+            this.sensorDetailService.update(this.sensor) :
+            this.sensorDetailService.save(this.sensor);
+        observable.subscribe(() => this._navigateToList(),
+            this._onError,
+            this._onComplete);
     }
 
     cancel() {

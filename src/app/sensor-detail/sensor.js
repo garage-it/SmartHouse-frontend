@@ -4,7 +4,7 @@ export default class Sensor {
             mqttId: '',
             type: '',
             description: '',
-            status: false
+            status: true
         }, data);
     }
 }

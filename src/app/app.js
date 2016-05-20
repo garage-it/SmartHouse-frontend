@@ -1,5 +1,5 @@
 import {Component, ViewEncapsulation} from 'angular2/core';
-import {RouteConfig, RouterLink, RouterOutlet} from 'angular2/router';
+import {RouteConfig, RouterLink, RouterOutlet, ROUTER_PROVIDERS} from 'angular2/router';
 
 import {Home} from './home';
 import {Dashboard} from './dashboard';
@@ -19,6 +19,7 @@ import template from './app.html';
     selector: 'sh-app',
     directives: [RouterLink, RouterOutlet],
     providers: [
+        ROUTER_PROVIDERS,
         Http,
         HTTP_PROVIDERS,
         ShHttpService],
@@ -32,10 +33,10 @@ import template from './app.html';
     {path: '/dashboard', name: 'Dashboard', component: Dashboard},
     {path: '/device-list', name: 'DeviceList', component: DeviceList},
     {path: '/list', name: 'List', component: ListComponent},
-    {path: '/scenario-list', name: 'ScenarioList', component: ScenarioListComponent},
-    {path: '/sensors/:id', name: 'SensorDetail', component: SensorDetail}
+    {path: '/sensors/:id', name: 'SensorDetail', component: SensorDetail},
+    {path: '/sensors/create', name: 'SensorDetail', component: SensorDetail},
+    {path: '/scenario-list', name: 'ScenarioList', component: ScenarioListComponent}
 ])
-
 export class App {
     ngOnInit() {
         console.log('Init App'); // eslint-disable-line
