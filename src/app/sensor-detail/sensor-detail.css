@@ -1,11 +1,3 @@
 .sensor-detail {
-    border: 1px solid grey;
-    padding: 10px;
-    margin: 10px;
-}
-
-.sensor-detail__status-value {
-    opacity: 1;
-    left: initial;
-    position: initial;
+    padding: 1em;
 }
