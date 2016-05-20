@@ -1,7 +1,7 @@
 import {Component} from 'angular2/core';
 import template from './device-list.html';
 import style from './device-list.css';
-import {DeviceListService} from './device-list.service';
+import {DeviceListService} from '../shared/device-list.service';
 import {RouterLink} from 'angular2/router';
 
 const selector = 'device-list';

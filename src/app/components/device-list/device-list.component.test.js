@@ -1,4 +1,4 @@
-import DeviceListService from './device-list.service';
+import DeviceListService from '../shared/device-list.service';
 import {DeviceList} from './device-list.component';
 
 import {beforeEachProviders} from 'angular2/testing';

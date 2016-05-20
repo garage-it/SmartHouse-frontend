@@ -1,2 +1,13 @@
-<h1>Dashboard</h1>
-<sm-sensor-widget [device]="'primary'"></sm-sensor-widget>
+<div class="dashboard">
+    <div class="dashboard_title">
+        <h1>Dashboard</h1>
+    <div>
+
+    <div class="dashboard_content">
+        <sm-sensor-widget
+            *ngFor="#device of deviceList"
+            [device]="device.mqttId"
+            [description]="device.description">
+        </sm-sensor-widget>
+    <div>
+</div>
