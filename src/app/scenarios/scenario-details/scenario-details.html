@@ -1,21 +1,26 @@
-<form (ngSubmit)="save(scenario)">
+<form class="scenario-details" (ngSubmit)="save(scenario)">
     <label>
         Scenario name:
         <input [(ngModel)]="scenario.name"
-               type="text"/>
+            class="black-text"
+            type="text"/>
     </label>
 
     <label>
         Scenario description:
         <input [(ngModel)]="scenario.description"
-               type="text"/>
+            class="black-text"
+            type="text"/>
     </label>
 
     <label>
         Scenario:
-        <textarea [(ngModel)]="scenario.body"></textarea>
+        <textarea
+            [(ngModel)]="scenario.body"
+            class="materialize-textarea black-text"
+        ></textarea>
     </label>
 
-    <button type="submit">save</button>
-    <button type="button" (click)="back()">back</button>
+    <button class="waves-effect waves-light btn blue lighten-1" type="submit">save</button>
+    <button class="waves-effect waves-light btn-flat" type="button" (click)="back()">back</button>
 </form>
