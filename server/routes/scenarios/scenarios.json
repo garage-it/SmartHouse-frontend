@@ -1,30 +1,16 @@
 [
   {
     "id": "f2g2d1",
-    "number": "0001",
-    "type": "move sensor",
-    "status": true,
-    "description": "In the kitchen room"
+    "name": "hello world",
+    "description": "greets",
+    "active": true,
+    "body": "alert('Hello World!);"
   },
   {
     "id": "f2g2d2",
-    "number": "0004",
-    "type": "temperature sensor",
-    "status": false,
-    "description": "In the kitchen room"
-  },
-  {
-    "id": "f2g2d5",
-    "number": "0002",
-    "type": "move sensor",
-    "status": true,
-    "description": "In the bathroom"
-  },
-  {
-    "id": "f2g2d3",
-    "number": "0003",
-    "type": "temperature sensor",
-    "status": false,
-    "description": "In the bathroom"
+    "name": "hello world",
+    "active": false,
+    "description": "greets",
+    "body": "Promise.prototype.constructor.call.apply(window.alert, [console.log,'hello world'])"
   }
 ]
