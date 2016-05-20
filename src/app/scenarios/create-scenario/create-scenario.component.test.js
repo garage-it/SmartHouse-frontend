@@ -1,5 +1,5 @@
-import {CreateScenarioComponent} from './createScenario.component';
-import {ScenarioService} from '../Scenario.service';
+import {CreateScenarioComponent} from './create-scenario.component';
+import {ScenarioService} from '../Scenario.service.js';
 import {MockPromise} from '../../../../test/MockPromise';
 
 describe('CreateScenarioComponent', () => {

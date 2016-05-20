@@ -1,8 +1,8 @@
 import {Component} from 'angular2/core';
 import {Router, RouterLink} from 'angular2/router';
 
-import template from './scenarioList.html';
-import style from './scenarioList.css';
+import template from './scenario-list.html';
+import style from './scenario-list.css';
 import {ScenarioService} from './../Scenario.service.js';
 
 const selector = 'scenario-list';

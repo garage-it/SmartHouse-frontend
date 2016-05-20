@@ -1,4 +1,4 @@
-import {ScenarioDetailsComponent} from './scenarioDetails.component';
+import {ScenarioDetailsComponent} from './scenario-details.component';
 import {Router} from 'angular2/router';
 
 describe('ScenarioDetailsComponent', () => {

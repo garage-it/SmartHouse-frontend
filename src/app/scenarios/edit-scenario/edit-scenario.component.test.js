@@ -1,6 +1,6 @@
-import {EditScenarioComponent} from './editScenario.component';
+import {EditScenarioComponent} from './edit-scenario.component';
 import {RouteParams} from 'angular2/router';
-import {ScenarioService} from '../Scenario.service';
+import {ScenarioService} from '../Scenario.service.js';
 import {MockPromise} from '../../../../test/MockPromise';
 
 describe('EditScenarioComponent', () => {

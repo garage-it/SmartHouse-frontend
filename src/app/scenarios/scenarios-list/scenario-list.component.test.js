@@ -1,5 +1,5 @@
 import {ScenarioService} from './../Scenario.service.js';
-import {ScenarioListComponent} from './scenarioList.component.js';
+import {ScenarioListComponent} from './scenario-list.component.js';
 import {Router} from 'angular2/router';
 
 describe('ScenarioListComponent', () => {
