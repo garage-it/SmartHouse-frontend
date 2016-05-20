@@ -8,7 +8,7 @@ import style from './sensor-widget.scss';
     template,
     styles: [style],
     providers: [SensorWidgetService],
-    inputs: ['device']
+    inputs: ['device', 'description']
 })
 @Injectable()
 export class SensorWidget {

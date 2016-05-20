@@ -6,7 +6,8 @@
     <div class="dashboard_content">
         <sm-sensor-widget
             *ngFor="#device of deviceList"
-            [device]="device.mqttId">
+            [device]="device.mqttId"
+            [description]="device.description">
         </sm-sensor-widget>
     <div>
 </div>
