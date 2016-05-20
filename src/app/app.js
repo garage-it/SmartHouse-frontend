@@ -1,5 +1,5 @@
 import {Component, ViewEncapsulation} from 'angular2/core';
-import {RouteConfig, RouterLink, RouterOutlet, ROUTER_PROVIDERS} from 'angular2/router';
+import {RouteConfig, RouterLink, RouterOutlet} from 'angular2/router';
 
 import {Home} from './home';
 import {Dashboard} from './dashboard';
@@ -19,7 +19,6 @@ import template from './app.html';
     selector: 'sh-app',
     directives: [RouterLink, RouterOutlet],
     providers: [
-        ROUTER_PROVIDERS,
         Http,
         HTTP_PROVIDERS,
         ShHttpService],
