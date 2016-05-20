@@ -1,10 +1,12 @@
-import {ScenarioService} from './Scenario.service.js';
-import {ScenarioListComponent} from './scenarioList.component';
+import {ScenarioService} from './../Scenario.service.js';
+import {ScenarioListComponent} from './scenario-list.component.js';
+import {Router} from 'angular2/router';
 
 describe('ScenarioListComponent', () => {
     let scenarioService;
     let listData;
     let listDataPromise;
+    let router;
     let sut;
 
     beforeEach(() => {
@@ -16,9 +18,10 @@ describe('ScenarioListComponent', () => {
         listDataPromise = Promise.resolve(listData);
 
         scenarioService = jasmine.createSpyComponent(ScenarioService);
+        router = jasmine.createSpyComponent(Router);
         scenarioService.getScenarios.and.returnValue(listDataPromise);
 
-        sut = new ScenarioListComponent(scenarioService);
+        sut = new ScenarioListComponent(scenarioService, router);
     });
 
     describe('ngOnInit', () => {
@@ -36,6 +39,16 @@ describe('ScenarioListComponent', () => {
 
                 done();
             });
+        });
+    });
+
+    describe('Open scenario', () => {
+        it('will open scenario by id', () => {
+            const id = 1;
+            const scenario = {id};
+
+            sut.openScenario(scenario);
+            expect(router.navigate).toHaveBeenCalledWith(['/EditScenario', {id}]);
         });
     });
 });

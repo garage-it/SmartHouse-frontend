@@ -1,27 +1,27 @@
 [
   {
-    "_id": "f2g2d1",
+    "id": "f2g2d1",
     "number": "0001",
     "type": "move sensor",
     "status": true,
     "description": "In the kitchen room"
   },
   {
-    "_id": "f2g2d2",
+    "id": "f2g2d2",
     "number": "0004",
     "type": "temperature sensor",
     "status": false,
     "description": "In the kitchen room"
   },
   {
-    "_id": "f2g2d5",
+    "id": "f2g2d5",
     "number": "0002",
     "type": "move sensor",
     "status": true,
     "description": "In the bathroom"
   },
   {
-    "_id": "f2g2d3",
+    "id": "f2g2d3",
     "number": "0003",
     "type": "temperature sensor",
     "status": false,

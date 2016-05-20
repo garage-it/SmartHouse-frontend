@@ -24,6 +24,14 @@ export default class ShHttpService {
             .put(url, JSON.stringify(body), this._getOptions('Put', url))
             .map(this._convertToJson);
     }
+    // TODO we could use a factory/inheritance instead of copy paste
+    post(url, body) {
+        const headers = new Headers({ 'Content-Type': 'application/json' });
+        this.options = new ShRequestOptions({ headers });
+        return this.http
+            .post(url, JSON.stringify(body), this._getOptions('Post', url))
+            .map(this._convertToJson);
+    }
     _getOptions(method, url) {
         return this.options.merge({
             method: RequestMethod[method],
