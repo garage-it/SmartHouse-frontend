@@ -7,11 +7,19 @@ Scenario list:
     <th>
         Active
     </th>
+    <th>
+        Description
+    </th>
+    <th>
+        Body
+    </th>
     </thead>
     <tbody>
     <tr *ngFor="#scenario of scenarioList" (click)="openScenario(scenario)">
-        <td>{{scenario.number}}</td>
-        <td>{{scenario.status}}</td>
+        <td>{{scenario.name}}</td>
+        <td>{{scenario.active}}</td>
+        <td>{{scenario.description}}</td>
+        <td>{{scenario.body}}</td>
     </tr>
     </tbody>
 </table>
