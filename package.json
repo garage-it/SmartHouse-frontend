@@ -4,7 +4,7 @@
   "description": "Smart House",
   "main": "index.js",
   "scripts": {
-    "start": "npm run server & npm run client",
+    "start": "npm-run-all --parallel server client",
     "server": "node --harmony_destructuring --harmony_rest_parameters server/index.js",
     "client": "webpack-dev-server --inline --watch",
     "test": "karma start",
@@ -65,6 +65,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.7.0",
     "node-sass": "^3.6.0",
+    "npm-run-all": "^2.1.1",
     "phantomjs-prebuilt": "^2.1.6",
     "raw-loader": "^0.5.1",
     "sass-loader": "^3.2.0",
