@@ -1,13 +1,15 @@
 <header>
-    <h1>Smart House</h1>
     <nav>
-        <a [routerLink]="['/Home']">Home</a>
-        <a [routerLink]="['/Dashboard']">Dashboard</a>
-        <a [routerLink]="['/DeviceList']">Device List</a>
-        <a [routerLink]="['SensorDetail', {id: '41224d776a326fb40f000001'}]">SensorDetail</a>
-        <a [routerLink]="['/ScenarioList']">Scenario List</a>
+        <div class="nav-wrapper blue lighten-1">
+            <a [routerLink]="['/Home']" class="brand-logo">Smart House</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a [routerLink]="['/Dashboard']">Dashboard</a></li>
+                <li><a [routerLink]="['/DeviceList']">Device List</a></li>
+                <li><a [routerLink]="['/ScenarioList']">Scenario List</a></li>
+            </ul>
+        </div>
     </nav>
 </header>
-<main>
+<main class="container">
     <router-outlet></router-outlet>
 </main>

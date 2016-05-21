@@ -1,5 +1,10 @@
-Device list:
-<table>
+<h2>Device list</h2>
+
+<button [routerLink]="['SensorDetail']"
+    class="waves-effect waves-light btn blue lighten-1"
+>Add device</button>
+
+<table class="striped highlight responsive-table">
     <thead>
     <th [ngClass]="{active: isActive('mqttId')}" class="sortable" (click)="setSortBy('mqttId')">
         ID
@@ -22,4 +27,3 @@ Device list:
     </tr>
     </tbody>
 </table>
-<button [routerLink]="['SensorDetail']">Add sensor</button>

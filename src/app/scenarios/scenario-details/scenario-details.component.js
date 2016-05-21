@@ -2,6 +2,7 @@ import {Component} from 'angular2/core';
 import {RouteParams, Router} from 'angular2/router';
 
 import template from './scenario-details.html';
+import style from './scenario-details.scss';
 import {ScenarioService} from '../Scenario.service.js';
 
 const selector = 'scenario-list';
@@ -9,6 +10,7 @@ const selector = 'scenario-list';
 @Component({
     selector,
     template,
+    styles: [style],
     providers: [ScenarioService]
 })
 
