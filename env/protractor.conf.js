@@ -5,7 +5,7 @@ exports.config = {
 
     // Capabilities to be passed to the webdriver instance.
     capabilities: {
-        'browserName': 'firefox'
+        browserName: 'firefox'
     },
 
     // Spec patterns are relative to the current working directly when
@@ -17,10 +17,10 @@ exports.config = {
         showColors: true,
         defaultTimeoutInterval: 30000
     },
-	
-	baseUrl: 'https://garage-it-smart-house.herokuapp.com/',
+
+    baseUrl: 'https://garage-it-smart-house.herokuapp.com/',
     useAllAngular2AppRoots: true,
-    onPrepare: function() {
+    onPrepare: function(){
         browser.ignoreSynchronization = true;
     }
 };
