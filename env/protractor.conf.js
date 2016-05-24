@@ -18,5 +18,9 @@ exports.config = {
         defaultTimeoutInterval: 30000
     },
 	
-	baseUrl: 'https://garage-it-smart-house.herokuapp.com/'
+	baseUrl: 'https://garage-it-smart-house.herokuapp.com/',
+    useAllAngular2AppRoots: true,
+    onPrepare: function() {
+        browser.ignoreSynchronization = true;
+    }
 };
