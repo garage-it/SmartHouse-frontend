@@ -7,6 +7,5 @@ describe('SmartHouse homepage', () => {
         expect(linkToDashboard.getText()).toEqual('Dashboard');
         linkToDashboard.click();
         expect(titleOnDashboard.getText()).toEqual('Dashboard');
-        browser.sleep(2000);
     });
 });
