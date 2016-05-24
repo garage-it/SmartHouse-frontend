@@ -4,9 +4,9 @@ describe('SmartHouse homepage', () => {
 
     it('should check page title', () => {
         browser.get(browser.baseUrl);
-        expect(browser.getTitle()).toEqual('Smart Home');
         expect(linkToDashboard.getText()).toEqual('Dashboard');
         linkToDashboard.click();
+        expect(browser.getTitle()).toEqual('Smart Home');
         expect(titleOnDashboard.getText()).toEqual('Dashboard');
     });
 });
