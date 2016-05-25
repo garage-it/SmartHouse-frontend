@@ -1,8 +1,6 @@
-var MainPage = require('../main/main.page.js');
-var DashboardPage = require('../dashboard/dashboard.page.js');
+var DashboardPage = require('../pages/dashboard.page.js');
 
-describe('Dashboard Page Tests', () => {
-    var abstractPage = new MainPage();
+describe('Dashboard Page Test', () => {
     var dashboardPage = new DashboardPage();
 
     beforeEach(function () {
@@ -11,8 +9,6 @@ describe('Dashboard Page Tests', () => {
     });
 
     it('should check page title', () => {
-        expect(abstractPage.dashboardLink.getText()).toEqual('Dashboard');
-        abstractPage.dashboardLink.click();
         expect(browser.getTitle()).toEqual('Smart Home');
         expect(dashboardPage.title.getText()).toEqual('Dashboard');
     });

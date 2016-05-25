@@ -1,6 +1,6 @@
-var HomePage = require('../home/home.page.js');
+var HomePage = require('../pages/home.page.js');
 
-describe('Home Page Tests', () => {
+describe('Home Page Test', () => {
     var homePage = new HomePage();
 
     beforeEach(function () {

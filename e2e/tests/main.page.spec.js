@@ -1,6 +1,6 @@
-var MainPage = require('../main/main.page.js');
+var MainPage = require('../pages/main.page.js');
 
-describe('Main Page Tests', () => {
+describe('Main Page Test', () => {
     var mainPage = new MainPage();
 
     beforeEach(function () {
