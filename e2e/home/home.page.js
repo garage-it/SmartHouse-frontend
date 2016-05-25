@@ -4,7 +4,7 @@ var HomePage = function () {
     this.greetingParagraph = $('main.container p');
 
     this.get = function () {
-        browser.get('home');
+        browser.get(browser.baseUrl + 'home');
     };
 };
 module.exports = HomePage;

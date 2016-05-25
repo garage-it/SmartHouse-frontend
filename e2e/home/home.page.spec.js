@@ -3,10 +3,9 @@ var HomePage = require('../home/home.page.js');
 describe('Home Page Tests', () => {
     var homePage = new HomePage();
 
-    beforeEach(function() {
+    beforeEach(function () {
         browser.ignoreSynchronization = true;
-        browser.get(browser.baseUrl);
-        //homePage.get();
+        homePage.get();
     });
 
     it('should check page title', () => {

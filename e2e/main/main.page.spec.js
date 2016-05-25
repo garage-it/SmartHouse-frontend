@@ -3,10 +3,9 @@ var MainPage = require('../main/main.page.js');
 describe('Main Page Tests', () => {
     var mainPage = new MainPage();
 
-    beforeEach(function() {
+    beforeEach(function () {
         browser.ignoreSynchronization = true;
-        browser.get(browser.baseUrl);
-        //mainPage.get();
+        mainPage.get();
     });
 
     it('should check page brand logo', () => {

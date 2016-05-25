@@ -5,10 +5,9 @@ describe('Dashboard Page Tests', () => {
     var abstractPage = new MainPage();
     var dashboardPage = new DashboardPage();
 
-    beforeEach(function() {
+    beforeEach(function () {
         browser.ignoreSynchronization = true;
-        browser.get(browser.baseUrl);
-        //dashboardPage.get();
+        dashboardPage.get();
     });
 
     it('should check page title', () => {
