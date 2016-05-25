@@ -22,5 +22,4 @@ exports.config = {
 
     baseUrl: 'https://garage-it-smart-house.herokuapp.com/#/',
     useAllAngular2AppRoots: true
-
 };
