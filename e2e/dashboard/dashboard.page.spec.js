@@ -1,7 +1,7 @@
 var MainPage = require('../main/main.page.js');
 var DashboardPage = require('../dashboard/dashboard.page.js');
 
-describe('SmartHouse Dashboard page', () => {
+describe('Dashboard Page Tests', () => {
     var abstractPage = new MainPage();
     var dashboardPage = new DashboardPage();
 

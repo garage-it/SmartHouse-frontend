@@ -1,7 +1,7 @@
 var MainPage = require('../main/main.page.js');
 var HomePage = require('../home/home.page.js');
 
-describe('SmartHouse Home page', () => {
+describe('Home Page Tests', () => {
     var mainPage = new MainPage();
     var homePage = new HomePage();
 

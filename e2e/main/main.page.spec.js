@@ -1,6 +1,6 @@
 var MainPage = require('../main/main.page.js');
 
-describe('SmartHouse Main page', () => {
+describe('Main Page Tests', () => {
     var mainPage = new MainPage();
 
     it('should check page brand logo', () => {
