@@ -12,9 +12,9 @@ describe('Main Page Test', () => {
         expect(mainPage.brandLogo.getText()).toEqual('Smart House');
     });
 
-    it('should check page links', () => {
-        expect(mainPage.dashboardLink.getText()).toEqual('Dashboard');
-        expect(mainPage.deviceListLink.getText()).toEqual('Device List');
-        expect(mainPage.scenarioListLink.getText()).toEqual('Scenario List');
-    });
+    // it('should check page links', () => {
+    //     expect(mainPage.dashboardLink.getText()).toEqual('Dashboard');
+    //     expect(mainPage.deviceListLink.getText()).toEqual('Device List');
+    //     expect(mainPage.scenarioListLink.getText()).toEqual('Scenario List');
+    // });
 });
