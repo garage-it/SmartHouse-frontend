@@ -10,7 +10,7 @@ exports.config = {
 
     // Spec patterns are relative to the current working directly when
     // protractor is called.
-    specs: '../e2e/*spec.js',
+    specs: '../e2e/*/*spec.js',
 
     // Options to be passed to Jasmine-node.
     jasmineNodeOpts: {
@@ -18,7 +18,7 @@ exports.config = {
         defaultTimeoutInterval: 30000
     },
 
-    baseUrl: 'https://garage-it-smart-house.herokuapp.com/',
+    baseUrl: 'https://garage-it-smart-house.herokuapp.com/#/',
     useAllAngular2AppRoots: true,
     onPrepare: function ignoreSync () {
         browser.ignoreSynchronization = true;
