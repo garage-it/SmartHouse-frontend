@@ -5,9 +5,13 @@ describe('Dashboard Page Tests', () => {
     var abstractPage = new MainPage();
     var dashboardPage = new DashboardPage();
 
-    it('should check page title', () => {
-        //dashboardPage.get();
+    beforeEach(function() {
+        browser.ignoreSynchronization = true;
         browser.get(browser.baseUrl);
+        //dashboardPage.get();
+    });
+
+    it('should check page title', () => {
         expect(abstractPage.dashboardLink.getText()).toEqual('Dashboard');
         abstractPage.dashboardLink.click();
         expect(browser.getTitle()).toEqual('Smart Home');
