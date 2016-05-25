@@ -20,7 +20,7 @@ exports.config = {
 
     baseUrl: 'https://garage-it-smart-house.herokuapp.com/#/',
     useAllAngular2AppRoots: true,
-    onPrepare: function ignoreSync () {
+    onPrepare: function ignoreSync() {
         browser.ignoreSynchronization = true;
     }
 };
