@@ -1,3 +1,12 @@
 .scenario-details {
-    margin: 1em;
+
+    &_editor-wrapper {
+        padding: 20px 0 30px;
+    }
+
+    a {
+        .label {
+            display: block;
+        }
+    }
 }

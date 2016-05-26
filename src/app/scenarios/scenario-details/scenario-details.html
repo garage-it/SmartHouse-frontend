@@ -1,3 +1,21 @@
+<div class="page-header">
+    <a href="" class="back-link" (click)="back()">
+        <i class="material-icons md-18">navigate_before</i>
+        Back to list
+    </a>
+    <div class="row">
+        <div class="col s7">
+            <h1>New scenario</h1>
+        </div>
+        <div class="col s5">
+            <a href="" class="nav-link right">
+                <i class="material-icons">edit</i>
+                Go to Wizard
+            </a>
+        </div>
+    </div>
+</div>
+
 <form class="scenario-details" (ngSubmit)="save(scenario)">
     <label>
         Scenario name:
@@ -13,14 +31,12 @@
             type="text"/>
     </label>
 
-    <label>
-        Scenario:
-        <textarea
-            [(ngModel)]="scenario.body"
-            class="materialize-textarea black-text"
-        ></textarea>
-    </label>
+    <div class="scenario-details_editor-wrapper">
+        <scenario-editor
+            [scenario]="scenario?.body"
+            (updateScenario)="onScenarioBodyUpdate($event)">
+        </scenario-editor>
+    </div>
 
     <button class="waves-effect waves-light btn blue lighten-1" type="submit">save</button>
-    <button class="waves-effect waves-light btn-flat" type="button" (click)="back()">back</button>
 </form>

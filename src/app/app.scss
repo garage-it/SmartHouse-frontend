@@ -1,0 +1,38 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500,700);
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+
+html {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    color:#000;
+}
+
+h1 {
+    font-weight: 300;
+    font-size:36px;
+    margin: 0;
+}
+
+.container {
+    padding: 20px 0;
+}
+
+.page-header {
+    padding: 10px 0 20px;
+
+    .nav-link {
+        i.material-icons {
+            display: block;
+            text-align: center;
+        }
+    }
+}
+
+.back-link {
+    i.material-icons {
+        font-size: 15px;
+        margin-top: 3px;
+        vertical-align: top;
+    }
+}
