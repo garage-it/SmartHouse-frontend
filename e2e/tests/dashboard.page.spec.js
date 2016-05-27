@@ -5,6 +5,7 @@ describe('Dashboard Page Test', () => {
 
     beforeEach(function () {
         browser.ignoreSynchronization = true;
+        browser.driver.manage().window().maximize();
         dashboardPage.get();
     });
 

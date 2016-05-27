@@ -5,6 +5,7 @@ describe('Main Page Test', () => {
 
     beforeEach(function () {
         browser.ignoreSynchronization = true;
+        browser.driver.manage().window().maximize();
         mainPage.get();
     });
 
