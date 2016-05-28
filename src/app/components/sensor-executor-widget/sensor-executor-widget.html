@@ -1,0 +1,13 @@
+<div class="sensor-widget">
+    <div class="sensor-widget_value switch">
+        <label>
+            OFF
+            <input type="checkbox" [(ngModel)]="data.value">
+            <span class="lever"></span>
+            ON
+        </label>
+    </div>
+    <div class="sensor-widget_description">
+        <span>{{device.description}}</span>
+    </div>
+</div>

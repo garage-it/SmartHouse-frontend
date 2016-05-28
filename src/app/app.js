@@ -6,7 +6,6 @@ import {HeaderComponent} from './components/header/header.component';
 import {Http, HTTP_PROVIDERS} from 'angular2/http';
 import ShHttpService from './sh-http/sh-http.service.js';
 
-import exampleRest from './example.rest.js';
 import style from './app.scss';
 import template from './app.html';
 import routes from './routes';
@@ -26,6 +25,5 @@ import routes from './routes';
 export class App {
     ngOnInit() {
         console.log('Init App'); // eslint-disable-line
-        exampleRest();
     }
 }

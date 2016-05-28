@@ -1,4 +1,4 @@
-import {SensorWidget} from './sensor-widget.component';
+import BaseSensor from './base-sensor';
 
 let sensorUpdateHandler;
 
@@ -9,7 +9,7 @@ class SensorWidgetServiceMock {
     unsubscribe() {}
 }
 
-describe('sensor-widget', () => {
+describe('base-sensor', () => {
     let sut;
     let device;
     let sensorWidgetService;
@@ -19,7 +19,8 @@ describe('sensor-widget', () => {
         spyOn(sensorWidgetService, 'subscribe').and.callThrough();
         spyOn(sensorWidgetService, 'unsubscribe').and.callThrough();
 
-        sut = new SensorWidget(sensorWidgetService);
+        sut = new BaseSensor();
+        sut.sensorWidgetService = sensorWidgetService;
 
         device = 'For test';
         sut.device = device;

@@ -1,0 +1,27 @@
+.sensor-widget {
+    background:#5a6d7b;
+    box-shadow:0px 2px 4px 0px rgba(0,0,0,0.50);
+    border-radius:2px;
+    width:160px;
+    height:160px;
+    float: left;
+    margin-right: 13px;
+
+
+    &_value {
+        text-align: center;
+        padding-top: 32px;
+        font-family:Roboto-Medium;
+        font-size:48px;
+        color:#f3ac2e;
+    }
+
+    &_description {
+        text-align:center;
+        font-family:Roboto-Regular;
+        font-size:15px;
+        color:#ffffff;
+        max-width: 82px;
+        margin: 0 auto;
+    }
+}
