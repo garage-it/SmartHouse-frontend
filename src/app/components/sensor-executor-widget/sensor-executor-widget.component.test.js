@@ -8,7 +8,7 @@ describe('sensor-executor-widget', () => {
     let sensorWidgetService;
 
     beforeEach(() => {
-        sensorWidgetService = { pushCommand: function () {} };
+        sensorWidgetService = { pushCommand() {} };
 
         spyOn(sensorWidgetService, 'pushCommand');
 
