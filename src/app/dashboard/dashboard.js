@@ -24,6 +24,8 @@ export class Dashboard {
             .getSensors()
             .subscribe(data => {
                 this.deviceList = data;
+                this.sensors = data.filter(element => !element.executor);
+                this.executors = data.filter(element => element.executor);
             });
     }
 }

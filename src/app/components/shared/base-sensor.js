@@ -9,9 +9,11 @@ export default class BaseSensor {
         this.data = {};
 
         this.sensorWidgetService
-            .subscribe(this.device.mqttId, data => {
-                this.data = data;
-            });
+            .subscribe(this.device.mqttId, data => this.onDeviceDataChanged(data));
+    }
+
+    onDeviceDataChanged(data) {
+        this.data = data;
     }
 
     ngOnDestroy() {

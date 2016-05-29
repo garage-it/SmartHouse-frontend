@@ -4,14 +4,16 @@
     </div>
 
     <div class="dashboard_content">
-        <sm-sensor-widget *ngFor="#device of deviceList"
+        <sm-sensor-widget *ngFor="#device of sensors"
             [device]="device">
         </sm-sensor-widget>
-        <sm-sensor-executor-widget
-            [device]="{ mqttId: 1, description: 'Blinds switch' }">
-        </sm-sensor-executor-widget>
-        <sm-sensor-status-widget
-            [device]="{ mqttId: 1, description: 'Blinds status' }">
-        </sm-sensor-status-widget>
+        <div *ngFor="#device of executors">
+            <sm-sensor-executor-widget
+                [device]="device">
+            </sm-sensor-executor-widget>
+            <sm-sensor-status-widget
+                [device]="device">
+            </sm-sensor-status-widget>
+        </div>
     </div>
 </div>

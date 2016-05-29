@@ -4,6 +4,8 @@ import BaseSensor from '../shared/base-sensor';
 import template from './sensor-executor-widget.html';
 import styles from '../shared/sensor-widget.scss';
 
+export const DEVICE_ON_STATE = 'ON';
+
 @Component({
     selector: 'sm-sensor-executor-widget',
     template,
@@ -11,8 +13,15 @@ import styles from '../shared/sensor-widget.scss';
     inputs: ['device', 'description']
 })
 export class SensorExecutorWidget extends BaseSensor {
-    ngOnInit() {
-        super.ngOnInit();
-        this.data = { value: true };
+
+    onDeviceDataChanged(data) {
+        this.data.value = data.value === DEVICE_ON_STATE;
+    }
+
+    switchExecutor($event) {
+        this.sensorWidgetService.pushCommand({
+            device: this.device.mqttId,
+            command: $event.target.checked
+        });
     }
 }

@@ -12,8 +12,4 @@ import styles from './sensor-status-widget.scss';
     inputs: ['device']
 })
 export class SensorStatusWidget extends BaseSensor {
-    ngOnInit() {
-        super.ngOnInit();
-        this.data = { value: 'ON' };
-    }
 }

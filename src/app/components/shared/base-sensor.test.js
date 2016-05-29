@@ -22,7 +22,7 @@ describe('base-sensor', () => {
         sut = new BaseSensor();
         sut.sensorWidgetService = sensorWidgetService;
 
-        device = 'For test';
+        device = { mqttId: 'For test' };
         sut.device = device;
     });
 
@@ -36,7 +36,7 @@ describe('base-sensor', () => {
         });
 
         it('should subscribe by proper device', () => {
-            expect(sensorWidgetService.subscribe.calls.mostRecent().args[0]).toEqual(device);
+            expect(sensorWidgetService.subscribe.calls.mostRecent().args[0]).toEqual(device.mqttId);
         });
 
         it('should update widget data by event', () => {
@@ -53,7 +53,7 @@ describe('base-sensor', () => {
         });
 
         it('should unsubscribe by proper device', () => {
-            expect(sensorWidgetService.unsubscribe).toHaveBeenCalledWith(device);
+            expect(sensorWidgetService.unsubscribe).toHaveBeenCalledWith(device.mqttId);
         });
     });
 });

@@ -2,7 +2,9 @@
     <div class="sensor-widget_value switch">
         <label>
             OFF
-            <input type="checkbox" [(ngModel)]="data.value">
+            <input type="checkbox"
+                   [(ngModel)]="data.value"
+                   (change)="switchExecutor($event)">
             <span class="lever"></span>
             ON
         </label>
