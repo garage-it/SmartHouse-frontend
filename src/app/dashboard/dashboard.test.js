@@ -22,16 +22,21 @@ describe('Dashboard', () => {
     });
 
     describe('when initialize a component', () => {
+        let sensor;
+        let executor;
         let deviceList;
 
         beforeEach(() => {
-            deviceList = [];
+            sensor = {};
+            executor = { executor: true };
+            deviceList = [sensor, executor];
             sut.ngOnInit();
         });
 
         it('should get device list', () => {
             subscribeHandler(deviceList);
-            expect(sut.deviceList).toEqual(deviceList);
+            expect(sut.sensors).toEqual([sensor]);
+            expect(sut.executors).toEqual([executor]);
         });
     });
 });
