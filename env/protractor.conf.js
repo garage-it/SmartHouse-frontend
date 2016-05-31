@@ -4,7 +4,7 @@ exports.config = {
     seleniumAddress: 'http://localhost:4444/wd/hub',
 
     // Capabilities to be passed to the webdriver instance.
-	capabilities: {
+    capabilities: {
     browserName: 'firefox'
 },
 
