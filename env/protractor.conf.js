@@ -5,8 +5,8 @@ exports.config = {
 
     // Capabilities to be passed to the webdriver instance.
     capabilities: {
-    browserName: 'firefox'
-},
+        browserName: 'firefox'
+    },
 
     // Spec patterns are relative to the current working directly when
     // protractor is called.
