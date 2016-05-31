@@ -33,7 +33,7 @@ describe('sensor-executor-widget', () => {
         sut.switchExecutor($eventMock);
         expect(sensorWidgetService.pushCommand).toHaveBeenCalledWith({
             device: mockDeviceMqttId,
-            command: checkedMock
+            command: 'ON'
         });
     });
 });

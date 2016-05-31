@@ -5,6 +5,7 @@ import template from './sensor-executor-widget.html';
 import styles from '../shared/sensor-widget.scss';
 
 export const DEVICE_ON_STATE = 'ON';
+export const DEVICE_OFF_STATE = 'OFF';
 
 @Component({
     selector: 'sm-sensor-executor-widget',
@@ -21,7 +22,7 @@ export class SensorExecutorWidget extends BaseSensor {
     switchExecutor($event) {
         this.sensorWidgetService.pushCommand({
             device: this.device.mqttId,
-            command: $event.target.checked
+            command: $event.target.checked ? DEVICE_ON_STATE : DEVICE_OFF_STATE
         });
     }
 }
