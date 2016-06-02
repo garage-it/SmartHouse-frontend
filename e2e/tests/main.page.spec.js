@@ -4,9 +4,6 @@ describe('Main Page Test', () => {
     var mainPage = new MainPage();
 
     beforeEach(function () {
-        browser.ignoreSynchronization = true;
-        browser.driver.manage().window().setSize(1920, 1080);
-        browser.driver.manage().window().maximize();
         mainPage.get();
     });
 

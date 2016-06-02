@@ -21,5 +21,12 @@ exports.config = {
     },
 
     baseUrl: 'https://garage-it-smart-house.herokuapp.com/#/',
-    useAllAngular2AppRoots: true
+    useAllAngular2AppRoots: true,
+
+    onPrepare() {
+        browser.ignoreSynchronization = true;
+        browser.driver.manage().window().setSize(1920, 1080);
+        browser.driver.manage().window().maximize();
+    }
+
 };
