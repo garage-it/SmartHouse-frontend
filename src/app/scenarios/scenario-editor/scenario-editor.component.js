@@ -43,7 +43,7 @@ export class ScenarioEditor {
                 lineNumbers: true,
                 autoCloseBrackets: true,
                 matchBrackets: true,
-                tabSize: 2,
+                tabSize: 4,
                 theme: 'lesser-dark'
             }
         );
