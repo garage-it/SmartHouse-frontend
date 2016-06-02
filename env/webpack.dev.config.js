@@ -1,13 +1,12 @@
 const webpackMerge = require('webpack-merge');
 const commonConfig = require('./webpack.common');
-const mock = require('./env.mock.config');
 const env = require('./env.config');
 
 module.exports = webpackMerge(commonConfig, {
     devtool: 'cheap-source-map',
     devServer: {
-        port: env.server.port,
-        host: env.server.host,
+        port: env.staticServer.port,
+        host: env.staticServer.host,
         historyApiFallback: true,
         watchOptions: {
             aggregateTimeout: 300,
@@ -15,17 +14,10 @@ module.exports = webpackMerge(commonConfig, {
         },
         proxy: [
             {
-                path: 'api/*',
-                target: {
-                    port: 9000,
-                    host: 'localhost'
-                }
-            },
-            {
                 path: '*',
                 target: {
-                    port: mock.port,
-                    host: mock.host
+                    port: env.mockServer.port,
+                    host: env.mockServer.host
                 }
             }
         ]

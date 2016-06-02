@@ -1,5 +1,4 @@
 import {BaseRequestOptions, RequestOptionsArgs} from 'angular2/http';
-import {BACK_END_REST} from '../shared/config';
 
 export default class ShRequestOptions extends BaseRequestOptions {
     constructor(options) {
@@ -11,7 +10,7 @@ export default class ShRequestOptions extends BaseRequestOptions {
         Object.assign(opts,
             this.options,
             options,
-            {url: `${BACK_END_REST}/api${options.url}`});
+            {url: `${ENV_PUBLIC_CONFIG.backEndUrl}/api${options.url}`});
         return super.merge(opts);
     }
 }

@@ -2,11 +2,16 @@ sudo: false
 language: node_js
 node_js:
   - 5
-
 script:
   - npm run validate
   - npm run test
   - npm run build
-
 after_success:
   - codecov
+deploy:
+  provider: heroku
+  api_key:
+    secure: YWk9sRKKIQxl6AeRvsbNhXGTHaa48U0+gRTdyrFYU2NUz2igGPZ+9faAqmwJBcgvwcSQhc0mIXSlc9rZ+4doOKl16kVYXihFNtG1m0dchN/xT/t7sPA1knVg/81tuRyiuQoNYqgyYT1fdJftXek1Rovt5Zk3D+CNE2UEM3B8ps2nIBAWX/f5nTFxWu7y2S4NP9MEslXhfDNQuXhW7pZIVDOQ5A2jGjc3Pt6BzqegUl4569Ytuf9MPqy0DN5LNVNGOqMaOx6C3KkvTN8GdRktEATMvFUwbeh6xUwUJiCHxp2nIRjh8rKTEjgcQA4f0ibzz4LbqE3vm+2QS19qFiKniybFmTifETc+6ABgAj62BDqaseiBb7YospN3e6RXbJ6oFdI8qiaz/oZvpv1WvVO9blkI7/p7k92aRUncb0bqynJR2Tftn1Jrdbz2XM61RQ8GKvHc3tJWDgE6osdF3lko3ZD3pUGpMbmHcSo8LMPFmCe+jAfuawLU3M3j6LnmkNsmxVZZ+JES1FH0aA7CQjeg1NY2l4q27Z3y71+a58+lvQCGsn1d/J5gAneNSaodpljirFKbaGYcHxkB1Q4UdARn18atAFpn5V5RpS5IIwmIuhpErrxJE/PXRR1dOmwCvjgzGNmMYc3lOpgIas3uN8cR9nFQtWZpo7S43fMkocBrGPI=
+  app: garage-it-smart-house
+  on:
+    repo: garage-it/SmartHouse-frontend

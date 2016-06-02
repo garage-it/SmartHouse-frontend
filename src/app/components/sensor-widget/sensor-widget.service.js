@@ -1,8 +1,6 @@
 import {Injectable} from 'angular2/core';
 import io from 'socket.io-client';
 
-import {BACK_END_WS} from '../../shared/config';
-
 @Injectable()
 export default class SensorWidgetService {
     constructor() {
@@ -11,7 +9,7 @@ export default class SensorWidgetService {
     }
 
     setupSocket() {
-        this.socket = this.io(BACK_END_WS);
+        this.socket = this.io(ENV_PUBLIC_CONFIG.backEndWebSocketUrl);
     }
 
     subscribe(device, callback) {

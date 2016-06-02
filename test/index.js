@@ -20,11 +20,16 @@ import 'zone.js/dist/zone';
 import 'zone.js/dist/long-stack-trace-zone';
 import 'zone.js/dist/jasmine-patch';
 
+// Config
+import envConfig from '../env/env.config';
+
 testing.setBaseTestProviders(
     browser.TEST_BROWSER_PLATFORM_PROVIDERS,
     browser.TEST_BROWSER_APPLICATION_PROVIDERS);
 
 Object.assign(global, testing);
+
+global.ENV_PUBLIC_CONFIG = envConfig.public;
 
 // Add specs
 const appContext = require.context('../src', true, /\.test\.js/);

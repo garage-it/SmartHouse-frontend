@@ -13,6 +13,9 @@
     "flushMicrotasks": true,
     "tick": true
   },
+  "globals": {
+    "ENV_PUBLIC_CONFIG": false
+  },
   "rules": {
     // Babel
     "babel/new-cap": [
