@@ -1,29 +1,36 @@
-<h2>Device list</h2>
+<div class="sub-header row">
+  <div id="page-title" class="col s5">Devices</div>
+  <div class="actions col s3 right">
+    <button [routerLink]="['SensorDetail']"
+        class="waves-effect waves-light btn blue-grey darken-1">Add new device</button>
+  </div>
+</div>
 
-<button [routerLink]="['SensorDetail']"
-    class="waves-effect waves-light btn blue lighten-1"
->Add device</button>
+<div *ngIf="deviceList.length === 0">
+    <div class="container empty-list">
+        <div class="text">
+            <h3>There are no devices yet</h3>
+            <h4>Once you connect your device to the system, it will be listed here.</h4>
+        </div>
+    </div>
+</div>
 
-<table class="striped highlight responsive-table">
-    <thead>
-    <th [ngClass]="{active: isActive('mqttId')}" class="sortable" (click)="setSortBy('mqttId')">
-        ID
-        <div [ngClass]="{up: reverse, down: !reverse}"></div>
-    </th>
-    <th>Type</th>
-    <th>Description</th>
-    <th [ngClass]="{active: isActive('status')}" class="sortable" (click)="setSortBy('status')">
-        Active
-        <div [ngClass]="{up: reverse, down: !reverse}"></div>
-    </th>
-    </thead>
-    <tbody>
-    <tr *ngFor="#item of deviceList"
-       [routerLink]="['SensorDetail', {id: item._id}]">
-        <td>{{item.mqttId}}</td>
-        <td>{{item.type}}</td>
-        <td>{{item.description}}</td>
-        <td>{{item.status}}</td>
-    </tr>
-    </tbody>
-</table>
+<div *ngIf="deviceList.length !== 0">
+    <table class="highlight responsive-table">
+        <thead>
+            <th *ngFor="#header of headers"
+                (click)="setSortBy(header.topic)"
+                [class.active]="isActive(header.topic)"
+                [class.sortable]="header.sortable">
+                {{ header.name }}
+                <div [class]="reverse ? 'up' : 'down'"></div>
+            </th>
+        </thead>
+        <tbody>
+        <tr *ngFor="#item of deviceList"
+           [routerLink]="['SensorDetail', { id: item._id }]">
+            <td *ngFor="#header of headers">{{item[header.topic]}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

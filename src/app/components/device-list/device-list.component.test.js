@@ -54,6 +54,19 @@ describe('device-list component', () => {
         });
     });
 
+    describe('#headers', () => {
+        const allowedHeaders = [
+            { topic: 'mqttId', name: 'ID', sortable: true },
+            { topic: 'type', name: 'ID', sortable: false },
+            { topic: 'description', name: 'ID', sortable: true },
+        ];
+
+        it('should have collection of allowed headers: mqttId, type, description', () => {
+            sut._headers = allowedHeaders;
+            expect(sut.headers).toEqual(allowedHeaders);
+        });
+    });
+
     describe('#setSortBy', () => {
         it('will sort by number column in  ascending order', () => {
             sut.sortBy = 'mqttId';

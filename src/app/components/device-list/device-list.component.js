@@ -1,10 +1,16 @@
 import {Component} from 'angular2/core';
 import template from './device-list.html';
-import style from './device-list.css';
+import style from './device-list.scss';
 import {DeviceListService} from '../shared/device-list.service';
 import {RouterLink} from 'angular2/router';
 
 const selector = 'device-list';
+const headersForDisplay = [
+    { topic: 'mqttId', name: 'ID', sortable: true },
+    { topic: 'type', name: 'Type', sortable: true },
+    { topic: 'description', name: 'Description', sortable: true },
+    { topic: 'status', name: 'Status', sortable: true }
+];
 
 @Component({
     selector,
@@ -13,14 +19,15 @@ const selector = 'device-list';
     providers: [DeviceListService],
     directives: [RouterLink]
 })
-
 export class DeviceList {
     deviceList = [];
     sortBy = '';
     reverse = false;
+    _headers = [];
 
     constructor(deviceListService: DeviceListService) {
         this.deviceListService = deviceListService;
+        this._headers = headersForDisplay;
     }
 
     ngOnInit() {
@@ -32,12 +39,9 @@ export class DeviceList {
     }
 
     setSortBy(sortByValue) {
-        if (this.sortBy !== sortByValue) {
-            this.reverse = false;
-            this.sortBy = sortByValue;
-        } else {
-            this.reverse = !this.reverse;
-        }
+        this.reverse = this.sortBy === sortByValue ? !this.reverse : false;
+        this.sortBy = sortByValue;
+
         this.deviceList.sort((a, b) => {
             if (a[sortByValue] < b[sortByValue]) {
                 return this.reverse ? 1 : -1;
@@ -51,5 +55,9 @@ export class DeviceList {
 
     isActive(val) {
         return val === this.sortBy;
+    }
+
+    get headers() {
+        return this._headers;
     }
 }
