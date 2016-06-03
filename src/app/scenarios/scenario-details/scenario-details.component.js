@@ -3,7 +3,8 @@ import {RouteParams, Router} from 'angular2/router';
 
 import template from './scenario-details.html';
 import style from './scenario-details.scss';
-import {ScenarioService} from '../Scenario.service.js';
+import {ScenarioService} from '../Scenario.service';
+import {DeviceListService} from '../../components/shared/device-list.service';
 
 const selector = 'scenario-list';
 
@@ -11,7 +12,7 @@ const selector = 'scenario-list';
     selector,
     template,
     styles: [style],
-    providers: [ScenarioService]
+    providers: [ScenarioService, DeviceListService]
 })
 
 export class ScenarioDetailsComponent {

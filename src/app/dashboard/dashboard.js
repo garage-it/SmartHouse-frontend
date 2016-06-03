@@ -9,7 +9,7 @@ import {DeviceListService} from '../components/shared/device-list.service';
     template,
     styles: [style],
     directives: [SensorWidget],
-    providers: [DeviceListService],
+    providers: [DeviceListService]
 })
 export class Dashboard {
     constructor(deviceListService: DeviceListService) {

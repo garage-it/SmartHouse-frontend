@@ -9,9 +9,10 @@ import {ListComponent} from './list';
 import {SensorDetail} from './sensor-detail';
 
 import {Http, HTTP_PROVIDERS} from 'angular2/http';
-import ShHttpService from './sh-http/sh-http.service.js';
+import ShHttpService from './sh-http/sh-http.service';
+import {DeviceListService} from './components/shared/device-list.service';
 
-import exampleRest from './example.rest.js';
+import exampleRest from './example.rest';
 import style from './app.scss';
 import template from './app.html';
 
@@ -21,6 +22,7 @@ import template from './app.html';
     providers: [
         Http,
         HTTP_PROVIDERS,
+        DeviceListService,
         ShHttpService],
     styles: [style],
     template,

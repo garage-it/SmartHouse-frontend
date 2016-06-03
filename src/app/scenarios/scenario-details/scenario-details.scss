@@ -1,3 +1,33 @@
 .scenario-details {
     margin: 1em;
 }
+
+a {
+    cursor: pointer;
+    font-size:15px;
+    color:#01579b;
+}
+
+.material-icons {
+    cursor: pointer;
+}
+
+select {
+    display: block;
+    border: 0px solid white;
+    padding: 0px;
+    width: auto;
+    background-color: whitesmoke;
+
+    &.condition-select {
+        display: inline;
+    }
+}
+
+.gray-bg {
+    background-color: whitesmoke;
+}
+
+.icon-container {
+    height: 100%;
+}
