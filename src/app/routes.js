@@ -6,7 +6,7 @@ import {ListComponent} from './list';
 import {SensorDetail} from './sensor-detail';
 
 export default [
-    {path: '/', name: 'Index', component: Home, useAsDefault: true, headerName: 'Smart House'},
+    {path: '/', name: 'Index', component: Dashboard, useAsDefault: true, headerName: 'Smart House'},
     {path: '/home', name: 'Home', component: Home},
     {path: '/dashboard', name: 'Dashboard', component: Dashboard, headerName: 'Dashboard'},
     {path: '/device-list', name: 'DeviceList', component: DeviceList, headerName: 'Devices'},
