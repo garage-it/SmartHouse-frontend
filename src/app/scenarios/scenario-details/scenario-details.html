@@ -24,6 +24,13 @@
             type="text"/>
     </label>
 
+    <p class="sensor-detail__status">
+        <input [(ngModel)]="scenario.active"
+               class="filled-in sensor-detail__status-value"
+               type="checkbox" id="scenario-details__status"/>
+        <label for="scenario-details__status">active </label>
+    </p>
+
     <label>
         Scenario description:
         <input [(ngModel)]="scenario.description"
