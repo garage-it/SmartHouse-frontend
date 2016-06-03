@@ -23,4 +23,8 @@ export default class SensorWidgetService {
     unsubscribe(device) {
         this.socket.emit('unsubscribe', {device});
     }
+
+    pushEvent(config) {
+        this.socket.emit('pushEvent', config);
+    }
 }

@@ -1,13 +1,19 @@
 <div class="dashboard">
     <div class="dashboard_title">
         <h2>Dashboard</h2>
-    <div>
+    </div>
 
     <div class="dashboard_content">
-        <sm-sensor-widget
-            *ngFor="#device of deviceList"
-            [device]="device.mqttId"
-            [description]="device.description">
+        <sm-sensor-widget *ngFor="#device of sensors"
+            [device]="device">
         </sm-sensor-widget>
-    <div>
+        <div *ngFor="#device of executors">
+            <sm-sensor-executor-widget
+                [device]="device">
+            </sm-sensor-executor-widget>
+            <sm-sensor-status-widget
+                [device]="device">
+            </sm-sensor-status-widget>
+        </div>
+    </div>
 </div>
