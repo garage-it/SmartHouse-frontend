@@ -1,0 +1,33 @@
+@mixin bg-icon($left-padding) {
+  background-position: $left-padding center;
+  background-repeat: no-repeat;
+}
+
+.main-nav {
+    background: #ffffff;
+    box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.50);
+
+    .container {
+        padding: 0;
+    }
+
+    li a {
+        font-size: 18px;
+        color: #000000;
+        padding: 0 20px 0 50px;
+        @include bg-icon(20px);
+    }
+}
+
+#nav-mobile .router-link-active {
+    border-bottom: 6px solid #546e7a;
+}
+
+.logo {
+    margin-left: 20px;
+    font-size:20px;
+    color:#000000;
+    font-weight: 900;
+    padding: 10px 0px 10px 50px;
+    @include bg-icon(10px);
+}
