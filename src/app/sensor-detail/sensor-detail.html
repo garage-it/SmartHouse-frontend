@@ -1,34 +1,40 @@
+<div class="page-header">
+    <a class="back-link" (click)="cancel()">
+        <i class="material-icons md-18">navigate_before</i>
+        Back to list
+    </a>
+    <h1>New device</h1>
+</div>
 <form class="sensor-detail" (ngSubmit)="save()">
     <div class="sensor-detail__id">
+        <label for="sensor-detail__id">Device name</label>
         <input [(ngModel)]="sensor.mqttId"
                ngControl="mqttId"
-               type="text" id="sensor-detail__id" placeholder="id"/>
+               type="text" id="sensor-detail__id" placeholder="Enter descriptive name"/>
     </div>
     <div class="sensor-detail__type">
+        <label for="sensor-detail__id">Type</label>
         <input [(ngModel)]="sensor.type"
                ngControl="type"
-               type="text" id="sensor-detail__type" placeholder="type"/>
+               type="text" id="sensor-detail__type" placeholder="Enter type"/>
     </div>
     <div class="sensor-detail__description">
+        <label for="sensor-detail__id">Description</label>
         <input [(ngModel)]="sensor.description"
                ngControl="description"
-               type="text" id="sensor-detail__description" placeholder="description"/>
+               type="text" id="sensor-detail__description" placeholder="Enter description"/>
     </div>
     <p class="sensor-detail__status">
         <input [(ngModel)]="sensor.status"
                ngControl="status"
                class="filled-in sensor-detail__status-value"
                type="checkbox" id="sensor-detail__status"/>
-        <label for="sensor-detail__status">active </label>
+        <label for="sensor-detail__status" class=""blue-grey darken-1>Active</label>
     </p>
 
     <button
         type="submit"
-        class="waves-effect waves-light btn blue lighten-1 sensor-detail__save-btn"
-    >save</button>
-    <button
-        type="button"
-        class="waves-effect waves-light btn-flat sensor-detail__cancel-btn" (click)="cancel()"
-    >cancel</button>
-
+        class="waves-effect waves-light btn blue-grey darken-1">
+        SAVE DEVICE
+    </button>
 </form>
