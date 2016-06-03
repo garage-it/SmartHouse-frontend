@@ -20,9 +20,9 @@ export class SensorExecutorWidget extends BaseSensor {
     }
 
     switchExecutor($event) {
-        this.sensorWidgetService.pushCommand({
+        this.sensorWidgetService.pushEvent({
             device: this.device.mqttId,
-            command: $event.target.checked ? DEVICE_ON_STATE : DEVICE_OFF_STATE
+            value: $event.target.checked ? DEVICE_ON_STATE : DEVICE_OFF_STATE
         });
     }
 }

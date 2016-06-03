@@ -1,5 +1,12 @@
 import SensorWidgetService from './sensor-widget.service';
 
+function mockSocketIo() {
+    return {
+        on: jasmine.createSpy(),
+        emit: jasmine.createSpy()
+    };
+}
+
 describe('SensorWidgetService', () => {
     let sut;
     let device;

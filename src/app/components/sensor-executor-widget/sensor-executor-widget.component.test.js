@@ -8,9 +8,9 @@ describe('sensor-executor-widget', () => {
     let sensorWidgetService;
 
     beforeEach(() => {
-        sensorWidgetService = { pushCommand() {} };
+        sensorWidgetService = { pushEvent() {} };
 
-        spyOn(sensorWidgetService, 'pushCommand');
+        spyOn(sensorWidgetService, 'pushEvent');
 
         sut = new SensorExecutorWidget();
         sut.data = {};
@@ -31,9 +31,9 @@ describe('sensor-executor-widget', () => {
         const mockDeviceMqttId = 'mock';
         sut.device = { mqttId: mockDeviceMqttId };
         sut.switchExecutor($eventMock);
-        expect(sensorWidgetService.pushCommand).toHaveBeenCalledWith({
+        expect(sensorWidgetService.pushEvent).toHaveBeenCalledWith({
             device: mockDeviceMqttId,
-            command: 'ON'
+            value: 'ON'
         });
     });
 });
