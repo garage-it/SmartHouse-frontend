@@ -2,7 +2,8 @@
     <nav class="main-nav">
         <div class="container">
             <a [routerLink]="[mainPageRoute.name]"
-                class="logo">Smart House</a>
+                class="logo"
+                [style.background-image]="'url(' + mainPageRoute.iconImage + ')'">Smart House</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li *ngFor="#route of navigationRoutes">
                     <a [routerLink]="[route.name]"

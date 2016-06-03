@@ -10,7 +10,7 @@ const mockedRoutes = [
     {path: '/test6', name: 'Test6', component: () => {}, useAsDefault: true, headerName: 'Test6'}
 ];
 
-fdescribe('HeaderComponent', () => {
+describe('HeaderComponent', () => {
     let sut;
 
     beforeEach(() => {
@@ -31,6 +31,10 @@ fdescribe('HeaderComponent', () => {
 
         it('should contain image path', () => {
             expect(allHeaderRoutes.every(route => route.iconImage)).toBe(true);
+        });
+
+        it('image path should be a string', () => {
+            expect(allHeaderRoutes.every(route => typeof route.iconImage === 'string')).toBe(true);
         });
 
         describe('for mainPageRoute', () => {
