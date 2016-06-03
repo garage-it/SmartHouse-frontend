@@ -1,4 +1,15 @@
-<sh-header></sh-header>
+<header>
+    <nav>
+        <div class="nav-wrapper blue lighten-1">
+            <a [routerLink]="['/Home']" class="brand-logo">Smart House</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a [routerLink]="['/Dashboard']">Dashboard</a></li>
+                <li><a [routerLink]="['/DeviceList']">Device List</a></li>
+                <li><a [routerLink]="['/ScenarioList']">Scenarios</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
 <main class="container">
     <router-outlet></router-outlet>
 </main>

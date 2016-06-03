@@ -5,8 +5,27 @@
     }
 
     a {
+        cursor: pointer;
         .label {
             display: block;
         }
+    }
+    .material-icons {
+        cursor: pointer;
+    }
+    select {
+        display: block;
+        border: 0px solid white;
+        padding: 0px;
+        width: auto;
+        background-color: whitesmoke;
+
+        &.condition-select {
+            display: inline;
+        }
+    }
+
+    .gray-bg {
+        background-color: whitesmoke;
     }
 }
