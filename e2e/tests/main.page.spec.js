@@ -13,7 +13,7 @@ describe('Main Page Test', () => {
 
     it('should check page links', () => {
         expect(mainPage.dashboardLink.getText()).toEqual('Dashboard');
-        expect(mainPage.deviceListLink.getText()).toEqual('Device List');
-        expect(mainPage.scenarioListLink.getText()).toEqual('Scenario List');
+        expect(mainPage.devicesListLink.getText()).toEqual('Devices');
+        expect(mainPage.scenariosListLink.getText()).toEqual('Scenarios');
     });
 });
