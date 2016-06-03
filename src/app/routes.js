@@ -2,7 +2,6 @@ import {Home} from './home';
 import {Dashboard} from './dashboard';
 import {DeviceList} from './components/device-list';
 import {ScenarioListComponent, EditScenarioComponent, CreateScenarioComponent} from './scenarios/';
-import {ListComponent} from './list';
 import {SensorDetail} from './sensor-detail';
 
 export default [
@@ -10,7 +9,6 @@ export default [
     {path: '/home', name: 'Home', component: Home},
     {path: '/dashboard', name: 'Dashboard', component: Dashboard, headerName: 'Dashboard'},
     {path: '/device-list', name: 'DeviceList', component: DeviceList, headerName: 'Devices'},
-    {path: '/list', name: 'List', component: ListComponent},
     {path: '/scenarios', name: 'ScenarioList', component: ScenarioListComponent,
      headerName: 'Scenarios'},
     {path: '/scenarios/create', name: 'CreateScenario', component: CreateScenarioComponent},
