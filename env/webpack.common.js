@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const envConfig = require('./env.config');
 
@@ -8,6 +9,7 @@ const jsRegexp = /\.js$/;
 
 module.exports = {
     debug: true,
+    context: envConfig.src.dir,
     devtool: 'cheap-source-map',
     resolve: {
         root: [envConfig.src.dir],
@@ -67,6 +69,11 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: envConfig.src.indexHtml
         }),
+        new CopyWebpackPlugin([{
+            from: '**/*.png',
+            to: 'assets',
+            flatten: true
+        }]),
         new ExtractTextPlugin('main.css'),
         new webpack.DefinePlugin({
             ENV_PUBLIC_CONFIG: JSON.stringify(envConfig.public)

@@ -19,7 +19,7 @@ export class HeaderComponent {
     constructor() {
         this.routes = routes.filter(route => route.headerName || route.useAsDefault)
           .map(headerRoute => Object.assign(headerRoute, {
-              iconImage: `./partials/${headerRoute.name}.png`
+              iconImage: `./assets/${headerRoute.name}.png`
           }));
     }
 

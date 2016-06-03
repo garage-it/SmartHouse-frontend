@@ -5,12 +5,10 @@
                 class="logo">Smart House</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li *ngFor="#route of navigationRoutes">
-                    <a [routerLink]="[route.name]">{{route.headerName}}</a>
+                    <a [routerLink]="[route.name]"
+                      [style.background-image]="'url(' + route.iconImage + ')'">{{route.headerName}}</a>
                  </li>
             </ul>
         </div>
     </nav>
 </header>
-<img src="Index.png" alt="" />
-<!--[ngStyle]="{'background-image': 'url(' + mainPageRoute.iconImage + ')'}"
-    [style.background-image]="'url(' + mainPageRoute.iconImage + ')'"-->
