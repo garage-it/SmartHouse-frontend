@@ -8,6 +8,8 @@ import 'codemirror/addon/edit/matchbrackets.js';
 import 'codemirror/addon/edit/closebrackets.js';
 import 'codemirror/mode/javascript/javascript.js';
 
+import CODE_MIRROR_EVENTS from './CODE_MIRROR_EVENTS';
+
 const selector = 'scenario-editor';
 
 @Component({
@@ -52,9 +54,11 @@ export class ScenarioEditor {
     }
 
     initListeners() {
-        this.codeEditor.on('change', () => {
-            const scenarioBody = this.codeEditor.getValue();
-            this.updateScenario.emit({scenarioBody});
+        this.codeEditor.on('change', (codeMirror, changeObj) => {
+            if (changeObj.origin !== CODE_MIRROR_EVENTS.SET_VALUE_EVENT) {
+                const scenarioBody = this.codeEditor.getValue();
+                this.updateScenario.emit({scenarioBody});
+            }
         });
     }
 }
