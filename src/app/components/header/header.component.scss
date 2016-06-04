@@ -11,6 +11,11 @@
         padding: 0;
     }
 
+    // TODO: hotfix - should be refactored
+    .button-collapse {
+        color: black;
+    }
+
     li a {
         font-size: 18px;
         color: #000000;
@@ -19,8 +24,20 @@
     }
 }
 
-#nav-mobile .router-link-active {
+#nav-desctop .router-link-active {
     border-bottom: 6px solid #546e7a;
+}
+
+// TODO: hotfix - should be refactored
+#nav-mobile {
+    width: 100%;
+    border: 1px solid rgba(0,0,0,0.50);
+    box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.50);
+    border-radius: 5px;
+
+    li, & a {
+      width: 100%;
+    }
 }
 
 .logo {
