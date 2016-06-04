@@ -1,4 +1,5 @@
 import {ScenarioEditor} from './scenario-editor.component';
+import CODE_MIRROR_EVENTS from './CODE_MIRROR_EVENTS';
 
 describe('ScenarioEditor', () => {
     let sut;
@@ -30,21 +31,40 @@ describe('ScenarioEditor', () => {
         });
 
         describe('on scenario change', () => {
+            let onScenarioChange;
             const scenarioBody = 'changed scenario';
 
             beforeEach(() => {
-                const onScenarioChange = sut.codeEditor.on.calls.mostRecent().args[1];
+                onScenarioChange = sut.codeEditor.on.calls.mostRecent().args[1];
                 codeMirrorMock.getValue.and.returnValue(scenarioBody);
-
-                onScenarioChange();
             });
 
-            it('should get current editor content when a change occurs', () => {
-                expect(sut.codeEditor.getValue).toHaveBeenCalledWith();
+            describe('when is key change', () => {
+                beforeEach(() => {
+                    onScenarioChange(null, {origin: 'RANDOM'});
+                });
+
+                it('should get current editor content when a change occurs', () => {
+                    expect(sut.codeEditor.getValue).toHaveBeenCalledWith();
+                });
+
+                it('should emit an event with changed scenario', () => {
+                    expect(sut.updateScenario.emit).toHaveBeenCalledWith({scenarioBody});
+                });
             });
 
-            it('should emit an event with changed scenario', () => {
-                expect(sut.updateScenario.emit).toHaveBeenCalledWith({scenarioBody});
+            describe('when is set value from model', () => {
+                beforeEach(() => {
+                    onScenarioChange(null, {origin: CODE_MIRROR_EVENTS.SET_VALUE_EVENT});
+                });
+
+                it('should not get current editor content', () => {
+                    expect(sut.codeEditor.getValue).not.toHaveBeenCalled();
+                });
+
+                it('should emit an event with changed scenario', () => {
+                    expect(sut.updateScenario.emit).not.toHaveBeenCalled();
+                });
             });
         });
     });
