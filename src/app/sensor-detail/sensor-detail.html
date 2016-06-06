@@ -6,23 +6,23 @@
     <h1>New device</h1>
 </div>
 <form class="sensor-detail" (ngSubmit)="save()">
-    <div class="sensor-detail__id">
+    <div class="input-field sensor-detail__id">
         <label for="sensor-detail__id">Device name</label>
         <input [(ngModel)]="sensor.mqttId"
                ngControl="mqttId"
-               type="text" id="sensor-detail__id" placeholder="Enter descriptive name"/>
+               type="text" id="sensor-detail__id"/>
     </div>
-    <div class="sensor-detail__type">
+    <div class="input-field sensor-detail__type">
         <label for="sensor-detail__id">Type</label>
         <input [(ngModel)]="sensor.type"
                ngControl="type"
-               type="text" id="sensor-detail__type" placeholder="Enter type"/>
+               type="text" id="sensor-detail__type"/>
     </div>
-    <div class="sensor-detail__description">
+    <div class="input-field sensor-detail__description">
         <label for="sensor-detail__id">Description</label>
         <input [(ngModel)]="sensor.description"
                ngControl="description"
-               type="text" id="sensor-detail__description" placeholder="Enter description"/>
+               type="text" id="sensor-detail__description"/>
     </div>
     <p class="sensor-detail__status">
         <input [(ngModel)]="sensor.status"

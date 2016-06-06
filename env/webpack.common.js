@@ -77,6 +77,12 @@ module.exports = {
         new ExtractTextPlugin('main.css'),
         new webpack.DefinePlugin({
             ENV_PUBLIC_CONFIG: JSON.stringify(envConfig.public)
+        }),
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery',
+            'window.jQuery': 'jquery',
+            'root.jQuery': 'jquery'
         })
     ]
 };

@@ -41,6 +41,8 @@ export class SensorDetail {
             .get(id)
             .subscribe(data => {
                 this.sensor = new Sensor(data);
+                // TODO Read about Zone, and try to fix it with Zone
+                setTimeout(Materialize.updateTextFields);
             }, this._onError, this._onComplete);
     }
 

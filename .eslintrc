@@ -14,7 +14,9 @@
     "tick": true
   },
   "globals": {
-    "ENV_PUBLIC_CONFIG": false
+    "ENV_PUBLIC_CONFIG": false,
+    "Materialize": false,
+    "$": true
   },
   "rules": {
     // Babel
