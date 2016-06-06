@@ -11,15 +11,6 @@ module.exports = webpackMerge(commonConfig, {
         watchOptions: {
             aggregateTimeout: 300,
             poll: 1000
-        },
-        proxy: [
-            {
-                path: '*',
-                target: {
-                    port: env.mockServer.port,
-                    host: env.mockServer.host
-                }
-            }
-        ]
+        }
     }
 });
