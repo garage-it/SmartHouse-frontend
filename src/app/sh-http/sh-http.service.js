@@ -24,6 +24,10 @@ export default class ShHttpService {
             .put(url, JSON.stringify(body), this._getOptions('Put', url))
             .map(this._convertToJson);
     }
+    delete(url) {
+        return this.http
+            .delete(url, this._getOptions('Delete', url));
+    }
     // TODO we could use a factory/inheritance instead of copy paste
     post(url, body) {
         const headers = new Headers({ 'Content-Type': 'application/json' });

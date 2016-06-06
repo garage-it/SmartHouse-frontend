@@ -17,6 +17,7 @@
       line-height: 54px;
     }
 }
+
 .sortable {
     cursor: pointer;
 }
@@ -30,6 +31,12 @@
     .down {
         @include sorting;
         border-top: 5px solid black;
+    }
+}
+
+table {
+    button[name=remove-device] {
+        padding: 0 15px;
     }
 }
 

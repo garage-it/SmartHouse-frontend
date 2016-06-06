@@ -22,6 +22,10 @@ class SensorDetailServiceMock {
     update() {
         return observableSubscribe;
     }
+
+    delete() {
+        return observableSubscribe;
+    }
 }
 
 class RouteParamsMock {
@@ -59,6 +63,7 @@ describe('sensor-detail module', () => {
         spyOn(sensorDetailService, 'get').and.callThrough();
         spyOn(sensorDetailService, 'save').and.callThrough();
         spyOn(sensorDetailService, 'update').and.callThrough();
+        spyOn(sensorDetailService, 'delete').and.callThrough();
         spyOn(routeParams, 'get').and.callThrough();
         spyOn(router, 'navigate').and.callThrough();
         sut = new SensorDetail(sensorDetailService, routeParams, router);
@@ -95,6 +100,21 @@ describe('sensor-detail module', () => {
         sut.save();
         expect(sut.sensorDetailService.update).toHaveBeenCalledWith(sensorMock);
     });
+
+    it('should remove sensor', () => {
+        const sensorMock = {};
+        sut.sensor = sensorMock;
+        sut.remove();
+        expect(sut.sensorDetailService.delete).toHaveBeenCalledWith(sensorMock);
+    })
+
+    it('should navigate to the list of sensors on remove', (done) => {
+        const sensorMock = {};
+        sut.sensor = sensorMock;
+        sut.remove();
+        expect(sut.router.navigate).toHaveBeenCalledWith(['DeviceList']);
+        done();
+    })
 
     it('should navigate to the list of devices on cancel', () => {
         sut.cancel();

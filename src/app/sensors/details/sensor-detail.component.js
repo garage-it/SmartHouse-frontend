@@ -57,6 +57,12 @@ export class SensorDetail {
         this._navigateToList();
     }
 
+    remove() {
+        this.sensorDetailService
+            .delete(this.sensor)
+            .subscribe(() => {}, this._onError, this._navigateToList());
+    }
+
     _navigateToList() {
         this.router.navigate(['DeviceList']);
     }

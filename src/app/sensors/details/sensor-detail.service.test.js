@@ -9,6 +9,7 @@ class HttpMock {
     get() { return observableMock; }
     post() { return observableMock; }
     put() { return observableMock; }
+    delete() { return observableMock; }
 }
 
 describe('SensorDetailService', () => {
@@ -24,6 +25,7 @@ describe('SensorDetailService', () => {
         spyOn(httpMock, 'get').and.callThrough();
         spyOn(httpMock, 'post').and.callThrough();
         spyOn(httpMock, 'put').and.callThrough();
+        spyOn(httpMock, 'delete').and.callThrough();
         sut = new SensorDetailService(httpMock);
     });
 
@@ -47,5 +49,11 @@ describe('SensorDetailService', () => {
         const sensorMock = {_id: 'mock'};
         sut.update(sensorMock);
         expect(httpMock.put).toHaveBeenCalledWith(`/sensors/${sensorMock._id}`, sensorMock);
+    });
+
+    it('should delete sensor', () => {
+        const sensorMock = {_id: 'mock'};
+        sut.delete(sensorMock);
+        expect(httpMock.delete).toHaveBeenCalledWith(`/sensors/${sensorMock._id}`, sensorMock);
     });
 });

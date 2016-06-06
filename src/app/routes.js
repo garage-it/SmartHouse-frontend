@@ -1,8 +1,8 @@
 import {Home} from './home';
 import {Dashboard} from './dashboard';
-import {DeviceList} from './components/device-list';
 import {ScenarioListComponent, EditScenarioComponent, CreateScenarioComponent} from './scenarios/';
-import {SensorDetail} from './sensor-detail';
+import {DeviceList} from './sensors/list';
+import {SensorDetail} from './sensors/details';
 
 export default [
     {path: '/', name: 'Index', component: Dashboard, useAsDefault: true, headerName: 'Smart House'},

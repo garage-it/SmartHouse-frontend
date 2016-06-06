@@ -30,6 +30,14 @@
         <tr *ngFor="#item of deviceList"
            [routerLink]="['SensorDetail', { id: item._id }]">
             <td *ngFor="#header of headers">{{item[header.topic]}}</td>
+            <td>
+                <button type="remove"
+                        name="remove-device"
+                        (click)="removeSensor(item); $event.stopPropagation()"
+                        class="waves-effect waves-light btn">
+                    <i class="material-icons">delete</i>
+                </button>
+            </td>
         </tr>
         </tbody>
     </table>

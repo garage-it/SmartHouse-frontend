@@ -11,6 +11,7 @@ class HttpMock {
     get() { return observableMock; }
     post() { return observableMock; }
     put() { return observableMock; }
+    delete() { return observableMock; }
 }
 
 describe('ShHttpService', () => {
@@ -26,6 +27,7 @@ describe('ShHttpService', () => {
         spyOn(httpMock, 'get').and.callThrough();
         spyOn(httpMock, 'post').and.callThrough();
         spyOn(httpMock, 'put').and.callThrough();
+        spyOn(httpMock, 'delete').and.callThrough();
         sut = new ShHttpService(httpMock);
     });
 
@@ -60,5 +62,20 @@ describe('ShHttpService', () => {
         });
         sut.put(urlMock, bodyMock);
         expect(httpMock.put).toHaveBeenCalledWith(urlMock, JSON.stringify(bodyMock), options);
+    });
+
+    it('should remove item', () => {
+        const urlMock = 'mock';
+        let options = new ShRequestOptions({
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            })
+        });
+        options = options.merge({
+            method: RequestMethod.Delete,
+            url: urlMock
+        });
+        sut.delete(urlMock);
+        expect(httpMock.delete).toHaveBeenCalledWith(urlMock, options);
     });
 });

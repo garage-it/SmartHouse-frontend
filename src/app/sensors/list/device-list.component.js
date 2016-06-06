@@ -1,8 +1,9 @@
 import {Component} from 'angular2/core';
+import {RouterLink} from 'angular2/router';
+
 import template from './device-list.html';
 import style from './device-list.scss';
-import {DeviceListService} from '../shared/device-list.service';
-import {RouterLink} from 'angular2/router';
+import SensorDetailService from '../details/sensor-detail.service';
 
 const selector = 'device-list';
 const headersForDisplay = [
@@ -16,7 +17,7 @@ const headersForDisplay = [
     selector,
     template,
     styles: [style],
-    providers: [DeviceListService],
+    providers: [SensorDetailService],
     directives: [RouterLink]
 })
 export class DeviceList {
@@ -25,14 +26,14 @@ export class DeviceList {
     reverse = false;
     _headers = [];
 
-    constructor(deviceListService: DeviceListService) {
-        this.deviceListService = deviceListService;
+    constructor(sensorsService: SensorDetailService) {
+        this.sensorsService = sensorsService;
         this._headers = headersForDisplay;
     }
 
     ngOnInit() {
-        this.deviceListService
-            .getSensors()
+        this.sensorsService
+            .get()
             .subscribe(data => {
                 this.deviceList = data;
             });
@@ -59,5 +60,18 @@ export class DeviceList {
 
     get headers() {
         return this._headers;
+    }
+
+    removeSensor(item) {
+        this.sensorsService
+            .delete(item)
+            .subscribe(data => {
+                const removedSensor = JSON.parse(data._body);
+
+                if (data.status === 200) {
+                    this.deviceList = this.deviceList
+                        .filter(elem => elem._id !== removedSensor._id);
+                }
+            });
     }
 }
