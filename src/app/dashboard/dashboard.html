@@ -4,6 +4,15 @@
     </div>
 
     <div class="dashboard_content">
+        <div *ngIf="isDashboardEmpty()">
+            <div class="container empty-list">
+                <div class="text">
+                    <h3>There are no devices yet</h3>
+                    <h4>Once you connect your device to the system, it will be listed here.</h4>
+                </div>
+            </div>
+        </div>
+
         <sm-sensor-widget *ngFor="#device of sensors"
             [device]="device">
         </sm-sensor-widget>

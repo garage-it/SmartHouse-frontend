@@ -17,6 +17,8 @@ import { DeviceListService } from '../components/shared/device-list.service';
 export class Dashboard {
     constructor(deviceListService: DeviceListService) {
         this.deviceListService = deviceListService;
+        this.sensors = [];
+        this.executors = [];
     }
 
     ngOnInit() {
@@ -26,5 +28,9 @@ export class Dashboard {
                 this.sensors = data.filter(element => !element.executor);
                 this.executors = data.filter(element => element.executor);
             });
+    }
+
+    isDashboardEmpty() {
+        return !this.sensors.length && !this.executors.length;
     }
 }
