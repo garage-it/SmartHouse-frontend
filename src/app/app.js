@@ -4,7 +4,8 @@ import {RouteConfig, RouterLink, RouterOutlet} from 'angular2/router';
 import {HeaderComponent} from './components/header/header.component';
 
 import {Http, HTTP_PROVIDERS} from 'angular2/http';
-import ShHttpService from './sh-http/sh-http.service.js';
+import ShHttpService from './sh-http/sh-http.service';
+import {DeviceListService} from './components/shared/device-list.service';
 
 import style from './app.scss';
 import template from './app.html';
@@ -16,7 +17,9 @@ import routes from './routes';
     providers: [
         Http,
         HTTP_PROVIDERS,
-        ShHttpService],
+        ShHttpService,
+        DeviceListService
+    ],
     styles: [style],
     template,
     encapsulation: ViewEncapsulation.None
