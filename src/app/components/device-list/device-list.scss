@@ -33,31 +33,4 @@
     }
 }
 
-.empty-list {
-    padding: 0px;
-    margin-top: 100px;
 
-    &::before {
-        content: '';
-        display: block;
-        background: url('./assets/empty-sensors-list.png') no-repeat;
-        background-size: 150px;
-        background-position: calc(100%/2);
-        height: 150px;
-        margin: 0 6px 0 0;
-    }
-
-    .text {
-        h3 {
-            font-family:Roboto-Regular;
-            font-size:24px;
-            text-align:center;
-        }
-
-        h4 {
-            font-family:Roboto-Regular;
-            font-size:15px;
-            text-align:center;
-        }
-    }
-}
