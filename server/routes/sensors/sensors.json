@@ -4,22 +4,19 @@
         "mqttId":"distance",
         "type":"some type",
         "description":"some description",
-        "__v":0,
-        "status":false
+        "__v":0
     },
     {
         "_id":"57517daac426311c00aca186",
         "mqttId":"temperature",
         "type":"some other type",
         "description":"temperature",
-        "__v":0,
-        "status":true
+        "__v":0
     },{
         "_id":"57517daac426311c00aca187",
         "mqttId":"humidity",
         "type":"some other type",
         "description":"humidity",
-        "__v":0,
-        "status":false
+        "__v":0
     }
 ]

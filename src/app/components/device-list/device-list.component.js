@@ -8,8 +8,7 @@ const selector = 'device-list';
 const headersForDisplay = [
     { topic: 'mqttId', name: 'ID', sortable: true },
     { topic: 'type', name: 'Type', sortable: true },
-    { topic: 'description', name: 'Description', sortable: true },
-    { topic: 'status', name: 'Status', sortable: true }
+    { topic: 'description', name: 'Description', sortable: true }
 ];
 
 @Component({
