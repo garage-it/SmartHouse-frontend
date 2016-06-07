@@ -18,13 +18,4 @@ describe('ScenarioDetailsComponent', () => {
             expect(router.navigate).toHaveBeenCalledWith(['/ScenarioList']);
         });
     });
-
-    describe('#onScenarioBodyUpdate', () => {
-        it('should update a scenario body', () => {
-            const scenarioBody = 'test';
-            sut.onScenarioBodyUpdate({scenarioBody});
-
-            expect(sut.scenario.body).toEqual(scenarioBody);
-        });
-    });
 });

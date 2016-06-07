@@ -1,7 +1,7 @@
 <h2>Scenario list</h2>
 
-<a [routerLink]="['/CreateScenario']"
-    class="waves-effect waves-light btn blue lighten-1"
+<a [routerLink]="['/CreateScenarioWizard']"
+   class="waves-effect waves-light btn blue lighten-1"
 >Create a new scenario</a>
 
 <table class="striped bordered highlight responsive-table">
@@ -24,7 +24,9 @@
         <td>{{scenario.name}}</td>
         <td>{{scenario.active}}</td>
         <td>{{scenario.description}}</td>
-        <td><pre class="scenario_item__body">{{scenario.body}}</pre></td>
+        <td>
+            <pre class="scenario_item__body">{{scenario.body}}</pre>
+        </td>
     </tr>
     </tbody>
 </table>
