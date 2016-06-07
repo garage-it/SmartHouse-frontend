@@ -7,10 +7,8 @@ export default class SensorDetailService {
         this.http = http;
     }
 
-    get(id) {
-        const sensorId = id || '';
-
-        return this.http.get(`/sensors/${sensorId}`);
+    get(id = '') {
+        return this.http.get(`/sensors/${id}`);
     }
 
     save(sensor) {
