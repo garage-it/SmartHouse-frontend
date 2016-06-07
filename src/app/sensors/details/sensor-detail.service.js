@@ -1,5 +1,5 @@
 import {Injectable} from 'angular2/core';
-import ShHttpService from '../sh-http/sh-http.service.js';
+import ShHttpService from '../../sh-http/sh-http.service.js';
 
 @Injectable()
 export default class SensorDetailService {
@@ -8,7 +8,9 @@ export default class SensorDetailService {
     }
 
     get(id) {
-        return this.http.get(`/sensors/${id}`);
+        const sensorId = id || '';
+
+        return this.http.get(`/sensors/${sensorId}`);
     }
 
     save(sensor) {
@@ -17,5 +19,9 @@ export default class SensorDetailService {
 
     update(sensor) {
         return this.http.put(`/sensors/${sensor._id}`, sensor);
+    }
+
+    delete(sensor) {
+        return this.http.delete(`/sensors/${sensor._id}`, sensor);
     }
 }
