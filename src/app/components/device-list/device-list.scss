@@ -33,4 +33,8 @@
     }
 }
 
-
+.empty-list {
+    &::before {
+        background-image: url(./assets/empty-sensors-list.png);
+    }
+}

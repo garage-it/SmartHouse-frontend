@@ -6,12 +6,13 @@ import { SensorWidget } from '../components/sensor-widget';
 import { SensorExecutorWidget } from '../components/sensor-executor-widget';
 import { SensorStatusWidget } from '../components/sensor-status-widget';
 import { DeviceListService } from '../components/shared/device-list.service';
+import { RouterLink } from 'angular2/router';
 
 @Component({
     selector: 'sm-dashboard',
     template,
     styles: [style],
-    directives: [SensorWidget, SensorExecutorWidget, SensorStatusWidget],
+    directives: [SensorWidget, SensorExecutorWidget, SensorStatusWidget, RouterLink],
     providers: [DeviceListService]
 })
 export class Dashboard {

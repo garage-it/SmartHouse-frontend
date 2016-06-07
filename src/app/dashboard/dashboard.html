@@ -7,8 +7,10 @@
         <div *ngIf="isDashboardEmpty()">
             <div class="container empty-list">
                 <div class="text">
-                    <h3>There are no devices yet</h3>
-                    <h4>Once you connect your device to the system, it will be listed here.</h4>
+                    <h3>This is your dashboard</h3>
+                    <h4>There are no widgets to display. Please add at least one device,<br/>
+                        then widgets will be added automatically.</h4>
+                    <h4><a [routerLink]="['DeviceList']">Go to Devices</a></h4>
                 </div>
             </div>
         </div>
