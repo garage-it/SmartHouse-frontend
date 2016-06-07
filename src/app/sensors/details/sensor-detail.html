@@ -5,7 +5,7 @@
     </a>
     <h1>New device</h1>
 </div>
-<form class="sensor-detail" (ngSubmit)="save()">
+<form class="sensor-detail">
     <div class="sensor-detail__id">
         <label for="sensor-detail__id">Device name</label>
         <input [(ngModel)]="sensor.mqttId"
@@ -39,9 +39,13 @@
         <label for="sensor-detail__executor">executor </label>
     </p>
 
-    <button
+    <button (click)="save()"
         type="submit"
         class="waves-effect waves-light btn blue-grey darken-1">
         SAVE DEVICE
+    </button>
+    <button (click)="remove()"
+        class="waves-effect waves-light btn blue-grey darken-1">
+        Remove Sensor
     </button>
 </form>

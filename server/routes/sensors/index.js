@@ -3,7 +3,11 @@ const mockedSensors = require('./sensors.json');
 
 const sensorsRouter = new express.Router();
 
-sensorsRouter.all('/:id', (req, res) => {
+sensorsRouter.get('/:id', (req, res) => {
+    res.json(mockedSensors[1]);
+});
+
+sensorsRouter.delete('/:id', (req, res) => {
     res.json(mockedSensors[1]);
 });
 
