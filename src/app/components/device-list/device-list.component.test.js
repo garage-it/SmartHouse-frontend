@@ -30,14 +30,12 @@ describe('device-list component', () => {
             {
                 mqttId: '1',
                 type: 'some type',
-                description: 'some description',
-                status: false
+                description: 'some description'
             },
             {
                 mqttId: '2',
                 type: 'some other type',
-                description: 'some other description',
-                status: true
+                description: 'some other description'
             }
         ];
 
