@@ -106,7 +106,7 @@ describe('sensor-detail module', () => {
         sut.sensor = sensorMock;
         sut.remove();
         expect(sut.sensorDetailService.delete).toHaveBeenCalledWith(sensorMock);
-    })
+    });
 
     it('should navigate to the list of sensors on remove', (done) => {
         const sensorMock = {};
@@ -114,7 +114,7 @@ describe('sensor-detail module', () => {
         sut.remove();
         expect(sut.router.navigate).toHaveBeenCalledWith(['DeviceList']);
         done();
-    })
+    });
 
     it('should navigate to the list of devices on cancel', () => {
         sut.cancel();

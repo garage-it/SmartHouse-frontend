@@ -9,7 +9,9 @@ const observableSubscribe = {
 };
 
 class SensorDetailServiceMock {
-    set reqStatForTest(status) { this._status = status }
+    set reqStatForTest(status) {
+        this._status = status;
+    }
     get() { return observableSubscribe; }
     delete(data) {
         const status = this._status || 200;
