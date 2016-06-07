@@ -1,8 +1,8 @@
 var DashboardPage = function () {
     
-    this.title = $('.dashboard_title h2');
+    this.headerName = $('.dashboard_title h2');
 
-    this.get = function() {
+    this.get = () => {
         browser.get(browser.baseUrl + 'dashboard');
     };
 };
