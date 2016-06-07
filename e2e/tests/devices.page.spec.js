@@ -18,7 +18,7 @@ describe('Devices Page Test', () => {
         expect(navWidget.brandLogo.getText()).toEqual('Smart House');
     });
 
-    it('should check page links', () => {
+    it('should check page links names', () => {
         expect(navWidget.dashboardLink.getText()).toEqual('Dashboard');
         expect(navWidget.devicesLink.getText()).toEqual('Devices');
         expect(navWidget.scenariosLink.getText()).toEqual('Scenarios');
