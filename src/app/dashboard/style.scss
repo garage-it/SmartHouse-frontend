@@ -1,9 +1,5 @@
-.dashboard {
-    &_title {
-
-    }
-
-    &_content {
-
+.empty-list {
+    &::before {
+        background-image: url(./assets/Dashboard-empty@3x.png);
     }
 }
