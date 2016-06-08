@@ -18,6 +18,10 @@ describe('CreateScenarioEditorComponent', () => {
         spyOn(sut, 'back');
     });
 
+    it('should be "create" mode', () => {
+        expect(sut.scenarioDetailsMode).toEqual('create');
+    });
+
     describe('Save scenario', () => {
         beforeEach(() => {
             sut.save(scenario);

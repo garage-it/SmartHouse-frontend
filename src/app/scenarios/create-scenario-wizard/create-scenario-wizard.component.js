@@ -4,6 +4,8 @@ import {ScenarioDetailsComponent} from '../scenario-details/scenario-details.com
 import {ScenarioService} from '../Scenario.service.js';
 
 export class CreateScenarioWizardComponent extends ScenarioDetailsComponent {
+    scenarioDetailsMode = 'create';
+
     constructor(scenarioListService:ScenarioService, routeParams:RouteParams, router: Router) { // eslint-disable-line
         super(scenarioListService, routeParams, router);
     }
