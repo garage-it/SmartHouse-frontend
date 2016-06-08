@@ -127,10 +127,6 @@ describe('ScenarioService', () => {
     });
 
     describe('Delete scenarios', () => {
-        it('should be defined', () => {
-            expect(sut.delete).toBeDefined();
-        });
-
         it('should call this.http.delete', () => {
             sut.delete({ id: '111' });
             expect(httpMock.delete).toHaveBeenCalled();
