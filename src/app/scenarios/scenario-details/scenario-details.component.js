@@ -1,5 +1,5 @@
 import {Component} from 'angular2/core';
-import {RouteParams, Router} from 'angular2/router';
+import {RouteParams, Router, RouterLink} from 'angular2/router';
 
 import template from './scenario-details.html';
 import style from './scenario-details.scss';
@@ -13,7 +13,7 @@ const selector = 'scenario-list';
     template,
     styles: [style],
     providers: [ScenarioService],
-    directives: [ScenarioEditor]
+    directives: [ScenarioEditor, RouterLink]
 })
 
 export class ScenarioDetailsComponent {
@@ -23,10 +23,6 @@ export class ScenarioDetailsComponent {
         this._routeParams = routeParams;
         this._router = router;
         this.scenario = {};
-    }
-
-    onScenarioBodyUpdate({scenarioBody}) {
-        this.scenario.body = scenarioBody;
     }
 
     back() {

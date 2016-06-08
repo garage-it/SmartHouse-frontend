@@ -8,42 +8,16 @@
             <h1>New scenario</h1>
         </div>
         <div class="col s5">
-            <a href="" class="nav-link right">
+            <a [routerLink]="['/CreateScenarioEditor']" class="nav-link right">
                 <i class="material-icons">edit</i>
-                Go to Wizard
+                Go to Editor
             </a>
         </div>
     </div>
 </div>
 
 <form class="scenario-details" (ngSubmit)="save(scenario)">
-    <label>
-        Scenario name:
-        <input [(ngModel)]="scenario.name"
-            class="black-text"
-            type="text"/>
-    </label>
-
-    <p class="sensor-detail__status">
-        <input [(ngModel)]="scenario.active"
-               class="filled-in sensor-detail__status-value"
-               type="checkbox" id="scenario-details__status"/>
-        <label for="scenario-details__status">active </label>
-    </p>
-
-    <label>
-        Scenario description:
-        <input [(ngModel)]="scenario.description"
-            class="black-text"
-            type="text"/>
-    </label>
-
-    <div class="scenario-details_editor-wrapper">
-        <scenario-editor
-            [scenario]="scenario?.body"
-            (updateScenario)="onScenarioBodyUpdate($event)">
-        </scenario-editor>
-    </div>
+    <div>Scenario Wizard Will be here</div>
 
     <button class="waves-effect waves-light btn blue-grey darken-1" type="submit">SAVE SCENARIO</button>
 </form>

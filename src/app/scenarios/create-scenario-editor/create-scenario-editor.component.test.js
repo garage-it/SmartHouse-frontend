@@ -1,8 +1,8 @@
-import {CreateScenarioComponent} from './create-scenario.component';
+import {CreateScenarioEditorComponent} from './create-scenario-editor.component';
 import {ScenarioService} from '../Scenario.service.js';
 import {MockPromise} from '../../../../test/MockPromise';
 
-describe('CreateScenarioComponent', () => {
+describe('CreateScenarioEditorComponent', () => {
     let scenarioService;
     let scenario;
     let sut;
@@ -14,7 +14,7 @@ describe('CreateScenarioComponent', () => {
 
         scenarioService = jasmine.createSpyComponent(ScenarioService);
         scenarioService.createScenario.and.returnValue(new MockPromise(true));
-        sut = new CreateScenarioComponent(scenarioService);
+        sut = new CreateScenarioEditorComponent(scenarioService);
         spyOn(sut, 'back');
     });
 
