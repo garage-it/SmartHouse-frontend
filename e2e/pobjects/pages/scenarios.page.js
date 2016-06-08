@@ -1,6 +1,6 @@
 var ScenariosPage = function () {
 
-    this.headerName = $('scenario-list h2');
+    this.headerName = $('#page-title');
 
     this.get = () => {
         browser.get(browser.baseUrl + 'scenarios');
