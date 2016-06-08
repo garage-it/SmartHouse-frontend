@@ -29,7 +29,7 @@ exports.config = {
         browser.driver.manage().window().maximize();
         browser.wait(() => {
             browser.get('https://garage-it-smart-house.herokuapp.com/#/');
-            return browser.isElementPresent($('a.logo'));
+            return browser.isElementPresent(By.css('a.logo'));
         }, 30000);
     }
 
