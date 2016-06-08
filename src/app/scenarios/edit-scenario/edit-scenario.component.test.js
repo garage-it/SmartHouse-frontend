@@ -88,10 +88,6 @@ describe('EditScenarioComponent', () => {
     });
 
     describe('Delete scenario', () => {
-        it('should be defined', () => {
-            expect(scenarioService.delete).toBeDefined();
-        });
-
         it('should delete scenario', () => {
             sut.delete(scenario);
             expect(scenarioService.delete).toHaveBeenCalledWith(scenario);

@@ -69,10 +69,6 @@ describe('ScenarioListComponent', () => {
     });
 
     describe('#removeScenario', () => {
-        it('should be defined', () => {
-            expect(sut.removeScenario).toBeDefined();
-        });
-
         it('should call sensor service', () => {
             const mockedSensor = {_id: 'mock'};
             sut.removeScenario(mockedSensor);
