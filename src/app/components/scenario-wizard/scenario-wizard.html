@@ -1,0 +1,92 @@
+<div class="row">
+    <div class="input-field col s6">
+        <input id="scenario_name" type="text" placeholder="Enter descriptive scenario name"
+               [(ngModel)]="scenario.description"/>
+        <label for="scenario_name">Scenario name:</label>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <h5>
+            If
+            <select class="operators-select" [(ngModel)]="scenario.selectedOperator">
+                <option *ngFor="#operator of scenario.logicalOperators"
+                        [value]="operator.id">{{operator.name}}
+                </option>
+            </select>
+            of the conditions are true
+        </h5>
+
+    </div>
+</div>
+<div class="row gray-bg" *ngFor="#condition of scenario.conditions">
+    <div class="col s3">
+        <span>Device</span>
+        <select [(ngModel)]="condition.selectedDevice">
+            <option [value]="undefined">Choose trigger</option>
+            <option *ngFor="#device of condition.devices"
+                    [value]="device._id">{{device.description}}
+            </option>
+        </select>
+    </div>
+    <div class="col s4">
+        <span>Condition</span>
+        <select [(ngModel)]="condition.selectedCondition">
+            <option [value]="undefined">Choose condition</option>
+            <option *ngFor="#condition of condition.conditions" [value]="condition.id">{{condition.name}}</option>
+        </select>
+    </div>
+    <div class="col s3">
+        <span>Value</span>
+        <input type="text" placeholder="Enter value"
+               [(ngModel)]="condition.value"
+               placeholder="Enter value"/>
+    </div>
+    <div class="col s1" *ngIf="scenario.conditions.length>1">
+        <div>
+            <i class="material-icons center"
+               (click)="removeCriteria()"
+            >delete</i>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <a (click)="addCriteria()">+ ADD CRITERIA</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <h5>Then do the following</h5>
+    </div>
+</div>
+<div class="row gray-bg" *ngFor="#action of scenario.actions">
+    <div class="col s3">
+        <span>Device</span>
+        <select [(ngModel)]="action.selectedDevice">
+            <option [value]="undefined">Choose device</option>
+            <option *ngFor="#device of action.devices"
+                    [value]="device._id">{{device.description}}
+            </option>
+        </select>
+    </div>
+    <div class="col s3">
+        <span>Value</span>
+        <select [(ngModel)]="action.selectedValue">
+            <option *ngFor="#value of action.values">{{value.name}}</option>
+        </select>
+    </div>
+    <div class="col s1" *ngIf="scenario.actions.length>1">
+        <div>
+            <i (click)="removeAction()" class="material-icons center">delete</i>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <a (click)="addAction()">+ ADD ACTION</a>
+    </div>
+</div>
+

@@ -25,6 +25,10 @@ export class ScenarioDetailsComponent {
         this.scenario = {};
     }
 
+    onScenarioBodyUpdate({scenarioBody}) {
+        this.scenario.body = scenarioBody;
+    }
+
     back() {
         this._router.navigate(['/ScenarioList']);
     }

@@ -1,0 +1,30 @@
+select {
+    display: block;
+    border: 0px solid white;
+    padding: 0px;
+    width: auto;
+    background-color: whitesmoke;
+
+    &.condition-select {
+        display: inline;
+    }
+}
+
+.operators-select {
+    display: inline;
+    background-color: white;
+}
+
+.gray-bg {
+    background-color: whitesmoke;
+}
+
+a {
+    cursor: pointer;
+    font-size:15px;
+    color:#01579b;
+}
+
+.material-icons {
+    cursor: pointer;
+}
