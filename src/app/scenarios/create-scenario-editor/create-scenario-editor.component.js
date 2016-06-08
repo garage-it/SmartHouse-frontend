@@ -1,6 +1,7 @@
 import {Component} from 'angular2/core';
 import {RouteParams, Router, RouterLink} from 'angular2/router';
 import template from './create-scenario-editor.html';
+import style from './scenario-editor.scss';
 
 import {ScenarioDetailsComponent} from '../scenario-details/scenario-details.component';
 import {CreateScenarioWizardComponent} from
@@ -11,6 +12,7 @@ import {ScenarioEditor} from '../scenario-editor/scenario-editor.component.js';
 
 @Component({
     template,
+    styles: [style],
     providers: [ScenarioService],
     directives: [ScenarioEditor, RouterLink, CreateScenarioWizardComponent]
 })
