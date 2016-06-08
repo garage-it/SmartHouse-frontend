@@ -1,27 +1,48 @@
 import {ScenarioService} from './../Scenario.service.js';
 import {ScenarioListComponent} from './scenario-list.component.js';
-import {Router} from 'angular2/router';
+
+import {beforeEachProviders} from 'angular2/testing';
+import {provide} from 'angular2/core';
+
+const observableSubscribe = {
+    subscribe() {}
+};
+
+class ScenarioServiceMock {
+    set reqStatForTest(status) {
+        this._status = status;
+    }
+    get() { return observableSubscribe; }
+    delete(data) {
+        const status = this._status || 200;
+        return {
+            subscribe(fn) {
+                fn({ status, _body: JSON.stringify(data) });
+            }
+        };
+    }
+}
 
 describe('ScenarioListComponent', () => {
+    let sut;
     let scenarioService;
     let listData;
-    let listDataPromise;
-    let router;
-    let sut;
+
+    beforeEachProviders(() => [
+        provide(ScenarioService, {useClass: ScenarioServiceMock})
+    ]);
 
     beforeEach(() => {
         listData = [
-            {value: 'testValue1'},
-            {value: 'testValue2'}
+            {id: '1', value: 'testValue1'},
+            {id: '2', value: 'testValue2'}
         ];
 
-        listDataPromise = Promise.resolve(listData);
+        scenarioService = new ScenarioServiceMock();
+        sut = new ScenarioListComponent(scenarioService);
 
-        scenarioService = jasmine.createSpyComponent(ScenarioService);
-        router = jasmine.createSpyComponent(Router);
-        scenarioService.getScenarios.and.returnValue(listDataPromise);
-
-        sut = new ScenarioListComponent(scenarioService, router);
+        spyOn(scenarioService, 'get').and.callThrough();
+        spyOn(scenarioService, 'delete').and.callThrough();
     });
 
     describe('ngOnInit', () => {
@@ -30,25 +51,48 @@ describe('ScenarioListComponent', () => {
         });
 
         it('should get scenarios', () => {
-            expect(scenarioService.getScenarios).toHaveBeenCalled();
-        });
-
-        it('should resolve promised list of scenarios', (done) => {
-            scenarioService.getScenarios().then(() => {
-                expect(sut.scenarioList).toEqual(listData);
-
-                done();
-            });
+            expect(scenarioService.get).toHaveBeenCalled();
         });
     });
 
-    describe('Open scenario', () => {
-        it('will open scenario by id', () => {
-            const id = 1;
-            const scenario = {id};
+    describe('#headers', () => {
+        const allowedHeaders = [
+            { topic: 'name', name: 'Name', sortable: true },
+            { topic: 'active', name: 'Active', sortable: false },
+            { topic: 'description', name: 'description', sortable: true },
+        ];
 
-            sut.openScenario(scenario);
-            expect(router.navigate).toHaveBeenCalledWith(['/EditScenario', {id}]);
+        it('should have collection of allowed headers: name, active, description', () => {
+            sut._headers = allowedHeaders;
+            expect(sut.headers).toEqual(allowedHeaders);
+        });
+    });
+
+    describe('#removeScenario', () => {
+        it('should be defined', () => {
+            expect(sut.removeScenario).toBeDefined();
+        });
+
+        it('should call sensor service', () => {
+            const mockedSensor = {_id: 'mock'};
+            sut.removeScenario(mockedSensor);
+
+            expect(sut.scenarioService.delete).toHaveBeenCalledWith(mockedSensor);
+        });
+
+        it('should remove sensor from listData if everything fine', () => {
+            sut.scenarioList = listData;
+            sut.removeScenario(listData[1]);
+
+            expect(sut.scenarioList).toEqual([listData[0]]);
+        });
+
+        it('should not remove sensor from listData if request fails', () => {
+            sut.scenarioList = listData;
+            sut.scenarioService.reqStatForTest = 404;
+            sut.removeScenario(listData[1]);
+
+            expect(sut.scenarioList).toEqual(listData);
         });
     });
 });
