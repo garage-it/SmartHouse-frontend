@@ -27,6 +27,10 @@ exports.config = {
         browser.ignoreSynchronization = true;
         browser.driver.manage().window().setSize(1920, 1080);
         browser.driver.manage().window().maximize();
+        browser.wait(() => {
+            browser.get('https://garage-it-smart-house.herokuapp.com/#/');
+            return browser.isElementPresent($('a.logo'));
+        }, 30000);
     }
 
 };
