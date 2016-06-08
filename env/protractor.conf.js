@@ -1,4 +1,8 @@
+'use strict';
+
 const URL = 'https://garage-it-smart-house.herokuapp.com/#/';
+
+const someApi = require('./someApi');
 
 // An example configuration file.
 exports.config = {
@@ -33,6 +37,7 @@ exports.config = {
             browser.get(URL);
             return browser.isElementPresent(By.css('a.logo'));
         }, 5000);
+        browser.someApi = someApi;
     }
 
 };
