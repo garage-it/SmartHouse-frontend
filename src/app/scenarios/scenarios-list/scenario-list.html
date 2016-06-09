@@ -15,33 +15,38 @@
     </div><!-- empty-list__container -->
 </div><!-- empty-list -->
 
-<div *ngIf="scenarioList.length !== 0" class="sensors-list">
-    <table class="highlight responsive-table sensors-list-table">
-        <thead class="sensors-list-table__head">
+<div *ngIf="scenarioList.length !== 0" class="scenario-list">
+    <table class="highlight responsive-table scenario-list-table">
+        <thead class="scenario-list-table__head">
             <th *ngFor="#header of headers"
-                class="sensors-list-table__head__item"
+                class="scenario-list-table__head__item"
                 [class.sortable]="header.sortable">
                 {{ header.name }}
                 <div [class]="reverse ? 'up' : 'down'"></div>
-            </th><!-- sensors-list-table__head__item -->
-        </thead><!-- sensors-list-table__head -->
-        <tbody class="sensors-list-table__body">
+            </th><!-- scenario-list-table__head__item -->
+        </thead><!-- scenario-list-table__head -->
+        <tbody class="scenario-list-table__body">
             <tr *ngFor="#scenario of scenarioList"
                 [routerLink]="['EditScenario', { id: scenario.id }]"
-                class="sensors-list-table__body__row">
+                class="scenario-list-table__body__row">
                 <td *ngFor="#header of headers"
-                    class="sensors-list-table__body__row__item">
+                    class="scenario-list-table__body__row__item">
                     {{scenario[header.topic]}}
-                </td><!-- sensors-list-table__body__row__item -->
-                <td class="sensors-list-table__body__row__actions">
+                </td><!-- scenario-list-table__body__row__item -->
+                <td class="scenario-list-table__body__row__actions">
                     <button (click)="removeScenario(scenario); $event.stopPropagation()"
-                            class="waves-effect waves-light btn sensors-list-table__body__row__actions__remove"
-                            name="remove-device"
+                            class="waves-effect waves-light btn scenario-list-table__body__row__actions__remove"
+                            name="remove-scenario"
                             type="remove">
-                        <i class="material-icons sensors-list-table__body__row__actions__remove__icon">delete</i>
-                    </button><!-- sensors-list-table__body__row__actions__remove -->
-                </td><!-- sensors-list-table__body__row__actions -->
-            </tr><!-- sensors-list-table__body__row -->
-        </tbody><!-- sensors-list-table__body -->
-    </table><!-- sensors-list-table -->
-</div><!-- sensors-list -->
+                        <i class="material-icons scenario-list-table__body__row__actions__remove__icon">delete</i>
+                    </button><!-- scenario-list-table__body__row__actions__remove -->
+                    <button (click)="toggleScenarioState(scenario); $event.stopPropagation()"
+                            class="waves-effect waves-light btn scenario-list-table__body__row__actions__toggle-state"
+                            name="toggle-scenario-state">
+                        <i class="material-icons scenario-list-table__body__row__actions__remove__icon">{{ scenario.active ? 'stop' : 'play_arrow' }}</i>
+                    </button><!-- scenario-list-table__body__row__actions__toggle-state -->
+                </td><!-- scenario-list-table__body__row__actions -->
+            </tr><!-- scenario-list-table__body__row -->
+        </tbody><!-- scenario-list-table__body -->
+    </table><!-- scenario-list-table -->
+</div><!-- scenario-list -->

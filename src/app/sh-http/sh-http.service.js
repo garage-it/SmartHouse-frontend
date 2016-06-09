@@ -21,8 +21,7 @@ export default class ShHttpService {
     }
     put(url, body) {
         return this.http
-            .put(url, JSON.stringify(body), this._getOptions('Put', url))
-            .map(this._convertToJson);
+            .put(url, JSON.stringify(body), this._getOptions('Put', url));
     }
     delete(url) {
         return this.http

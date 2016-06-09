@@ -126,6 +126,15 @@ describe('ScenarioService', () => {
         });
     });
 
+    describe('Update scenario without promise', () => {
+        it('should update scenarios data from the server', () => {
+            const mockedScenario = { id: 123 };
+            sut.update(mockedScenario);
+            expect(httpMock.put)
+                .toHaveBeenCalledWith(`/scenarios/${mockedScenario.id}`, mockedScenario);
+        });
+    });
+
     describe('Delete scenarios', () => {
         it('should call this.http.delete', () => {
             sut.delete({ id: '111' });

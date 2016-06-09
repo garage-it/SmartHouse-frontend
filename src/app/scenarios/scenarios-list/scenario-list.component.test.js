@@ -21,6 +21,14 @@ class ScenarioServiceMock {
             }
         };
     }
+    update(data) {
+        const status = this._status || 200;
+        return {
+            subscribe(fn) {
+                fn({ status, _body: JSON.stringify(data) });
+            }
+        };
+    }
 }
 
 describe('ScenarioListComponent', () => {
@@ -43,6 +51,7 @@ describe('ScenarioListComponent', () => {
 
         spyOn(scenarioService, 'get').and.callThrough();
         spyOn(scenarioService, 'delete').and.callThrough();
+        spyOn(scenarioService, 'update').and.callThrough();
     });
 
     describe('ngOnInit', () => {
@@ -69,26 +78,47 @@ describe('ScenarioListComponent', () => {
     });
 
     describe('#removeScenario', () => {
-        it('should call sensor service', () => {
-            const mockedSensor = {_id: 'mock'};
-            sut.removeScenario(mockedSensor);
+        it('should call scenario service', () => {
+            const mockedScenario = {id: 'mock'};
+            sut.removeScenario(mockedScenario);
 
-            expect(sut.scenarioService.delete).toHaveBeenCalledWith(mockedSensor);
+            expect(sut.scenarioService.delete).toHaveBeenCalledWith(mockedScenario);
         });
 
-        it('should remove sensor from listData if everything fine', () => {
+        it('should remove scenario from listData if everything fine', () => {
             sut.scenarioList = listData;
             sut.removeScenario(listData[1]);
 
             expect(sut.scenarioList).toEqual([listData[0]]);
         });
 
-        it('should not remove sensor from listData if request fails', () => {
+        it('should not remove scenario from listData if request fails', () => {
             sut.scenarioList = listData;
             sut.scenarioService.reqStatForTest = 404;
             sut.removeScenario(listData[1]);
 
             expect(sut.scenarioList).toEqual(listData);
+        });
+    });
+
+    describe('#toggleScenarioState', () => {
+        let mockedScenario;
+
+        beforeEach(() => {
+            mockedScenario = { id: 'mock', active: false };
+        });
+
+        it('should toggle scenario state if everything fine', () => {
+            sut.toggleScenarioState(mockedScenario);
+
+            expect(mockedScenario.active).toBe(true);
+        });
+
+        it('should toggle scenario state if request fails', () => {
+            sut.scenarioService.reqStatForTest = 404;
+            sut.toggleScenarioState(mockedScenario);
+
+            expect(mockedScenario.active).toBe(false);
         });
     });
 });

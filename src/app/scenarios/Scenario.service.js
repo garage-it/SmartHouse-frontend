@@ -22,7 +22,11 @@ export class ScenarioService {
     }
 
     updateScenario(scenario) {
-        return this.http.put(`/scenarios/${scenario.id}`, scenario).toPromise();
+        return this.update(scenario).toPromise();
+    }
+
+    update(scenario) {
+        return this.http.put(`/scenarios/${scenario.id}`, scenario);
     }
 
     createScenario(scenario) {
