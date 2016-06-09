@@ -11,7 +11,7 @@ describe('Dashboard Page Test', () => {
 
     it('should check page header name', () => {
         expect(browser.getTitle()).toEqual('Smart Home');
-        expect(dashboardPage.headerName.getText()).toEqual('Dashboard');
+        expect(dashboardPage.pageHeader.getText()).toEqual('Dashboard');
     });
 
     it('should check page brand logo', () => {

@@ -15,16 +15,16 @@ describe('Navigation Test', () => {
 
     it('should check Dashboard link navigation', () => {
         navWidget.dashboardLink.click();
-        expect(dashboardPage.headerName.getText()).toEqual('Dashboard');
+        expect(dashboardPage.pageHeader.getText()).toEqual('Dashboard');
     });
 
     it('should check Devices link navigation', () => {
         navWidget.devicesLink.click();
-        expect(devicesPage.headerName.getText()).toEqual('Devices');
+        expect(devicesPage.pageHeader.getText()).toEqual('Devices');
     });
 
     it('should check Scenarios link navigation', () => {
         navWidget.scenariosLink.click();
-        expect(scenariosPage.headerName.getText()).toEqual('Scenario list');
+        expect(scenariosPage.pageHeader.getText()).toEqual('Scenario list');
     });
 });

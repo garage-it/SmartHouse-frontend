@@ -11,7 +11,7 @@ describe('Scenarios Page Test', () => {
 
     it('should check page header name', () => {
         expect(browser.getTitle()).toEqual('Smart Home');
-        expect(scenariosPage.headerName.getText()).toEqual('Scenario list');
+        expect(scenariosPage.pageHeader.getText()).toEqual('Scenario list');
     });
 
     it('should check page brand logo', () => {

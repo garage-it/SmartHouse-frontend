@@ -11,7 +11,7 @@ describe('Devices Page Test', () => {
 
     it('should check page header name', () => {
         expect(browser.getTitle()).toEqual('Smart Home');
-        expect(devicesPage.headerName.getText()).toEqual('Devices');
+        expect(devicesPage.pageHeader.getText()).toEqual('Devices');
     });
 
     it('should check page brand logo', () => {
