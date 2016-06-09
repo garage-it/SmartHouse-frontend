@@ -1,3 +1,5 @@
+const URL = 'https://garage-it-smart-house.herokuapp.com/#/';
+
 // An example configuration file.
 exports.config = {
     // The address of a running selenium server.
@@ -20,7 +22,7 @@ exports.config = {
         includeStackTrace: true
     },
 
-    baseUrl: 'https://garage-it-smart-house.herokuapp.com/#/',
+    baseUrl: URL,
     useAllAngular2AppRoots: true,
 
     onPrepare() {
@@ -28,7 +30,7 @@ exports.config = {
         browser.driver.manage().window().setSize(1920, 1080);
         browser.driver.manage().window().maximize();
         browser.wait(() => {
-            browser.get('https://garage-it-smart-house.herokuapp.com/#/');
+            browser.get(URL);
             return browser.isElementPresent(By.css('a.logo'));
         }, 30000);
     }
