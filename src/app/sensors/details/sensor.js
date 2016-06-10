@@ -3,8 +3,7 @@ export default class Sensor {
         Object.assign(this, {
             mqttId: '',
             type: '',
-            description: '',
-            status: true
+            description: ''
         }, data);
     }
 }
