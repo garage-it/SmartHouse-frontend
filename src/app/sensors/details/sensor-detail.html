@@ -3,7 +3,7 @@
         <i class="material-icons md-18">navigate_before</i>
         Back to list
     </a>
-    <h1>New device</h1>
+    <h1>{{ needUpdate ? 'Edit' : 'New' }} device</h1>
 </div>
 <form class="sensor-detail">
     <div class="sensor-detail__id">
@@ -37,7 +37,8 @@
         class="waves-effect waves-light btn blue-grey darken-1">
         SAVE DEVICE
     </button>
-    <button (click)="remove()"
+    <button *ngIf="needUpdate"
+        (click)="remove()"
         class="waves-effect waves-light btn blue-grey darken-1">
         Remove Sensor
     </button>
