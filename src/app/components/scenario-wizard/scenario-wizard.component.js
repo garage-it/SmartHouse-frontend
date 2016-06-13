@@ -40,4 +40,8 @@ export class ScenarioWizardComponent {
     removeAction() {
         this.onRemoveAction.next();
     }
+
+    removeActionBtnVisible() {
+        return this.scenario.actions.length > 1;
+    }
 }

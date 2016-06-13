@@ -25,6 +25,7 @@ export class CreateScenarioEditorComponent extends ScenarioDetailsComponent {
     }
 
     save(scenario) {
+        this.scenario.sourceType = 'EDITOR';
         this._scenarioService.createScenario(scenario).then(() => this.back());
     }
 

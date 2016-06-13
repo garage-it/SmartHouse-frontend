@@ -1,6 +1,6 @@
 const operators = [
-    {id: 0, name: 'ALL'},
-    {id: 1, name: 'ANY'}
+    {id: 'AND', name: 'ALL'},
+    {id: 'OR', name: 'ANY'}
 ];
 export default operators;
 
