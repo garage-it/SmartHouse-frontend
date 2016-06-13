@@ -1,11 +1,16 @@
 import {Component} from 'angular2/core';
-import {Router, RouterLink} from 'angular2/router';
+import {RouterLink} from 'angular2/router';
 
 import template from './scenario-list.html';
-import style from './scenario-list.css';
+import style from './scenario-list.scss';
 import {ScenarioService} from './../Scenario.service.js';
 
 const selector = 'scenario-list';
+const headersForDisplay = [
+    { topic: 'name', name: 'Name', sortable: true },
+    { topic: 'active', name: 'Active', sortable: true },
+    { topic: 'description', name: 'Description', sortable: true }
+];
 
 @Component({
     selector,
@@ -16,19 +21,36 @@ const selector = 'scenario-list';
 })
 
 export class ScenarioListComponent {
-    constructor(scenarioService: ScenarioService, router: Router) {
+    scenarioList = [];
+    _headers = [];
+
+    constructor(scenarioService: ScenarioService) {
         this.scenarioService = scenarioService;
-        this._router = router;
+        this._headers = headersForDisplay;
     }
 
     ngOnInit() {
-        this.asyncScenarioList = this.scenarioService.getScenarios();
-        this.asyncScenarioList.then(data => {
-            this.scenarioList = data;
-        });
+        this.scenarioService
+            .get()
+            .subscribe(data => {
+                this.scenarioList = data;
+            });
     }
 
-    openScenario(scenario) {
-        this._router.navigate(['/EditScenario', {id: scenario.id}]);
+    get headers() {
+        return this._headers;
+    }
+
+    removeScenario(item) {
+        this.scenarioService
+            .delete(item)
+            .subscribe(data => {
+                const removedScenario = JSON.parse(data._body);
+
+                if (data.status === 200) {
+                    this.scenarioList = this.scenarioList
+                        .filter(elem => elem.id !== removedScenario.id);
+                }
+            });
     }
 }

@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const env = process.env.ENV_CONFIG || 'default';
 const config = require(`./env.${env}.config`);
 

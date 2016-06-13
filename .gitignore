@@ -226,4 +226,4 @@ typings/
 ### Project ###
 
 dist/
-
+.env

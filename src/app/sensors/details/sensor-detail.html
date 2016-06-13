@@ -3,7 +3,7 @@
         <i class="material-icons md-18">navigate_before</i>
         Back to list
     </a>
-    <h1>New device</h1>
+    <h1>{{ needUpdate ? 'Edit' : 'New' }} device</h1>
 </div>
 <form class="sensor-detail">
     <div class="sensor-detail__id">
@@ -25,18 +25,11 @@
                type="text" id="sensor-detail__description" placeholder="Enter description"/>
     </div>
     <p class="sensor-detail__status">
-        <input [(ngModel)]="sensor.status"
-               ngControl="status"
-               class="filled-in sensor-detail__status-value"
-               type="checkbox" id="sensor-detail__status"/>
-        <label for="sensor-detail__status" class=""blue-grey darken-1>Active</label>
-    </p>
-    <p class="sensor-detail__status">
         <input [(ngModel)]="sensor.executor"
                ngControl="executor"
                class="filled-in sensor-detail__status-value"
                type="checkbox" id="sensor-detail__executor"/>
-        <label for="sensor-detail__executor">executor </label>
+        <label for="sensor-detail__executor">Switcher</label>
     </p>
 
     <button (click)="save()"
@@ -44,7 +37,8 @@
         class="waves-effect waves-light btn blue-grey darken-1">
         SAVE DEVICE
     </button>
-    <button (click)="remove()"
+    <button *ngIf="needUpdate"
+        (click)="remove()"
         class="waves-effect waves-light btn blue-grey darken-1">
         Remove Sensor
     </button>

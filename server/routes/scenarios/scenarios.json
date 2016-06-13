@@ -1,14 +1,21 @@
 [
   {
     "id": "f2g2d1",
-    "name": "hello world",
+    "name": "hello world1",
     "description": "greets",
     "active": true,
     "body": "alert('Hello World!);"
   },
   {
     "id": "f2g2d2",
-    "name": "hello world",
+    "name": "hello world2",
+    "active": false,
+    "description": "greets",
+    "body": "Promise.prototype.constructor.call.apply(window.alert, [console.log,'hello world'])"
+  },
+  {
+    "id": "f2g2d3",
+    "name": "hello world3",
     "active": false,
     "description": "greets",
     "body": "Promise.prototype.constructor.call.apply(window.alert, [console.log,'hello world'])"

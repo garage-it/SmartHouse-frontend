@@ -20,7 +20,7 @@ describe('ScenarioService', () => {
         });
 
         httpMock = jasmine.createSpyComponent(Http);
-        const methods = ['post', 'put', 'get'];
+        const methods = ['post', 'put', 'get', 'delete'];
         methods.forEach((method) => httpMock[method].and.returnValue(observable));
     });
 
@@ -32,7 +32,7 @@ describe('ScenarioService', () => {
         expect(sut).toBeDefined();
     });
 
-    describe('Get scenarios', () => {
+    describe('Get scenarios with promise', () => {
         let getScenariosResult;
 
         beforeEach(() => {
@@ -49,6 +49,16 @@ describe('ScenarioService', () => {
 
                 done();
             });
+        });
+    });
+
+    describe('Get scenarios without promise', () => {
+        beforeEach(() => {
+            sut.get();
+        });
+
+        it('should get scenarios data from the server', () => {
+            expect(httpMock.get).toHaveBeenCalledWith('/scenarios');
         });
     });
 
@@ -113,6 +123,18 @@ describe('ScenarioService', () => {
 
                 done();
             });
+        });
+    });
+
+    describe('Delete scenarios', () => {
+        it('should call this.http.delete', () => {
+            sut.delete({ id: '111' });
+            expect(httpMock.delete).toHaveBeenCalled();
+        });
+
+        it('should agregate route and scenario id', () => {
+            sut.delete({ id: '111' });
+            expect(httpMock.delete).toHaveBeenCalledWith('/scenarios/111');
         });
     });
 });

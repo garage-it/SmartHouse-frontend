@@ -19,6 +19,8 @@ This is an awesome smart house project
   npm start
 ```
 
+If you need to set up environment variables - just copy ```.env.example``` to ```.env``` and feel free to set up
+
 - run unit tests
 ```sh
   npm test

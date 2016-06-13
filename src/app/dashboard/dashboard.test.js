@@ -39,4 +39,20 @@ describe('Dashboard', () => {
             expect(sut.executors).toEqual([executor]);
         });
     });
+
+    describe('isDashboardEmpty', () => {
+        it('should show empty dashboard if there is no sensors and executors', () => {
+            expect(sut.isDashboardEmpty()).toBe(true);
+        });
+
+        it('should NOT show empty dashboard if there are sensors', () => {
+            sut.sensors = [{}];
+            expect(sut.isDashboardEmpty()).toBe(false);
+        });
+
+        it('should NOT show empty dashboard if there are executors', () => {
+            sut.sensors = [{ executor: true }];
+            expect(sut.isDashboardEmpty()).toBe(false);
+        });
+    });
 });
