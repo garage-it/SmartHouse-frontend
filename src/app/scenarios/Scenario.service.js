@@ -47,7 +47,7 @@ export class ScenarioService {
     }
 
     getConditions(conditions) {
-        return conditions.map(condition => {
+        return conditions.map(condition => {//eslint-disable-line
             return {
                 device: condition.selectedDevice,
                 condition: condition.selectedCondition,
@@ -57,7 +57,7 @@ export class ScenarioService {
     }
 
     getActions(actions) {
-        return actions.map((item) => {
+        return actions.map((item) => {//eslint-disable-line
             return {
                 device: item.selectedDevice,
                 value: item.value

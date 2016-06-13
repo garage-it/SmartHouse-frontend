@@ -3,7 +3,9 @@ export default class {
         this.id = initOptions.id || '';
         this.conditions = conditions;
         this.actions = actions;
-        this.actions[0].value = initOptions.actions && initOptions.actions.value || actions[0].values[0].id;
+        this.actions[0].value = initOptions.actions
+            && initOptions.actions.value
+            || actions[0].values[0].id;
         this.name = initOptions.name || '';
         this.active = initOptions.active || false;
         this.logicalOperators = logicalOperators;
