@@ -9,7 +9,7 @@ describe('Devices Page Test', () => {
         devicesPage.get();
     });
 
-    it('should check page header name', () => {
+    it('should check page title and header name', () => {
         expect(browser.getTitle()).toEqual('Smart Home');
         expect(devicesPage.pageHeader.getText()).toEqual('Devices');
     });
@@ -22,5 +22,9 @@ describe('Devices Page Test', () => {
         expect(navWidget.dashboardLink.getText()).toEqual('Dashboard');
         expect(navWidget.devicesLink.getText()).toEqual('Devices');
         expect(navWidget.scenariosLink.getText()).toEqual('Scenarios');
+    });
+
+    it('should check Add New Device button is present', () => {
+        expect(devicesPage.addNewDeviceButton.isPresent()).toBe(true);
     });
 });

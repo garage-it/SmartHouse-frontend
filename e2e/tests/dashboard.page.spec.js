@@ -9,7 +9,7 @@ describe('Dashboard Page Test', () => {
         dashboardPage.get();
     });
 
-    it('should check page header name', () => {
+    it('should check page title and header name', () => {
         expect(browser.getTitle()).toEqual('Smart Home');
         expect(dashboardPage.pageHeader.getText()).toEqual('Dashboard');
     });

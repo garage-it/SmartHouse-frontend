@@ -9,7 +9,7 @@ describe('Scenarios Page Test', () => {
         scenariosPage.get();
     });
 
-    it('should check page header name', () => {
+    it('should check page title and header name', () => {
         expect(browser.getTitle()).toEqual('Smart Home');
         expect(scenariosPage.pageHeader.getText()).toEqual('Scenario list');
     });
@@ -22,5 +22,9 @@ describe('Scenarios Page Test', () => {
         expect(navWidget.dashboardLink.getText()).toEqual('Dashboard');
         expect(navWidget.devicesLink.getText()).toEqual('Devices');
         expect(navWidget.scenariosLink.getText()).toEqual('Scenarios');
+    });
+
+    it('should check Create New Scenario button is present', () => {
+        expect(scenariosPage.createNewScenarioButton.isPresent()).toBe(true);
     });
 });
