@@ -5,13 +5,28 @@ import {Http, RequestMethod, Headers} from 'angular2/http';
 import {beforeEachProviders} from 'angular2/testing';
 import {provide} from 'angular2/core';
 
-const observableMock = { map() {} };
+let errorResponse = false;
+
+class ObservableSubscribe {
+    constructor(data = {}) {
+        this._data = data;
+        this._data.json = () => {};
+    }
+    map(fn) {
+        fn(this._data);
+
+        return this;
+    }
+    catch(fn) {
+        return errorResponse ? fn() : () => {};
+    }
+}
 
 class HttpMock {
-    get() { return observableMock; }
-    post() { return observableMock; }
-    put() { return observableMock; }
-    delete() { return observableMock; }
+    get() { return new ObservableSubscribe(); }
+    post() { return new ObservableSubscribe(); }
+    put() { return new ObservableSubscribe(); }
+    delete() { return new ObservableSubscribe(); }
 }
 
 describe('ShHttpService', () => {
@@ -29,6 +44,7 @@ describe('ShHttpService', () => {
         spyOn(httpMock, 'put').and.callThrough();
         spyOn(httpMock, 'delete').and.callThrough();
         sut = new ShHttpService(httpMock);
+        spyOn(sut, '_errorHandling');
     });
 
     it('should be defined', () => {
@@ -77,5 +93,21 @@ describe('ShHttpService', () => {
         });
         sut.delete(urlMock);
         expect(httpMock.delete).toHaveBeenCalledWith(urlMock, options);
+    });
+
+    it('should catch error', () => {
+        const urlMock = 'mock';
+        let options = new ShRequestOptions({
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            })
+        });
+        options = options.merge({
+            method: RequestMethod.Delete,
+            url: urlMock
+        });
+        errorResponse = true;
+        sut.delete(urlMock);
+        expect(sut._errorHandling).toHaveBeenCalled();
     });
 });

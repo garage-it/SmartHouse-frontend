@@ -12,28 +12,26 @@ export default class ShHttpService {
     get(url) {
         return this.http
             .get(url, this._getOptions('Get', url))
-            .map(this._convertToJson);
+            .map(this._convertToJson)
+            .catch(this._errorHandling);
     }
     post(url, body) {
         return this.http
             .post(url, JSON.stringify(body), this._getOptions('Post', url))
-            .map(this._convertToJson);
+            .map(this._convertToJson)
+            .catch(this._errorHandling);
     }
     put(url, body) {
         return this.http
-            .put(url, JSON.stringify(body), this._getOptions('Put', url));
+            .put(url, JSON.stringify(body), this._getOptions('Put', url))
+            .map(this._convertToJson)
+            .catch(this._errorHandling);
     }
     delete(url) {
         return this.http
-            .delete(url, this._getOptions('Delete', url));
-    }
-    // TODO we could use a factory/inheritance instead of copy paste
-    post(url, body) {
-        const headers = new Headers({ 'Content-Type': 'application/json' });
-        this.options = new ShRequestOptions({ headers });
-        return this.http
-            .post(url, JSON.stringify(body), this._getOptions('Post', url))
-            .map(this._convertToJson);
+            .delete(url, this._getOptions('Delete', url))
+            .map(this._convertToJson)
+            .catch(this._errorHandling);
     }
     _getOptions(method, url) {
         return this.options.merge({
@@ -43,5 +41,12 @@ export default class ShHttpService {
     }
     _convertToJson(data) {
         return data.json();
+    }
+
+    _errorHandling(error = {}) {
+        const errorMessage = error.message;
+        const errorStatus = error.status ? `${error.status} status code` : 'Unknown Server error';
+
+        console.error(errorMessage || errorStatus); // eslint-disable-line
     }
 }

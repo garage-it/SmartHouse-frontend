@@ -44,12 +44,8 @@ export class ScenarioListComponent {
         this.scenarioService
             .delete(item)
             .subscribe(data => {
-                const removedScenario = JSON.parse(data._body);
-
-                if (data.status === 200) {
-                    this.scenarioList = this.scenarioList
-                        .filter(elem => elem.id !== removedScenario.id);
-                }
+                this.scenarioList = this.scenarioList
+                        .filter(elem => elem.id !== data.id);
             });
     }
 
@@ -58,10 +54,8 @@ export class ScenarioListComponent {
         const scenarioForUpdate = Object.assign({}, scenario, { active });
         this.scenarioService
             .update(scenarioForUpdate)
-            .subscribe(data => {
-                if (data.status === 200) {
-                    scenario.active = !scenario.active; // eslint-disable-line
-                }
+            .subscribe(() => {
+                scenario.active = !scenario.active; // eslint-disable-line
             });
     }
 }

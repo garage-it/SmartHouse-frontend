@@ -25,7 +25,8 @@ export class CreateScenarioEditorComponent extends ScenarioDetailsComponent {
     }
 
     save(scenario) {
-        this._scenarioService.createScenario(scenario).then(() => this.back());
+        this._scenarioService.create(scenario)
+            .subscribe(() => this.back());
     }
 
     onScenarioBodyUpdate({scenarioBody}) {

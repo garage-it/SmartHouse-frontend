@@ -6,26 +6,14 @@ import {beforeEachProviders} from 'angular2/testing';
 import {provide} from 'angular2/core';
 
 const observableSubscribe = {
-    subscribe() {
-    }
+    subscribe() {}
 };
 
 class SensorDetailServiceMock {
-    get() {
-        return observableSubscribe;
-    }
-
-    save() {
-        return observableSubscribe;
-    }
-
-    update() {
-        return observableSubscribe;
-    }
-
-    delete() {
-        return observableSubscribe;
-    }
+    get() { return observableSubscribe; }
+    save() { return observableSubscribe; }
+    update() { return observableSubscribe; }
+    delete() { return observableSubscribe; }
 }
 
 class RouteParamsMock {

@@ -65,12 +65,7 @@ export class DeviceList {
         this.sensorsService
             .delete(item)
             .subscribe(data => {
-                const removedSensor = JSON.parse(data._body);
-
-                if (data.status === 200) {
-                    this.deviceList = this.deviceList
-                        .filter(elem => elem._id !== removedSensor._id);
-                }
+                this.deviceList = this.deviceList.filter(elem => elem._id !== data._id);
             });
     }
 }

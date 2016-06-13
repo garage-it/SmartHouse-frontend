@@ -4,7 +4,6 @@ import {provide} from 'angular2/core';
 import {EditScenarioComponent} from './edit-scenario.component';
 import {RouteParams} from 'angular2/router';
 import {ScenarioService} from '../Scenario.service.js';
-import {MockPromise} from '../../../../test/MockPromise';
 
 describe('EditScenarioComponent', () => {
     let scenarioService;
@@ -13,20 +12,17 @@ describe('EditScenarioComponent', () => {
     let routeParams;
     const id = 123;
 
+    class ObservableSubscribe {
+        constructor(data = {}) {
+            this._data = data;
+        }
+        subscribe(fn) { return fn(this._data); }
+    }
+
     class ScenarioServiceMock {
-        set reqStatForTest(status) {
-            this._status = status;
-        }
-        getScenario() { return new MockPromise(true, scenario); }
-        updateScenario() { return new MockPromise(true); }
-        delete(data) {
-            const status = this._status || 200;
-            return {
-                subscribe(fn) {
-                    fn({ status, _body: JSON.stringify(data) });
-                }
-            };
-        }
+        get() { return new ObservableSubscribe(scenario); }
+        update(data) { return new ObservableSubscribe(data); }
+        delete(data) { return new ObservableSubscribe(data); }
     }
 
     class RouteParamsMock {
@@ -50,8 +46,8 @@ describe('EditScenarioComponent', () => {
         sut = new EditScenarioComponent(scenarioService, routeParams);
 
         spyOn(sut, 'back');
-        spyOn(scenarioService, 'getScenario').and.callThrough();
-        spyOn(scenarioService, 'updateScenario').and.callThrough();
+        spyOn(scenarioService, 'get').and.callThrough();
+        spyOn(scenarioService, 'update').and.callThrough();
         spyOn(scenarioService, 'delete').and.callThrough();
     });
 
@@ -65,7 +61,7 @@ describe('EditScenarioComponent', () => {
         });
 
         it('should fetch scenario with id from route params', () => {
-            expect(scenarioService.getScenario).toHaveBeenCalledWith(id);
+            expect(scenarioService.get).toHaveBeenCalledWith(id);
         });
 
         it('should save fetched scenario', () => {
@@ -79,7 +75,7 @@ describe('EditScenarioComponent', () => {
         });
 
         it('should update scenario', () => {
-            expect(scenarioService.updateScenario).toHaveBeenCalledWith(scenario);
+            expect(scenarioService.update).toHaveBeenCalledWith(scenario);
         });
 
         it('should go back', () => {
@@ -93,15 +89,9 @@ describe('EditScenarioComponent', () => {
             expect(scenarioService.delete).toHaveBeenCalledWith(scenario);
         });
 
-        it('should go back if everything fine', () => {
+        it('should go back', () => {
             sut.delete(scenario);
             expect(sut.back).toHaveBeenCalled();
-        });
-
-        it('should go back if request fails', () => {
-            scenarioService.reqStatForTest = 404;
-            sut.delete(scenario);
-            expect(sut.back).not.toHaveBeenCalled();
         });
     });
 });

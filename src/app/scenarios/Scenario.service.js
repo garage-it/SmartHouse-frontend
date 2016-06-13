@@ -9,28 +9,16 @@ export class ScenarioService {
         this.http = http;
     }
 
-    get() {
-        return this.http.get('/scenarios');
-    }
-
-    getScenarios() {
-        return this.get().toPromise();
-    }
-
-    getScenario(id) {
-        return this.http.get(`/scenarios/${id}`).toPromise();
-    }
-
-    updateScenario(scenario) {
-        return this.update(scenario).toPromise();
+    get(id = '') {
+        return this.http.get(`/scenarios/${id}`);
     }
 
     update(scenario) {
         return this.http.put(`/scenarios/${scenario.id}`, scenario);
     }
 
-    createScenario(scenario) {
-        return this.http.post('/scenarios', scenario).toPromise();
+    create(scenario) {
+        return this.http.post('/scenarios', scenario);
     }
 
     delete(scenario) {
