@@ -32,7 +32,7 @@ exports.config = {
         browser.wait(() => {
             browser.get(URL);
             return browser.isElementPresent(By.css('a.logo'));
-        }, 30000);
+        }, 5000);
     }
 
 };
