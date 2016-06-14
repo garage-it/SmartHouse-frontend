@@ -60,7 +60,7 @@ export class SensorDetail {
     remove() {
         this.sensorDetailService
             .delete(this.sensor)
-            .subscribe(() => {}, this._onError, this._navigateToList());
+            .subscribe(() => this._navigateToList(), this._onError);
     }
 
     _navigateToList() {
