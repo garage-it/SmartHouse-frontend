@@ -1,8 +1,9 @@
 var DashboardPage = function () {
     
-    this.title = $('.dashboard_title h2');
+    this.pageHeader = $('.dashboard_title h2');
+    this.sensorWidgets = $$('.sensor-widget');
 
-    this.get = function() {
+    this.get = () => {
         browser.get(browser.baseUrl + 'dashboard');
     };
 };

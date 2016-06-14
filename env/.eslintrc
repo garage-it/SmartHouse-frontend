@@ -3,6 +3,7 @@
     "node": true
   },
   "globals": {
-    "browser": false
+    "browser": false,
+    "By": false
   }
 }

@@ -1,17 +1,17 @@
-var DashboardPage = require('../pobjects/pages/dashboard.page.js');
+var ScenariosPage = require('../pobjects/pages/scenarios.page.js');
 var NavWidget = require('../pobjects/widgets/nav.widget.js');
 
-describe('Dashboard Page Test', () => {
-    var dashboardPage = new DashboardPage();
+describe('Scenarios Page Test', () => {
+    var scenariosPage = new ScenariosPage();
     var navWidget = new NavWidget();
 
     beforeEach(() => {
-        dashboardPage.get();
+        scenariosPage.get();
     });
 
     it('should check page title and header name', () => {
         expect(browser.getTitle()).toEqual('Smart Home');
-        expect(dashboardPage.pageHeader.getText()).toEqual('Dashboard');
+        expect(scenariosPage.pageHeader.getText()).toEqual('Scenario list');
     });
 
     it('should check page brand logo', () => {
@@ -22,5 +22,9 @@ describe('Dashboard Page Test', () => {
         expect(navWidget.dashboardLink.getText()).toEqual('Dashboard');
         expect(navWidget.devicesLink.getText()).toEqual('Devices');
         expect(navWidget.scenariosLink.getText()).toEqual('Scenarios');
+    });
+
+    it('should check Create New Scenario button is present', () => {
+        expect(scenariosPage.createNewScenarioButton.isPresent()).toBe(true);
     });
 });
