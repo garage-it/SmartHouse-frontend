@@ -64,6 +64,7 @@ describe('sensor-detail module', () => {
         spyOn(sensorDetailService, 'save').and.callThrough();
         spyOn(sensorDetailService, 'update').and.callThrough();
         spyOn(sensorDetailService, 'delete').and.callThrough();
+        spyOn(observableSubscribe, 'subscribe').and.callThrough();
         spyOn(routeParams, 'get').and.callThrough();
         spyOn(router, 'navigate').and.callThrough();
         sut = new SensorDetail(sensorDetailService, routeParams, router);
@@ -112,6 +113,7 @@ describe('sensor-detail module', () => {
         const sensorMock = {};
         sut.sensor = sensorMock;
         sut.remove();
+        observableSubscribe.subscribe.calls.mostRecent().args[0]();
         expect(sut.router.navigate).toHaveBeenCalledWith(['DeviceList']);
         done();
     });
