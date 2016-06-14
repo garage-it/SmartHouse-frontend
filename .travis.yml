@@ -14,10 +14,14 @@ script:
   - npm run validate
   - npm run test
   - npm run build
-  - npm run e2e:run
+
+cache:
+  directories:
+    - node_modules
 
 after_success:
   - codecov
+
 deploy:
   provider: heroku
   api_key:
@@ -25,3 +29,6 @@ deploy:
   app: garage-it-smart-house
   on:
     repo: garage-it/SmartHouse-frontend
+
+after_deploy:
+  - npm run e2e:run
