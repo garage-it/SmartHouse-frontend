@@ -29,15 +29,15 @@ export class ScenarioWizardComponent {
         this.onAddCriteria.next();
     }
 
-    removeCriteria() {
-        this.onRemoveCriteria.next();
+    removeCriteria(index) {
+        this.onRemoveCriteria.emit(index);
     }
 
     addAction() {
         this.onAddAction.next();
     }
 
-    removeAction() {
-        this.onRemoveAction.next();
+    removeAction(index) {
+        this.onRemoveAction.emit(index);
     }
 }

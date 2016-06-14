@@ -22,9 +22,9 @@
     <scenario-wizard
         [scenario]="scenario"
         (onAddCriteria)="onAddCriteria()"
-        (onRemoveCriteria)="onRemoveCriteria()"
+        (onRemoveCriteria)="onRemoveCriteria($event)"
         (onAddAction)="onAddAction()"
-        (onRemoveAction)="onRemoveAction()">
+        (onRemoveAction)="onRemoveAction($event)">
     </scenario-wizard>
 
     <button class="waves-effect waves-light btn blue-grey darken-1" type="submit">SAVE SCENARIO</button>
