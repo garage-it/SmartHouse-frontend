@@ -12,26 +12,22 @@ export default class ShHttpService {
     get(url) {
         return this.http
             .get(url, this._getOptions('Get', url))
-            .map(this._convertToJson)
-            .catch(this._errorHandling);
+            .map(this._convertToJson);
     }
     post(url, body) {
         return this.http
             .post(url, JSON.stringify(body), this._getOptions('Post', url))
-            .map(this._convertToJson)
-            .catch(this._errorHandling);
+            .map(this._convertToJson);
     }
     put(url, body) {
         return this.http
             .put(url, JSON.stringify(body), this._getOptions('Put', url))
-            .map(this._convertToJson)
-            .catch(this._errorHandling);
+            .map(this._convertToJson);
     }
     delete(url) {
         return this.http
             .delete(url, this._getOptions('Delete', url))
-            .map(this._convertToJson)
-            .catch(this._errorHandling);
+            .map(this._convertToJson);
     }
     _getOptions(method, url) {
         return this.options.merge({
@@ -41,12 +37,5 @@ export default class ShHttpService {
     }
     _convertToJson(data) {
         return data.json();
-    }
-
-    _errorHandling(error = {}) {
-        const errorMessage = error.message;
-        const errorStatus = error.status ? `${error.status} status code` : 'Unknown Server error';
-
-        console.error(errorMessage || errorStatus); // eslint-disable-line
     }
 }

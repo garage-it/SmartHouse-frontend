@@ -13,12 +13,7 @@ class ObservableSubscribe {
         this._data.json = () => {};
     }
     map(fn) {
-        fn(this._data);
-
-        return this;
-    }
-    catch(fn) {
-        return errorResponse ? fn() : () => {};
+        fn(this._data);;
     }
 }
 
@@ -44,7 +39,6 @@ describe('ShHttpService', () => {
         spyOn(httpMock, 'put').and.callThrough();
         spyOn(httpMock, 'delete').and.callThrough();
         sut = new ShHttpService(httpMock);
-        spyOn(sut, '_errorHandling');
     });
 
     it('should be defined', () => {
@@ -62,6 +56,22 @@ describe('ShHttpService', () => {
         });
         sut.get(urlMock);
         expect(httpMock.get).toHaveBeenCalledWith(urlMock, options);
+    });
+
+    it('should create new item', () => {
+        const urlMock = 'mock';
+        const bodyMock = {};
+        let options = new ShRequestOptions({
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            })
+        });
+        options = options.merge({
+            method: RequestMethod.Post,
+            url: urlMock
+        });
+        sut.post(urlMock, bodyMock);
+        expect(httpMock.post).toHaveBeenCalledWith(urlMock, JSON.stringify(bodyMock), options);
     });
 
     it('should update sensor', () => {
@@ -93,21 +103,5 @@ describe('ShHttpService', () => {
         });
         sut.delete(urlMock);
         expect(httpMock.delete).toHaveBeenCalledWith(urlMock, options);
-    });
-
-    it('should catch error', () => {
-        const urlMock = 'mock';
-        let options = new ShRequestOptions({
-            headers: new Headers({
-                'Content-Type': 'application/json'
-            })
-        });
-        options = options.merge({
-            method: RequestMethod.Delete,
-            url: urlMock
-        });
-        errorResponse = true;
-        sut.delete(urlMock);
-        expect(sut._errorHandling).toHaveBeenCalled();
     });
 });
