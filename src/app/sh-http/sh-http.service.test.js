@@ -5,15 +5,13 @@ import {Http, RequestMethod, Headers} from 'angular2/http';
 import {beforeEachProviders} from 'angular2/testing';
 import {provide} from 'angular2/core';
 
-let errorResponse = false;
-
 class ObservableSubscribe {
     constructor(data = {}) {
         this._data = data;
         this._data.json = () => {};
     }
     map(fn) {
-        fn(this._data);;
+        fn(this._data);
     }
 }
 
