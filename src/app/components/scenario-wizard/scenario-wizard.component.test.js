@@ -7,9 +7,9 @@ describe('ScenarioWizardComponent', () => {
         sut = new ScenarioWizardComponent();
 
         spyOn(sut.onAddCriteria, 'next');
-        spyOn(sut.onRemoveCriteria, 'next');
+        spyOn(sut.onRemoveCriteria, 'emit');
         spyOn(sut.onAddAction, 'next');
-        spyOn(sut.onRemoveAction, 'next');
+        spyOn(sut.onRemoveAction, 'emit');
     });
 
     it('should emit event when criteria is added', () => {
@@ -19,7 +19,7 @@ describe('ScenarioWizardComponent', () => {
 
     it('should emit event when criteria is removed', () => {
         sut.removeCriteria();
-        expect(sut.onRemoveCriteria.next).toHaveBeenCalled();
+        expect(sut.onRemoveCriteria.emit).toHaveBeenCalled();
     });
 
     it('should emit event when action is added', () => {
@@ -29,6 +29,6 @@ describe('ScenarioWizardComponent', () => {
 
     it('should emit event when action is removed', () => {
         sut.removeAction();
-        expect(sut.onRemoveAction.next).toHaveBeenCalled();
+        expect(sut.onRemoveAction.emit).toHaveBeenCalled();
     });
 });
