@@ -1,6 +1,7 @@
 import {
     SensorExecutorWidget,
-    DEVICE_ON_STATE
+    DEVICE_ON_STATE,
+    DEVICE_RESPOND_TIMEOUT
 } from './sensor-executor-widget.component';
 
 describe('sensor-executor-widget', () => {
@@ -18,22 +19,49 @@ describe('sensor-executor-widget', () => {
     });
 
     it('should convert data response to boolean', () => {
-        const mockData = { value: DEVICE_ON_STATE };
+        const mockData = {value: DEVICE_ON_STATE};
         sut.onDeviceDataChanged(mockData);
         expect(sut.data.value).toEqual(true);
     });
 
-    it('should push command when executor change state', () => {
-        const checkedMock = 'mock';
+    describe('Switch', () => {
         const $eventMock = {
-            target: { checked: checkedMock }
+            target: {checked: true}
         };
         const mockDeviceMqttId = 'mock';
-        sut.device = { mqttId: mockDeviceMqttId };
-        sut.switchExecutor($eventMock);
-        expect(sensorWidgetService.pushEvent).toHaveBeenCalledWith({
-            device: mockDeviceMqttId,
-            value: 'ON'
+
+        beforeEach(() => {
+            sut.device = { mqttId: mockDeviceMqttId };
+        });
+
+        it('should push command when executor change state', () => {
+            sut.switchExecutor($eventMock);
+            expect(sensorWidgetService.pushEvent).toHaveBeenCalledWith({
+                device: mockDeviceMqttId,
+                value: 'ON'
+            });
+        });
+
+        it('should change state', () => {
+            sut.switchExecutor($eventMock);
+            expect(sut.data.value).toEqual(true);
+        });
+
+        it('should not switch value until delay ends', fakeAsync(() => {
+            sut.switchExecutor($eventMock);
+            sut.onDeviceDataChanged({value: 'some other value'});
+            expect(sut.data.value).toEqual(true);
+            tick(DEVICE_RESPOND_TIMEOUT);
+
+            sut.onDeviceDataChanged({value: 'some other value'});
+            expect(sut.data.value).not.toEqual(true);
+        }));
+
+        it('should switch value if value was changed within delay', () => {
+            sut.switchExecutor($eventMock);
+            sut.onDeviceDataChanged({value: DEVICE_ON_STATE});
+            sut.onDeviceDataChanged({value: 'some other value'});
+            expect(sut.data.value).not.toEqual(true);
         });
     });
 });
