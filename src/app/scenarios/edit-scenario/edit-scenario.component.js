@@ -11,23 +11,24 @@ export class EditScenarioComponent extends ScenarioDetailsComponent {
     }
 
     ngOnInit() {
-        this._scenarioService.getScenario(this._routeParams.get('id'))
-        .then((scenario) => {
-            this.scenario = scenario;
-        });
+        this._scenarioService.get(this._routeParams.get('id'))
+            .subscribe((scenario) => {
+                this.scenario = scenario;
+            });
     }
 
     save(scenario) {
-        this._scenarioService.updateScenario(scenario).then(() => this.back());
+        this._scenarioService.update(scenario)
+            .subscribe(() => {
+                this.back();
+            });
     }
 
     delete(scenario) {
         this._scenarioService
             .delete(scenario)
-            .subscribe(data => {
-                if (data.status === 200) {
-                    this.back();
-                }
+            .subscribe(() => {
+                this.back();
             });
     }
 }

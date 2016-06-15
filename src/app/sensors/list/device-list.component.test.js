@@ -4,23 +4,16 @@ import {DeviceList} from './device-list.component';
 import {beforeEachProviders} from 'angular2/testing';
 import {provide} from 'angular2/core';
 
-const observableSubscribe = {
-    subscribe() {}
-};
+class ObservableSubscribe {
+    constructor(data = {}) {
+        this._data = data;
+    }
+    subscribe(fn) { return fn(this._data); }
+}
 
 class SensorDetailServiceMock {
-    set reqStatForTest(status) {
-        this._status = status;
-    }
-    get() { return observableSubscribe; }
-    delete(data) {
-        const status = this._status || 200;
-        return {
-            subscribe(fn) {
-                fn({ status, _body: JSON.stringify(data) });
-            }
-        };
-    }
+    get() { return new ObservableSubscribe(); }
+    delete(data) { return new ObservableSubscribe(data); }
 }
 
 describe('device-list component', () => {
@@ -89,19 +82,11 @@ describe('device-list component', () => {
             expect(sut.sensorsService.delete).toHaveBeenCalledWith(mockedSensor);
         });
 
-        it('should remove sensor from listData if everything fine', () => {
+        it('should remove sensor from listData', () => {
             sut.deviceList = listData;
             sut.removeSensor(listData[1]);
 
             expect(sut.deviceList).toEqual([listData[0]]);
-        });
-
-        it('should not remove sensor from listData if request falls', () => {
-            sut.deviceList = listData;
-            sut.sensorsService.reqStatForTest = 404;
-            sut.removeSensor(listData[1]);
-
-            expect(sut.deviceList).toEqual(listData);
         });
     });
 

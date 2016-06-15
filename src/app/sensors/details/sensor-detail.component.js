@@ -41,16 +41,16 @@ export class SensorDetail {
             .get(id)
             .subscribe(data => {
                 this.sensor = new Sensor(data);
-            }, this._onError, this._onComplete);
+            });
     }
 
     save() {
         const observable = this.needUpdate ?
             this.sensorDetailService.update(this.sensor) :
             this.sensorDetailService.save(this.sensor);
-        observable.subscribe(() => this._navigateToList(),
-            this._onError,
-            this._onComplete);
+        observable.subscribe(() => {
+            this._navigateToList();
+        });
     }
 
     cancel() {
@@ -60,18 +60,12 @@ export class SensorDetail {
     remove() {
         this.sensorDetailService
             .delete(this.sensor)
-            .subscribe(() => this._navigateToList(), this._onError);
+            .subscribe(() => {
+                this._navigateToList();
+            });
     }
 
     _navigateToList() {
         this.router.navigate(['DeviceList']);
-    }
-
-    _onError(error) {
-        console.error(error);// eslint-disable-line
-    }
-
-    _onComplete() {
-        console.log('Completed!');// eslint-disable-line
     }
 }

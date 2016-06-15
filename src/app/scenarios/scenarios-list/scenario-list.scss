@@ -46,11 +46,16 @@
     }
 }
 
-.sensors-list-table {
+.scenario-list-table {
     &__body {
         &__row {
             &__actions {
+                width: 150px;
+                
                 &__remove {
+                    padding: 0 15px;
+                }
+                &__toggle-state {
                     padding: 0 15px;
                 }
             }

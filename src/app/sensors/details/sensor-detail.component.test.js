@@ -6,26 +6,14 @@ import {beforeEachProviders} from 'angular2/testing';
 import {provide} from 'angular2/core';
 
 const observableSubscribe = {
-    subscribe() {
-    }
+    subscribe(fn) { fn(); }
 };
 
 class SensorDetailServiceMock {
-    get() {
-        return observableSubscribe;
-    }
-
-    save() {
-        return observableSubscribe;
-    }
-
-    update() {
-        return observableSubscribe;
-    }
-
-    delete() {
-        return observableSubscribe;
-    }
+    get() { return observableSubscribe; }
+    save() { return observableSubscribe; }
+    update() { return observableSubscribe; }
+    delete() { return observableSubscribe; }
 }
 
 class RouteParamsMock {
@@ -92,6 +80,15 @@ describe('sensor-detail module', () => {
         sut.needUpdate = false;
         sut.save();
         expect(sut.sensorDetailService.save).toHaveBeenCalledWith(sensorMock);
+    });
+
+    it('should navigate to the list of sensors on save', (done) => {
+        const sensorMock = {};
+        sut.sensor = sensorMock;
+        sut.needUpdate = true;
+        sut.save();
+        expect(sut.router.navigate).toHaveBeenCalledWith(['DeviceList']);
+        done();
     });
 
     it('should update sensor', () => {

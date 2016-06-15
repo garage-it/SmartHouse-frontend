@@ -26,14 +26,7 @@ export default class ShHttpService {
     }
     delete(url) {
         return this.http
-            .delete(url, this._getOptions('Delete', url));
-    }
-    // TODO we could use a factory/inheritance instead of copy paste
-    post(url, body) {
-        const headers = new Headers({ 'Content-Type': 'application/json' });
-        this.options = new ShRequestOptions({ headers });
-        return this.http
-            .post(url, JSON.stringify(body), this._getOptions('Post', url))
+            .delete(url, this._getOptions('Delete', url))
             .map(this._convertToJson);
     }
     _getOptions(method, url) {

@@ -1,7 +1,6 @@
 import {CreateScenarioWizardComponent} from './create-scenario-wizard.component';
 import {ScenarioService} from '../Scenario.service.js';
 import {DeviceListService} from '../../components/shared/device-list.service';
-import {MockPromise} from '../../../../test/MockPromise';
 import Action from '../scenario-entities/Action';
 import Condition from '../scenario-entities/Condition';
 import Scenario from '../scenario-entities/Scenario';
@@ -30,7 +29,7 @@ describe('CreateScenarioWizardComponent', () => {
         devices = ['device1', 'device2'];
 
         scenarioService = jasmine.createSpyComponent(ScenarioService);
-        scenarioService.createScenario.and.returnValue(new MockPromise(true));
+        scenarioService.create.and.returnValue({ subscribe(fn) { fn(); } });
 
         deviceListService = jasmine.createSpyComponent(DeviceListService);
         deviceListService.getSensors.and.returnValue({
@@ -63,7 +62,7 @@ describe('CreateScenarioWizardComponent', () => {
         });
 
         it('should create scenario', () => {
-            expect(scenarioService.createScenario).toHaveBeenCalledWith(scenario);
+            expect(scenarioService.create).toHaveBeenCalledWith(scenario);
         });
 
         it('should go back', () => {

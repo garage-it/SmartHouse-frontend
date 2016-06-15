@@ -8,7 +8,6 @@ import {ScenarioService} from './../Scenario.service.js';
 const selector = 'scenario-list';
 const headersForDisplay = [
     { topic: 'name', name: 'Name', sortable: true },
-    { topic: 'active', name: 'Active', sortable: true },
     { topic: 'description', name: 'Description', sortable: true }
 ];
 
@@ -45,12 +44,18 @@ export class ScenarioListComponent {
         this.scenarioService
             .delete(item)
             .subscribe(data => {
-                const removedScenario = JSON.parse(data._body);
+                this.scenarioList = this.scenarioList
+                        .filter(elem => elem.id !== data.id);
+            });
+    }
 
-                if (data.status === 200) {
-                    this.scenarioList = this.scenarioList
-                        .filter(elem => elem.id !== removedScenario.id);
-                }
+    toggleScenarioState(scenario) {
+        const active = !scenario.active;
+        const scenarioForUpdate = Object.assign({}, scenario, { active });
+        this.scenarioService
+            .update(scenarioForUpdate)
+            .subscribe(() => {
+                scenario.active = !scenario.active; // eslint-disable-line
             });
     }
 }

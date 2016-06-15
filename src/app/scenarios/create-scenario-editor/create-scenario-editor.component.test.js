@@ -1,6 +1,5 @@
 import {CreateScenarioEditorComponent} from './create-scenario-editor.component';
 import {ScenarioService} from '../Scenario.service.js';
-import {MockPromise} from '../../../../test/MockPromise';
 
 describe('CreateScenarioEditorComponent', () => {
     let scenarioService;
@@ -13,7 +12,7 @@ describe('CreateScenarioEditorComponent', () => {
         };
 
         scenarioService = jasmine.createSpyComponent(ScenarioService);
-        scenarioService.createScenario.and.returnValue(new MockPromise(true));
+        scenarioService.create.and.returnValue({ subscribe(fn) { fn(); } });
         sut = new CreateScenarioEditorComponent(scenarioService);
         spyOn(sut, 'back');
     });
@@ -28,7 +27,7 @@ describe('CreateScenarioEditorComponent', () => {
         });
 
         it('should create scenario', () => {
-            expect(scenarioService.createScenario).toHaveBeenCalledWith(scenario);
+            expect(scenarioService.create).toHaveBeenCalledWith(scenario);
         });
 
         it('should go back', () => {
