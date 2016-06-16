@@ -36,7 +36,7 @@ describe('ScenarioListComponent', () => {
     let sut;
     let scenarioService;
     let listData;
-    let scenario = {
+    const scenario = {
         id: 123,
         sourceType: 'EDITOR'
     };
@@ -61,7 +61,7 @@ describe('ScenarioListComponent', () => {
         spyOn(scenarioService, 'get').and.callThrough();
         spyOn(scenarioService, 'delete').and.callThrough();
         spyOn(scenarioService, 'update').and.callThrough();
-        spyOn(router, 'navigate').and.callThrough()
+        spyOn(router, 'navigate').and.callThrough();
     });
 
     describe('ngOnInit', () => {
@@ -78,7 +78,7 @@ describe('ScenarioListComponent', () => {
         const allowedHeaders = [
             {topic: 'name', name: 'Name', sortable: true},
             {topic: 'active', name: 'Active', sortable: false},
-            {topic: 'description', name: 'description', sortable: true},
+            {topic: 'description', name: 'description', sortable: true}
         ];
 
         it('should have collection of allowed headers: name, active, description', () => {
@@ -120,13 +120,15 @@ describe('ScenarioListComponent', () => {
     describe('#navigateToEditView', () => {
         it('should navigate to EditScenarioEditor', () => {
             sut.navigateToEditView(scenario);
-            expect(sut.router.navigate).toHaveBeenCalledWith(['EditScenarioEditor', {id: scenario.id}]);
+            expect(sut.router.navigate)
+                .toHaveBeenCalledWith(['EditScenarioEditor', {id: scenario.id}]);
         });
 
         it('should navigate to EditScenarioWizard', () => {
             scenario.sourceType = 'WIZARD';
             sut.navigateToEditView(scenario);
-            expect(sut.router.navigate).toHaveBeenCalledWith(['EditScenarioWizard', {id: scenario.id}]);
+            expect(sut.router.navigate)
+                .toHaveBeenCalledWith(['EditScenarioWizard', {id: scenario.id}]);
         });
     });
 });

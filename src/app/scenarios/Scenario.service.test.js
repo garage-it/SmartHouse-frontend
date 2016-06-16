@@ -75,10 +75,8 @@ describe('ScenarioService', () => {
     });
 
     describe('Get concrete scenario', () => {
-        let getScenarioResult;
-
         beforeEach(() => {
-            getScenarioResult = sut.get(id);
+            sut.get(id);
         });
 
         it('should get scenario data from the server', () => {
@@ -87,7 +85,6 @@ describe('ScenarioService', () => {
     });
 
     describe('Create scenario', () => {
-        let created;
         const expectedScenario = {
             id,
             conditions: [
@@ -108,7 +105,7 @@ describe('ScenarioService', () => {
         };
         const createScenario = Object.assign({}, scenario);
         beforeEach(() => {
-            created = sut.create(createScenario);
+            sut.create(createScenario);
         });
 
         it('should create scenario', () => {
@@ -117,7 +114,6 @@ describe('ScenarioService', () => {
     });
 
     describe('Update scenario', () => {
-        let updated;
         const expectedScenario = {
             id,
             conditions: [
@@ -140,7 +136,7 @@ describe('ScenarioService', () => {
 
 
         it('should updated scenario', () => {
-            updated = sut.update(updateScenario);
+            sut.update(updateScenario);
             expect(httpMock.put).toHaveBeenCalledWith(`/scenarios/${id}`, expectedScenario);
         });
 
@@ -152,7 +148,7 @@ describe('ScenarioService', () => {
                 sourceType: 'EDITOR'
             };
 
-            updated = sut.update(scenarioFromEditor);
+            sut.update(scenarioFromEditor);
             expect(httpMock.put).toHaveBeenCalledWith(`/scenarios/${id}`, scenarioFromEditor);
         });
     });

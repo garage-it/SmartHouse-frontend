@@ -5,7 +5,6 @@ import {EditScenarioWizardComponent} from './edit-scenario-wizard.component';
 import {RouteParams} from 'angular2/router';
 import {ScenarioService} from '../Scenario.service';
 
-import {MockPromise} from '../../../../test/MockPromise';
 import {DeviceListService} from '../../components/shared/device-list.service';
 import Scenario from '../scenario-entities/Scenario';
 import Condition from '../scenario-entities/Condition';
@@ -16,7 +15,6 @@ describe('EditScenarioWizardComponent', () => {
     let scenarioService;
     let deviceListService;
     let sut;
-    let devices;
     let routeParams;
     const id = 123;
     const expectedDevices = [
@@ -77,7 +75,6 @@ describe('EditScenarioWizardComponent', () => {
     }
 
     beforeEach(() => {
-        devices = ['device1', 'device2'];
         deviceListService = new DeviceListServiceMock();
         scenarioService = new ScenarioServiceMock();
         spyOn(scenarioService, 'get').and.callThrough();
