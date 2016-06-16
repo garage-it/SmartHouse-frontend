@@ -25,7 +25,6 @@ export class SensorExecutorWidget extends BaseSensor {
     onDeviceDataChanged(data) {
         // NOTE: mqtt is slow and sends us false information for some time after toggle
         // we just don`t listen to socket (and mqtt) for some time to let it switch state
- 
         if (this[pending] !== null) {
             return;
         }
