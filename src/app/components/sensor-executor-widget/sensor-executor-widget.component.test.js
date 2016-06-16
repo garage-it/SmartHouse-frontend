@@ -56,12 +56,5 @@ describe('sensor-executor-widget', () => {
             sut.onDeviceDataChanged({value: 'some other value'});
             expect(sut.data.value).not.toEqual(true);
         }));
-
-        it('should switch value if value was changed within delay', () => {
-            sut.switchExecutor($eventMock);
-            sut.onDeviceDataChanged({value: DEVICE_ON_STATE});
-            sut.onDeviceDataChanged({value: 'some other value'});
-            expect(sut.data.value).not.toEqual(true);
-        });
     });
 });
