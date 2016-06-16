@@ -12,14 +12,13 @@ var AddNewDevicePage = function () {
     this.deviceDescriptionLabel = $('.sensor-detail__description label');
     this.deviceDescriptionInput = $('#sensor-detail__description');
 
-    this.checkboxActive = $('');
-    this.checkBoxSwitcher = $('');
+    this.switcherCheckbox = $('#sensor-detail__executor');
+    this.switcherLabel = $('label[for="sensor-detail__executor"]');
 
     this.saveDeviceButton = $("button[type='submit']");
-    this.removeDeviceButton = $("button:not[type='submit']");
 
     this.get = () => {
-        browser.get(browser.baseUrl + 'device-list');
+        browser.get(browser.baseUrl + 'sensors/create');
     };
 };
 module.exports = AddNewDevicePage;
