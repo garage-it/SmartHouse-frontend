@@ -5,7 +5,7 @@ import ShHttpService from '../sh-http/sh-http.service.js';
 // removed in future after refactoring
 @Injectable()
 export class ScenarioService {
-    constructor(http: ShHttpService) {
+    constructor(http:ShHttpService) {
         this.http = http;
     }
 
@@ -14,14 +14,46 @@ export class ScenarioService {
     }
 
     update(scenario) {
-        return this.http.put(`/scenarios/${scenario.id}`, scenario);
+        return this.http.put(`/scenarios/${scenario.id}`, this.mapScenario(scenario));
     }
 
     create(scenario) {
-        return this.http.post('/scenarios', scenario);
+        return this.http.post('/scenarios', this.mapScenario(scenario));
     }
 
     delete(scenario) {
         return this.http.delete(`/scenarios/${scenario.id}`);
+    }
+
+    mapScenario(scenario) {
+        if (scenario.sourceType === 'EDITOR') {
+            return scenario;
+        }
+
+        const {conditions, actions} = scenario;
+        return Object.assign(scenario, {
+            conditions: this.getConditions(conditions),
+            actions: this.getActions(actions),
+            isConvertible: true
+        });
+    }
+
+    getConditions(conditions) {
+        return conditions.map(condition => {//eslint-disable-line
+            return {
+                device: condition.selectedDevice,
+                condition: condition.selectedCondition,
+                value: condition.value
+            };
+        });
+    }
+
+    getActions(actions) {
+        return actions.map((item) => {//eslint-disable-line
+            return {
+                device: item.selectedDevice,
+                value: item.value
+            };
+        });
     }
 }

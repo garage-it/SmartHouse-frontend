@@ -27,7 +27,7 @@
         </thead><!-- scenario-list-table__head -->
         <tbody class="scenario-list-table__body">
             <tr *ngFor="#scenario of scenarioList"
-                [routerLink]="['EditScenario', { id: scenario.id }]"
+                (click)="navigateToEditView(scenario)"
                 class="scenario-list-table__body__row">
                 <td *ngFor="#header of headers"
                     class="scenario-list-table__body__row__item">

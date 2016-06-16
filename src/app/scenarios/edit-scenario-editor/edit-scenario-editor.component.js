@@ -3,7 +3,7 @@ import {RouteParams, Router} from 'angular2/router';
 import {ScenarioDetailsComponent} from '../scenario-details/scenario-details.component';
 import {ScenarioService} from '../Scenario.service.js';
 
-export class EditScenarioComponent extends ScenarioDetailsComponent {
+export class EditScenarioEditorComponent extends ScenarioDetailsComponent {
     scenarioDetailsMode = 'edit';
 
     constructor(scenarioListService:ScenarioService, routeParams:RouteParams, router: Router) {// eslint-disable-line

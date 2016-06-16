@@ -1,7 +1,8 @@
 import {Home} from './home';
 import {Dashboard} from './dashboard';
 import {ScenarioListComponent,
-    EditScenarioComponent,
+    EditScenarioEditorComponent,
+    EditScenarioWizardComponent,
     CreateScenarioEditorComponent,
     CreateScenarioWizardComponent} from './scenarios/';
 import {DeviceList} from './sensors/list';
@@ -18,7 +19,10 @@ export default [
         component: CreateScenarioEditorComponent},
     {path: '/scenarios/create-wizard', name: 'CreateScenarioWizard',
         component: CreateScenarioWizardComponent},
-    {path: '/scenario/:id', name: 'EditScenario', component: EditScenarioComponent},
+    {path: '/scenario/editor/:id', name: 'EditScenarioEditor',
+        component: EditScenarioEditorComponent},
+    {path: '/scenario/wizard/:id', name: 'EditScenarioWizard',
+        component: EditScenarioWizardComponent},
     {path: '/sensors/:id', name: 'SensorDetail', component: SensorDetail},
     {path: '/sensors/create', name: 'SensorDetail', component: SensorDetail}
 ];

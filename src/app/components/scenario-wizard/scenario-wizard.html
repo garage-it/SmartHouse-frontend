@@ -1,7 +1,8 @@
 <div class="row">
     <div class="input-field col s6">
         <input id="scenario_name" type="text" placeholder="Enter descriptive scenario name"
-               [(ngModel)]="scenario.description"/>
+               required
+               [(ngModel)]="scenario.name"/>
         <label for="scenario_name">Scenario name:</label>
     </div>
 </div>
@@ -10,7 +11,9 @@
     <div class="col">
         <h5>
             If
-            <select class="operators-select" [(ngModel)]="scenario.selectedOperator">
+            <select name="logicalOperator"
+                    class="operators-select"
+                    [(ngModel)]="scenario.logicalOperator">
                 <option *ngFor="#operator of scenario.logicalOperators"
                         [value]="operator.id">{{operator.name}}
                 </option>
@@ -23,10 +26,10 @@
 <div class="row gray-bg" *ngFor="#condition of scenario.conditions;#i=index">
     <div class="col s3">
         <span>Device</span>
-        <select [(ngModel)]="condition.selectedDevice">
+        <select [(ngModel)]="condition.selectedDevice" required name="deviceSelect">
             <option [value]="undefined">Choose trigger</option>
             <option *ngFor="#device of condition.devices"
-                    [value]="device._id">{{device.description}}
+                    [value]="device.mqttId">{{device.description}}
             </option>
         </select>
     </div>
@@ -39,7 +42,9 @@
     </div>
     <div class="col s3">
         <span>Value</span>
-        <input type="text" placeholder="Enter value"
+        <input type="text"
+               placeholder="Enter value"
+               required
                [(ngModel)]="condition.value"
                placeholder="Enter value"/>
     </div>
@@ -67,17 +72,21 @@
         <select [(ngModel)]="action.selectedDevice">
             <option [value]="undefined">Choose device</option>
             <option *ngFor="#device of action.devices"
-                    [value]="device._id">{{device.description}}
+                    [value]="device.mqttId">{{device.description}}
             </option>
         </select>
     </div>
     <div class="col s3">
         <span>Value</span>
-        <select [(ngModel)]="action.selectedValue">
-            <option *ngFor="#value of action.values">{{value.name}}</option>
+        <select name="actionValue"
+                [(ngModel)]="action.value">
+            <option *ngFor="#value of action.values"
+                    [value]="value.id">{{value.name}}
+            </option>
         </select>
     </div>
-    <div class="col s1" *ngIf="scenario.actions.length>1">
+    <div class="col s1"
+         *ngIf="removeActionBtnVisible()">
         <div>
             <i (click)="removeAction(i)" class="material-icons center">delete</i>
         </div>
