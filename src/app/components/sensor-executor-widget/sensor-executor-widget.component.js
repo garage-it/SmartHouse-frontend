@@ -6,7 +6,7 @@ import styles from '../shared/sensor-widget.scss';
 
 export const DEVICE_ON_STATE = 'ON';
 export const DEVICE_OFF_STATE = 'OFF';
-export const DEVICE_RESPOND_TIMEOUT = 3000;
+export const DEVICE_RESPOND_TIMEOUT = 4000;
 const pending = Symbol('pending');
 const timeout = Symbol('timeout');
 
@@ -23,6 +23,7 @@ export class SensorExecutorWidget extends BaseSensor {
     }
 
     onDeviceDataChanged(data) {
+        console.log(data.value);
         if (this[pending] !== null) {
             return;
         }
