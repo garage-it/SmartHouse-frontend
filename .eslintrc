@@ -14,7 +14,11 @@
     "tick": true
   },
   "globals": {
-    "ENV_PUBLIC_CONFIG": false
+    "ENV_PUBLIC_CONFIG": false,
+    "fakeAsync": false,
+    "flushMicrotasks": false,
+    "tick": false
+
   },
   "rules": {
     // Babel
