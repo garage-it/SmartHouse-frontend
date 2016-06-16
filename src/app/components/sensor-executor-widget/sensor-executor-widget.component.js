@@ -1,4 +1,4 @@
-import { Component } from 'angular2/core';
+import {Component} from 'angular2/core';
 
 import BaseSensor from '../shared/base-sensor';
 import template from './sensor-executor-widget.html';
@@ -23,7 +23,9 @@ export class SensorExecutorWidget extends BaseSensor {
     }
 
     onDeviceDataChanged(data) {
-        console.log(data.value);
+        // NOTE: mqtt is slow and sends us false information for some time after toggle
+        // we just don`t listen to socket (and mqtt) for some time to let it switch state
+ 
         if (this[pending] !== null) {
             return;
         }
