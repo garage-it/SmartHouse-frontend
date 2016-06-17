@@ -27,12 +27,12 @@ module.exports = {
     },
     src: {
         dir: rootPath('src'),
-        entry: rootPath('src', 'index.js'),
+        entry: rootPath('src', 'index.ts'),
         indexHtml: rootPath('src', 'index.html')
     },
     tests: {
         dir: rootPath('test'),
-        entry: rootPath('test', 'index.js')
+        entry: rootPath('test', 'index.ts')
     },
     dist: {
         dir: rootPath('dist')

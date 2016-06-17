@@ -5,7 +5,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const envConfig = require('./env.config');
 
-const jsRegexp = /\.js$/;
+const jsRegexp = /\.(js|ts)$/;
 
 module.exports = {
     debug: true,
@@ -38,8 +38,9 @@ module.exports = {
         loaders: [
             {
                 test: jsRegexp,
-                loader: 'babel',
+                loader: 'awesome-typescript',
                 exclude: [/node_modules/]
+
             },
             {
                 test: /\.html$/,
@@ -47,7 +48,7 @@ module.exports = {
             },
             {
                 test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-                loader: 'file-loader'
+                loader: 'file'
             },
             {
                 test: /\.(scss|css)$/,
