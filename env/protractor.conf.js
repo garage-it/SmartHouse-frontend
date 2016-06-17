@@ -2,7 +2,7 @@
 
 const URL = 'https://garage-it-smart-house.herokuapp.com/#/';
 
-const someApi = require('./someApi');
+const mqttApi = require('../e2e/mqtt-api/');
 
 // An example configuration file.
 exports.config = {
@@ -33,11 +33,11 @@ exports.config = {
         browser.ignoreSynchronization = true;
         browser.driver.manage().window().setSize(1920, 1080);
         browser.driver.manage().window().maximize();
+        browser.MQTT.init();
         browser.wait(() => {
             browser.get(URL);
             return browser.isElementPresent(By.css('a.logo'));
         }, 5000);
-        browser.someApi = someApi;
     }
 
 };

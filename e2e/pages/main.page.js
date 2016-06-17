@@ -8,7 +8,6 @@ var MainPage = function () {
 
     this.get = function () {
         browser.get(browser.baseUrl);
-        browser.someApi.post();
     };
 };
 module.exports = MainPage;
