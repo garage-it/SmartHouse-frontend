@@ -1,8 +1,21 @@
-import {RouteParams, Router} from 'angular2/router';
+import {Component} from 'angular2/core';
+import {RouteParams, Router, RouterLink} from 'angular2/router';
 
+const template = require('../scenario-details/scenario-details.html');
+const style = require('../scenario-details/scenario-details.scss');
 import {ScenarioDetailsComponent} from '../scenario-details/scenario-details.component';
 import {ScenarioService} from '../Scenario.service';
+import {ScenarioEditor} from '../scenario-editor/scenario-editor.component';
 
+const selector = 'scenario-list';
+
+@Component({
+    selector,
+    template,
+    styles: [style],
+    providers: [ScenarioService],
+    directives: [ScenarioEditor, RouterLink]
+})
 export class EditScenarioComponent extends ScenarioDetailsComponent {
     scenarioDetailsMode = 'edit';
 
