@@ -7,21 +7,25 @@ const envConfig = require('../../env.config');
 let MQTTclient;
 
 module.exports = {
+    /*
+     * Method for init mqtt client
+    */
     init() {
         MQTTclient = mqtt.connect({
-            host: 'm21.cloudmqtt.com',
-            port: 12787,
-            auth: `wvzaejdb:-rewPZuV-ilM`
+            host: process.env.E2E_MQTT_HOSTNAME,
+            port: process.env.E2E_MQTT_PORT,
+            auth: `${process.env.E2E_MQTT_USERNAME}:${process.env.E2E_MQTT_PASSWORD}`
         });
-
-
-        // MQTTclient = mqtt.connect({
-        //     host: config.mqtt.hostname,
-        //     port: config.mqtt.port,
-        //     auth: `${config.mqtt.username}:${config.mqtt.password}`
-        // });
     },
 
+    /*
+     * Method for publish message to mqtt chanel
+     * param {String} device - name of device
+     * param {String} message - massage
+     *
+     * Example in your e2e tests:
+     * browser.MQTT.publish('distance1', '700');
+    */
     publish(device, message) {
         MQTTclient.publish(`/smart-home/out/${device}`, message);
     }
