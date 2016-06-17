@@ -1,6 +1,7 @@
 <div class="sensor-widget">
     <div class="sensor-widget_value">
         <span>{{data.value}}</span>
+        <span [hidden]="!data.value">{{device.metrics}}</span>
     </div>
     <div class="sensor-widget_description">
         <span>{{device.description}}</span>

@@ -24,6 +24,11 @@
                ngControl="description"
                type="text" id="sensor-detail__description" placeholder="Enter description"/>
     </div>
+    <div class="sensor-detail__metrics">
+        <label for="sensor-detail__id">Metrics</label>
+        <input [(ngModel)]="sensor.metrics"
+               type="text" id="sensor-detail__metrics" placeholder="Enter metrics"/>
+    </div>
     <p class="sensor-detail__status">
         <input [(ngModel)]="sensor.executor"
                ngControl="executor"
