@@ -1,6 +1,6 @@
 'use strict';
 
-const URL = 'https://garage-it-smart-house.herokuapp.com/#/';
+const URL = 'https://garage-it-smart-house-qa.herokuapp.com/#/';
 
 const mqttApi = require('../e2e/mqtt-api/');
 
