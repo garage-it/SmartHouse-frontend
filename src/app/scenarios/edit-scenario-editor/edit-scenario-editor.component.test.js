@@ -1,11 +1,11 @@
 import {beforeEachProviders} from 'angular2/testing';
 import {provide} from 'angular2/core';
 
-import {EditScenarioComponent} from './edit-scenario.component';
 import {RouteParams} from 'angular2/router';
 import {ScenarioService} from '../Scenario.service.js';
+import {EditScenarioEditorComponent} from './edit-scenario-editor.component';
 
-describe('EditScenarioComponent', () => {
+describe('EditScenarioEditorComponent', () => {
     let scenarioService;
     let scenario;
     let sut;
@@ -43,7 +43,7 @@ describe('EditScenarioComponent', () => {
 
         scenarioService = new ScenarioServiceMock();
         routeParams = new RouteParamsMock();
-        sut = new EditScenarioComponent(scenarioService, routeParams);
+        sut = new EditScenarioEditorComponent(scenarioService, routeParams);
 
         spyOn(sut, 'back');
         spyOn(scenarioService, 'get').and.callThrough();

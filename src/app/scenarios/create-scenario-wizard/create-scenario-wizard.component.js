@@ -32,8 +32,8 @@ export class CreateScenarioWizardComponent extends ScenarioDetailsComponent {
             .getSensors()
             .subscribe(devices => {
                 this.devices = devices;
-                const conditions = [new Condition(this.devices)];
-                const actions = [new Action(this.devices)];
+                const conditions = [new Condition(devices)];
+                const actions = [new Action(devices)];
                 const logicalOperators = LogicalOperator;
                 this.scenario = new Scenario(conditions, actions, logicalOperators);
             });
@@ -56,6 +56,7 @@ export class CreateScenarioWizardComponent extends ScenarioDetailsComponent {
     }
 
     save(scenario) {
+        this.scenario.sourceType = 'WIZARD';
         this._scenarioService.create(scenario)
             .subscribe(() => this.back());
     }

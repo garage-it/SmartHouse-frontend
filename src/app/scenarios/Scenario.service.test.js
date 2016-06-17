@@ -7,6 +7,28 @@ describe('ScenarioService', () => {
     let observable;
     let httpMock;
     let sut;
+    const id = 123;
+    const device = {
+        mqttId: '3423'
+    };
+    const devices = [device];
+    const condition = {
+        selectedDevice: 'temp',
+        selectedCondition: 'MORE_OR_EQUAL',
+        value: 'some value',
+        devices
+    };
+    const action = {
+        selectedDevice: 'temp',
+        devices,
+        value: 'some value'
+    };
+    const scenario = {
+        id: 123,
+        conditions: [condition],
+        actions: [action],
+        sourceType: 'WIZARD'
+    };
 
     beforeEach(() => {
         scenariosData = [
@@ -32,7 +54,17 @@ describe('ScenarioService', () => {
         expect(sut).toBeDefined();
     });
 
-    describe('Get scenarios', () => {
+    describe('Get scenarios with promise', () => {
+        beforeEach(() => {
+            sut.get();
+        });
+
+        it('should get scenarios data from the server', () => {
+            expect(httpMock.get).toHaveBeenCalledWith('/scenarios/');
+        });
+    });
+
+    describe('Get scenarios without promise', () => {
         beforeEach(() => {
             sut.get();
         });
@@ -43,38 +75,81 @@ describe('ScenarioService', () => {
     });
 
     describe('Get concrete scenario', () => {
-        const id = 123;
+        beforeEach(() => {
+            sut.get(id);
+        });
 
         it('should get scenario data from the server', () => {
-            sut.get(id);
             expect(httpMock.get).toHaveBeenCalledWith(`/scenarios/${id}`);
         });
     });
 
     describe('Create scenario', () => {
-        const scenario = {blabla: 'blabla'};
+        const expectedScenario = {
+            id,
+            conditions: [
+                {
+                    device: condition.selectedDevice,
+                    condition: condition.selectedCondition,
+                    value: condition.value
+                }
+            ],
+            actions: [
+                {
+                    device: action.selectedDevice,
+                    value: action.value
+                }
+            ],
+            sourceType: 'WIZARD',
+            isConvertible: true
+        };
+        const createScenario = Object.assign({}, scenario);
+        beforeEach(() => {
+            sut.create(createScenario);
+        });
 
-        it('should post scenario data to the server', () => {
-            sut.create(scenario);
-            expect(httpMock.post).toHaveBeenCalledWith('/scenarios', scenario);
+        it('should create scenario', () => {
+            expect(httpMock.post).toHaveBeenCalledWith('/scenarios', expectedScenario);
         });
     });
 
     describe('Update scenario', () => {
-        const scenario = { id: 123 };
+        const expectedScenario = {
+            id,
+            conditions: [
+                {
+                    device: condition.selectedDevice,
+                    condition: condition.selectedCondition,
+                    value: condition.value
+                }
+            ],
+            actions: [
+                {
+                    device: action.selectedDevice,
+                    value: action.value
+                }
+            ],
+            sourceType: 'WIZARD',
+            isConvertible: true
+        };
+        const updateScenario = Object.assign({}, scenario);
 
-        it('should put scenario data to the server', () => {
-            sut.update(scenario);
-            expect(httpMock.put).toHaveBeenCalledWith(`/scenarios/${scenario.id}`, scenario);
+
+        it('should updated scenario', () => {
+            sut.update(updateScenario);
+            expect(httpMock.put).toHaveBeenCalledWith(`/scenarios/${id}`, expectedScenario);
         });
-    });
 
-    describe('Update scenario without promise', () => {
-        it('should update scenarios data from the server', () => {
-            const mockedScenario = { id: 123 };
-            sut.update(mockedScenario);
-            expect(httpMock.put)
-                .toHaveBeenCalledWith(`/scenarios/${mockedScenario.id}`, mockedScenario);
+        it('should not convert scenario if it was created in Editor', () => {
+            const scenarioFromEditor = {
+                id: 123,
+                body: 'console.log(',
+                name: 'scenario name',
+                sourceType: 'EDITOR'
+            };
+
+            sut.update(scenarioFromEditor);
+            expect(httpMock.put).toHaveBeenCalledWith(`/scenarios/${id}`, scenarioFromEditor);
         });
     });
 
@@ -84,7 +159,7 @@ describe('ScenarioService', () => {
             expect(httpMock.delete).toHaveBeenCalled();
         });
 
-        it('should agregate route and scenario id', () => {
+        it('should aggregate route and scenario id', () => {
             sut.delete({ id: '111' });
             expect(httpMock.delete).toHaveBeenCalledWith('/scenarios/111');
         });

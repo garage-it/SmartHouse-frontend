@@ -1,10 +1,10 @@
 export default class {
-    constructor(devices) {
+    constructor(devices, initOptions = {}) {
         this.devices = devices;
-        this.selectedDevice = null;
+        this.selectedDevice = initOptions.device || null;
         this.values = [
-            {id: 0, name: 'Turn ON'}, {id: 1, name: 'Turn OF'}
+            {id: 'ON', name: 'Turn ON'}, {id: 'OFF', name: 'Turn OFF'}
         ];
-        this.selectedValue = '';
+        this.value = initOptions.value || '';
     }
 }

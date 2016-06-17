@@ -5,28 +5,21 @@
             Back to list
         </a>
     </div>
-    <div class="row">
-        <div class="col s7">
-            <h1>New scenario</h1>
-        </div>
-        <div class="col s5">
-            <a [routerLink]="['/CreateScenarioEditor']" class="nav-link right">
-                <i class="material-icons">edit</i>
-                Go to Editor
-            </a>
-        </div>
-    </div>
 </div>
 
 <form class="scenario-details" (ngSubmit)="save(scenario)">
     <scenario-wizard
         [scenario]="scenario"
         (onAddCriteria)="onAddCriteria()"
-        (onRemoveCriteria)="onRemoveCriteria($event)"
+        (onRemoveCriteria)="onRemoveCriteria()"
         (onAddAction)="onAddAction()"
-        (onRemoveAction)="onRemoveAction($event)">
+        (onRemoveAction)="onRemoveAction()">
     </scenario-wizard>
 
     <button class="waves-effect waves-light btn blue-grey darken-1"
             type="submit">SAVE SCENARIO</button>
+    <button (click)="delete(scenario)"
+            class="waves-effect waves-light btn blue-grey darken-1">
+        Remove SCENARIO
+    </button>
 </form>

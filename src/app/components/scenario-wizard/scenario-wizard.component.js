@@ -40,4 +40,8 @@ export class ScenarioWizardComponent {
     removeAction(index) {
         this.onRemoveAction.emit(index);
     }
+
+    removeActionBtnVisible() {
+        return this.scenario.actions.length > 1;
+    }
 }
