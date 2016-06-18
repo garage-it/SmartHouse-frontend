@@ -1,9 +1,9 @@
-import {Home} from './home';
+import {Help} from './help';
 
-describe('Home', () => {
+describe('Help', () => {
     describe('#constructor', () => {
         it('should be defined', () => {
-            expect(Home).toBeDefined();
+            expect(Help).toBeDefined();
         });
     });
 });
