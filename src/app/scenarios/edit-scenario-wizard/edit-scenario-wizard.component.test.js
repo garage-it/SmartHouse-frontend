@@ -9,7 +9,6 @@ import {DeviceListService} from '../../components/shared/device-list.service';
 import Scenario from '../scenario-entities/Scenario';
 import Condition from '../scenario-entities/Condition';
 import Action from '../scenario-entities/Action';
-import LogicalOperator from '../scenario-entities/LogicalOperator';
 
 describe('EditScenarioWizardComponent', () => {
     let scenarioService;
@@ -21,8 +20,10 @@ describe('EditScenarioWizardComponent', () => {
         'device1', 'device2'
     ];
     const scenario = {
-        conditions: ['cond1', 'cond2'],
-        actions: ['action1', 'action2']
+        wizard: {
+            conditions: ['cond1', 'cond2'],
+            actions: ['action1', 'action2']
+        }
     };
 
     class RouteParamsMock {
@@ -109,10 +110,16 @@ describe('EditScenarioWizardComponent', () => {
         });
 
         it('should save fetched scenario', () => {
-            const conditions = mapConditions(expectedDevices, scenario.conditions);
-            const actions = mapActions(expectedDevices, scenario.actions);
+            const conditions = mapConditions(expectedDevices, scenario.wizard.conditions);
+            const actions = mapActions(expectedDevices, scenario.wizard.actions);
             expect(sut.scenario)
-                .toEqual(new Scenario(conditions, actions, LogicalOperator, scenario));
+                .toEqual(new Scenario({
+                    wizard: {
+                        logicalOperator: undefined,
+                        conditions,
+                        actions
+                    }
+                }));
         });
     });
 
@@ -122,7 +129,7 @@ describe('EditScenarioWizardComponent', () => {
         });
 
         it('should update scenario', () => {
-            expect(scenarioService.update).toHaveBeenCalledWith(scenario);
+            expect(scenarioService.update).toHaveBeenCalledWith(scenario, true);
         });
 
         it('should go back', () => {

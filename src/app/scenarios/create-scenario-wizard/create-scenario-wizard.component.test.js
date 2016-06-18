@@ -4,7 +4,6 @@ import {DeviceListService} from '../../components/shared/device-list.service';
 import Action from '../scenario-entities/Action';
 import Condition from '../scenario-entities/Condition';
 import Scenario from '../scenario-entities/Scenario';
-import LogicalOperator from '../scenario-entities/LogicalOperator';
 
 describe('CreateScenarioWizardComponent', () => {
     let scenarioService;
@@ -18,8 +17,7 @@ describe('CreateScenarioWizardComponent', () => {
     function createScenario() {
         const conditions = [new Condition(devices)];
         const actions = [new Action(devices)];
-        const logicalOperators = LogicalOperator;
-        return new Scenario(conditions, actions, logicalOperators);
+        return new Scenario({ wizard: { conditions, actions }});
     }
 
     beforeEach(() => {
@@ -62,7 +60,7 @@ describe('CreateScenarioWizardComponent', () => {
         });
 
         it('should create scenario', () => {
-            expect(scenarioService.create).toHaveBeenCalledWith(scenario);
+            expect(scenarioService.create).toHaveBeenCalledWith(scenario, true);
         });
 
         it('should go back', () => {
@@ -78,22 +76,22 @@ describe('CreateScenarioWizardComponent', () => {
 
         it('should add new condition when criteria is added', () => {
             sut.onAddCriteria();
-            expect(sut.scenario.conditions.length).toEqual(2);
+            expect(sut.scenario.wizard.conditions.length).toEqual(2);
         });
 
         it('should remove condition when criteria is removed', () => {
             sut.onRemoveCriteria();
-            expect(sut.scenario.conditions.length).toEqual(0);
+            expect(sut.scenario.wizard.conditions.length).toEqual(0);
         });
 
         it('should add new action when action is added', () => {
             sut.onAddAction();
-            expect(sut.scenario.actions.length).toEqual(2);
+            expect(sut.scenario.wizard.actions.length).toEqual(2);
         });
 
         it('should remove action when action is removed', () => {
             sut.onRemoveAction();
-            expect(sut.scenario.actions.length).toEqual(0);
+            expect(sut.scenario.wizard.actions.length).toEqual(0);
         });
     });
 });

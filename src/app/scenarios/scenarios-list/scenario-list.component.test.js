@@ -36,10 +36,7 @@ describe('ScenarioListComponent', () => {
     let sut;
     let scenarioService;
     let listData;
-    const scenario = {
-        id: 123,
-        sourceType: 'EDITOR'
-    };
+    let scenario;
     let router;
 
     beforeEachProviders(() => [
@@ -49,6 +46,10 @@ describe('ScenarioListComponent', () => {
     ]);
 
     beforeEach(() => {
+        scenario = {
+            id: 123
+        };
+
         listData = [
             {id: '1', value: 'testValue1'},
             {id: '2', value: 'testValue2'}
@@ -119,13 +120,14 @@ describe('ScenarioListComponent', () => {
 
     describe('#navigateToEditView', () => {
         it('should navigate to EditScenarioEditor', () => {
+            scenario.isConvertable = false;
             sut.navigateToEditView(scenario);
             expect(sut.router.navigate)
                 .toHaveBeenCalledWith(['EditScenarioEditor', {id: scenario.id}]);
         });
 
         it('should navigate to EditScenarioWizard', () => {
-            scenario.sourceType = 'WIZARD';
+            scenario.isConvertable = true;
             sut.navigateToEditView(scenario);
             expect(sut.router.navigate)
                 .toHaveBeenCalledWith(['EditScenarioWizard', {id: scenario.id}]);

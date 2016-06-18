@@ -2,6 +2,7 @@ import {EventEmitter} from 'angular2/core';
 import {Component} from 'angular2/core';
 import template from './scenario-wizard.html';
 import style from './scenario-wizard.scss';
+import LOGICAL_OPERATORS from '../../scenarios/scenario-entities/logical-operators.const.js';
 const selector = 'scenario-wizard';
 
 @Component({
@@ -23,6 +24,8 @@ export class ScenarioWizardComponent {
         this.onRemoveCriteria = new EventEmitter();
         this.onAddAction = new EventEmitter();
         this.onRemoveAction = new EventEmitter();
+
+        this.LOGICAL_OPERATORS = LOGICAL_OPERATORS;
     }
 
     addCriteria() {
@@ -42,6 +45,6 @@ export class ScenarioWizardComponent {
     }
 
     removeActionBtnVisible() {
-        return this.scenario.actions.length > 1;
+        return this.scenario.wizard.actions.length > 1;
     }
 }

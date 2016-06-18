@@ -20,6 +20,7 @@
 
 <form class="scenario-details" (ngSubmit)="save(scenario)">
     <scenario-wizard
+        *ngIf="scenario && scenario.wizard"
         [scenario]="scenario"
         (onAddCriteria)="onAddCriteria()"
         (onRemoveCriteria)="onRemoveCriteria($event)"
