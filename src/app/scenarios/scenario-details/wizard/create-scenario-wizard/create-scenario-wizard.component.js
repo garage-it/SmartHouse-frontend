@@ -1,13 +1,13 @@
 import {Component} from 'angular2/core';
 import {RouteParams, Router, RouterLink} from 'angular2/router';
 import template from './create-scenario-wizard.html';
-import {DeviceListService} from '../../components/shared/device-list.service';
+import {DeviceListService} from '../../../../components/shared/device-list.service';
 import Action from '../scenario-entities/Action';
 import Condition from '../scenario-entities/Condition';
 import Scenario from '../scenario-entities/Scenario';
-import {ScenarioDetailsComponent} from '../scenario-details/scenario-details.component';
-import {ScenarioService} from '../Scenario.service.js';
-import {ScenarioWizardComponent} from '../../components/scenario-wizard/scenario-wizard.component';
+import {ScenarioDetailsComponent} from '../../scenario-details.component';
+import {ScenarioService} from '../../../shared/Scenario.service.js';
+import {ScenarioWizardComponent} from '../scenario-wizard/scenario-wizard.component';
 
 @Component({
     template,

@@ -1,7 +1,7 @@
 import {RouteParams, Router} from 'angular2/router';
 
-import {ScenarioDetailsComponent} from '../scenario-details/scenario-details.component';
-import {ScenarioService} from '../Scenario.service.js';
+import {ScenarioDetailsComponent} from '../../scenario-details.component';
+import {ScenarioService} from '../../../shared/Scenario.service.js';
 
 export class EditScenarioEditorComponent extends ScenarioDetailsComponent {
     scenarioDetailsMode = 'edit';

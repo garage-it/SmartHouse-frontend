@@ -1,5 +1,5 @@
 import {Injectable} from 'angular2/core';
-import ShHttpService from '../sh-http/sh-http.service.js';
+import ShHttpService from '../../sh-http/sh-http.service.js';
 
 // TODO: let's use 'streams' approach. All promises functions should be
 // removed in future after refactoring

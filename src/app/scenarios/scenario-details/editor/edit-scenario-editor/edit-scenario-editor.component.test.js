@@ -2,8 +2,8 @@ import {beforeEachProviders} from 'angular2/testing';
 import {provide} from 'angular2/core';
 
 import {RouteParams} from 'angular2/router';
-import {ScenarioService} from '../Scenario.service.js';
-import {EditScenarioEditorComponent} from './edit-scenario-editor.component';
+import {ScenarioService} from '../../../shared/Scenario.service.js';
+import {EditScenarioEditorComponent} from './edit-scenario-editor.component.js';
 
 describe('EditScenarioEditorComponent', () => {
     let scenarioService;

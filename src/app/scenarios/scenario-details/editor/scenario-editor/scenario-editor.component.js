@@ -8,7 +8,7 @@ import 'codemirror/addon/edit/matchbrackets.js';
 import 'codemirror/addon/edit/closebrackets.js';
 import 'codemirror/mode/javascript/javascript.js';
 
-import CODE_MIRROR_EVENTS from './CODE_MIRROR_EVENTS';
+import CODE_MIRROR_EVENTS from './code-mirror-events.const.js';
 
 const selector = 'scenario-editor';
 

@@ -1,11 +1,11 @@
 import {beforeEachProviders} from 'angular2/testing';
 import {provide} from 'angular2/core';
 import {Observable} from 'rxjs/Rx';
-import {EditScenarioWizardComponent} from './edit-scenario-wizard.component';
+import {EditScenarioWizardComponent} from './edit-scenario-wizard.component.js';
 import {RouteParams} from 'angular2/router';
-import {ScenarioService} from '../Scenario.service';
+import {ScenarioService} from '../../../shared/Scenario.service.js';
 
-import {DeviceListService} from '../../components/shared/device-list.service';
+import {DeviceListService} from '../../../../components/shared/device-list.service';
 import Scenario from '../scenario-entities/Scenario';
 import Condition from '../scenario-entities/Condition';
 import Action from '../scenario-entities/Action';

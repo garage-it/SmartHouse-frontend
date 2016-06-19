@@ -3,8 +3,8 @@ import {RouteParams, Router, RouterLink} from 'angular2/router';
 
 import template from './scenario-details.html';
 import style from './scenario-details.scss';
-import {ScenarioService} from '../Scenario.service.js';
-import {ScenarioEditor} from '../scenario-editor/scenario-editor.component.js';
+import {ScenarioService} from '../shared/Scenario.service.js';
+import {ScenarioEditor} from './editor/scenario-editor/scenario-editor.component.js';
 
 const selector = 'scenario-list';
 
