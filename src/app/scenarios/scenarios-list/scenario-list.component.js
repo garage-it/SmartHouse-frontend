@@ -3,7 +3,7 @@ import {RouterLink, Router} from 'angular2/router';
 
 import template from './scenario-list.html';
 import style from './scenario-list.scss';
-import {ScenarioService} from './../Scenario.service.js';
+import {ScenarioService} from './../shared/Scenario.service.js';
 
 const selector = 'scenario-list';
 const headersForDisplay = [

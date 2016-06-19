@@ -3,13 +3,13 @@ import Rx from 'rxjs/Rx';
 import {RouteParams, RouterLink, Router} from 'angular2/router';
 import template from './edit-scenario-wizard.html';
 import {CreateScenarioWizardComponent}
-    from '../create-scenario-wizard/create-scenario-wizard.component';
-import {ScenarioService} from '../Scenario.service.js';
-import {DeviceListService} from '../../components/shared/device-list.service';
+    from '../create-scenario-wizard/create-scenario-wizard.component.js';
+import {ScenarioService} from '../../../shared/Scenario.service.js';
+import {DeviceListService} from '../../../../components/shared/device-list.service';
 import Condition from '../scenario-entities/Condition';
 import Action from '../scenario-entities/Action';
 import Scenario from '../scenario-entities/Scenario';
-import {ScenarioWizardComponent} from '../../components/scenario-wizard/scenario-wizard.component';
+import {ScenarioWizardComponent} from '../scenario-wizard/scenario-wizard.component';
 
 @Component({
     template,

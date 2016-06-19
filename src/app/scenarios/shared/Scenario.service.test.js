@@ -1,4 +1,4 @@
-import {ScenarioService} from './Scenario.service';
+import {ScenarioService} from './Scenario.service.js';
 import {Http} from 'angular2/http';
 import {Observable} from 'rxjs/Observable';
 

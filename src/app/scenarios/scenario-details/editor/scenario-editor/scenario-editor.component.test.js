@@ -1,5 +1,5 @@
-import {ScenarioEditor} from './scenario-editor.component';
-import CODE_MIRROR_EVENTS from './CODE_MIRROR_EVENTS';
+import {ScenarioEditor} from './scenario-editor.component.js';
+import CODE_MIRROR_EVENTS from './code-mirror-events.const.js';
 
 describe('ScenarioEditor', () => {
     let sut;
