@@ -25,7 +25,7 @@
 </div>
 <div class="row gray-bg" *ngFor="#condition of scenario.wizard.conditions; #i=index">
     <div class="col s3">
-        <span>Device {{i}}</span>
+        <span>Device</span>
         <select [(ngModel)]="condition.selectedDevice" required name="deviceSelect">
             <option [value]="undefined">Choose trigger</option>
             <option *ngFor="#device of condition.devices"
