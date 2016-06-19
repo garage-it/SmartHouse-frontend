@@ -9,7 +9,6 @@ import {DeviceListService} from '../../components/shared/device-list.service';
 import Condition from '../scenario-entities/Condition';
 import Action from '../scenario-entities/Action';
 import Scenario from '../scenario-entities/Scenario';
-import LogicalOperator from '../scenario-entities/LogicalOperator';
 import {ScenarioWizardComponent} from '../../components/scenario-wizard/scenario-wizard.component';
 
 @Component({
@@ -39,25 +38,30 @@ export class EditScenarioWizardComponent extends CreateScenarioWizardComponent {
         );
 
         source.subscribe(result => {
-            this.devices = result[0];
+            const devices = result[0];
             const scenario = result[1];
-            const conditions = this.mapConditions(this.devices, scenario.conditions);
-            const actions = this.mapActions(this.devices, scenario.actions);
-            const logicalOperators = LogicalOperator;
-            this.scenario = new Scenario(conditions, actions, logicalOperators, scenario);
+
+            this.devices = devices;
+
+            scenario.wizard = {
+                logicalOperator: scenario.wizard && scenario.wizard.logicalOperator,
+                conditions: mapConditions(this.devices, scenario.wizard.conditions),
+                actions: mapActions(this.devices, scenario.wizard.actions)
+            };
+            this.scenario = new Scenario(scenario);
         });
-    }
 
-    mapConditions(devices, conditions) {
-        return conditions.map((condition) => new Condition(devices, condition));
-    }
+        function mapConditions(devices, conditions) {
+            return conditions.map((condition) => new Condition(devices, condition));
+        }
 
-    mapActions(devices, actions) {
-        return actions.map(action => new Action(devices, action));
+        function mapActions(devices, actions) {
+            return actions.map(action => new Action(devices, action));
+        }
     }
 
     save(scenario) {
-        this.scenarioService.update(scenario)
+        this.scenarioService.update(scenario, true)
             .subscribe(() => {
                 this.back();
             });

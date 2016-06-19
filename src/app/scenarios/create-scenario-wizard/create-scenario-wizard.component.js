@@ -5,7 +5,6 @@ import {DeviceListService} from '../../components/shared/device-list.service';
 import Action from '../scenario-entities/Action';
 import Condition from '../scenario-entities/Condition';
 import Scenario from '../scenario-entities/Scenario';
-import LogicalOperator from '../scenario-entities/LogicalOperator';
 import {ScenarioDetailsComponent} from '../scenario-details/scenario-details.component';
 import {ScenarioService} from '../Scenario.service.js';
 import {ScenarioWizardComponent} from '../../components/scenario-wizard/scenario-wizard.component';
@@ -32,32 +31,34 @@ export class CreateScenarioWizardComponent extends ScenarioDetailsComponent {
             .getSensors()
             .subscribe(devices => {
                 this.devices = devices;
-                const conditions = [new Condition(devices)];
-                const actions = [new Action(devices)];
-                const logicalOperators = LogicalOperator;
-                this.scenario = new Scenario(conditions, actions, logicalOperators);
+                const newScenario = {
+                    wizard: {
+                        conditions: [new Condition(devices)],
+                        actions: [new Action(devices)]
+                    }
+                };
+                this.scenario = new Scenario(newScenario);
             });
     }
 
     onAddCriteria() {
-        this.scenario.conditions.push(new Condition(this.devices));
+        this.scenario.wizard.conditions.push(new Condition(this.devices));
     }
 
     onRemoveCriteria(index) {
-        this.scenario.conditions.splice(index, 1);
+        this.scenario.wizard.conditions.splice(index, 1);
     }
 
     onAddAction() {
-        this.scenario.actions.push(new Action(this.devices));
+        this.scenario.wizard.actions.push(new Action(this.devices));
     }
 
     onRemoveAction(index) {
-        this.scenario.actions.splice(index, 1);
+        this.scenario.wizard.actions.splice(index, 1);
     }
 
     save(scenario) {
-        this.scenario.sourceType = 'WIZARD';
-        this._scenarioService.create(scenario)
+        this._scenarioService.create(scenario, true)
             .subscribe(() => this.back());
     }
 }

@@ -46,7 +46,8 @@
     ],
     "comma-dangle": "off",
     "padded-blocks": "warn",
-    "new-cap": "off"
+    "new-cap": "off",
     // ECMAScript 6
+    "no-use-before-define": ["error", { "functions": false, "classes": true }]
   }
 }

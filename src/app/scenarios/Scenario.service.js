@@ -13,47 +13,59 @@ export class ScenarioService {
         return this.http.get(`/scenarios/${id}`);
     }
 
-    update(scenario) {
-        return this.http.put(`/scenarios/${scenario.id}`, this.mapScenario(scenario));
+    update(scenario, isWizard) { // TODO: use separate service for mapping wizard
+        return this.http.put(`/scenarios/${scenario.id}`, getScenario(scenario, isWizard));
     }
 
-    create(scenario) {
-        return this.http.post('/scenarios', this.mapScenario(scenario));
+    create(scenario, isWizard) { // TODO: use separate service for mapping wizard
+        return this.http.post('/scenarios', getScenario(scenario, isWizard));
     }
 
     delete(scenario) {
         return this.http.delete(`/scenarios/${scenario.id}`);
     }
 
-    mapScenario(scenario) {
-        if (scenario.sourceType === 'EDITOR') {
-            return scenario;
+}
+
+function getScenario(scenario, isWizard) {
+    return isWizard ? mapScenario(scenario) : cleanScenario(scenario);
+}
+
+function cleanScenario(scenario) {
+    const result = Object.assign({}, scenario);
+    delete result.sourceType;
+    delete result.wizard;
+    return result;
+}
+
+function mapScenario(scenario) {
+    const logicalOperator = scenario.wizard.logicalOperator;
+    const conditions = getConditions(scenario.wizard.conditions);
+    const actions = getActions(scenario.wizard.actions);
+
+    return Object.assign({}, scenario, {
+        isConvertable: true,
+        body: '',                   // <- erasing any existing script
+        wizard: {
+            logicalOperator,
+            conditions,
+            actions,
         }
+    });
 
-        const {conditions, actions} = scenario;
-        return Object.assign(scenario, {
-            conditions: this.getConditions(conditions),
-            actions: this.getActions(actions),
-            isConvertible: true
-        });
+
+    function getConditions(_conditions) {
+        return _conditions.map(condition => ({
+            device: condition.selectedDevice,
+            condition: condition.selectedCondition,
+            value: condition.value
+        }));
     }
 
-    getConditions(conditions) {
-        return conditions.map(condition => {//eslint-disable-line
-            return {
-                device: condition.selectedDevice,
-                condition: condition.selectedCondition,
-                value: condition.value
-            };
-        });
-    }
-
-    getActions(actions) {
-        return actions.map((item) => {//eslint-disable-line
-            return {
-                device: item.selectedDevice,
-                value: item.value
-            };
-        });
+    function getActions(_actions) {
+        return _actions.map(item => ({
+            device: item.selectedDevice,
+            value: item.value
+        }));
     }
 }

@@ -33,25 +33,37 @@ describe('ScenarioWizardComponent', () => {
     });
 
     it('should show remove-button if there are more than 1 actions', () => {
-        sut.scenario = {actions: [1, 2]};
+        sut.scenario = {
+            wizard: {
+                actions: [1, 2]
+            }
+        };
         expect(sut.removeActionBtnVisible()).toEqual(true);
     });
 
     it('should hide remove-button if there is 1 action', () => {
-        sut.scenario = {actions: [1]};
+        sut.scenario = {
+            wizard: {
+                actions: [1]
+            }
+        };
         expect(sut.removeActionBtnVisible()).toEqual(false);
     });
 
     it('should show remove btn if there are more than 1 action', () => {
         sut.scenario = {
-            actions: [1, 2]
+            wizard: {
+                actions: [1, 2]
+            }
         };
         expect(sut.removeActionBtnVisible()).toEqual(true);
     });
 
     it('should NOT show remove btn if there is only one action', () => {
         sut.scenario = {
-            actions: [1]
+            wizard: {
+                actions: [1]
+            }
         };
         expect(sut.removeActionBtnVisible()).toEqual(false);
     });

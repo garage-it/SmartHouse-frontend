@@ -23,11 +23,14 @@ describe('ScenarioService', () => {
         devices,
         value: 'some value'
     };
+    const LOGICAL_OPERATOR = 'OR';
     const scenario = {
         id: 123,
-        conditions: [condition],
-        actions: [action],
-        sourceType: 'WIZARD'
+        wizard: {
+            logicalOperator: LOGICAL_OPERATOR,
+            conditions: [condition],
+            actions: [action]
+        }
     };
 
     beforeEach(() => {
@@ -85,58 +88,62 @@ describe('ScenarioService', () => {
     });
 
     describe('Create scenario', () => {
-        const expectedScenario = {
-            id,
-            conditions: [
-                {
-                    device: condition.selectedDevice,
-                    condition: condition.selectedCondition,
-                    value: condition.value
-                }
-            ],
-            actions: [
-                {
-                    device: action.selectedDevice,
-                    value: action.value
-                }
-            ],
-            sourceType: 'WIZARD',
-            isConvertible: true
-        };
-        const createScenario = Object.assign({}, scenario);
-        beforeEach(() => {
-            sut.create(createScenario);
-        });
-
         it('should create scenario', () => {
+            const expectedScenario = {
+                id,
+                body: '',
+                isConvertable: true,
+                wizard: {
+                    logicalOperator: LOGICAL_OPERATOR,
+                    conditions: [
+                        {
+                            device: condition.selectedDevice,
+                            condition: condition.selectedCondition,
+                            value: condition.value
+                        }
+                    ],
+                    actions: [
+                        {
+                            device: action.selectedDevice,
+                            value: action.value
+                        }
+                    ]
+                }
+            };
+            const createScenario = Object.assign({}, scenario);
+
+            sut.create(createScenario, true);
             expect(httpMock.post).toHaveBeenCalledWith('/scenarios', expectedScenario);
         });
     });
 
     describe('Update scenario', () => {
-        const expectedScenario = {
-            id,
-            conditions: [
-                {
-                    device: condition.selectedDevice,
-                    condition: condition.selectedCondition,
-                    value: condition.value
-                }
-            ],
-            actions: [
-                {
-                    device: action.selectedDevice,
-                    value: action.value
-                }
-            ],
-            sourceType: 'WIZARD',
-            isConvertible: true
-        };
-        const updateScenario = Object.assign({}, scenario);
-
-
         it('should updated scenario', () => {
-            sut.update(updateScenario);
+            const expectedScenario = {
+                id,
+                body: '',
+                isConvertable: true,
+                wizard: {
+                    logicalOperator: LOGICAL_OPERATOR,
+                    conditions: [
+                        {
+                            device: condition.selectedDevice,
+                            condition: condition.selectedCondition,
+                            value: condition.value
+                        }
+                    ],
+                    actions: [
+                        {
+                            device: action.selectedDevice,
+                            value: action.value
+                        }
+                    ]
+                }
+            };
+            const updateScenario = Object.assign({}, scenario);
+
+
+            sut.update(updateScenario, true);
             expect(httpMock.put).toHaveBeenCalledWith(`/scenarios/${id}`, expectedScenario);
         });
 
@@ -144,8 +151,7 @@ describe('ScenarioService', () => {
             const scenarioFromEditor = {
                 id: 123,
                 body: 'console.log(',
-                name: 'scenario name',
-                sourceType: 'EDITOR'
+                name: 'scenario name'
             };
 
             sut.update(scenarioFromEditor);

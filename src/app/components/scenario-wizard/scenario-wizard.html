@@ -13,8 +13,8 @@
             If
             <select name="logicalOperator"
                     class="operators-select"
-                    [(ngModel)]="scenario.logicalOperator">
-                <option *ngFor="#operator of scenario.logicalOperators"
+                    [(ngModel)]="scenario.wizard.logicalOperator">
+                <option *ngFor="#operator of LOGICAL_OPERATORS"
                         [value]="operator.id">{{operator.name}}
                 </option>
             </select>
@@ -23,7 +23,7 @@
 
     </div>
 </div>
-<div class="row gray-bg" *ngFor="#condition of scenario.conditions;#i=index">
+<div class="row gray-bg" *ngFor="#condition of scenario.wizard.conditions; #i=index">
     <div class="col s3">
         <span>Device</span>
         <select [(ngModel)]="condition.selectedDevice" required name="deviceSelect">
@@ -48,7 +48,7 @@
                [(ngModel)]="condition.value"
                placeholder="Enter value"/>
     </div>
-    <div class="col s1" *ngIf="scenario.conditions.length>1">
+    <div class="col s1" *ngIf="scenario.wizard.conditions.length>1">
         <div>
             <i class="material-icons center"
                (click)="removeCriteria(i)"
@@ -66,7 +66,7 @@
         <h5>Then do the following</h5>
     </div>
 </div>
-<div class="row gray-bg" *ngFor="#action of scenario.actions; #i=index">
+<div class="row gray-bg" *ngFor="#action of scenario.wizard.actions; #i=index">
     <div class="col s3">
         <span>Device</span>
         <select [(ngModel)]="action.selectedDevice">

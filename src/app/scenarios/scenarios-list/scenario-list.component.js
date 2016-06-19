@@ -61,9 +61,9 @@ export class ScenarioListComponent {
     }
 
     navigateToEditView(scenario) {
-        const route = scenario.sourceType === 'EDITOR'
-            ? 'EditScenarioEditor'
-            : 'EditScenarioWizard';
+        const route = scenario.isConvertable
+            ? 'EditScenarioWizard'
+            : 'EditScenarioEditor';
         this.router.navigate([route, {id: scenario.id}]);
     }
 }
