@@ -50,7 +50,7 @@ describe('DashboardEditor', () => {
             sut.applyChanges([]);
         });
 
-        it('should create scenario', () => {
+        it('should save changes', () => {
             expect(dashboardService.applyChanges).toHaveBeenCalledWith([]);
         });
 
@@ -62,7 +62,7 @@ describe('DashboardEditor', () => {
     describe('#exitEditMode', () => {
         it('should exit edit mode', () => {
             sut.exitEditMode();
-            expect(router.navigate).toHaveBeenCalledWith(['/Dashboard']);
+            expect(router.navigate).toHaveBeenCalledWith(['Dashboard']);
         });
     });
 

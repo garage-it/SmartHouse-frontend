@@ -49,6 +49,6 @@ export class DashboardEditor {
     }
 
     exitEditMode() {
-        this.router.navigate(['/Dashboard']);
+        this.router.navigate(['Dashboard']);
     }
 }
