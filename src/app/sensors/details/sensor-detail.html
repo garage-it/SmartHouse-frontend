@@ -10,24 +10,49 @@
         <label for="sensor-detail__id">Device name</label>
         <input required [(ngModel)]="sensor.mqttId"
                ngControl="mqttId"
-               type="text" id="sensor-detail__id" placeholder="Enter descriptive name"/>
+               #mqttId="ngForm"
+               type="text" id="sensor-detail__id"
+               placeholder="Enter descriptive name"
+               required/>
+        <div [hidden]="!mqttId.touched || mqttId.valid" class="alert">
+            MQTT ID should be filled
+        </div>
     </div>
     <div class="sensor-detail__type">
         <label for="sensor-detail__id">Type</label>
         <input [(ngModel)]="sensor.type"
                ngControl="type"
-               type="text" id="sensor-detail__type" placeholder="Enter type"/>
+               #type="ngForm"
+               type="text" id="sensor-detail__type"
+               placeholder="Enter type"
+               required/>
+        <div [hidden]="!type.touched || type.valid" class="alert">
+            Type should be filled
+        </div>
     </div>
     <div class="sensor-detail__description">
         <label for="sensor-detail__id">Description</label>
         <input [(ngModel)]="sensor.description"
                ngControl="description"
-               type="text" id="sensor-detail__description" placeholder="Enter description"/>
+               #description="ngForm"
+               type="text" id="sensor-detail__description"
+               placeholder="Enter description"
+               required/>
+        <div [hidden]="!description.touched || description.valid" class="alert">
+            Description should be filled
+        </div>
     </div>
     <div class="sensor-detail__metrics">
         <label for="sensor-detail__id">Metrics</label>
         <input [(ngModel)]="sensor.metrics"
-               type="text" id="sensor-detail__metrics" placeholder="Enter metrics"/>
+               ngControl="metrics"
+               #metrics="ngForm"
+               type="text" id="sensor-detail__metrics"
+               placeholder="Enter metrics"
+               required/>
+        <div [hidden]="!metrics.touched || metrics.valid" class="alert">
+            Metrics should be filled
+        </div>
     </div>
     <p class="sensor-detail__status">
         <input [(ngModel)]="sensor.executor"
@@ -37,8 +62,10 @@
         <label for="sensor-detail__executor">Switcher</label>
     </p>
 
+    <button type="button" (click)="disp(mqttId)">111</button>
+
     <button (click)="save()"
-        [disabled]="!sensorForm.form.valid"
+        [disabled]="!sensorForm.valid"
         type="submit"
         class="waves-effect waves-light btn blue-grey darken-1">
         SAVE DEVICE
