@@ -7,7 +7,8 @@
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li *ngFor="#route of navigationRoutes">
                     <a [routerLink]="[route.name]"
-                      [style.background-image]="'url(' + route.iconImage + ')'">{{route.headerName}}</a>
+                       [class.router-active]="initialRouteActivated(route)"
+                       [style.background-image]="'url(' + route.iconImage + ')'">{{route.headerName}}</a>
                  </li>
             </ul>
         </div>

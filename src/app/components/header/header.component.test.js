@@ -1,4 +1,9 @@
-import { HeaderComponent } from './header.component';
+import { Router } from 'angular2/router';
+import {
+    HeaderComponent,
+    INITIAL_ROUTE,
+    INDEX_ROUTE
+} from './header.component';
 import * as routes from './../../routes';
 
 const mockedRoutes = [
@@ -12,10 +17,12 @@ const mockedRoutes = [
 
 describe('HeaderComponent', () => {
     let sut;
+    let router;
 
     beforeEach(() => {
+        router = jasmine.createSpyComponent(Router);
         routes.default = mockedRoutes;
-        sut = new HeaderComponent();
+        sut = new HeaderComponent(router);
     });
 
     it('should be defined', () => {
@@ -62,6 +69,24 @@ describe('HeaderComponent', () => {
 
             it('should return routes from collection except main page route', () => {
                 expect(sut.navigationRoutes).toEqual(expectedNavigationRoutes);
+            });
+
+            it('should return false for not initial routes', () => {
+                const route = { name: 'mock' };
+                expect(sut.initialRouteActivated(route)).toBe(false);
+            });
+
+            it('should check if index route is active', () => {
+                const route = { name: INITIAL_ROUTE };
+                const instruction = router.generate([INDEX_ROUTE]);
+                sut.initialRouteActivated(route);
+                expect(router.isRouteActive).toHaveBeenCalledWith(instruction);
+            });
+
+            it('should return true if initial route is active', () => {
+                const route = { name: INITIAL_ROUTE };
+                router.isRouteActive.and.returnValue(true);
+                expect(sut.initialRouteActivated(route)).toBe(true);
             });
         });
     });
