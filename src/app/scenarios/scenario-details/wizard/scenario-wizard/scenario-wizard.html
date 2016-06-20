@@ -48,8 +48,9 @@
                [(ngModel)]="condition.value"
                placeholder="Enter value"/>
     </div>
-    <div class="col s1" *ngIf="scenario.wizard.conditions.length>1">
-        <div>
+    <div class="col s1 remove-wrapper"
+         *ngIf="scenario.wizard.conditions.length>1">
+        <div class="icon-wrapper">
             <i class="material-icons center"
                (click)="removeCriteria(i)"
             >delete</i>
@@ -85,9 +86,9 @@
             </option>
         </select>
     </div>
-    <div class="col s1"
+    <div class="col s1 remove-wrapper"
          *ngIf="removeActionBtnVisible()">
-        <div>
+        <div class="icon-wrapper">
             <i (click)="removeAction(i)" class="material-icons center">delete</i>
         </div>
     </div>
