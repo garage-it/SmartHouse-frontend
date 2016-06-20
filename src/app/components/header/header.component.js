@@ -24,10 +24,23 @@ export class HeaderComponent {
     }
 
     get mainPageRoute() {
-        return this.routes.find(route => route.headerName && route.useAsDefault);
+        return {
+            path: '/',
+            name: 'Dashboard',
+            headerName: 'Smart House',
+            iconImage: './assets/Index.png'
+        };
     }
 
     get navigationRoutes() {
-        return this.routes.filter(route => route.headerName && !route.useAsDefault);
+        return [
+            {path: '/dashboard', name: 'Dashboard', headerName: 'Dashboard'},
+            {path: '/device-list', name: 'DeviceList', headerName: 'Devices'},
+            {path: '/scenarios', name: 'ScenarioList', headerName: 'Scenarios'},
+            {path: '/help', name: 'Help', headerName: 'Help'}
+        ].map(p=>{
+            p.iconImage = `./assets/${ p.name }.png`;
+            return p;
+        });
     }
 }
