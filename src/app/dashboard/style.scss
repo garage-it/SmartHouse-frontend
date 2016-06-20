@@ -3,3 +3,41 @@
         background-image: url(./assets/Dashboard-empty@3x.png);
     }
 }
+
+.dashboard {
+    button[disabled] {
+        opacity: 0.5;
+    }
+
+    .edit-link {
+        margin-top: 20px;
+        color: #546e7a;
+    }
+
+    &_widget {
+        float: left;
+        position: relative;
+    }
+
+    &_widget-actions {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 160px;
+        height: 160px;
+        padding: 10px;
+        background-color: rgba(55, 71, 79, 0.7);
+
+        label {
+            color: #fff;
+        }
+
+        .filled-in:not(:checked) + label:after{
+            border-color: #fff;
+        }
+    }
+
+    &_actions {
+        padding-top: 40px;
+    }
+}

@@ -1,5 +1,5 @@
 import {Help} from './help';
-import {Dashboard} from './dashboard';
+import {Dashboard, DashboardEditor} from './dashboard';
 import {ScenarioListComponent,
     EditScenarioEditorComponent,
     EditScenarioWizardComponent,
@@ -11,6 +11,7 @@ import {SensorDetail} from './sensors/details';
 export default [
     {path: '/', name: 'Index', component: Dashboard, useAsDefault: true, headerName: 'Smart House'},
     {path: '/dashboard', name: 'Dashboard', component: Dashboard, headerName: 'Dashboard'},
+    {path: '/dashboard/editor', name: 'DashboardEditor', component: DashboardEditor},
     {path: '/device-list', name: 'DeviceList', component: DeviceList, headerName: 'Devices'},
     {path: '/scenarios', name: 'ScenarioList', component: ScenarioListComponent,
         headerName: 'Scenarios'},
