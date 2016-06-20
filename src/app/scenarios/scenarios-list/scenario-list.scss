@@ -49,6 +49,7 @@
 .scenario-list-table {
     &__body {
         &__row {
+            cursor: pointer;
             &__actions {
                 width: 150px;
                 
