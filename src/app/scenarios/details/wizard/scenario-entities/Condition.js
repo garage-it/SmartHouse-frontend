@@ -1,4 +1,4 @@
-export default class {
+export default class Condition {
     constructor(devices, initOptions = {}) {
         this.devices = devices;
         this.selectedDevice = initOptions.device || null;

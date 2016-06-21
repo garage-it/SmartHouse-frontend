@@ -1,0 +1,8 @@
+<scenario-wizard
+    *ngIf="wizard"
+    [wizard]="wizard"
+    (onAddCriteria)="onAddCriteria()"
+    (onRemoveCriteria)="onRemoveCriteria($event)"
+    (onAddAction)="onAddAction()"
+    (onRemoveAction)="onRemoveAction($event)"
+></scenario-wizard>

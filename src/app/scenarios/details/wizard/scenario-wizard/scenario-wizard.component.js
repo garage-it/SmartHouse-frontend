@@ -3,13 +3,14 @@ import {Component} from 'angular2/core';
 import template from './scenario-wizard.html';
 import style from './scenario-wizard.scss';
 import LOGICAL_OPERATORS from '../scenario-entities/logical-operators.const.js';
+
 const selector = 'scenario-wizard';
 
 @Component({
     selector,
     template,
     styles: [style],
-    inputs: ['scenario'],
+    inputs: ['wizard'],
     outputs: [
         'onAddCriteria',
         'onRemoveCriteria',
@@ -45,6 +46,6 @@ export class ScenarioWizardComponent {
     }
 
     removeActionBtnVisible() {
-        return this.scenario.wizard.actions.length > 1;
+        return this.wizard.actions.length > 1;
     }
 }

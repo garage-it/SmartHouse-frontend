@@ -1,7 +1,7 @@
 <div class="sub-header row">
   <div id="page-title" class="col s5 sub-header__title">Scenario list</div>
   <div class="sub-header__actions col s4 right">
-    <button [routerLink]="['CreateScenarioEditor']"
+    <button [routerLink]="['ScenarioCreate']"
         class="waves-effect waves-light btn blue-grey darken-1 sub-header__actions__create">Create new scenario</button>
   </div><!-- sub-header__actions -->
 </div><!-- sub-header -->
@@ -27,7 +27,7 @@
         </thead><!-- scenario-list-table__head -->
         <tbody class="scenario-list-table__body">
             <tr *ngFor="#scenario of scenarioList"
-                (click)="navigateToEditView(scenario)"
+                [routerLink]="['ScenarioDetails', { id: scenario.id }]"
                 class="scenario-list-table__body__row">
                 <td *ngFor="#header of headers"
                     class="scenario-list-table__body__row__item">

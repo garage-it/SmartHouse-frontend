@@ -15,13 +15,12 @@ const selector = 'scenario-editor';
 @Component({
     selector,
     template: '<div #codeEditor></div>',
-    inputs: ['scenario']
+    inputs: ['script']
 })
 
 @Injectable()
 export class ScenarioEditor {
     @ViewChild('codeEditor') codeEditorElement;
-    @Output() updateScenario = new EventEmitter();
 
     constructor() {
         this.codeMirror = CodeMirror;
@@ -32,8 +31,8 @@ export class ScenarioEditor {
     }
 
     ngOnChanges() {
-        if (this.codeEditor && this.scenario !== this.codeEditor.getValue()) {
-            this.codeEditor.setValue(this.scenario);
+        if (this.codeEditor && this.script !== this.codeEditor.getValue()) {
+            this.codeEditor.setValue(this.script);
         }
     }
 
@@ -49,16 +48,9 @@ export class ScenarioEditor {
                 theme: 'lesser-dark'
             }
         );
-
-        this.initListeners();
     }
 
-    initListeners() {
-        this.codeEditor.on('change', (codeMirror, changeObj) => {
-            if (changeObj.origin !== CODE_MIRROR_EVENTS.SET_VALUE_EVENT) {
-                const scenarioBody = this.codeEditor.getValue();
-                this.updateScenario.emit({scenarioBody});
-            }
-        });
+    getRaw (){
+        return this.codeEditor.getValue();
     }
 }

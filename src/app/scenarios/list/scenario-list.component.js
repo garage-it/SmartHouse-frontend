@@ -1,5 +1,5 @@
 import {Component} from 'angular2/core';
-import {RouterLink, Router} from 'angular2/router';
+import {RouteParams, Router, RouterLink} from 'angular2/router';
 
 import template from './scenario-list.html';
 import style from './scenario-list.scss';
@@ -23,10 +23,9 @@ export class ScenarioListComponent {
     scenarioList = [];
     _headers = [];
 
-    constructor(scenarioService: ScenarioService, router:Router) {
+    constructor(scenarioService: ScenarioService) {
         this.scenarioService = scenarioService;
         this._headers = headersForDisplay;
-        this.router = router;
     }
 
     ngOnInit() {
@@ -58,12 +57,5 @@ export class ScenarioListComponent {
             .subscribe(() => {
                 scenario.active = !scenario.active; // eslint-disable-line
             });
-    }
-
-    navigateToEditView(scenario) {
-        const route = scenario.isConvertable
-            ? 'EditScenarioWizard'
-            : 'EditScenarioEditor';
-        this.router.navigate([route, {id: scenario.id}]);
     }
 }

@@ -13,59 +13,16 @@ export class ScenarioService {
         return this.http.get(`/scenarios/${id}`);
     }
 
-    update(scenario, isWizard) { // TODO: use separate service for mapping wizard
-        return this.http.put(`/scenarios/${scenario.id}`, getScenario(scenario, isWizard));
+    update(scenario) {
+        return this.http.put(`/scenarios/${scenario.id}`, scenario);
     }
 
-    create(scenario, isWizard) { // TODO: use separate service for mapping wizard
-        return this.http.post('/scenarios', getScenario(scenario, isWizard));
+    create(scenario) {
+        return this.http.post('/scenarios', scenario);
     }
 
     delete(scenario) {
         return this.http.delete(`/scenarios/${scenario.id}`);
     }
 
-}
-
-function getScenario(scenario, isWizard) {
-    return isWizard ? mapScenario(scenario) : cleanScenario(scenario);
-}
-
-function cleanScenario(scenario) {
-    const result = Object.assign({}, scenario);
-    delete result.sourceType;
-    delete result.wizard;
-    return result;
-}
-
-function mapScenario(scenario) {
-    const logicalOperator = scenario.wizard.logicalOperator;
-    const conditions = getConditions(scenario.wizard.conditions);
-    const actions = getActions(scenario.wizard.actions);
-
-    return Object.assign({}, scenario, {
-        isConvertable: true,
-        body: '',                   // <- erasing any existing script
-        wizard: {
-            logicalOperator,
-            conditions,
-            actions
-        }
-    });
-
-
-    function getConditions(_conditions) {
-        return _conditions.map(condition => ({
-            device: condition.selectedDevice,
-            condition: condition.selectedCondition,
-            value: condition.value
-        }));
-    }
-
-    function getActions(_actions) {
-        return _actions.map(item => ({
-            device: item.selectedDevice,
-            value: item.value
-        }));
-    }
 }

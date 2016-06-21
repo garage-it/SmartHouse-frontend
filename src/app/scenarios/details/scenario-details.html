@@ -1,0 +1,90 @@
+<div class="page-header">
+    <div class="row">
+        <div class="col s3">
+            <a class="back-link valign-wrapper" (click)="back()">
+                <i class="material-icons md-18">navigate_before</i>
+                Back to list
+            </a>
+        </div>
+    </div>
+</div>
+
+<div>
+    <form class="scenario-details" (ngSubmit)="save(scenario)">
+        <la-form>
+            <label>
+                Scenario name:
+                <input [(ngModel)]="scenario.name"
+                       class="black-text"
+                       type="text"/>
+            </label>
+
+            <p class="sensor-detail__status">
+                <input [(ngModel)]="scenario.active"
+                       class="filled-in sensor-detail__status-value"
+                       type="checkbox" id="scenario-details__status"/>
+                <label for="scenario-details__status">Active</label>
+            </p>
+
+            <label>
+                Scenario description:
+                <input [(ngModel)]="scenario.description"
+                       class="black-text"
+                       type="text"/>
+            </label>
+
+        </la-form>
+
+        <content>
+
+            <div *ngIf="visibility.wizard">
+                <div class="col s5">
+                    <a
+                        (click)="switchToScript()"
+                        class="nav-link right"
+                    >
+                        <i class="material-icons">edit</i>
+                        Go to Editor
+                    </a>
+                </div>
+                <scenario-wizard-mega
+                    #wizard
+                    [wizard]="scenario?.wizard"
+                    (updateScenario)="onScenarioWizardUpdate($event)"
+                ></scenario-wizard-mega>
+            </div>
+
+            <div *ngIf="visibility.script"
+                class="scenario-details_editor-wrapper">
+                <div class="col s12">
+                    <a
+                        (click)="switchToWizard()"
+                        class="nav-link right"
+                    >
+                        <i class="material-icons">edit</i>
+                        Go to Wizard
+                    </a>
+                </div>
+                <scenario-editor
+                    #editor
+                    [script]="scenario?.body"
+                    (updateScenario)="onScenarioBodyUpdate($event)"
+                ></scenario-editor>
+            </div>
+
+        </content>
+
+
+        <button class="waves-effect waves-light btn blue-grey darken-1"
+            type="submit"
+        >
+            Save scenario</button>
+
+        <button (click)="delete(scenario)"
+            class="waves-effect waves-light btn blue-grey darken-1"
+        >
+            Remove scenario
+        </button>
+    </form>
+</div>
+
