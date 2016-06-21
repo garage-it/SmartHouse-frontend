@@ -8,10 +8,11 @@
 <form #sensorForm="ngForm" class="sensor-detail">
     <div class="sensor-detail__id">
         <label for="sensor-detail__id">Device name</label>
-        <input required [(ngModel)]="sensor.mqttId"
+        <input [(ngModel)]="sensor.mqttId"
                ngControl="mqttId"
                #mqttId="ngForm"
-               type="text" id="sensor-detail__id"
+               type="text"
+               id="sensor-detail__id"
                placeholder="Enter descriptive name"
                required/>
         <div [hidden]="!mqttId.touched || mqttId.valid" class="alert">
@@ -23,7 +24,8 @@
         <input [(ngModel)]="sensor.type"
                ngControl="type"
                #type="ngForm"
-               type="text" id="sensor-detail__type"
+               type="text"
+               id="sensor-detail__type"
                placeholder="Enter type"
                required/>
         <div [hidden]="!type.touched || type.valid" class="alert">
@@ -35,7 +37,8 @@
         <input [(ngModel)]="sensor.description"
                ngControl="description"
                #description="ngForm"
-               type="text" id="sensor-detail__description"
+               type="text"
+               id="sensor-detail__description"
                placeholder="Enter description"
                required/>
         <div [hidden]="!description.touched || description.valid" class="alert">
@@ -47,7 +50,8 @@
         <input [(ngModel)]="sensor.metrics"
                ngControl="metrics"
                #metrics="ngForm"
-               type="text" id="sensor-detail__metrics"
+               type="text"
+               id="sensor-detail__metrics"
                placeholder="Enter metrics"
                required/>
         <div [hidden]="!metrics.touched || metrics.valid" class="alert">
@@ -58,7 +62,8 @@
         <input [(ngModel)]="sensor.executor"
                ngControl="executor"
                class="filled-in sensor-detail__status-value"
-               type="checkbox" id="sensor-detail__executor"/>
+               type="checkbox"
+               id="sensor-detail__executor"/>
         <label for="sensor-detail__executor">Switcher</label>
     </p>
 
