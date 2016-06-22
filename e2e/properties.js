@@ -15,6 +15,11 @@ var Properties = function () {
     },
     title: "Smart Home",
     logo: "Smart House"
+  },
+  newDevice: {
+    id: "testId",
+    type: "testType",
+    desc: "testDesc"
   }
 }
 
