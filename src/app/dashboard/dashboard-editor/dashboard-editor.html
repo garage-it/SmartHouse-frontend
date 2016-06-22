@@ -1,0 +1,34 @@
+<div class="dashboard">
+    <div class="dashboard_title">
+        <h2>Dashboard</h2>
+    </div>
+
+    <div class="dashboard_content">
+        <div class="dashboard_widget"
+             *ngFor="#widget of widgets; #index = index">
+            <div class="dashboard_widget-actions">
+                <input class="filled-in" type="checkbox"
+                    [attr.id]="'hideWidget' + index"
+                    [(ngModel)]="widget.hidden"/>
+                <label [attr.for]="'hideWidget' + index">Hide</label>
+            </div>
+            <sm-sensor-widget
+                [device]="widget"
+                *ngIf="!widget.executor">
+            </sm-sensor-widget>
+            <sm-sensor-executor-widget
+                [device]="widget"
+                *ngIf="widget.executor">
+            </sm-sensor-executor-widget>
+        </div>
+
+        <div class="clearfix dashboard_actions">
+            <button class="waves-effect waves-light btn blue-grey darken-1"
+                (click)="applyChanges()"
+                [disabled]="isApplyDisabled()">
+                Apply
+            </button>
+            <a (click)="exitEditMode()">Cancel</a>
+        </div>
+    </div>
+</div>

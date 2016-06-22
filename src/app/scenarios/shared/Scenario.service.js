@@ -49,7 +49,7 @@ function mapScenario(scenario) {
         wizard: {
             logicalOperator,
             conditions,
-            actions,
+            actions
         }
     });
 
