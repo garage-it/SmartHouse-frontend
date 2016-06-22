@@ -40,10 +40,14 @@ describe('New Device Page Test', () => {
         expect(addNewDevicePage.deviceDescriptionLabel.getText()).toEqual("Description");
         expect(addNewDevicePage.deviceDescriptionInput.getAttribute('placeholder')).toEqual("Enter description");
 
-        expect(addNewDevicePage.switcherCheckbox.isSelected()).toBe(false);
+        expect(addNewDevicePage.deviceMetricsLabel.getText()).toEqual("Metrics");
+        expect(addNewDevicePage.deviceMetricsInput.getAttribute('placeholder')).toEqual("Enter metrics");
+
+        expect(addNewDevicePage.switcherCheckbox.isSelected()).toBeFalsy();
         expect(addNewDevicePage.switcherLabel.getText()).toEqual("Switcher");
 
         expect(addNewDevicePage.saveDeviceButton.getText()).toEqual("SAVE DEVICE");
+        expect(addNewDevicePage.saveDeviceButton.isEnabled()).toBeFalsy();
     });
 
     it('should check Back to list link', () => {

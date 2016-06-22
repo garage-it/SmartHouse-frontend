@@ -12,7 +12,13 @@ describe('Add and Remove device Test', () => {
     });
 
     it('should check adding of device', () => {
-        devicesPageActions.addNewDevice(props.names.newDevice.id, props.names.newDevice.type, props.names.newDevice.desc, false);
-        expect(devicesPage.pageHeader.getText()).toEqual(props.names.headers.devices);
+        var id = props.names.newDevice.id,
+            type = props.names.newDevice.type,
+            desc = props.names.newDevice.desc,
+            metr = props.names.newDevice.metrics;
+
+        devicesPageActions.addNewDevice(id, type, desc, metr, false);
+        expect(devicesPageActions.isDeviceInTheList(id, type, desc)).toBeTruthy();
+
     });
   });
