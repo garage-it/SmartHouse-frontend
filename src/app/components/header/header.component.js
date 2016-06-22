@@ -7,8 +7,8 @@ import template from './header.component.html';
 const HEADER_COMPONENT_SELECTOR = 'sh-header';
 export const NAVIGATION_ROUTES = [
     { name: 'Dashboard', headerName: 'Dashboard', iconImage: './assets/Dashboard.png' },
-    { name: 'DeviceList', headerName: 'Devices', iconImage: './assets/Devices.png' },
-    { name: 'ScenarioList', headerName: 'Scenarios', iconImage: './assets/Scenarios.png' },
+    { name: 'DeviceList', headerName: 'Devices', iconImage: './assets/DeviceList.png' },
+    { name: 'ScenarioList', headerName: 'Scenarios', iconImage: './assets/ScenarioList.png' },
     { name: 'Help', headerName: 'Help', iconImage: './assets/Help.png' }
 ];
 
