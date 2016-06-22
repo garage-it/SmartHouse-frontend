@@ -2,8 +2,8 @@ import {Dashboard} from './dashboard';
 
 let subscribeHandler;
 
-class DeviceListServiceMock {
-    getSensors() {
+class DashboardServiceMock {
+    getWidgets() {
         return {
             subscribe: (callback) => {
                 subscribeHandler = callback;
@@ -14,11 +14,11 @@ class DeviceListServiceMock {
 
 describe('Dashboard', () => {
     let sut;
-    let deviceListService;
+    let dashboardService;
 
     beforeEach(() => {
-        deviceListService = new DeviceListServiceMock();
-        sut = new Dashboard(deviceListService);
+        dashboardService = new DashboardServiceMock();
+        sut = new Dashboard(dashboardService);
     });
 
     describe('when initialize a component', () => {
@@ -34,9 +34,8 @@ describe('Dashboard', () => {
         });
 
         it('should get device list', () => {
-            subscribeHandler(deviceList);
-            expect(sut.sensors).toEqual([sensor]);
-            expect(sut.executors).toEqual([executor]);
+            subscribeHandler({devices: deviceList});
+            expect(sut.devices).toEqual(deviceList);
         });
     });
 
@@ -45,13 +44,8 @@ describe('Dashboard', () => {
             expect(sut.isDashboardEmpty()).toBe(true);
         });
 
-        it('should NOT show empty dashboard if there are sensors', () => {
-            sut.sensors = [{}];
-            expect(sut.isDashboardEmpty()).toBe(false);
-        });
-
-        it('should NOT show empty dashboard if there are executors', () => {
-            sut.sensors = [{ executor: true }];
+        it('should NOT show empty dashboard if there is at least one device', () => {
+            sut.devices = [{}];
             expect(sut.isDashboardEmpty()).toBe(false);
         });
     });
