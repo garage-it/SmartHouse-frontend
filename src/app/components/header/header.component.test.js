@@ -1,8 +1,7 @@
 import { Router } from 'angular2/router';
 import {
     HeaderComponent,
-    INITIAL_ROUTE,
-    INDEX_ROUTE
+    NAVIGATION_ROUTES
 } from './header.component';
 import * as routes from './../../routes';
 
@@ -29,65 +28,16 @@ describe('HeaderComponent', () => {
         expect(sut).toBeDefined();
     });
 
-    describe('routes', () => {
-        const mainPage = mockedRoutes[1];
-        const expectedNavigationRoutes = mockedRoutes
-          .filter(route => route.headerName && !route.useAsDefault);
-        const allHeaderRoutes = expectedNavigationRoutes.concat(mockedRoutes
-          .filter(route => route.useAsDefault));
+    it('should return main page route', () => {
+        const mainPageRoute = {
+            name: 'Dashboard',
+            headerName: 'Smart House',
+            iconImage: './assets/Dashboard.png'
+        };
+        expect(sut.mainPageRoute).toEqual(mainPageRoute);
+    });
 
-        it('should contain image path', () => {
-            expect(allHeaderRoutes.every(route => route.iconImage)).toBe(true);
-        });
-
-        it('image path should be a string', () => {
-            expect(allHeaderRoutes.every(route => typeof route.iconImage === 'string')).toBe(true);
-        });
-
-        describe('for mainPageRoute', () => {
-            it('should return one route object', () => {
-                expect(sut.mainPageRoute).toEqual(mainPage);
-            });
-
-            it('should contain headerName property with displayed name', () => {
-                expect(sut.mainPageRoute.headerName).toBe(mainPage.headerName);
-            });
-
-            it('should contain useAsDefault property which are equal true', () => {
-                expect(sut.mainPageRoute.useAsDefault).toBe(true);
-            });
-        });
-
-        describe('for navigationRoutes', () => {
-            it('each route should contain headerName property', () => {
-                expect(sut.navigationRoutes.every(route => route.headerName)).toBe(true);
-            });
-
-            it('should return correct count of navigationRoutes', () => {
-                expect(sut.navigationRoutes.length).toBe(expectedNavigationRoutes.length);
-            });
-
-            it('should return routes from collection except main page route', () => {
-                expect(sut.navigationRoutes).toEqual(expectedNavigationRoutes);
-            });
-
-            it('should return false for not initial routes', () => {
-                const route = { name: 'mock' };
-                expect(sut.initialRouteActivated(route)).toBe(false);
-            });
-
-            it('should check if index route is active', () => {
-                const route = { name: INITIAL_ROUTE };
-                const instruction = router.generate([INDEX_ROUTE]);
-                sut.initialRouteActivated(route);
-                expect(router.isRouteActive).toHaveBeenCalledWith(instruction);
-            });
-
-            it('should return true if initial route is active', () => {
-                const route = { name: INITIAL_ROUTE };
-                router.isRouteActive.and.returnValue(true);
-                expect(sut.initialRouteActivated(route)).toBe(true);
-            });
-        });
+    it('should return navigation routes', () => {
+        expect(sut.navigationRoutes).toEqual(NAVIGATION_ROUTES);
     });
 });
