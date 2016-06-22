@@ -1,10 +1,27 @@
 <header>
     <nav class="main-nav">
-        <div class="container">
+        <!--TODO: hotfix - should be refactored-->
+        <div class="container" (window:resize)="displayMobileMenu = false">
             <a [routerLink]="[mainPageRoute.name]"
                 class="logo"
                 [style.background-image]="'url(' + mainPageRoute.iconImage + ')'">Smart House</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <!--TODO: hotfix - should be refactored-->
+            <a class="button-collapse"
+              (click)="displayMobileMenu=!displayMobileMenu">
+                <i class="material-icons">menu</i>
+            </a>
+
+            <ul id="nav-desctop" class="right hide-on-med-and-down">
+                <li *ngFor="#route of navigationRoutes">
+                    <a [routerLink]="[route.name]"
+                      [style.background-image]="'url(' + route.iconImage + ')'">{{route.headerName}}</a>
+                 </li>
+            </ul>
+
+            <!--TODO: hotfix - should be refactored-->
+            <ul id="nav-mobile"
+                *ngIf="displayMobileMenu"
+                class="left">
                 <li *ngFor="#route of navigationRoutes">
                     <a [routerLink]="[route.name]"
                       [style.background-image]="'url(' + route.iconImage + ')'">{{route.headerName}}</a>
