@@ -15,4 +15,3 @@ var DevicesPageActions = function () {
     };
 };
 module.exports = DevicesPageActions;
-
