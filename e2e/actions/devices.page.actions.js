@@ -1,5 +1,4 @@
 var WaitUtils = require('../utils/wait.utils');
-var TextUtils = require('../utils/text.utils');
 var DevicesPage = require('../pobjects/pages/devices.page');
 var AddNewDevicePage = require('../pobjects/pages/add.new.device.page');
 
@@ -7,16 +6,14 @@ var DevicesPageActions = function () {
     var devicesPage = new DevicesPage();
     var addNewDevicePage = new AddNewDevicePage();
     var waitUtils = new WaitUtils();
-    var textUtils = new TextUtils();
 
     this.addNewDevice = (name, type, description, metrics, switcher) => {
         devicesPage.addNewDeviceButton.click().then(() => {
             waitUtils.waitFor(addNewDevicePage.deviceNameInput);
-
-            textUtils.typeString(addNewDevicePage.deviceNameInput, name);
-            textUtils.typeString(addNewDevicePage.deviceTypeInput, type);
-            textUtils.typeString(addNewDevicePage.deviceDescriptionInput, description);
-            textUtils.typeString(addNewDevicePage.deviceMetricsInput, metrics);
+            addNewDevicePage.deviceNameInput.sendKeys(name);
+            addNewDevicePage.deviceTypeInput.sendKeys(type);
+            addNewDevicePage.deviceDescriptionInput.sendKeys(description);
+            addNewDevicePage.deviceMetricsInput.sendKeys(metrics);
 
             if (switcher != null && switcher) {
               addNewDevicePage.switcherLabel.click();
