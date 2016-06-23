@@ -4,7 +4,7 @@ var DashboardPage = function () {
     this.sensorWidgets = $$('.sensor-widget');
 
     this.get = () => {
-        browser.get(browser.baseUrl + 'dashboard');
+        browser.get(browser.baseUrl);
     };
 };
 module.exports = DashboardPage;

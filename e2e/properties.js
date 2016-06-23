@@ -18,7 +18,7 @@ var Properties = function () {
         newDevice: {
             id: "testId",
             type: "testType",
-            desc: "testDesc",
+            description: "testDesc",
             metrics: "testMetrics"
         }
     };

@@ -23,23 +23,28 @@ var DevicesPageActions = function () {
         waitUtils.waitFor(devicesPage.pageHeader);
     };
     
-    this.isDeviceInTheList = (id, type, description) => {
-        var devices = devicesPage.devicesList.all(by.cssContainingText('td', id));
+    this.isDeviceInTheList = (id) => {
+        waitUtils.waitFor(devicesPage.deviceTable);
+        return element(by.cssContainingText('tbody tr td', id))
+            .isDisplayed()
+            .then(null, function() {
+                console.log("\nWARN: No device found with ID: " + id + "\n");
+                return false;
+            });
+    };
 
-        if (devices.length) {
-            devices.forEach(function (elem) {
-
-                var n = elem.findElements(by.cssContainingText('td', id));
-                var t = elem.findElements(by.cssContainingText('td', type));
-                var d = elem.findElements(by.cssContainingText('td', description));
-
-                if (n.length && t.length && d.length) {
-                    return true;
-                }
-            })
-        }
-        return false;
-    }
+    this.removeDevice = (id) => {
+        waitUtils.waitFor(devicesPage.devicesTable);
+        element(by.cssContainingText('tbody tr td', id))
+            .element(by.xpath('parent::node()'))
+            .element(by.css('button.sensors-list-table__body__row__actions__remove'))
+            .click()
+            .then(null, function() {
+                console.log("\nWARN: No device found with ID: " + id + "\n");
+            });
+        waitUtils.waitFor(devicesPage.devicesTable);
+        browser.sleep(1000);
+    };
 };
 
 module.exports = DevicesPageActions;
