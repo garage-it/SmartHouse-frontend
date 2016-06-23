@@ -9,13 +9,11 @@ import {DeviceList} from './sensors/list';
 import {SensorDetail} from './sensors/details';
 
 export default [
-    {path: '/', name: 'Index', component: Dashboard, useAsDefault: true, headerName: 'Smart House'},
-    {path: '/dashboard', name: 'Dashboard', component: Dashboard, headerName: 'Dashboard'},
+    {path: '/', name: 'Dashboard', component: Dashboard, useAsDefault: true},
     {path: '/dashboard/editor', name: 'DashboardEditor', component: DashboardEditor},
-    {path: '/device-list', name: 'DeviceList', component: DeviceList, headerName: 'Devices'},
-    {path: '/scenarios', name: 'ScenarioList', component: ScenarioListComponent,
-        headerName: 'Scenarios'},
-    {path: '/help', name: 'Help', component: Help, headerName: 'Help'},
+    {path: '/device-list', name: 'DeviceList', component: DeviceList},
+    {path: '/scenarios', name: 'ScenarioList', component: ScenarioListComponent},
+    {path: '/help', name: 'Help', component: Help},
     {path: '/scenarios/create-editor', name: 'CreateScenarioEditor',
         component: CreateScenarioEditorComponent},
     {path: '/scenarios/create-wizard', name: 'CreateScenarioWizard',

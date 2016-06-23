@@ -4,30 +4,30 @@ import {RouterLink} from 'angular2/router';
 import style from './header.component.scss';
 import template from './header.component.html';
 
-import routes from './../../routes';
-
-const selector = 'sh-header';
-
+const HEADER_COMPONENT_SELECTOR = 'sh-header';
+export const NAVIGATION_ROUTES = [
+    { name: 'Dashboard', headerName: 'Dashboard', iconImage: './assets/Dashboard.png' },
+    { name: 'DeviceList', headerName: 'Devices', iconImage: './assets/DeviceList.png' },
+    { name: 'ScenarioList', headerName: 'Scenarios', iconImage: './assets/ScenarioList.png' },
+    { name: 'Help', headerName: 'Help', iconImage: './assets/Help.png' }
+];
 
 @Component({
-    selector,
+    selector: HEADER_COMPONENT_SELECTOR,
     styles: [style],
     template,
     directives: [RouterLink]
 })
 export class HeaderComponent {
-    constructor() {
-        this.routes = routes.filter(route => route.headerName || route.useAsDefault)
-          .map(headerRoute => Object.assign(headerRoute, {
-              iconImage: `./assets/${headerRoute.name}.png`
-          }));
-    }
-
     get mainPageRoute() {
-        return this.routes.find(route => route.headerName && route.useAsDefault);
+        return {
+            name: 'Dashboard',
+            headerName: 'Smart House',
+            iconImage: './assets/Dashboard.png'
+        };
     }
 
     get navigationRoutes() {
-        return this.routes.filter(route => route.headerName && !route.useAsDefault);
+        return NAVIGATION_ROUTES;
     }
 }
