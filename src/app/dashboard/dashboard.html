@@ -20,14 +20,14 @@
                 </div>
             </div>
         </div>
-        <div *ngFor="#device of devices">
+        <div *ngFor="#widget of widgets">
             <sm-sensor-widget
-                [device]="device"
-                *ngIf="!device.executor && !device.hidden">
+                [device]="widget.device"
+                *ngIf="!widget.device.executor && !widget.hidden">
             </sm-sensor-widget>
             <sm-sensor-executor-widget
-                [device]="device"
-                *ngIf="device.executor && !device.hidden">
+                [device]="widget.device"
+                *ngIf="widget.device.executor && !widget.hidden">
             </sm-sensor-executor-widget>
         </div>
     </div>
