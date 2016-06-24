@@ -1,3 +1,5 @@
+@import url('../node_modules/dragula/dist/dragula.min.css');
+
 .empty-list {
     &::before {
         background-image: url(./assets/Dashboard-empty@3x.png);
@@ -12,6 +14,11 @@
     .edit-link {
         margin-top: 20px;
         color: #546e7a;
+    }
+
+    &_widgets-container {
+        display: flex;
+        padding: 0 30px;
     }
 
     &_widget {
