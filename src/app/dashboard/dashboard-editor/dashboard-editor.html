@@ -4,7 +4,7 @@
     </div>
 
     <div class="dashboard_content">
-        <div class="dashboard_widgets-container" [dragula]>
+        <div class="dashboard_widgets-container" [dragula] [dragulaModel]='widgets'>
             <div class="dashboard_widget"
                  *ngFor="#widget of widgets; #index = index">
                 <div class="dashboard_widget-actions">
