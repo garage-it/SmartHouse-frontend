@@ -13,12 +13,12 @@
                 <label [attr.for]="'hideWidget' + index">Hide</label>
             </div>
             <sm-sensor-widget
-                [device]="widget"
-                *ngIf="!widget.executor">
+                [device]="widget.device"
+                *ngIf="!widget.device.executor">
             </sm-sensor-widget>
             <sm-sensor-executor-widget
-                [device]="widget"
-                *ngIf="widget.executor">
+                [device]="widget.device"
+                *ngIf="widget.device.executor">
             </sm-sensor-executor-widget>
         </div>
 

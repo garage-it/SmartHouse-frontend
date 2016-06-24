@@ -18,18 +18,18 @@ import DashboardService from './dashboard.service';
 export class Dashboard {
     constructor(dashboardService: DashboardService) {
         this.dashboardService = dashboardService;
-        this.devices = [];
+        this.widgets = [];
     }
 
     ngOnInit() {
         this.dashboardService
             .getWidgets()
             .subscribe(({devices}) => {
-                this.devices = devices;
+                this.widgets = devices;
             });
     }
 
     isDashboardEmpty() {
-        return !this.devices.length;
+        return !this.widgets.length;
     }
 }

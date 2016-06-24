@@ -27,15 +27,15 @@ describe('Dashboard', () => {
         let deviceList;
 
         beforeEach(() => {
-            sensor = {};
-            executor = { executor: true };
+            sensor = {device: {executor: false}};
+            executor = { device: {executor: true}, hidden: false };
             deviceList = [sensor, executor];
             sut.ngOnInit();
         });
 
         it('should get device list', () => {
             subscribeHandler({devices: deviceList});
-            expect(sut.devices).toEqual(deviceList);
+            expect(sut.widgets).toEqual(deviceList);
         });
     });
 
@@ -44,8 +44,8 @@ describe('Dashboard', () => {
             expect(sut.isDashboardEmpty()).toBe(true);
         });
 
-        it('should NOT show empty dashboard if there is at least one device', () => {
-            sut.devices = [{}];
+        it('should hide empty state of dashboard if there is at least one device', () => {
+            sut.widgets = [{}];
             expect(sut.isDashboardEmpty()).toBe(false);
         });
     });

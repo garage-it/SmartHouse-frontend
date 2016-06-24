@@ -32,10 +32,6 @@ describe('DashboardService', () => {
         sut = new DashboardService(httpMock);
     });
 
-    it('should be defined', () => {
-        expect(sut).toBeDefined();
-    });
-
     describe('#getWidgets', () => {
         beforeEach(() => {
             sut.getWidgets();
