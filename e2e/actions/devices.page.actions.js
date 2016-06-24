@@ -24,11 +24,11 @@ var DevicesPageActions = function () {
     };
     
     this.isDeviceInTheList = (id) => {
-        waitUtils.waitFor(devicesPage.deviceTable);
+        waitUtils.waitFor(devicesPage.devicesTable);
         return element(by.cssContainingText('tbody tr td', id))
             .isDisplayed()
             .then(null, function() {
-                console.log("\nWARN: No device found with ID: " + id + "\n");
+                console.log("\nWARN: No device found with ID: " + id);
                 return false;
             });
     };
@@ -40,7 +40,7 @@ var DevicesPageActions = function () {
             .element(by.css('button.sensors-list-table__body__row__actions__remove'))
             .click()
             .then(null, function() {
-                console.log("\nWARN: No device found with ID: " + id + "\n");
+                console.log("\nWARN: No device removed with ID: " + id);
             });
         waitUtils.waitFor(devicesPage.devicesTable);
         browser.sleep(1000);
