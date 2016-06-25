@@ -8,7 +8,7 @@ import style from '../shared/sensor-widget.scss';
     selector: 'sm-sensor-widget',
     template,
     styles: [style],
-    inputs: ['device', 'sensorWidgetService']
+    inputs: ['device']
 })
 export class SensorWidget extends BaseSensor {
 }
