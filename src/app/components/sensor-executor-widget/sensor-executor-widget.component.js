@@ -14,7 +14,7 @@ const timeout = Symbol('timeout');
     selector: 'sm-sensor-executor-widget',
     template,
     styles: [styles],
-    inputs: ['device', 'description']
+    inputs: ['device', 'description', 'sensorWidgetService']
 })
 export class SensorExecutorWidget extends BaseSensor {
     constructor(...args) {

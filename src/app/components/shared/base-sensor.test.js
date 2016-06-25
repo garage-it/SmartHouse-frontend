@@ -39,11 +39,18 @@ describe('base-sensor', () => {
             expect(sensorWidgetService.subscribe.calls.mostRecent().args[0]).toEqual(device.mqttId);
         });
 
-        it('should update widget data by event', () => {
-            const data = {a: 1};
+        it('should update widget data if event addressed to this widget', () => {
+            const data = {device: 'For test'};
             sensorUpdateHandler(data);
 
             expect(sut.data).toEqual(data);
+        });
+
+        it('should NOT update widget data if event NOT addressed to this widget', () => {
+            const data = {device: 'faked'};
+            sensorUpdateHandler(data);
+
+            expect(sut.data).not.toEqual(data);
         });
     });
 

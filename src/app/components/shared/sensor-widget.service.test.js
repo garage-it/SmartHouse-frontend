@@ -3,7 +3,8 @@ import SensorWidgetService from './sensor-widget.service';
 function mockSocketIo() {
     return {
         on: jasmine.createSpy(),
-        emit: jasmine.createSpy()
+        emit: jasmine.createSpy(),
+        connected: false
     };
 }
 
@@ -35,14 +36,21 @@ describe('SensorWidgetService', () => {
 
         beforeEach(() => {
             callback = jasmine.createSpy();
-            sut.subscribe(device, callback);
         });
 
-        it('should subscribe on sensor connect', () => {
+        it('should subscribe on sensor connect if it is not connected', () => {
+            sut.subscribe(device, callback);
             expect(sut.socket.on).toHaveBeenCalledWith('connect', jasmine.any(Function));
         });
 
+        it('should NOT subscribe on sensor connect if it is connected', () => {
+            sut.socket.connected = true;
+            sut.subscribe(device, callback);
+            expect(sut.socket.on).not.toHaveBeenCalledWith('connect', jasmine.any(Function));
+        });
+
         it('should subscribe on sensor event when connection exists', () => {
+            sut.subscribe(device, callback);
             sut.socket.on.calls.mostRecent().args[1]();
             expect(sut.socket.on).toHaveBeenCalledWith('event', callback);
             sut.socket.on.calls.mostRecent().args[1]();

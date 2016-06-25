@@ -13,11 +13,22 @@ export default class SensorWidgetService {
     }
 
     subscribe(device, callback) {
-        this.socket.on('connect', () => {
+        if (this.socket.connected) {
+            activateDevice.apply(this);
+        } else {
+            this.socket.on('connect', () => {
+                activateDevice.apply(this);
+            });
+        }
+
+        function activateDevice() {
             this.socket.on('event', callback);
 
+            if (!device) {
+                return;
+            }
             this.socket.emit('subscribe', {device});
-        });
+        }
     }
 
     unsubscribe(device) {
