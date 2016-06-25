@@ -6,6 +6,7 @@ import template from './dashboard.html';
 import { SensorWidget } from '../components/sensor-widget';
 import { SensorExecutorWidget } from '../components/sensor-executor-widget';
 import { SensorStatusWidget } from '../components/sensor-status-widget';
+import SensorWidgetService from '../components/shared/sensor-widget.service';
 import DashboardService from './dashboard.service';
 
 @Component({
@@ -13,11 +14,12 @@ import DashboardService from './dashboard.service';
     template,
     styles: [style],
     directives: [SensorWidget, SensorExecutorWidget, SensorStatusWidget, RouterLink],
-    providers: [DashboardService]
+    providers: [DashboardService, SensorWidgetService]
 })
 export class Dashboard {
-    constructor(dashboardService: DashboardService) {
+    constructor(dashboardService: DashboardService, sensorWidgetService: SensorWidgetService) {
         this.dashboardService = dashboardService;
+        this.sensorWidgetService = sensorWidgetService;
         this.widgets = [];
     }
 
@@ -27,6 +29,17 @@ export class Dashboard {
             .subscribe(({devices}) => {
                 this.widgets = devices;
             });
+        this.sensorWidgetService
+            .subscribe(false, data => this.onDeviceAddEvent(data));
+    }
+
+    onDeviceAddEvent(data) {
+        if (data.event === 'device-add') {
+            this.widgets.push({
+                device: data.data,
+                hidden: false
+            });
+        }
     }
 
     isDashboardEmpty() {

@@ -1,24 +1,34 @@
 import {Dashboard} from './dashboard';
 
-let subscribeHandler;
+let dashboardServiceCallback;
+let sensorWidgetServiceCallback;
+let sensorWidgetServiceDevice;
 
 class DashboardServiceMock {
     getWidgets() {
         return {
             subscribe: (callback) => {
-                subscribeHandler = callback;
+                dashboardServiceCallback = callback;
             }
         };
+    }
+}
+class SensorWidgetServiceMock {
+    subscribe(device, callback) {
+        sensorWidgetServiceDevice = device;
+        sensorWidgetServiceCallback = callback;
     }
 }
 
 describe('Dashboard', () => {
     let sut;
     let dashboardService;
+    let sensorWidgetService;
 
     beforeEach(() => {
         dashboardService = new DashboardServiceMock();
-        sut = new Dashboard(dashboardService);
+        sensorWidgetService = new SensorWidgetServiceMock();
+        sut = new Dashboard(dashboardService, sensorWidgetService);
     });
 
     describe('when initialize a component', () => {
@@ -28,14 +38,26 @@ describe('Dashboard', () => {
 
         beforeEach(() => {
             sensor = {device: {executor: false}};
-            executor = { device: {executor: true}, hidden: false };
+            executor = {device: {executor: true}, hidden: false};
             deviceList = [sensor, executor];
             sut.ngOnInit();
         });
 
         it('should get device list', () => {
-            subscribeHandler({devices: deviceList});
+            dashboardServiceCallback({devices: deviceList});
             expect(sut.widgets).toEqual(deviceList);
+        });
+
+        it('should subscribe to socket events', () => {
+            expect(sensorWidgetServiceDevice).toBeFalsy();
+        });
+
+        it('should add new widget if device-add event received', () => {
+            sensorWidgetServiceCallback({event: 'device-add', data: 'faked'});
+            expect(sut.widgets).toContain({
+                device: 'faked',
+                hidden: false
+            });
         });
     });
 
