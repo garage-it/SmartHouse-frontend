@@ -1,8 +1,8 @@
 {
   "name": "smart-house-frontend",
   "version": "0.1.0",
-  "description": "Smart House",
-  "main": "index.js",
+  "description": "Smart House UI",
+  "main": "src/index.js",
   "scripts": {
     "start": "npm-run-all --parallel server client",
     "server": "node --harmony_destructuring --harmony_rest_parameters server/index.js",
@@ -23,7 +23,7 @@
   "keywords": [
     "smart",
     "house",
-    "iot"
+    "IoT"
   ],
   "license": "MIT",
   "bugs": {
