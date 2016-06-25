@@ -2,4 +2,4 @@
 
 const exec = require('shelljs').exec;
 
-exec('npm run start');
+exec('npm run client');
