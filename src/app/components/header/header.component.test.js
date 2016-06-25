@@ -32,7 +32,7 @@ describe('HeaderComponent', () => {
         const mainPageRoute = {
             name: 'Dashboard',
             headerName: 'Smart House',
-            iconImage: './assets/Dashboard.png'
+            iconImage: './assets/Index.png'
         };
         expect(sut.mainPageRoute).toEqual(mainPageRoute);
     });
