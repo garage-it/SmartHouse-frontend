@@ -4,6 +4,8 @@ import {RouterLink, Router} from 'angular2/router';
 import template from './scenario-list.html';
 import style from './scenario-list.scss';
 import {ScenarioService} from './../shared/Scenario.service.js';
+import {ScenarioStatusService} from './scenario-status.service';
+
 
 const selector = 'scenario-list';
 const headersForDisplay = [
@@ -18,15 +20,17 @@ export const SCENARIO_PAUSED_STATE = 'paused';
     template,
     styles: [style],
     directives: [RouterLink],
-    providers: [ScenarioService]
+    providers: [ScenarioService, ScenarioStatusService]
 })
 
 export class ScenarioListComponent {
     scenarioList = [];
     _headers = [];
 
-    constructor(scenarioService:ScenarioService, router:Router) {
+    constructor(scenarioService: ScenarioService, router:Router,
+                scenarioStatusService: ScenarioStatusService) {
         this.scenarioService = scenarioService;
+        this.scenarioStatusService = scenarioStatusService;
         this._headers = headersForDisplay;
         this.router = router;
     }
@@ -37,6 +41,21 @@ export class ScenarioListComponent {
             .subscribe(data => {
                 this.scenarioList = data.map(this.convertScenarioStatus);
             });
+
+        this.subscription = this.scenarioStatusService.stream.subscribe((event) =>
+            this.onScenarioStatusChange(event));
+    }
+
+    onScenarioStatusChange(event) {
+        const scenarioToChange = this.scenarioList.find((scenario) => scenario.id === event.id);
+        if (scenarioToChange) {
+            scenarioToChange.active = event.active;
+            this.convertScenarioStatus(scenarioToChange);
+        }
+    }
+
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
     }
 
     get headers() {

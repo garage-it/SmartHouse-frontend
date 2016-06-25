@@ -1,7 +1,10 @@
+import Rx from 'rxjs/Rx';
 import {ScenarioService} from './../shared/Scenario.service.js';
+import {ScenarioStatusService} from './scenario-status.service';
 import {
     ScenarioListComponent,
-    SCENARIO_ACTIVE_STATE
+    SCENARIO_ACTIVE_STATE,
+    SCENARIO_PAUSED_STATE
 } from './scenario-list.component.js';
 import {Router, RouteParams} from 'angular2/router';
 
@@ -52,17 +55,25 @@ class RouterMock {
     }
 }
 
+class ScenarioStatusServiceMock {
+    constructor() {
+        this.stream = new Rx.Subject();
+    }
+}
+
 describe('ScenarioListComponent', () => {
     let sut;
     let scenarioService;
     let listData;
     let scenario;
     let router;
+    let scenarioStatusService;
 
     beforeEachProviders(() => [
         provide(ScenarioService, { useClass: ScenarioServiceMock }),
         provide(RouteParams, { useClass: RouteParamsMock }),
-        provide(Router, { useClass: RouterMock })
+        provide(Router, { useClass: RouterMock }),
+        provide(ScenarioStatusService, {useClass: ScenarioStatusServiceMock})
     ]);
 
     beforeEach(() => {
@@ -77,7 +88,8 @@ describe('ScenarioListComponent', () => {
         router = new RouterMock();
 
         scenarioService = new ScenarioServiceMock();
-        sut = new ScenarioListComponent(scenarioService, router);
+        scenarioStatusService = new ScenarioStatusServiceMock();
+        sut = new ScenarioListComponent(scenarioService, router, scenarioStatusService);
 
         spyOn(scenarioService, 'get').and.callThrough();
         spyOn(scenarioService, 'delete').and.callThrough();
@@ -96,6 +108,27 @@ describe('ScenarioListComponent', () => {
 
         it('should set scenario status', () => {
             expect(mockScenario.status).toBe(SCENARIO_ACTIVE_STATE);
+        });
+
+        it('should update scenario status on event', () => {
+            const pausedState = false;
+            sut.scenarioList = listData;
+            scenarioStatusService.stream.next({id: listData[1].id, active: pausedState});
+
+            expect(sut.scenarioList[1].active).toBe(pausedState);
+            expect(sut.scenarioList[1].status).toBe(SCENARIO_PAUSED_STATE);
+        });
+    });
+
+    describe('ngOnDestroy', () => {
+        beforeEach(() => {
+            sut.ngOnInit();
+            spyOn(sut.subscription, 'unsubscribe');
+            sut.ngOnDestroy();
+        });
+
+        it('should cancel subscription', () => {
+            expect(sut.subscription.unsubscribe).toHaveBeenCalled();
         });
     });
 
