@@ -57,6 +57,13 @@ describe('SensorWidgetService', () => {
             expect(callback).toHaveBeenCalled();
             expect(sut.socket.emit).toHaveBeenCalledWith('subscribe', {device});
         });
+
+        it('should NOT subscribe on sensor event if there is no device', () => {
+            sut.subscribe('', callback);
+            sut.socket.on.calls.mostRecent().args[1]();
+            sut.socket.on.calls.mostRecent().args[1]();
+            expect(sut.socket.emit).not.toHaveBeenCalledWith('subscribe', {device});
+        });
     });
 
     describe('unsubscribe', () => {
