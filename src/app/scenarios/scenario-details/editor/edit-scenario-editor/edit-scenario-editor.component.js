@@ -4,7 +4,6 @@ import {ScenarioDetailsComponent} from '../../scenario-details.component';
 import {ScenarioService} from '../../../shared/Scenario.service.js';
 
 export class EditScenarioEditorComponent extends ScenarioDetailsComponent {
-    scenarioDetailsMode = 'edit';
 
     constructor(scenarioListService:ScenarioService, routeParams:RouteParams, router: Router) {// eslint-disable-line
         super(scenarioListService, routeParams, router);
@@ -30,5 +29,9 @@ export class EditScenarioEditorComponent extends ScenarioDetailsComponent {
             .subscribe(() => {
                 this.back();
             });
+    }
+
+    isWizardAvailable() {
+        return false;
     }
 }
