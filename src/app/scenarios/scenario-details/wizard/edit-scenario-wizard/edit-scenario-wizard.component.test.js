@@ -92,10 +92,6 @@ describe('EditScenarioWizardComponent', () => {
         spyOn(sut, 'back');
     });
 
-    it('should be "edit" mode', () => {
-        expect(sut.scenarioDetailsMode).toEqual('edit');
-    });
-
     describe('ngOnInit', () => {
         beforeEach(() => {
             sut.ngOnInit();

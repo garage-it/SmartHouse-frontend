@@ -1,9 +1,17 @@
 <div class="page-header">
     <div class="row">
-        <a class="back-link" (click)="back()">
-            <i class="material-icons md-18">navigate_before</i>
-            Back to list
-        </a>
+        <div class="col s3">
+            <a class="back-link" (click)="back()">
+                <i class="material-icons md-18">navigate_before</i>
+                Back to list
+            </a>
+        </div>
+        <div class="col s12">
+            <a [routerLink]="['/CreateScenarioEditor']" class="nav-link right">
+                <i class="material-icons">edit</i>
+                Go to Editor
+            </a>
+        </div>
     </div>
 </div>
 
@@ -18,7 +26,8 @@
     </scenario-wizard>
 
     <button class="waves-effect waves-light btn blue-grey darken-1"
-            type="submit">SAVE SCENARIO</button>
+            type="submit">SAVE SCENARIO
+    </button>
     <button (click)="delete(scenario)"
             class="waves-effect waves-light btn blue-grey darken-1">
         Remove SCENARIO

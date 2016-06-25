@@ -16,7 +16,6 @@ import {ScenarioWizardComponent} from '../scenario-wizard/scenario-wizard.compon
 })
 
 export class CreateScenarioWizardComponent extends ScenarioDetailsComponent {
-    scenarioDetailsMode = 'create';
 
     constructor(scenarioListService:ScenarioService,
                 routeParams:RouteParams,
