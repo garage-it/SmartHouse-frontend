@@ -18,7 +18,6 @@ import {ScenarioWizardComponent} from '../scenario-wizard/scenario-wizard.compon
 })
 
 export class EditScenarioWizardComponent extends CreateScenarioWizardComponent {
-    scenarioDetailsMode = 'edit';
 
     constructor(scenarioService:ScenarioService,
                 deviceListService: DeviceListService,

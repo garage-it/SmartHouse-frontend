@@ -51,8 +51,8 @@ describe('EditScenarioEditorComponent', () => {
         spyOn(scenarioService, 'delete').and.callThrough();
     });
 
-    it('should be "edit" mode', () => {
-        expect(sut.scenarioDetailsMode).toEqual('edit');
+    it('should NOT allow switch to wizard', () => {
+        expect(sut.isWizardAvailable()).toEqual(false);
     });
 
     describe('ngOnInit', () => {
