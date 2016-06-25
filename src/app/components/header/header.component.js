@@ -23,7 +23,7 @@ export class HeaderComponent {
         return {
             name: 'Dashboard',
             headerName: 'Smart House',
-            iconImage: './assets/Dashboard.png'
+            iconImage: './assets/Index.png'
         };
     }
 
