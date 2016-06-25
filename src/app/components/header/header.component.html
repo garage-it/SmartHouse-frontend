@@ -2,13 +2,19 @@
     <nav class="main-nav">
         <div class="container">
             <a class="logo"
-                [routerLink]="[mainPageRoute.name]"
-                [style.background-image]="'url(' + mainPageRoute.iconImage + ')'">Smart House</a>
+               [routerLink]="[mainPageRoute.name]"
+               [style.background-image]="'url(' + mainPageRoute.iconImage + ')'">Smart House</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li *ngFor="#route of navigationRoutes">
                     <a [routerLink]="[route.name]"
-                       [style.background-image]="'url(' + route.iconImage + ')'">{{route.headerName}}</a>
-                 </li>
+                          [style.background-image]="'url(' + route.iconImage + ')'">{{route.headerName}}</a>
+                </li>
+            </ul>
+            <ul id="nav-mobile" class="right hide-on-large-only">
+                <li *ngFor="#route of navigationRoutes">
+                    <a [routerLink]="[route.name]" class = "mobile-menu-link"
+                          [style.background-image]="'url(' + route.iconImage + ')'">&nbsp;</a>
+                </li>
             </ul>
         </div>
     </nav>
