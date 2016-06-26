@@ -8,8 +8,10 @@ import {ScenarioService} from './../shared/Scenario.service.js';
 const selector = 'scenario-list';
 const headersForDisplay = [
     { topic: 'name', name: 'Name', sortable: true },
-    { topic: 'description', name: 'Description', sortable: true }
+    { topic: 'status', name: 'Status', sortable: false }
 ];
+export const SCENARIO_ACTIVE_STATE = 'active';
+export const SCENARIO_PAUSED_STATE = 'paused';
 
 @Component({
     selector,
@@ -23,7 +25,7 @@ export class ScenarioListComponent {
     scenarioList = [];
     _headers = [];
 
-    constructor(scenarioService: ScenarioService, router:Router) {
+    constructor(scenarioService:ScenarioService, router:Router) {
         this.scenarioService = scenarioService;
         this._headers = headersForDisplay;
         this.router = router;
@@ -33,7 +35,7 @@ export class ScenarioListComponent {
         this.scenarioService
             .get()
             .subscribe(data => {
-                this.scenarioList = data;
+                this.scenarioList = data.map(this.convertScenarioStatus);
             });
     }
 
@@ -46,7 +48,7 @@ export class ScenarioListComponent {
             .delete(item)
             .subscribe(data => {
                 this.scenarioList = this.scenarioList
-                        .filter(elem => elem.id !== data.id);
+                    .filter(elem => elem.id !== data.id);
             });
     }
 
@@ -56,7 +58,10 @@ export class ScenarioListComponent {
         this.scenarioService
             .update(scenarioForUpdate)
             .subscribe(() => {
-                scenario.active = !scenario.active; // eslint-disable-line
+                Object.assign(scenario, {
+                    active: !scenario.active
+                });
+                this.convertScenarioStatus(scenario);
             });
     }
 
@@ -64,6 +69,12 @@ export class ScenarioListComponent {
         const route = scenario.isConvertable
             ? 'EditScenarioWizard'
             : 'EditScenarioEditor';
-        this.router.navigate([route, {id: scenario.id}]);
+        this.router.navigate([route, { id: scenario.id }]);
+    }
+
+    convertScenarioStatus(scenario) {
+        return Object.assign(scenario, {
+            status: scenario.active ? SCENARIO_ACTIVE_STATE : SCENARIO_PAUSED_STATE
+        });
     }
 }
