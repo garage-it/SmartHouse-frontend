@@ -12,6 +12,8 @@ const headersForDisplay = [
     { topic: 'description', name: 'Description', sortable: true }
 ];
 
+const confirmQuestion = 'Are you sure you want to delete this device?';
+
 @Component({
     selector,
     template,
@@ -62,6 +64,10 @@ export class DeviceList {
     }
 
     removeSensor(item) {
+        if (!window.confirm(confirmQuestion)) {
+            return;
+        }
+
         this.sensorsService
             .delete(item)
             .subscribe(data => {

@@ -7,9 +7,10 @@ import {ScenarioService} from './../shared/Scenario.service.js';
 
 const selector = 'scenario-list';
 const headersForDisplay = [
-    { topic: 'name', name: 'Name', sortable: true },
-    { topic: 'description', name: 'Description', sortable: true }
+    {topic: 'name', name: 'Name', sortable: true},
+    {topic: 'description', name: 'Description', sortable: true}
 ];
+const confirmQuestion = 'Are you sure you want to delete this scenario?';
 
 @Component({
     selector,
@@ -23,7 +24,7 @@ export class ScenarioListComponent {
     scenarioList = [];
     _headers = [];
 
-    constructor(scenarioService: ScenarioService, router:Router) {
+    constructor(scenarioService:ScenarioService, router:Router) {
         this.scenarioService = scenarioService;
         this._headers = headersForDisplay;
         this.router = router;
@@ -42,17 +43,21 @@ export class ScenarioListComponent {
     }
 
     removeScenario(item) {
+        if (!window.confirm(confirmQuestion)) {
+            return;
+        }
+
         this.scenarioService
             .delete(item)
             .subscribe(data => {
                 this.scenarioList = this.scenarioList
-                        .filter(elem => elem.id !== data.id);
+                    .filter(elem => elem.id !== data.id);
             });
     }
 
     toggleScenarioState(scenario) {
         const active = !scenario.active;
-        const scenarioForUpdate = Object.assign({}, scenario, { active });
+        const scenarioForUpdate = Object.assign({}, scenario, {active});
         this.scenarioService
             .update(scenarioForUpdate)
             .subscribe(() => {

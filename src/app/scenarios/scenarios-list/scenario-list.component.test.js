@@ -89,18 +89,32 @@ describe('ScenarioListComponent', () => {
     });
 
     describe('#removeScenario', () => {
-        it('should call scenario service', () => {
+        it('should NOT call scenario service if user does not confirm scenario delete', () => {
             const mockedScenario = {id: 'mock'};
+            spyOn(window, 'confirm').and.returnValue(false);
             sut.removeScenario(mockedScenario);
 
-            expect(sut.scenarioService.delete).toHaveBeenCalledWith(mockedScenario);
+            expect(sut.scenarioService.delete).not.toHaveBeenCalledWith(mockedScenario);
         });
 
-        it('should remove scenario from listData', () => {
-            sut.scenarioList = listData;
-            sut.removeScenario(listData[1]);
+        describe('After user confirmation', () => {
+            beforeEach(() => {
+                spyOn(window, 'confirm').and.returnValue(true);
+            });
 
-            expect(sut.scenarioList).toEqual([listData[0]]);
+            it('should call scenario service if user confirms scenario delete', () => {
+                const mockedScenario = {id: 'mock'};
+                sut.removeScenario(mockedScenario);
+
+                expect(sut.scenarioService.delete).toHaveBeenCalledWith(mockedScenario);
+            });
+
+            it('should remove scenario from listData', () => {
+                sut.scenarioList = listData;
+                sut.removeScenario(listData[1]);
+
+                expect(sut.scenarioList).toEqual([listData[0]]);
+            });
         });
     });
 
