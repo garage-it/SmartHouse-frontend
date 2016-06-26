@@ -14,6 +14,8 @@ export const SCENARIO_ACTIVE_STATE = 'active';
 export const SCENARIO_PAUSED_STATE = 'paused';
 const confirmQuestion = 'Are you sure you want to delete this scenario?';
 
+const confirmQuestion = 'Are you sure you want to delete this scenario?';
+
 @Component({
     selector,
     template,
