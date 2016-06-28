@@ -3,17 +3,17 @@
   <div class="sub-header__actions col s4 right">
     <button [routerLink]="['CreateScenarioEditor']"
         class="waves-effect waves-light btn blue-grey darken-1 sub-header__actions__create">Create new scenario</button>
-  </div><!-- sub-header__actions -->
-</div><!-- sub-header -->
+  </div>
+</div>
 
 <div *ngIf="scenarioList.length === 0" class="empty-list">
     <div class="container empty-list__container">
         <div class="empty-list__container__text">
             <h3 class="empty-list__container__text__main">There are no scenarios yet</h3>
             <h4 class="empty-list__container__text__additional">Scenarios make your home truly intelligent. Go ahead and create your first scenario.</h4>
-        </div><!-- empty-list__container__text -->
-    </div><!-- empty-list__container -->
-</div><!-- empty-list -->
+        </div>
+    </div>
+</div>
 
 <div *ngIf="scenarioList.length !== 0" class="scenario-list">
     <table class="highlight responsive-table scenario-list-table">
@@ -23,30 +23,35 @@
                 [class.sortable]="header.sortable">
                 {{ header.name }}
                 <div [class]="reverse ? 'up' : 'down'"></div>
-            </th><!-- scenario-list-table__head__item -->
-        </thead><!-- scenario-list-table__head -->
+            </th>
+            <th class="scenario-list-table__head__item">
+                Actions
+            </th>
+        </thead>
         <tbody class="scenario-list-table__body">
             <tr *ngFor="#scenario of scenarioList"
                 (click)="navigateToEditView(scenario)"
                 class="scenario-list-table__body__row">
-                <td *ngFor="#header of headers"
-                    class="scenario-list-table__body__row__item">
-                    {{scenario[header.topic]}}
-                </td><!-- scenario-list-table__body__row__item -->
+                <td class="scenario-list-table__body__row__item">
+                    <span>{{scenario.name}}</span>
+                </td>
+                <td class="scenario-list-table__body__row__item status">
+                    <span [class]="scenario.active ? 'active' : 'paused'">{{scenario.status}}</span>
+                </td>
                 <td class="scenario-list-table__body__row__actions">
                     <button (click)="removeScenario(scenario); $event.stopPropagation()"
                             class="waves-effect waves-light btn scenario-list-table__body__row__actions__remove"
                             name="remove-scenario"
                             type="remove">
                         <i class="material-icons scenario-list-table__body__row__actions__remove__icon">delete</i>
-                    </button><!-- scenario-list-table__body__row__actions__remove -->
+                    </button>
                     <button (click)="toggleScenarioState(scenario); $event.stopPropagation()"
                             class="waves-effect waves-light btn scenario-list-table__body__row__actions__toggle-state"
                             name="toggle-scenario-state">
                         <i class="material-icons scenario-list-table__body__row__actions__remove__icon">{{ scenario.active ? 'stop' : 'play_arrow' }}</i>
-                    </button><!-- scenario-list-table__body__row__actions__toggle-state -->
-                </td><!-- scenario-list-table__body__row__actions -->
-            </tr><!-- scenario-list-table__body__row -->
-        </tbody><!-- scenario-list-table__body -->
-    </table><!-- scenario-list-table -->
-</div><!-- scenario-list -->
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
