@@ -2,16 +2,16 @@
     margin: 25px auto;
 
     &__title {
-        font-size:36px;
+        font-size: 36px;
     }
 
     &__actions {
-      vertical-align: middle;
-      line-height: 54px;
+        vertical-align: middle;
+        line-height: 54px;
 
-      &__create {
-          width: 250px;
-      }
+        &__create {
+            width: 250px;
+        }
     }
 }
 
@@ -25,22 +25,22 @@
             display: block;
             background: url('./assets/empty-scenarios-list.png') no-repeat;
             background-size: 150px;
-            background-position: calc(100%/2);
+            background-position: calc(100% / 2);
             height: 150px;
             margin: 0 6px 0 0;
         }
 
         &__text {
             &__main {
-                font-family:Roboto-Regular;
-                font-size:24px;
-                text-align:center;
+                font-family: Roboto-Regular;
+                font-size: 24px;
+                text-align: center;
             }
 
             &__additional {
-                font-family:Roboto-Regular;
-                font-size:15px;
-                text-align:center;
+                font-family: Roboto-Regular;
+                font-size: 15px;
+                text-align: center;
             }
         }
     }
@@ -52,12 +52,25 @@
             cursor: pointer;
             &__actions {
                 width: 150px;
-                
+
                 &__remove {
                     padding: 0 15px;
                 }
                 &__toggle-state {
                     padding: 0 15px;
+                }
+            }
+
+            .status {
+                span {
+                    padding: 5px;
+                    border-radius: 2px;
+                    &.paused {
+                        background: #ffa726;
+                    }
+                    &.active {
+                        background: #26a69a;
+                    }
                 }
             }
         }
