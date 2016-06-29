@@ -7,7 +7,7 @@
 </div>
 <form #sensorForm="ngForm" class="sensor-detail">
     <div class="sensor-detail__id">
-        <label for="sensor-detail__id">Device name</label>
+        <label for="sensor-detail__id">Device name <b class="red-text">*</b></label>
         <input [(ngModel)]="sensor.mqttId"
                ngControl="mqttId"
                #mqttId="ngForm"
@@ -27,10 +27,7 @@
                type="text"
                id="sensor-detail__type"
                placeholder="Enter type"
-               required/>
-        <div [hidden]="!type.touched || type.valid" class="alert">
-            Type should be filled
-        </div>
+               />
     </div>
     <div class="sensor-detail__description">
         <label for="sensor-detail__id">Description</label>
@@ -40,10 +37,7 @@
                type="text"
                id="sensor-detail__description"
                placeholder="Enter description"
-               required/>
-        <div [hidden]="!description.touched || description.valid" class="alert">
-            Description should be filled
-        </div>
+               />
     </div>
     <div class="sensor-detail__metrics">
         <label for="sensor-detail__id">Metrics</label>
@@ -53,10 +47,7 @@
                type="text"
                id="sensor-detail__metrics"
                placeholder="Enter metrics"
-               required/>
-        <div [hidden]="!metrics.touched || metrics.valid" class="alert">
-            Metrics should be filled
-        </div>
+               />
     </div>
     <p class="sensor-detail__status">
         <input [(ngModel)]="sensor.executor"

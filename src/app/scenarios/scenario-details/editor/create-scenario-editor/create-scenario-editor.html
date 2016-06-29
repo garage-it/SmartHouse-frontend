@@ -22,11 +22,17 @@
 
 <form class="scenario-details" (ngSubmit)="save(scenario)">
     <label>
-        Scenario name:
+        Scenario name: <b class="red-text">*</b>
         <input [(ngModel)]="scenario.name"
+               #name="ngForm"
                class="black-text"
-               type="text"/>
+               type="text"
+               required
+               />
     </label>
+    <div [hidden]="!name.touched || name.valid" class="red-text text-darken-4">
+        Name should be filled
+    </div>
 
     <p class="sensor-detail__status">
         <input [(ngModel)]="scenario.active"
