@@ -3,10 +3,10 @@ import { RouterLink } from 'angular2/router';
 
 import style from './style.scss';
 import template from './dashboard.html';
-import { SensorWidget } from '../components/sensor-widget';
-import { SensorExecutorWidget } from '../components/sensor-executor-widget';
-import { SensorStatusWidget } from '../components/sensor-status-widget';
-import SensorWidgetService from '../components/shared/sensor-widget.service';
+import { SensorWidget } from './sensor-widget';
+import { SensorExecutorWidget } from './sensor-executor-widget';
+import { SensorStatusWidget } from './sensor-status-widget';
+import SensorWidgetService from './shared/sensor-widget.service';
 import DashboardService from './dashboard.service';
 
 @Component({

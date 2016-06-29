@@ -64,7 +64,7 @@ export class ScenarioListComponent {
     }
 
     removeScenario(item) {
-        if (!window.confirm(confirmQuestion)) {
+        if (!window.confirm(confirmQuestion)) { // eslint-disable-line no-alert
             return;
         }
 

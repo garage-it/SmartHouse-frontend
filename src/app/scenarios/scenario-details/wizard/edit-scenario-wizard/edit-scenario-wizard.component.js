@@ -5,7 +5,7 @@ import template from './edit-scenario-wizard.html';
 import {CreateScenarioWizardComponent}
     from '../create-scenario-wizard/create-scenario-wizard.component.js';
 import {ScenarioService} from '../../../shared/Scenario.service.js';
-import {DeviceListService} from '../../../../components/shared/device-list.service';
+import {DeviceListService} from '../../../../shared/device-list/device-list.service';
 import Condition from '../scenario-entities/Condition';
 import Action from '../scenario-entities/Action';
 import Scenario from '../scenario-entities/Scenario';

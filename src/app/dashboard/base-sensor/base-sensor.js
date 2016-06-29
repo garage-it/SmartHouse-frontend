@@ -1,4 +1,4 @@
-import SensorWidgetService from './sensor-widget.service';
+import SensorWidgetService from '../shared/sensor-widget.service';
 
 export default class BaseSensor {
     constructor() {

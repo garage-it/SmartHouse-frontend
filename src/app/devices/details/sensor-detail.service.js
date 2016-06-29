@@ -1,5 +1,5 @@
 import {Injectable} from 'angular2/core';
-import ShHttpService from '../../sh-http/sh-http.service.js';
+import ShHttpService from '../../shared/sh-http/sh-http.service.js';
 
 @Injectable()
 export default class SensorDetailService {
