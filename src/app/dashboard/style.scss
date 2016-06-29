@@ -22,23 +22,22 @@
     &_widget {
         float: left;
         position: relative;
+
+        // EDITOR MODE
+        &-hidden {
+            opacity: 0.5;
+        }
     }
 
     &_widget-actions {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 160px;
-        height: 160px;
-        padding: 10px;
-        background-color: rgba(55, 71, 79, 0.7);
+        $main-color: #333333;
 
         label {
-            color: #fff;
+            color: $main-color;
         }
 
         .filled-in:not(:checked) + label:after{
-            border-color: #fff;
+            border-color: $main-color;
         }
     }
 
