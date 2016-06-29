@@ -1,8 +1,8 @@
 var NavWidget = function () {
 
-    this.dashboardLink = $('a[href="#/dashboard"]');
-    this.devicesLink = $('a[href="#/device-list"]');
-    this.scenariosLink = $('a[href="#/scenarios"]');
+    this.dashboardLink = $('#nav-mobile a[href="#/"]');
+    this.devicesLink = $('#nav-mobile a[href="#/device-list"]');
+    this.scenariosLink = $('#nav-mobile a[href="#/scenarios"]');
     this.brandLogo = $('a.logo');
 
 };

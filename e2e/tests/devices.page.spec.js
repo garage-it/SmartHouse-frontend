@@ -24,7 +24,7 @@ describe('Devices Page Test', () => {
         expect(navWidget.scenariosLink.getText()).toEqual('Scenarios');
     });
 
-    it('should check Add New Device button is present', () => {
-        expect(devicesPage.addNewDeviceButton.isPresent()).toBe(true);
+    it('should check Add New Device button is present with proper name', () => {
+        expect(devicesPage.addNewDeviceButton.getText()).toEqual('ADD NEW DEVICE');
     });
 });

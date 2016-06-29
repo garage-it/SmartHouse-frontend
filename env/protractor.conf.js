@@ -39,7 +39,7 @@ exports.config = {
         browser.wait(() => {
             browser.get(URL);
             return browser.isElementPresent(By.css('a.logo'));
-        }, 5000);
+        }, 10000);
     }
 
 };
