@@ -75,18 +75,32 @@ describe('device-list component', () => {
             expect(sut.removeSensor).toBeDefined();
         });
 
-        it('should call sensor service', () => {
+        it('should NOT call sensor service if user does not confirm device delete', () => {
             const mockedSensor = {_id: 'mock'};
+            spyOn(window, 'confirm').and.returnValue(false);
             sut.removeSensor(mockedSensor);
 
-            expect(sut.sensorsService.delete).toHaveBeenCalledWith(mockedSensor);
+            expect(sut.sensorsService.delete).not.toHaveBeenCalledWith(mockedSensor);
         });
 
-        it('should remove sensor from listData', () => {
-            sut.deviceList = listData;
-            sut.removeSensor(listData[1]);
+        describe('After user confirmation', () => {
+            beforeEach(() => {
+                spyOn(window, 'confirm').and.returnValue(true);
+            });
 
-            expect(sut.deviceList).toEqual([listData[0]]);
+            it('should call sensor service', () => {
+                const mockedSensor = {_id: 'mock'};
+                sut.removeSensor(mockedSensor);
+
+                expect(sut.sensorsService.delete).toHaveBeenCalledWith(mockedSensor);
+            });
+
+            it('should remove sensor from listData', () => {
+                sut.deviceList = listData;
+                sut.removeSensor(listData[1]);
+
+                expect(sut.deviceList).toEqual([listData[0]]);
+            });
         });
     });
 

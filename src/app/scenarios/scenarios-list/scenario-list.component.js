@@ -14,6 +14,7 @@ const headersForDisplay = [
 ];
 export const SCENARIO_ACTIVE_STATE = 'active';
 export const SCENARIO_PAUSED_STATE = 'paused';
+const confirmQuestion = 'Are you sure you want to delete this scenario?';
 
 @Component({
     selector,
@@ -63,6 +64,10 @@ export class ScenarioListComponent {
     }
 
     removeScenario(item) {
+        if (!window.confirm(confirmQuestion)) {
+            return;
+        }
+
         this.scenarioService
             .delete(item)
             .subscribe(data => {
@@ -73,7 +78,7 @@ export class ScenarioListComponent {
 
     toggleScenarioState(scenario) {
         const active = !scenario.active;
-        const scenarioForUpdate = Object.assign({}, scenario, { active });
+        const scenarioForUpdate = Object.assign({}, scenario, {active});
         this.scenarioService
             .update(scenarioForUpdate)
             .subscribe(() => {
