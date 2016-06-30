@@ -31,7 +31,7 @@ describe('New Device Page Test', () => {
     it('should check all required elements are present with proper names', () => {
         expect(addNewDevicePage.backToListLink.getText()).toContain(props.names.links.backToList);
 
-        expect(addNewDevicePage.deviceNameLabel.getText()).toEqual("Device name");
+        expect(addNewDevicePage.deviceNameLabel.getText()).toEqual("Device name *");
         expect(addNewDevicePage.deviceNameInput.getAttribute('placeholder')).toEqual("Enter descriptive name");
 
         expect(addNewDevicePage.deviceTypeLabel.getText()).toEqual("Type");

@@ -22,7 +22,7 @@ var DevicesPageActions = function () {
         });
         waitUtils.waitFor(devicesPage.pageHeader);
     };
-    
+
     this.isDeviceInTheList = (id) => {
         waitUtils.waitFor(devicesPage.devicesTable);
         return element(by.cssContainingText('tbody tr td', id))
@@ -39,9 +39,27 @@ var DevicesPageActions = function () {
             .element(by.xpath('parent::node()'))
             .element(by.css('button.sensors-list-table__body__row__actions__remove'))
             .click()
-            .then(null, function() {
+            .then(function () {
+              //Wait for alert to pop up
+              browser.wait(() => {
+                  return browser.switchTo().alert().then(
+                      () => {return true;},
+                      () => {return false;}
+                  );
+              }, 3000); // Wait timeout
+
+              // Test alert is what you expect
+              var popupAlert = browser.switchTo().alert(),
+                  alertText = popupAlert.getText();
+              expect(alertText).toMatch('Are you sure you want to delete this device?');
+
+              // Close alert
+              popupAlert.accept();
+          },
+              function() {
                 console.log("\nWARN: No device removed with ID: " + id);
             });
+
         waitUtils.waitFor(devicesPage.devicesTable);
         browser.sleep(1000);
     };
