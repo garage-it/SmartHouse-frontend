@@ -1,7 +1,7 @@
 import {Component} from 'angular2/core';
 import {RouteParams, Router, RouterLink} from 'angular2/router';
 import template from './create-scenario-wizard.html';
-import {DeviceListService} from '../../../../components/shared/device-list.service';
+import {DeviceListService} from '../../../../shared/device-list/device-list.service';
 import Action from '../scenario-entities/Action';
 import Condition from '../scenario-entities/Condition';
 import Scenario from '../scenario-entities/Scenario';

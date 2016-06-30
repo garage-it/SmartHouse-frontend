@@ -5,7 +5,7 @@ import {EditScenarioWizardComponent} from './edit-scenario-wizard.component.js';
 import {RouteParams} from 'angular2/router';
 import {ScenarioService} from '../../../shared/Scenario.service.js';
 
-import {DeviceListService} from '../../../../components/shared/device-list.service';
+import {DeviceListService} from '../../../../shared/device-list/device-list.service';
 import Scenario from '../scenario-entities/Scenario';
 import Condition from '../scenario-entities/Condition';
 import Action from '../scenario-entities/Action';

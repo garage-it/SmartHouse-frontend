@@ -1,12 +1,13 @@
 import {Help} from './help';
 import {Dashboard, DashboardEditor} from './dashboard';
-import {ScenarioListComponent,
+import {
+    ScenarioListComponent,
     EditScenarioEditorComponent,
     EditScenarioWizardComponent,
     CreateScenarioEditorComponent,
-    CreateScenarioWizardComponent} from './scenarios/';
-import {DeviceList} from './sensors/list';
-import {SensorDetail} from './sensors/details';
+    CreateScenarioWizardComponent
+} from './scenarios/';
+import {DeviceList, SensorDetail} from './devices';
 
 export default [
     {path: '/', name: 'Dashboard', component: Dashboard, useAsDefault: true},

@@ -1,6 +1,6 @@
 import {Component} from 'angular2/core';
 
-import BaseSensor from '../shared/base-sensor';
+import BaseSensor from '../base-sensor';
 import template from './sensor-executor-widget.html';
 import styles from '../shared/sensor-widget.scss';
 

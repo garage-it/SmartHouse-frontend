@@ -4,7 +4,7 @@ import {RouteConfig, RouterLink, RouterOutlet} from 'angular2/router';
 import {HeaderComponent} from './components/header/header.component';
 
 import {Http, HTTP_PROVIDERS} from 'angular2/http';
-import ShHttpService from './sh-http/sh-http.service.js';
+import ShHttpService from './shared/sh-http/sh-http.service.js';
 
 import style from './app.scss';
 import template from './app.html';
