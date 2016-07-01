@@ -1,9 +1,11 @@
-var DevicesPage = require('../pobjects/pages/devices.page.js');
-var NavWidget = require('../pobjects/widgets/nav.widget.js');
+var DevicesPage = require('../pobjects/pages/devices.page.js'),
+    NavWidget = require('../pobjects/widgets/nav.widget.js'),
+    WaitUtils = require('../utils/wait.utils');
 
 describe('Devices Page Test', () => {
-    var devicesPage = new DevicesPage();
-    var navWidget = new NavWidget();
+    var devicesPage = new DevicesPage(),
+        navWidget = new NavWidget(),
+        waitUtils = new WaitUtils();
 
     beforeEach(() => {
         devicesPage.get();
@@ -25,6 +27,7 @@ describe('Devices Page Test', () => {
     });
 
     it('should check Add New Device button is present with proper name', () => {
+        waitUtils.waitFor(devicesPage.addNewDeviceButton);
         expect(devicesPage.addNewDeviceButton.getText()).toEqual('ADD NEW DEVICE');
     });
 });
