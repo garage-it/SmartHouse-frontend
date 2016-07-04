@@ -1,5 +1,5 @@
-import {Component} from 'angular2/core';
-import {RouteParams, Router, RouterLink} from 'angular2/router';
+import {Component} from '@angular/core';
+import {ROUTER_DIRECTIVES, RouteParams, Router} from '@angular/router';
 import template from './create-scenario-wizard.html';
 import {DeviceListService} from '../../../../shared/device-list/device-list.service';
 import Action from '../scenario-entities/Action';
@@ -12,7 +12,7 @@ import {ScenarioWizardComponent} from '../scenario-wizard/scenario-wizard.compon
 @Component({
     template,
     providers: [ScenarioService, DeviceListService],
-    directives: [RouterLink, ScenarioWizardComponent]
+    directives: [ROUTER_DIRECTIVES, ScenarioWizardComponent]
 })
 
 export class CreateScenarioWizardComponent extends ScenarioDetailsComponent {

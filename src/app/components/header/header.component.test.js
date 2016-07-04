@@ -1,4 +1,4 @@
-import { Router } from 'angular2/router';
+import { Router } from '@angular/router';
 import {
     HeaderComponent,
     NAVIGATION_ROUTES

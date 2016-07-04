@@ -1,9 +1,9 @@
 import SensorDetailService from './sensor-detail.service';
 import {SensorDetail} from './sensor-detail.component';
 
-import {RouteParams, Router} from 'angular2/router';
-import {beforeEachProviders} from 'angular2/testing';
-import {provide} from 'angular2/core';
+import {RouteParams, Router} from '@angular/router';
+import {beforeEachProviders} from '@angular/testing';
+import {provide} from '@angular/core';
 
 const observableSubscribe = {
     subscribe(fn) { fn(); }

@@ -15,7 +15,7 @@
             <select name="logicalOperator"
                     class="operators-select"
                     [(ngModel)]="scenario.wizard.logicalOperator">
-                <option *ngFor="#operator of LOGICAL_OPERATORS"
+                <option *ngFor="let operator of LOGICAL_OPERATORS"
                         [value]="operator.id">{{operator.name}}
                 </option>
             </select>
@@ -24,12 +24,12 @@
 
     </div>
 </div>
-<div class="row gray-bg" *ngFor="#condition of scenario.wizard.conditions; #i=index">
+<div class="row gray-bg" *ngFor="let condition of scenario.wizard.conditions; #i=index">
     <div class="col s3">
         <span>Device</span>
         <select [(ngModel)]="condition.selectedDevice" required name="deviceSelect">
             <option [value]="undefined">Choose trigger</option>
-            <option *ngFor="#device of condition.devices"
+            <option *ngFor="let device of condition.devices"
                     [value]="device.mqttId">{{device.description}}
             </option>
         </select>
@@ -38,7 +38,7 @@
         <span>Condition</span>
         <select [(ngModel)]="condition.selectedCondition">
             <option [value]="undefined">Choose condition</option>
-            <option *ngFor="#condition of condition.conditions" [value]="condition.id">{{condition.name}}</option>
+            <option *ngFor="let condition of condition.conditions" [value]="condition.id">{{condition.name}}</option>
         </select>
     </div>
     <div class="col s3">
@@ -68,12 +68,12 @@
         <h5>Then do the following</h5>
     </div>
 </div>
-<div class="row gray-bg" *ngFor="#action of scenario.wizard.actions; #i=index">
+<div class="row gray-bg" *ngFor="let action of scenario.wizard.actions; #i=index">
     <div class="col s3">
         <span>Device</span>
         <select [(ngModel)]="action.selectedDevice">
             <option [value]="undefined">Choose device</option>
-            <option *ngFor="#device of action.devices"
+            <option *ngFor="let device of action.devices"
                     [value]="device.mqttId">{{device.description}}
             </option>
         </select>
@@ -82,7 +82,7 @@
         <span>Value</span>
         <select name="actionValue"
                 [(ngModel)]="action.value">
-            <option *ngFor="#value of action.values"
+            <option *ngFor="let value of action.values"
                     [value]="value.id">{{value.name}}
             </option>
         </select>

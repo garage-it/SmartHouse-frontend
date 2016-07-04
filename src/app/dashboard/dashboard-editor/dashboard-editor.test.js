@@ -1,6 +1,6 @@
 import {DashboardEditor} from './dashboard-editor';
 import DashboardService from '../dashboard.service.js';
-import {Router} from 'angular2/router';
+import {Router} from '@angular/router';
 
 describe('DashboardEditor', () => {
     let sut;

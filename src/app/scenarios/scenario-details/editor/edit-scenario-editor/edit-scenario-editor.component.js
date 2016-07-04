@@ -1,4 +1,4 @@
-import {RouteParams, Router} from 'angular2/router';
+import {RouteParams, Router} from '@angular/router';
 
 import {ScenarioDetailsComponent} from '../../scenario-details.component';
 import {ScenarioService} from '../../../shared/Scenario.service.js';

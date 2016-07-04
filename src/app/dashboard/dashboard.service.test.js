@@ -1,5 +1,5 @@
 import DashboardService from './dashboard.service';
-import {Http} from 'angular2/http';
+import {Http} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 
 describe('DashboardService', () => {

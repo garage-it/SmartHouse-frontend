@@ -10,19 +10,20 @@ import {
 import {DeviceList, SensorDetail} from './devices';
 
 export default [
-    {path: '/', name: 'Dashboard', component: Dashboard, useAsDefault: true},
-    {path: '/dashboard/editor', name: 'DashboardEditor', component: DashboardEditor},
-    {path: '/device-list', name: 'DeviceList', component: DeviceList},
-    {path: '/scenarios', name: 'ScenarioList', component: ScenarioListComponent},
-    {path: '/help', name: 'Help', component: Help},
-    {path: '/scenarios/create-editor', name: 'CreateScenarioEditor',
-        component: CreateScenarioEditorComponent},
-    {path: '/scenarios/create-wizard', name: 'CreateScenarioWizard',
-        component: CreateScenarioWizardComponent},
-    {path: '/scenario/editor/:id', name: 'EditScenarioEditor',
-        component: EditScenarioEditorComponent},
-    {path: '/scenario/wizard/:id', name: 'EditScenarioWizard',
-        component: EditScenarioWizardComponent},
-    {path: '/sensors/:id', name: 'SensorDetail', component: SensorDetail},
-    {path: '/sensors/create', name: 'SensorDetail', component: SensorDetail}
+    { path: '', redirectTo: 'dashboard', pathMatch: 'full', useAsDefault: true },
+    { path: 'dashboard', component: Dashboard },
+    { path: 'dashboard/editor', component: DashboardEditor },
+    { path: 'devices', component: DeviceList },
+    { path: 'scenarios', component: ScenarioListComponent },
+    { path: 'help', component: Help },
+    { path: 'scenarios/create-editor',
+        component: CreateScenarioEditorComponent },
+    { path: 'scenarios/create-wizard',
+        component: CreateScenarioWizardComponent },
+    { path: 'scenario/editor/:id',
+        component: EditScenarioEditorComponent },
+    { path: 'scenario/wizard/:id',
+        component: EditScenarioWizardComponent },
+    { path: 'sensors/:id', component: SensorDetail },
+    { path: 'sensors/create', component: SensorDetail }
 ];

@@ -1,5 +1,5 @@
 import {ScenarioDetailsComponent} from './scenario-details.component';
-import {Router} from 'angular2/router';
+import {Router} from '@angular/router';
 
 describe('ScenarioDetailsComponent', () => {
     let sut;

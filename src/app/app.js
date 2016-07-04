@@ -1,9 +1,9 @@
-import {Component, ViewEncapsulation} from 'angular2/core';
-import {RouteConfig, RouterLink, RouterOutlet} from 'angular2/router';
+import {Component, ViewEncapsulation} from '@angular/core';
+import {ROUTER_DIRECTIVES, provideRouter, RouterOutlet} from '@angular/router';
 
 import {HeaderComponent} from './components/header/header.component';
 
-import {Http, HTTP_PROVIDERS} from 'angular2/http';
+import {Http, HTTP_PROVIDERS} from '@angular/http';
 import ShHttpService from './shared/sh-http/sh-http.service.js';
 
 import style from './app.scss';
@@ -12,7 +12,7 @@ import routes from './routes';
 
 @Component({
     selector: 'sh-app',
-    directives: [RouterLink, RouterOutlet, HeaderComponent],
+    directives: [ROUTER_DIRECTIVES, RouterOutlet, HeaderComponent],
     providers: [
         Http,
         HTTP_PROVIDERS,
@@ -21,9 +21,10 @@ import routes from './routes';
     template,
     encapsulation: ViewEncapsulation.None
 })
-@RouteConfig(routes)
 export class App {
     ngOnInit() {
         console.log('Init App'); // eslint-disable-line
     }
 }
+
+export const APP_ROUTER_PROVIDERS = [provideRouter(routes)];

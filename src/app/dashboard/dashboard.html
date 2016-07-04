@@ -1,7 +1,7 @@
 <div class="dashboard">
     <div class="dashboard_title">
         <a class="right edit-link"
-           [routerLink]="['/DashboardEditor']"
+           [routerLink]="['DashboardEditor']"
            *ngIf="!isDashboardEmpty()">
             <i class="material-icons">edit</i>
         </a>
@@ -20,7 +20,7 @@
                 </div>
             </div>
         </div>
-        <div *ngFor="#widget of widgets">
+        <div *ngFor="let widget of widgets">
             <sm-sensor-widget
                 [device]="widget.device"
                 *ngIf="!widget.device.executor && !widget.hidden">

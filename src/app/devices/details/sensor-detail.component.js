@@ -1,7 +1,7 @@
-import {Injectable, Component} from 'angular2/core';
-import {NgForm} from 'angular2/common';// eslint-disable-line
-import {RouteParams, Router} from 'angular2/router';
-import {Http, HTTP_PROVIDERS} from 'angular2/http';
+import {Injectable, Component} from '@angular/core';
+import {NgForm} from '@angular/common';// eslint-disable-line
+import {RouteParams, Router} from '@angular/router';
+import {Http, HTTP_PROVIDERS} from '@angular/http';
 
 import Sensor from './sensor';
 import SensorDetailService from './sensor-detail.service';

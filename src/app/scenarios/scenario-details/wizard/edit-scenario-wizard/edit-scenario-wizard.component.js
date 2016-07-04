@@ -1,6 +1,6 @@
-import {Component} from 'angular2/core';
+import {Component} from '@angular/core';
 import Rx from 'rxjs/Rx';
-import {RouteParams, RouterLink, Router} from 'angular2/router';
+import {ROUTER_DIRECTIVES, RouteParams, Router} from '@angular/router';
 import template from './edit-scenario-wizard.html';
 import {CreateScenarioWizardComponent}
     from '../create-scenario-wizard/create-scenario-wizard.component.js';
@@ -14,7 +14,7 @@ import {ScenarioWizardComponent} from '../scenario-wizard/scenario-wizard.compon
 @Component({
     template,
     providers: [ScenarioService, DeviceListService],
-    directives: [RouterLink, ScenarioWizardComponent]
+    directives: [ROUTER_DIRECTIVES, ScenarioWizardComponent]
 })
 
 export class EditScenarioWizardComponent extends CreateScenarioWizardComponent {
