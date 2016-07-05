@@ -9,6 +9,7 @@ describe('Devices Page Test', () => {
 
     beforeEach(() => {
         devicesPage.get();
+        browser.refresh();
     });
 
     it('should check page title and header name', () => {
