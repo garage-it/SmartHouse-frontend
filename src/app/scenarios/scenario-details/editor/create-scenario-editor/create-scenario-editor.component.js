@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import { ROUTER_DIRECTIVES, RouteParams, Router } from '@angular/router';
+import { ROUTER_DIRECTIVES, ActivatedRoute, Router } from '@angular/router';
 import template from './create-scenario-editor.html';
 import style from './scenario-editor.scss';
 
@@ -19,8 +19,9 @@ import {ScenarioEditor} from '../scenario-editor/scenario-editor.component.js';
 
 export class CreateScenarioEditorComponent extends ScenarioDetailsComponent {
 
-    constructor(scenarioListService:ScenarioService, routeParams:RouteParams, router: Router) { // eslint-disable-line
-        super(scenarioListService, routeParams, router);
+// TODO remove route:ActivatedRoute to null
+    constructor(scenarioListService:ScenarioService, route:ActivatedRoute, router: Router) { // eslint-disable-line
+        super(scenarioListService, route, router);
     }
 
     save(scenario) {

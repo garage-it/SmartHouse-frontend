@@ -2,7 +2,7 @@ import ShHttpService from './sh-http.service.js';
 import ShRequestOptions from './sh-request-options';
 
 import {Http, RequestMethod, Headers} from '@angular/http';
-import {beforeEachProviders} from '@angular/testing';
+import {beforeEachProviders} from '@angular/core/testing';
 import {provide} from '@angular/core';
 
 class ObservableSubscribe {

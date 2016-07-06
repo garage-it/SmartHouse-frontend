@@ -8,7 +8,7 @@ import {
 } from './scenario-list.component.js';
 import {Router, RouteParams} from '@angular/router';
 
-import {beforeEachProviders} from '@angular/testing';
+import {beforeEachProviders} from '@angular/core/testing';
 import {provide} from '@angular/core';
 
 const mockScenario = {
@@ -200,14 +200,14 @@ describe('ScenarioListComponent', () => {
             scenario.isConvertable = false;
             sut.navigateToEditView(scenario);
             expect(sut.router.navigate)
-                .toHaveBeenCalledWith(['EditScenarioEditor', { id: scenario.id }]);
+                .toHaveBeenCalledWith(['scenarios/editor', scenario.id]);
         });
 
         it('should navigate to EditScenarioWizard', () => {
             scenario.isConvertable = true;
             sut.navigateToEditView(scenario);
             expect(sut.router.navigate)
-                .toHaveBeenCalledWith(['EditScenarioWizard', { id: scenario.id }]);
+                .toHaveBeenCalledWith(['scenarios/wizard', scenario.id]);
         });
     });
 });

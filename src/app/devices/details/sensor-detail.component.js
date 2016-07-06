@@ -1,6 +1,6 @@
 import {Injectable, Component} from '@angular/core';
 import {NgForm} from '@angular/common';// eslint-disable-line
-import {RouteParams, Router} from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import {Http, HTTP_PROVIDERS} from '@angular/http';
 
 import Sensor from './sensor';
@@ -22,17 +22,18 @@ const selector = 'sh-sensor-detail';
 })
 @Injectable()
 export class SensorDetail {
-    constructor(sensorDetailService:SensorDetailService, routeParams:RouteParams, router:Router) {
+    constructor(sensorDetailService:SensorDetailService, router:Router, route:ActivatedRoute) {
         this.sensorDetailService = sensorDetailService;
-        this.routeParams = routeParams;
         this.router = router;
+        this.route = route;
 
         this.needUpdate = true;
         this.sensor = new Sensor();
     }
 
     ngOnInit() {
-        const id = this.routeParams.get('id');
+        console.log('>>', this.route);
+        const id = this.route.snapshot.params.id;
         if (!id) {
             this.needUpdate = false;
             return;
@@ -66,6 +67,6 @@ export class SensorDetail {
     }
 
     _navigateToList() {
-        this.router.navigate(['DeviceList']);
+        this.router.navigate(['/devices']);
     }
 }

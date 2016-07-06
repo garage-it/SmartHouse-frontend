@@ -1,12 +1,13 @@
 import {ScenarioDetailsComponent} from './scenario-details.component';
-import {Router} from '@angular/router';
 
 describe('ScenarioDetailsComponent', () => {
     let sut;
     let router;
 
     beforeEach(() => {
-        router = jasmine.createSpyComponent(Router);
+        router = {
+            navigate: jasmine.createSpy()
+        };
 
         sut = new ScenarioDetailsComponent(null, null, router);
     });
@@ -15,7 +16,7 @@ describe('ScenarioDetailsComponent', () => {
         it('should go to list of scenarios', () => {
             sut.back();
 
-            expect(router.navigate).toHaveBeenCalledWith(['/ScenarioList']);
+            expect(router.navigate).toHaveBeenCalledWith(['/scenarios']);
         });
     });
 });

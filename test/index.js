@@ -12,8 +12,8 @@ import 'zone.js/dist/jasmine-patch';
 import './jasmine/create-spy-component';
 
 // Angular Testing
-import * as testing from 'angular2/testing';
-import * as browser from 'angular2/platform/testing/browser';
+import * as testing from '@angular/core/testing';
+import * as browser from '@angular/platform-browser/testing';
 
 // Zone
 import 'zone.js/dist/zone';

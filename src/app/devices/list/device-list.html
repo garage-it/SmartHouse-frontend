@@ -1,7 +1,7 @@
 <div class="sub-header row">
   <div id="page-title" class="col s5 sub-header__title">Devices</div>
   <div class="sub-header__actions col s3 right">
-    <button [routerLink]="['SensorDetail']"
+    <button [routerLink]="['create']"
         class="waves-effect waves-light btn blue-grey darken-1">Add new device</button>
   </div><!-- sub-header__actions -->
 </div><!-- sub-header -->
@@ -29,7 +29,7 @@
         </thead><!-- sensors-list-table__head -->
         <tbody class="sensors-list-table__body">
             <tr *ngFor="let item of deviceList"
-                [routerLink]="['SensorDetail', { id: item._id }]"
+                [routerLink]="['/devices', item._id]"
                 class="sensors-list-table__body__row">
                 <td *ngFor="let header of headers"
                     class="sensors-list-table__body__row__item">

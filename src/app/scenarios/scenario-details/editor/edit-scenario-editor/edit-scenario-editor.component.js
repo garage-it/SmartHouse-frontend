@@ -1,16 +1,16 @@
-import {RouteParams, Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 import {ScenarioDetailsComponent} from '../../scenario-details.component';
 import {ScenarioService} from '../../../shared/Scenario.service.js';
 
 export class EditScenarioEditorComponent extends ScenarioDetailsComponent {
 
-    constructor(scenarioListService:ScenarioService, routeParams:RouteParams, router: Router) {// eslint-disable-line
-        super(scenarioListService, routeParams, router);
+    constructor(scenarioListService:ScenarioService, route:ActivatedRoute, router: Router) {// eslint-disable-line
+        super(scenarioListService, route, router);
     }
 
     ngOnInit() {
-        this._scenarioService.get(this._routeParams.get('id'))
+        this._scenarioService.get(this._route.snapshot.params.id)
             .subscribe((scenario) => {
                 this.scenario = scenario;
             });

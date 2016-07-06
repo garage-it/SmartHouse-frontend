@@ -1,6 +1,6 @@
 import {DeviceListService} from './device-list.service';
 import {Http} from '@angular/http';
-import {beforeEachProviders} from '@angular/testing';
+import {beforeEachProviders} from '@angular/core/testing';
 import {provide} from '@angular/core';
 
 const observableMock = { map() {} };

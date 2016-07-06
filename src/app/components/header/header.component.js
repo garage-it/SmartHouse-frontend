@@ -5,12 +5,12 @@ import style from './header.component.scss';
 import template from './header.component.html';
 
 const HEADER_COMPONENT_SELECTOR = 'sh-header';
-// TODO change name to path
+
 export const NAVIGATION_ROUTES = [
-    { name: 'dashboard', headerName: 'Dashboard', iconImage: './assets/Dashboard.png' },
-    { name: 'devices', headerName: 'Devices', iconImage: './assets/DeviceList.png' },
-    { name: 'scenarios', headerName: 'Scenarios', iconImage: './assets/ScenarioList.png' },
-    { name: 'help', headerName: 'Help', iconImage: './assets/Help.png' }
+    { path: 'dashboard', headerName: 'Dashboard', iconImage: './assets/Dashboard.png' },
+    { path: 'devices', headerName: 'Devices', iconImage: './assets/DeviceList.png' },
+    { path: 'scenarios', headerName: 'Scenarios', iconImage: './assets/ScenarioList.png' },
+    { path: 'help', headerName: 'Help', iconImage: './assets/Help.png' }
 ];
 
 @Component({
@@ -22,7 +22,7 @@ export const NAVIGATION_ROUTES = [
 export class HeaderComponent {
     get mainPageRoute() {
         return {
-            name: 'Dashboard',
+            name: 'dashboard',
             headerName: 'Smart House',
             iconImage: './assets/Index.png'
         };

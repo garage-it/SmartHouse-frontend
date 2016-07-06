@@ -24,7 +24,7 @@
 
     </div>
 </div>
-<div class="row gray-bg" *ngFor="let condition of scenario.wizard.conditions; #i=index">
+<div class="row gray-bg" *ngFor="let condition of scenario.wizard.conditions">
     <div class="col s3">
         <span>Device</span>
         <select [(ngModel)]="condition.selectedDevice" required name="deviceSelect">
@@ -68,7 +68,7 @@
         <h5>Then do the following</h5>
     </div>
 </div>
-<div class="row gray-bg" *ngFor="let action of scenario.wizard.actions; #i=index">
+<div class="row gray-bg" *ngFor="let action of scenario.wizard.actions">
     <div class="col s3">
         <span>Device</span>
         <select [(ngModel)]="action.selectedDevice">

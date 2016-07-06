@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ROUTER_DIRECTIVES, RouteParams, Router} from '@angular/router';
+import { ROUTER_DIRECTIVES, ActivatedRoute, Router } from '@angular/router';
 
 import template from './scenario-details.html';
 import style from './scenario-details.scss';
@@ -18,9 +18,9 @@ const selector = 'scenario-list';
 
 export class ScenarioDetailsComponent {
 
-    constructor(scenarioService:ScenarioService, routeParams:RouteParams, router: Router) {
+    constructor(scenarioService:ScenarioService, route:ActivatedRoute, router: Router) {
         this._scenarioService = scenarioService;
-        this._routeParams = routeParams;
+        this._route = route;
         this._router = router;
         this.scenario = {};
     }
@@ -30,6 +30,6 @@ export class ScenarioDetailsComponent {
     }
 
     back() {
-        this._router.navigate(['/ScenarioList']);
+        this._router.navigate(['/scenarios']);
     }
 }

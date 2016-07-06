@@ -1,5 +1,5 @@
 import {Component, ViewEncapsulation} from '@angular/core';
-import {ROUTER_DIRECTIVES, provideRouter, RouterOutlet} from '@angular/router';
+import {ROUTER_DIRECTIVES, provideRouter} from '@angular/router';
 
 import {HeaderComponent} from './components/header/header.component';
 
@@ -12,7 +12,7 @@ import routes from './routes';
 
 @Component({
     selector: 'sh-app',
-    directives: [ROUTER_DIRECTIVES, RouterOutlet, HeaderComponent],
+    directives: [ROUTER_DIRECTIVES, HeaderComponent],
     providers: [
         Http,
         HTTP_PROVIDERS,
