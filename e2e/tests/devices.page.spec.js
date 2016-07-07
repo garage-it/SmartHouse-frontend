@@ -9,6 +9,7 @@ describe('Devices Page Test', () => {
 
     beforeEach(() => {
         devicesPage.get();
+        //page should be refreshed to be sure elements are visible
         browser.refresh();
     });
 
