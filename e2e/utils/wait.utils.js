@@ -1,12 +1,7 @@
 var WaitUtils = function () {
 
-    this.waitFor = function (element) {
-        browser.wait(function () {
-            if (element != null) {
-                return  element.isPresent();
-            }
-            return false;
-        });
+    this.waitFor = (element) => {
+        browser.wait(() => {return  element.isPresent()}, 10000);
     };
 };
 
