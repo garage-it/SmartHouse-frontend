@@ -32,7 +32,6 @@ export class SensorDetail {
     }
 
     ngOnInit() {
-        console.log('>>', this.route);
         const id = this.route.snapshot.params.id;
         if (!id) {
             this.needUpdate = false;

@@ -27,9 +27,9 @@ describe('EditScenarioWizardComponent', () => {
     };
 
     class ActivatedRouteMock {
-        constructor(id) {
+        constructor(_id) {
             this.snapshot = {
-                params: {id}
+                params: {id: _id}
             };
         }
     }
