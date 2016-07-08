@@ -1,7 +1,7 @@
-import {beforeEachProviders} from 'angular2/testing';
-import {provide} from 'angular2/core';
+import {beforeEachProviders} from '@angular/core/testing';
+import {provide} from '@angular/core';
 
-import {RouteParams} from 'angular2/router';
+import { ActivatedRoute } from '@angular/router';
 import {ScenarioService} from '../../../shared/Scenario.service.js';
 import {EditScenarioEditorComponent} from './edit-scenario-editor.component.js';
 
@@ -9,7 +9,7 @@ describe('EditScenarioEditorComponent', () => {
     let scenarioService;
     let scenario;
     let sut;
-    let routeParams;
+    let route;
     const id = 123;
 
     class ObservableSubscribe {
@@ -25,15 +25,17 @@ describe('EditScenarioEditorComponent', () => {
         delete(data) { return new ObservableSubscribe(data); }
     }
 
-    class RouteParamsMock {
-        get() {
-            return id;
+    class ActivatedRouteMock {
+        constructor(_id) {
+            this.snapshot = {
+                params: {id: _id}
+            };
         }
     }
 
     beforeEachProviders(() => [
         provide(ScenarioService, {useClass: ScenarioServiceMock}),
-        provide(RouteParams, {useClass: RouteParamsMock})
+        provide(ActivatedRoute, {useClass: ActivatedRouteMock})
     ]);
 
     beforeEach(() => {
@@ -42,8 +44,8 @@ describe('EditScenarioEditorComponent', () => {
         };
 
         scenarioService = new ScenarioServiceMock();
-        routeParams = new RouteParamsMock();
-        sut = new EditScenarioEditorComponent(scenarioService, routeParams);
+        route = new ActivatedRouteMock(id);
+        sut = new EditScenarioEditorComponent(scenarioService, route);
 
         spyOn(sut, 'back');
         spyOn(scenarioService, 'get').and.callThrough();
@@ -63,6 +65,7 @@ describe('EditScenarioEditorComponent', () => {
         it('should fetch scenario with id from route params', () => {
             expect(scenarioService.get).toHaveBeenCalledWith(id);
         });
+
 
         it('should save fetched scenario', () => {
             expect(sut.scenario).toEqual(scenario);

@@ -1,7 +1,7 @@
 import SensorDetailService from './sensor-detail.service';
-import {Http} from 'angular2/http';
-import {beforeEachProviders} from 'angular2/testing';
-import {provide} from 'angular2/core';
+import {Http} from '@angular/http';
+import {beforeEachProviders} from '@angular/core/testing';
+import {provide} from '@angular/core';
 
 const observableMock = { map() {} };
 

@@ -1,5 +1,5 @@
 import ShRequestOptions from './sh-request-options';
-import {BaseRequestOptions} from 'angular2/http';
+import {BaseRequestOptions} from '@angular/http';
 
 describe('ShRequestOptions', () => {
     let sut;

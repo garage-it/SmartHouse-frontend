@@ -1,7 +1,7 @@
 <div class="sub-header row">
   <div id="page-title" class="col s5 sub-header__title">Scenario list</div>
   <div class="sub-header__actions col s4 right">
-    <button [routerLink]="['CreateScenarioEditor']"
+    <button [routerLink]="['editor-create']"
         class="waves-effect waves-light btn blue-grey darken-1 sub-header__actions__create">Create new scenario</button>
   </div>
 </div>
@@ -18,7 +18,7 @@
 <div *ngIf="scenarioList.length !== 0" class="scenario-list">
     <table class="highlight responsive-table scenario-list-table">
         <thead class="scenario-list-table__head">
-            <th *ngFor="#header of headers"
+            <th *ngFor="let header of headers"
                 class="scenario-list-table__head__item"
                 [class.sortable]="header.sortable">
                 {{ header.name }}
@@ -29,7 +29,7 @@
             </th>
         </thead>
         <tbody class="scenario-list-table__body">
-            <tr *ngFor="#scenario of scenarioList"
+            <tr *ngFor="let scenario of scenarioList"
                 (click)="navigateToEditView(scenario)"
                 class="scenario-list-table__body__row">
                 <td class="scenario-list-table__body__row__item">

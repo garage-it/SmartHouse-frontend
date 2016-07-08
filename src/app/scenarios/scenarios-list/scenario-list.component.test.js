@@ -6,10 +6,10 @@ import {
     SCENARIO_ACTIVE_STATE,
     SCENARIO_PAUSED_STATE
 } from './scenario-list.component.js';
-import {Router, RouteParams} from 'angular2/router';
+import {Router, RouteParams} from '@angular/router';
 
-import {beforeEachProviders} from 'angular2/testing';
-import {provide} from 'angular2/core';
+import {beforeEachProviders} from '@angular/core/testing';
+import {provide} from '@angular/core';
 
 const mockScenario = {
     active: true
@@ -200,14 +200,14 @@ describe('ScenarioListComponent', () => {
             scenario.isConvertable = false;
             sut.navigateToEditView(scenario);
             expect(sut.router.navigate)
-                .toHaveBeenCalledWith(['EditScenarioEditor', { id: scenario.id }]);
+                .toHaveBeenCalledWith(['scenarios/editor', scenario.id]);
         });
 
         it('should navigate to EditScenarioWizard', () => {
             scenario.isConvertable = true;
             sut.navigateToEditView(scenario);
             expect(sut.router.navigate)
-                .toHaveBeenCalledWith(['EditScenarioWizard', { id: scenario.id }]);
+                .toHaveBeenCalledWith(['scenarios/wizard', scenario.id]);
         });
     });
 });

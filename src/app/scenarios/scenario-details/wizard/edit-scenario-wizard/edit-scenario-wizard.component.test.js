@@ -1,8 +1,8 @@
-import {beforeEachProviders} from 'angular2/testing';
-import {provide} from 'angular2/core';
+import {beforeEachProviders} from '@angular/core/testing';
+import {provide} from '@angular/core';
 import {Observable} from 'rxjs/Rx';
 import {EditScenarioWizardComponent} from './edit-scenario-wizard.component.js';
-import {RouteParams} from 'angular2/router';
+import { ActivatedRoute } from '@angular/router';
 import {ScenarioService} from '../../../shared/Scenario.service.js';
 
 import {DeviceListService} from '../../../../shared/device-list/device-list.service';
@@ -14,7 +14,7 @@ describe('EditScenarioWizardComponent', () => {
     let scenarioService;
     let deviceListService;
     let sut;
-    let routeParams;
+    let route;
     const id = 123;
     const expectedDevices = [
         'device1', 'device2'
@@ -26,9 +26,11 @@ describe('EditScenarioWizardComponent', () => {
         }
     };
 
-    class RouteParamsMock {
-        get() {
-            return id;
+    class ActivatedRouteMock {
+        constructor(_id) {
+            this.snapshot = {
+                params: {id: _id}
+            };
         }
     }
 
@@ -64,7 +66,7 @@ describe('EditScenarioWizardComponent', () => {
     beforeEachProviders(() => [
         provide(DeviceListService, {useClass: DeviceListServiceMock}),
         provide(ScenarioService, {useClass: ScenarioServiceMock}),
-        provide(RouteParams, {useClass: RouteParamsMock})
+        provide(ActivatedRoute, {useClass: ActivatedRouteMock})
     ]);
 
     function mapConditions(devices, conditions) {
@@ -81,11 +83,11 @@ describe('EditScenarioWizardComponent', () => {
         spyOn(scenarioService, 'get').and.callThrough();
         spyOn(scenarioService, 'update').and.callThrough();
         spyOn(scenarioService, 'delete').and.callThrough();
-        routeParams = new RouteParamsMock();
+        route = new ActivatedRouteMock(id);
         sut = new EditScenarioWizardComponent(
             scenarioService,
             deviceListService,
-            routeParams,
+            route,
             null
         );
 
