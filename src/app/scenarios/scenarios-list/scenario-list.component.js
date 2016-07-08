@@ -1,5 +1,5 @@
-import {Component} from 'angular2/core';
-import {RouterLink, Router} from 'angular2/router';
+import {Component} from '@angular/core';
+import {ROUTER_DIRECTIVES, Router} from '@angular/router';
 
 import template from './scenario-list.html';
 import style from './scenario-list.scss';
@@ -20,7 +20,7 @@ const confirmQuestion = 'Are you sure you want to delete this scenario?';
     selector,
     template,
     styles: [style],
-    directives: [RouterLink],
+    directives: [ROUTER_DIRECTIVES],
     providers: [ScenarioService, ScenarioStatusService]
 })
 
@@ -91,9 +91,9 @@ export class ScenarioListComponent {
 
     navigateToEditView(scenario) {
         const route = scenario.isConvertable
-            ? 'EditScenarioWizard'
-            : 'EditScenarioEditor';
-        this.router.navigate([route, { id: scenario.id }]);
+            ? 'scenarios/wizard'
+            : 'scenarios/editor';
+        this.router.navigate([route, scenario.id]);
     }
 
     convertScenarioStatus(scenario) {

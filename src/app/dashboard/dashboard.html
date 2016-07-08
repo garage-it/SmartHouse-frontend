@@ -1,7 +1,7 @@
 <div class="dashboard">
     <div class="dashboard_title">
         <a class="right edit-link"
-           [routerLink]="['/DashboardEditor']"
+           [routerLink]="['editor']"
            *ngIf="!isDashboardEmpty()">
             <i class="material-icons">edit</i>
         </a>
@@ -16,11 +16,11 @@
                     <h3>This is your dashboard</h3>
                     <h4>There are no widgets to display. Please add at least one device,<br/>
                         then widgets will be added automatically.</h4>
-                    <h4><a [routerLink]="['DeviceList']">Go to Devices</a></h4>
+                    <h4><a [routerLink]="['devices']">Go to Devices</a></h4>
                 </div>
             </div>
         </div>
-        <div *ngFor="#widget of widgets">
+        <div *ngFor="let widget of widgets">
             <sm-sensor-widget
                 [device]="widget.device"
                 *ngIf="!widget.device.executor && !widget.hidden">

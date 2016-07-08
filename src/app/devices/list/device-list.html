@@ -1,7 +1,7 @@
 <div class="sub-header row">
   <div id="page-title" class="col s5 sub-header__title">Devices</div>
   <div class="sub-header__actions col s3 right">
-    <button [routerLink]="['SensorDetail']"
+    <button [routerLink]="['create']"
         class="waves-effect waves-light btn blue-grey darken-1">Add new device</button>
   </div><!-- sub-header__actions -->
 </div><!-- sub-header -->
@@ -18,7 +18,7 @@
 <div *ngIf="deviceList.length !== 0" class="sensors-list">
     <table class="highlight responsive-table sensors-list-table">
         <thead class="sensors-list-table__head">
-            <th *ngFor="#header of headers"
+            <th *ngFor="let header of headers"
                 (click)="setSortBy(header.topic)"
                 class="sensors-list-table__head__item"
                 [class.active]="isActive(header.topic)"
@@ -28,10 +28,10 @@
             </th><!-- sensors-list-table__head__item -->
         </thead><!-- sensors-list-table__head -->
         <tbody class="sensors-list-table__body">
-            <tr *ngFor="#item of deviceList"
-                [routerLink]="['SensorDetail', { id: item._id }]"
+            <tr *ngFor="let item of deviceList"
+                [routerLink]="['/devices', item._id]"
                 class="sensors-list-table__body__row">
-                <td *ngFor="#header of headers"
+                <td *ngFor="let header of headers"
                     class="sensors-list-table__body__row__item">
                     {{item[header.topic]}}
                 </td><!-- sensors-list-table__body__row__item -->
