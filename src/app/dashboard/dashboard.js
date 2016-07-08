@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router';
+import { Component } from 'angular2/core';
+import { RouterLink } from 'angular2/router';
 
 import style from './style.scss';
 import template from './dashboard.html';
@@ -13,7 +13,7 @@ import DashboardService from './dashboard.service';
     selector: 'sm-dashboard',
     template,
     styles: [style],
-    directives: [ROUTER_DIRECTIVES, SensorWidget, SensorExecutorWidget, SensorStatusWidget],
+    directives: [SensorWidget, SensorExecutorWidget, SensorStatusWidget, RouterLink],
     providers: [DashboardService, SensorWidgetService]
 })
 export class Dashboard {

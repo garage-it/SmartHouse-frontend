@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable} from 'angular2/core';
 import ShHttpService from '../shared/sh-http/sh-http.service.js';
 
 @Injectable()

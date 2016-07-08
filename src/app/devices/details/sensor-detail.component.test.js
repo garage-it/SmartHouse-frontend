@@ -1,9 +1,9 @@
 import SensorDetailService from './sensor-detail.service';
 import {SensorDetail} from './sensor-detail.component';
 
-import { ActivatedRoute, Router } from '@angular/router';
-import {beforeEachProviders} from '@angular/core/testing';
-import {provide} from '@angular/core';
+import {RouteParams, Router} from 'angular2/router';
+import {beforeEachProviders} from 'angular2/testing';
+import {provide} from 'angular2/core';
 
 const observableSubscribe = {
     subscribe(fn) { fn(); }
@@ -16,11 +16,13 @@ class SensorDetailServiceMock {
     delete() { return observableSubscribe; }
 }
 
-class ActivatedRouteMock {
+class RouteParamsMock {
     constructor(id) {
-        this.snapshot = {
-            params: {id}
-        };
+        this.idMock = id;
+    }
+
+    get() {
+        return this.idMock;
     }
 }
 
@@ -31,28 +33,29 @@ class RouterMock {
 describe('sensor-detail module', () => {
     let sut;
     let sensorDetailService;
-    let route;
+    let routeParams;
     let router;
     let idMock;
 
     beforeEachProviders(() => [
         provide(SensorDetailService, {useClass: SensorDetailServiceMock}),
-        provide(ActivatedRoute, {useClass: ActivatedRouteMock}),
+        provide(RouteParams, {useClass: RouteParamsMock}),
         provide(Router, {useClass: RouterMock})
     ]);
 
     beforeEach(() => {
         idMock = 'mock';
         sensorDetailService = new SensorDetailServiceMock();
-        route = new ActivatedRouteMock(idMock);
+        routeParams = new RouteParamsMock(idMock);
         router = new RouterMock();
         spyOn(sensorDetailService, 'get').and.callThrough();
         spyOn(sensorDetailService, 'save').and.callThrough();
         spyOn(sensorDetailService, 'update').and.callThrough();
         spyOn(sensorDetailService, 'delete').and.callThrough();
         spyOn(observableSubscribe, 'subscribe').and.callThrough();
+        spyOn(routeParams, 'get').and.callThrough();
         spyOn(router, 'navigate').and.callThrough();
-        sut = new SensorDetail(sensorDetailService, router, route);
+        sut = new SensorDetail(sensorDetailService, routeParams, router);
     });
 
     it('should create new sensor if id isn\'t passed to class', () => {
@@ -60,8 +63,8 @@ describe('sensor-detail module', () => {
     });
 
     it('should not make get request when creating new sensor', () => {
-        route = new ActivatedRouteMock();
-        sut = new SensorDetail(sensorDetailService, router, route);
+        routeParams = new RouteParamsMock();
+        sut = new SensorDetail(sensorDetailService, routeParams, router);
         sut.ngOnInit();
         expect(sut.sensorDetailService.get).not.toHaveBeenCalled();
     });
@@ -84,7 +87,7 @@ describe('sensor-detail module', () => {
         sut.sensor = sensorMock;
         sut.needUpdate = true;
         sut.save();
-        expect(sut.router.navigate).toHaveBeenCalledWith(['/devices']);
+        expect(sut.router.navigate).toHaveBeenCalledWith(['DeviceList']);
         done();
     });
 
@@ -108,12 +111,12 @@ describe('sensor-detail module', () => {
         sut.sensor = sensorMock;
         sut.remove();
         observableSubscribe.subscribe.calls.mostRecent().args[0]();
-        expect(sut.router.navigate).toHaveBeenCalledWith(['/devices']);
+        expect(sut.router.navigate).toHaveBeenCalledWith(['DeviceList']);
         done();
     });
 
     it('should navigate to the list of devices on cancel', () => {
         sut.cancel();
-        expect(sut.router.navigate).toHaveBeenCalledWith(['/devices']);
+        expect(sut.router.navigate).toHaveBeenCalledWith(['DeviceList']);
     });
 });

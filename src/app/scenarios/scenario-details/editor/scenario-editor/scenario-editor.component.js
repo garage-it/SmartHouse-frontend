@@ -1,4 +1,4 @@
-import {Component, ViewChild, Injectable, EventEmitter, Output} from '@angular/core';
+import {Component, ViewChild, Injectable, EventEmitter, Output} from 'angular2/core';
 
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/lesser-dark.css';

@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {ROUTER_DIRECTIVES, Router} from '@angular/router';
+import {Component} from 'angular2/core';
+import {Router, RouterLink} from 'angular2/router';
 
 import template from './dashboard-editor.html';
 import style from '../style.scss';
@@ -15,7 +15,7 @@ const selector = 'dashboard-editor';
     template,
     styles: [style],
     providers: [DashboardService],
-    directives: [ROUTER_DIRECTIVES, SensorWidget, SensorExecutorWidget, Dragula],
+    directives: [SensorWidget, SensorExecutorWidget, RouterLink, Dragula],
     viewProviders: [DragulaService]
 })
 
@@ -51,6 +51,6 @@ export class DashboardEditor {
     }
 
     exitEditMode() {
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['Dashboard']);
     }
 }

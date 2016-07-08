@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
+import {Component} from 'angular2/core';
 import Rx from 'rxjs/Rx';
-import { ROUTER_DIRECTIVES, ActivatedRoute, Router } from '@angular/router';
+import {RouteParams, RouterLink, Router} from 'angular2/router';
 import template from './edit-scenario-wizard.html';
 import {CreateScenarioWizardComponent}
     from '../create-scenario-wizard/create-scenario-wizard.component.js';
@@ -14,16 +14,16 @@ import {ScenarioWizardComponent} from '../scenario-wizard/scenario-wizard.compon
 @Component({
     template,
     providers: [ScenarioService, DeviceListService],
-    directives: [ROUTER_DIRECTIVES, ScenarioWizardComponent]
+    directives: [RouterLink, ScenarioWizardComponent]
 })
 
 export class EditScenarioWizardComponent extends CreateScenarioWizardComponent {
 
     constructor(scenarioService:ScenarioService,
                 deviceListService: DeviceListService,
-                route:ActivatedRoute,
+                routeParams:RouteParams,
                 router: Router) {
-        super(scenarioService, route, router);
+        super(scenarioService, routeParams, router);
 
         this.deviceListService = deviceListService;
         this.scenarioService = scenarioService;
@@ -31,7 +31,7 @@ export class EditScenarioWizardComponent extends CreateScenarioWizardComponent {
 
     ngOnInit() {
         const deviceListStream = this.deviceListService.getSensors();
-        const scenarioStream = this.scenarioService.get(this._route.snapshot.params.id);
+        const scenarioStream = this.scenarioService.get(this._routeParams.get('id'));
         const source = Rx.Observable.forkJoin(
             deviceListStream, scenarioStream
         );

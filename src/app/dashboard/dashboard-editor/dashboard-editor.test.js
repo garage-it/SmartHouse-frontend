@@ -1,5 +1,6 @@
 import {DashboardEditor} from './dashboard-editor';
 import DashboardService from '../dashboard.service.js';
+import {Router} from 'angular2/router';
 
 describe('DashboardEditor', () => {
     let sut;
@@ -8,9 +9,7 @@ describe('DashboardEditor', () => {
 
     beforeEach(() => {
         dashboardService = jasmine.createSpyComponent(DashboardService);
-        router = {
-            navigate: jasmine.createSpy()
-        };
+        router = jasmine.createSpyComponent(Router);
 
         sut = new DashboardEditor(dashboardService, router);
     });
@@ -63,7 +62,7 @@ describe('DashboardEditor', () => {
     describe('#exitEditMode', () => {
         it('should exit edit mode', () => {
             sut.exitEditMode();
-            expect(router.navigate).toHaveBeenCalledWith(['/dashboard']);
+            expect(router.navigate).toHaveBeenCalledWith(['Dashboard']);
         });
     });
 
@@ -79,3 +78,4 @@ describe('DashboardEditor', () => {
         });
     });
 });
+
