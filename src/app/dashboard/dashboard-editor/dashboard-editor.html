@@ -6,7 +6,7 @@
     <div class="dashboard_content">
         <div class="dashboard_widgets-container" [dragula] [dragulaModel]='widgets'>
             <div class="dashboard_widget"
-                *ngFor="let widget of widgets"
+                *ngFor="#widget of widgets; #index = index"
                 [ngClass]="{ 'dashboard_widget-hidden': widget.hidden }"
             >
                 <div class="dashboard_widget-actions">

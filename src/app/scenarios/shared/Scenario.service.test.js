@@ -1,5 +1,5 @@
 import {ScenarioService} from './Scenario.service.js';
-import {Http} from '@angular/http';
+import {Http} from 'angular2/http';
 import {Observable} from 'rxjs/Observable';
 
 describe('ScenarioService', () => {

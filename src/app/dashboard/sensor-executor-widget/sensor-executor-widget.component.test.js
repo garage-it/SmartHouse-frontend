@@ -9,9 +9,9 @@ describe('sensor-executor-widget', () => {
     let sensorWidgetService;
 
     beforeEach(() => {
-        sensorWidgetService = {
-            pushEvent: jasmine.createSpy()
-        };
+        sensorWidgetService = { pushEvent() {} };
+
+        spyOn(sensorWidgetService, 'pushEvent');
 
         sut = new SensorExecutorWidget();
         sut.data = {};

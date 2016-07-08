@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import { ROUTER_DIRECTIVES, ActivatedRoute, Router } from '@angular/router';
+import {Component} from 'angular2/core';
+import {RouteParams, Router, RouterLink} from 'angular2/router';
 import template from './create-scenario-wizard.html';
 import {DeviceListService} from '../../../../shared/device-list/device-list.service';
 import Action from '../scenario-entities/Action';
@@ -12,16 +12,16 @@ import {ScenarioWizardComponent} from '../scenario-wizard/scenario-wizard.compon
 @Component({
     template,
     providers: [ScenarioService, DeviceListService],
-    directives: [ROUTER_DIRECTIVES, ScenarioWizardComponent]
+    directives: [RouterLink, ScenarioWizardComponent]
 })
 
 export class CreateScenarioWizardComponent extends ScenarioDetailsComponent {
 
     constructor(scenarioListService:ScenarioService,
-                route:ActivatedRoute,
+                routeParams:RouteParams,
                 router: Router,
                 deviceListService: DeviceListService) { // eslint-disable-line
-        super(scenarioListService, route, router);
+        super(scenarioListService, routeParams, router);
         this.deviceListService = deviceListService;
     }
 
