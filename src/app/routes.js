@@ -32,7 +32,7 @@ export default [
         path: 'devices/:id', component: SensorDetail
     },
     {
-        path: 'devices/create', component: SensorDetail
+        path: 'devices-create', component: SensorDetail
     },
     {
         path: 'scenarios',
