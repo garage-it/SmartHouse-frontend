@@ -1,8 +1,8 @@
 import SensorDetailService from '../details/sensor-detail.service';
 import {DeviceList} from './device-list.component';
 
-import {beforeEachProviders} from 'angular2/testing';
-import {provide} from 'angular2/core';
+import {beforeEachProviders} from '@angular/core/testing';
+import {provide} from '@angular/core';
 
 class ObservableSubscribe {
     constructor(data = {}) {

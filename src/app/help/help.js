@@ -1,11 +1,11 @@
-import {Component} from 'angular2/core';
-import {RouterLink} from 'angular2/router';
+import {Component} from '@angular/core';
+import { ROUTER_DIRECTIVES } from '@angular/router';
 
 @Component({
     selector: 'sm-help',
     styles: [require('./help.scss')],
     template: require('./help.html'),
-    directives: [RouterLink]
+    directives: [ROUTER_DIRECTIVES]
 })
 
 export class Help {}

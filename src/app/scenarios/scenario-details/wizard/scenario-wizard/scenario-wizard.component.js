@@ -1,5 +1,5 @@
-import {EventEmitter} from 'angular2/core';
-import {Component} from 'angular2/core';
+import {EventEmitter} from '@angular/core';
+import {Component} from '@angular/core';
 import template from './scenario-wizard.html';
 import style from './scenario-wizard.scss';
 import LOGICAL_OPERATORS from '../scenario-entities/logical-operators.const.js';

@@ -1,5 +1,5 @@
-import {Component} from 'angular2/core';
-import {RouterLink} from 'angular2/router';
+import {Component} from '@angular/core';
+import { ROUTER_DIRECTIVES } from '@angular/router';
 
 import template from './device-list.html';
 import style from './device-list.scss';
@@ -19,7 +19,7 @@ const confirmQuestion = 'Are you sure you want to delete this device?';
     template,
     styles: [style],
     providers: [SensorDetailService],
-    directives: [RouterLink]
+    directives: [ROUTER_DIRECTIVES]
 })
 export class DeviceList {
     deviceList = [];
