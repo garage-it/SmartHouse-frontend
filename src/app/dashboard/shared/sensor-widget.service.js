@@ -8,8 +8,13 @@ export default class SensorWidgetService {
         this.setupSocket();
     }
 
+    // TODO Find proper way to use WS via proxy webpack-dev-server
     setupSocket() {
-        this.socket = this.io(ENV_PUBLIC_CONFIG.backEndWebSocketUrl);
+        this.socket = this.io();
+    }
+
+    closeScocketSession() {
+        this.socket.disconnect();
     }
 
     subscribe(device, callback) {

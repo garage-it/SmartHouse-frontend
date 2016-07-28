@@ -57,6 +57,7 @@ export class ScenarioListComponent {
 
     ngOnDestroy() {
         this.subscription.unsubscribe();
+        this.scenarioStatusService.closeScocketSession();
     }
 
     get headers() {

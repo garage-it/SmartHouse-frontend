@@ -21,5 +21,6 @@ export default class BaseSensor {
     ngOnDestroy() {
         this.sensorWidgetService
             .unsubscribe(this.device.mqttId);
+        this.sensorWidgetService.closeScocketSession();
     }
 }

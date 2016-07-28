@@ -10,7 +10,8 @@ export default class ShRequestOptions extends BaseRequestOptions {
         Object.assign(opts,
             this.options,
             options,
-            {url: `${ENV_PUBLIC_CONFIG.backEndUrl}/api${options.url}`});
+            // {url: `${ENV_PUBLIC_CONFIG.backEndUrl}/api${options.url}`}); TODO remove rudiment
+            {url: `/api${options.url}`});
         return super.merge(opts);
     }
 }

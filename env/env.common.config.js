@@ -8,11 +8,11 @@ function rootPath(...args) {
 module.exports = {
     path: rootPath,
     staticServer: {
-        host: 'localhost',
+        host: '0.0.0.0',
         port: 8000
     },
     mockServer: {
-        host: 'localhost',
+        host: '127.0.0.1',
         port: 9000
     },
     public: {},

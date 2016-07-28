@@ -27,7 +27,7 @@ describe('SensorWidgetService', () => {
         });
 
         it('should setup socket io', () => {
-            expect(sut.io).toHaveBeenCalledWith(ENV_PUBLIC_CONFIG.backEndWebSocketUrl);
+            expect(sut.io).toHaveBeenCalledWith();
         });
     });
 

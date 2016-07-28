@@ -33,6 +33,10 @@ export class Dashboard {
             .subscribe(false, data => this.onDeviceAddEvent(data));
     }
 
+    ngOnDestroy() {
+        this.sensorWidgetService.closeScocketSession();
+    }
+
     onDeviceAddEvent(data) {
         if (data.event === 'device-add') {
             this.widgets.push({

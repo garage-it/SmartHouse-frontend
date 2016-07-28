@@ -14,7 +14,7 @@ describe('ShRequestOptions', () => {
         sut.options = { mock: 'mock'};
         sut.merge(passedOptionsMock);
         expect(BaseRequestOptions.prototype.merge).toHaveBeenCalledWith({
-            url: `${ENV_PUBLIC_CONFIG.backEndUrl}/api${passedOptionsMock.url}`,
+            url: `/api${passedOptionsMock.url}`,
             mock: 'mock',
         });
     });
