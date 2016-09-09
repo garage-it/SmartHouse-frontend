@@ -1,7 +1,7 @@
 // Styles
 import './app/main.css';
 import 'materialize-css/dist/css/materialize.css';
-import 'dragula/dist/dragula.min.css';
+// import 'dragula/dist/dragula.min.css';
 import 'materialize-css/dist/js/materialize.js';
 
 // Polyfills
