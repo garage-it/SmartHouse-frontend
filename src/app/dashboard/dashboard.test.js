@@ -1,18 +1,19 @@
 import {Dashboard} from './dashboard';
 
-let dashboardServiceCallback;
 let sensorWidgetServiceCallback;
 let sensorWidgetServiceDevice;
 
-class DashboardServiceMock {
-    getWidgets() {
-        return {
-            subscribe: (callback) => {
-                dashboardServiceCallback = callback;
-            }
-        };
+
+class ObservableSubscribe {
+    constructor(data = {}) {
+        this._data = data;
+    }
+
+    subscribe(fn) {
+        return fn(this._data);
     }
 }
+
 class SensorWidgetServiceMock {
     subscribe(device, callback) {
         sensorWidgetServiceDevice = device;
@@ -20,32 +21,45 @@ class SensorWidgetServiceMock {
     }
 }
 
+class ActivatedRouteMock {
+    constructor(devices) {
+        this.data = new ObservableSubscribe({devices});
+    }
+}
+
 describe('Dashboard', () => {
     let sut;
-    let dashboardService;
     let sensorWidgetService;
+    let activatedRouteMock;
+    let sensor;
+    let executor;
+    let mockDevices;
 
     beforeEach(() => {
-        dashboardService = new DashboardServiceMock();
+        sensor = {device: {executor: false}};
+        executor = {device: {executor: true}, hidden: false};
+        mockDevices = {
+            devices: [sensor, executor]
+        };
+
+        activatedRouteMock = new ActivatedRouteMock(mockDevices);
+
         sensorWidgetService = new SensorWidgetServiceMock();
-        sut = new Dashboard(dashboardService, sensorWidgetService);
+        sut = new Dashboard(sensorWidgetService, activatedRouteMock);
     });
 
     describe('when initialize a component', () => {
-        let sensor;
-        let executor;
-        let deviceList;
-
         beforeEach(() => {
-            sensor = {device: {executor: false}};
-            executor = {device: {executor: true}, hidden: false};
-            deviceList = [sensor, executor];
+            spyOn(activatedRouteMock.data, 'subscribe').and.callThrough();
             sut.ngOnInit();
         });
 
+        it('should recive subscribe to activatedRouteMock.data', () => {
+            expect(activatedRouteMock.data.subscribe).toHaveBeenCalled();
+        });
+
         it('should get device list', () => {
-            dashboardServiceCallback({devices: deviceList});
-            expect(sut.widgets).toEqual(deviceList);
+            expect(sut.widgets).toEqual(mockDevices.devices);
         });
 
         it('should subscribe to socket events', () => {

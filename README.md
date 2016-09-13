@@ -31,6 +31,11 @@ If you need to set up environment variables - just copy ```.env.example``` to ``
   npm run validate
 ```
 
+- run eslint validation & automatically fix problems
+```sh
+  npm run lintfix
+```
+
 - build application
 ```sh
   npm run build

@@ -18,6 +18,9 @@ import '@angular/router';
 // RxJS
 import 'rxjs';
 
+// Import App dependencies: @TODO: move to ngMomodule for rc>4
+import AppDependencies from './app/app.dependencies';
+
 // Bootstrap
 import { provide } from '@angular/core';
 import { bootstrap } from '@angular/platform-browser-dynamic';
@@ -27,5 +30,6 @@ import { App, APP_ROUTER_PROVIDERS } from './app/app';
 
 bootstrap(App, [
     APP_ROUTER_PROVIDERS,
+    ...AppDependencies,
     provide(LocationStrategy, {useClass: HashLocationStrategy})
 ]);

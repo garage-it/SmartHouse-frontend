@@ -1,4 +1,3 @@
-import { DeviceList } from './list';
+import { DeviceList, SensorDetailListResolveService } from './list';
 import { SensorDetail } from './details';
-
-export { DeviceList, SensorDetail };
+export { DeviceList, SensorDetail, SensorDetailListResolveService };
