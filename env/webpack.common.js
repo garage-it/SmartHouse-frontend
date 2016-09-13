@@ -74,6 +74,11 @@ module.exports = {
             to: 'assets',
             flatten: true
         }]),
+        new CopyWebpackPlugin([{
+            from: '**/*.svg',
+            to: 'assets',
+            flatten: true
+        }]),
         new ExtractTextPlugin('main.css'),
         new webpack.DefinePlugin({
             ENV_PUBLIC_CONFIG: JSON.stringify(envConfig.public)
