@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router';
+import { ROUTER_DIRECTIVES, ActivatedRoute } from '@angular/router';
 
 import style from './style.scss';
 import template from './dashboard.html';
@@ -7,28 +7,27 @@ import { SensorWidget } from './sensor-widget';
 import { SensorExecutorWidget } from './sensor-executor-widget';
 import { SensorStatusWidget } from './sensor-status-widget';
 import SensorWidgetService from './shared/sensor-widget.service';
-import DashboardService from './dashboard.service';
 
 @Component({
     selector: 'sm-dashboard',
     template,
     styles: [style],
     directives: [ROUTER_DIRECTIVES, SensorWidget, SensorExecutorWidget, SensorStatusWidget],
-    providers: [DashboardService, SensorWidgetService]
+    providers: [SensorWidgetService]
 })
 export class Dashboard {
-    constructor(dashboardService: DashboardService, sensorWidgetService: SensorWidgetService) {
-        this.dashboardService = dashboardService;
+    constructor(sensorWidgetService: SensorWidgetService,
+                route: ActivatedRoute) {
         this.sensorWidgetService = sensorWidgetService;
+        this.route = route;
         this.widgets = [];
     }
 
     ngOnInit() {
-        this.dashboardService
-            .getWidgets()
-            .subscribe(({devices}) => {
-                this.widgets = devices;
-            });
+        this.route.data.subscribe(({devices}) => {
+            this.widgets = devices.devices;
+        });
+
         this.sensorWidgetService
             .subscribe(false, data => this.onDeviceAddEvent(data));
     }

@@ -1,13 +1,15 @@
 import {Help} from './help';
-import {Dashboard, DashboardEditor} from './dashboard';
+import {Dashboard, DashboardEditor, DashboardResolveService} from './dashboard';
 import {
     ScenarioListComponent,
     EditScenarioEditorComponent,
     EditScenarioWizardComponent,
     CreateScenarioEditorComponent,
-    CreateScenarioWizardComponent
+    CreateScenarioWizardComponent,
+    ScenarioListResolveService
 } from './scenarios/';
-import {DeviceList, SensorDetail} from './devices';
+import {DeviceList, SensorDetail, SensorDetailListResolveService} from './devices';
+
 
 export default [
     {
@@ -18,7 +20,10 @@ export default [
     },
     {
         path: 'dashboard',
-        component: Dashboard
+        component: Dashboard,
+        resolve: {
+            devices: DashboardResolveService
+        }
     },
     {
         path: 'dashboard/editor',
@@ -26,7 +31,10 @@ export default [
     },
     {
         path: 'devices',
-        component: DeviceList
+        component: DeviceList,
+        resolve: {
+            deviceList: SensorDetailListResolveService
+        }
     },
     {
         path: 'devices/:id', component: SensorDetail
@@ -36,7 +44,10 @@ export default [
     },
     {
         path: 'scenarios',
-        component: ScenarioListComponent
+        component: ScenarioListComponent,
+        resolve: {
+            scenarioList: ScenarioListResolveService
+        }
     },
     {
         path: 'scenarios/editor-create',

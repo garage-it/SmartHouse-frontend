@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ROUTER_DIRECTIVES, Router} from '@angular/router';
+import {ROUTER_DIRECTIVES, Router, ActivatedRoute} from '@angular/router';
 
 import template from './scenario-list.html';
 import style from './scenario-list.scss';
@@ -28,20 +28,22 @@ export class ScenarioListComponent {
     scenarioList = [];
     _headers = [];
 
-    constructor(scenarioService: ScenarioService, router:Router,
-                scenarioStatusService: ScenarioStatusService) {
+    constructor(scenarioService: ScenarioService,
+                router: Router,
+                scenarioStatusService: ScenarioStatusService,
+                route: ActivatedRoute) {
         this.scenarioService = scenarioService;
         this.scenarioStatusService = scenarioStatusService;
         this._headers = headersForDisplay;
         this.router = router;
+        this.route = route;
     }
 
     ngOnInit() {
-        this.scenarioService
-            .get()
-            .subscribe(data => {
-                this.scenarioList = data.map(this.convertScenarioStatus);
-            });
+        this.route.data.subscribe(data => {
+            this.scenarioList = data.scenarioList.map(this.convertScenarioStatus);
+        });
+
 
         this.subscription = this.scenarioStatusService.stream.subscribe((event) =>
             this.onScenarioStatusChange(event));

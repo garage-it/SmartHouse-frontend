@@ -12,8 +12,15 @@ class ObservableSubscribe {
 }
 
 class SensorDetailServiceMock {
-    get() { return new ObservableSubscribe(); }
     delete(data) { return new ObservableSubscribe(data); }
+}
+
+const mockDeviceList = ['some data'];
+
+class ActivatedRouteMock {
+    constructor(deviceList) {
+        this.data = new ObservableSubscribe({deviceList});
+    }
 }
 
 describe('device-list component', () => {
@@ -21,6 +28,7 @@ describe('device-list component', () => {
     let sensorsService;
     let listData;
     let numberArr;
+    let activatedRouteMock;
 
     beforeEachProviders(() => [
         provide(SensorDetailService, {useClass: SensorDetailServiceMock})
@@ -43,17 +51,23 @@ describe('device-list component', () => {
             }
         ];
         sensorsService = new SensorDetailServiceMock();
-        sut = new DeviceList(sensorsService);
+        activatedRouteMock = new ActivatedRouteMock(mockDeviceList);
 
-        spyOn(sensorsService, 'get').and.callThrough();
+        sut = new DeviceList(sensorsService, activatedRouteMock);
+
         spyOn(sensorsService, 'delete').and.callThrough();
+        spyOn(activatedRouteMock.data, 'subscribe').and.callThrough();
     });
 
 
     describe('#init', () => {
         it('should fetch list of sensors', () => {
             sut.ngOnInit();
-            expect(sut.sensorsService.get).toHaveBeenCalled();
+            expect(activatedRouteMock.data.subscribe).toHaveBeenCalled();
+        });
+        it('should take list data from activatedRouteMock', () => {
+            sut.ngOnInit();
+            expect(mockDeviceList).toEqual(sut.deviceList);
         });
     });
 

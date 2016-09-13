@@ -11,6 +11,7 @@
     "tdd": "karma start --no-single-run --auto-watch --reporters nyan",
     "codecov": "npm codecov < coverage/lcov/lcov.info",
     "validate": "eslint --ext .js ./src ./env ./server ./test",
+    "lintfix": "eslint --ext .js ./src ./env ./server ./test --fix",    
     "build": "webpack --progress --profile",
     "e2e:start": "webdriver-manager start",
     "e2e:update": "webdriver-manager update --standalone",

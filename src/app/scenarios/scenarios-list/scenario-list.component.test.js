@@ -27,9 +27,6 @@ class ObservableSubscribe {
 }
 
 class ScenarioServiceMock {
-    get() {
-        return new ObservableSubscribe(mockScenarios);
-    }
 
     delete(data) {
         return new ObservableSubscribe(data);
@@ -61,6 +58,12 @@ class ScenarioStatusServiceMock {
     }
 }
 
+class ActivatedRouteMock {
+    constructor(scenarioList) {
+        this.data = new ObservableSubscribe({scenarioList});
+    }
+}
+
 describe('ScenarioListComponent', () => {
     let sut;
     let scenarioService;
@@ -68,6 +71,7 @@ describe('ScenarioListComponent', () => {
     let scenario;
     let router;
     let scenarioStatusService;
+    let activatedRouteMock;
 
     beforeEachProviders(() => [
         provide(ScenarioService, { useClass: ScenarioServiceMock }),
@@ -85,16 +89,21 @@ describe('ScenarioListComponent', () => {
             { id: '1', value: 'testValue1' },
             { id: '2', value: 'testValue2' }
         ];
+
         router = new RouterMock();
 
         scenarioService = new ScenarioServiceMock();
         scenarioStatusService = new ScenarioStatusServiceMock();
-        sut = new ScenarioListComponent(scenarioService, router, scenarioStatusService);
 
-        spyOn(scenarioService, 'get').and.callThrough();
+        activatedRouteMock = new ActivatedRouteMock(mockScenarios);
+
+        sut = new ScenarioListComponent(scenarioService, router,
+            scenarioStatusService, activatedRouteMock);
+
         spyOn(scenarioService, 'delete').and.callThrough();
         spyOn(scenarioService, 'update').and.callThrough();
         spyOn(router, 'navigate').and.callThrough();
+        spyOn(activatedRouteMock.data, 'subscribe').and.callThrough();
     });
 
     describe('ngOnInit', () => {
@@ -102,8 +111,12 @@ describe('ScenarioListComponent', () => {
             sut.ngOnInit();
         });
 
-        it('should get scenarios', () => {
-            expect(scenarioService.get).toHaveBeenCalled();
+        it('should recive scenarioList', () => {
+            expect(sut.scenarioList).toEqual(mockScenarios);
+        });
+
+        it('should get data from activatedRoute', () => {
+            expect(activatedRouteMock.data.subscribe).toHaveBeenCalled();
         });
 
         it('should set scenario status', () => {
