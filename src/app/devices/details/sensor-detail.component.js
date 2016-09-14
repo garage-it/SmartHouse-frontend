@@ -1,7 +1,7 @@
 import {Injectable, Component} from '@angular/core';
 import {NgForm} from '@angular/common';// eslint-disable-line
 import { Router, ActivatedRoute } from '@angular/router';
-import {Http, HTTP_PROVIDERS} from '@angular/http';
+// import { Http } from '@angular/http';
 
 import Sensor from './sensor';
 import SensorDetailService from './sensor-detail.service';
@@ -15,8 +15,6 @@ const selector = 'sh-sensor-detail';
     template,
     styles: [style],
     providers: [
-        Http,
-        HTTP_PROVIDERS,
         SensorDetailService
     ]
 })

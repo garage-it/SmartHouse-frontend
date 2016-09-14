@@ -1,7 +1,7 @@
 import SensorDetailService from './sensor-detail.service';
-import {Http} from '@angular/http';
-import {beforeEachProviders} from '@angular/core/testing';
-import {provide} from '@angular/core';
+// import {Http} from '@angular/http';
+// import {beforeEachProviders} from '@angular/core/testing';
+// import {provide} from '@angular/core';
 
 const observableMock = { map() {} };
 
@@ -15,10 +15,6 @@ class HttpMock {
 describe('SensorDetailService', () => {
     let sut;
     let httpMock;
-
-    beforeEachProviders(() => [
-        provide(Http, {useClass: HttpMock})
-    ]);
 
     beforeEach(() => {
         httpMock = new HttpMock();
