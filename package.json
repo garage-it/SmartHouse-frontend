@@ -96,7 +96,7 @@
     "karma-webpack": "^1.7.0",
     "materialize-css": "^0.97.6",
     "mqtt": "^1.11.2",
-    "ng2-dragula": "^1.1.10",
+    "ng2-dragula": "1.1.10",
     "node-sass": "^3.6.0",
     "npm-run-all": "^2.1.1",
     "phantomjs-prebuilt": "^2.1.6",
