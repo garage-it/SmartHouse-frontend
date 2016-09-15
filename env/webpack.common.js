@@ -70,12 +70,7 @@ module.exports = {
             template: envConfig.src.indexHtml
         }),
         new CopyWebpackPlugin([{
-            from: '**/*.png',
-            to: 'assets',
-            flatten: true
-        }]),
-        new CopyWebpackPlugin([{
-            from: '**/*.svg',
+            from: '**/*.*(png|svg)',
             to: 'assets',
             flatten: true
         }]),
