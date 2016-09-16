@@ -14,7 +14,7 @@
     "validate": "eslint --ext .js ./src ./env ./server ./test",
     "lintfix": "eslint --ext .js ./src ./env ./server ./test --fix",
 
-    "build": "cross-env ENV_CONFIG=production NODE_ENV=production && webpack --progress --profile -p --config ./env/webpack.prod.config.js",
+    "build": "cross-env ENV_CONFIG=production NODE_ENV=production webpack --progress --profile -p --config ./env/webpack.prod.config.js",
 
     "e2e:start": "webdriver-manager start",
     "e2e:update": "webdriver-manager update --standalone",
