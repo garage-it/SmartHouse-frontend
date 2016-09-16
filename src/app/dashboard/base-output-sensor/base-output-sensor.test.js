@@ -123,6 +123,7 @@ describe('base-output-sensor', () => {
         it('should convert data from device`s format using function', () => {
             sut[pending] = null;
             sut.onDeviceDataChanged(data);
+            expect(sut.fromDeviceRepresentation).toHaveBeenCalledWith(data.value);
             expect(sut.generateValue)
                 .toHaveBeenCalledWith({condition: true, positiveValue, negativeValue});
         });

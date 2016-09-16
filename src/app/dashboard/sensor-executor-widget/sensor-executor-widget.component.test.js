@@ -10,13 +10,14 @@ describe('sensor-executor-widget', () => {
             mqttId: 'mock'
         };
         spyOn(sut, 'pushEvent').and.callThrough();
+        spyOn(sut, 'fromDeviceRepresentation').and.callThrough();
     });
 
     describe('Switch executor', () => {
-        const $eventMock = {
-            target: {checked: true}
-        };
         it('should push command when executor change state', () => {
+            const $eventMock = {
+                target: {checked: true}
+            };
             sut.switchExecutor($eventMock);
             expect(sut.pushEvent).toHaveBeenCalledWith({
                 condition: $eventMock.target.checked,
@@ -24,6 +25,17 @@ describe('sensor-executor-widget', () => {
                 negativeValue: DEVICE_OFF_STATE
             });
         });
+
+        it('should convert data to SM format when receive it from device', () => {
+            sut.onDeviceDataChanged({value: 'ON'});
+            expect(sut.fromDeviceRepresentation).toHaveBeenCalledWith('ON');
+        });
+
+        it('should enable executor data when receive ON from device', () => {
+            sut.onDeviceDataChanged({value: 'ON'});
+            expect(sut.data.value).toEqual(true);
+        });
+
     });
 
 });
