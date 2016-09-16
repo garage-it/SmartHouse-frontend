@@ -1,21 +1,26 @@
 {
-  "name": "smart-house-frontend",
+  "name": "smarthouse-frontend",
   "version": "0.1.0",
   "description": "Smart House UI",
   "main": "src/index.js",
   "scripts": {
     "start": "npm-run-all --parallel server client",
     "server": "node --harmony_destructuring --harmony_rest_parameters server/index.js",
-    "client": "webpack-dev-server --inline --watch",
+    "client": "webpack-dev-server --watch",
+
     "test": "karma start",
     "tdd": "karma start --no-single-run --auto-watch --reporters nyan",
     "codecov": "npm codecov < coverage/lcov/lcov.info",
     "validate": "eslint --ext .js ./src ./env ./server ./test",
-    "lintfix": "eslint --ext .js ./src ./env ./server ./test --fix",    
-    "build": "webpack --progress --profile",
+    "lintfix": "eslint --ext .js ./src ./env ./server ./test --fix",
+
+    "build": "webpack --progress --profile --config ./env/webpack.prod.config.js",
+
     "e2e:start": "webdriver-manager start",
     "e2e:update": "webdriver-manager update --standalone",
-    "e2e:run": "protractor ./env/protractor.conf.js"
+    "e2e:run": "protractor ./env/protractor.conf.js",
+
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -91,7 +96,7 @@
     "karma-webpack": "^1.7.0",
     "materialize-css": "^0.97.6",
     "mqtt": "^1.11.2",
-    "ng2-dragula": "^1.1.10",
+    "ng2-dragula": "1.1.10",
     "node-sass": "^3.6.0",
     "npm-run-all": "^2.1.1",
     "phantomjs-prebuilt": "^2.1.6",

@@ -6,7 +6,7 @@ import style from '../style.scss';
 import DashboardService from '../dashboard.service';
 import { SensorWidget } from '../sensor-widget';
 import { SensorExecutorWidget } from '../sensor-executor-widget';
-// import { Dragula, DragulaService } from 'ng2-dragula/ng2-dragula';
+import { Dragula, DragulaService } from 'ng2-dragula/ng2-dragula';
 
 const selector = 'dashboard-editor';
 
@@ -15,8 +15,8 @@ const selector = 'dashboard-editor';
     template,
     styles: [style],
     providers: [DashboardService],
-    directives: [ROUTER_DIRECTIVES, SensorWidget, SensorExecutorWidget, ] // Dragula],
-    // viewProviders: [DragulaService]
+    directives: [ROUTER_DIRECTIVES, SensorWidget, SensorExecutorWidget, Dragula],
+    viewProviders: [DragulaService]
 })
 
 export class DashboardEditor {
