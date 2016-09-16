@@ -21,8 +21,6 @@
             </div>
         </div>
 
-        <span>{{executorSensorWidgets.length + '' +servoSensorWidgets.length + '' + sensorWidgets.length  + ' ' + isDashboardEmpty()}}</span>
-
         <div *ngFor="let widget of sensorWidgets">
             <sm-sensor-widget
                 [device]="widget.device"
