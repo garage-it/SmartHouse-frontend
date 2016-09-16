@@ -12,5 +12,8 @@ module.exports = webpackMerge(commonConfig, {
                 warnings: false
             }
         })
-    ]
+    ],
+    module: {
+        preLoaders: []
+    }
 });
