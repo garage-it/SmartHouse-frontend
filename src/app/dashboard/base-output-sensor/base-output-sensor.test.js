@@ -111,26 +111,43 @@ describe('base-output-sensor', () => {
             value: valueInInternalDeviceFormat
         };
 
-        beforeEach(() => {
-            spyOn(sut, 'generateValue').and.callThrough();
-            spyOn(sut, 'fromDeviceRepresentation').and.callFake(value => +value);
+        describe('without data conversation', () => {
+            beforeEach(() => {
+                spyOn(sut, 'fromDeviceRepresentation').and.callThrough();
+            });
+
+            it('should return value "as is"', () => {
+                sut[pending] = null;
+                sut.onDeviceDataChanged(data);
+                expect(sut.fromDeviceRepresentation)
+                    .toHaveBeenCalledWith(data.value);
+                expect(sut.data.value).toEqual(data.value);
+            });
         });
-        it('should drop data if still pending', () => {
-            sut[pending] = true;
-            sut.onDeviceDataChanged(data);
-            expect(sut.generateValue.calls.any()).toEqual(false);
-        });
-        it('should convert data from device`s format using function', () => {
-            sut[pending] = null;
-            sut.onDeviceDataChanged(data);
-            expect(sut.fromDeviceRepresentation).toHaveBeenCalledWith(data.value);
-            expect(sut.generateValue)
-                .toHaveBeenCalledWith({condition: true, positiveValue, negativeValue});
-        });
-        it('should convert data from device`s format', () => {
-            sut[pending] = null;
-            sut.onDeviceDataChanged(data);
-            expect(sut.data.value).toEqual(convertedValue);
+
+        describe('with data conversation', () => {
+            beforeEach(() => {
+                spyOn(sut, 'generateValue').and.callThrough();
+                spyOn(sut, 'fromDeviceRepresentation').and.callFake(value => +value);
+            });
+            it('should drop data if still pending', () => {
+                sut[pending] = true;
+                sut.onDeviceDataChanged(data);
+                expect(sut.generateValue.calls.any()).toEqual(false);
+            });
+            it('should convert data from device`s format using function', () => {
+                sut[pending] = null;
+                sut.onDeviceDataChanged(data);
+                expect(sut.fromDeviceRepresentation)
+                    .toHaveBeenCalledWith(data.value);
+                expect(sut.generateValue)
+                    .toHaveBeenCalledWith({condition: true, positiveValue, negativeValue});
+            });
+            it('should convert data from device`s format', () => {
+                sut[pending] = null;
+                sut.onDeviceDataChanged(data);
+                expect(sut.data.value).toEqual(convertedValue);
+            });
         });
     });
 });
