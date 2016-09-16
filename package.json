@@ -1,5 +1,5 @@
 {
-  "name": "smarthouse-frontend",
+  "name": "smart-house-frontend",
   "version": "0.1.0",
   "description": "Smart House UI",
   "main": "src/index.js",
