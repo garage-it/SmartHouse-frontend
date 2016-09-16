@@ -6,11 +6,6 @@
 }
 
 .sub-header {
-    margin: 25px auto;
-
-    &__title {
-        font-size:36px;
-    }
 
     &__actions {
       vertical-align: middle;
@@ -52,8 +47,7 @@
 
 .empty-list {
     &__container {
-        padding: 0px;
-        margin-top: 100px;
+        padding: 0px;        
 
         &::before {
             content: '';

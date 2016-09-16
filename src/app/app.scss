@@ -19,8 +19,17 @@ h1 {
     margin: 0;
 }
 
+h2 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 36px;
+    line-height: 1.2;
+    margin: 0;
+    color:#000000;
+}
+
 .container {
-    padding: 20px 0;
+    padding: 25px 0;
 }
 
 .page-header {
@@ -45,7 +54,6 @@ h1 {
 
 .empty-list {
     padding: 0px;
-    margin-top: 100px;
 
     &::before {
         content: '';
@@ -74,4 +82,9 @@ h1 {
 
 a {
     cursor: pointer;
+}
+
+nav {
+    background: #ffffff;
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.5);
 }
