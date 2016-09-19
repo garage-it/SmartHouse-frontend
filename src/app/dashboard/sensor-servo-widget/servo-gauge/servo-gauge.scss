@@ -1,0 +1,120 @@
+.gauge {
+    position: relative;
+    height: calc(30px + 1.3em);
+    margin-top: 21px;
+
+    color: initial;
+    text-align: initial;
+    font-size: initial;
+    font-weight: initial;
+
+
+    &-container {
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        left: 50%;
+        overflow: hidden;
+        text-align: center;
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
+        transform: translateX(-50%);
+    }
+
+    &-background {
+        z-index: 0;
+        position: absolute;
+        background-color: #5a6d7b;
+        top: 0;
+        border-radius: 100px 100px 0 0;
+    }
+
+    &-data {
+        z-index: 1;
+        position: absolute;
+        background-color: #007979;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 100px 100px 0 0;
+        -webkit-transform-origin: center bottom;
+        -moz-transform-origin: center bottom;
+        -ms-transform-origin: center bottom;
+        -o-transform-origin: center bottom;
+        transform-origin: center bottom;
+    }
+
+    &-center {
+        z-index: 2;
+        position: absolute;
+        background-color: #5a6d7b;
+        margin-right: auto;
+        border-radius: 100px 100px 0 0;
+    }
+
+    &-needle {
+        z-index: 4;
+        background-color: #f3ac2e;
+        height: 3px;
+        position: absolute;
+        -webkit-transform-origin: left center;
+        -moz-transform-origin: left center;
+        -ms-transform-origin: left center;
+        -o-transform-origin: left center;
+        transform-origin: left center;
+    }
+
+    &-label {
+        display: table;
+        margin: 0 auto;
+        position: relative;
+        top: 40px;
+        width: 80px;
+        color: #f3ac2e;
+
+        &__low {
+            display: table-cell;
+            text-align: center;
+            width: 16px;
+        }
+
+        &__spacer {
+            display: table-cell;
+            width: 48px;
+            text-align: center;
+            padding-left: 1px;
+        }
+
+        &__high {
+            display: table-cell;
+            text-align: center;
+            width: 16px;
+        }
+
+    }
+
+    &-container {
+        width: 80px;
+        height: 40px;
+    }
+    &-background {
+        width: 80px;
+        height: 40px;
+    }
+    &-center {
+        width: 48px;
+        height: 24px;
+        top: 16px;
+        margin-left: 16px;
+    }
+    &-data {
+        width: 80px;
+        height: 40px;
+    }
+    &-needle {
+        left: 40px;
+        top: 38px;
+        width: 40px;
+    }
+}

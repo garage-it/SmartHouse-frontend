@@ -5,28 +5,51 @@ import style from './style.scss';
 import template from './dashboard.html';
 import { SensorWidget } from './sensor-widget';
 import { SensorExecutorWidget } from './sensor-executor-widget';
+import { SensorServoWidget } from './sensor-servo-widget';
 import { SensorStatusWidget } from './sensor-status-widget';
 import SensorWidgetService from './shared/sensor-widget.service';
+
+import Rx from 'rxjs/Rx';
 
 @Component({
     selector: 'sm-dashboard',
     template,
     styles: [style],
-    directives: [ROUTER_DIRECTIVES, SensorWidget, SensorExecutorWidget, SensorStatusWidget],
+    directives: [
+        ROUTER_DIRECTIVES, SensorWidget, SensorExecutorWidget,
+        SensorStatusWidget, SensorServoWidget
+    ],
     providers: [SensorWidgetService]
 })
 export class Dashboard {
-    constructor(sensorWidgetService: SensorWidgetService,
-                route: ActivatedRoute) {
+    constructor(sensorWidgetService: SensorWidgetService, route: ActivatedRoute) {
         this.sensorWidgetService = sensorWidgetService;
         this.route = route;
         this.widgets = [];
+
+        this.sensorWidgets = [];
+        this.executorSensorWidgets = [];
+        this.servoSensorWidgets = [];
     }
 
     ngOnInit() {
-        this.route.data.subscribe(({devices}) => {
-            this.widgets = devices.devices;
-        });
+        const widgetsSource = this.route.data
+            .flatMap(({widgets}) => Rx.Observable.from(widgets.devices));
+
+        widgetsSource
+            .subscribe(widget => this.widgets.push(widget));
+
+        widgetsSource
+            .filter(widget => widget.device.executor === true)
+            .subscribe(widget => this.executorSensorWidgets.push(widget));
+
+        widgetsSource
+            .filter(widget => widget.device.servo === true)
+            .subscribe(widget => this.servoSensorWidgets.push(widget));
+
+        widgetsSource
+            .filter(widget => !(widget.device.executor || widget.device.servo))
+            .subscribe(widget => this.sensorWidgets.push(widget));
 
         this.sensorWidgetService
             .subscribe(false, data => this.onDeviceAddEvent(data));

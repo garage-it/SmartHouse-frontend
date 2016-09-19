@@ -1,5 +1,6 @@
 import {Help} from './help';
 import {Dashboard, DashboardEditor, DashboardResolveService} from './dashboard';
+
 import {
     ScenarioListComponent,
     EditScenarioEditorComponent,
@@ -22,7 +23,7 @@ export default [
         path: 'dashboard',
         component: Dashboard,
         resolve: {
-            devices: DashboardResolveService
+            widgets: DashboardResolveService
         }
     },
     {

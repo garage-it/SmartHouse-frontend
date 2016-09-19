@@ -1,18 +1,8 @@
 import {Dashboard} from './dashboard';
+import Rx from 'rxjs/Rx';
 
 let sensorWidgetServiceCallback;
 let sensorWidgetServiceDevice;
-
-
-class ObservableSubscribe {
-    constructor(data = {}) {
-        this._data = data;
-    }
-
-    subscribe(fn) {
-        return fn(this._data);
-    }
-}
 
 class SensorWidgetServiceMock {
     subscribe(device, callback) {
@@ -23,7 +13,7 @@ class SensorWidgetServiceMock {
 
 class ActivatedRouteMock {
     constructor(devices) {
-        this.data = new ObservableSubscribe({devices});
+        this.data = Rx.Observable.of({widgets: devices});
     }
 }
 
@@ -33,13 +23,15 @@ describe('Dashboard', () => {
     let activatedRouteMock;
     let sensor;
     let executor;
+    let servo;
     let mockDevices;
 
     beforeEach(() => {
-        sensor = {device: {executor: false}};
-        executor = {device: {executor: true}, hidden: false};
+        sensor = {device: {executor: false, servo: false}};
+        executor = {device: {executor: true, servo: false}, hidden: false};
+        servo = {device: {executor: false, servo: true}};
         mockDevices = {
-            devices: [sensor, executor]
+            devices: [sensor, executor, servo]
         };
 
         activatedRouteMock = new ActivatedRouteMock(mockDevices);
@@ -49,28 +41,41 @@ describe('Dashboard', () => {
     });
 
     describe('when initialize a component', () => {
-        beforeEach(() => {
-            spyOn(activatedRouteMock.data, 'subscribe').and.callThrough();
-            sut.ngOnInit();
+        describe('async behaviour', () => {
+            beforeEach(() => {
+                spyOn(activatedRouteMock.data, 'flatMap').and.callThrough();
+            });
+
+            it('should get device list', fakeAsync(() => {
+                sut.ngOnInit();
+                tick();
+                expect(sut.widgets).toEqual(mockDevices.devices);
+            }));
+
+            it('should put widgets into correct categories', fakeAsync(() => {
+                sut.ngOnInit();
+                tick();
+                expect(sut.sensorWidgets.length).toEqual(1);
+                expect(sut.executorSensorWidgets.length).toEqual(1);
+                expect(sut.servoSensorWidgets.length).toEqual(1);
+            }));
         });
 
-        it('should recive subscribe to activatedRouteMock.data', () => {
-            expect(activatedRouteMock.data.subscribe).toHaveBeenCalled();
-        });
+        describe('sync behaviour', () => {
+            beforeEach(() => {
+                sut.ngOnInit();
+            });
 
-        it('should get device list', () => {
-            expect(sut.widgets).toEqual(mockDevices.devices);
-        });
+            it('should subscribe to socket events', () => {
+                expect(sensorWidgetServiceDevice).toBeFalsy();
+            });
 
-        it('should subscribe to socket events', () => {
-            expect(sensorWidgetServiceDevice).toBeFalsy();
-        });
-
-        it('should add new widget if device-add event received', () => {
-            sensorWidgetServiceCallback({event: 'device-add', data: 'faked'});
-            expect(sut.widgets).toContain({
-                device: 'faked',
-                hidden: false
+            it('should add new widget if device-add event received', () => {
+                sensorWidgetServiceCallback({event: 'device-add', data: 'faked'});
+                expect(sut.widgets).toContain({
+                    device: 'faked',
+                    hidden: false
+                });
             });
         });
     });
