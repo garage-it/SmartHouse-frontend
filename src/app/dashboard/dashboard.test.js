@@ -46,12 +46,6 @@ describe('Dashboard', () => {
                 spyOn(activatedRouteMock.data, 'flatMap').and.callThrough();
             });
 
-            it('should receive subscribe to activatedRouteMock.data', fakeAsync(() => {
-                sut.ngOnInit();
-                tick();
-                expect(activatedRouteMock.data.flatMap).toHaveBeenCalled();
-            }));
-
             it('should get device list', fakeAsync(() => {
                 sut.ngOnInit();
                 tick();

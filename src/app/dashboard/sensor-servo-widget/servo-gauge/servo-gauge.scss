@@ -1,7 +1,13 @@
 .gauge {
     position: relative;
     height: calc(30px + 1.3em);
-    margin-top: 43px;
+    margin-top: 21px;
+
+    color: initial;
+    text-align: initial;
+    font-size: initial;
+    font-weight: initial;
+
 
     &-container {
         margin: 0;
