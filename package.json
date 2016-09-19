@@ -14,13 +14,14 @@
     "validate": "eslint --ext .js ./src ./env ./server ./test",
     "lintfix": "eslint --ext .js ./src ./env ./server ./test --fix",
 
-    "build": "cross-env ENV_CONFIG=production NODE_ENV=production webpack --progress --profile -p --config ./env/webpack.prod.config.js",
+    "build": "webpack --progress --profile --config ./env/webpack.prod.config.js",
+    "build:production": "cross-env ENV_CONFIG=production webpack --progress --profile -p --config ./env/webpack.prod.config.js",
 
     "e2e:start": "webdriver-manager start",
     "e2e:update": "webdriver-manager update --standalone",
     "e2e:run": "protractor ./env/protractor.conf.js",
 
-    "prepublish": "npm run build"
+    "prepublish": "npm run build:production"
   },
   "repository": {
     "type": "git",
