@@ -15,6 +15,7 @@
     "lintfix": "eslint --ext .js ./src ./env ./server ./test --fix",
 
     "build": "webpack --progress --profile --config ./env/webpack.prod.config.js",
+    "build:heroku": "webpack --progress --profile",
     "build:production": "cross-env ENV_CONFIG=production webpack --progress --profile -p --config ./env/webpack.prod.config.js",
 
     "e2e:start": "webdriver-manager start",
