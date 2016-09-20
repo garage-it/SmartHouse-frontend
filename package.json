@@ -56,7 +56,7 @@
     "zone.js": "0.6.12",
     "rxjs": "5.0.0-beta.6",
 
-    "codemirror": "^5.15.2",
+    "codemirror": "5.18.2",
     "dragula": "^3.7.1",
     "ng2-dragula": "1.1.10",
     "materialize-css": "^0.97.6",
