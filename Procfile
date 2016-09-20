@@ -1,1 +1,1 @@
-web: npm run build:heroku && npm run server
+web: npm run build:fast && npm run server
