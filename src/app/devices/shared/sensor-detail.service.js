@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
-import ShHttpService from '../../shared/sh-http/sh-http.service.js';
+import { Injectable } from '@angular/core';
+import { ShHttpService } from '../../shared/sh-http/sh-http.service.js';
 
 @Injectable()
-export default class SensorDetailService {
+export class SensorDetailService {
     constructor(http:ShHttpService) {
         this.http = http;
     }

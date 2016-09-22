@@ -1,10 +1,10 @@
-import {Component} from '@angular/core';
-import { ROUTER_DIRECTIVES, ActivatedRoute } from '@angular/router';
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
-import template from './device-list.html';
-import style from './device-list.scss';
-import SensorDetailService from '../details/sensor-detail.service';
-import {SensorDetailListResolveService} from './sensor-detail-list-resolve.service';
+import template from './device-list.template.html';
+import style from './device-list.style.scss';
+
+import { SensorDetailService } from '../shared/sensor-detail.service';
 
 const selector = 'device-list';
 const headersForDisplay = [
@@ -18,19 +18,15 @@ const confirmQuestion = 'Are you sure you want to delete this device?';
 @Component({
     selector,
     template,
-    styles: [style],
-    providers: [SensorDetailService, SensorDetailListResolveService],
-    directives: [ROUTER_DIRECTIVES]
+    styles: [style]
 })
-export class DeviceList {
+export class DeviceListComponent {
     deviceList = [];
     sortBy = '';
     reverse = false;
     _headers = [];
 
-    constructor(sensorsService: SensorDetailService,
-        route: ActivatedRoute
-    ) {
+    constructor(sensorsService: SensorDetailService, route: ActivatedRoute) {
         this.sensorsService = sensorsService;
         this._headers = headersForDisplay;
         this.route = route;

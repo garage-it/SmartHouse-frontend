@@ -1,27 +1,19 @@
-import {Injectable, Component} from '@angular/core';
-import {NgForm} from '@angular/common';// eslint-disable-line
+import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import {Http, HTTP_PROVIDERS} from '@angular/http';
 
-import Sensor from './sensor';
-import SensorDetailService from './sensor-detail.service';
-import template from './sensor-detail.html';
-import style from './sensor-detail.css';
+import { Sensor } from './sensor';
+import { SensorDetailService } from '../shared/sensor-detail.service';
+import template from './sensor-detail.template.html';
+import style from './sensor-detail.style.css';
 
 const selector = 'sh-sensor-detail';
 
 @Component({
     selector,
     template,
-    styles: [style],
-    providers: [
-        Http,
-        HTTP_PROVIDERS,
-        SensorDetailService
-    ]
+    styles: [style]
 })
-@Injectable()
-export class SensorDetail {
+export class SensorDetailComponent {
     constructor(sensorDetailService:SensorDetailService, router:Router, route:ActivatedRoute) {
         this.sensorDetailService = sensorDetailService;
         this.router = router;
