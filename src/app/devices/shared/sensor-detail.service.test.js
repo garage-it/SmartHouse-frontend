@@ -1,7 +1,7 @@
-import SensorDetailService from './sensor-detail.service';
-import {Http} from '@angular/http';
-import {beforeEachProviders} from '@angular/core/testing';
-import {provide} from '@angular/core';
+import {async, TestBed} from '@angular/core/testing';
+
+import { SensorDetailService } from './sensor-detail.service';
+import { ShHttpService } from '../../shared/sh-http/sh-http.service.js';
 
 const observableMock = { map() {} };
 
@@ -16,18 +16,24 @@ describe('SensorDetailService', () => {
     let sut;
     let httpMock;
 
-    beforeEachProviders(() => [
-        provide(Http, {useClass: HttpMock})
-    ]);
+    beforeEach(async(() => {
 
-    beforeEach(() => {
-        httpMock = new HttpMock();
-        spyOn(httpMock, 'get').and.callThrough();
-        spyOn(httpMock, 'post').and.callThrough();
-        spyOn(httpMock, 'put').and.callThrough();
-        spyOn(httpMock, 'delete').and.callThrough();
-        sut = new SensorDetailService(httpMock);
-    });
+        TestBed.configureTestingModule({
+            providers: [
+                {provide: ShHttpService, useClass: HttpMock },
+                SensorDetailService
+            ]
+        })
+        .compileComponents()
+        .then(() => {
+            sut = TestBed.get(SensorDetailService);
+            httpMock = TestBed.get(ShHttpService);
+            spyOn(httpMock, 'get').and.callThrough();
+            spyOn(httpMock, 'post').and.callThrough();
+            spyOn(httpMock, 'put').and.callThrough();
+            spyOn(httpMock, 'delete').and.callThrough();
+        });
+    }));
 
     it('should be defined', () => {
         expect(sut).toBeDefined();

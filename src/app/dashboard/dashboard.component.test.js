@@ -1,4 +1,4 @@
-import {Dashboard} from './dashboard';
+import { DashboardComponent } from './dashboard.component';
 import Rx from 'rxjs/Rx';
 
 let sensorWidgetServiceCallback;
@@ -37,7 +37,7 @@ describe('Dashboard', () => {
         activatedRouteMock = new ActivatedRouteMock(mockDevices);
 
         sensorWidgetService = new SensorWidgetServiceMock();
-        sut = new Dashboard(sensorWidgetService, activatedRouteMock);
+        sut = new DashboardComponent(sensorWidgetService, activatedRouteMock);
     });
 
     describe('when initialize a component', () => {

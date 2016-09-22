@@ -1,9 +1,9 @@
-import ShHttpService from './sh-http.service.js';
-import ShRequestOptions from './sh-request-options';
+import {async, TestBed} from '@angular/core/testing';
 
-import {Http, RequestMethod, Headers} from '@angular/http';
-import {beforeEachProviders} from '@angular/core/testing';
-import {provide} from '@angular/core';
+import { ShHttpService } from './sh-http.service.js';
+import { ShRequestOptions } from './sh-request-options';
+
+import { Http, RequestMethod, Headers } from '@angular/http';
 
 class ObservableSubscribe {
     constructor(data = {}) {
@@ -26,18 +26,24 @@ describe('ShHttpService', () => {
     let sut;
     let httpMock;
 
-    beforeEachProviders(() => [
-        provide(Http, {useClass: HttpMock})
-    ]);
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            providers: [
+                {provide: Http, useClass: HttpMock },
+                ShHttpService
+            ]
+        })
+        .compileComponents()
+        .then(() => {
+            httpMock = TestBed.get(Http);
+            spyOn(httpMock, 'get').and.callThrough();
+            spyOn(httpMock, 'post').and.callThrough();
+            spyOn(httpMock, 'put').and.callThrough();
+            spyOn(httpMock, 'delete').and.callThrough();
+            sut = TestBed.get(ShHttpService);
+        });
 
-    beforeEach(() => {
-        httpMock = new HttpMock();
-        spyOn(httpMock, 'get').and.callThrough();
-        spyOn(httpMock, 'post').and.callThrough();
-        spyOn(httpMock, 'put').and.callThrough();
-        spyOn(httpMock, 'delete').and.callThrough();
-        sut = new ShHttpService(httpMock);
-    });
+    }));
 
     it('should be defined', () => {
         expect(sut).toBeDefined();

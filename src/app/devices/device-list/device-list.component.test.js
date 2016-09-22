@@ -1,8 +1,10 @@
-import SensorDetailService from '../details/sensor-detail.service';
-import {DeviceList} from './device-list.component';
+import {async, TestBed} from '@angular/core/testing';
 
-import {beforeEachProviders} from '@angular/core/testing';
-import {provide} from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+import { SensorDetailService } from '../shared/sensor-detail.service';
+import { DeviceListComponent } from './device-list.component';
+
 
 class ObservableSubscribe {
     constructor(data = {}) {
@@ -15,49 +17,61 @@ class SensorDetailServiceMock {
     delete(data) { return new ObservableSubscribe(data); }
 }
 
-const mockDeviceList = ['some data'];
+const mockDeviceListComponent = ['some data'];
+
+class DeviceListMock {}
 
 class ActivatedRouteMock {
-    constructor(deviceList) {
+    constructor(deviceList: DeviceListMock) {
         this.data = new ObservableSubscribe({deviceList});
     }
 }
 
-describe('device-list component', () => {
+describe('device-list', () => {
     let sut;
     let sensorsService;
     let listData;
     let numberArr;
     let activatedRouteMock;
 
-    beforeEachProviders(() => [
-        provide(SensorDetailService, {useClass: SensorDetailServiceMock})
-    ]);
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [ DeviceListComponent ],
+            providers: [
+                {provide: SensorDetailService, useClass: SensorDetailServiceMock },
+                {provide: ActivatedRoute, useClass: ActivatedRouteMock},
+                {provide: DeviceListMock, useValue: mockDeviceListComponent}
+            ]
+        })
+        .overrideComponent(DeviceListComponent, {
+            set: {template: 'mocked template'}
+        })
+        .compileComponents()
+        .then(() => {
+            sut = TestBed.createComponent(DeviceListComponent).componentInstance;
+            activatedRouteMock = TestBed.get(ActivatedRoute);
+            sensorsService = TestBed.get(SensorDetailService);
 
-    beforeEach(() => {
-        numberArr = [];
-        listData = [
-            {
-                _id: '1',
-                mqttId: '1',
-                type: 'some type',
-                description: 'some description'
-            },
-            {
-                _id: '2',
-                mqttId: '2',
-                type: 'some other type',
-                description: 'some other description'
-            }
-        ];
-        sensorsService = new SensorDetailServiceMock();
-        activatedRouteMock = new ActivatedRouteMock(mockDeviceList);
+            numberArr = [];
+            listData = [
+                {
+                    _id: '1',
+                    mqttId: '1',
+                    type: 'some type',
+                    description: 'some description'
+                },
+                {
+                    _id: '2',
+                    mqttId: '2',
+                    type: 'some other type',
+                    description: 'some other description'
+                }
+            ];
 
-        sut = new DeviceList(sensorsService, activatedRouteMock);
-
-        spyOn(sensorsService, 'delete').and.callThrough();
-        spyOn(activatedRouteMock.data, 'subscribe').and.callThrough();
-    });
+            spyOn(sensorsService, 'delete').and.callThrough();
+            spyOn(activatedRouteMock.data, 'subscribe').and.callThrough();
+        });
+    }));
 
 
     describe('#init', () => {
@@ -67,7 +81,7 @@ describe('device-list component', () => {
         });
         it('should take list data from activatedRouteMock', () => {
             sut.ngOnInit();
-            expect(mockDeviceList).toEqual(sut.deviceList);
+            expect(mockDeviceListComponent).toEqual(sut.deviceList);
         });
     });
 

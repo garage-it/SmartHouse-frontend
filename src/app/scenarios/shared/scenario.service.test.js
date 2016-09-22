@@ -1,6 +1,6 @@
-import {ScenarioService} from './Scenario.service.js';
-import {Http} from '@angular/http';
-import {Observable} from 'rxjs/Observable';
+import { ScenarioService } from './scenario.service.js';
+import { Http } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
 describe('ScenarioService', () => {
     let scenariosData;

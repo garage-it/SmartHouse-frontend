@@ -1,4 +1,4 @@
-import BaseSensor from './base-sensor';
+import { BaseSensor } from './base-sensor';
 
 let sensorUpdateHandler;
 

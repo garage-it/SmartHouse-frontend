@@ -1,4 +1,4 @@
-import SensorWidgetService from './sensor-widget.service';
+import { SensorWidgetService } from './sensor-widget.service';
 
 function mockSocketIo() {
     return {

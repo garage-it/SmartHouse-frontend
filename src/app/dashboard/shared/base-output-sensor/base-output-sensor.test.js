@@ -1,4 +1,4 @@
-import {BaseOutputSensor, DEVICE_RESPOND_TIMEOUT} from './base-output-sensor';
+import { BaseOutputSensor, DEVICE_RESPOND_TIMEOUT } from './base-output-sensor';
 
 describe('base-output-sensor', () => {
     let sut;

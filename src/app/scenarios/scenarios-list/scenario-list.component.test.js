@@ -1,15 +1,14 @@
+import {async, TestBed} from '@angular/core/testing';
+
 import Rx from 'rxjs/Rx';
-import {ScenarioService} from './../shared/Scenario.service.js';
-import {ScenarioStatusService} from './scenario-status.service';
+import { ScenarioService } from './../shared/scenario.service.js';
+import { ScenarioStatusService } from './scenario-status.service';
 import {
     ScenarioListComponent,
     SCENARIO_ACTIVE_STATE,
     SCENARIO_PAUSED_STATE
 } from './scenario-list.component.js';
-import {Router, RouteParams} from '@angular/router';
-
-import {beforeEachProviders} from '@angular/core/testing';
-import {provide} from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 const mockScenario = {
     active: true
@@ -67,49 +66,50 @@ class ActivatedRouteMock {
 describe('ScenarioListComponent', () => {
     let sut;
     let scenarioService;
-    let listData;
-    let scenario;
     let router;
     let scenarioStatusService;
     let activatedRouteMock;
 
-    beforeEachProviders(() => [
-        provide(ScenarioService, { useClass: ScenarioServiceMock }),
-        provide(RouteParams, { useClass: RouteParamsMock }),
-        provide(Router, { useClass: RouterMock }),
-        provide(ScenarioStatusService, {useClass: ScenarioStatusServiceMock})
-    ]);
+    const listData = [
+        { id: '1', value: 'testValue1' },
+        { id: '2', value: 'testValue2' }
+    ];
+    const scenario = {
+        id: 123
+    };
 
-    beforeEach(() => {
-        scenario = {
-            id: 123
-        };
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [ ScenarioListComponent ],
+            providers: [
+                { provide: ScenarioService, useClass: ScenarioServiceMock },
+                // { provide: RouteParams, useClass: RouteParamsMock },
+                { provide: Router, useClass: RouterMock },
+                { provide: ScenarioStatusService, useClass: ScenarioStatusServiceMock },
+                { provide: ActivatedRoute, useValue: new ActivatedRouteMock(mockScenarios)}
+            ]
+        })
+        .overrideComponent(ScenarioListComponent, {
+            set: {template: 'mocked template'}
+        })
+        .compileComponents()
+        .then(() => {
+            router = TestBed.get(Router);
+            scenarioService = TestBed.get(ScenarioService);
+            scenarioStatusService = TestBed.get(ScenarioStatusService);
+            activatedRouteMock = TestBed.get(ActivatedRoute);
 
-        listData = [
-            { id: '1', value: 'testValue1' },
-            { id: '2', value: 'testValue2' }
-        ];
+            sut = TestBed.createComponent(ScenarioListComponent).componentInstance;
 
-        router = new RouterMock();
+            spyOn(scenarioService, 'delete').and.callThrough();
+            spyOn(scenarioService, 'update').and.callThrough();
+            spyOn(router, 'navigate').and.callThrough();
+            spyOn(activatedRouteMock.data, 'subscribe').and.callThrough();
 
-        scenarioService = new ScenarioServiceMock();
-        scenarioStatusService = new ScenarioStatusServiceMock();
-
-        activatedRouteMock = new ActivatedRouteMock(mockScenarios);
-
-        sut = new ScenarioListComponent(scenarioService, router,
-            scenarioStatusService, activatedRouteMock);
-
-        spyOn(scenarioService, 'delete').and.callThrough();
-        spyOn(scenarioService, 'update').and.callThrough();
-        spyOn(router, 'navigate').and.callThrough();
-        spyOn(activatedRouteMock.data, 'subscribe').and.callThrough();
-    });
-
-    describe('ngOnInit', () => {
-        beforeEach(() => {
             sut.ngOnInit();
         });
+    }));
+    describe('ngOnInit', () => {
 
         it('should recive scenarioList', () => {
             expect(sut.scenarioList).toEqual(mockScenarios);
@@ -135,13 +135,50 @@ describe('ScenarioListComponent', () => {
 
     describe('ngOnDestroy', () => {
         beforeEach(() => {
-            sut.ngOnInit();
             spyOn(sut.subscription, 'unsubscribe');
             sut.ngOnDestroy();
         });
 
         it('should cancel subscription', () => {
             expect(sut.subscription.unsubscribe).toHaveBeenCalled();
+        });
+    });
+
+    describe('#toggleScenarioState', () => {
+        let mockedScenario;
+
+        beforeEach(() => {
+            mockedScenario = { id: 'mock', active: false };
+        });
+
+        it('should toggle scenario state', () => {
+            sut.ngOnInit();
+            sut.toggleScenarioState(mockedScenario);
+
+            expect(mockedScenario.active).toBe(true);
+        });
+
+        it('should set status when toggle scenario state', () => {
+            sut.ngOnInit();
+            sut.toggleScenarioState(mockedScenario);
+
+            expect(mockedScenario.status).toBe(SCENARIO_ACTIVE_STATE);
+        });
+    });
+
+    describe('#navigateToEditView', () => {
+        it('should navigate to EditScenarioEditor', () => {
+            scenario.isConvertable = false;
+            sut.navigateToEditView(scenario);
+            expect(sut.router.navigate)
+                .toHaveBeenCalledWith(['scenarios/editor', scenario.id]);
+        });
+
+        it('should navigate to EditScenarioWizard', () => {
+            scenario.isConvertable = true;
+            sut.navigateToEditView(scenario);
+            expect(sut.router.navigate)
+                .toHaveBeenCalledWith(['scenarios/wizard', scenario.id]);
         });
     });
 
@@ -188,39 +225,4 @@ describe('ScenarioListComponent', () => {
         });
     });
 
-    describe('#toggleScenarioState', () => {
-        let mockedScenario;
-
-        beforeEach(() => {
-            mockedScenario = { id: 'mock', active: false };
-        });
-
-        it('should toggle scenario state', () => {
-            sut.toggleScenarioState(mockedScenario);
-
-            expect(mockedScenario.active).toBe(true);
-        });
-
-        it('should set status when toggle scenario state', () => {
-            sut.toggleScenarioState(mockedScenario);
-
-            expect(mockedScenario.status).toBe(SCENARIO_ACTIVE_STATE);
-        });
-    });
-
-    describe('#navigateToEditView', () => {
-        it('should navigate to EditScenarioEditor', () => {
-            scenario.isConvertable = false;
-            sut.navigateToEditView(scenario);
-            expect(sut.router.navigate)
-                .toHaveBeenCalledWith(['scenarios/editor', scenario.id]);
-        });
-
-        it('should navigate to EditScenarioWizard', () => {
-            scenario.isConvertable = true;
-            sut.navigateToEditView(scenario);
-            expect(sut.router.navigate)
-                .toHaveBeenCalledWith(['scenarios/wizard', scenario.id]);
-        });
-    });
 });

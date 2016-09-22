@@ -1,14 +1,14 @@
-import {beforeEachProviders} from '@angular/core/testing';
-import {provide} from '@angular/core';
-import {Observable} from 'rxjs/Rx';
-import {EditScenarioWizardComponent} from './edit-scenario-wizard.component.js';
-import { ActivatedRoute } from '@angular/router';
-import {ScenarioService} from '../../../shared/Scenario.service.js';
+import {async, TestBed} from '@angular/core/testing';
 
-import {DeviceListService} from '../../../../shared/device-list/device-list.service';
-import Scenario from '../scenario-entities/Scenario';
-import Condition from '../scenario-entities/Condition';
-import Action from '../scenario-entities/Action';
+import { Observable } from 'rxjs/Rx';
+import { EditScenarioWizardComponent } from './edit-scenario-wizard.component.js';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ScenarioService } from '../../../shared/scenario.service.js';
+
+import { DeviceListService } from '../../../../devices/device-list/device-list.service';
+import Scenario from '../scenario-entities/scenario';
+import Condition from '../scenario-entities/condition';
+import Action from '../scenario-entities/action';
 
 describe('EditScenarioWizardComponent', () => {
     let scenarioService;
@@ -63,11 +63,9 @@ describe('EditScenarioWizardComponent', () => {
         }
     }
 
-    beforeEachProviders(() => [
-        provide(DeviceListService, {useClass: DeviceListServiceMock}),
-        provide(ScenarioService, {useClass: ScenarioServiceMock}),
-        provide(ActivatedRoute, {useClass: ActivatedRouteMock})
-    ]);
+    class RouterMock {
+        navigate() {}
+    }
 
     function mapConditions(devices, conditions) {
         return conditions.map((condition) => new Condition(devices, condition));
@@ -77,22 +75,34 @@ describe('EditScenarioWizardComponent', () => {
         return actions.map(action => new Action(devices, action));
     }
 
-    beforeEach(() => {
-        deviceListService = new DeviceListServiceMock();
-        scenarioService = new ScenarioServiceMock();
-        spyOn(scenarioService, 'get').and.callThrough();
-        spyOn(scenarioService, 'update').and.callThrough();
-        spyOn(scenarioService, 'delete').and.callThrough();
-        route = new ActivatedRouteMock(id);
-        sut = new EditScenarioWizardComponent(
-            scenarioService,
-            deviceListService,
-            route,
-            null
-        );
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [ EditScenarioWizardComponent ],
+            providers: [
+                { provide: DeviceListService, useClass: DeviceListServiceMock },
+                { provide: ScenarioService, useClass: ScenarioServiceMock },
+                { provide: ActivatedRoute, useValue: new ActivatedRouteMock(id) },
+                { provide: Router, useClass: RouterMock}
+            ]
+        })
+        .overrideComponent(EditScenarioWizardComponent, {
+            set: {template: 'mocked template'}
+        })
+        .compileComponents()
+        .then(() => {
+            sut = TestBed.createComponent(EditScenarioWizardComponent).componentInstance;
 
-        spyOn(sut, 'back');
-    });
+            deviceListService = TestBed.get(DeviceListService);
+            scenarioService = TestBed.get(ScenarioService);
+            route = TestBed.get(ActivatedRoute);
+
+            spyOn(scenarioService, 'get').and.callThrough();
+            spyOn(scenarioService, 'update').and.callThrough();
+            spyOn(scenarioService, 'delete').and.callThrough();
+
+            spyOn(sut, 'back');
+        });
+    }));
 
     describe('ngOnInit', () => {
         beforeEach(() => {

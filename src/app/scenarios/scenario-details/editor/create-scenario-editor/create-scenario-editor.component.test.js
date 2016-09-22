@@ -1,7 +1,7 @@
-import {CreateScenarioEditorComponent} from './create-scenario-editor.component.js';
-import {ScenarioService} from '../../../shared/Scenario.service.js';
+import { CreateScenarioEditorComponent } from './create-scenario-editor.component.js';
+import { ScenarioService } from '../../../shared/scenario.service.js';
 
-describe('CreateScenarioEditorComponent', () => {
+describe('CreateScenarioEditor', () => {
     let scenarioService;
     let scenario;
     let sut;

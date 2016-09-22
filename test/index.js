@@ -1,37 +1,63 @@
-import 'core-js';
+/*
+ * When testing with webpack and ES6, we have to do some extra
+ * things to get testing to work right. Because we are gonna write tests
+ * in ES6 too, we have to compile those as well. That's handled in
+ * karma.conf.js with the karma-webpack plugin. This is the entry
+ * file for webpack test. Just like webpack will create a bundle.js
+ * file for our client, when we run test, it will compile and bundle them
+ * all here! Crazy huh. So we need to do some setup
+ */
+Error.stackTraceLimit = Infinity;
+
+require('core-js/es6');
+require('core-js/es7/reflect');
+
+
+require('zone.js/dist/zone');
+require('zone.js/dist/long-stack-trace-zone');
+require('zone.js/dist/proxy'); // since zone.js 0.6.15
+require('zone.js/dist/sync-test');
+require('zone.js/dist/jasmine-patch'); // put here since zone.js 0.6.14
+require('zone.js/dist/async-test');
+require('zone.js/dist/fake-async-test');
 
 // RxJS
-import 'rxjs';
+require('rxjs/Rx');
 
-// Zone
-import 'zone.js/dist/zone';
-import 'zone.js/dist/long-stack-trace-zone';
-import 'zone.js/dist/jasmine-patch';
-import 'zone.js/dist/async-test';
-import 'zone.js/dist/fake-async-test';
-import 'zone.js/dist/sync-test';
-
-// Jasmine Helpers
+// Jasmin Helpers
 import './jasmine/create-spy-component';
 
-// Angular Testing
-import * as testing from '@angular/core/testing';
-import * as browser from '@angular/platform-browser/testing';
+const testing = require('@angular/core/testing');
+const browser = require('@angular/platform-browser-dynamic/testing');
 
-// Zone
-import 'zone.js/dist/zone';
-import 'zone.js/dist/long-stack-trace-zone';
-import 'zone.js/dist/jasmine-patch';
-
-testing.setBaseTestProviders(
-    browser.TEST_BROWSER_PLATFORM_PROVIDERS,
-    browser.TEST_BROWSER_APPLICATION_PROVIDERS);
+testing.TestBed.initTestEnvironment(
+    browser.BrowserDynamicTestingModule,
+    browser.platformBrowserDynamicTesting()
+);
 
 Object.assign(global, testing, {
     ENV_PUBLIC_CONFIG: {}
 });
 
-// Add specs
-const appContext = require.context('../src', true, /\.test\.js/);
+/*
+ * Ok, this is kinda crazy. We can use the context method on
+ * require that webpack created in order to tell webpack
+ * what files we actually want to require or import.
+ * Below, context will be a function/object with file names as keys.
+ * Using that regex we are saying look in ../src then find
+ * any file that ends with spec.ts and get its path. By passing in true
+ * we say do this recursively
+ */
+const testContext = require.context('../src', true, /\.test\.js/);
 
-appContext.keys().forEach(appContext);
+/*
+ * get all the files, for each file, call the context function
+ * that will require the file and load it up here. Context will
+ * loop and require those spec files here
+ */
+function requireAll(requireContext) {
+    return requireContext.keys().map(requireContext);
+}
+
+// requires and returns all modules that match
+const modules = requireAll(testContext);

@@ -1,15 +1,15 @@
-import SensorDetailService from './sensor-detail.service';
-import {SensorDetail} from './sensor-detail.component';
+import {async, TestBed} from '@angular/core/testing';
+
+import { SensorDetailService } from '../shared/sensor-detail.service';
+import { SensorDetailComponent } from './sensor-detail.component';
 
 import { ActivatedRoute, Router } from '@angular/router';
-import {beforeEachProviders} from '@angular/core/testing';
-import {provide} from '@angular/core';
 
 const observableSubscribe = {
     subscribe(fn) { fn(); }
 };
 
-class SensorDetailServiceMock {
+class SensorDetailComponentServiceMock {
     get() { return observableSubscribe; }
     save() { return observableSubscribe; }
     update() { return observableSubscribe; }
@@ -28,32 +28,41 @@ class RouterMock {
     navigate() {}
 }
 
-describe('sensor-detail module', () => {
+describe('sensor-detail', () => {
     let sut;
     let sensorDetailService;
     let route;
     let router;
-    let idMock;
+    const idMock = 'mock';
 
-    beforeEachProviders(() => [
-        provide(SensorDetailService, {useClass: SensorDetailServiceMock}),
-        provide(ActivatedRoute, {useClass: ActivatedRouteMock}),
-        provide(Router, {useClass: RouterMock})
-    ]);
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [ SensorDetailComponent ],
+            providers: [
+                { provide: SensorDetailService, useClass: SensorDetailComponentServiceMock },
+                { provide: ActivatedRoute, useValue: new ActivatedRouteMock(idMock) },
+                { provide: Router, useClass: RouterMock }
+            ]
+        })
+        .overrideComponent(SensorDetailComponent, {
+            set: {template: 'mocked template'}
+        })
+        .compileComponents()
+        .then(() => {
+            sut = TestBed.createComponent(SensorDetailComponent).componentInstance;
 
-    beforeEach(() => {
-        idMock = 'mock';
-        sensorDetailService = new SensorDetailServiceMock();
-        route = new ActivatedRouteMock(idMock);
-        router = new RouterMock();
-        spyOn(sensorDetailService, 'get').and.callThrough();
-        spyOn(sensorDetailService, 'save').and.callThrough();
-        spyOn(sensorDetailService, 'update').and.callThrough();
-        spyOn(sensorDetailService, 'delete').and.callThrough();
-        spyOn(observableSubscribe, 'subscribe').and.callThrough();
-        spyOn(router, 'navigate').and.callThrough();
-        sut = new SensorDetail(sensorDetailService, router, route);
-    });
+            sensorDetailService = TestBed.get(SensorDetailService);
+            route = TestBed.get(ActivatedRoute);
+            router = TestBed.get(Router);
+
+            spyOn(sensorDetailService, 'get').and.callThrough();
+            spyOn(sensorDetailService, 'save').and.callThrough();
+            spyOn(sensorDetailService, 'update').and.callThrough();
+            spyOn(sensorDetailService, 'delete').and.callThrough();
+            spyOn(observableSubscribe, 'subscribe').and.callThrough();
+            spyOn(router, 'navigate').and.callThrough();
+        });
+    }));
 
     it('should create new sensor if id isn\'t passed to class', () => {
         expect(sut.sensor).toBeDefined();
@@ -61,7 +70,7 @@ describe('sensor-detail module', () => {
 
     it('should not make get request when creating new sensor', () => {
         route = new ActivatedRouteMock();
-        sut = new SensorDetail(sensorDetailService, router, route);
+        sut = new SensorDetailComponent(sensorDetailService, router, route);
         sut.ngOnInit();
         expect(sut.sensorDetailService.get).not.toHaveBeenCalled();
     });
