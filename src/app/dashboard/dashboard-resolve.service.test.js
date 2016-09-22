@@ -3,9 +3,6 @@ import {async, TestBed} from '@angular/core/testing';
 import { DashboardResolveService } from './dashboard-resolve.service';
 import { DashboardService } from './dashboard.service';
 
-import { beforeEachProviders } from '@angular/core/testing';
-import { provide } from '@angular/core';
-
 const observableMock = {};
 
 class DashboardServiceMock {

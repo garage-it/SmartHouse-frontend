@@ -17,7 +17,6 @@ describe('SensorDetailService', () => {
     let httpMock;
 
     beforeEach(async(() => {
-
         TestBed.configureTestingModule({
             providers: [
                 {provide: ShHttpService, useClass: HttpMock },

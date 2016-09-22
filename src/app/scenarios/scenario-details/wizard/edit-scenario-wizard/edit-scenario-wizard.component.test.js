@@ -12,9 +12,7 @@ import Action from '../scenario-entities/action';
 
 describe('EditScenarioWizardComponent', () => {
     let scenarioService;
-    let deviceListService;
     let sut;
-    let route;
     const id = 123;
     const expectedDevices = [
         'device1', 'device2'
@@ -92,9 +90,7 @@ describe('EditScenarioWizardComponent', () => {
         .then(() => {
             sut = TestBed.createComponent(EditScenarioWizardComponent).componentInstance;
 
-            deviceListService = TestBed.get(DeviceListService);
             scenarioService = TestBed.get(ScenarioService);
-            route = TestBed.get(ActivatedRoute);
 
             spyOn(scenarioService, 'get').and.callThrough();
             spyOn(scenarioService, 'update').and.callThrough();

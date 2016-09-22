@@ -7,11 +7,11 @@ import { DEVICE_ON_STATE, DEVICE_OFF_STATE } from '../shared/base-output-sensor/
 
 class SensorWidgetServiceMock {
     subscribe(device, callback) {
-        return callback("test");
+        return callback('test');
     }
-    unsubscribe(device) {};
+    unsubscribe() {}
 
-    pushEvent(...args) {};
+    pushEvent() {}
 }
 
 describe('Sensor-executor-widget', () => {

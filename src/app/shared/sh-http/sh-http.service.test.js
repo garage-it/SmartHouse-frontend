@@ -42,7 +42,6 @@ describe('ShHttpService', () => {
             spyOn(httpMock, 'delete').and.callThrough();
             sut = TestBed.get(ShHttpService);
         });
-
     }));
 
     it('should be defined', () => {

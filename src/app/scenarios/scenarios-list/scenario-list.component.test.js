@@ -36,16 +36,6 @@ class ScenarioServiceMock {
     }
 }
 
-class RouteParamsMock {
-    constructor(id) {
-        this.idMock = id;
-    }
-
-    get() {
-        return this.idMock;
-    }
-}
-
 class RouterMock {
     navigate() {
     }
@@ -110,7 +100,6 @@ describe('ScenarioListComponent', () => {
         });
     }));
     describe('ngOnInit', () => {
-
         it('should recive scenarioList', () => {
             expect(sut.scenarioList).toEqual(mockScenarios);
         });
@@ -224,5 +213,4 @@ describe('ScenarioListComponent', () => {
             });
         });
     });
-
 });

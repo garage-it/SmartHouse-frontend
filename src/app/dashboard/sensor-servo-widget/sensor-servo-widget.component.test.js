@@ -1,21 +1,21 @@
 import {async, TestBed} from '@angular/core/testing';
 
-import { SensorWidgetService } from '../shared/sensor-widget/sensor-widget.service'
+import { SensorWidgetService } from '../shared/sensor-widget/sensor-widget.service';
 import { SensorServoWidgetComponent } from './sensor-servo-widget.component';
 
 class SensorWidgetServiceMock {
     subscribe(device, callback) {
-        return callback("test");
+        this.device = device;
+        return callback('test');
     }
-    unsubscribe(device) {};
+    unsubscribe() {}
 
-    pushEvent(...args) {};
+    pushEvent() {}
 }
 
 describe('Sensor-servo-widget', () => {
     let sut;
     beforeEach(async(() => {
-
         TestBed.configureTestingModule({
             declarations: [ SensorServoWidgetComponent ],
             providers: [ {provide: SensorWidgetService, useClass: SensorWidgetServiceMock }]
@@ -44,5 +44,4 @@ describe('Sensor-servo-widget', () => {
             });
         });
     });
-
 });

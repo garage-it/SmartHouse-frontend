@@ -8,7 +8,6 @@ describe('EditScenarioEditorComponent', () => {
     let scenarioService;
     let scenario;
     let sut;
-    let route;
     const id = 123;
 
     class ObservableSubscribe {
@@ -56,7 +55,6 @@ describe('EditScenarioEditorComponent', () => {
             };
 
             scenarioService = TestBed.get(ScenarioService);
-            route = TestBed.get(ActivatedRoute);
 
             spyOn(sut, 'back');
             spyOn(scenarioService, 'get').and.callThrough();
