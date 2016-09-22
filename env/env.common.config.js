@@ -27,7 +27,11 @@ module.exports = {
     },
     src: {
         dir: rootPath('src'),
-        entry: rootPath('src', 'index.js'),
+        entry: {
+            polyfills: rootPath('src', 'polyfills.browser.js'),
+            vendor: rootPath('src', 'vendor.browser.js'),
+            main: rootPath('src', 'main.browser.js')
+        },
         indexHtml: rootPath('src', 'index.html')
     },
     tests: {
