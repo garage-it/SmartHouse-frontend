@@ -1,20 +1,15 @@
-import {Component} from '@angular/core';
-import { ROUTER_DIRECTIVES, ActivatedRoute, Router } from '@angular/router';
-import template from './create-scenario-editor.html';
-import style from './scenario-editor.scss';
+import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import template from './create-scenario-editor.template.html';
+import style from './scenario-editor.style.scss';
 
-import {ScenarioDetailsComponent} from '../../scenario-details.component';
-import {CreateScenarioWizardComponent} from
-    '../../wizard/create-scenario-wizard/create-scenario-wizard.component';
+import { ScenarioDetailsComponent } from '../../scenario-details.component';
 
-import {ScenarioService} from '../../../shared/Scenario.service.js';
-import {ScenarioEditor} from '../scenario-editor/scenario-editor.component.js';
+import { ScenarioService } from '../../../shared/scenario.service.js';
 
 @Component({
     template,
-    styles: [style],
-    providers: [ScenarioService],
-    directives: [ROUTER_DIRECTIVES, ScenarioEditor, CreateScenarioWizardComponent]
+    styles: [style]
 })
 
 export class CreateScenarioEditorComponent extends ScenarioDetailsComponent {

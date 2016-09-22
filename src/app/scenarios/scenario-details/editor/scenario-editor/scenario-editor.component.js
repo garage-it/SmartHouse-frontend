@@ -1,4 +1,4 @@
-import {Component, ViewChild, Injectable, EventEmitter, Output} from '@angular/core';
+import { Component, ViewChild, EventEmitter, Output } from '@angular/core';
 
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/lesser-dark.css';
@@ -17,9 +17,7 @@ const selector = 'scenario-editor';
     template: '<div #codeEditor></div>',
     inputs: ['scenario']
 })
-
-@Injectable()
-export class ScenarioEditor {
+export class ScenarioEditorComponent {
     @ViewChild('codeEditor') codeEditorElement;
     @Output() updateScenario = new EventEmitter();
 
