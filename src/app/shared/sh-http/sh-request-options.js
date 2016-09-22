@@ -1,6 +1,6 @@
 import { BaseRequestOptions, RequestOptionsArgs } from '@angular/http';
 
-export default class ShRequestOptions extends BaseRequestOptions {
+export class ShRequestOptions extends BaseRequestOptions {
     constructor(options) {
         super(options);
         this.options = options;

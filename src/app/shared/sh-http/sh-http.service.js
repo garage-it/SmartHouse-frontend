@@ -1,9 +1,11 @@
 import {Injectable} from '@angular/core';
-import {Http, RequestMethod, Headers} from '@angular/http';
-import ShRequestOptions from './sh-request-options';
+import { Http, RequestMethod, Headers} from '@angular/http';
+import { ShRequestOptions } from './sh-request-options';
+
+import 'rxjs/add/operator/map';
 
 @Injectable()
-export default class ShHttpService {
+export class ShHttpService {
     constructor(http:Http) {
         this.http = http;
         this.headers = new Headers({ 'Content-Type': 'application/json' });
