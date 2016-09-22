@@ -1,4 +1,4 @@
-import BaseSensor from '../base-sensor';
+import { BaseSensor } from '../base-sensor/base-sensor';
 
 export const DEVICE_ON_STATE = 'ON';
 export const DEVICE_OFF_STATE = 'OFF';
@@ -11,7 +11,7 @@ const timeout = Symbol('timeout');
 export class BaseOutputSensor extends BaseSensor {
 
     constructor(...args) {
-        super(args);
+        super(...args);
         this[pending] = null;
     }
 

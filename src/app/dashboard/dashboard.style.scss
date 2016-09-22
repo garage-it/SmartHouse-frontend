@@ -26,6 +26,9 @@
     &_widget {
         float: left;
         position: relative;
+        width: 160px;
+        margin-bottom: 13px;
+        margin-right: 13px;
 
         // EDITOR MODE
         &-hidden {
@@ -35,6 +38,9 @@
 
     &_widget-actions {
         $main-color: #333333;
+        width: 160px;
+        margin-bottom: 13px;
+        margin-right: 13px;
 
         label {
             color: $main-color;

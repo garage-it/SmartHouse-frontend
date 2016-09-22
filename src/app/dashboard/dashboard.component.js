@@ -1,27 +1,18 @@
 import { Component } from '@angular/core';
-import { ROUTER_DIRECTIVES, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
-import style from './style.scss';
-import template from './dashboard.html';
-import { SensorWidget } from './sensor-widget';
-import { SensorExecutorWidget } from './sensor-executor-widget';
-import { SensorServoWidget } from './sensor-servo-widget';
-import { SensorStatusWidget } from './sensor-status-widget';
-import SensorWidgetService from './shared/sensor-widget.service';
+import style from './dashboard.style.scss';
+import template from './dashboard.template.html';
+import { SensorWidgetService } from './shared/sensor-widget/sensor-widget.service';
 
 import Rx from 'rxjs/Rx';
 
 @Component({
     selector: 'sm-dashboard',
     template,
-    styles: [style],
-    directives: [
-        ROUTER_DIRECTIVES, SensorWidget, SensorExecutorWidget,
-        SensorStatusWidget, SensorServoWidget
-    ],
-    providers: [SensorWidgetService]
+    styles: [style]
 })
-export class Dashboard {
+export class DashboardComponent {
     constructor(sensorWidgetService: SensorWidgetService, route: ActivatedRoute) {
         this.sensorWidgetService = sensorWidgetService;
         this.route = route;

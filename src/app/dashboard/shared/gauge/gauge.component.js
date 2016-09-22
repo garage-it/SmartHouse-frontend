@@ -1,17 +1,17 @@
-import {ViewChild, Component, OnChanges} from '@angular/core';
+import { ViewChild, Component, OnChanges } from '@angular/core';
 
-import template from './servo-gauge.html';
-import styles from './servo-gauge.scss';
+import template from './gauge.template.html';
+import styles from './gauge.style.scss';
 
 export const GAUGE_COEFFICIENT = 0.56;
 
 @Component({
-    selector: 'sm-servo-gauge',
+    selector: 'sm-gauge',
     template,
     styles: [styles],
     inputs: ['degree']
 })
-export class ServoGauge implements OnChanges {
+export class GaugeComponent implements OnChanges {
 
     @ViewChild('gaugeData') gaugeData;
     @ViewChild('gaugeNeedle') gaugeNeedle;

@@ -1,8 +1,8 @@
-import SensorWidgetService from '../shared/sensor-widget.service';
+import { SensorWidgetService } from '../sensor-widget/sensor-widget.service';
 
-export default class BaseSensor {
-    constructor() {
-        this.sensorWidgetService = new SensorWidgetService();
+export class BaseSensor {
+    constructor(sensorWidgetService: SensorWidgetService) {
+        this.sensorWidgetService = sensorWidgetService;
     }
 
     ngOnInit() {

@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import io from 'socket.io-client';
 
 @Injectable()
-export default class SensorWidgetService {
+export class SensorWidgetService {
     constructor() {
         this.io = io;
         this.setupSocket();
