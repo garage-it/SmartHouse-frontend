@@ -27,7 +27,7 @@ module.exports = (config) => {
 
         remapCoverageReporter: {
             json: './coverage/coverage-final.json',
-            html: './coverage/html'
+            html: './coverage/html',
         },
 
         colors: true,

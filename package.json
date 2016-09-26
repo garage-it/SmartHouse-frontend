@@ -9,9 +9,11 @@
     "client": "webpack-dev-server --watch",
     "test": "karma start",
     "tdd": "karma start --no-single-run --auto-watch --reporters nyan",
-    "codecov": "npm codecov < coverage/lcov/lcov.info",
-    "validate": "eslint --ext .js ./src ./env ./server ./test",
-    "lintfix": "eslint --ext .js ./src ./env ./server ./test --fix",
+    "codecov": "npm codecov < coverage/coverage-final.json",
+    "validate": "tslint \"src/**/*.ts\"",
+
+    "lintfix": "tslint --ext .ts ./src ./env ./server ./test --fix",
+
     "build": "webpack --progress --profile --config ./env/webpack.prod.config.js",
     "build:production": "cross-env ENV_CONFIG=production webpack --progress --profile -p --config ./env/webpack.prod.config.js",
     "e2e:start": "webdriver-manager start",

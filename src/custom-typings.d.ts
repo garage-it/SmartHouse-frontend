@@ -1,4 +1,4 @@
-/* tslint:disable:no-unused-function */
+
 
 declare var ENV_PUBLIC_CONFIG: {
     backEndWebSocketUrl: string,
@@ -23,5 +23,7 @@ interface ErrorStackTraceLimit {
 interface NodeRequire extends WebpackRequire {}
 
 declare namespace jasmine {
-    function createSpyComponent(...args): any
+
+    // tslint:disable-next-line
+    function createSpyComponent(...args): any // tslint:disable-next-line
 }
