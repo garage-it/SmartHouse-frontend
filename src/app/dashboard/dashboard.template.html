@@ -27,6 +27,7 @@
                 *ngIf="!widget.device.executor && !widget.hidden">
             </sm-sensor-widget>
         </div>
+
         <div *ngFor="let widget of executorSensorWidgets">
             <sm-sensor-executor-widget
                 [device]="widget.device"
@@ -40,5 +41,6 @@
                 *ngIf="widget.device.servo && !widget.hidden">
             </sm-sensor-servo-widget>
         </div>
+
     </div>
 </div>

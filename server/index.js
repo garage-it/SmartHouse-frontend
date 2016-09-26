@@ -1,6 +1,6 @@
 'use strict';
 
-require('babel-register');
+require('ts-node/register');
 
 const bodyParser = require('body-parser');
 const path = require('path');

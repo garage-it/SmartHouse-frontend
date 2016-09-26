@@ -1,11 +1,15 @@
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+// Webpack Plugins
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
+
 const envConfig = require('./env.config');
 
-const jsRegexp = /\.js$/;
+const tsRegexp = /\.ts$/;
 
 module.exports = {
     debug: true,
@@ -24,20 +28,16 @@ module.exports = {
     module: {
         preLoaders: [
             {
-                test: jsRegexp,
-                loader: 'source-map'
-            },
-            {
-                test: jsRegexp,
-                loader: 'eslint',
+                test: tsRegexp,
+                loader: 'tslint',
                 exclude: [/node_modules/]
             },
         ],
         loaders: [
             {
-                test: jsRegexp,
-                loader: 'babel',
-                exclude: [/node_modules/]
+                test: tsRegexp,
+                loaders: ['awesome-typescript-loader?', 'angular2-template-loader'],
+                exclude: [/\.(spec|e2e)\.ts$/, /node_modules\/(?!(ng2-.+))/]
             },
             {
                 test: /\.html$/,
@@ -60,6 +60,9 @@ module.exports = {
         ]
     },
     plugins: [
+
+        new ForkCheckerPlugin(),
+
         new CleanWebpackPlugin(
             [envConfig.dist.dir],
             {root: envConfig.root.dir}

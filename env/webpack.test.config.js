@@ -3,27 +3,39 @@ const envConfig = require('./env.config');
 module.exports = {
     debug: true,
 
-    devtool: 'source-map',
+    devtool: 'inline-source-map',
 
     resolve: {
         root: [envConfig.src.dir],
-        extensions: ['', '.js']
+        extensions: ['', '.js', '.ts']
     },
-
+    stats: {
+        // Configure the console output
+        errorDetails: true, //this does show errors
+        colors: false,
+        modules: true,
+        reasons: true
+    },
     module: {
         preLoaders: [
             {
-                test: /\.js$/,
-                loader: 'isparta',
-                include: envConfig.src.dir,
-                exclude: [/\.test\.js$/]
+                test: /\.ts$/,
+                loader: 'tslint-loader',
+                exclude: [/node_modules/]
             }
         ],
         loaders: [
             {
-                test: /\.js$/,
-                loader: 'babel',
-                exclude: [/node_modules/]
+                test: /\.ts$/,
+                loader: 'awesome-typescript-loader',
+                exclude: [/\.(e2e)\.ts$/],
+                query: {
+                    sourceMap: false,
+                    inlineSourceMap: true,
+                    compilerOptions: {
+                        removeComments: true
+                    }
+                }
             },
 
             {
@@ -39,6 +51,14 @@ module.exports = {
                 test: /\.css$/,
                 include: [/node_modules/],
                 loader: 'style!css'
+            }
+        ],
+        postLoaders: [
+            {
+                test: /\.ts$/,
+                include: envConfig.src.dir,
+                loader: 'istanbul-instrumenter-loader',
+                exclude: [/\.spec\.ts$/, /\.e2e\.ts$/, /node_modules/]
             }
         ]
     }
