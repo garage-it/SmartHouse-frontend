@@ -1,0 +1,51 @@
+.empty-list {
+    &::before {
+        background-image: url(./assets/Dashboard-empty@3x.png);
+    }
+}
+
+.dashboard {
+    button[disabled] {
+        opacity: 0.5;
+    }
+
+    &_content {
+        margin-top: 25px;
+    }
+
+    .edit-link {
+        margin-top: 20px;
+        color: #546e7a;
+    }
+
+    &_widgets-container {
+        display: flex;
+        padding: 0 30px;
+    }
+
+    &_widget {
+        float: left;
+        position: relative;
+
+        // EDITOR MODE
+        &-hidden {
+            opacity: 0.5;
+        }
+    }
+
+    &_widget-actions {
+        $main-color: #333333;
+
+        label {
+            color: $main-color;
+        }
+
+        .filled-in:not(:checked) + label:after{
+            border-color: $main-color;
+        }
+    }
+
+    &_actions {
+        padding-top: 40px;
+    }
+}

@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { ShHttpService } from '../shared/sh-http/sh-http.service.js';
+import {Injectable} from '@angular/core';
+import ShHttpService from '../shared/sh-http/sh-http.service.js';
 
 @Injectable()
-export class DashboardService {
-    constructor(http: ShHttpService) {
+export default class DashboardService {
+    constructor(http:ShHttpService) {
         this.http = http;
     }
 

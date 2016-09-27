@@ -1,9 +1,9 @@
-import { HelpComponent } from './help.component';
+import {Help} from './help';
 
 describe('Help', () => {
     describe('#constructor', () => {
         it('should be defined', () => {
-            expect(HelpComponent).toBeDefined();
+            expect(Help).toBeDefined();
         });
     });
 });

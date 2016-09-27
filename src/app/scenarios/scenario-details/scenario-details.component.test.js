@@ -1,4 +1,4 @@
-import { ScenarioDetailsComponent } from './scenario-details.component';
+import {ScenarioDetailsComponent} from './scenario-details.component';
 
 describe('ScenarioDetailsComponent', () => {
     let sut;
