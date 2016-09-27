@@ -58,7 +58,7 @@ module.exports = {
                 test: /\.ts$/,
                 include: envConfig.src.dir,
                 loader: 'istanbul-instrumenter-loader',
-                exclude: [/\.spec\.ts$/, /\.e2e\.ts$/, /node_modules/]
+                exclude: [/\.test\.ts$/, /\.e2e\.ts$/, /node_modules/]
             }
         ]
     }
