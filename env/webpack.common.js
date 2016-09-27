@@ -31,7 +31,7 @@ module.exports = {
                 test: tsRegexp,
                 loader: 'tslint',
                 exclude: [/node_modules/]
-            },
+            }
         ],
         loaders: [
             {
