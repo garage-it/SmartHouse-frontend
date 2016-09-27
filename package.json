@@ -9,7 +9,7 @@
     "client": "webpack-dev-server --watch",
     "test": "karma start",
     "tdd": "karma start --no-single-run --auto-watch --reporters nyan",
-    "codecov": "npm codecov < coverage/coverage-final.json",
+    "codecov": "npm codecov < coverage/lcov/lcov.info",
     "validate": "tslint \"src/**/*.ts\"",
 
     "lintfix": "tslint --ext .ts ./src ./env ./server ./test --fix",

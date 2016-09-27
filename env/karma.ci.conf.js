@@ -28,6 +28,7 @@ module.exports = (config) => {
         remapCoverageReporter: {
             json: './coverage/coverage-final.json',
             html: './coverage/html',
+            lcovonly: './coverage/lcov/lcov.info'
         },
 
         colors: true,
