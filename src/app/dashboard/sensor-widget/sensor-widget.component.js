@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
-import BaseSensor from '../base-sensor';
-import template from './sensor-widget.html';
-import style from '../shared/sensor-widget.scss';
+import { BaseSensor } from '../shared/base-sensor/base-sensor';
+import template from './sensor-widget.template.html';
+import style from '../shared/sensor-widget/sensor-widget.style.scss';
 
 @Component({
     selector: 'sm-sensor-widget',
@@ -10,5 +10,5 @@ import style from '../shared/sensor-widget.scss';
     styles: [style],
     inputs: ['device']
 })
-export class SensorWidget extends BaseSensor {
-}
+export class SensorWidgetComponent extends BaseSensor {}
+

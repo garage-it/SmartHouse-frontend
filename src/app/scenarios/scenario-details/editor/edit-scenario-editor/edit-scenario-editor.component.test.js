@@ -1,15 +1,13 @@
-import {beforeEachProviders} from '@angular/core/testing';
-import {provide} from '@angular/core';
+import {async, TestBed} from '@angular/core/testing';
 
-import { ActivatedRoute } from '@angular/router';
-import {ScenarioService} from '../../../shared/Scenario.service.js';
-import {EditScenarioEditorComponent} from './edit-scenario-editor.component.js';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ScenarioService } from '../../../shared/scenario.service.js';
+import { EditScenarioEditorComponent } from './edit-scenario-editor.component.js';
 
 describe('EditScenarioEditorComponent', () => {
     let scenarioService;
     let scenario;
     let sut;
-    let route;
     const id = 123;
 
     class ObservableSubscribe {
@@ -33,25 +31,37 @@ describe('EditScenarioEditorComponent', () => {
         }
     }
 
-    beforeEachProviders(() => [
-        provide(ScenarioService, {useClass: ScenarioServiceMock}),
-        provide(ActivatedRoute, {useClass: ActivatedRouteMock})
-    ]);
+    class RouterMock {
+        navigate() {}
+    }
 
-    beforeEach(() => {
-        scenario = {
-            iam: 'a scenario'
-        };
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [ EditScenarioEditorComponent ],
+            providers: [
+                { provide: ScenarioService, useClass: ScenarioServiceMock },
+                { provide: ActivatedRoute, useValue: new ActivatedRouteMock(id) },
+                { provide: Router, useClass: RouterMock}
+            ]
+        })
+        .overrideComponent(EditScenarioEditorComponent, {
+            set: {template: 'mocked template'}
+        })
+        .compileComponents()
+        .then(() => {
+            sut = TestBed.createComponent(EditScenarioEditorComponent).componentInstance;
+            scenario = {
+                iam: 'a scenario'
+            };
 
-        scenarioService = new ScenarioServiceMock();
-        route = new ActivatedRouteMock(id);
-        sut = new EditScenarioEditorComponent(scenarioService, route);
+            scenarioService = TestBed.get(ScenarioService);
 
-        spyOn(sut, 'back');
-        spyOn(scenarioService, 'get').and.callThrough();
-        spyOn(scenarioService, 'update').and.callThrough();
-        spyOn(scenarioService, 'delete').and.callThrough();
-    });
+            spyOn(sut, 'back');
+            spyOn(scenarioService, 'get').and.callThrough();
+            spyOn(scenarioService, 'update').and.callThrough();
+            spyOn(scenarioService, 'delete').and.callThrough();
+        });
+    }));
 
     it('should NOT allow switch to wizard', () => {
         expect(sut.isWizardAvailable()).toEqual(false);

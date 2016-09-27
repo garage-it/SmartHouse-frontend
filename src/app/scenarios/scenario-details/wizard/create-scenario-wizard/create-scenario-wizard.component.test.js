@@ -1,9 +1,10 @@
-import {CreateScenarioWizardComponent} from './create-scenario-wizard.component.js';
-import {ScenarioService} from '../../../shared/Scenario.service.js';
-import {DeviceListService} from '../../../../shared/device-list/device-list.service';
-import Action from '../scenario-entities/Action';
-import Condition from '../scenario-entities/Condition';
-import Scenario from '../scenario-entities/Scenario';
+import { CreateScenarioWizardComponent } from './create-scenario-wizard.component.js';
+import { ScenarioService } from '../../../shared/scenario.service.js';
+import { DeviceListService } from '../../../../devices/device-list/device-list.service';
+
+import Action from '../scenario-entities/action';
+import Condition from '../scenario-entities/condition';
+import Scenario from '../scenario-entities/scenario';
 
 describe('CreateScenarioWizardComponent', () => {
     let scenarioService;

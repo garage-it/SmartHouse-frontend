@@ -1,20 +1,19 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
-import {ServoGauge} from './servo-gauge';
+// import { ServoGauge } from './servo-gauge';
 
-import {BaseOutputSensor} from '../base-output-sensor';
-import template from './sensor-servo-widget.html';
-import baseStyles from '../shared/sensor-widget.scss';
-import styles from './sensor-servo-widget.scss';
+import { BaseOutputSensor } from '../shared/base-output-sensor/base-output-sensor';
+import template from './sensor-servo-widget.template.html';
+import baseStyles from '../shared/sensor-widget/sensor-widget.style.scss';
+import styles from './sensor-servo-widget.style.scss';
 
 @Component({
     selector: 'sm-sensor-servo-widget',
     template,
     styles: [baseStyles, styles],
-    directives: [ServoGauge],
     inputs: ['device', 'description']
 })
-export class SensorServoWidget extends BaseOutputSensor {
+export class SensorServoWidgetComponent extends BaseOutputSensor {
 
     changeDegree() {
         return this.pushEvent({

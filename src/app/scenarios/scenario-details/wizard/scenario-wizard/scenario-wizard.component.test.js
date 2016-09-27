@@ -1,4 +1,4 @@
-import {ScenarioWizardComponent} from './scenario-wizard.component.js';
+import { ScenarioWizardComponent } from './scenario-wizard.component.js';
 
 describe('ScenarioWizardComponent', () => {
     let sut;

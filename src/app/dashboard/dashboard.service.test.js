@@ -1,6 +1,6 @@
-import DashboardService from './dashboard.service';
-import {Http} from '@angular/http';
-import {Observable} from 'rxjs/Observable';
+import { DashboardService } from './dashboard.service';
+import { Http } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
 describe('DashboardService', () => {
     let observable;

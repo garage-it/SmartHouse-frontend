@@ -1,0 +1,64 @@
+<div class="page-header">
+    <div class="row">
+        <div class="col s3">
+            <a class="back-link" (click)="back()">
+                <i class="material-icons md-18">navigate_before</i>
+                Back to list
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s7">
+            <h1>New scenario</h1>
+        </div>
+        <div class="col s5">
+            <a [routerLink]="['../wizard-create']" class="nav-link right">
+                <i class="material-icons">edit</i>
+                Go to Wizard
+            </a>
+        </div>
+    </div>
+</div>
+
+<form class="scenario-details" (ngSubmit)="save(scenario)">
+    <label>
+        Scenario name: <b class="red-text">*</b>
+        <input [(ngModel)]="scenario.name"
+               name="name"
+               #name="ngModel"
+               class="black-text"
+               type="text"
+               required
+               />
+    </label>
+    <div [hidden]="!name.touched || name.valid" class="red-text text-darken-4">
+        Name should be filled
+    </div>
+
+    <p class="sensor-detail__status">
+        <input [(ngModel)]="scenario.active"
+               name="active"
+               #active="ngModel"
+               class="filled-in sensor-detail__status-value"
+               type="checkbox" id="scenario-details__status"/>
+        <label for="scenario-details__status">active </label>
+    </p>
+
+    <label>
+        Scenario description:
+        <input [(ngModel)]="scenario.description"
+               name="description"
+               #description="ngModel"
+               class="black-text"
+               type="text"/>
+    </label>
+
+    <div class="scenario-details_editor-wrapper">
+        <scenario-editor
+            [scenario]="scenario?.body"
+            (updateScenario)="onScenarioBodyUpdate($event)">
+        </scenario-editor>
+    </div>
+
+    <button class="waves-effect waves-light btn blue-grey darken-1" type="submit">SAVE SCENARIO</button>
+</form>

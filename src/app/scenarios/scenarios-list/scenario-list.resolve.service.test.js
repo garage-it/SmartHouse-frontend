@@ -1,29 +1,34 @@
-import { ScenarioListResolveService } from './scenario-list.resolve.service';
-import { ScenarioService } from '../shared/Scenario.service.js';
+import {ScenarioListResolveService} from './scenario-list.resolve.service';
+import {ScenarioService} from '../shared/scenario.service.js';
 
-import { beforeEachProviders } from '@angular/core/testing';
-import { provide } from '@angular/core';
+import {async, TestBed} from '@angular/core/testing';
 
 const observableMock = {};
 
 class ScenarioServiceMock {
-    get() { return observableMock; }
+    get() {
+        return observableMock;
+    }
 }
 
 describe('scenario-list-resolve service', () => {
     let sut;
     let scenarioService;
 
-    beforeEachProviders(() => [
-        provide(ScenarioService, {useClass: ScenarioServiceMock})
-    ]);
-
-    beforeEach(() => {
-        scenarioService = new ScenarioServiceMock();
-        sut = new ScenarioListResolveService(scenarioService);
-
-        spyOn(scenarioService, 'get').and.callThrough();
-    });
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            providers: [
+                {provide: ScenarioService, useClass: ScenarioServiceMock},
+                ScenarioListResolveService
+            ]
+        })
+        .compileComponents()
+        .then(() => {
+            scenarioService = TestBed.get(ScenarioService);
+            sut = TestBed.get(ScenarioListResolveService);
+            spyOn(scenarioService, 'get').and.callThrough();
+        });
+    }));
 
     it('should call scenarioService get method', () => {
         sut.resolve();

@@ -1,15 +1,38 @@
-import {SensorServoWidget} from './sensor-servo-widget.component';
+import {async, TestBed} from '@angular/core/testing';
 
-describe('sensor-servo-widget', () => {
+import { SensorWidgetService } from '../shared/sensor-widget/sensor-widget.service';
+import { SensorServoWidgetComponent } from './sensor-servo-widget.component';
+
+class SensorWidgetServiceMock {
+    subscribe(device, callback) {
+        this.device = device;
+        return callback('test');
+    }
+    unsubscribe() {}
+
+    pushEvent() {}
+}
+
+describe('Sensor-servo-widget', () => {
     let sut;
-    beforeEach(() => {
-        sut = new SensorServoWidget();
-        sut.data = {};
-        sut.device = {
-            mqttId: 'mock'
-        };
-        spyOn(sut, 'pushEvent').and.callThrough();
-    });
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [ SensorServoWidgetComponent ],
+            providers: [ {provide: SensorWidgetService, useClass: SensorWidgetServiceMock }]
+        })
+        .overrideComponent(SensorServoWidgetComponent, {
+            set: {template: 'mocked template'}
+        })
+        .compileComponents()
+        .then(() => {
+            sut = TestBed.createComponent(SensorServoWidgetComponent).componentInstance;
+            sut.data = {};
+            sut.device = {
+                mqttId: 'mock'
+            };
+            spyOn(sut, 'pushEvent').and.callThrough();
+        });
+    }));
 
     describe('Switch executor', () => {
         it('should push command when executor change state', () => {
@@ -21,5 +44,4 @@ describe('sensor-servo-widget', () => {
             });
         });
     });
-
 });

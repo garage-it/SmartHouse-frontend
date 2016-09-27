@@ -1,10 +1,10 @@
-import {Component} from '@angular/core';
-import {ROUTER_DIRECTIVES, Router, ActivatedRoute} from '@angular/router';
+import { Component} from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
-import template from './scenario-list.html';
-import style from './scenario-list.scss';
-import {ScenarioService} from './../shared/Scenario.service.js';
-import {ScenarioStatusService} from './scenario-status.service';
+import template from './scenario-list.template.html';
+import style from './scenario-list.style.scss';
+import { ScenarioService } from './../shared/scenario.service.js';
+import { ScenarioStatusService } from './scenario-status.service';
 
 
 const selector = 'scenario-list';
@@ -19,11 +19,8 @@ const confirmQuestion = 'Are you sure you want to delete this scenario?';
 @Component({
     selector,
     template,
-    styles: [style],
-    directives: [ROUTER_DIRECTIVES],
-    providers: [ScenarioService, ScenarioStatusService]
+    styles: [style]
 })
-
 export class ScenarioListComponent {
     scenarioList = [];
     _headers = [];
@@ -43,7 +40,6 @@ export class ScenarioListComponent {
         this.route.data.subscribe(data => {
             this.scenarioList = data.scenarioList.map(this.convertScenarioStatus);
         });
-
 
         this.subscription = this.scenarioStatusService.stream.subscribe((event) =>
             this.onScenarioStatusChange(event));

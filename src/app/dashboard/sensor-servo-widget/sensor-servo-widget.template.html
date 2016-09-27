@@ -1,0 +1,20 @@
+<div class="sensor-widget sensor-servo-widget">
+
+    <div class="sensor-widget_value">
+
+        <span [hidden]="data.value">.</span>
+        <sm-gauge [degree]="data.value" [hidden]="data.value==undefined" ></sm-gauge>
+    </div>
+
+    <input class="sensor-servo-widget_controller" type="range" [min]="0" [max]="180" [(ngModel)]="data.value" (change)="changeDegree()">
+
+
+    <div class="sensor-widget__metrics" [hidden]="data.value==undefined">
+        {{device.metrics}}
+    </div>
+
+    <div class="sensor-widget_description">
+        <span>{{device.description}}</span>
+    </div>
+
+</div>

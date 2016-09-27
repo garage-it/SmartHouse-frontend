@@ -1,0 +1,73 @@
+<div class="page-header">
+    <a class="back-link" (click)="cancel()">
+        <i class="material-icons md-18">navigate_before</i>
+        Back to list
+    </a>
+    <h1>{{ needUpdate ? 'Edit' : 'New' }} device</h1>
+</div>
+<form class="sensor-detail" #sensorForm="ngForm">
+    <div class="sensor-detail__id">
+        <label for="sensor-detail__id">Device name <b class="red-text">*</b></label>
+        <input [(ngModel)]="sensor.mqttId"
+               name="mqttId"
+               #mqttId="ngModel"
+               type="text"
+               id="sensor-detail__id"
+               placeholder="Enter descriptive name"
+               required/>
+        <div [hidden]="!mqttId.touched || mqttId.valid" class="alert">
+            MQTT ID should be filled
+        </div>
+    </div>
+    <div class="sensor-detail__type">
+        <label for="sensor-detail__id">Type</label>
+        <input [(ngModel)]="sensor.type"
+               name="type"
+               #type="ngModel"
+               type="text"
+               id="sensor-detail__type"
+               placeholder="Enter type"
+               />
+    </div>
+    <div class="sensor-detail__description">
+        <label for="sensor-detail__id">Description</label>
+        <input [(ngModel)]="sensor.description"
+               name="description"
+               #description="ngModel"
+               type="text"
+               id="sensor-detail__description"
+               placeholder="Enter description"
+               />
+    </div>
+    <div class="sensor-detail__metrics">
+        <label for="sensor-detail__id">Metrics</label>
+        <input [(ngModel)]="sensor.metrics"
+               name="metrics"
+               #metrics="ngModel"
+               type="text"
+               id="sensor-detail__metrics"
+               placeholder="Enter metrics"
+               />
+    </div>
+    <p class="sensor-detail__status">
+        <input [(ngModel)]="sensor.executor"
+               name="executor"
+               #executor="ngModel"
+               class="filled-in sensor-detail__status-value"
+               type="checkbox"
+               id="sensor-detail__executor"/>
+        <label for="sensor-detail__executor">Switcher</label>
+    </p>
+
+    <button (click)="save()"
+        [disabled]="!sensorForm.valid"
+        type="submit"
+        class="waves-effect waves-light btn blue-grey darken-1">
+        SAVE DEVICE
+    </button>
+    <button *ngIf="needUpdate"
+        (click)="remove()"
+        class="waves-effect waves-light btn blue-grey darken-1">
+        Remove Sensor
+    </button>
+</form>
