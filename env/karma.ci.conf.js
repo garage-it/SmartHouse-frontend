@@ -10,21 +10,25 @@ module.exports = (config) => {
         files: [envConfig.tests.entry],
 
         preprocessors: {
-            [envConfig.tests.entry]: ['webpack', 'sourcemap']
+            [envConfig.tests.entry]: ['coverage', 'webpack', 'sourcemap']
         },
 
         webpack: webpackConfig,
 
         webpackServer: {noInfo: true},
 
-        reporters: ['mocha', 'coverage'],
+        webpackMiddleware: {stats: 'errors-only'},
+
+        reporters: ['mocha', 'coverage', 'remap-coverage'],
 
         coverageReporter: {
-            reporters: [
-                {type: 'text-summary'},
-                {type: 'html'},
-                {type: 'lcov', subdir: 'lcov'}
-            ]
+            type: 'in-memory'
+        },
+
+        remapCoverageReporter: {
+            json: './coverage/coverage-final.json',
+            html: './coverage/html',
+            lcovonly: './coverage/lcov/lcov.info'
         },
 
         colors: true,

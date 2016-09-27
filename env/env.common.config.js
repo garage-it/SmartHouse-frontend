@@ -1,8 +1,8 @@
 const path = require('path');
 const rootDir = path.resolve(__dirname, '..');
 
-function rootPath(...args) {
-    return path.join(rootDir, ...args);
+function rootPath() {
+    return path.join.apply(path, [rootDir].concat([].slice.apply(arguments)));
 }
 
 module.exports = {
@@ -28,15 +28,15 @@ module.exports = {
     src: {
         dir: rootPath('src'),
         entry: {
-            polyfills: rootPath('src', 'polyfills.browser.js'),
-            vendor: rootPath('src', 'vendor.browser.js'),
-            main: rootPath('src', 'main.browser.js')
+            polyfills: rootPath('src', 'polyfills.browser.ts'),
+            vendor: rootPath('src', 'vendor.browser.ts'),
+            main: rootPath('src', 'main.browser.ts')
         },
         indexHtml: rootPath('src', 'index.html')
     },
     tests: {
         dir: rootPath('test'),
-        entry: rootPath('test', 'index.js')
+        entry: rootPath('test', 'index.ts')
     },
     dist: {
         dir: rootPath('dist')

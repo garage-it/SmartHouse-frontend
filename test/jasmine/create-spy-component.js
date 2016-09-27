@@ -6,7 +6,7 @@ jasmine.createSpyComponent = function createSpyComponent(Component) {
     const proto = Component.prototype;
     const name = Component.name;
     const methods = Object.getOwnPropertyNames(proto)
-        .filter((prop) => typeof proto[prop] === 'function');
+        .filter(function(prop){ return typeof proto[prop] === 'function'});
 
     return jasmine.createSpyObj(name, methods);
 };

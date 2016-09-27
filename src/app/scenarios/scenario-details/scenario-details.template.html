@@ -19,12 +19,16 @@
     <label>
         Scenario name:
         <input [(ngModel)]="scenario.name"
+               name="name"
+               #name="ngModel"
                class="black-text"
                type="text"/>
     </label>
 
     <p class="sensor-detail__status">
         <input [(ngModel)]="scenario.active"
+               name="active"
+               #active="ngModel"
                class="filled-in sensor-detail__status-value"
                type="checkbox" id="scenario-details__status"/>
         <label for="scenario-details__status">Active</label>
@@ -33,6 +37,8 @@
     <label>
         Scenario description:
         <input [(ngModel)]="scenario.description"
+               name="description"
+               #description="ngModel"
                class="black-text"
                type="text"/>
     </label>
