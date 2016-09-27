@@ -1,23 +1,22 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-
-import template from './edit-scenario-wizard.template.html';
-
-import { CreateScenarioWizardComponent }
-    from '../create-scenario-wizard/create-scenario-wizard.component.js';
-
-import { ScenarioService } from '../../../shared/scenario.service.js';
-import { DeviceListService } from '../../../../devices/device-list/device-list.service';
-
-import Condition from '../scenario-entities/condition';
-import Action from '../scenario-entities/action';
-import Scenario from '../scenario-entities/scenario';
-
+import {Component} from '@angular/core';
 import Rx from 'rxjs/Rx';
+import { ROUTER_DIRECTIVES, ActivatedRoute, Router } from '@angular/router';
+import template from './edit-scenario-wizard.html';
+import {CreateScenarioWizardComponent}
+    from '../create-scenario-wizard/create-scenario-wizard.component.js';
+import {ScenarioService} from '../../../shared/Scenario.service.js';
+import {DeviceListService} from '../../../../shared/device-list/device-list.service';
+import Condition from '../scenario-entities/Condition';
+import Action from '../scenario-entities/Action';
+import Scenario from '../scenario-entities/Scenario';
+import {ScenarioWizardComponent} from '../scenario-wizard/scenario-wizard.component';
 
 @Component({
-    template
+    template,
+    providers: [ScenarioService, DeviceListService],
+    directives: [ROUTER_DIRECTIVES, ScenarioWizardComponent]
 })
+
 export class EditScenarioWizardComponent extends CreateScenarioWizardComponent {
 
     constructor(scenarioService:ScenarioService,

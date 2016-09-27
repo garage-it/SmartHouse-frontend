@@ -1,7 +1,7 @@
-import { ActivatedRoute, Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
-import { ScenarioDetailsComponent } from '../../scenario-details.component';
-import { ScenarioService } from '../../../shared/scenario.service.js';
+import {ScenarioDetailsComponent} from '../../scenario-details.component';
+import {ScenarioService} from '../../../shared/Scenario.service.js';
 
 export class EditScenarioEditorComponent extends ScenarioDetailsComponent {
 

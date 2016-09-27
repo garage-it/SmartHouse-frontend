@@ -1,4 +1,4 @@
-import { ScenarioEditorComponent } from './scenario-editor.component.js';
+import {ScenarioEditor} from './scenario-editor.component.js';
 import CODE_MIRROR_EVENTS from './code-mirror-events.const.js';
 
 describe('ScenarioEditor', () => {
@@ -9,7 +9,7 @@ describe('ScenarioEditor', () => {
     beforeEach(() => {
         codeMirrorMock = jasmine.createSpyObj('CodeMirror', ['on', 'setValue', 'getValue']);
 
-        sut = new ScenarioEditorComponent();
+        sut = new ScenarioEditor();
 
         spyOn(sut, 'codeMirror').and.returnValue(codeMirrorMock);
         spyOn(sut.updateScenario, 'emit');

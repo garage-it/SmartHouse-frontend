@@ -15,7 +15,9 @@ module.exports = {
         root: [envConfig.src.dir],
         extensions: ['', '.ts', '.js']
     },
-    entry: envConfig.src.entry,
+    entry: {
+        app: envConfig.src.entry
+    },
     output: {
         path: envConfig.dist.dir,
         filename: '[name].bundle.js',
@@ -31,7 +33,7 @@ module.exports = {
                 test: jsRegexp,
                 loader: 'eslint',
                 exclude: [/node_modules/]
-            },
+            }
         ],
         loaders: [
             {

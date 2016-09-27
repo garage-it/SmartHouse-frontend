@@ -1,9 +1,7 @@
-import { EventEmitter } from '@angular/core';
-import { Component } from '@angular/core';
-
-import template from './scenario-wizard.template.html';
-import style from './scenario-wizard.style.scss';
-
+import {EventEmitter} from '@angular/core';
+import {Component} from '@angular/core';
+import template from './scenario-wizard.html';
+import style from './scenario-wizard.scss';
 import LOGICAL_OPERATORS from '../scenario-entities/logical-operators.const.js';
 const selector = 'scenario-wizard';
 
@@ -19,6 +17,7 @@ const selector = 'scenario-wizard';
         'onRemoveAction'
     ]
 })
+
 export class ScenarioWizardComponent {
     constructor() {
         this.onAddCriteria = new EventEmitter();

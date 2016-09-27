@@ -1,4 +1,4 @@
-import { ScenarioStatusService, SCENARIO_STATUS_CHANGE_EVENT } from './scenario-status.service';
+import {ScenarioStatusService, SCENARIO_STATUS_CHANGE_EVENT} from './scenario-status.service';
 
 const mockSocket = {
     on: jasmine.createSpy()
