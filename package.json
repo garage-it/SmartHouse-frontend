@@ -20,7 +20,9 @@
     "e2e:start": "webdriver-manager start",
     "e2e:update": "webdriver-manager update --standalone",
     "e2e:run": "protractor ./env/protractor.conf.ts",
-    "prepublish": "npm run build:production"
+
+    "sh:prepublish": "npm run build:production",
+    "sh:publish": "npm run preparepublish && npm publish"
   },
   "repository": {
     "type": "git",
