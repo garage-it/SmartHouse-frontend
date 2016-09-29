@@ -1,7 +1,5 @@
 'use strict';
 
-require('babel-register');
-
 const mqttApi = require('../e2e/mqtt-api');
 
 const URL = 'https://garage-it-smart-house-qa.herokuapp.com/#/';
