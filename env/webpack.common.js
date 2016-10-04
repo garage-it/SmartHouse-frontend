@@ -68,7 +68,8 @@ module.exports = {
             {root: envConfig.root.dir}
         ),
         new HtmlWebpackPlugin({
-            template: envConfig.src.indexHtml
+            template: envConfig.src.indexHtml,
+            chunksSortMode: 'none'
         }),
         new CopyWebpackPlugin([{
             from: '**/*.*(png|svg)',
