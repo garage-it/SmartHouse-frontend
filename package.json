@@ -2,7 +2,7 @@
   "name": "smart-house-frontend",
   "version": "0.1.1",
   "description": "Smart House UI",
-  "main": "src/index.js",
+  "main": "src/plugin.js",
   "scripts": {
     "start": "npm-run-all --parallel server client",
     "server": "node --harmony_destructuring --harmony_rest_parameters server/index.js",
@@ -63,7 +63,9 @@
     "ng2-dragula": "1.1.10",
     "rxjs": "5.0.0-beta.12",
     "socket.io": "^1.4.5",
-    "zone.js": "^0.6.23"
+    "zone.js": "^0.6.23",
+    "bluebird": "^3.4.6",
+    "lodash": "^4.16.3"
   },
   "devDependencies": {
     "@types/codemirror": "^0.0.33",
