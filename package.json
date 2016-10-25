@@ -16,7 +16,7 @@
 
     "build": "webpack --progress --profile --config ./env/webpack.prod.config.js",
     "build:fast": "webpack --progress --profile",
-    "build:production": "cross-env ENV_CONFIG=production webpack --progress --profile -p --config ./env/webpack.prod.config.js",
+    "build:production": "cross-env ENV_CONFIG=production npm run build",
     "e2e:start": "webdriver-manager start",
     "e2e:update": "webdriver-manager update --standalone",
     "e2e:run": "protractor ./env/protractor.conf.ts",

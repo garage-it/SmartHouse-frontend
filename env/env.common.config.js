@@ -28,9 +28,9 @@ module.exports = {
     src: {
         dir: rootPath('src'),
         entry: {
-            main: rootPath('src', 'main.browser.ts'),
+            polyfills: rootPath('src', 'polyfills.browser.ts'),
             vendor: rootPath('src', 'vendor.browser.ts'),
-            polyfills: rootPath('src', 'polyfills.browser.ts')
+            main: rootPath('src', 'main.browser.ts')
         },
         indexHtml: rootPath('src', 'index.html')
     },
