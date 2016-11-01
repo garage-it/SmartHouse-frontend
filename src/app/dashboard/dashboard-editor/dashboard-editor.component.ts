@@ -16,14 +16,10 @@ const selector = 'dashboard-editor';
     viewProviders: [DragulaService]
 })
 export class DashboardEditorComponent {
-    private dashboardService;
-    private router;
     private widgets;
     private initialData;
 
-    constructor(dashboardService: DashboardService, router: Router) {
-        this.dashboardService = dashboardService;
-        this.router = router;
+    constructor(private dashboardService: DashboardService, private router: Router) {
         this.widgets = [];
         this.initialData = [];
     }
