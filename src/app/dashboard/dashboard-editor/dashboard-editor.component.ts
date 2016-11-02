@@ -12,18 +12,15 @@ const selector = 'dashboard-editor';
 @Component({
     selector,
     template,
-    styles: [style],
-    viewProviders: [DragulaService]
+    styles: [style]
 })
 export class DashboardEditorComponent {
-    private dashboardService;
-    private router;
     private widgets;
     private initialData;
 
-    constructor(dashboardService: DashboardService, router: Router) {
-        this.dashboardService = dashboardService;
-        this.router = router;
+    constructor(private dashboardService: DashboardService,
+                private router: Router,
+                private dragulaService: DragulaService) {
         this.widgets = [];
         this.initialData = [];
     }
@@ -35,6 +32,15 @@ export class DashboardEditorComponent {
                 this.widgets = devices;
                 this.setInitialData(devices);
             });
+
+        this.dragulaService.setOptions(selector, {
+            revertOnSpill: true,
+            direction: 'horizontal'
+        });
+    }
+
+    ngOnDestroy() {
+        this.dragulaService.destroy(selector);
     }
 
     applyChanges() {

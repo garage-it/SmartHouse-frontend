@@ -4,10 +4,12 @@ import { Router } from '@angular/router';
 
 import { DashboardEditorComponent } from './dashboard-editor.component';
 import { DashboardService } from '../dashboard.service';
+import { DragulaService} from 'ng2-dragula/ng2-dragula';
 
 describe('DashboardEditor', () => {
     let sut;
     let router;
+    let dragulaService;
     let dashboardService;
 
     beforeEach(async(() => {
@@ -15,12 +17,14 @@ describe('DashboardEditor', () => {
         router = {
             navigate: jasmine.createSpy('navigate')
         };
+        dragulaService = jasmine.createSpyComponent(DragulaService);
 
         TestBed.configureTestingModule({
             declarations: [DashboardEditorComponent],
             providers: [
                 {provide: DashboardService, useValue: dashboardService},
-                {provide: Router, useValue: router}
+                {provide: Router, useValue: router},
+                {provide: DragulaService, useValue: dragulaService}
             ]
         })
         .overrideComponent(DashboardEditorComponent, {
@@ -58,6 +62,20 @@ describe('DashboardEditor', () => {
         it('should set initial data', () => {
             subscribeHandler(responseData);
             expect(sut.initialData).toEqual(devices);
+        });
+
+        it('should set initial data of drag and drop', () => {
+            expect(dragulaService.setOptions).toHaveBeenCalledWith('dashboard-editor', {
+                revertOnSpill: true,
+                direction: 'horizontal'
+            });
+        });
+    });
+
+    describe('On Destroy', () => {
+        it('should destroy drag and drop listeners when component is destroyed', () => {
+            sut.ngOnDestroy();
+            expect(dragulaService.destroy).toHaveBeenCalledWith('dashboard-editor');
         });
     });
 
