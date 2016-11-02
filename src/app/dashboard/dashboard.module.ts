@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { ChartModule } from 'angular2-highcharts';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -17,9 +18,9 @@ import DASHBOARD_DECLARATIONS from './dashboard.declarations';
 
 @NgModule({
     id: module.id,
-    imports: [ SharedModule, RouterModule, FormsModule, routing ],
+    imports: [ SharedModule, RouterModule, FormsModule, routing, ChartModule ],
     declarations: [ ...DASHBOARD_DECLARATIONS ],
     exports: [ DashboardComponent ],
-    providers: [ SensorWidgetService, DashboardService, DashboardResolveService, DragulaService]
+    providers: [ SensorWidgetService, DashboardService, DashboardResolveService, DragulaService ]
 })
 export class DashboardModule {}

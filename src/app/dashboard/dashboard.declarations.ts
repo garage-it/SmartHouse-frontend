@@ -7,6 +7,7 @@ import {
 import { SensorServoWidgetComponent } from './sensor-servo-widget/sensor-servo-widget.component';
 import { SensorStatusWidgetComponent } from './sensor-status-widget/sensor-status-widget.component';
 import { GaugeComponent } from './shared/gauge/gauge.component';
+import { SimpleChartWidgetComponent } from './simple-chart-widget/simple-chart-widget.component';
 import { Dragula } from 'ng2-dragula/ng2-dragula';
 
 export default [
@@ -16,6 +17,7 @@ export default [
     SensorExecutorWidgetComponent,
     SensorServoWidgetComponent,
     SensorStatusWidgetComponent,
+    SimpleChartWidgetComponent,
     Dragula,
     GaugeComponent
 ];
