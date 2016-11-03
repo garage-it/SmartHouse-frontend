@@ -15,19 +15,12 @@ import { Observable } from 'rxjs/Rx';
 export class DashboardComponent implements OnInit {
 
     private widgets;
-    private sensorWidgets;
-    private executorSensorWidgets;
-    private servoSensorWidgets;
 
     constructor(private sensorWidgetService: SensorWidgetService, private route: ActivatedRoute) {
         this.sensorWidgetService = sensorWidgetService;
         this.route = route;
 
         this.widgets = [];
-
-        this.sensorWidgets = [];
-        this.executorSensorWidgets = [];
-        this.servoSensorWidgets = [];
 
     }
 
@@ -37,18 +30,6 @@ export class DashboardComponent implements OnInit {
 
         widgetsSource
             .subscribe(widget => this.widgets.push(widget));
-
-        widgetsSource
-            .filter(widget => widget.device.executor === true)
-            .subscribe(widget => this.executorSensorWidgets.push(widget));
-
-        widgetsSource
-            .filter(widget => widget.device.servo === true)
-            .subscribe(widget => this.servoSensorWidgets.push(widget));
-
-        widgetsSource
-            .filter(widget => !(widget.device.executor || widget.device.servo))
-            .subscribe(widget => this.sensorWidgets.push(widget));
 
         this.sensorWidgetService
             .subscribe(false, data => this.onDeviceAddEvent(data));
