@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, ViewContainerRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 const template = require('./scenario-list.template.html');
@@ -6,6 +6,7 @@ const style = require('./scenario-list.style.scss');
 
 import { ScenarioService } from './../shared/scenario.service';
 import { ScenarioStatusService } from './scenario-status.service';
+import { DialogService } from '../../shared/dialog/dialog.service';
 
 
 const selector = 'scenario-list';
@@ -15,7 +16,6 @@ const headersForDisplay = [
 ];
 export const SCENARIO_ACTIVE_STATE = 'active';
 export const SCENARIO_PAUSED_STATE = 'paused';
-const confirmQuestion = 'Are you sure you want to delete this scenario?';
 
 @Component({
     selector,
@@ -30,7 +30,9 @@ export class ScenarioListComponent {
     constructor(protected scenarioService: ScenarioService,
                 protected router: Router,
                 protected scenarioStatusService: ScenarioStatusService,
-                protected route: ActivatedRoute
+                protected route: ActivatedRoute,
+                private dialogService: DialogService,
+                private viewContainerRef: ViewContainerRef
     ) {
         this._headers = headersForDisplay;
     }
@@ -61,15 +63,20 @@ export class ScenarioListComponent {
     }
 
     removeScenario(item) {
-        if (!window.confirm(confirmQuestion)) { // eslint-disable-line no-alert
-            return;
-        }
+        const confirmOptions = {
+            title: '',
+            message: 'Are you sure you want to delete this scenario?'
+        };
 
-        this.scenarioService
-            .delete(item)
-            .subscribe(data => {
-                this.scenarioList = this.scenarioList
-                    .filter(elem => elem.id !== data.id);
+        this.dialogService.confirm(this.viewContainerRef, confirmOptions)
+            .filter(isConfirmed => isConfirmed)
+            .subscribe(() => {
+                this.scenarioService
+                    .delete(item)
+                    .subscribe(data => {
+                        this.scenarioList = this.scenarioList
+                            .filter(elem => elem.id !== data.id);
+                    });
             });
     }
 
