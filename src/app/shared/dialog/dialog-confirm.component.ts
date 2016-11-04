@@ -9,8 +9,8 @@ const template = require('./dialog-confirm.html');
 export class DialogConfirmComponent {
     public title: string = 'Confirm';
     public message: string = 'Are you sure?';
-    public yes: string = 'Yes';
-    public no: string = 'No';
+    public ok: string = 'Ok';
+    public cancel: string = 'Cancel';
 
     constructor(private dialogRef: MdDialogRef<any>) {
     }

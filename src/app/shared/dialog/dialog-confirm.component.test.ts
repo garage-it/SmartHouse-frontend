@@ -37,11 +37,11 @@ describe('dialog-confirm', () => {
         });
 
         it('should have default text for confirm button', () => {
-            expect(sut.yes).toBeDefined();
+            expect(sut.ok).toBeDefined();
         });
 
         it('should have default text for reject button', () => {
-            expect(sut.no).toBeDefined();
+            expect(sut.cancel).toBeDefined();
         });
     });
 

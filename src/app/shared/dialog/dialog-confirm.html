@@ -1,7 +1,7 @@
 <p>{{ title }}</p>
 <p>{{ message }}</p>
 <button type="button" md-raised-button
-        (click)="confirm()">{{ yes }}</button>
+        (click)="confirm()">{{ ok }}</button>
 <button type="button" md-button
-        *ngIf="no"
-        (click)="close()">{{ no }}</button>
+        *ngIf="cancel"
+        (click)="close()">{{ cancel }}</button>
