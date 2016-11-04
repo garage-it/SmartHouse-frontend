@@ -7,10 +7,10 @@ const template = require('./dialog-confirm.html');
     selector: 'dialog-confirm'
 })
 export class DialogConfirmComponent {
-    private title: string = 'Confirm';
-    private message: string = 'Are you sure?';
-    private yes: string = 'Yes';
-    private no: string = 'No';
+    public title: string = 'Confirm';
+    public message: string = 'Are you sure?';
+    public yes: string = 'Yes';
+    public no: string = 'No';
 
     constructor(private dialogRef: MdDialogRef<any>) {
     }
