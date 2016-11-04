@@ -5,7 +5,9 @@
         <span [hidden]="data.value">.</span>
     </div>
 
-    <div class="sensor-widget__metrics" [hidden]="data.value===undefined">{{device.metrics}}</div>
+    <div class="sensor-widget__metrics" *ngIf="data.value===undefined">
+        {{device.metrics}}
+    </div>
     <div class="sensor-widget_description">
         <span>{{device.description}}</span>
     </div>
