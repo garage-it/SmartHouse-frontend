@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Rx';
 import { ShHttpService } from '../core/sh-http/sh-http.service';
 import { ShHttpUtilsService } from '../core/sh-http/sh-http-utils.service';
 import { Widget } from './widget.model';
+import { URLSearchParams } from '@angular/http';
 
 @Injectable()
 export class DashboardService {
@@ -13,6 +14,14 @@ export class DashboardService {
             .catch(error => {
                 return this.httpUtils.extractErrorMessage(error);
             });
+    }
+
+    getStatistic(deviceId, period): Observable<any> {
+        let params = new URLSearchParams();
+        params.set('period', period);
+        params.set('sensor', deviceId);
+
+        return this.http.getByParams('/timeseries', params);
     }
 
     applyChanges(devices: Widget[]): Observable<any> {

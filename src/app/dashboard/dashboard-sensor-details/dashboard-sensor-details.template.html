@@ -1,0 +1,31 @@
+<div class="dashboard">
+    <div class="dashboard_title">
+        <h2>Sensor details</h2>
+        <div>Sensor #: {{params}}</div>
+        <div>Sensor #: {{deviceStatistic.sensor}}</div>
+    </div>
+
+    <div class="dashboard_content">
+
+        <div *ngFor="let item of deviceStatistic.data">
+            <span>item number = {{item.value}}; </span><span>date = {{item.date}}</span>
+        </div>
+        <div class="clearfix dashboard_actions">
+            <a class="btn-flat"
+               (click)="exitEditMode()"
+            >Cancel</a>
+            <a class="btn-flat"
+               (click)="getStatistic('day')"
+            >Day</a>
+            <a class="btn-flat"
+               (click)="getStatistic('week')"
+            >Week</a>
+            <a class="btn-flat"
+               (click)="getStatistic('month')"
+            >Month</a>
+            <a class="btn-flat"
+               (click)="getStatistic('year')"
+            >Year</a>
+        </div>
+    </div>
+</div>

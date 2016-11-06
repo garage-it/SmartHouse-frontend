@@ -14,25 +14,31 @@ export class ShHttpService {
 
     get(url) {
         return this.http
-            .get(url, this.getRequestOptions('Get', url))
+            .get(url, this.getRequestOptions('Get', url, null))
+            .map(this.convertToJson);
+    }
+
+    getByParams(url, params) {
+        return this.http
+            .get(url, this.getRequestOptions('Get', url, params))
             .map(this.convertToJson);
     }
 
     post(url, body) {
         return this.http
-            .post(url, JSON.stringify(body), this.getRequestOptions('Post', url))
+            .post(url, JSON.stringify(body), this.getRequestOptions('Post', url, null))
             .map(this.convertToJson);
     }
 
     put(url, body) {
         return this.http
-            .put(url, JSON.stringify(body), this.getRequestOptions('Put', url))
+            .put(url, JSON.stringify(body), this.getRequestOptions('Put', url, null))
             .map(this.convertToJson);
     }
 
     delete(url) {
         return this.http
-            .delete(url, this.getRequestOptions('Delete', url))
+            .delete(url, this.getRequestOptions('Delete', url, null))
             .map(this.convertToJson);
     }
 
@@ -48,8 +54,9 @@ export class ShHttpService {
         return data.json();
     }
 
-    private getRequestOptions(method, url) {
+    private getRequestOptions(method, url, params) {
         return this.options.merge({
+            search: params,
             method: RequestMethod[method],
             url
         });

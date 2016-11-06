@@ -1,5 +1,6 @@
 <sensor-regular-widget
     [device]="device"
+    [routerLink]="['./sensor_details', device.mqttId]"
     *ngIf="!device.executor && !device.servo">
 </sensor-regular-widget>
 <sm-sensor-executor-widget

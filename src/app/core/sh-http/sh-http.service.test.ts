@@ -31,7 +31,7 @@ describe('ShHttpService', () => {
             });
 
             it('should get proper request options', () => {
-                expect(sut.getRequestOptions).toHaveBeenCalledWith('Get', urlMock);
+                expect(sut.getRequestOptions).toHaveBeenCalledWith('Get', urlMock, null);
             });
 
             it('should get data from server', () => {
@@ -56,7 +56,7 @@ describe('ShHttpService', () => {
             });
 
             it('should get proper request options', () => {
-                expect(sut.getRequestOptions).toHaveBeenCalledWith('Post', urlMock);
+                expect(sut.getRequestOptions).toHaveBeenCalledWith('Post', urlMock, null);
             });
 
             it('should stringify rquest body before send', () => {
@@ -85,7 +85,7 @@ describe('ShHttpService', () => {
             });
 
             it('should get proper request options', () => {
-                expect(sut.getRequestOptions).toHaveBeenCalledWith('Put', urlMock);
+                expect(sut.getRequestOptions).toHaveBeenCalledWith('Put', urlMock, null);
             });
 
             it('should stringify rquest body before send', () => {
@@ -111,7 +111,7 @@ describe('ShHttpService', () => {
             });
 
             it('should get proper request options', () => {
-                expect(sut.getRequestOptions).toHaveBeenCalledWith('Delete', urlMock);
+                expect(sut.getRequestOptions).toHaveBeenCalledWith('Delete', urlMock, null);
             });
 
             it('should delete item', () => {
@@ -164,18 +164,19 @@ describe('ShHttpService', () => {
 
     describe('setting request options', () => {
         let finalOptions;
+        const params = {};
         const mockUrl = Symbol('url to call');
         const method = 'Get';
         const resultRequestOptions = Symbol('result request options');
 
         beforeEach(() => {
             spyOn(sut.options, 'merge').and.returnValue(resultRequestOptions);
-            finalOptions = sut.getRequestOptions(method, mockUrl);
+            finalOptions = sut.getRequestOptions(method, mockUrl, params);
         });
 
         it('should assign request options to existing config', () => {
             expect(sut.options.merge)
-                .toHaveBeenCalledWith({ method: jasmine.anything(), url: mockUrl });
+                .toHaveBeenCalledWith({ search: params, method: jasmine.anything(), url: mockUrl });
         });
 
         it('should construct final request options', () => {
