@@ -61,7 +61,6 @@ describe('sensor-detail', () => {
             spyOn(sensorDetailService, 'save').and.callThrough();
             spyOn(sensorDetailService, 'update').and.callThrough();
             spyOn(sensorDetailService, 'delete').and.callThrough();
-            spyOn(sensorDetailService, 'validate').and.callThrough();
             spyOn(observableSubscribe, 'subscribe').and.callThrough();
             spyOn(router, 'navigate').and.callThrough();
         });
