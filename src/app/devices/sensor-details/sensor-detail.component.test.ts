@@ -4,6 +4,7 @@ import { SensorDetailService } from '../shared/sensor-detail.service';
 import { SensorDetailComponent } from './sensor-detail.component';
 
 import { ActivatedRoute, Router } from '@angular/router';
+import ROUTING from './../../config.routing';
 
 const observableSubscribe = {
     subscribe(fn) { fn(); }
@@ -70,7 +71,7 @@ describe('sensor-detail', () => {
     });
 
     it('should not make get request when creating new sensor', () => {
-        route = new ActivatedRouteMock();
+        route = new ActivatedRouteMock(ROUTING.CREATE);
         sut = new SensorDetailComponent(sensorDetailService, router, route);
         sut.ngOnInit();
         expect(sensorDetailService.get).not.toHaveBeenCalled();
