@@ -20,7 +20,7 @@
         </div>
     </div>
     <div class="sensor-detail__type">
-        <label for="sensor-detail__id">Type</label>
+        <label for="sensor-detail__type">Type</label>
         <input [(ngModel)]="sensor.type"
                name="type"
                #type="ngModel"
@@ -30,7 +30,7 @@
                />
     </div>
     <div class="sensor-detail__description">
-        <label for="sensor-detail__id">Description</label>
+        <label for="sensor-detail__description">Description</label>
         <input [(ngModel)]="sensor.description"
                name="description"
                #description="ngModel"
@@ -40,7 +40,7 @@
                />
     </div>
     <div class="sensor-detail__metrics">
-        <label for="sensor-detail__id">Metrics</label>
+        <label for="sensor-detail__metrics">Metrics</label>
         <input [(ngModel)]="sensor.metrics"
                name="metrics"
                #metrics="ngModel"
@@ -49,15 +49,29 @@
                placeholder="Enter metrics"
                />
     </div>
-    <p class="sensor-detail__status">
-        <input [(ngModel)]="sensor.executor"
-               name="executor"
-               #executor="ngModel"
-               class="filled-in sensor-detail__status-value"
-               type="checkbox"
-               id="sensor-detail__executor"/>
-        <label for="sensor-detail__executor">Switcher</label>
-    </p>
+    <div class="sensor-detail__status">
+        <div id="executor">
+            <input [(ngModel)]="sensor.executor"
+                name="executor"
+                #executor="ngModel"
+                class="filled-in"
+                type="checkbox"
+                id="sensor-detail__executor"
+                (ngModelChange)="validate(executor.name)"/>
+            <label for="sensor-detail__executor">Switcher</label>
+        </div>
+
+        <div id="servo">
+            <input [(ngModel)]="sensor.servo"
+                name="servo"
+                #servo="ngModel"
+                class="filled-in"
+                type="checkbox"
+                id="sensor-detail__servo"
+                (ngModelChange)="validate(servo.name)"/>
+            <label for="sensor-detail__servo">Servo</label>
+        </div>
+    </div>
 
     <button (click)="save()"
         [disabled]="!sensorForm.valid"

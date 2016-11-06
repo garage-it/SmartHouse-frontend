@@ -2,6 +2,7 @@ import {async, TestBed} from '@angular/core/testing';
 
 import { SensorDetailService } from '../shared/sensor-detail.service';
 import { SensorDetailComponent } from './sensor-detail.component';
+import { Sensor } from './sensor';
 
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -14,6 +15,7 @@ class SensorDetailComponentServiceMock {
     save() { return observableSubscribe; }
     update() { return observableSubscribe; }
     delete() { return observableSubscribe; }
+    validate() { return observableSubscribe; }
 }
 
 class ActivatedRouteMock {
@@ -60,6 +62,7 @@ describe('sensor-detail', () => {
             spyOn(sensorDetailService, 'save').and.callThrough();
             spyOn(sensorDetailService, 'update').and.callThrough();
             spyOn(sensorDetailService, 'delete').and.callThrough();
+            spyOn(sensorDetailService, 'validate').and.callThrough();
             spyOn(observableSubscribe, 'subscribe').and.callThrough();
             spyOn(router, 'navigate').and.callThrough();
         });
@@ -125,5 +128,44 @@ describe('sensor-detail', () => {
     it('should navigate to the list of devices on cancel', () => {
         sut.cancel();
         expect(router.navigate).toHaveBeenCalledWith(['/devices']);
+    });
+
+    it('should not allow both executor and servo to be checked at one time (servo changed)', (done) => {
+        const sensorMock = new Sensor({
+            servo: true,
+            executor: true
+        });
+
+        sut.sensor = sensorMock;
+        sut.needUpdate = true;
+        sut.validate('servo');
+        expect(sut.sensor.executor).toBe(false);
+        done();
+    });
+
+    it('should not allow both executor and servo to be checked at one time (executor changed)', (done) => {
+        const sensorMock = new Sensor({
+            servo: true,
+            executor: true
+        });
+
+        sut.sensor = sensorMock;
+        sut.needUpdate = true;
+        sut.validate('executor');
+        expect(sut.sensor.servo).toBe(false);
+        done();
+    });
+
+    it('should allow both executor and servo to be unchecked at one time', (done) => {
+        const sensorMock = new Sensor({
+            servo: false,
+            executor: false
+        });
+
+        sut.sensor = sensorMock;
+        sut.needUpdate = true;
+        sut.validate('executor');
+        expect(sut.sensor.servo).toBe(false);
+        done();
     });
 });
