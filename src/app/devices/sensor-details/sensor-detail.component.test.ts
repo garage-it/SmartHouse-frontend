@@ -15,7 +15,6 @@ class SensorDetailComponentServiceMock {
     save() { return observableSubscribe; }
     update() { return observableSubscribe; }
     delete() { return observableSubscribe; }
-    validate() { return observableSubscribe; }
 }
 
 class ActivatedRouteMock {
