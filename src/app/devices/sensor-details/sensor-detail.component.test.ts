@@ -128,7 +128,7 @@ describe('sensor-detail', () => {
         expect(router.navigate).toHaveBeenCalledWith(['/devices']);
     });
 
-    it('should not allow both executor and servo to be checked at one time (servo changed)', (done) => {
+    it('should not allow both executor and servo to be checked at one time (servo changed)', () => {
         const sensorMock = new Sensor({
             servo: true,
             executor: true
@@ -136,12 +136,11 @@ describe('sensor-detail', () => {
 
         sut.sensor = sensorMock;
         sut.needUpdate = true;
-        sut.validate('servo');
+        sut.onServoChanged();
         expect(sut.sensor.executor).toBe(false);
-        done();
     });
 
-    it('should not allow both executor and servo to be checked at one time (executor changed)', (done) => {
+    it('should not allow both executor and servo to be checked at one time (executor changed)', () => {
         const sensorMock = new Sensor({
             servo: true,
             executor: true
@@ -149,21 +148,7 @@ describe('sensor-detail', () => {
 
         sut.sensor = sensorMock;
         sut.needUpdate = true;
-        sut.validate('executor');
+        sut.onExecutorChanged();
         expect(sut.sensor.servo).toBe(false);
-        done();
-    });
-
-    it('should allow both executor and servo to be unchecked at one time', (done) => {
-        const sensorMock = new Sensor({
-            servo: false,
-            executor: false
-        });
-
-        sut.sensor = sensorMock;
-        sut.needUpdate = true;
-        sut.validate('executor');
-        expect(sut.sensor.servo).toBe(false);
-        done();
     });
 });

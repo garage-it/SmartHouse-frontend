@@ -13,15 +13,11 @@
         }
     }
 
-    &__status {
-        padding-bottom: 10px;
-
-        #executor, #servo {
-            display: inline;
-        }
-
-        #servo { margin-left: 15px; }
+    &__executor, &__servo {
+        display: inline;
     }
+
+    &__servo { margin-left: 15px; }
 }
 
 button[disabled] {

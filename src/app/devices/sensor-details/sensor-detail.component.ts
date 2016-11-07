@@ -66,17 +66,17 @@ export class SensorDetailComponent {
             });
     }
 
-    /**
-     * Make sure that servo and executor checkboxes are both not checked at one time.
-     * @param {string} chkType - Checkbox, what was changed. Possible variants: 'executor', 'servo'
-     */
-    public validate(chkType: string): void {
+    public onExecutorChanged(): void {
+        // make sure that executor and servo checkboxes
+        // are both not checked at one time
         if (this.sensor.executor && this.sensor.servo) {
-            if (chkType === 'executor') {
-                this.sensor.servo = false;
-            } else {
-                this.sensor.executor = false;
-            }
+            this.sensor.servo = false;
+        }
+    }
+
+    public onServoChanged(): void {
+        if (this.sensor.executor && this.sensor.servo) {
+            this.sensor.executor = false;
         }
     }
 
