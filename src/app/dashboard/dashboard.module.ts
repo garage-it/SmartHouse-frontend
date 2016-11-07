@@ -11,15 +11,15 @@ import { DashboardComponent } from './dashboard.component';
 import { SensorWidgetService } from './shared/sensor-widget/sensor-widget.service';
 import { DashboardResolveService } from './dashboard-resolve.service';
 import { DashboardService } from './dashboard.service';
-import { DragulaService } from 'ng2-dragula/ng2-dragula';
+import { DragulaModule } from 'ng2-dragula/ng2-dragula';
 
 import DASHBOARD_DECLARATIONS from './dashboard.declarations';
 
 @NgModule({
     id: module.id,
-    imports: [ SharedModule, RouterModule, FormsModule, routing ],
+    imports: [ SharedModule, RouterModule, FormsModule, routing, DragulaModule ],
     declarations: [ ...DASHBOARD_DECLARATIONS ],
     exports: [ DashboardComponent ],
-    providers: [ SensorWidgetService, DashboardService, DashboardResolveService, DragulaService]
+    providers: [ SensorWidgetService, DashboardService, DashboardResolveService]
 })
 export class DashboardModule {}
