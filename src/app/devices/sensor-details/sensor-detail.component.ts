@@ -6,7 +6,7 @@ import { SensorDetailService } from '../shared/sensor-detail.service';
 import ROUTING from './../../config.routing';
 
 const template = require('./sensor-detail.template.html');
-const style = require('./sensor-detail.style.css');
+const style = require('./sensor-detail.style.scss');
 
 const selector = 'sh-sensor-detail';
 
@@ -33,7 +33,7 @@ export class SensorDetailComponent {
         this.sensor = new Sensor();
     }
 
-    ngOnInit() {
+    public ngOnInit(): void {
         const id = this.route.snapshot.params['id'];
         if (id === ROUTING.CREATE) {
             this.needUpdate = false;
@@ -46,7 +46,7 @@ export class SensorDetailComponent {
             });
     }
 
-    save() {
+    public save(): void {
         const observable = this.needUpdate ?
             this.sensorDetailService.update(this.sensor) :
             this.sensorDetailService.save(this.sensor);
@@ -55,11 +55,11 @@ export class SensorDetailComponent {
         });
     }
 
-    cancel() {
+    public cancel(): void {
         this._navigateToList();
     }
 
-    remove() {
+    public remove(): void {
         this.sensorDetailService
             .delete(this.sensor)
             .subscribe(() => {
@@ -67,7 +67,21 @@ export class SensorDetailComponent {
             });
     }
 
-    _navigateToList() {
+    public onExecutorChanged(): void {
+        // make sure that executor and servo checkboxes
+        // are both not checked at one time
+        if (this.sensor.executor && this.sensor.servo) {
+            this.sensor.servo = false;
+        }
+    }
+
+    public onServoChanged(): void {
+        if (this.sensor.executor && this.sensor.servo) {
+            this.sensor.executor = false;
+        }
+    }
+
+    private _navigateToList(): void {
         this.router.navigate(['/devices']);
     }
 }

@@ -2,6 +2,7 @@ import {async, TestBed} from '@angular/core/testing';
 
 import { SensorDetailService } from '../shared/sensor-detail.service';
 import { SensorDetailComponent } from './sensor-detail.component';
+import { Sensor } from './sensor';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import ROUTING from './../../config.routing';
@@ -126,5 +127,29 @@ describe('sensor-detail', () => {
     it('should navigate to the list of devices on cancel', () => {
         sut.cancel();
         expect(router.navigate).toHaveBeenCalledWith(['/devices']);
+    });
+
+    it('should not allow both executor and servo to be checked at one time (servo changed)', () => {
+        const sensorMock = new Sensor({
+            servo: true,
+            executor: true
+        });
+
+        sut.sensor = sensorMock;
+        sut.needUpdate = true;
+        sut.onServoChanged();
+        expect(sut.sensor.executor).toBe(false);
+    });
+
+    it('should not allow both executor and servo to be checked at one time (executor changed)', () => {
+        const sensorMock = new Sensor({
+            servo: true,
+            executor: true
+        });
+
+        sut.sensor = sensorMock;
+        sut.needUpdate = true;
+        sut.onExecutorChanged();
+        expect(sut.sensor.servo).toBe(false);
     });
 });
