@@ -1,5 +1,6 @@
 import { DashboardComponent } from './dashboard.component';
 import { DashboardEditorComponent } from './dashboard-editor/dashboard-editor.component';
+import { SensorRegularWidgetComponent } from './sensor-regular-widget/sensor-regular-widget.component';
 import { SensorWidgetComponent } from './sensor-widget/sensor-widget.component';
 import {
     SensorExecutorWidgetComponent
@@ -12,6 +13,7 @@ export default [
     DashboardComponent,
     DashboardEditorComponent,
     SensorWidgetComponent,
+    SensorRegularWidgetComponent,
     SensorExecutorWidgetComponent,
     SensorServoWidgetComponent,
     SensorStatusWidgetComponent,

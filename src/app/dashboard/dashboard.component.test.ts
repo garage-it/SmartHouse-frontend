@@ -55,14 +55,6 @@ describe('Dashboard', () => {
                 tick();
                 expect(sut.widgets).toEqual(mockDevices.devices);
             }));
-
-            it('should put widgets into correct categories', fakeAsync(() => {
-                sut.ngOnInit();
-                tick();
-                expect(sut.sensorWidgets.length).toEqual(1);
-                expect(sut.executorSensorWidgets.length).toEqual(1);
-                expect(sut.servoSensorWidgets.length).toEqual(1);
-            }));
         });
 
         describe('sync behaviour', () => {
