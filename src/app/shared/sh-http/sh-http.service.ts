@@ -38,6 +38,12 @@ export class ShHttpService {
             .delete(url, this._getOptions('Delete', url))
             .map(ShHttpService._convertToJson);
     }
+    setAuthHeader(token) {
+        this.headers.set('Authorization', `Bearer ${token}`);
+    }
+    removeAuthHeader() {
+        this.headers.delete('Authorization');
+    }
     _getOptions(method, url) {
         return this.options.merge({
             method: RequestMethod[method],
