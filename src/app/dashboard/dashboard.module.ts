@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
+import { CoreModule } from '../core/core.module';
 import { SharedModule } from '../shared/shared.module';
 
 import { routing } from './dashboard.routing';
@@ -17,7 +18,7 @@ import DASHBOARD_DECLARATIONS from './dashboard.declarations';
 
 @NgModule({
     id: module.id,
-    imports: [ SharedModule, RouterModule, FormsModule, routing, DragulaModule ],
+    imports: [ CoreModule, SharedModule, RouterModule, FormsModule, routing, DragulaModule ],
     declarations: [ ...DASHBOARD_DECLARATIONS ],
     exports: [ DashboardComponent ],
     providers: [ SensorWidgetService, DashboardService, DashboardResolveService]

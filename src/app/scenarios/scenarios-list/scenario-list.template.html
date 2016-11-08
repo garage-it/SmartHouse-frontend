@@ -1,57 +1,59 @@
-<div class="sub-header row">
-  <div id="page-title" class="col s5 sub-header__title"><h2>Scenario list</h2></div>
-  <div class="sub-header__actions col s4 right">
-    <button [routerLink]="['editor-create']"
-        class="waves-effect waves-light btn blue-grey darken-1 sub-header__actions__create">Create new scenario</button>
-  </div>
-</div>
+<sh-scenarios-frame>
+    <div class="sub-header row">
+      <div id="page-title" class="col s5 sub-header__title"><h2>Scenario list</h2></div>
+      <div class="sub-header__actions col s4 right">
+        <button [routerLink]="['editor-create']"
+            class="waves-effect waves-light btn blue-grey darken-1 sub-header__actions__create">Create new scenario</button>
+      </div>
+    </div>
 
-<div *ngIf="scenarioList.length === 0" class="empty-list">
-    <div class="container empty-list__container">
-        <div class="empty-list__container__text">
-            <h3 class="empty-list__container__text__main">There are no scenarios yet</h3>
-            <h4 class="empty-list__container__text__additional">Scenarios make your home truly intelligent. Go ahead and create your first scenario.</h4>
+    <div *ngIf="scenarioList.length === 0" class="empty-list">
+        <div class="container empty-list__container">
+            <div class="empty-list__container__text">
+                <h3 class="empty-list__container__text__main">There are no scenarios yet</h3>
+                <h4 class="empty-list__container__text__additional">Scenarios make your home truly intelligent. Go ahead and create your first scenario.</h4>
+            </div>
         </div>
     </div>
-</div>
 
-<div *ngIf="scenarioList.length !== 0" class="scenario-list">
-    <table class="highlight responsive-table scenario-list-table">
-        <thead class="scenario-list-table__head">
-            <th *ngFor="let header of headers"
-                class="scenario-list-table__head__item"
-                [class.sortable]="header.sortable">
-                {{ header.name }}
-                <div [class]="reverse ? 'up' : 'down'"></div>
-            </th>
-            <th class="scenario-list-table__head__item">
-                Actions
-            </th>
-        </thead>
-        <tbody class="scenario-list-table__body">
-            <tr *ngFor="let scenario of scenarioList"
-                (click)="navigateToEditView(scenario)"
-                class="scenario-list-table__body__row">
-                <td class="scenario-list-table__body__row__item">
-                    <span>{{scenario.name}}</span>
-                </td>
-                <td class="scenario-list-table__body__row__item status">
-                    <span [class]="scenario.active ? 'active' : 'paused'">{{scenario.status}}</span>
-                </td>
-                <td class="scenario-list-table__body__row__actions">
-                    <button (click)="removeScenario(scenario); $event.stopPropagation()"
-                            class="waves-effect waves-light btn scenario-list-table__body__row__actions__remove"
-                            name="remove-scenario"
-                            type="remove">
-                        <i class="material-icons scenario-list-table__body__row__actions__remove__icon">delete</i>
-                    </button>
-                    <button (click)="toggleScenarioState(scenario); $event.stopPropagation()"
-                            class="waves-effect waves-light btn scenario-list-table__body__row__actions__toggle-state"
-                            name="toggle-scenario-state">
-                        <i class="material-icons scenario-list-table__body__row__actions__remove__icon">{{ scenario.active ? 'stop' : 'play_arrow' }}</i>
-                    </button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+    <div *ngIf="scenarioList.length !== 0" class="scenario-list">
+        <table class="highlight responsive-table scenario-list-table">
+            <thead class="scenario-list-table__head">
+                <th *ngFor="let header of headers"
+                    class="scenario-list-table__head__item"
+                    [class.sortable]="header.sortable">
+                    {{ header.name }}
+                    <div [class]="reverse ? 'up' : 'down'"></div>
+                </th>
+                <th class="scenario-list-table__head__item">
+                    Actions
+                </th>
+            </thead>
+            <tbody class="scenario-list-table__body">
+                <tr *ngFor="let scenario of scenarioList"
+                    (click)="navigateToEditView(scenario)"
+                    class="scenario-list-table__body__row">
+                    <td class="scenario-list-table__body__row__item">
+                        <span>{{scenario.name}}</span>
+                    </td>
+                    <td class="scenario-list-table__body__row__item status">
+                        <span [class]="scenario.active ? 'active' : 'paused'">{{scenario.status}}</span>
+                    </td>
+                    <td class="scenario-list-table__body__row__actions">
+                        <button (click)="removeScenario(scenario); $event.stopPropagation()"
+                                class="waves-effect waves-light btn scenario-list-table__body__row__actions__remove"
+                                name="remove-scenario"
+                                type="remove">
+                            <i class="material-icons scenario-list-table__body__row__actions__remove__icon">delete</i>
+                        </button>
+                        <button (click)="toggleScenarioState(scenario); $event.stopPropagation()"
+                                class="waves-effect waves-light btn scenario-list-table__body__row__actions__toggle-state"
+                                name="toggle-scenario-state">
+                            <i class="material-icons scenario-list-table__body__row__actions__remove__icon">{{ scenario.active ? 'stop' : 'play_arrow' }}</i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</sh-scenarios-frame>

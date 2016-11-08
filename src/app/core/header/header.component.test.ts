@@ -1,16 +1,16 @@
 import { HeaderComponent } from './header.component';
 
 const MAIN_ROUTE = {
-    path: 'dashboard',
+    path: '/dashboard',
     headerName: 'Dashboard',
     iconImage: './assets/dashboard.svg',
     main: true
 };
 const NAVIGATION_ROUTES = [
     MAIN_ROUTE,
-    { path: 'devices', headerName: 'Devices', iconImage: './assets/deviceList.svg' },
-    { path: 'scenarios', headerName: 'Scenarios', iconImage: './assets/scenarioList.png' },
-    { path: 'help', headerName: 'Help', iconImage: './assets/help.svg' }
+    { path: '/devices', headerName: 'Devices', iconImage: './assets/deviceList.svg' },
+    { path: '/scenarios', headerName: 'Scenarios', iconImage: './assets/scenarioList.png' },
+    { path: '/help', headerName: 'Help', iconImage: './assets/help.svg' }
 ];
 
 describe('Header', () => {

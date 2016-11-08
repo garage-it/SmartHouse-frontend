@@ -6,10 +6,10 @@ const template = require('./header.component.html');
 const HEADER_COMPONENT_SELECTOR = 'sh-header';
 
 export const NAVIGATION_ROUTES = [
-    { path: 'dashboard', headerName: 'Dashboard', iconImage: './assets/dashboard.svg', main: true},
-    { path: 'devices', headerName: 'Devices', iconImage: './assets/deviceList.svg' },
-    { path: 'scenarios', headerName: 'Scenarios', iconImage: './assets/scenarioList.png' },
-    { path: 'help', headerName: 'Help', iconImage: './assets/help.svg' }
+    { path: '/dashboard', headerName: 'Dashboard', iconImage: './assets/dashboard.svg', main: true},
+    { path: '/devices', headerName: 'Devices', iconImage: './assets/deviceList.svg' },
+    { path: '/scenarios', headerName: 'Scenarios', iconImage: './assets/scenarioList.png' },
+    { path: '/help', headerName: 'Help', iconImage: './assets/help.svg' }
 ];
 
 @Component({

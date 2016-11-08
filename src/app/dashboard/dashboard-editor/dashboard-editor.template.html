@@ -1,40 +1,42 @@
-<div class="dashboard">
-    <div class="dashboard_title">
-        <h2>Dashboard</h2>
-    </div>
+<sh-dashboard-frame>
+    <div class="dashboard">
+        <div class="dashboard_title">
+            <h2>Dashboard</h2>
+        </div>
 
-    <div class="dashboard_content">
-        <div class="dashboard_widgets-container" [dragula]="'dashboard-editor'" [dragulaModel]='widgets'>
-            <div class="dashboard_widget"
-                *ngFor="let widget of widgets; let index = index"
-                [ngClass]="{ 'dashboard_widget-hidden': widget.hidden }"
-            >
-                <div class="dashboard_widget-actions">
-                    <input class="filled-in" type="checkbox"
-                        [attr.id]="'hideWidget' + index"
-                        [(ngModel)]="widget.hidden"
-                    />
-                    <label [attr.for]="'hideWidget' + index">hidden</label>
+        <div class="dashboard_content">
+            <div class="dashboard_widgets-container" [dragula]="'dashboard-editor'" [dragulaModel]='widgets'>
+                <div class="dashboard_widget"
+                    *ngFor="let widget of widgets; let index = index"
+                    [ngClass]="{ 'dashboard_widget-hidden': widget.hidden }"
+                >
+                    <div class="dashboard_widget-actions">
+                        <input class="filled-in" type="checkbox"
+                            [attr.id]="'hideWidget' + index"
+                            [(ngModel)]="widget.hidden"
+                        />
+                        <label [attr.for]="'hideWidget' + index">hidden</label>
+                    </div>
+                    <sm-sensor-widget
+                        [device]="widget.device"
+                        *ngIf="!widget.device.executor"
+                    ></sm-sensor-widget>
+                    <sm-sensor-executor-widget
+                        [device]="widget.device"
+                        *ngIf="widget.device.executor"
+                    ></sm-sensor-executor-widget>
                 </div>
-                <sm-sensor-widget
-                    [device]="widget.device"
-                    *ngIf="!widget.device.executor"
-                ></sm-sensor-widget>
-                <sm-sensor-executor-widget
-                    [device]="widget.device"
-                    *ngIf="widget.device.executor"
-                ></sm-sensor-executor-widget>
+            </div>
+
+            <div class="clearfix dashboard_actions">
+                <button class="waves-effect waves-light btn blue-grey darken-1"
+                    (click)="applyChanges()"
+                    [disabled]="isApplyDisabled()"
+                >Apply</button>
+                <a class="btn-flat"
+                    (click)="exitEditMode()"
+                >Cancel</a>
             </div>
         </div>
-
-        <div class="clearfix dashboard_actions">
-            <button class="waves-effect waves-light btn blue-grey darken-1"
-                (click)="applyChanges()"
-                [disabled]="isApplyDisabled()"
-            >Apply</button>
-            <a class="btn-flat"
-                (click)="exitEditMode()"
-            >Cancel</a>
-        </div>
     </div>
-</div>
+</sh-dashboard-frame>

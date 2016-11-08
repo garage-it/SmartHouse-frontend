@@ -1,7 +1,7 @@
 import { RouterModule } from '@angular/router';
 
 import { SensorDetailComponent } from './sensor-details/sensor-detail.component';
-import { DeviceListComponent } from './device-list/device-list.component';
+import { DeviceListWithFrameComponent } from './device-list-with-frame/device-list-with-frame.component';
 import { DeviceListResolveService } from './detail-list-resolve.service';
 
 export const routes = [
@@ -9,7 +9,7 @@ export const routes = [
         path: '',
         children: [
             {
-                path: '', component: DeviceListComponent,
+                path: '', component: DeviceListWithFrameComponent,
                 resolve: {deviceList: DeviceListResolveService}
             },
             { path: ':id', component: SensorDetailComponent },
