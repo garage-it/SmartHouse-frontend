@@ -7,13 +7,13 @@ export class GuestGuard implements CanActivate {
     constructor(private router: Router, private profile: ProfileService) {}
 
     canActivate() {
-        return this.profile.retrieve()
-            .map(() => {
-                if (this.profile.isGuest()) {
-                    return true;
-                }
-                this.router.navigate(['/']);
-            });
+        return this.profile.retrieve().then(() => {
+            if (this.profile.isGuest()) {
+                return true;
+            }
+
+            this.router.navigate(['/']);
+        });
     }
 }
 
@@ -22,12 +22,12 @@ export class LoggedInGuard implements CanActivate {
     constructor(private router: Router, private profile: ProfileService) {}
 
     canActivate() {
-        return this.profile.retrieve()
-            .map(() => {
-                if (this.profile.isLoggedIn()) {
-                    return true;
-                }
-                this.router.navigate(['/login']);
-            });
+        return this.profile.retrieve().then(() => {
+            if (this.profile.isLoggedIn()) {
+                return true;
+            }
+
+            this.router.navigate(['/login']);
+        });
     }
 }

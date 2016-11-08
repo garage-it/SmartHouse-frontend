@@ -7,6 +7,9 @@ export const routes = [
     {
         path: '',
         component: ScreenComponent,
+        resolve: {
+            resolved: ProfileResolver
+        },
         children: [
             {
                 path: '',
@@ -16,12 +19,10 @@ export const routes = [
             },
             {
                 path: 'help',
-                resolve: { resolved: ProfileResolver },
                 loadChildren: () => require('es6-promise!./help/help.module')('HelpModule')
             },
             {
                 path: 'dashboard',
-                resolve: { resolved: ProfileResolver },
                 loadChildren: () => require('es6-promise!./dashboard/dashboard.module')('DashboardModule')
             },
             {

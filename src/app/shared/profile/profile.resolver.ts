@@ -8,9 +8,6 @@ export class ProfileResolver implements Resolve<null> {
   constructor(private profile: ProfileService) {}
 
   resolve() {
-    return this.profile.retrieve()
-        .map(() => {
-            this.resolve = () => null;
-        });
+    return this.profile.retrieve();
   }
 }

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
 import { ShHttpService } from '../sh-http/sh-http.service';
 import { StorageService } from '../storage/storage.service';
 
@@ -18,22 +17,26 @@ export class ProfileService {
         const token = this.storage.getToken();
 
         if (!token || this.user) {
-            return Observable.from([null]);
+            return Promise.resolve(null);
         }
 
         this.http.setAuthHeader(token);
 
-        return this.http.get('/user/current-user')
-            .map(user => {
-                this.setUserData(user);
-            })
-            .catch((err, caught) => {
-                if (err.status === 401) {
-                    this.removeUserData();
-                }
+        return new Promise((resolve) => {
+            this.http.get('/user/current-user').toPromise()
+                .then(user => {
+                    console.log('!!! save user');
+                    this.setUserData(user);
+                    resolve();
+                })
+                .catch((err) => {
+                    if (err.status === 401) {
+                        this.removeUserData();
+                    }
 
-                return Observable.from([null]);
-            });
+                    resolve();
+                });
+        });
     }
 
     setUserData(user: User, token?: string) {
