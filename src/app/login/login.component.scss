@@ -1,0 +1,20 @@
+$facebook-color: #3b5998;
+
+.btn {
+	width: 100%;
+	margin: 0 0 20px;
+}
+
+.btn-facebook {
+	background-color: $facebook-color;
+
+	i {
+		background: url('/assets/facebook.svg') no-repeat;
+		background-size: 100%;
+		display: inline-block;
+		height: 20px;
+		width: 20px;
+		margin: 2px 4px 4px 2px;
+		vertical-align: middle;
+	}
+}

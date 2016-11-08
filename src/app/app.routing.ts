@@ -17,6 +17,10 @@ export const routes = [
     {
         path: 'scenarios',
         loadChildren: () => require('es6-promise!./scenarios/scenarios.module')('ScenariosModule')
+    },
+    {
+        path: 'login',
+        loadChildren: () => require('es6-promise!./login/login.module')('LoginModule')
     }
 ];
 
