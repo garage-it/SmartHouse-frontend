@@ -17,7 +17,7 @@ export class ProfileService {
         const token = this.storage.getToken();
 
         if (!token || this.user) {
-            return Promise.resolve(null);
+            return Promise.resolve();
         }
 
         this.http.setAuthHeader(token);
@@ -25,8 +25,8 @@ export class ProfileService {
         return new Promise((resolve) => {
             this.http.get('/user/current-user').toPromise()
                 .then(user => {
-                    console.log('!!! save user');
                     this.setUserData(user);
+
                     resolve();
                 })
                 .catch((err) => {
