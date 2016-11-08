@@ -1,48 +1,46 @@
-<sh-dashboard-frame>
-    <div class="dashboard">
-        <div class="dashboard_title">
-            <a class="right edit-link"
-               [routerLink]="['editor']"
-               *ngIf="!isDashboardEmpty()">
-                <i class="material-icons">edit</i>
-            </a>
+<div class="dashboard">
+    <div class="dashboard_title">
+        <a class="right edit-link"
+           [routerLink]="['editor']"
+           *ngIf="!isDashboardEmpty()">
+            <i class="material-icons">edit</i>
+        </a>
 
-            <h2>Dashboard</h2>
-        </div>
+        <h2>Dashboard</h2>
+    </div>
 
-        <div class="dashboard_content">
-            <div *ngIf="isDashboardEmpty()">
-                <div class="container empty-list">
-                    <div class="text">
-                        <h3>This is your dashboard</h3>
-                        <h4>There are no widgets to display. Please add at least one device,<br/>
-                            then widgets will be added automatically.</h4>
-                        <h4><a [routerLink]="['devices']">Go to Devices</a></h4>
-                    </div>
+    <div class="dashboard_content">
+        <div *ngIf="isDashboardEmpty()">
+            <div class="container empty-list">
+                <div class="text">
+                    <h3>This is your dashboard</h3>
+                    <h4>There are no widgets to display. Please add at least one device,<br/>
+                        then widgets will be added automatically.</h4>
+                    <h4><a [routerLink]="['devices']">Go to Devices</a></h4>
                 </div>
             </div>
-
-            <div *ngFor="let widget of sensorWidgets">
-                <sm-sensor-widget
-                    [device]="widget.device"
-                    *ngIf="!widget.device.executor && !widget.hidden">
-                </sm-sensor-widget>
-            </div>
-
-            <div *ngFor="let widget of executorSensorWidgets">
-                <sm-sensor-executor-widget
-                    [device]="widget.device"
-                    *ngIf="widget.device.executor && !widget.hidden">
-                </sm-sensor-executor-widget>
-            </div>
-
-            <div *ngFor="let widget of servoSensorWidgets">
-                <sm-sensor-servo-widget
-                    [device]="widget.device"
-                    *ngIf="widget.device.servo && !widget.hidden">
-                </sm-sensor-servo-widget>
-            </div>
-
         </div>
+
+        <div *ngFor="let widget of sensorWidgets">
+            <sm-sensor-widget
+                [device]="widget.device"
+                *ngIf="!widget.device.executor && !widget.hidden">
+            </sm-sensor-widget>
+        </div>
+
+        <div *ngFor="let widget of executorSensorWidgets">
+            <sm-sensor-executor-widget
+                [device]="widget.device"
+                *ngIf="widget.device.executor && !widget.hidden">
+            </sm-sensor-executor-widget>
+        </div>
+
+        <div *ngFor="let widget of servoSensorWidgets">
+            <sm-sensor-servo-widget
+                [device]="widget.device"
+                *ngIf="widget.device.servo && !widget.hidden">
+            </sm-sensor-servo-widget>
+        </div>
+
     </div>
-</sh-dashboard-frame>
+</div>

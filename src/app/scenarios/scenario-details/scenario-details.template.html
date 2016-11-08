@@ -1,63 +1,61 @@
-<sh-scenarios-frame>
-    <div class="page-header">
-        <div class="row">
-            <div class="col s3">
-                <a class="back-link valign-wrapper" (click)="back()">
-                    <i class="material-icons md-18">navigate_before</i>
-                    Back to list
-                </a>
-            </div>
-            <div class="col s12" *ngIf="isWizardAvailable()">
-                <a [routerLink]="['../wizard-create']" class="nav-link right">
-                    <i class="material-icons">edit</i>
-                    Go to Wizard
-                </a>
-            </div>
+<div class="page-header">
+    <div class="row">
+        <div class="col s3">
+            <a class="back-link valign-wrapper" (click)="back()">
+                <i class="material-icons md-18">navigate_before</i>
+                Back to list
+            </a>
+        </div>
+        <div class="col s12" *ngIf="isWizardAvailable()">
+            <a [routerLink]="['../wizard-create']" class="nav-link right">
+                <i class="material-icons">edit</i>
+                Go to Wizard
+            </a>
         </div>
     </div>
+</div>
 
-    <form class="scenario-details" (ngSubmit)="save(scenario)">
-        <label>
-            Scenario name:
-            <input [(ngModel)]="scenario.name"
-                   name="name"
-                   #name="ngModel"
-                   class="black-text"
-                   type="text"/>
-        </label>
+<form class="scenario-details" (ngSubmit)="save(scenario)">
+    <label>
+        Scenario name:
+        <input [(ngModel)]="scenario.name"
+               name="name"
+               #name="ngModel"
+               class="black-text"
+               type="text"/>
+    </label>
 
-        <p class="sensor-detail__status">
-            <input [(ngModel)]="scenario.active"
-                   name="active"
-                   #active="ngModel"
-                   class="filled-in sensor-detail__status-value"
-                   type="checkbox" id="scenario-details__status"/>
-            <label for="scenario-details__status">Active</label>
-        </p>
+    <p class="sensor-detail__status">
+        <input [(ngModel)]="scenario.active"
+               name="active"
+               #active="ngModel"
+               class="filled-in sensor-detail__status-value"
+               type="checkbox" id="scenario-details__status"/>
+        <label for="scenario-details__status">Active</label>
+    </p>
 
-        <label>
-            Scenario description:
-            <input [(ngModel)]="scenario.description"
-                   name="description"
-                   #description="ngModel"
-                   class="black-text"
-                   type="text"/>
-        </label>
+    <label>
+        Scenario description:
+        <input [(ngModel)]="scenario.description"
+               name="description"
+               #description="ngModel"
+               class="black-text"
+               type="text"/>
+    </label>
 
-        <div class="scenario-details_editor-wrapper">
-            <scenario-editor
-                [scenario]="scenario?.body"
-                (updateScenario)="onScenarioBodyUpdate($event)">
-            </scenario-editor>
-        </div>
+    <div class="scenario-details_editor-wrapper">
+        <scenario-editor
+            [scenario]="scenario?.body"
+            (updateScenario)="onScenarioBodyUpdate($event)">
+        </scenario-editor>
+    </div>
 
-        <button class="waves-effect waves-light btn blue-grey darken-1"
-                type="submit">
-            SAVE SCENARIO</button>
-        <button (click)="delete(scenario)"
-                class="waves-effect waves-light btn blue-grey darken-1">
-            Remove SCENARIO
-        </button>
+    <button class="waves-effect waves-light btn blue-grey darken-1"
+            type="submit">
+        SAVE SCENARIO</button>
+    <button (click)="delete(scenario)"
+            class="waves-effect waves-light btn blue-grey darken-1">
+        Remove SCENARIO
+    </button>
 
-    </form>
-</sh-scenarios-frame>
+</form>

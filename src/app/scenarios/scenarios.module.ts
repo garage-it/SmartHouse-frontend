@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
-import { CoreModule } from '../core/core.module';
 import { SharedModule } from '../shared/shared.module';
 import { DeviceListModule } from '../devices/device-list/device-list.module';
 
@@ -16,7 +15,7 @@ import SCENARIOS_DECLARATIONS from './scenarios.declarations';
 
 @NgModule({
     id: module.id,
-    imports: [ CoreModule, RouterModule, FormsModule, SharedModule, routing, DeviceListModule ],
+    imports: [ RouterModule, FormsModule, SharedModule, routing, DeviceListModule ],
     declarations: [ ...SCENARIOS_DECLARATIONS ],
     exports: [ ...SCENARIOS_DECLARATIONS ],
     providers: [

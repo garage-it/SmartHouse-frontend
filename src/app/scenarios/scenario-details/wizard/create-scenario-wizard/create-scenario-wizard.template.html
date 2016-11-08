@@ -1,37 +1,35 @@
-<sh-scenarios-frame>
-    <div class="page-header">
-        <div class="row">
-            <div class="col s3">
-                <a class="back-link" (click)="back()">
-                    <i class="material-icons md-18">navigate_before</i>
-                    Back to list
-                </a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s7">
-                <h1>New scenario</h1>
-            </div>
-            <div class="col s5">
-                <a [routerLink]="['../editor-create']" class="nav-link right">
-                    <i class="material-icons">edit</i>
-                    Go to Editor
-                </a>
-            </div>
+<div class="page-header">
+    <div class="row">
+        <div class="col s3">
+            <a class="back-link" (click)="back()">
+                <i class="material-icons md-18">navigate_before</i>
+                Back to list
+            </a>
         </div>
     </div>
+    <div class="row">
+        <div class="col s7">
+            <h1>New scenario</h1>
+        </div>
+        <div class="col s5">
+            <a [routerLink]="['../editor-create']" class="nav-link right">
+                <i class="material-icons">edit</i>
+                Go to Editor
+            </a>
+        </div>
+    </div>
+</div>
 
-    <form class="scenario-details" (ngSubmit)="save(scenario)">
-        <scenario-wizard
-            *ngIf="scenario && scenario.wizard"
-            [scenario]="scenario"
-            (onAddCriteria)="onAddCriteria()"
-            (onRemoveCriteria)="onRemoveCriteria($event)"
-            (onAddAction)="onAddAction()"
-            (onRemoveAction)="onRemoveAction($event)">
-        </scenario-wizard>
+<form class="scenario-details" (ngSubmit)="save(scenario)">
+    <scenario-wizard
+        *ngIf="scenario && scenario.wizard"
+        [scenario]="scenario"
+        (onAddCriteria)="onAddCriteria()"
+        (onRemoveCriteria)="onRemoveCriteria($event)"
+        (onAddAction)="onAddAction()"
+        (onRemoveAction)="onRemoveAction($event)">
+    </scenario-wizard>
 
-        <button class="waves-effect waves-light btn blue-grey darken-1"
-                type="submit">SAVE SCENARIO</button>
-    </form>
-</sh-scenarios-frame>
+    <button class="waves-effect waves-light btn blue-grey darken-1"
+            type="submit">SAVE SCENARIO</button>
+</form>
