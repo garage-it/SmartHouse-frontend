@@ -1,8 +1,8 @@
 import { RouterModule } from '@angular/router';
 
 import { ScreenComponent } from './core/screen/screen.component';
-import { GuestGuard, LoggedInGuard } from './shared/profile/profile.guards';
-import { ProfileResolver } from './shared/profile/profile.resolver';
+import { GuestGuard, LoggedInGuard } from './core/profile/profile.guards';
+import { ProfileResolver } from './core/profile/profile.resolver';
 
 import ROUTING from './config.routing';
 
