@@ -1,0 +1,14 @@
+<div class="sensor-widget">
+
+    <div class="sensor-widget_value">
+        <span [hidden]="data.value===undefined">{{data.value}}</span>
+        <span [hidden]="data.value">.</span>
+    </div>
+
+    <div class="sensor-widget__metrics" *ngIf="data.value===undefined">
+        {{device.metrics}}
+    </div>
+    <div class="sensor-widget_description">
+        <span>{{device.description}}</span>
+    </div>
+</div>

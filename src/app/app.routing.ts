@@ -1,11 +1,14 @@
 import { RouterModule } from '@angular/router';
+
+import { ScreenComponent } from './core/screen/screen.component';
 import { GuestGuard, LoggedInGuard } from './shared/profile/profile.guards';
 import { ProfileResolver } from './shared/profile/profile.resolver';
-import { ScreenComponent } from './core/screen/screen.component';
+
+import ROUTING from './config.routing';
 
 export const routes = [
     {
-        path: '',
+        path: ROUTING.BASE,
         component: ScreenComponent,
         resolve: {
             resolved: ProfileResolver
@@ -13,30 +16,30 @@ export const routes = [
         children: [
             {
                 path: '',
-                redirectTo: 'dashboard',
+                redirectTo: ROUTING.DASHBOARD,
                 pathMatch: 'full',
                 useAsDefault: true
             },
             {
-                path: 'help',
+                path: ROUTING.HELP,
                 loadChildren: () => require('es6-promise!./help/help.module')('HelpModule')
             },
             {
-                path: 'dashboard',
+                path: ROUTING.DASHBOARD,
                 loadChildren: () => require('es6-promise!./dashboard/dashboard.module')('DashboardModule')
             },
             {
-                path: 'devices',
+                path: ROUTING.DEVICES,
                 canActivate: [ LoggedInGuard ],
                 loadChildren: () => require('es6-promise!./devices/devices.module')('DevicesModule')
             },
             {
-                path: 'scenarios',
+                path: ROUTING.SCENARIOS,
                 canActivate: [ LoggedInGuard ],
                 loadChildren: () => require('es6-promise!./scenarios/scenarios.module')('ScenariosModule')
             },
             {
-                path: 'login',
+                path: ROUTING.LOGIN,
                 canActivate: [ GuestGuard ],
                 loadChildren: () => require('es6-promise!./login/login.module')('LoginModule')
             }
