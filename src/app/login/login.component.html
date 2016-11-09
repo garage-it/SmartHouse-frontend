@@ -5,10 +5,51 @@
         <button (click)="login($event)" class="btn btn-facebook">
             <i></i>Login with Facebook
         </button>
-        <form role="form" (submit)="login($event, email.value, password.value)">
-            <input type="text" #email id="email" placeholder="Email">
-            <input type="password" #password id="password" placeholder="Password">
-            <button type="submit" class="btn">Submit</button>
+        <div
+            [hidden]="!loggingError"
+            class="validation-alert-wrapper">
+            <div class="validation-alert">
+                Email or password is invalid
+            </div>
+        </div>
+        <form
+            (ngSubmit)="login()"
+            #loginForm="ngForm">
+            <div class="input-field">
+                <input
+                    type="text"
+                    [(ngModel)]="credentials.email"
+                    #email="ngModel"
+                    name="email"
+                    placeholder="Email"
+                    required />
+                <div
+                    [hidden]="!email.touched || email.valid"
+                    class="validation-alert">
+                    Please enter your email
+                </div>
+            </div>
+            <div class="input-field">
+                <input
+                    type="password"
+                    [(ngModel)]="credentials.password"
+                    #password="ngModel"
+                    name="password"
+                    placeholder="Password"
+                    class="input-field"
+                    required />
+                <div
+                    [hidden]="!password.touched || password.valid"
+                    class="validation-alert">
+                    Please enter your password
+                </div>
+            </div>
+            <button
+                [disabled]="!loginForm.valid"
+                type="submit"
+                class="waves-effect waves-light btn blue-grey darken-1">
+                Submit
+            </button>
             <a [routerLink]="['/signup']" class="btn btn-flat">Click here to Signup</a>
         </form>
     </div>

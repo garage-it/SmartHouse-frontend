@@ -1,4 +1,5 @@
 $facebook-color: #3b5998;
+$alert-color: #ee6e73;
 
 .btn {
 	width: 100%;
@@ -17,4 +18,26 @@ $facebook-color: #3b5998;
 		margin: 2px 4px 4px 2px;
 		vertical-align: middle;
 	}
+}
+
+.validation-alert-wrapper {
+    position: relative;
+    top: -10px;
+}
+
+.validation-alert {
+    position: absolute;
+    color: $alert-color;
+}
+
+.input-field {
+    position: relative;
+
+    .validation-alert {
+        top: 45px;
+    }
+    .ng-invalid.ng-touched {
+        border-bottom: 1px solid $alert-color;
+        box-shadow: 0 1px 0 0 $alert-color;
+    }
 }

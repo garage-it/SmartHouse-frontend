@@ -8,19 +8,21 @@ import { AuthService } from '../shared/auth/auth.service';
     template: require('./login.component.html')
 })
 export class LoginComponent {
+    private credentials: Object = {};
+    private loggingError: boolean = false;
+
     constructor(private auth: AuthService, private router: Router) {
         this.auth = auth;
         this.router = router;
     }
 
-    login(e, email, password) {
-        e.preventDefault();
-
-        this.auth.login({email, password})
+    login() {
+        this.auth.login(this.credentials)
             .subscribe(() => {
                 this.router.navigate(['/']);
             }, err => {
-                console.error(err);
+                console.error(err.status);
+                this.loggingError = true;
             });
     }
 }
