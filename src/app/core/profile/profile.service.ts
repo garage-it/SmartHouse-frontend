@@ -13,7 +13,7 @@ export class ProfileService {
     /**
      * In oeder to get profile info use sync public methods (isLoggedIn() and isGuest()) or "user" property
      */
-    retrieve():Promise<void> {
+    retrieve(): Promise<void> {
         const token = this.storage.getToken();
 
         if (!token || this.user) {
@@ -25,8 +25,6 @@ export class ProfileService {
         return this.http.get('/user/current-user').toPromise()
             .then(user => {
                 this.setUserData(user);
-
-                return undefined;
             })
             .catch((err) => {
                 if (err.status === 401) {
@@ -37,6 +35,7 @@ export class ProfileService {
 
     setUserData(user: User, token?: string): void {
         this.user = user;
+
         if (token) {
             this.storage.setToken(token);
             this.http.setAuthHeader(token);
