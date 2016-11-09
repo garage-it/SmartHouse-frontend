@@ -1,4 +1,5 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 const style = require('./header.component.scss');
 const template = require('./header.component.html');
@@ -9,7 +10,9 @@ export const NAVIGATION_ROUTES = [
     { path: 'dashboard', headerName: 'Dashboard', iconImage: './assets/dashboard.svg', main: true},
     { path: 'devices', headerName: 'Devices', iconImage: './assets/deviceList.svg' },
     { path: 'scenarios', headerName: 'Scenarios', iconImage: './assets/scenarioList.png' },
-    { path: 'help', headerName: 'Help', iconImage: './assets/help.svg' }
+    { path: 'help', headerName: 'Help', iconImage: './assets/help.svg' },
+    { path: 'login', headerName: 'Login', iconImage: './assets/login.svg' },
+    { action: 'logout', headerName: 'Logout', iconImage: './assets/logout.svg' }
 ];
 
 @Component({
@@ -20,6 +23,10 @@ export const NAVIGATION_ROUTES = [
 export class HeaderComponent implements OnInit {
 
     private mainRoute: Object;
+
+    constructor(private router: Router) {
+        this.router = router;
+    }
 
     ngOnInit() {
         const routes = NAVIGATION_ROUTES.filter(route => route['main']);
@@ -32,5 +39,13 @@ export class HeaderComponent implements OnInit {
 
     get navigationRoutes() {
         return NAVIGATION_ROUTES;
+    }
+
+    menuItemClick(route) {
+        if (route.path) {
+            this.router.navigate([`/${route.path}`]);
+        } else if (route.action) {
+            this[route.action]();
+        }
     }
 }
