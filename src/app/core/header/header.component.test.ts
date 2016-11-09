@@ -10,7 +10,9 @@ const NAVIGATION_ROUTES = [
     MAIN_ROUTE,
     { path: '/devices', headerName: 'Devices', iconImage: './assets/deviceList.svg' },
     { path: '/scenarios', headerName: 'Scenarios', iconImage: './assets/scenarioList.png' },
-    { path: '/help', headerName: 'Help', iconImage: './assets/help.svg' }
+    { path: '/help', headerName: 'Help', iconImage: './assets/help.svg' },
+    { path: '/login', headerName: 'Login', iconImage: './assets/login.svg' },
+    { path: '/logout', headerName: 'Logout', iconImage: './assets/logout.svg' }
 ];
 
 describe('Header', () => {
