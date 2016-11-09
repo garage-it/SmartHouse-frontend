@@ -3,7 +3,7 @@ import { SensorWidgetService } from '../sensor-widget/sensor-widget.service';
 
 export const DEVICE_ON_STATE = 'ON';
 export const DEVICE_OFF_STATE = 'OFF';
-export const DEVICE_RESPOND_TIMEOUT = 4000;
+export const DEVICE_RESPOND_TIMEOUT = 1000;
 
 const pending = Symbol('pending');
 const timeout = Symbol('timeout');
@@ -40,8 +40,10 @@ export class BaseOutputSensor extends BaseSensor {
             return;
         }
 
-        const rawValue = BaseOutputSensor.generateValue(true, data.value);
-        this.data.value = this.fromDeviceRepresentation(rawValue);
+        if (this.device.mqttId === data.device) {
+            const rawValue = BaseOutputSensor.generateValue(true, data.value);
+            this.data.value = this.fromDeviceRepresentation(rawValue);
+        }
     }
 
     pushEvent(condition, positiveValue, negativeValue= null, self?, args?) {
