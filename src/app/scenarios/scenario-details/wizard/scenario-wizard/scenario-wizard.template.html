@@ -1,10 +1,14 @@
 <div class="row">
     <div class="input-field col s6">
-        <label for="scenario_name">Scenario Name</label>
-        <input id="scenario_name" type="text" required
+        <label for="scenario-wizard__name">Scenario Name <b class="red-text">*</b></label>
+        <input id="scenario-wizard__name" type="text" required
                class="scenario-name"
                placeholder="Enter descriptive scenario name"
-               [(ngModel)]="scenario.name"/>
+               [(ngModel)]="scenario.name"
+               #scenarioName="ngModel"/>
+        <div [hidden]="!scenarioName.touched || scenarioName.valid" class="validation-alert">
+            Scenario name should be filled
+        </div>
     </div>
 </div>
 
@@ -24,30 +28,38 @@
 
     </div>
 </div>
-<div class="row gray-bg" *ngFor="let condition of scenario.wizard.conditions">
+<div class="row gray-bg" *ngFor="let condition of scenario.wizard.conditions; let i=index">
     <div class="col s3">
-        <span>Device</span>
-        <select [(ngModel)]="condition.selectedDevice" required name="deviceSelect">
-            <option [value]="undefined">Choose trigger</option>
+        <label [attr.for]="'scenario-wizard__device'+i">Device <b class="red-text">*</b></label>
+        <select id="scenario-wizard__device{{i}}" required name="deviceSelect"
+                [(ngModel)]="condition.selectedDevice">
+            <option [value]="undefined" disabled>Choose trigger</option>
             <option *ngFor="let device of condition.devices"
                     [value]="device.mqttId">{{device.description}}
             </option>
         </select>
     </div>
     <div class="col s4">
-        <span>Condition</span>
-        <select [(ngModel)]="condition.selectedCondition">
-            <option [value]="undefined">Choose condition</option>
+        <label [attr.for]="'scenario-wizard__condition'+i">Condition <b class="red-text">*</b></label>
+        <select id="scenario-wizard__condition{{i}}" required name="conditionSelect"
+                [(ngModel)]="condition.selectedCondition">
+            <option [value]="undefined" disabled>Choose condition</option>
             <option *ngFor="let condition of condition.conditions" [value]="condition.id">{{condition.name}}</option>
         </select>
     </div>
     <div class="col s3">
-        <span>Value</span>
-        <input type="text"
+        <label [attr.for]="'scenario-wizard__value'+i">Value <b class="red-text">*</b></label>
+        <input id="scenario-wizard__value{{i}}"
+               type="text"
                placeholder="Enter value"
                required
+               pattern="[0-9]+"
+               #conditionValue="ngModel"
                [(ngModel)]="condition.value"
                placeholder="Enter value"/>
+        <div class="validation-alert" [hidden]="!conditionValue.touched || conditionValue.valid">
+            Field format is incorrect
+        </div>
     </div>
     <div class="col s1 remove-wrapper"
          *ngIf="scenario.wizard.conditions.length>1">
@@ -68,10 +80,10 @@
         <h5>Then do the following</h5>
     </div>
 </div>
-<div class="row gray-bg" *ngFor="let action of scenario.wizard.actions">
+<div class="row gray-bg" *ngFor="let action of scenario.wizard.actions; let i=index;">
     <div class="col s3">
-        <span>Device</span>
-        <select [(ngModel)]="action.selectedDevice">
+        <label [attr.for]="'scenario-wizard__device'+i">Device</label>
+        <select id="scenario-wizard__device{{i}}" [(ngModel)]="action.selectedDevice">
             <option [value]="undefined">Choose device</option>
             <option *ngFor="let device of action.devices"
                     [value]="device.mqttId">{{device.description}}
@@ -79,8 +91,8 @@
         </select>
     </div>
     <div class="col s3">
-        <span>Value</span>
-        <select name="actionValue"
+        <label [attr.for]="'scenario-wizard__value'+i">Value</label>
+        <select id="scenario-wizard__value{{i}}" name="actionValue"
                 [(ngModel)]="action.value">
             <option *ngFor="let value of action.values"
                     [value]="value.id">{{value.name}}
