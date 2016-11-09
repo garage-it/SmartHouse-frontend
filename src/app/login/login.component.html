@@ -7,8 +7,8 @@
         </button>
         <div
             [hidden]="!loggingError"
-            class="validation-alert-wrapper">
-            <div class="validation-alert">
+            class="validation-message-wrapper red-text text-darken-4">
+            <div class="validation-message red-text text-darken-4">
                 Email or password is invalid
             </div>
         </div>
@@ -25,8 +25,8 @@
                     required />
                 <div
                     [hidden]="!email.touched || email.valid"
-                    class="validation-alert">
-                    Please enter your email
+                    class="validation-message red-text text-darken-4">
+                    Email should be filled
                 </div>
             </div>
             <div class="input-field">
@@ -36,20 +36,21 @@
                     #password="ngModel"
                     name="password"
                     placeholder="Password"
-                    class="input-field"
                     required />
                 <div
                     [hidden]="!password.touched || password.valid"
-                    class="validation-alert">
-                    Please enter your password
+                    class="validation-message red-text text-darken-4">
+                    Password should be filled
                 </div>
             </div>
-            <button
-                [disabled]="!loginForm.valid"
-                type="submit"
-                class="waves-effect waves-light btn blue-grey darken-1">
-                Submit
-            </button>
+            <div class="input-field">
+                <button
+                    [disabled]="!loginForm.valid"
+                    type="submit"
+                    class="waves-effect waves-light btn blue-grey darken-1">
+                    Submit
+                </button>
+            </div>
             <a [routerLink]="['/registration']" class="btn btn-flat">Click here to Registration</a>
         </form>
     </div>
