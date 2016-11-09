@@ -1,18 +1,4 @@
 .sensor-detail {
-    &__id {
-        .ng-invalid.ng-touched[type=text]:not([readonly]) {
-            border-bottom: 1px solid #ee6e73;
-            box-shadow: 0 1px 0 0 #ee6e73;
-        }
-
-        .alert{
-            background-color: rgb(219, 97, 102);
-            padding: 5px;
-            margin-top: -10px;
-            color: white;
-        }
-    }
-
     &__group {
         margin-bottom: 15px;
     }
