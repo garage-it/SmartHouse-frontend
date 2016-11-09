@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Rx';
 import { ActivatedRoute } from '@angular/router';
+import { SensorWidgetService } from './shared/sensor-widget/sensor-widget.service';
+import { IWidget } from './dashboard.interfaces';
 
 const style = require('./dashboard.style.scss');
 const template = require('./dashboard.template.html');
-import { SensorWidgetService } from './shared/sensor-widget/sensor-widget.service';
-
-import { Observable } from 'rxjs/Rx';
 
 @Component({
     selector: 'sm-dashboard',
@@ -14,26 +14,16 @@ import { Observable } from 'rxjs/Rx';
 })
 export class DashboardComponent implements OnInit {
 
-    private widgets;
-    private sensorWidgets;
-    private executorSensorWidgets;
-    private servoSensorWidgets;
+    private widgets: IWidget[] = [];
+    private sensorWidgets: IWidget[] = [];
+    private executorSensorWidgets: IWidget[] = [];
+    private servoSensorWidgets: IWidget[] = [];
 
-    constructor(private sensorWidgetService: SensorWidgetService, private route: ActivatedRoute) {
-        this.sensorWidgetService = sensorWidgetService;
-        this.route = route;
-
-        this.widgets = [];
-
-        this.sensorWidgets = [];
-        this.executorSensorWidgets = [];
-        this.servoSensorWidgets = [];
-
-    }
+    constructor(private sensorWidgetService: SensorWidgetService, private route: ActivatedRoute) { }
 
     ngOnInit() {
         const widgetsSource = this.route.data
-            .flatMap(({widgets}) => Observable.from(widgets.devices));
+            .flatMap(({ widgets }) => Observable.from(widgets.devices));
 
         widgetsSource
             .subscribe(widget => this.widgets.push(widget));
