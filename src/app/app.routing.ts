@@ -42,6 +42,11 @@ export const routes = [
                 path: ROUTING.LOGIN,
                 canActivate: [ GuestGuard ],
                 loadChildren: () => require('es6-promise!./login/login.module')('LoginModule')
+            },
+            {
+                path: ROUTING.LOGOUT,
+                canActivate: [ LoggedInGuard ],
+                loadChildren: () => require('es6-promise!./logout/logout.module')('LogoutModule')
             }
         ]
     },

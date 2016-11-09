@@ -9,7 +9,9 @@ export const NAVIGATION_ROUTES = [
     { path: '/dashboard', headerName: 'Dashboard', iconImage: './assets/dashboard.svg', main: true},
     { path: '/devices', headerName: 'Devices', iconImage: './assets/deviceList.svg' },
     { path: '/scenarios', headerName: 'Scenarios', iconImage: './assets/scenarioList.png' },
-    { path: '/help', headerName: 'Help', iconImage: './assets/help.svg' }
+    { path: '/help', headerName: 'Help', iconImage: './assets/help.svg' },
+    { path: '/login', headerName: 'Login', iconImage: './assets/login.svg' },
+    { path: '/logout', headerName: 'Logout', iconImage: './assets/logout.svg' }
 ];
 
 @Component({

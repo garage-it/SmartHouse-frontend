@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestMethod, Headers} from '@angular/http';
+import { Http, RequestMethod, Headers } from '@angular/http';
 import { ShRequestOptions } from './sh-request-options';
 
 import 'rxjs/add/operator/map';
