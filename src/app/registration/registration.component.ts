@@ -10,7 +10,7 @@ const template = require('./registration.template.html');
 @Component({
     template,
     styles: [style],
-    selector: 'registration'
+    selector: 'sm-registration'
 })
 export class RegistrationComponent {
     private registrationSubscription: Subscription;

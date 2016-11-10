@@ -3,27 +3,27 @@
     <div class="col m6 section">
         <h2>Registration</h2><br />
         <div class="red-text text-darken-4">{{error}}</div>
-        <form class="registration" (ngSubmit)="save()" #r="ngForm" novalidate>
-            <label>
+        <form class="registration" (ngSubmit)="save()" #regForm="ngForm" novalidate>
+            <label class="registration__label">
                 Username: <b class="red-text">*</b>
                 <input [(ngModel)]="user.name"
                        name="name"
                        #name="ngModel"
-                       class="black-text"
+                       class="registration__field black-text"
                        type="text"
                        required
                 />
-                <div *ngIf="name.touched && name.invalid" class="red-text text-darken-4">
+                <div *ngIf="name.touched && name.invalid" class="registration__field-error-message red-text text-darken-4">
                     Username should be filled
                 </div>
             </label>
 
-            <label>
+            <label class="registration__label">
                 Email: <b class="red-text">*</b>
                 <input [(ngModel)]="user.email"
                        name="email"
                        #email="ngModel"
-                       class="black-text"
+                       class="registration__field black-text"
                        type="text"
                        pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
                        required
@@ -34,12 +34,12 @@
                 </div>
             </label>
 
-            <label>
+            <label class="registration__label">
                 Password: <b class="red-text">*</b>
                 <input [(ngModel)]="user.password"
                        name="password"
                        #password="ngModel"
-                       class="black-text"
+                       class="registration__field black-text"
                        type="password"
                        minlength="8"
                        required
@@ -50,12 +50,12 @@
                 </div>
             </label>
 
-            <label>
+            <label class="registration__label">
                 Password confirmation: <b class="red-text">*</b>
                 <input [(ngModel)]="user.passwordConfirm"
                        name="passwordConfirm"
                        #passwordConfirm="ngModel"
-                       class="black-text"
+                       class="registration__field black-text"
                        type="password"
                        required
                 />
@@ -65,8 +65,8 @@
                 </div>
             </label>
 
-            <button class="waves-effect waves-light btn blue-grey darken-1" type="submit"
-                    [disabled]="!r.form.valid || !passwordsMatch()">SUBMIT</button>
+            <button class="registration__button waves-effect waves-light btn blue-grey darken-1" type="submit"
+                    [disabled]="!regForm.form.valid || !passwordsMatch()">SUBMIT</button>
         </form>
     </div>
 </div>
