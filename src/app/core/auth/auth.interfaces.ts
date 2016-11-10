@@ -4,7 +4,7 @@ export interface IUserCredentials {
 }
 
 export interface IUserRegistrationData {
-    name: string,
+    name: string;
     email: string;
     password: string;
     passwordConfirm: string;
