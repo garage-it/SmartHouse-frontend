@@ -1,18 +1,16 @@
 import { Component, Input } from '@angular/core';
 
-const template = require('./simple-chart-widget.template.html');
-const styles = require('./simple-chart-widget.styles.scss');
+const template = require('./chart-widget.template.html');
+const styles = require('./chart-widget.styles.scss');
 
 @Component({
-    selector: 'simple-chart-widget',
+    selector: 'sm-chart-widget',
     template: template,
     styles: [styles]
 })
 export class SimpleChartWidgetComponent {
     @Input() deviceStatistic;
     options: Object;
-
-    constructor() {}
 
     ngOnInit():void {
         this.options = {

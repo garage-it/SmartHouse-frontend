@@ -22,22 +22,12 @@ describe('DashboardService', () => {
     ];
 
     beforeEach(() => {
-// <<<<<<< c06836b9d1153bb9371cda20303b1188c4e577d4
         successCb = jasmine.createSpy('successCb');
         failCb = jasmine.createSpy('failCb');
         httpUtilsMock = {
             extractErrorMessage: jasmine.createSpy('extractErrorMessage')
         };
         httpMock = jasmine.createSpyObj('mock http', ['get', 'put', 'getByParams']);
-// =======
-//         observable = Observable.create(observer => {
-//             observer.next(widgets);
-//             observer.complete();
-//         });
-//         httpMock = jasmine.createSpyComponent(ShHttpService);
-//         const methods = ['put', 'get', 'getByParams'];
-//         methods.forEach((method) => httpMock[method].and.returnValue(observable));
-// >>>>>>> [TG-276][story] implement routing to sensor statistics and endpoints
     });
 
     beforeEach(() => {

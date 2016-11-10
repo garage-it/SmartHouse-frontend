@@ -4,24 +4,24 @@
     </div>
 
     <div class="chart-holder">
-        <simple-chart-widget
+        <sm-chart-widget
             [deviceStatistic]="deviceStatistic">
-        </simple-chart-widget>
+        </sm-chart-widget>
     </div>
 
     <div class="dashboard_content">
         <div class="clearfix dashboard_actions">
             <a class="btn-flat"
-               [routerLink]="['../../../sensor_details', sensorId, 'day']"
+               [routerLink]="['../../../sensor-details', sensorId, 'day']"
             >Day</a>
             <a class="btn-flat"
-               [routerLink]="['../../../sensor_details', sensorId, 'week']"
+               [routerLink]="['../../../sensor-details', sensorId, 'week']"
             >Week</a>
             <a class="btn-flat"
-               [routerLink]="['../../../sensor_details', sensorId, 'month']"
+               [routerLink]="['../../../sensor-details', sensorId, 'month']"
             >Month</a>
             <a class="btn-flat"
-               [routerLink]="['../../../sensor_details', sensorId, 'year']"
+               [routerLink]="['../../../sensor-details', sensorId, 'year']"
             >Year</a>
         </div>
     </div>
