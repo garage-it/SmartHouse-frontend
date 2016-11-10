@@ -4,7 +4,9 @@ const CONFIG = {
     DASHBOARD: 'dashboard',
     DEVICES: 'devices',
     SCENARIOS: 'scenarios',
-    CREATE: 'create'
+    CREATE: 'create',
+    LOGIN: 'login',
+    LOGOUT: 'logout'
 };
 
 export default CONFIG;

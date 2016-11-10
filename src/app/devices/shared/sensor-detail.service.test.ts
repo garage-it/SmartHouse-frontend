@@ -1,7 +1,7 @@
 import {async, TestBed} from '@angular/core/testing';
 
 import { SensorDetailService } from './sensor-detail.service';
-import { ShHttpService } from '../../shared/sh-http/sh-http.service';
+import { ShHttpService } from '../../core/sh-http/sh-http.service';
 
 const observableMock = { map() {} };
 

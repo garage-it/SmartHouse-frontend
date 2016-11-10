@@ -1,0 +1,58 @@
+<div class="row">
+    <div class="col m3"></div>
+    <div class="col m6 section">
+        <h2>Login</h2><br />
+        <button (click)="login($event)" class="btn btn-facebook">
+            <i></i>Login with Facebook
+        </button>
+        <div
+            [hidden]="!loggingError"
+            class="validation-message-wrapper red-text text-darken-4">
+            <div class="validation-message red-text text-darken-4">
+                Email or password is invalid
+            </div>
+        </div>
+        <form
+            (ngSubmit)="login()"
+            #loginForm="ngForm">
+            <div class="input-field">
+                <input
+                    type="text"
+                    [(ngModel)]="credentials.email"
+                    #email="ngModel"
+                    name="email"
+                    placeholder="Email"
+                    required />
+                <div
+                    [hidden]="!email.touched || email.valid"
+                    class="validation-message red-text text-darken-4">
+                    Email should be filled
+                </div>
+            </div>
+            <div class="input-field">
+                <input
+                    type="password"
+                    [(ngModel)]="credentials.password"
+                    #password="ngModel"
+                    name="password"
+                    placeholder="Password"
+                    required />
+                <div
+                    [hidden]="!password.touched || password.valid"
+                    class="validation-message red-text text-darken-4">
+                    Password should be filled
+                </div>
+            </div>
+            <div class="input-field">
+                <button
+                    [disabled]="!loginForm.valid"
+                    type="submit"
+                    class="waves-effect waves-light btn blue-grey darken-1">
+                    Submit
+                </button>
+            </div>
+            <a [routerLink]="['/registration']" class="btn btn-flat">Click here to Registration</a>
+        </form>
+    </div>
+    <div class="col m3"></div>
+</div>

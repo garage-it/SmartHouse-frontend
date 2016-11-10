@@ -1,15 +1,20 @@
 import { Component, OnInit} from '@angular/core';
 
+import ROUTING from '../../config.routing';
+
 const style = require('./header.component.scss');
 const template = require('./header.component.html');
 
 const HEADER_COMPONENT_SELECTOR = 'sh-header';
 
+
 export const NAVIGATION_ROUTES = [
-    { path: 'dashboard', headerName: 'Dashboard', iconImage: './assets/dashboard.svg', main: true},
-    { path: 'devices', headerName: 'Devices', iconImage: './assets/deviceList.svg' },
-    { path: 'scenarios', headerName: 'Scenarios', iconImage: './assets/scenarioList.png' },
-    { path: 'help', headerName: 'Help', iconImage: './assets/help.svg' }
+    { path: `/${ROUTING.DASHBOARD}`, headerName: 'Dashboard', iconImage: './assets/dashboard.svg', main: true},
+    { path: `/${ROUTING.DEVICES}`, headerName: 'Devices', iconImage: './assets/deviceList.svg' },
+    { path: `/${ROUTING.SCENARIOS}`, headerName: 'Scenarios', iconImage: './assets/scenarioList.png' },
+    { path: `/${ROUTING.HELP}`, headerName: 'Help', iconImage: './assets/help.svg' },
+    { path: `/${ROUTING.LOGIN}`, headerName: 'Login', iconImage: './assets/login.svg' },
+    { path: `/${ROUTING.LOGOUT}`, headerName: 'Logout', iconImage: './assets/logout.svg' }
 ];
 
 @Component({

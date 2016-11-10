@@ -1,0 +1,38 @@
+$facebook-color: #3b5998;
+$message-color: #ee6e73;
+
+.btn {
+	width: 100%;
+	margin: 0 0 20px;
+}
+
+.btn-facebook {
+	background-color: $facebook-color;
+
+	i {
+		background: url('/assets/facebook.svg') no-repeat;
+		background-size: 100%;
+		display: inline-block;
+		height: 20px;
+		width: 20px;
+		margin: 2px 4px 4px 2px;
+		vertical-align: middle;
+	}
+}
+
+.validation-message-wrapper {
+    position: relative;
+    top: -10px;
+}
+
+.validation-message {
+    position: absolute;
+}
+
+.input-field {
+    position: relative;
+
+    .validation-message {
+        top: 50px;
+    }
+}
