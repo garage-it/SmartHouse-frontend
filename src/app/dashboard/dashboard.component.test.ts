@@ -25,17 +25,19 @@ describe('Dashboard', () => {
     let sut;
     let sensorWidgetService;
     let activatedRouteMock;
-    let sensor;
-    let executor;
-    let servo;
-    let mockDevices;
+    let mockVisibleDevices;
 
     beforeEach(() => {
-        sensor = {device: {executor: false, servo: false}};
-        executor = {device: {executor: true, servo: false}, hidden: false};
-        servo = {device: {executor: false, servo: true}};
-        mockDevices = {
+        let sensor = {device: {executor: false, servo: false}, hidden: true};
+        let executor = {device: {executor: true, servo: false}};
+        let servo = {device: {executor: false, servo: true}};
+
+        let mockDevices = {
             devices: [sensor, executor, servo]
+        };
+
+        mockVisibleDevices = {
+            devices: [executor, servo]
         };
 
         activatedRouteMock = new ActivatedRouteMock(mockDevices);
@@ -50,10 +52,10 @@ describe('Dashboard', () => {
                 spyOn(activatedRouteMock.data, 'flatMap').and.callThrough();
             });
 
-            it('should get device list', fakeAsync(() => {
+            it('should get visible device list', fakeAsync(() => {
                 sut.ngOnInit();
                 tick();
-                expect(sut.widgets).toEqual(mockDevices.devices);
+                expect(sut.widgets).toEqual(mockVisibleDevices.devices);
             }));
         });
 
