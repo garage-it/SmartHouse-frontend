@@ -1,13 +1,16 @@
 import { Observable } from 'rxjs/Rx';
-import { fakeAsync, tick } from '@angular/core/testing';
 import { DashboardResolveService } from './dashboard-resolve.service';
 
 describe('dashboard-resolveService', () => {
     let sut;
     let DashboardService;
     let ToastsManager;
+    let successCb;
+    let failCb;
 
     beforeEach(() => {
+        successCb = jasmine.createSpy('successCb');
+        failCb = jasmine.createSpy('failCb');
 
         DashboardService = {
             getWidgets: jasmine.createSpy('getWidgets')
@@ -27,14 +30,27 @@ describe('dashboard-resolveService', () => {
         expect(sut.dashboardService.getWidgets).toHaveBeenCalled();
     });
 
+    describe('on get widget fail', () => {
+        let error;
 
-    xit('should cut widgets stream on error', fakeAsync(() => {
-        const error = 'Fake error';
+        beforeEach(() => {
+            error = 'Fake error';
+            DashboardService.getWidgets.and.returnValue(Observable.throw(error));
+            sut.resolve().subscribe(successCb, failCb);
+        });
 
-        DashboardService.getWidgets.and.returnValue(Observable.throw(error));
-        sut.resolve();
-        tick();
+        it('should cut widgets stream on error', () => {
+            expect(ToastsManager.error).toHaveBeenCalledWith(error);
+        });
 
-        expect(ToastsManager.error).toHaveBeenCalledWith(error);
-    }));
+        it('should not emit any values', () => {
+            expect(successCb).not.toHaveBeenCalled();
+        });
+
+        it('should not emit any errors outside', () => {
+            expect(failCb).not.toHaveBeenCalled();
+        });
+    });
+
+
 });

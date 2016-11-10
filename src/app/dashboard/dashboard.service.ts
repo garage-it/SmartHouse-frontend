@@ -1,30 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { ShHttpService } from '../shared/sh-http/sh-http.service';
+import { ShHttpUtilsService } from '../shared/sh-http/sh-http-utils.service';
 import { IWidget } from './dashboard.interfaces';
 
 @Injectable()
 export class DashboardService {
-    constructor(private http: ShHttpService) { }
-
-    private handleError(error: Response | any): Observable<string> {
-        let errorMesssage: string;
-
-        if (error instanceof Response) {
-            const body = error.json() || '';
-
-            errorMesssage = body.message || 'Unknown error';
-        } else {
-            errorMesssage = 'Unknown error';
-        }
-
-        return Observable.throw(errorMesssage);
-    }
+    constructor(private http: ShHttpService, private httpUtils: ShHttpUtilsService) { }
 
     getWidgets(): Observable<any> {
         return this.http.get('/dashboard')
-            .catch(this.handleError);
+            .catch(error => {
+                return this.httpUtils.extractErrorMessage(error);
+            });
     }
 
     applyChanges(devices: IWidget[]): Observable<any> {

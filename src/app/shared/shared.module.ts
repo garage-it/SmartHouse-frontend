@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 
 import { ShHttpService } from './sh-http/sh-http.service';
+import { ShHttpUtilsService } from './sh-http/sh-http-utils.service';
 import { DialogConfirmComponent } from './dialog/dialog-confirm.component';
 import { DialogService } from './dialog/dialog.service';
 
@@ -15,7 +16,7 @@ import { DialogService } from './dialog/dialog.service';
         MaterialModule.forRoot()
     ],
     declarations: [ DialogConfirmComponent ],
-    providers: [ ShHttpService, DialogService ],
+    providers: [ ShHttpService, DialogService, ShHttpUtilsService ],
     exports: [ CommonModule ],
     entryComponents: [ DialogConfirmComponent ]
 })
