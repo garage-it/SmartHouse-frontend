@@ -1,0 +1,19 @@
+.registration {
+    &__label {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    &__field {
+        margin: 0;
+
+        &-error-message {
+            margin-bottom: 10px;
+        }
+    }
+
+    &__button {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
