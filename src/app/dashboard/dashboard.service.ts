@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { ShHttpService } from '../shared/sh-http/sh-http.service';
+import { IWidget } from './dashboard.interfaces';
 
 @Injectable()
 export class DashboardService {
     constructor(private http: ShHttpService) { }
 
-    private handleError (error: Response | any) {
+    private handleError(error: Response | any): Observable<string> {
         let errorMesssage: string;
 
         if (error instanceof Response) {
@@ -21,25 +22,22 @@ export class DashboardService {
         return Observable.throw(errorMesssage);
     }
 
-    getWidgets() {
+    getWidgets(): Observable<any> {
         return this.http.get('/dashboard')
             .catch(this.handleError);
     }
 
-    applyChanges(devices) {
+    applyChanges(devices: IWidget[]): Observable<any> {
         return this.http.put('/dashboard', {devices});
     }
 
-    compareWidgetsLists(initial, updated) {
-        for (let i = 0, l = updated.length; i < l; i++) {
-            const properties = Object.keys(updated[i]);
-            const different = properties.some(prop => initial[i][prop] !== updated[i][prop]);
+    compareWidgetsLists(initialWidgets: IWidget[], updatedWidgets: IWidget[]): boolean {
+        return updatedWidgets.some((updatedWidget, i) => {
+            const updatedWidgetProperties = Object.keys(updatedWidget);
+            const areSimilarWidgets = updatedWidgetProperties
+                .every(prop => initialWidgets[i][prop] === updatedWidget[prop]);
 
-            if (different) {
-                return false;
-            }
-        }
-
-        return true;
+            return areSimilarWidgets;
+        });
     }
 }

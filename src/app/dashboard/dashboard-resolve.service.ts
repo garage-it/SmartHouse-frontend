@@ -9,8 +9,9 @@ export class DashboardResolveService  {
 
     resolve() {
         return this.dashboardService.getWidgets()
-            .catch(error => {
-                this.toastr.error(error);
+            .catch(errorMessage => {
+                this.toastr.error(errorMessage);
+
                 return Observable.never();
             });
     }

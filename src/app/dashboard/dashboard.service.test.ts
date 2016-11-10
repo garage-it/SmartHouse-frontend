@@ -68,4 +68,18 @@ describe('DashboardService', () => {
             expect(sut.compareWidgetsLists(widgets, updatedData)).toBe(true);
         });
     });
+
+    describe('error handler', () => {
+        let errorObject;
+
+        beforeEach(() => {
+            errorObject = {
+                type: 'error type'
+            };
+        });
+
+        it('should transform error into observable with error message', () => {
+            expect(sut.handleError(errorObject)).toEqual(jasmine.any(Observable));
+        });
+    });
 });
