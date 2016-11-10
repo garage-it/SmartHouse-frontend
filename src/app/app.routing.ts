@@ -1,21 +1,22 @@
 import { RouterModule } from '@angular/router';
+import ROUTING from './config.routing';
 
 export const routes = [
-    { path: '', redirectTo: 'dashboard', pathMatch: 'full', useAsDefault: true },
+    { path: ROUTING.BASE, redirectTo: ROUTING.DASHBOARD, pathMatch: 'full', useAsDefault: true },
     {
-        path: 'help',
+        path: ROUTING.HELP,
         loadChildren: () => require('es6-promise!./help/help.module')('HelpModule')
     },
     {
-        path: 'dashboard',
+        path: ROUTING.DASHBOARD,
         loadChildren: () => require('es6-promise!./dashboard/dashboard.module')('DashboardModule')
     },
     {
-        path: 'devices',
+        path: ROUTING.DEVICES,
         loadChildren: () => require('es6-promise!./devices/devices.module')('DevicesModule')
     },
     {
-        path: 'scenarios',
+        path: ROUTING.SCENARIOS,
         loadChildren: () => require('es6-promise!./scenarios/scenarios.module')('ScenariosModule')
     }
 ];

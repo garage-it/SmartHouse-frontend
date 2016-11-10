@@ -33,7 +33,7 @@ describe('dashboard-resolveService', () => {
 
         DashboardService.getWidgets.and.returnValue(Observable.throw(error));
         sut.resolve();
-        tick(1000);
+        tick();
 
         expect(ToastsManager.error).toHaveBeenCalledWith(error);
     }));

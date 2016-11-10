@@ -15,9 +15,6 @@ const template = require('./dashboard.template.html');
 export class DashboardComponent implements OnInit {
 
     private widgets: IWidget[] = [];
-    private sensorWidgets: IWidget[] = [];
-    private executorSensorWidgets: IWidget[] = [];
-    private servoSensorWidgets: IWidget[] = [];
 
     constructor(private sensorWidgetService: SensorWidgetService, private route: ActivatedRoute) { }
 
@@ -27,18 +24,6 @@ export class DashboardComponent implements OnInit {
 
         widgetsSource
             .subscribe(widget => this.widgets.push(widget));
-
-        widgetsSource
-            .filter(widget => widget.device.executor === true)
-            .subscribe(widget => this.executorSensorWidgets.push(widget));
-
-        widgetsSource
-            .filter(widget => widget.device.servo === true)
-            .subscribe(widget => this.servoSensorWidgets.push(widget));
-
-        widgetsSource
-            .filter(widget => !(widget.device.executor || widget.device.servo))
-            .subscribe(widget => this.sensorWidgets.push(widget));
 
         this.sensorWidgetService
             .subscribe(false, data => this.onDeviceAddEvent(data));

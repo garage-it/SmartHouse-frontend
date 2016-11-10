@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 const template = require('./device-list.template.html');
 const style = require('./device-list.style.scss');
 
 import { SensorDetailService } from '../shared/sensor-detail.service';
+import { DialogService } from '../../shared/dialog/dialog.service';
 
 const selector = 'device-list';
 const headersForDisplay = [
@@ -12,8 +13,6 @@ const headersForDisplay = [
     { topic: 'type', name: 'Type', sortable: true },
     { topic: 'description', name: 'Description', sortable: true }
 ];
-
-const confirmQuestion = 'Are you sure you want to delete this device?';
 
 @Component({
     selector,
@@ -26,7 +25,12 @@ export class DeviceListComponent implements OnInit {
     private reverse = false;
     private _headers = [];
 
-    constructor(private sensorsService: SensorDetailService, private route: ActivatedRoute) {
+    constructor(
+        private sensorsService: SensorDetailService,
+        private route: ActivatedRoute,
+        private dialogService: DialogService,
+        private viewContainerRef: ViewContainerRef
+    ) {
         this.sensorsService = sensorsService;
         this._headers = headersForDisplay;
         this.route = route;
@@ -62,14 +66,19 @@ export class DeviceListComponent implements OnInit {
     }
 
     removeSensor(item) {
-        if (!window.confirm(confirmQuestion)) { // eslint-disable-line no-alert
-            return;
-        }
+        const confirmOptions = {
+            title: '',
+            message: 'Are you sure you want to delete this device?'
+        };
 
-        this.sensorsService
-            .delete(item)
-            .subscribe(data => {
-                this.deviceList = this.deviceList.filter(elem => elem._id !== data._id);
+        this.dialogService.confirm(this.viewContainerRef, confirmOptions)
+            .filter(isConfirmed => isConfirmed)
+            .subscribe(() => {
+                this.sensorsService
+                    .delete(item)
+                    .subscribe(data => {
+                        this.deviceList = this.deviceList.filter(elem => elem._id !== data._id);
+                    });
             });
     }
 }

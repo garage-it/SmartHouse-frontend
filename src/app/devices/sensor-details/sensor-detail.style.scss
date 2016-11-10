@@ -1,0 +1,15 @@
+.sensor-detail {
+    &__group {
+        margin-bottom: 15px;
+    }
+
+    &__executor, &__servo {
+        display: inline;
+    }
+
+    &__servo { margin-left: 15px; }
+}
+
+button[disabled] {
+    opacity: 0.5;
+}
