@@ -6,7 +6,8 @@ const CONFIG = {
     SCENARIOS: 'scenarios',
     CREATE: 'create',
     LOGIN: 'login',
-    LOGOUT: 'logout'
+    LOGOUT: 'logout',
+    REGISTRATION: 'registration'
 };
 
 export default CONFIG;

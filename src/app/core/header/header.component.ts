@@ -14,7 +14,8 @@ export const NAVIGATION_ROUTES = [
     { path: `/${ROUTING.SCENARIOS}`, headerName: 'Scenarios', iconImage: './assets/scenarioList.png' },
     { path: `/${ROUTING.HELP}`, headerName: 'Help', iconImage: './assets/help.svg' },
     { path: `/${ROUTING.LOGIN}`, headerName: 'Login', iconImage: './assets/login.svg' },
-    { path: `/${ROUTING.LOGOUT}`, headerName: 'Logout', iconImage: './assets/logout.svg' }
+    { path: `/${ROUTING.LOGOUT}`, headerName: 'Logout', iconImage: './assets/logout.svg' },
+    { path: `/${ROUTING.REGISTRATION}`, headerName: 'Registration', iconImage: './assets/registration.svg' }
 ];
 
 @Component({

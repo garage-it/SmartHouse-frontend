@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Rx';
 
 import { ShHttpService } from '../sh-http/sh-http.service';
 import { ProfileService } from '../profile/profile.service';
-import { IUserCredentials } from '../auth/auth.interfaces';
+import { IUserCredentials, IUserRegistrationData } from '../auth/auth.interfaces';
 
 @Injectable()
 export class AuthService {
@@ -13,11 +13,21 @@ export class AuthService {
 
     login(credentials: IUserCredentials): Observable<any> {
         return this.http.post('/auth/login', credentials).map(data => {
-            this.profile.setUserData(data.user, data.token);
+            this.setUserData(data);
         });
     }
 
     logout(): void {
         this.profile.removeUserData();
+    }
+
+    register(registrationData: IUserRegistrationData): Observable<any> {
+        return this.http.post('/auth/register', registrationData).map(data => {
+            this.setUserData(data);
+        });
+    }
+
+    setUserData({ user, token }): void {
+        this.profile.setUserData(user, token);
     }
 }
