@@ -1,25 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 const template = require('./simple-chart-widget.template.html');
+const styles = require('./simple-chart-widget.styles.scss');
 
 @Component({
     selector: 'simple-chart-widget',
-    template: template
+    template: template,
+    styles: [styles]
 })
 export class SimpleChartWidgetComponent {
-
-    chart: Object;
+    @Input() deviceStatistic;
     options: Object;
-    saveInstance(chartInstance) {
-        this.chart = chartInstance;
-    }
 
-    constructor() {
+    constructor() {}
+
+    ngOnInit():void {
         this.options = {
-          chart: { type: 'spline' },
-          title: { text : 'dynamic data example'},
-          series: [{name: 'vasya',  data: [2, 3, 5, 8, 13] }]
+            chart: { type: 'spline' },
+            title: { text : `Statistic for ${this.deviceStatistic.sensor}  sensor`},
+            xAxis: [{
+                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                crosshair: true
+            }],
+            yAxis: [{
+                labels: {
+                    format: '{value}°C',
+                },
+                title: {
+                    text: `${this.deviceStatistic.sensor}`,
+                }
+            }],
+            series: [{
+                name: `${this.deviceStatistic.sensor}`,
+                data: this.deviceStatistic.data.map(item => item.value)
+            }]
         };
-        setInterval(() => this.chart.series[0].addPoint(Math.random() * 15), 1000);
     }
 }

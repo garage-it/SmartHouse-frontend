@@ -8,6 +8,6 @@ export class DashboardResolveSensorDetailsService {
     constructor(private dashboardService: DashboardService) {}
 
     resolve(route: ActivatedRouteSnapshot) {
-        return this.dashboardService.getStatistic(route.params['id'], 'day');
+        return this.dashboardService.getStatistic(route.params['id'], route.params['period']);
     }
 }

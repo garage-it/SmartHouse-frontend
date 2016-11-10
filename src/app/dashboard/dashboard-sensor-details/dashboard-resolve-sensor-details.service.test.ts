@@ -11,7 +11,10 @@ describe('dashboard-resolveSensorDetailsService', () => {
     let sut;
     let dashboardService;
     let route = {
-        params: {id: 123}
+        params: {
+            id: 123,
+            period: 'day'
+        }
     };
 
     beforeEach(async(() => {
@@ -31,6 +34,6 @@ describe('dashboard-resolveSensorDetailsService', () => {
 
     it('should resolve default statistic for sensor', () => {
         sut.resolve(route);
-        expect(sut.dashboardService.getStatistic).toHaveBeenCalledWith(route.params.id, 'day');
+        expect(sut.dashboardService.getStatistic).toHaveBeenCalledWith(route.params.id, route.params.period);
     });
 });

@@ -10,7 +10,7 @@ export const routes = [
     { path: '', component: DashboardComponent, resolve: { widgets: DashboardResolveService }},
     { path: 'editor', component: DashboardEditorComponent },
     {
-        path: 'sensor_details/:id',
+        path: 'sensor_details/:id/:period',
         component: DashboardSensorDetailsComponent,
         resolve: { deviceStatistic: DashboardResolveSensorDetailsService }
     }
