@@ -26,7 +26,7 @@ export class DashboardComponent implements OnInit {
 
     ngOnInit() {
         const widgetsSource = this.route.data
-            .flatMap(({widgets}) => Observable.from(widgets.devices));
+            .flatMap(({widgets}) => Observable.from(widgets.devices.filter(device => device.hidden !== true)));
 
         widgetsSource
             .subscribe(widget => this.widgets.push(widget));
