@@ -28,11 +28,11 @@ describe('Dashboard', () => {
     let mockVisibleDevices;
 
     beforeEach(() => {
-        let sensor = {device: {executor: false, servo: false}, hidden: true};
-        let executor = {device: {executor: true, servo: false}};
-        let servo = {device: {executor: false, servo: true}};
+        const sensor = {device: {executor: false, servo: false}, hidden: true};
+        const executor = {device: {executor: true, servo: false}};
+        const servo = {device: {executor: false, servo: true}};
 
-        let mockDevices = {
+        const mockDevices = {
             devices: [sensor, executor, servo]
         };
 
