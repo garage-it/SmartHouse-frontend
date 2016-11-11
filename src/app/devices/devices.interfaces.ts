@@ -1,4 +1,4 @@
-export interface IDevice {
+export interface Device {
     description: string;
     executor: boolean;
     metrix: string;

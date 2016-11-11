@@ -1,16 +1,21 @@
 import { HeaderComponent } from './header.component';
 
+import ROUTING from '../../config.routing';
+
 const MAIN_ROUTE = {
-    path: 'dashboard',
+    path: `/${ROUTING.DASHBOARD}`,
     headerName: 'Dashboard',
     iconImage: './assets/dashboard.svg',
     main: true
 };
 const NAVIGATION_ROUTES = [
     MAIN_ROUTE,
-    { path: 'devices', headerName: 'Devices', iconImage: './assets/deviceList.svg' },
-    { path: 'scenarios', headerName: 'Scenarios', iconImage: './assets/scenarioList.png' },
-    { path: 'help', headerName: 'Help', iconImage: './assets/help.svg' }
+    { path: `/${ROUTING.DEVICES}`, headerName: 'Devices', iconImage: './assets/deviceList.svg' },
+    { path: `/${ROUTING.SCENARIOS}`, headerName: 'Scenarios', iconImage: './assets/scenarioList.png' },
+    { path: `/${ROUTING.HELP}`, headerName: 'Help', iconImage: './assets/help.svg' },
+    { path: `/${ROUTING.LOGIN}`, headerName: 'Login', iconImage: './assets/login.svg' },
+    { path: `/${ROUTING.LOGOUT}`, headerName: 'Logout', iconImage: './assets/logout.svg' },
+    { path: `/${ROUTING.REGISTRATION}`, headerName: 'Registration', iconImage: './assets/registration.svg' },
 ];
 
 describe('Header', () => {

@@ -1,7 +1,7 @@
 import {async, TestBed} from '@angular/core/testing';
 
 import { DeviceListService } from './device-list.service';
-import { ShHttpService } from '../../shared/sh-http/sh-http.service';
+import { ShHttpService } from '../../core/sh-http/sh-http.service';
 
 const observableMock = { map() {} };
 

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
-import { ShHttpService } from '../shared/sh-http/sh-http.service';
-import { ShHttpUtilsService } from '../shared/sh-http/sh-http-utils.service';
-import { IWidget } from './dashboard.interfaces';
+import { ShHttpService } from '../core/sh-http/sh-http.service';
+import { ShHttpUtilsService } from '../core/sh-http/sh-http-utils.service';
+import { Widget } from './dashboard.interfaces';
 
 @Injectable()
 export class DashboardService {
@@ -15,11 +15,11 @@ export class DashboardService {
             });
     }
 
-    applyChanges(devices: IWidget[]): Observable<any> {
+    applyChanges(devices: Widget[]): Observable<any> {
         return this.http.put('/dashboard', {devices});
     }
 
-    compareWidgetsLists(initialWidgets: IWidget[], updatedWidgets: IWidget[]): boolean {
+    compareWidgetsLists(initialWidgets: Widget[], updatedWidgets: Widget[]): boolean {
         return updatedWidgets.some((updatedWidget, i) => {
             const updatedWidgetProperties = Object.keys(updatedWidget);
             const areSimilarWidgets = updatedWidgetProperties

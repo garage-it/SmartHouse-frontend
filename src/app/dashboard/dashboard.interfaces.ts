@@ -1,6 +1,6 @@
-import { IDevice } from '../devices/devices.interfaces';
+import { Device } from '../devices/devices.interfaces';
 
-export interface IWidget {
-    device: IDevice;
+export interface Widget {
+    device: Device;
     hidden: boolean;
 }

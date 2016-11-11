@@ -49,14 +49,21 @@ describe('Sensor-executor-widget', () => {
             );
         });
 
-        it('should convert data to SM format when receive it from device', () => {
-            sut.onDeviceDataChanged({value: 'ON'});
-            expect(sut.fromDeviceRepresentation).toHaveBeenCalledWith('ON');
-        });
+        describe('when receiving device related data', () => {
+            beforeEach(() => {
+                sut.onDeviceDataChanged({
+                    value: 'ON',
+                    device: sut.device.mqttId
+                });
+            });
 
-        it('should enable executor data when receive ON from device', () => {
-            sut.onDeviceDataChanged({value: 'ON'});
-            expect(sut.data.value).toEqual(true);
+            it('should convert data to SM format', () => {
+                expect(sut.fromDeviceRepresentation).toHaveBeenCalledWith('ON');
+            });
+
+            it('should enable executor data when receive ON from device', () => {
+                expect(sut.data.value).toEqual(true);
+            });
         });
     });
 });
