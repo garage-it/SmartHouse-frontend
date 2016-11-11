@@ -23,8 +23,8 @@ export class ProfileService {
         this.http.setAuthHeader(token);
 
         return this.http.get('/user/current-user').toPromise()
-            .then(user => {
-                this.setUserData(user);
+            .then((data: {responses: User}) => {
+                this.setUserData(data.responses);
             })
             .catch((err) => {
                 if (err.status === 401) {
