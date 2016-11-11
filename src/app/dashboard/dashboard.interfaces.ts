@@ -1,4 +1,4 @@
-import { Device } from '../devices/devices.interfaces';
+import { Device } from '../devices/device.model';
 
 export interface Widget {
     device: Device;
