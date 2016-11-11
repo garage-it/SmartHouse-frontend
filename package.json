@@ -38,7 +38,6 @@
   "engines": {
     "node": ">=5"
   },
-  "bin": "bin/index.js",
   "devDependencies": {
     "@angular/common": "2.0.0",
     "@angular/compiler": "2.0.0",
