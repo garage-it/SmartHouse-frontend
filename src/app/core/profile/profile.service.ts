@@ -23,7 +23,7 @@ export class ProfileService {
         this.http.setAuthHeader(token);
 
         return this.http.get('/user/current-user').toPromise()
-            .then(data => {
+            .then((data: {responses: User}) => {
                 this.setUserData(data.responses);
             })
             .catch((err) => {
