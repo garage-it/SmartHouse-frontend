@@ -12,11 +12,12 @@ import { GuestGuard, LoggedInGuard } from './profile/profile.guards';
 import { ProfileService } from './profile/profile.service';
 import { ProfileResolver } from './profile/profile.resolver';
 import { ShHttpService } from './sh-http/sh-http.service';
+import { ShHttpUtilsService } from './sh-http/sh-http-utils.service';
 import { StorageService } from './storage/storage.service';
 
 @NgModule({
     id: module.id,
-    imports: [ CommonModule, RouterModule, HttpModule],
+    imports: [ CommonModule, RouterModule, HttpModule ],
     declarations: [ HeaderComponent, MainComponent, ScreenComponent ],
     providers: [
         AuthService,
@@ -25,6 +26,7 @@ import { StorageService } from './storage/storage.service';
         ProfileResolver,
         ProfileService,
         ShHttpService,
+        ShHttpUtilsService,
         StorageService,
     ],
     exports: [ HeaderComponent, MainComponent, ScreenComponent ]

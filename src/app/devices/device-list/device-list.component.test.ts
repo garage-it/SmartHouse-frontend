@@ -23,6 +23,7 @@ const mockDeviceListComponent = ['some data'];
 
 class ActivatedRouteMock {
     private data: Observable<any>;
+
     constructor() {
         this.data = Observable.of({deviceList: mockDeviceListComponent});
     }

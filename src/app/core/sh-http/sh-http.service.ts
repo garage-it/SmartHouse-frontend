@@ -15,7 +15,6 @@ export class ShHttpService {
     }
 
     constructor(private http: Http) {
-        this.http = http;
         this.headers = new Headers({ 'Content-Type': 'application/json' });
         this.options = new ShRequestOptions({ headers: this.headers });
     }

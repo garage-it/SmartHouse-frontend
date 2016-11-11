@@ -1,10 +1,11 @@
 import { DashboardService } from './dashboard.service';
-import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 describe('DashboardService', () => {
-    let observable;
     let httpMock;
+    let httpUtilsMock;
+    let successCb;
+    let failCb;
     let sut;
     const widgets = [
         {
@@ -19,26 +20,47 @@ describe('DashboardService', () => {
     ];
 
     beforeEach(() => {
-        observable = Observable.create(observer => {
-            observer.next(widgets);
-            observer.complete();
-        });
-        httpMock = jasmine.createSpyComponent(Http);
-        const methods = ['put', 'get'];
-        methods.forEach((method) => httpMock[method].and.returnValue(observable));
+        successCb = jasmine.createSpy('successCb');
+        failCb = jasmine.createSpy('failCb');
+        httpUtilsMock = {
+            extractErrorMessage: jasmine.createSpy('extractErrorMessage')
+        };
+        httpMock = jasmine.createSpyObj('mock http', ['get', 'put']);
     });
 
     beforeEach(() => {
-        sut = new DashboardService(httpMock);
+        sut = new DashboardService(httpMock, httpUtilsMock);
     });
 
     describe('#getWidgets', () => {
         beforeEach(() => {
+            httpMock.get.and.returnValue(Observable.create());
             sut.getWidgets();
         });
 
         it('should get widgets of the dashboard from the server', () => {
             expect(httpMock.get).toHaveBeenCalledWith('/dashboard');
+        });
+
+        describe('on get widgets error', () => {
+            let error;
+            let errorMessage;
+
+            beforeEach(() => {
+                error = Symbol('some server error');
+                errorMessage = Symbol('some error message');
+                httpMock.get.and.returnValue(Observable.throw(error));
+                httpUtilsMock.extractErrorMessage.and.returnValue(Observable.throw(errorMessage));
+                sut.getWidgets().subscribe(successCb, failCb);
+            });
+
+            it('should extract error message', () => {
+                expect(httpUtilsMock.extractErrorMessage).toHaveBeenCalledWith(error);
+            });
+
+            it('should delegate error handling outside', () => {
+                expect(failCb).toHaveBeenCalledWith(errorMessage);
+            });
         });
     });
 

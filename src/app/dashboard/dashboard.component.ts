@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Rx';
 import { ActivatedRoute } from '@angular/router';
+import { SensorWidgetService } from './shared/sensor-widget/sensor-widget.service';
+import { Widget } from './widget.model';
 
 const style = require('./dashboard.style.scss');
 const template = require('./dashboard.template.html');
-import { SensorWidgetService } from './shared/sensor-widget/sensor-widget.service';
-
-import { Observable } from 'rxjs/Rx';
 
 @Component({
     selector: 'sm-dashboard',
@@ -14,19 +14,14 @@ import { Observable } from 'rxjs/Rx';
 })
 export class DashboardComponent implements OnInit {
 
-    private widgets;
+    private widgets: Widget[] = [];
 
-    constructor(private sensorWidgetService: SensorWidgetService, private route: ActivatedRoute) {
-        this.sensorWidgetService = sensorWidgetService;
-        this.route = route;
-
-        this.widgets = [];
-
-    }
+    constructor(private sensorWidgetService: SensorWidgetService, private route: ActivatedRoute) { }
 
     ngOnInit() {
         const widgetsSource = this.route.data
-            .flatMap(({widgets}) => Observable.from(widgets.devices.filter(device => device.hidden !== true)));
+            .flatMap(({ widgets: { devices } }) => Observable.from(devices))
+            .filter(device => !device.hidden);
 
         widgetsSource
             .subscribe(widget => this.widgets.push(widget));
