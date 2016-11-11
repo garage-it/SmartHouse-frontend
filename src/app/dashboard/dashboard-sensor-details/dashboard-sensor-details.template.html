@@ -12,17 +12,9 @@
     <div class="dashboard_content">
         <div class="clearfix dashboard_actions">
             <a class="btn-flat"
-               [routerLink]="['../../../sensor-details', sensorId, 'day']"
-            >Day</a>
-            <a class="btn-flat"
-               [routerLink]="['../../../sensor-details', sensorId, 'week']"
-            >Week</a>
-            <a class="btn-flat"
-               [routerLink]="['../../../sensor-details', sensorId, 'month']"
-            >Month</a>
-            <a class="btn-flat"
-               [routerLink]="['../../../sensor-details', sensorId, 'year']"
-            >Year</a>
+               *ngFor="let period of periods"
+               [routerLink]="['../../../sensor-details', sensorId, period]"
+            >{{period}}</a>
         </div>
     </div>
 </div>

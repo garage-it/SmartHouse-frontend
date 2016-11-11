@@ -4,7 +4,7 @@ import { DashboardResolveSensorDetailsService } from './dashboard-resolve-sensor
 import { DashboardService } from '../dashboard.service';
 
 class DashboardServiceMock {
-    getStatistic():void {}
+    getStatistic(): void {}
 }
 
 describe('dashboard-resolveSensorDetailsService', () => {

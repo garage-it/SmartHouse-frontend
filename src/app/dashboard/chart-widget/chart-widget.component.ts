@@ -12,13 +12,21 @@ export class SimpleChartWidgetComponent {
     @Input() deviceStatistic;
     options: Object;
 
-    ngOnInit():void {
+    private pipeDate(date) {
+        return (new Date(date)).toLocaleString();
+    }
+
+    ngOnInit(): void {
         this.options = {
             chart: { type: 'spline' },
             title: { text : `Statistic for ${this.deviceStatistic.sensor}  sensor`},
             xAxis: [{
-                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                labels: {
+                    format: `{value}`,
+                },
+                categories: this.deviceStatistic.data
+                    .map(item => item.date)
+                    .map(this.pipeDate),
                 crosshair: true
             }],
             yAxis: [{
