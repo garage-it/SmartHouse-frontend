@@ -1,6 +1,6 @@
 import { AuthService } from './auth.service';
 
-fdescribe('AuthService', function () {
+describe('AuthService', function () {
     let shHttpMock;
     let profileMock;
     let service;
