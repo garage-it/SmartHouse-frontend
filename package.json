@@ -18,6 +18,7 @@
     "e2e:update": "webdriver-manager update --standalone",
     "e2e:run": "protractor ./env/protractor.conf.ts",
 
+    "presemantic-release": "npm run build:production",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
