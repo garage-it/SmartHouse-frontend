@@ -23,15 +23,16 @@ describe('ShHttpService', () => {
 
         describe('get method', () => {
             const getRequestOptions = Symbol('get request options');
+            const params = {};
 
             beforeEach(() => {
                 httpMock.get.and.returnValue(Observable.of(mockResponse));
                 sut.getRequestOptions.and.returnValue(getRequestOptions);
-                sut.get(urlMock).subscribe(() => {});
+                sut.get(urlMock, params).subscribe(() => {});
             });
 
             it('should get proper request options', () => {
-                expect(sut.getRequestOptions).toHaveBeenCalledWith('Get', urlMock, null);
+                expect(sut.getRequestOptions).toHaveBeenCalledWith('Get', urlMock, params);
             });
 
             it('should get data from server', () => {
@@ -56,7 +57,7 @@ describe('ShHttpService', () => {
             });
 
             it('should get proper request options', () => {
-                expect(sut.getRequestOptions).toHaveBeenCalledWith('Post', urlMock, null);
+                expect(sut.getRequestOptions).toHaveBeenCalledWith('Post', urlMock);
             });
 
             it('should stringify rquest body before send', () => {
@@ -85,7 +86,7 @@ describe('ShHttpService', () => {
             });
 
             it('should get proper request options', () => {
-                expect(sut.getRequestOptions).toHaveBeenCalledWith('Put', urlMock, null);
+                expect(sut.getRequestOptions).toHaveBeenCalledWith('Put', urlMock);
             });
 
             it('should stringify rquest body before send', () => {
@@ -111,7 +112,7 @@ describe('ShHttpService', () => {
             });
 
             it('should get proper request options', () => {
-                expect(sut.getRequestOptions).toHaveBeenCalledWith('Delete', urlMock, null);
+                expect(sut.getRequestOptions).toHaveBeenCalledWith('Delete', urlMock);
             });
 
             it('should delete item', () => {

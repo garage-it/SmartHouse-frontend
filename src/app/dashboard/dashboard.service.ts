@@ -21,7 +21,7 @@ export class DashboardService {
         params.set('period', period);
         params.set('sensor', deviceId);
 
-        return this.http.getByParams('/timeseries', params);
+        return this.http.get('/timeseries', params);
     }
 
     applyChanges(devices: Widget[]): Observable<any> {

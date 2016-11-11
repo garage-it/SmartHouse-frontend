@@ -1,6 +1,6 @@
 import {async, TestBed} from '@angular/core/testing';
 
-import { DashboardResolveSensorDetailsService } from './dashboard-resolve-sensor-details.service';
+import { SensorStatisticResolveService } from './sensor-statistic.resolve.service';
 import { DashboardService } from '../dashboard.service';
 
 class DashboardServiceMock {
@@ -21,12 +21,12 @@ describe('dashboard-resolveSensorDetailsService', () => {
         TestBed.configureTestingModule({
             providers: [
                 {provide: DashboardService, useClass: DashboardServiceMock },
-                DashboardResolveSensorDetailsService
+                SensorStatisticResolveService
             ]
         })
         .compileComponents()
         .then(() => {
-            sut = TestBed.get(DashboardResolveSensorDetailsService);
+            sut = TestBed.get(SensorStatisticResolveService);
             dashboardService = TestBed.get(DashboardService);
             spyOn(dashboardService, 'getStatistic').and.callThrough();
         });

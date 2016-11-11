@@ -2,17 +2,17 @@ import {Component} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 
 import CHART_PERIOD from '../chart-widget/chart-period.const';
-const template = require('./dashboard-sensor-details.template.html');
+const template = require('./sensor-statistic.template.html');
 const style = require('../dashboard.style.scss');
 
-const selector = 'dashboard-sensor-details';
+const selector = 'sensor-statistic';
 
 @Component({
     selector,
     template,
     styles: [style]
 })
-export class DashboardSensorDetailsComponent {
+export class SensorStatisticComponent {
     private defaultResolver;
     private deviceStatistic;
     private sensorId;

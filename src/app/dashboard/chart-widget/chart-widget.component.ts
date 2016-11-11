@@ -1,7 +1,21 @@
 import { Component, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 const template = require('./chart-widget.template.html');
 const styles = require('./chart-widget.styles.scss');
+
+const measurementUnit = {
+    'distance': 'm',
+    'humidity': '%',
+    'temperature': '°C'
+};
+
+const timePeriodUnit = {
+    'day': 'getHours',
+    'week': 'getDay',
+    'month': 'getDate',
+    'year': 'getMonth'
+};
 
 @Component({
     selector: 'sm-chart-widget',
@@ -11,12 +25,30 @@ const styles = require('./chart-widget.styles.scss');
 export class SimpleChartWidgetComponent {
     @Input() deviceStatistic;
     options: Object;
+    private periodSubscription;
+    private deviceId;
+    private period;
+
+    constructor(private currentRoute: ActivatedRoute) {
+        this.deviceId = this.currentRoute.snapshot.params['id'];
+        this.period = this.currentRoute.snapshot.params['period'];
+    }
 
     private pipeDate(date) {
-        return (new Date(date)).toLocaleString();
+        return (new Date(date))[timePeriodUnit[this.period]]();
     }
 
     ngOnInit(): void {
+        this.periodSubscription = this.currentRoute.params.subscribe(params => {
+            this.period = params['period'];
+        });
+    }
+
+    ngOnDestroy(): void {
+        this.periodSubscription.unsubscribe();
+    }
+
+    ngOnChanges() {
         this.options = {
             chart: { type: 'spline' },
             title: { text : `Statistic for ${this.deviceStatistic.sensor}  sensor`},
@@ -25,13 +57,12 @@ export class SimpleChartWidgetComponent {
                     format: `{value}`,
                 },
                 categories: this.deviceStatistic.data
-                    .map(item => item.date)
-                    .map(this.pipeDate),
+                    .map(({date}) => this.pipeDate(date)),
                 crosshair: true
             }],
             yAxis: [{
                 labels: {
-                    format: '{value}°C',
+                    format: `{value}${measurementUnit[this.deviceId]}`,
                 },
                 title: {
                     text: `${this.deviceStatistic.sensor}`,

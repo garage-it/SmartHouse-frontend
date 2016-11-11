@@ -4,7 +4,7 @@ import { ActivatedRouteSnapshot } from '@angular/router';
 import { DashboardService } from '../dashboard.service';
 
 @Injectable()
-export class DashboardResolveSensorDetailsService {
+export class SensorStatisticResolveService {
     constructor(private dashboardService: DashboardService) {}
 
     resolve(route: ActivatedRouteSnapshot) {

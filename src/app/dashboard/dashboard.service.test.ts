@@ -1,5 +1,4 @@
 import { DashboardService } from './dashboard.service';
-import { ShHttpService } from '../core/sh-http/sh-http.service';
 import { URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
@@ -27,7 +26,7 @@ describe('DashboardService', () => {
         httpUtilsMock = {
             extractErrorMessage: jasmine.createSpy('extractErrorMessage')
         };
-        httpMock = jasmine.createSpyObj('mock http', ['get', 'put', 'getByParams']);
+        httpMock = jasmine.createSpyObj('mock http', ['get', 'put']);
     });
 
     beforeEach(() => {
@@ -79,7 +78,7 @@ describe('DashboardService', () => {
             let params = new URLSearchParams();
             params.set('period', period);
             params.set('sensor', deviceId);
-            expect(httpMock.getByParams).toHaveBeenCalledWith('/timeseries', params);
+            expect(httpMock.get).toHaveBeenCalledWith('/timeseries', params);
         });
     });
 
