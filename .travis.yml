@@ -19,6 +19,7 @@ cache:
 
 after_success:
   - codecov
+  - npm run semantic-release
 
 deploy:
    - provider: heroku
@@ -36,3 +37,7 @@ deploy:
 
 after_deploy:
   - npm run e2e:run
+
+branches:
+  except:
+    - /^v\d+\.\d+\.\d+$/

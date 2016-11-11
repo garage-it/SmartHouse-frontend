@@ -1,6 +1,5 @@
 {
   "name": "smart-house-frontend",
-  "version": "0.1.2",
   "description": "Smart House UI",
   "main": "src/index.js",
   "scripts": {
@@ -18,12 +17,13 @@
     "e2e:start": "webdriver-manager start",
     "e2e:update": "webdriver-manager update --standalone",
     "e2e:run": "protractor ./env/protractor.conf.ts",
-    "sh:prepublish": "npm run build:production",
-    "sh:publish": "npm run preparepublish && npm publish"
+
+    "presemantic-release": "npm run build:production",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/garage-it/SmartHouse-frontend.git"
+    "url": "https://github.com/garage-it/SmartHouse-frontend.git"
   },
   "keywords": [
     "smart",
@@ -118,6 +118,7 @@
     "typescript": "2.0.2",
     "webpack": "^1.12.14",
     "webpack-dev-server": "^1.14.1",
-    "webpack-merge": "^0.9.0"
+    "webpack-merge": "^0.9.0",
+    "semantic-release": "^4.3.5"
   }
 }
