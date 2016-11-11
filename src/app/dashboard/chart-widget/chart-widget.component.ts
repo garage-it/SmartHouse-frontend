@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ChartPeriodFormatterService } from './chart-period-formatter.service';
 
 const template = require('./chart-widget.template.html');
 const styles = require('./chart-widget.styles.scss');
@@ -10,32 +11,23 @@ const measurementUnit = {
     'temperature': '°C'
 };
 
-const timePeriodUnit = {
-    'day': 'getHours',
-    'week': 'getDay',
-    'month': 'getDate',
-    'year': 'getMonth'
-};
-
 @Component({
     selector: 'sm-chart-widget',
     template: template,
-    styles: [styles]
+    styles: [styles],
+    providers: [ChartPeriodFormatterService]
 })
-export class SimpleChartWidgetComponent {
+export class ChartWidgetComponent {
     @Input() deviceStatistic;
     options: Object;
     private periodSubscription;
     private deviceId;
     private period;
 
-    constructor(private currentRoute: ActivatedRoute) {
+    constructor(private currentRoute: ActivatedRoute,
+                private chartPeriodFormatterService: ChartPeriodFormatterService) {
         this.deviceId = this.currentRoute.snapshot.params['id'];
         this.period = this.currentRoute.snapshot.params['period'];
-    }
-
-    private pipeDate(date) {
-        return (new Date(date))[timePeriodUnit[this.period]]();
     }
 
     ngOnInit(): void {
@@ -53,11 +45,7 @@ export class SimpleChartWidgetComponent {
             chart: { type: 'spline' },
             title: { text : `Statistic for ${this.deviceStatistic.sensor}  sensor`},
             xAxis: [{
-                labels: {
-                    format: `{value}`,
-                },
-                categories: this.deviceStatistic.data
-                    .map(({date}) => this.pipeDate(date)),
+                categories: this.chartPeriodFormatterService.getLabels(this.deviceStatistic.data, this.period),
                 crosshair: true
             }],
             yAxis: [{

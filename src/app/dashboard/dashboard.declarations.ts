@@ -7,7 +7,7 @@ import { SensorExecutorWidgetComponent } from './sensor-executor-widget/sensor-e
 import { SensorServoWidgetComponent } from './sensor-servo-widget/sensor-servo-widget.component';
 import { SensorStatusWidgetComponent } from './sensor-status-widget/sensor-status-widget.component';
 import { GaugeComponent } from './shared/gauge/gauge.component';
-import { SimpleChartWidgetComponent } from './chart-widget/chart-widget.component';
+import { ChartWidgetComponent } from './chart-widget/chart-widget.component';
 
 export default [
     DashboardComponent,
@@ -18,6 +18,6 @@ export default [
     SensorExecutorWidgetComponent,
     SensorServoWidgetComponent,
     SensorStatusWidgetComponent,
-    SimpleChartWidgetComponent,
+    ChartWidgetComponent,
     GaugeComponent
 ];

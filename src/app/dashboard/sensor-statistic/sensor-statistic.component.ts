@@ -3,7 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 
 import CHART_PERIOD from '../chart-widget/chart-period.const';
 const template = require('./sensor-statistic.template.html');
-const style = require('../dashboard.style.scss');
+const style = require('./sensor-statistic.styles.scss');
 
 const selector = 'sensor-statistic';
 

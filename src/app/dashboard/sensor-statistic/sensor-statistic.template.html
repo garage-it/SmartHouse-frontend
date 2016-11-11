@@ -1,20 +1,13 @@
-<div class="dashboard">
-    <div class="dashboard_title">
-        <h2>Sensor details</h2>
-    </div>
+<div class="chart-holder">
+    <sm-chart-widget
+        [deviceStatistic]="deviceStatistic">
+    </sm-chart-widget>
+</div>
 
-    <div class="chart-holder">
-        <sm-chart-widget
-            [deviceStatistic]="deviceStatistic">
-        </sm-chart-widget>
-    </div>
-
-    <div class="dashboard_content">
-        <div class="clearfix dashboard_actions">
-            <a class="btn-flat"
-               *ngFor="let period of periods"
-               [routerLink]="['../../../sensor-details', sensorId, period]"
-            >{{period}}</a>
-        </div>
-    </div>
+<div class="clearfix statistic_actions">
+    <a class="btn-flat btn-flat_statistic"
+       *ngFor="let period of periods"
+       [routerLink]="['../../../sensor-details', sensorId, period]"
+       [routerLinkActive]="'btn_active'"
+    >{{period}}</a>
 </div>
