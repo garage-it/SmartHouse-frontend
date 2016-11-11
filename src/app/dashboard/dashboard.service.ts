@@ -20,10 +20,10 @@ export class DashboardService {
     }
 
     compareWidgetsLists(initialWidgets: Widget[], updatedWidgets: Widget[]): boolean {
-        return updatedWidgets.some((updatedWidget, i) => {
+        return !updatedWidgets.some((updatedWidget, i) => {
             const updatedWidgetProperties = Object.keys(updatedWidget);
             const areSimilarWidgets = updatedWidgetProperties
-                .every(prop => initialWidgets[i][prop] === updatedWidget[prop]);
+                .some(prop => initialWidgets[i][prop] !== updatedWidget[prop]);
 
             return areSimilarWidgets;
         });
