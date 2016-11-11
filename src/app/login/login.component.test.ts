@@ -84,33 +84,35 @@ describe('Login', function () {
 
     describe('Logic', () => {
         describe('#login', () => {
-            it('should login and redirect to home for valid credentials', inject([AuthService, Router], (auth: AuthService, router: Router) => {
-                // Data
-                const homeUrl = '/';
-                const credentials = {
-                    email: 'valid@valid.com',
-                    password: 'valid-pass'
-                };
+            it('should login and redirect to home for valid credentials',
+                inject([AuthService, Router], (auth: AuthService, router: Router) => {
+                    // Data
+                    const homeUrl = '/';
+                    const credentials = {
+                        email: 'valid@valid.com',
+                        password: 'valid-pass'
+                    };
 
-                // Spies
-                const authServiceLoginObservable = {
-                    subscribe(next) { next() }
-                };
-                spyOn(auth, 'login').and.returnValue(authServiceLoginObservable);
-                spyOn(router, 'navigate');
+                    // Spies
+                    const authServiceLoginObservable = {
+                        subscribe(next) { next(); }
+                    };
+                    spyOn(auth, 'login').and.returnValue(authServiceLoginObservable);
+                    spyOn(router, 'navigate');
 
-                // Prepare
-                const fixture = createComponentAndDetectChanges();
-                const comp = fixture.componentInstance;
-                comp.credentials = credentials;
+                    // Prepare
+                    const fixture = createComponentAndDetectChanges();
+                    const comp = fixture.componentInstance;
+                    comp.credentials = credentials;
 
-                // Run
-                comp.login();
+                    // Run
+                    comp.login();
 
-                // Expect
-                expect(auth.login).toHaveBeenCalledWith(credentials);
-                expect(router.navigate).toHaveBeenCalledWith([homeUrl]);
-            }));
+                    // Expect
+                    expect(auth.login).toHaveBeenCalledWith(credentials);
+                    expect(router.navigate).toHaveBeenCalledWith([homeUrl]);
+                })
+            );
 
             it('should show error for invalid credentials', inject([AuthService], (auth: AuthService) => {
                 // Data
@@ -153,12 +155,6 @@ describe('Login', function () {
             });
 
             it('should show error for invalid credentials', inject([AuthService], (auth: AuthService) => {
-                // Data
-                const credentials = {
-                    email: 'invalid@invalid.com',
-                    password: 'invalid-pass'
-                };
-
                 // Spies
                 const loginSubscription = jasmine.createSpyObj('loginSubscription', [ 'unsubscribe' ]);
                 const authServiceLoginObservable = jasmine.createSpyObj('authServiceLoginObservable', [ 'subscribe' ]);
