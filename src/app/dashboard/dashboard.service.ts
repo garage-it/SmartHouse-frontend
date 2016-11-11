@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { ShHttpService } from '../core/sh-http/sh-http.service';
 import { ShHttpUtilsService } from '../core/sh-http/sh-http-utils.service';
-import { Widget } from './dashboard.interfaces';
+import { Widget } from './widget.model';
 
 @Injectable()
 export class DashboardService {

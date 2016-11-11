@@ -1,6 +1,6 @@
 import { Device } from '../devices/device.model';
 
-export interface Widget {
+export class Widget {
     device: Device;
     hidden: boolean;
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { ActivatedRoute } from '@angular/router';
 import { SensorWidgetService } from './shared/sensor-widget/sensor-widget.service';
-import { Widget } from './dashboard.interfaces';
+import { Widget } from './widget.model';
 
 const style = require('./dashboard.style.scss');
 const template = require('./dashboard.template.html');
