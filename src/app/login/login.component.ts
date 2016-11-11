@@ -10,11 +10,11 @@ import { Subscription } from 'rxjs/Rx';
     template: require('./login.component.html')
 })
 export class LoginComponent implements OnDestroy {
-    private credentials: IUserCredentials = {
+    public credentials: IUserCredentials = {
         email: null,
         password: null
     };
-    private loggingError: boolean = false;
+    public loggingError: boolean = false;
     private loginSubscription: Subscription;
 
     constructor(private auth: AuthService, private router: Router) {}
@@ -23,7 +23,7 @@ export class LoginComponent implements OnDestroy {
         this.loginSubscription = this.auth.login(this.credentials)
             .subscribe(() => {
                 this.router.navigate(['/']);
-            }, err => {
+            }, () => {
                 this.loggingError = true;
             });
     }
