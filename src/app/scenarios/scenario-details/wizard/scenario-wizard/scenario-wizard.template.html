@@ -53,7 +53,7 @@
                type="text"
                placeholder="Enter value"
                required
-               pattern="[0-9]+"
+               pattern="^[+-]?\d+(\.\d+)?$"
                #conditionValue="ngModel"
                [(ngModel)]="condition.value"
                placeholder="Enter value"/>
