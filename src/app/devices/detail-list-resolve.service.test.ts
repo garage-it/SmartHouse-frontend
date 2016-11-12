@@ -9,7 +9,7 @@ describe('sensor-detail-list-resolveService', () => {
             get: jasmine.createSpy('get')
         };
 
-        sut = new DeviceListResolveService(SensorDetailService)
+        sut = new DeviceListResolveService(SensorDetailService);
     });
 
     it('should call sensorsService get method', () => {

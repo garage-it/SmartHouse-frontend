@@ -10,7 +10,6 @@ describe('device-list', () => {
     let listData;
     let numberArr;
     let mockDeviceListComponent;
-    let observable;
 
     beforeEach(() => {
         mockDeviceListComponent = ['some data'];
@@ -44,7 +43,7 @@ describe('device-list', () => {
             confirm: jasmine.createSpy('confirm')
         };
 
-        ViewContainerRef = {}
+        ViewContainerRef = {};
 
         sut = new DeviceListComponent(SensorsService, ActivatedRoute, DialogService, ViewContainerRef);
         spyOn(ActivatedRoute.data, 'subscribe').and.callThrough();
