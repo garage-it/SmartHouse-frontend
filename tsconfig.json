@@ -6,7 +6,8 @@
       "jasmine",
       "node",
       "socket.io-client",
-      "codemirror"
+      "codemirror",
+      "hammerjs"
     ],
     "typeRoots": [
       "./node_modules/@types",

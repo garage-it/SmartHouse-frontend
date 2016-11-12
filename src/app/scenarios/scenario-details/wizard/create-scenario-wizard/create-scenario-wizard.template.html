@@ -20,7 +20,9 @@
     </div>
 </div>
 
-<form class="scenario-details" (ngSubmit)="save(scenario)">
+<form class="scenario-details"
+        (ngSubmit)="save(scenario)"
+        #createScenarioWizardForm="ngForm">
     <scenario-wizard
         *ngIf="scenario && scenario.wizard"
         [scenario]="scenario"
@@ -31,5 +33,8 @@
     </scenario-wizard>
 
     <button class="waves-effect waves-light btn blue-grey darken-1"
-            type="submit">SAVE SCENARIO</button>
+            type="submit"
+            [disabled]="!createScenarioWizardForm.valid">
+        SAVE SCENARIO
+    </button>
 </form>

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestMethod, Headers} from '@angular/http';
+import { Http, RequestMethod, Headers } from '@angular/http';
 import { ShRequestOptions } from './sh-request-options';
 
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class ShHttpService {
@@ -14,7 +15,6 @@ export class ShHttpService {
     }
 
     constructor(private http: Http) {
-        this.http = http;
         this.headers = new Headers({ 'Content-Type': 'application/json' });
         this.options = new ShRequestOptions({ headers: this.headers });
     }
@@ -37,6 +37,12 @@ export class ShHttpService {
         return this.http
             .delete(url, this._getOptions('Delete', url))
             .map(ShHttpService._convertToJson);
+    }
+    setAuthHeader(token) {
+        this.headers.set('Authorization', `Bearer ${token}`);
+    }
+    removeAuthHeader() {
+        this.headers.delete('Authorization');
     }
     _getOptions(method, url) {
         return this.options.merge({

@@ -1,0 +1,72 @@
+<div class="row">
+    <div class="col m3"></div>
+    <div class="col m6 section">
+        <h2>Registration</h2><br />
+        <div class="red-text text-darken-4">{{error}}</div>
+        <form class="registration" (ngSubmit)="save()" #regForm="ngForm" novalidate>
+            <label class="registration__label">
+                Username: <b class="red-text">*</b>
+                <input [(ngModel)]="user.name"
+                       name="name"
+                       #name="ngModel"
+                       class="registration__field black-text"
+                       type="text"
+                       required
+                />
+                <div *ngIf="name.touched && name.invalid" class="registration__field-error-message red-text text-darken-4">
+                    Username should be filled
+                </div>
+            </label>
+
+            <label class="registration__label">
+                Email: <b class="red-text">*</b>
+                <input [(ngModel)]="user.email"
+                       name="email"
+                       #email="ngModel"
+                       class="registration__field black-text"
+                       type="text"
+                       pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+                       required
+                />
+                <div *ngIf="email.touched && email.errors">
+                    <span *ngIf="email.errors.required" class="red-text text-darken-4">Email should be filled</span>
+                    <span *ngIf="email.errors.pattern" class="red-text text-darken-4">Email has an invalid format</span>
+                </div>
+            </label>
+
+            <label class="registration__label">
+                Password: <b class="red-text">*</b>
+                <input [(ngModel)]="user.password"
+                       name="password"
+                       #password="ngModel"
+                       class="registration__field black-text"
+                       type="password"
+                       minlength="8"
+                       required
+                />
+                <div *ngIf="password.touched && password.errors">
+                    <span *ngIf="password.errors.required" class="red-text text-darken-4">Password should be filled</span>
+                    <span *ngIf="password.errors.minlength" class="red-text text-darken-4">Password must have at least 8 characters</span>
+                </div>
+            </label>
+
+            <label class="registration__label">
+                Password confirmation: <b class="red-text">*</b>
+                <input [(ngModel)]="user.passwordConfirm"
+                       name="passwordConfirm"
+                       #passwordConfirm="ngModel"
+                       class="registration__field black-text"
+                       type="password"
+                       required
+                />
+                <div *ngIf="passwordConfirm.touched">
+                    <span *ngIf="passwordConfirm.errors && passwordConfirm.errors.required" class="red-text text-darken-4">Password confirmation should be filled</span>
+                    <span *ngIf="passwordConfirm.value && !passwordsMatch()" class="red-text text-darken-4">Passwords do not match</span>
+                </div>
+            </label>
+
+            <button class="registration__button waves-effect waves-light btn blue-grey darken-1" type="submit"
+                    [disabled]="!regForm.form.valid || !passwordsMatch()">SUBMIT</button>
+        </form>
+    </div>
+</div>

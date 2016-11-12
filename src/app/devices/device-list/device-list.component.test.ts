@@ -3,43 +3,48 @@ import { async, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 
 import { SensorDetailService } from '../shared/sensor-detail.service';
+import { DialogService } from '../../shared/dialog/dialog.service';
 import { DeviceListComponent } from './device-list.component';
-
-
-class ObservableSubscribe {
-    constructor(private _data = {}) {}
-    subscribe(fn) { return fn(this._data); }
-}
+import { Observable } from 'rxjs';
 
 class SensorDetailServiceMock {
-    delete(data) { return new ObservableSubscribe(data); }
+    delete(data) {
+        return Observable.of(data);
+    }
+}
+
+class DialogServiceMock {
+    confirm(data) {
+        return Observable.of(data);
+    }
 }
 
 const mockDeviceListComponent = ['some data'];
 
-class DeviceListMock {}
-
 class ActivatedRouteMock {
-    private data: ObservableSubscribe;
+    private data: Observable<any>;
+
     constructor() {
-        this.data = new ObservableSubscribe({deviceList: mockDeviceListComponent});
+        this.data = Observable.of({deviceList: mockDeviceListComponent});
     }
 }
 
 describe('device-list', () => {
     let sut;
     let sensorsService;
+    let dialogService;
     let listData;
     let numberArr;
     let activatedRouteMock;
+    let observable;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [ DeviceListComponent ],
             providers: [
                 {provide: SensorDetailService, useClass: SensorDetailServiceMock },
-                {provide: ActivatedRoute, useClass: ActivatedRouteMock},
-                {provide: DeviceListMock, useValue: mockDeviceListComponent}
+                {provide: DialogService, useClass: DialogServiceMock },
+                {provide: ActivatedRoute, useClass: ActivatedRouteMock}
             ]
         })
         .overrideComponent(DeviceListComponent, {
@@ -50,6 +55,7 @@ describe('device-list', () => {
             sut = TestBed.createComponent(DeviceListComponent).componentInstance;
             activatedRouteMock = TestBed.get(ActivatedRoute);
             sensorsService = TestBed.get(SensorDetailService);
+            dialogService = TestBed.get(DialogService);
 
             numberArr = [];
             listData = [
@@ -68,6 +74,7 @@ describe('device-list', () => {
             ];
 
             spyOn(sensorsService, 'delete').and.callThrough();
+            spyOn(dialogService, 'confirm').and.callThrough();
             spyOn(activatedRouteMock.data, 'subscribe').and.callThrough();
         });
     }));
@@ -102,19 +109,31 @@ describe('device-list', () => {
             expect(sut.removeSensor).toBeDefined();
         });
 
-        it('should NOT call sensor service if user does not confirm device delete', () => {
-            const mockedSensor = {_id: 'mock'};
-            spyOn(window, 'confirm').and.returnValue(false);
-            sut.removeSensor(mockedSensor);
+        describe('before user confirmation', () => {
+            beforeEach(() => {
+                observable = Observable.create(observer => {
+                    observer.next();
+                    observer.complete();
+                });
 
-            expect(sut.sensorsService.delete).not.toHaveBeenCalledWith(mockedSensor);
+                dialogService.confirm = jasmine.createSpy('mdDialogMock.confirm').and.returnValue(observable);
+            });
+
+            it('should show confirm dialog', () => {
+                sut.removeSensor();
+                expect(dialogService.confirm).toHaveBeenCalled();
+            });
+
+            it('should NOT call sensor service if user does not confirm device delete', () => {
+                const mockedSensor = {_id: 'mock'};
+
+                sut.removeSensor(mockedSensor);
+
+                expect(sut.sensorsService.delete).not.toHaveBeenCalledWith(mockedSensor);
+            });
         });
 
         describe('After user confirmation', () => {
-            beforeEach(() => {
-                spyOn(window, 'confirm').and.returnValue(true);
-            });
-
             it('should call sensor service', () => {
                 const mockedSensor = {_id: 'mock'};
                 sut.removeSensor(mockedSensor);

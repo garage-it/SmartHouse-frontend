@@ -1,6 +1,6 @@
 import {async, TestBed} from '@angular/core/testing';
 
-import { Subject } from 'rxjs/Rx';
+import { Subject, Observable } from 'rxjs/Rx';
 import { ScenarioService } from './../shared/scenario.service';
 import { ScenarioStatusService } from './scenario-status.service';
 import {
@@ -9,28 +9,27 @@ import {
     SCENARIO_PAUSED_STATE
 } from './scenario-list.component';
 import { Router, ActivatedRoute } from '@angular/router';
+import { DialogService } from '../../shared/dialog/dialog.service';
 
 const mockScenario = {
     active: true
 };
 const mockScenarios = [mockScenario];
 
-class ObservableSubscribe {
-    constructor(private _data = {}) {}
-
-    subscribe(fn) {
-        return fn(this._data);
-    }
-}
-
 class ScenarioServiceMock {
 
     delete(data) {
-        return new ObservableSubscribe(data);
+        return Observable.of(data);
     }
 
     update(data) {
-        return new ObservableSubscribe(data);
+        return Observable.of(data);
+    }
+}
+
+class DialogServiceMock {
+    confirm(data) {
+        return Observable.of(data);
     }
 }
 
@@ -49,7 +48,7 @@ class ScenarioStatusServiceMock {
 class ActivatedRouteMock {
     private data;
     constructor(scenarioList) {
-        this.data = new ObservableSubscribe({scenarioList});
+        this.data = Observable.of({scenarioList});
     }
 }
 
@@ -58,7 +57,9 @@ describe('ScenarioListComponent', () => {
     let scenarioService;
     let router;
     let scenarioStatusService;
+    let dialogService;
     let activatedRouteMock;
+    let observable;
 
     const listData = [
         { id: '1', value: 'testValue1' },
@@ -76,6 +77,7 @@ describe('ScenarioListComponent', () => {
                 // { provide: RouteParams, useClass: RouteParamsMock },
                 { provide: Router, useClass: RouterMock },
                 { provide: ScenarioStatusService, useClass: ScenarioStatusServiceMock },
+                { provide: DialogService, useClass: DialogServiceMock },
                 { provide: ActivatedRoute, useValue: new ActivatedRouteMock(mockScenarios)}
             ]
         })
@@ -87,12 +89,14 @@ describe('ScenarioListComponent', () => {
             router = TestBed.get(Router);
             scenarioService = TestBed.get(ScenarioService);
             scenarioStatusService = TestBed.get(ScenarioStatusService);
+            dialogService = TestBed.get(DialogService);
             activatedRouteMock = TestBed.get(ActivatedRoute);
 
             sut = TestBed.createComponent(ScenarioListComponent).componentInstance;
 
             spyOn(scenarioService, 'delete').and.callThrough();
             spyOn(scenarioService, 'update').and.callThrough();
+            spyOn(dialogService, 'confirm').and.callThrough();
             spyOn(router, 'navigate').and.callThrough();
             spyOn(activatedRouteMock.data, 'subscribe').and.callThrough();
 
@@ -185,19 +189,31 @@ describe('ScenarioListComponent', () => {
     });
 
     describe('#removeScenario', () => {
-        it('should NOT call scenario service if user does not confirm scenario delete', () => {
-            const mockedScenario = {id: 'mock'};
-            spyOn(window, 'confirm').and.returnValue(false);
-            sut.removeScenario(mockedScenario);
+        describe('before user confirmation', () => {
+            beforeEach(() => {
+                observable = Observable.create(observer => {
+                    observer.next();
+                    observer.complete();
+                });
 
-            expect(scenarioService.delete).not.toHaveBeenCalledWith(mockedScenario);
+                dialogService.confirm = jasmine.createSpy('mdDialogMock.confirm').and.returnValue(observable);
+            });
+
+            it('should show confirm dialog', () => {
+                sut.removeScenario();
+                expect(dialogService.confirm).toHaveBeenCalled();
+            });
+
+            it('should NOT call scenario service if user does not confirm scenario delete', () => {
+                const mockedScenario = {id: 'mock'};
+
+                sut.removeScenario(mockedScenario);
+
+                expect(scenarioService.delete).not.toHaveBeenCalledWith(mockedScenario);
+            });
         });
 
         describe('After user confirmation', () => {
-            beforeEach(() => {
-                spyOn(window, 'confirm').and.returnValue(true);
-            });
-
             it('should call scenario service if user confirms scenario delete', () => {
                 const mockedScenario = {id: 'mock'};
                 sut.removeScenario(mockedScenario);

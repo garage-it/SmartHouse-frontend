@@ -103,13 +103,20 @@ describe('base-output-sensor', () => {
         });
     });
 
-    describe('when device data are changed', () => {
+    describe('when device related data are changed', () => {
         const valueInInternalDeviceFormat = '100';
         const convertedValue = 100;
         const positiveValue = valueInInternalDeviceFormat;
+        const device = 'device';
+
         const data = {
-            value: valueInInternalDeviceFormat
+            value: valueInInternalDeviceFormat,
+            device
         };
+
+        beforeEach(() => {
+            sut.device = { mqttId: device };
+        });
 
         describe('without data conversation', () => {
             beforeEach(() => {

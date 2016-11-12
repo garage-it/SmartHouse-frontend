@@ -1,5 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700);
 @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+@import '~@angular/material/core/theming/prebuilt/deeppurple-amber.scss';
+
 
 html {
     font-family: 'Roboto', sans-serif;
@@ -87,4 +89,18 @@ a {
 nav {
     background: #ffffff;
     box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.5);
+}
+
+.validation-alert {
+    background-color: rgb(219, 97, 102);
+    padding: 5px;
+    margin-top: -10px;
+    color: white;
+}
+
+[type=text], [type=password] {
+    &.ng-invalid.ng-touched:not([readonly]) {
+        border-bottom: 1px solid #ee6e73;
+        box-shadow: 0 1px 0 0 #ee6e73;
+    }
 }
