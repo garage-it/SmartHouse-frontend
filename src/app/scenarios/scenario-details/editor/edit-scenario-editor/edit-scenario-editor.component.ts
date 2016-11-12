@@ -4,15 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ScenarioDetailsComponent } from '../../scenario-details.component';
 import { ScenarioService } from '../../../shared/scenario.service';
 
-const template = require('../../scenario-details.template.html');
-const style = require('../../scenario-details.style.scss');
-
-const selector = 'scenario-list';
-
 @Component({
-    selector,
-    template,
-    styles: [style]
+    selector: 'scenario-list',
+    templateUrl: '../../scenario-details.template.html',
+    styleUrls: ['../../scenario-details.style.scss']
 })
 export class EditScenarioEditorComponent extends ScenarioDetailsComponent implements OnInit {
 

@@ -5,10 +5,7 @@ import { DeviceListService } from '../../../../devices/device-list/device-list.s
 
 import { ScenarioService } from '../../../shared/scenario.service';
 
-const template = require('./edit-scenario-wizard.template.html');
-
-import { CreateScenarioWizardComponent }
-    from '../create-scenario-wizard/create-scenario-wizard.component';
+import { CreateScenarioWizardComponent } from '../create-scenario-wizard/create-scenario-wizard.component';
 
 import { Condition } from '../scenario-entities/condition';
 import { Action } from '../scenario-entities/action';
@@ -18,7 +15,7 @@ import { Observable } from 'rxjs/Rx';
 
 
 @Component({
-    template
+    templateUrl: './edit-scenario-wizard.template.html'
 })
 export class EditScenarioWizardComponent extends CreateScenarioWizardComponent implements OnInit {
 
