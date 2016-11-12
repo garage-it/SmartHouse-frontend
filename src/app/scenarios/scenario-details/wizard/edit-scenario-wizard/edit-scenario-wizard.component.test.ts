@@ -64,32 +64,6 @@ describe('EditScenarioWizardComponent', () => {
             DeviceListService);
 
         sut.back = jasmine.createSpy('back');
-
-
-        // TestBed.configureTestingModule({
-        //     declarations: [ EditScenarioWizardComponent ],
-        //     providers: [
-        //         { provide: DeviceListService, useClass: DeviceListServiceMock },
-        //         { provide: ScenarioService, useClass: ScenarioServiceMock },
-        //         { provide: ActivatedRoute, useValue: new ActivatedRouteMock(id) },
-        //         { provide: Router, useClass: RouterMock}
-        //     ]
-        // })
-        // .overrideComponent(EditScenarioWizardComponent, {
-        //     set: {template: 'mocked template'}
-        // })
-        // .compileComponents()
-        // .then(() => {
-        //     sut = TestBed.createComponent(EditScenarioWizardComponent).componentInstance;
-        //
-        //     scenarioService = TestBed.get(ScenarioService);
-        //
-        //     spyOn(scenarioService, 'get').and.callThrough();
-        //     spyOn(scenarioService, 'update').and.callThrough();
-        //     spyOn(scenarioService, 'delete').and.callThrough();
-        //
-        //     spyOn(sut, 'back');
-        // });
     });
 
     describe('ngOnInit', () => {
@@ -168,11 +142,11 @@ describe('EditScenarioWizardComponent', () => {
                     expect(sut.back).toHaveBeenCalled();
                 });
 
-                // it('should not go back if request fails', () => {
-                //     ScenarioService.reqStatForTest = 404;
-                //     sut.delete(scenario);
-                //     expect(sut.back).not.toHaveBeenCalled();
-                // });
+                xit('should not go back if request fails', () => {
+                    ScenarioService.reqStatForTest = 404;
+                    sut.delete(scenario);
+                    expect(sut.back).not.toHaveBeenCalled();
+                });
             });
         });
     });

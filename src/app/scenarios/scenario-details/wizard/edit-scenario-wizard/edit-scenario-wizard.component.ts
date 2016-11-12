@@ -80,9 +80,7 @@ export class EditScenarioWizardComponent extends CreateScenarioWizardComponent i
                 this._scenarioService
                     .delete(scenario)
                     .subscribe(data => {
-                        // if (data.status === 200) {
-                            this.back();
-                        // }
+                        this.back();
                     });
             });
     }

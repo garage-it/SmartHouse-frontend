@@ -111,6 +111,10 @@ describe('sensor-detail', () => {
                 expect(DialogService.confirm).toHaveBeenCalled();
             });
 
+            it('should have proper view container ref for dialog', () => {
+                expect(DialogService.confirm.calls.mostRecent().args[0]).toEqual(ViewContainerRef);
+            });
+
             it('should not remove sensor if user cancel confirmation', () => {
                 expect(SensorDetailService.delete).not.toHaveBeenCalled;
             });
