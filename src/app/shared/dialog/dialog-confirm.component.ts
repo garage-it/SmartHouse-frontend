@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { MdDialogRef } from '@angular/material';
 
 @Component({
-    templateUrl: './dialog-confirm.html',
-    selector: 'dialog-confirm'
+    selector: 'dialog-confirm',
+    templateUrl: './dialog-confirm.html'
 })
 export class DialogConfirmComponent {
     public title: string = 'Confirm';

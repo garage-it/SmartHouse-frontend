@@ -6,8 +6,8 @@ import { Subscription } from 'rxjs/Rx';
 
 @Component({
     selector: 'sm-login',
-    styles: [require('./login.component.scss')],
-    template: require('./login.component.html')
+    styleUrls: ['./login.component.scss'],
+    templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnDestroy {
     public credentials: IUserCredentials = {
@@ -27,7 +27,6 @@ export class LoginComponent implements OnDestroy {
                 this.loggingError = true;
             });
     }
-
     ngOnDestroy() {
         if (this.loginSubscription) {
             this.loginSubscription.unsubscribe();
