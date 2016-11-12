@@ -1,13 +1,16 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs/Rx';
 import { AuthService } from '../core/auth/auth.service';
 import { IUserCredentials } from '../core/auth/auth.interfaces';
-import { Subscription } from 'rxjs/Rx';
+
+const styles = require('./login.component.scss');
+const template = require('./login.component.html');
 
 @Component({
     selector: 'sm-login',
-    styles: [require('./login.component.scss')],
-    template: require('./login.component.html')
+    styles: [styles],
+    template
 })
 export class LoginComponent implements OnDestroy {
     public credentials: IUserCredentials = {
