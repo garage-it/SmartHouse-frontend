@@ -1,10 +1,10 @@
-import {async, TestBed} from '@angular/core/testing';
+import { async, TestBed } from '@angular/core/testing';
 
 import { Router } from '@angular/router';
 
 import { DashboardEditorComponent } from './dashboard-editor.component';
 import { DashboardService } from '../dashboard.service';
-import { DragulaService} from 'ng2-dragula/ng2-dragula';
+import { DragulaService } from 'ng2-dragula/ng2-dragula';
 
 describe('DashboardEditor', () => {
     let sut;

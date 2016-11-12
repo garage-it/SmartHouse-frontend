@@ -1,4 +1,4 @@
-import {async, TestBed} from '@angular/core/testing';
+import { async, TestBed } from '@angular/core/testing';
 
 import { SensorDetailService } from './sensor-detail.service';
 import { ShHttpService } from '../../core/sh-http/sh-http.service';

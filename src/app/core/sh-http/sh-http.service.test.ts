@@ -1,4 +1,4 @@
-import {async, TestBed} from '@angular/core/testing';
+import { async, TestBed } from '@angular/core/testing';
 
 import { ShHttpService } from './sh-http.service';
 import { ShRequestOptions } from './sh-request-options';

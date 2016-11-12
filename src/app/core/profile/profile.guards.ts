@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
-import {CanActivate, Router} from '@angular/router';
-import {ProfileService} from './profile.service';
+import { Injectable } from '@angular/core';
+import { CanActivate, Router } from '@angular/router';
+import { ProfileService } from './profile.service';
 
 @Injectable()
 export class GuestGuard implements CanActivate {

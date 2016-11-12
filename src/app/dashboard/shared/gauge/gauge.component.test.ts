@@ -1,4 +1,4 @@
-import {async, TestBed} from '@angular/core/testing';
+import { async, TestBed } from '@angular/core/testing';
 
 import { GaugeComponent, GAUGE_COEFFICIENT } from './gauge.component';
 
