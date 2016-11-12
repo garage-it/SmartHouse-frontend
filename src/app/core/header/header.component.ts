@@ -2,11 +2,7 @@ import { Component, OnInit} from '@angular/core';
 
 import ROUTING from '../../config.routing';
 
-const style = require('./header.component.scss');
-const template = require('./header.component.html');
-
 const HEADER_COMPONENT_SELECTOR = 'sh-header';
-
 
 export const NAVIGATION_ROUTES = [
     { path: `/${ROUTING.DASHBOARD}`, headerName: 'Dashboard', iconImage: './assets/dashboard.svg', main: true},
@@ -20,8 +16,8 @@ export const NAVIGATION_ROUTES = [
 
 @Component({
     selector: HEADER_COMPONENT_SELECTOR,
-    styles: [style],
-    template
+    styleUrls: ['./header.component.scss'],
+    templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit {
 
