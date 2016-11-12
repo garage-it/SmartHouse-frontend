@@ -109,17 +109,18 @@ describe('EditScenarioWizardComponent', () => {
 
     describe('Delete scenario', () => {
         describe('before user confirmation', () => {
+            const confirmOptions = {
+                title: '',
+                message: 'Are you sure you want to delete this scenario?'
+            };
+
             beforeEach(() => {
                 DialogService.confirm.and.returnValue(Observable.of(false));
                 sut.delete(scenario);
             });
 
-            it('should show confirm dialog', () => {
-                expect(DialogService.confirm).toHaveBeenCalled;
-            });
-
-            it('should have proper view container ref for dialog', () => {
-                expect(DialogService.confirm.calls.mostRecent().args[0]).toEqual(ViewContainerRef);
+            it('should show confirm dialog with proper view container ref and options', () => {
+                expect(DialogService.confirm).toHaveBeenCalledWith(ViewContainerRef, confirmOptions);
             });
 
             it('should not remove scenario if user cancel confirmation', () => {

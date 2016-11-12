@@ -96,6 +96,10 @@ describe('sensor-detail', () => {
 
     describe('#remove', () => {
         const sensorMock = {};
+        const confirmOptions = {
+            title: '',
+            message: 'Are you sure you want to delete this sensor?'
+        };
 
         beforeEach(() => {
             sut.sensor = sensorMock;
@@ -107,12 +111,8 @@ describe('sensor-detail', () => {
                 sut.remove();
             });
 
-            it('should show confirm dialog', () => {
-                expect(DialogService.confirm).toHaveBeenCalled();
-            });
-
-            it('should have proper view container ref for dialog', () => {
-                expect(DialogService.confirm.calls.mostRecent().args[0]).toEqual(ViewContainerRef);
+            it('should show confirm dialog with proper view and options', () => {
+                expect(DialogService.confirm).toHaveBeenCalledWith(ViewContainerRef, confirmOptions);
             });
 
             it('should not remove sensor if user cancel confirmation', () => {
