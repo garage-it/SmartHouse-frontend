@@ -1,4 +1,4 @@
-import {async, TestBed} from '@angular/core/testing';
+import { async, TestBed } from '@angular/core/testing';
 
 import { SensorExecutorWidgetComponent } from './sensor-executor-widget.component';
 import { SensorWidgetService } from '../shared/sensor-widget/sensor-widget.service';

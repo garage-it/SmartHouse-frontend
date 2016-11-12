@@ -1,4 +1,4 @@
-import {async, TestBed} from '@angular/core/testing';
+import { async, TestBed } from '@angular/core/testing';
 
 import { Subject, Observable } from 'rxjs/Rx';
 import { ScenarioService } from './../shared/scenario.service';

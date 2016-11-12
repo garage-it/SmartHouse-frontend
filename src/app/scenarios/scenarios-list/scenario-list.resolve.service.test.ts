@@ -1,7 +1,7 @@
-import {ScenarioListResolveService} from './scenario-list.resolve.service';
-import {ScenarioService} from '../shared/scenario.service';
+import { ScenarioListResolveService } from './scenario-list.resolve.service';
+import { ScenarioService } from '../shared/scenario.service';
 
-import {async, TestBed} from '@angular/core/testing';
+import { async, TestBed } from '@angular/core/testing';
 
 const observableMock = {};
 

@@ -1,4 +1,4 @@
-import {async, TestBed} from '@angular/core/testing';
+import { async, TestBed } from '@angular/core/testing';
 
 import { Observable } from 'rxjs/Rx';
 import { EditScenarioWizardComponent } from './edit-scenario-wizard.component';

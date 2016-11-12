@@ -1,4 +1,4 @@
-import {async, TestBed} from '@angular/core/testing';
+import { async, TestBed } from '@angular/core/testing';
 
 import { Router, ActivatedRoute } from '@angular/router';
 import { ScenarioService } from '../../../shared/scenario.service';
