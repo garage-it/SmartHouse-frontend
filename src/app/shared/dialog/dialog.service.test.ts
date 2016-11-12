@@ -1,68 +1,65 @@
 import { DialogService } from './dialog.service';
-import { MdDialog, MdDialogConfig } from '@angular/material';
+import { MdDialogConfig } from '@angular/material';
 import { DialogConfirmComponent } from './dialog-confirm.component';
-import { TestBed, async } from '@angular/core/testing';
-
-class MdDialogMock {}
 
 describe('DialogService', () => {
     let sut;
-    let viewContainerRef;
-    let mdDialogMock;
+    let ViewContainerRef;
+    let MdDialog;
     let dialogRef;
     let observable;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            providers: [
-                {provide: MdDialog, useClass: MdDialogMock },
-                DialogService
-            ]
-        })
-        .compileComponents()
-        .then(() => {
-            viewContainerRef = {};
+    beforeEach(() => {
+        ViewContainerRef = {};
 
-            mdDialogMock = TestBed.get(MdDialog);
+        dialogRef = {
+            componentInstance: {},
+            afterClosed() { return observable; }
+        };
 
-            dialogRef = {
-                componentInstance: {},
-                afterClosed() { return observable; }
-            };
-            mdDialogMock.open = jasmine.createSpy('mdDialogMock.open').and.returnValue(dialogRef);
+        MdDialog = {
+            open: jasmine.createSpy('open').and.returnValue(dialogRef)
+        };
 
-            sut = TestBed.get(DialogService);
-        });
-    }));
+        sut = new DialogService(MdDialog);
+    });
 
     it('should be defined', () => {
         expect(sut).toBeDefined();
     });
 
     describe('#confirm', () => {
-        const options = {
-            title: Math.random()
-        };
-
         let result;
 
-        beforeEach(() => {
-            result = sut.confirm(viewContainerRef, options);
-        });
-
         it('should open dialog with confirm component and config', () => {
+            result = sut.confirm(ViewContainerRef);
+
             let config = new MdDialogConfig();
-            config.viewContainerRef = viewContainerRef;
+            config.viewContainerRef = ViewContainerRef;
 
-            expect(mdDialogMock.open).toHaveBeenCalledWith(DialogConfirmComponent, config);
-        });
-
-        it('should override component properties with proper options', () => {
-            expect(dialogRef.componentInstance).toEqual(options);
+            expect(MdDialog.open).toHaveBeenCalledWith(DialogConfirmComponent, config);
         });
 
         it('should return observable after close', () => {
             expect(result).toEqual(observable);
+        });
+
+        describe('when no additional dialog options', () => {
+            it('should not override component properties', () => {
+                sut.confirm(ViewContainerRef);
+                expect(dialogRef.componentInstance).toEqual({});
+            });
+        });
+
+        describe('when additional dialog options', () => {
+            const options = {
+                title: Math.random()
+            };
+
+            it('should override component properties with proper options', () => {
+                sut.confirm(ViewContainerRef, options);
+                expect(dialogRef.componentInstance).toEqual(options);
+            });
         });
     });
 });

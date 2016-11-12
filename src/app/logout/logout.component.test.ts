@@ -1,55 +1,34 @@
-import { TestBed, inject, ComponentFixture } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-
-import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
-
 import { LogoutComponent } from './logout.component';
 
-import { CoreModule } from '../core/core.module';
-import { AuthService } from '../core/auth/auth.service';
-
-describe('Logout', function () {
-    function createComponent(): ComponentFixture<LogoutComponent> {
-        return TestBed.createComponent(LogoutComponent);
-    }
+describe('Logout component', () => {
+    let sut;
+    let router;
+    let AuthService;
 
     beforeEach(() => {
-        TestBed.configureTestingModule({
-            imports: [
-                CommonModule,
-                RouterTestingModule,
-                CoreModule
-            ],
-            declarations: [ LogoutComponent ],
-            providers: [
-                AuthService
-            ]
-        });
+        AuthService = {
+            logout: jasmine.createSpy('login')
+        };
+        router = {
+            navigate: jasmine.createSpy('navigate')
+        };
+        sut = new LogoutComponent(AuthService, router);
     });
 
-    describe('Logic', () => {
-        describe('#ngOnInit', () => {
-            it('should logout and redirect to home',
-                inject([AuthService, Router], (auth: AuthService, router: Router) => {
-                    // Data
-                    const homeUrl = '/';
+    describe('on component init', () => {
+        let homePage;
 
-                    // Spies
-                    spyOn(auth, 'logout');
-                    spyOn(router, 'navigate');
+        beforeEach(() => {
+            homePage = '/';
+            sut.ngOnInit();
+        });
 
-                    // Prepare
-                    const fixture = createComponent();
+        it('should logout user', () => {
+            expect(AuthService.logout).toHaveBeenCalled();
+        });
 
-                    // Run
-                    fixture.detectChanges();
-
-                    // Expect
-                    expect(auth.logout).toHaveBeenCalled();
-                    expect(router.navigate).toHaveBeenCalledWith([homeUrl]);
-                })
-            );
+        it('should navigate to home page', () => {
+            expect(router.navigate).toHaveBeenCalledWith([homePage]);
         });
     });
 });
