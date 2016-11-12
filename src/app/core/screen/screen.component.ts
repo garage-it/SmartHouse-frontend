@@ -1,11 +1,7 @@
 import { Component } from '@angular/core';
 
-const template = require('./screen.component.html');
-
-const SCREEN_COMPONENT_SELECTOR = 'sh-screen';
-
 @Component({
-    selector: SCREEN_COMPONENT_SELECTOR,
-    template
+    selector: 'sh-screen',
+    templateUrl: './screen.component.html'
 })
 export class ScreenComponent {}

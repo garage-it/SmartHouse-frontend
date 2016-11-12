@@ -5,15 +5,10 @@ import { Sensor } from './sensor';
 import { SensorDetailService } from '../shared/sensor-detail.service';
 import ROUTING from './../../config.routing';
 
-const template = require('./sensor-detail.template.html');
-const style = require('./sensor-detail.style.scss');
-
-const selector = 'sh-sensor-detail';
-
 @Component({
-    selector,
-    template,
-    styles: [style]
+    selector: 'sh-sensor-detail',
+    templateUrl: './sensor-detail.template.html',
+    styleUrls: ['./sensor-detail.style.scss']
 })
 export class SensorDetailComponent {
 

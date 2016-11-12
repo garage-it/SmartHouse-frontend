@@ -2,14 +2,11 @@ import { Component, Input } from '@angular/core';
 
 import { BaseSensor } from '../shared/base-sensor/base-sensor';
 
-const template = require('./sensor-status-widget.template.html');
-const baseStyles = require('../shared/sensor-widget/sensor-widget.style.scss');
-const styles = require('./sensor-status-widget.style.scss');
-
 @Component({
     selector: 'sm-sensor-status-widget',
-    template,
-    styles: [baseStyles, styles]
+    templateUrl: './sensor-status-widget.template.html',
+    styleUrls: ['../shared/sensor-widget/sensor-widget.style.scss',
+        './sensor-status-widget.style.scss']
 })
 export class SensorStatusWidgetComponent extends BaseSensor {
 
