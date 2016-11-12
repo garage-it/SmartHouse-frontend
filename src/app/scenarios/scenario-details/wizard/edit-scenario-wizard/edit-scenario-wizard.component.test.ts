@@ -141,12 +141,6 @@ describe('EditScenarioWizardComponent', () => {
                     sut.delete(scenario);
                     expect(sut.back).toHaveBeenCalled();
                 });
-
-                xit('should not go back if request fails', () => {
-                    ScenarioService.reqStatForTest = 404;
-                    sut.delete(scenario);
-                    expect(sut.back).not.toHaveBeenCalled();
-                });
             });
         });
     });
