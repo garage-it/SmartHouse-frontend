@@ -9,7 +9,7 @@ export class DialogService {
         private dialog: MdDialog
     ) { }
 
-    confirm(viewContainerRef: ViewContainerRef, options: Object) {
+    confirm(viewContainerRef: ViewContainerRef, options?: Object) {
         let dialogRef: MdDialogRef<DialogConfirmComponent>;
 
         let config = new MdDialogConfig();
