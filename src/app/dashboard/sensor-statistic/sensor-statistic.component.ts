@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import CHART_PERIOD from '../chart-widget/chart-period.const';
 const template = require('./sensor-statistic.template.html');
