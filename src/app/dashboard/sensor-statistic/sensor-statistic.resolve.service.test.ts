@@ -12,7 +12,7 @@ describe('SensorStatisticResolveService', () => {
 
     beforeEach(() => {
         DashboardService = {
-            getStatistic: jasmine.createSpy()
+            getStatistic: jasmine.createSpy('getStatistic')
         };
         sut = new SensorStatisticResolveService(DashboardService);
     });

@@ -3,7 +3,6 @@ import { ChartWidgetComponent } from './chart-widget.component';
 describe('ChartWidgetComponent', () => {
     let sut;
     let ActivatedRoute;
-    let ChartPeriodFormatterService;
     let routeSubscription;
     let xAxisNames;
 
@@ -23,10 +22,7 @@ describe('ChartWidgetComponent', () => {
                 subscribe: jasmine.createSpy('subscribe').and.returnValue(routeSubscription)
             }
         };
-        ChartPeriodFormatterService = {
-            getLabels: jasmine.createSpy('getLabels').and.returnValue(xAxisNames)
-        };
-        sut = new ChartWidgetComponent(ActivatedRoute, ChartPeriodFormatterService);
+        sut = new ChartWidgetComponent(ActivatedRoute);
     });
 
     describe('when component is initialized', () => {
@@ -77,17 +73,20 @@ describe('ChartWidgetComponent', () => {
             expect(sut.options.title.text).toBe('Statistic for ' + sut.deviceStatistic.sensor + '  sensor');
         });
 
-        it('should set appropriate date format on xAxis depends on choosing period', () => {
+        it('should set appropriate type of X axis', () => {
             sut.ngOnChanges();
-            expect(sut.options.xAxis[0].categories).toBe(xAxisNames);
+            expect(sut.options.xAxis.type).toEqual('datetime');
         });
 
-        it('should get new xAxis names when period is changed', () => {
-            let newData = [{}, {}];
-            sut.deviceStatistic.data = newData;
-            sut.period = 'year';
+        it('should rotate X-axis labels on 45 degrees', () => {
             sut.ngOnChanges();
-            expect(ChartPeriodFormatterService.getLabels).toHaveBeenCalledWith(newData, 'year');
+            expect(sut.options.xAxis.labels.rotation).toEqual(-45);
+        });
+
+        it('should format date due to chosen period of time', () => {
+            sut.period = 'month';
+            sut.ngOnChanges();
+            expect(sut.options.xAxis.labels.format).toEqual('{value:%d}');
         });
 
         it('should display data in yAxis depends of type of sensor', () => {

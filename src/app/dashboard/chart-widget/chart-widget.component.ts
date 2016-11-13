@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ChartPeriodFormatterService } from './chart-period-formatter.service';
 
 const template = require('./chart-widget.template.html');
 const styles = require('./chart-widget.styles.scss');
@@ -10,12 +9,17 @@ const measurementUnit = {
     'humidity': '%',
     'temperature': '°C'
 };
+const dateLabels = {
+    'day': '{value:%H}',
+    'week': '{value:%a}',
+    'month': '{value:%d}',
+    'year': '{value:%b}'
+};
 
 @Component({
     selector: 'sm-chart-widget',
     template: template,
-    styles: [styles],
-    providers: [ChartPeriodFormatterService]
+    styles: [styles]
 })
 export class ChartWidgetComponent {
     @Input() deviceStatistic;
@@ -24,8 +28,7 @@ export class ChartWidgetComponent {
     private deviceId;
     private period;
 
-    constructor(private currentRoute: ActivatedRoute,
-                private chartPeriodFormatterService: ChartPeriodFormatterService) {
+    constructor(private currentRoute: ActivatedRoute) {
         this.deviceId = this.currentRoute.snapshot.params['id'];
         this.period = this.currentRoute.snapshot.params['period'];
     }
@@ -44,10 +47,14 @@ export class ChartWidgetComponent {
         this.options = {
             chart: { type: 'spline' },
             title: { text : `Statistic for ${this.deviceStatistic.sensor}  sensor`},
-            xAxis: [{
-                categories: this.chartPeriodFormatterService.getLabels(this.deviceStatistic.data, this.period),
-                crosshair: true
-            }],
+            xAxis: {
+                type: 'datetime',
+                labels: {
+                    rotation: -45,
+                    format: dateLabels[this.period]
+                },
+                categories: this.deviceStatistic.data.map(item => (new Date(item.date)))
+            },
             yAxis: [{
                 labels: {
                     format: `{value}${measurementUnit[this.deviceId]}`,
