@@ -1,5 +1,4 @@
 import { CreateScenarioEditorComponent } from './create-scenario-editor.component';
-import { ScenarioService } from '../../../shared/scenario.service';
 
 describe('CreateScenarioEditor', () => {
     let scenarioService;
@@ -11,8 +10,11 @@ describe('CreateScenarioEditor', () => {
             iam: 'a scenario'
         };
 
-        scenarioService = jasmine.createSpyComponent(ScenarioService);
-        scenarioService.create.and.returnValue({ subscribe(fn) { fn(); } });
+        scenarioService = {
+            create: jasmine.createSpy('create').and.returnValue({
+                subscribe(fn) { fn(); }
+            })
+        };
         sut = new CreateScenarioEditorComponent(scenarioService, null, null);
         spyOn(sut, 'back');
     });
