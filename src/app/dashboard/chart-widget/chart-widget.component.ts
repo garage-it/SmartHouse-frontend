@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 const template = require('./chart-widget.template.html');
@@ -21,7 +21,7 @@ const dateLabels = {
     template: template,
     styles: [styles]
 })
-export class ChartWidgetComponent {
+export class ChartWidgetComponent implements OnInit, OnChanges, OnDestroy {
     @Input() deviceStatistic;
     options: Object;
     private periodSubscription;

@@ -44,12 +44,10 @@ describe('DashboardService', () => {
         });
 
         describe('on get widgets error', () => {
-            let error;
-            let errorMessage;
+            const error = Symbol('some server error');
+            const errorMessage = Symbol('some error message');
 
             beforeEach(() => {
-                error = Symbol('some server error');
-                errorMessage = Symbol('some error message');
                 httpMock.get.and.returnValue(Observable.throw(error));
                 httpUtilsMock.extractErrorMessage.and.returnValue(Observable.throw(errorMessage));
                 sut.getWidgets().subscribe(successCb, failCb);
@@ -66,16 +64,15 @@ describe('DashboardService', () => {
     });
 
     describe('#getStatistics', () => {
-        let deviceId, period;
+        const deviceId = 'some device id';
+        const period = 'some period';
 
         beforeEach(() => {
-            deviceId = Math.random();
-            period = Math.random();
             sut.getStatistic(deviceId, period);
         });
 
         it('should get statistics of the sensor from the server', () => {
-            let params = new URLSearchParams();
+            const params = new URLSearchParams();
             params.set('period', period);
             params.set('sensor', deviceId);
             expect(httpMock.get).toHaveBeenCalledWith('/timeseries', params);

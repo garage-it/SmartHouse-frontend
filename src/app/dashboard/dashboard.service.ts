@@ -7,6 +7,7 @@ import { URLSearchParams } from '@angular/http';
 
 @Injectable()
 export class DashboardService {
+
     constructor(private http: ShHttpService, private httpUtils: ShHttpUtilsService) { }
 
     getWidgets(): Observable<any> {
@@ -17,7 +18,7 @@ export class DashboardService {
     }
 
     getStatistic(deviceId, period): Observable<any> {
-        let params = new URLSearchParams();
+        const params = new URLSearchParams();
         params.set('period', period);
         params.set('sensor', deviceId);
 

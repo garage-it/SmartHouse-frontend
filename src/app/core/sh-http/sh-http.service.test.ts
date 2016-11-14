@@ -126,8 +126,8 @@ describe('ShHttpService', () => {
     });
 
     describe('request headers', () => {
-        let mockToken = Symbol('some mock token');
-        let mockAuthHeader = `Bearer ${mockToken}`;
+        const mockToken = Symbol('some mock token');
+        const mockAuthHeader = `Bearer ${mockToken}`;
 
         beforeEach(() => {
             spyOn(sut.headers, 'set');

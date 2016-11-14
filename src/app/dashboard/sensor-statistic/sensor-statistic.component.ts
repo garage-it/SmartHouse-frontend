@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import CHART_PERIOD from '../chart-widget/chart-period.const';
+import ChartPeriod from '../chart-widget/chart-period.enum';
 const template = require('./sensor-statistic.template.html');
 const style = require('./sensor-statistic.styles.scss');
 
@@ -12,7 +12,7 @@ const selector = 'sensor-statistic';
     template,
     styles: [style]
 })
-export class SensorStatisticComponent {
+export class SensorStatisticComponent implements OnInit, OnDestroy {
     private defaultResolver;
     private deviceStatistic;
     private sensorId;
@@ -24,9 +24,12 @@ export class SensorStatisticComponent {
     }
 
     ngOnInit() {
-        Object.keys(CHART_PERIOD).forEach(key => {
-            this.periods.push(CHART_PERIOD[key]);
-        });
+        this.periods = [
+            ChartPeriod[ChartPeriod['day']],
+            ChartPeriod[ChartPeriod['week']],
+            ChartPeriod[ChartPeriod['month']],
+            ChartPeriod[ChartPeriod['year']]
+        ];
 
         this.sensorId = this.currentRoute.snapshot.params['id'];
 
@@ -34,6 +37,7 @@ export class SensorStatisticComponent {
             this.deviceStatistic = deviceStatistic;
         });
     }
+
     ngOnDestroy() {
         this.defaultResolver.unsubscribe();
     }

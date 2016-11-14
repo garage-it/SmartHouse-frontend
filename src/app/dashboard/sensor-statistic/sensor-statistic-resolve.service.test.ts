@@ -1,4 +1,4 @@
-import { SensorStatisticResolveService } from './sensor-statistic.resolve.service';
+import { SensorStatisticResolveService } from './sensor-statistic-resolve.service';
 
 describe('SensorStatisticResolveService', () => {
     let sut;
