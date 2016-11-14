@@ -67,13 +67,21 @@ describe('ScenarioListComponent', () => {
             expect(mockScenario['status']).toBe(SCENARIO_ACTIVE_STATE);
         });
 
-        it('should update scenario status on event', () => {
+        describe('when event', () => {
             const pausedState = false;
-            sut.scenarioList = listData;
-            ScenarioStatusService.stream.next({id: listData[1].id, active: pausedState});
 
-            expect(sut.scenarioList[1].active).toBe(pausedState);
-            expect(sut.scenarioList[1].status).toBe(SCENARIO_PAUSED_STATE);
+            beforeEach(() => {
+                sut.scenarioList = listData;
+                ScenarioStatusService.stream.next({id: listData[1].id, active: pausedState});
+            });
+
+            it('should update scenario state', () => {
+                expect(sut.scenarioList[1].active).toBe(pausedState);
+            });
+
+            it('should update scenario status', () => {
+                expect(sut.scenarioList[1].status).toBe(SCENARIO_PAUSED_STATE);
+            });
         });
     });
 

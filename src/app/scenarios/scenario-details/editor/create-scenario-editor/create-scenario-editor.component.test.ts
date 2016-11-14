@@ -1,4 +1,5 @@
 import { CreateScenarioEditorComponent } from './create-scenario-editor.component';
+import { Observable } from 'rxjs';
 
 describe('CreateScenarioEditor', () => {
     let scenarioService;
@@ -11,9 +12,7 @@ describe('CreateScenarioEditor', () => {
         };
 
         scenarioService = {
-            create: jasmine.createSpy('create').and.returnValue({
-                subscribe(fn) { fn(); }
-            })
+            create: jasmine.createSpy('create').and.returnValue(Observable.of(1))
         };
         sut = new CreateScenarioEditorComponent(scenarioService, null, null);
         spyOn(sut, 'back');
