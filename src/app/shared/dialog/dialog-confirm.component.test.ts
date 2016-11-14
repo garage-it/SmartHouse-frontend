@@ -1,27 +1,13 @@
-import { async, TestBed } from '@angular/core/testing';
 import { DialogConfirmComponent } from './dialog-confirm.component';
-import { MdDialogRef } from '@angular/material';
-
-class MdDialogRefMock {}
 
 describe('dialog-confirm', () => {
     let sut;
     let mdDialogRef;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            declarations: [ DialogConfirmComponent ],
-            providers: [
-                {provide: MdDialogRef, useClass: MdDialogRefMock }
-            ]
-        })
-        .compileComponents()
-        .then(() => {
-            sut = TestBed.createComponent(DialogConfirmComponent).componentInstance;
-            mdDialogRef = TestBed.get(MdDialogRef);
-            mdDialogRef.close = jasmine.createSpy('mdDialogRef.close');
-        });
-    }));
+    beforeEach(() => {
+        mdDialogRef = jasmine.createSpyObj('mdDialogRef', ['close']);
+        sut = new DialogConfirmComponent(mdDialogRef);
+    });
 
     describe('#init', () => {
         it('should have reference to opened dialog', () => {

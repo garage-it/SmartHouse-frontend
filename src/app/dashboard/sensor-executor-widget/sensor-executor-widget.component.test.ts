@@ -1,69 +1,38 @@
-import { async, TestBed } from '@angular/core/testing';
-
 import { SensorExecutorWidgetComponent } from './sensor-executor-widget.component';
-import { SensorWidgetService } from '../shared/sensor-widget/sensor-widget.service';
-import { DEVICE_ON_STATE, DEVICE_OFF_STATE } from '../shared/base-output-sensor/base-output-sensor';
-
-
-class SensorWidgetServiceMock {
-    subscribe(device, callback) {
-        return callback('test');
-    }
-    unsubscribe() {}
-
-    pushEvent() {}
-}
 
 describe('Sensor-executor-widget', () => {
     let sut;
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            declarations: [ SensorExecutorWidgetComponent ],
-            providers: [ {provide: SensorWidgetService, useClass: SensorWidgetServiceMock }]
-        })
-        .overrideComponent(SensorExecutorWidgetComponent, {
-            set: {template: 'mocked template'}
-        })
-        .compileComponents()
-        .then(() => {
-            sut = TestBed.createComponent(SensorExecutorWidgetComponent).componentInstance;
-            sut.data = {};
-            sut.device = {
-                mqttId: 'mock'
-            };
-            spyOn(sut, 'pushEvent').and.callThrough();
-            spyOn(sut, 'fromDeviceRepresentation').and.callThrough();
-        });
-    }));
+
+    beforeEach(() => {
+        sut = new SensorExecutorWidgetComponent(null);
+        sut.pushEvent = jasmine.createSpy('pushEvent');
+    });
 
     describe('Switch executor', () => {
         it('should push command when executor change state', () => {
-            const $eventMock = {
+            const $event = {
                 target: {checked: true}
             };
-            sut.switchExecutor($eventMock);
+            sut.switchExecutor($event);
             expect(sut.pushEvent).toHaveBeenCalledWith(
-                $eventMock.target.checked,
-                DEVICE_ON_STATE,
-                DEVICE_OFF_STATE
+                $event.target.checked,
+                'ON',
+                'OFF'
             );
         });
+    });
 
-        describe('when receiving device related data', () => {
-            beforeEach(() => {
-                sut.onDeviceDataChanged({
-                    value: 'ON',
-                    device: sut.device.mqttId
-                });
-            });
+    describe('when receiving device related data', () => {
+        let result;
 
-            it('should convert data to SM format', () => {
-                expect(sut.fromDeviceRepresentation).toHaveBeenCalledWith('ON');
-            });
+        it('should enable executor data when receive ON from device', () => {
+            result = sut.fromDeviceRepresentation('ON');
+            expect(result).toEqual(true);
+        });
 
-            it('should enable executor data when receive ON from device', () => {
-                expect(sut.data.value).toEqual(true);
-            });
+        it('should not enable executor data when receive not ON from device', () => {
+            result = sut.fromDeviceRepresentation('other');
+            expect(result).toEqual(false);
         });
     });
 });
