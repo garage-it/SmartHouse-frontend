@@ -1,10 +1,5 @@
-import { async, TestBed } from '@angular/core/testing';
-
-import { Router } from '@angular/router';
-
 import { DashboardEditorComponent } from './dashboard-editor.component';
-import { DashboardService } from '../dashboard.service';
-import { DragulaService } from 'ng2-dragula/ng2-dragula';
+import { Observable } from 'rxjs/Rx';
 
 describe('DashboardEditor', () => {
     let sut;
@@ -12,41 +7,28 @@ describe('DashboardEditor', () => {
     let dragulaService;
     let dashboardService;
 
-    beforeEach(async(() => {
-        dashboardService = jasmine.createSpyComponent(DashboardService);
+    beforeEach(() => {
+        dashboardService = {
+            getWidgets: jasmine.createSpy('getWidgets'),
+            applyChanges: jasmine.createSpy('applyChanges'),
+            compareWidgetsLists: jasmine.createSpy('compareWidgetsLists')
+        };
         router = {
             navigate: jasmine.createSpy('navigate')
         };
-        dragulaService = jasmine.createSpyComponent(DragulaService);
-
-        TestBed.configureTestingModule({
-            declarations: [DashboardEditorComponent],
-            providers: [
-                {provide: DashboardService, useValue: dashboardService},
-                {provide: Router, useValue: router},
-                {provide: DragulaService, useValue: dragulaService}
-            ]
-        })
-        .overrideComponent(DashboardEditorComponent, {
-            set: {template: 'mocked template'}
-        })
-        .compileComponents()
-        .then(() => {
-            sut = TestBed.createComponent(DashboardEditorComponent).componentInstance;
-        });
-    }));
+        dragulaService = {
+            setOptions: jasmine.createSpy('setOptions'),
+            destroy: jasmine.createSpy('destroy')
+        };
+        sut = new DashboardEditorComponent(dashboardService, router, dragulaService);
+    });
 
     describe('On Init', () => {
-        let subscribeHandler;
-        const devices = [{mqttId: 'test'}];
-        const responseData = {devices};
+        const devices = Symbol('devices');
 
         beforeEach(() => {
-            dashboardService.getWidgets.and.returnValue({
-                subscribe: (callback) => {
-                    subscribeHandler = callback;
-                }
-            });
+            dashboardService.getWidgets.and.returnValue(Observable.of({ devices }));
+            spyOn(sut, 'setInitialData');
             sut.ngOnInit();
         });
 
@@ -55,13 +37,11 @@ describe('DashboardEditor', () => {
         });
 
         it('should store received widgets', () => {
-            subscribeHandler(responseData);
             expect(sut.widgets).toEqual(devices);
         });
 
         it('should set initial data', () => {
-            subscribeHandler(responseData);
-            expect(sut.initialData).toEqual(devices);
+            expect(sut.setInitialData).toHaveBeenCalledWith(devices);
         });
 
         it('should set initial data of drag and drop', () => {
@@ -73,44 +53,63 @@ describe('DashboardEditor', () => {
     });
 
     describe('On Destroy', () => {
-        it('should destroy drag and drop listeners when component is destroyed', () => {
+        beforeEach(() => {
             sut.ngOnDestroy();
+        });
+
+        it('should destroy drag and drop listeners when component is destroyed', () => {
             expect(dragulaService.destroy).toHaveBeenCalledWith('dashboard-editor');
         });
     });
 
-    describe('#applyChanges', () => {
+    describe('on apply changes', () => {
+        const currentWidgets = Symbol('current widget');
+
         beforeEach(() => {
             spyOn(sut, 'exitEditMode');
-            dashboardService.applyChanges.and.returnValue({ subscribe(fn) { fn(); } });
-            sut.applyChanges([]);
+            sut.widgets = currentWidgets;
+            dashboardService.applyChanges.and.returnValue(Observable.of(Symbol('something')));
+            sut.applyChanges();
         });
 
         it('should save changes', () => {
-            expect(dashboardService.applyChanges).toHaveBeenCalledWith([]);
+            expect(dashboardService.applyChanges).toHaveBeenCalledWith(currentWidgets);
         });
 
-        it('should exit edit mode', () => {
+        it('should exit edit mode after successfully changenges applied', () => {
             expect(sut.exitEditMode).toHaveBeenCalled();
         });
     });
 
-    describe('#exitEditMode', () => {
-        it('should exit edit mode', () => {
+    describe('exit edit mode', () => {
+        beforeEach(() => {
             sut.exitEditMode();
+        });
+
+        it('should exit edit mode', () => {
             expect(router.navigate).toHaveBeenCalledWith(['/dashboard']);
         });
     });
 
-    describe('#isApplyDisabled', () => {
-        it('should disable apply button if there is nothing to save', () => {
-            dashboardService.compareWidgetsLists.and.returnValue(true);
-            expect(sut.isApplyDisabled()).toBe(true);
+    describe('is apply disabled', () => {
+        const areSimilar = Symbol('are widgets lists similar');
+        const initialWidgets = Symbol('initial widgets list');
+        const updatedWidgets = Symbol('updatet widgets list');
+
+        beforeEach(() => {
+            sut.initialData = initialWidgets;
+            sut.widgets = updatedWidgets;
+            dashboardService.compareWidgetsLists.and.returnValue(areSimilar);
+            sut.isApplyDisabled();
+        });
+
+        it('should check are widgets list simmilar', () => {
+            expect(dashboardService.compareWidgetsLists)
+                .toHaveBeenCalledWith(initialWidgets, updatedWidgets);
         });
 
         it('should enable apply button if there are any changes', () => {
-            dashboardService.compareWidgetsLists.and.returnValue(false);
-            expect(sut.isApplyDisabled()).toBe(false);
+            expect(sut.isApplyDisabled()).toBe(areSimilar);
         });
     });
 });
