@@ -4,8 +4,9 @@ import { DashboardService } from './dashboard.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Injectable()
-export class DashboardResolveService  {
-    constructor(private dashboardService: DashboardService, private toastr: ToastsManager) { }
+export class DashboardResolveService {
+
+    constructor(private dashboardService: DashboardService, private toastr: ToastsManager) {}
 
     resolve() {
         return this.dashboardService.getWidgets()

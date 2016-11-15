@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestMethod, Headers } from '@angular/http';
+import { Http, RequestMethod, Headers, URLSearchParams } from '@angular/http';
 import { ShRequestOptions } from './sh-request-options';
 
 @Injectable()
@@ -12,9 +12,9 @@ export class ShHttpService {
         this.options = new ShRequestOptions({ headers: this.headers });
     }
 
-    get(url) {
+    get(url, params?: URLSearchParams) {
         return this.http
-            .get(url, this.getRequestOptions('Get', url))
+            .get(url, this.getRequestOptions('Get', url, params))
             .map(this.convertToJson);
     }
 
@@ -48,8 +48,9 @@ export class ShHttpService {
         return data.json();
     }
 
-    private getRequestOptions(method, url) {
+    private getRequestOptions(method, url, params?: URLSearchParams) {
         return this.options.merge({
+            search: params,
             method: RequestMethod[method],
             url
         });

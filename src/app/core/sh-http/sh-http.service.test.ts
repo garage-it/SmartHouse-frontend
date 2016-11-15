@@ -23,15 +23,16 @@ describe('ShHttpService', () => {
 
         describe('get method', () => {
             const getRequestOptions = Symbol('get request options');
+            const params = {};
 
             beforeEach(() => {
                 httpMock.get.and.returnValue(Observable.of(mockResponse));
                 sut.getRequestOptions.and.returnValue(getRequestOptions);
-                sut.get(urlMock).subscribe(() => {});
+                sut.get(urlMock, params).subscribe(() => {});
             });
 
             it('should get proper request options', () => {
-                expect(sut.getRequestOptions).toHaveBeenCalledWith('Get', urlMock);
+                expect(sut.getRequestOptions).toHaveBeenCalledWith('Get', urlMock, params);
             });
 
             it('should get data from server', () => {
@@ -125,8 +126,8 @@ describe('ShHttpService', () => {
     });
 
     describe('request headers', () => {
-        let mockToken = Symbol('some mock token');
-        let mockAuthHeader = `Bearer ${mockToken}`;
+        const mockToken = Symbol('some mock token');
+        const mockAuthHeader = `Bearer ${mockToken}`;
 
         beforeEach(() => {
             spyOn(sut.headers, 'set');
@@ -164,18 +165,19 @@ describe('ShHttpService', () => {
 
     describe('setting request options', () => {
         let finalOptions;
+        const params = {};
         const mockUrl = Symbol('url to call');
         const method = 'Get';
         const resultRequestOptions = Symbol('result request options');
 
         beforeEach(() => {
             spyOn(sut.options, 'merge').and.returnValue(resultRequestOptions);
-            finalOptions = sut.getRequestOptions(method, mockUrl);
+            finalOptions = sut.getRequestOptions(method, mockUrl, params);
         });
 
         it('should assign request options to existing config', () => {
             expect(sut.options.merge)
-                .toHaveBeenCalledWith({ method: jasmine.anything(), url: mockUrl });
+                .toHaveBeenCalledWith({ search: params, method: jasmine.anything(), url: mockUrl });
         });
 
         it('should construct final request options', () => {
