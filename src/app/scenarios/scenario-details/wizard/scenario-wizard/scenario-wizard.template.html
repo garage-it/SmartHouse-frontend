@@ -50,10 +50,8 @@
     <div class="col s3">
         <label [attr.for]="'scenario-wizard__value'+i">Value <b class="red-text">*</b></label>
         <input id="scenario-wizard__value{{i}}"
-               type="text"
-               placeholder="Enter value"
+               type="number"
                required
-               pattern="^[+-]?\d+(\.\d+)?$"
                #conditionValue="ngModel"
                [(ngModel)]="condition.value"
                placeholder="Enter value"/>
