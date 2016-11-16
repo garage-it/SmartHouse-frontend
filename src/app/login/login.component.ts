@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
 import { AuthService } from '../core/auth/auth.service';
 import { IUserCredentials } from '../core/auth/auth.interfaces';
-import { Subscription } from 'rxjs/Rx';
 
 @Component({
     selector: 'sm-login',
