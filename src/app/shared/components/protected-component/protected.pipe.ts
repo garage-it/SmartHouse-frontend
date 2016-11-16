@@ -6,12 +6,13 @@ export class CheckLoginPipe implements PipeTransform {
 
     constructor(private profileService: ProfileService) {}
 
-    transform(isLoggedIn: boolean, roles: Array<string> ) {
+    transform(isLoggedIn: boolean, roles: Array<string> ): boolean {
         if (isLoggedIn === undefined || isLoggedIn === this.profileService.isLoggedIn()) {
             const userRole = this.profileService.getUserRole();
             const isAllowableRole = roles && roles.indexOf(userRole) !== -1;
 
             return !isAllowableRole;
         }
+        return false;
     }
 }

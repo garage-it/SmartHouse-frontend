@@ -6,6 +6,6 @@ import { Component, Input } from '@angular/core';
 })
 
 export class ProtectedComponent {
-    @Input('is-logged-in') isLoggedIn: boolean = false;
+    @Input() isLoggedIn: boolean = false;
     @Input() roles: Array<string> = [];
 }

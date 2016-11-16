@@ -6,7 +6,7 @@
                [style.background-image]="'url(' + mainPageRoute.iconImage + ')'">Smart House</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li *ngFor="let route of navigationRoutes">
-                    <protected [is-logged-in]="route.isLoggedIn">
+                    <protected [isLoggedIn]="route.isLoggedIn">
                         <a [routerLink]="[route.path]" [style.background-image]="'url(' + route.iconImage + ')'">
                             {{route.headerName}}
                         </a>
@@ -15,7 +15,7 @@
             </ul>
             <ul id="nav-mobile" class="right hide-on-large-only">
                 <li *ngFor="let route of navigationRoutes">
-                    <protected [is-logged-in]="route.isLoggedIn">
+                    <protected [isLoggedIn]="route.isLoggedIn">
                         <a [routerLink]="[route.path]" class = "mobile-menu-link" [style.background-image]="'url(' + route.iconImage + ')'">
                             &nbsp;
                         </a>
