@@ -2,7 +2,6 @@ import { EventEmitter } from '@angular/core';
 import { Component, Output, Input } from '@angular/core';
 
 import { Scenario } from '../scenario-entities/scenario';
-
 import LOGICAL_OPERATORS from '../scenario-entities/logical-operators.const';
 
 @Component({

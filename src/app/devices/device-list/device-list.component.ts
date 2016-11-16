@@ -27,9 +27,7 @@ export class DeviceListComponent implements OnInit {
         private dialogService: DialogService,
         private viewContainerRef: ViewContainerRef
     ) {
-        this.sensorsService = sensorsService;
         this._headers = headersForDisplay;
-        this.route = route;
     }
 
     ngOnInit() {

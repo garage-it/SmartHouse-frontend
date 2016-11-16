@@ -1,5 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs/Rx';
 import { AuthService } from '../core/auth/auth.service';
 import { IUserCredentials } from '../core/auth/auth.interfaces';
 import { Subscription } from 'rxjs/Rx';
@@ -27,6 +28,7 @@ export class LoginComponent implements OnDestroy {
                 this.loggingError = true;
             });
     }
+
     ngOnDestroy() {
         if (this.loginSubscription) {
             this.loginSubscription.unsubscribe();

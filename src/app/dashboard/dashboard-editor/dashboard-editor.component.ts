@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
+import { DashboardService } from '../dashboard.service';
+import { Widget } from '../widget.model';
 
 import { DashboardService } from '../dashboard.service';
 
@@ -13,15 +14,12 @@ const selector = 'dashboard-editor';
     styleUrls: ['../dashboard.style.scss']
 })
 export class DashboardEditorComponent {
-    private widgets;
-    private initialData;
+    private widgets: Widget[] = [];
+    private initialData: Widget[] = [];
 
     constructor(private dashboardService: DashboardService,
                 private router: Router,
-                private dragulaService: DragulaService) {
-        this.widgets = [];
-        this.initialData = [];
-    }
+                private dragulaService: DragulaService) { }
 
     ngOnInit() {
         this.dashboardService

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ScenarioDetailsComponent } from '../../scenario-details.component';
 import { ScenarioService } from '../../../shared/scenario.service';
+import { DialogService } from '../../../../shared/dialog/dialog.service';
 
 @Component({
     selector: 'scenario-list',
@@ -11,33 +12,46 @@ import { ScenarioService } from '../../../shared/scenario.service';
 })
 export class EditScenarioEditorComponent extends ScenarioDetailsComponent implements OnInit {
 
-    constructor(scenarioListService: ScenarioService, route: ActivatedRoute, router: Router) {
+    constructor(protected scenarioListService: ScenarioService,
+                protected router: Router,
+                protected route: ActivatedRoute,
+                protected dialogService: DialogService,
+                protected viewContainerRef: ViewContainerRef) {
         super(scenarioListService, route, router);
     }
 
-    ngOnInit() {
+    public ngOnInit(): void {
         this._scenarioService.get(this._route.snapshot.params['id'])
             .subscribe((scenario) => {
                 this.scenario = scenario;
             });
     }
 
-    save(scenario) {
+    public save(scenario): void {
         this._scenarioService.update(scenario)
             .subscribe(() => {
                 this.back();
             });
     }
 
-    delete(scenario) {
-        this._scenarioService
-            .delete(scenario)
+    public delete(scenario): void {
+        const confirmOptions = {
+            title: '',
+            message: 'Are you sure you want to delete this scenario?'
+        };
+
+        this.dialogService.confirm(this.viewContainerRef, confirmOptions)
+            .filter(isConfirmed => isConfirmed)
             .subscribe(() => {
-                this.back();
+                this._scenarioService
+                    .delete(scenario)
+                    .subscribe(() => {
+                        this.back();
+                    });
             });
     }
 
-    isWizardAvailable() {
+    public isWizardAvailable(): boolean {
         return false;
     }
 }

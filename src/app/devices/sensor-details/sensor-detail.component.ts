@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewContainerRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Sensor } from './sensor';
 import { SensorDetailService } from '../shared/sensor-detail.service';
+import { DialogService } from '../../shared/dialog/dialog.service';
 import ROUTING from './../../config.routing';
 
 @Component({
@@ -18,12 +19,10 @@ export class SensorDetailComponent {
     constructor(
         private sensorDetailService: SensorDetailService,
         private router: Router,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private dialogService: DialogService,
+        private viewContainerRef: ViewContainerRef
     ) {
-        this.sensorDetailService = sensorDetailService;
-        this.router = router;
-        this.route = route;
-
         this.needUpdate = true;
         this.sensor = new Sensor();
     }
@@ -55,11 +54,22 @@ export class SensorDetailComponent {
     }
 
     public remove(): void {
-        this.sensorDetailService
-            .delete(this.sensor)
+        const confirmOptions = {
+            title: '',
+            message: 'Are you sure you want to delete this sensor?'
+        };
+
+        this.dialogService.confirm(this.viewContainerRef, confirmOptions)
+            .filter(isConfirmed => isConfirmed)
             .subscribe(() => {
-                this._navigateToList();
+                this.sensorDetailService
+                    .delete(this.sensor)
+                    .subscribe(() => {
+                        this._navigateToList();
+                    });
             });
+
+
     }
 
     public onExecutorChanged(): void {

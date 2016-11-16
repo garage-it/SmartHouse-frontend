@@ -28,12 +28,6 @@ require('rxjs/Rx');
 require('./jasmine/create-spy-component');
 
 const testing = require('@angular/core/testing');
-const browser = require('@angular/platform-browser-dynamic/testing');
-
-testing.TestBed.initTestEnvironment(
-    browser.BrowserDynamicTestingModule,
-    browser.platformBrowserDynamicTesting()
-);
 
 Object.assign(global, testing, {
     ENV_PUBLIC_CONFIG: {}
