@@ -55,4 +55,8 @@ export class ProfileService {
     isGuest(): boolean {
         return !this.isLoggedIn();
     }
+
+    getUserRole(): string {
+        return this.user && this.user.role;
+    }
 }

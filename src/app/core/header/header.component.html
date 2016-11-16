@@ -6,17 +6,23 @@
                [style.background-image]="'url(' + mainPageRoute.iconImage + ')'">Smart House</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li *ngFor="let route of navigationRoutes">
-                    <a [routerLink]="[route.path]"
-                          [style.background-image]="'url(' + route.iconImage + ')'">{{route.headerName}}</a>
+                    <protected [is-logged-in]="route.isLoggedIn" [roles]="route.roles">
+                        <a [routerLink]="[route.path]" [style.background-image]="'url(' + route.iconImage + ')'">
+                            {{route.headerName}}
+                        </a>
+                    </protected>
                 </li>
             </ul>
             <ul id="nav-mobile" class="right hide-on-large-only">
                 <li *ngFor="let route of navigationRoutes">
-                    <a [routerLink]="[route.path]" class = "mobile-menu-link"
-                          [style.background-image]="'url(' + route.iconImage + ')'">&nbsp;</a>
+                    <protected [is-logged-in]="route.isLoggedIn">
+                        <a [routerLink]="[route.path]" class = "mobile-menu-link" [style.background-image]="'url(' + route.iconImage + ')'">
+                            &nbsp;
+                        </a>
+                    </protected>
                 </li>
             </ul>
             <div class="clearfix"></div>
-        </div>        
+        </div>
     </nav>
 </header>

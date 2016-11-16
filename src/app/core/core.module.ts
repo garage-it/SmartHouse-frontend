@@ -6,6 +6,8 @@ import { HttpModule } from '@angular/http';
 import { HeaderComponent } from './header/header.component';
 import { MainComponent } from './main/main.component';
 import { ScreenComponent } from './screen/screen.component';
+import { ProtectedComponent } from '../shared/components/protected-component/protected.component';
+import { CheckLoginPipe } from '../shared/components/protected-component/protected.pipe';
 
 import { AuthService } from './auth/auth.service';
 import { GuestGuard, LoggedInGuard } from './profile/profile.guards';
@@ -18,7 +20,13 @@ import { StorageService } from './storage/storage.service';
 @NgModule({
     id: module.id,
     imports: [ CommonModule, RouterModule, HttpModule ],
-    declarations: [ HeaderComponent, MainComponent, ScreenComponent ],
+    declarations: [
+        HeaderComponent,
+        MainComponent,
+        ScreenComponent,
+        ProtectedComponent,
+        CheckLoginPipe
+    ],
     providers: [
         AuthService,
         GuestGuard,
@@ -32,8 +40,3 @@ import { StorageService } from './storage/storage.service';
     exports: [ HeaderComponent, MainComponent, ScreenComponent ]
 })
 export class CoreModule {}
-
-
-
-
-
