@@ -16,7 +16,7 @@ export const routes = [
         children: [
             {
                 path: '',
-                redirectTo: ROUTING.DASHBOARD,
+                loadChildren: () => require('es6-promise!./home/home.module')('HomeModule'),
                 pathMatch: 'full',
                 useAsDefault: true
             },

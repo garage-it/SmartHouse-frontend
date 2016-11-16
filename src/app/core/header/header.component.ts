@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import ROUTING from '../../config.routing';
 
 export const NAVIGATION_ROUTES = [
-    { path: `/${ROUTING.DASHBOARD}`, headerName: 'Dashboard', iconImage: './assets/dashboard.svg', main: true},
+    { path: `/${ROUTING.BASE}`, main: true},
+    { path: `/${ROUTING.DASHBOARD}`, headerName: 'Dashboard', iconImage: './assets/dashboard.svg'},
     { path: `/${ROUTING.DEVICES}`, headerName: 'Devices', iconImage: './assets/deviceList.svg' },
     { path: `/${ROUTING.SCENARIOS}`, headerName: 'Scenarios', iconImage: './assets/scenarioList.png' },
     { path: `/${ROUTING.HELP}`, headerName: 'Help', iconImage: './assets/help.svg' },
