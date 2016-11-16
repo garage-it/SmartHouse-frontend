@@ -1,109 +1,187 @@
-import {async, TestBed} from '@angular/core/testing';
-
+import { Observable } from 'rxjs/Rx';
 import { ShHttpService } from './sh-http.service';
-import { ShRequestOptions } from './sh-request-options';
-
-import { Http, RequestMethod, Headers } from '@angular/http';
-
-class ObservableSubscribe {
-    constructor(private _data = {}) {
-        this._data['json'] = () => {};
-    }
-    map(fn) {
-        fn(this._data);
-    }
-}
-
-class HttpMock {
-    get() { return new ObservableSubscribe(); }
-    post() { return new ObservableSubscribe(); }
-    put() { return new ObservableSubscribe(); }
-    delete() { return new ObservableSubscribe(); }
-}
 
 describe('ShHttpService', () => {
     let sut;
     let httpMock;
+    const urlMock = Symbol('url to request');
+    const mockResponse = Symbol('some response');
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            providers: [
-                {provide: Http, useClass: HttpMock },
-                ShHttpService
-            ]
-        })
-        .compileComponents()
-        .then(() => {
-            httpMock = TestBed.get(Http);
-            spyOn(httpMock, 'get').and.callThrough();
-            spyOn(httpMock, 'post').and.callThrough();
-            spyOn(httpMock, 'put').and.callThrough();
-            spyOn(httpMock, 'delete').and.callThrough();
-            sut = TestBed.get(ShHttpService);
-        });
-    }));
-
-    it('should be defined', () => {
-        expect(sut).toBeDefined();
+    beforeEach(() => {
+        httpMock = jasmine.createSpyObj('httpMock', ['get', 'post', 'put', 'delete']);
+        sut = new ShHttpService(httpMock);
     });
 
-    it('should get sensor data from the server', () => {
-        const urlMock = 'mock';
-        let options = new ShRequestOptions({
-            headers: new Headers({ 'Content-Type': 'application/json' })
+    describe('http methods', () => {
+        beforeEach(() => {
+            spyOn(sut, 'getRequestOptions');
+            spyOn(sut, 'convertToJson');
+            httpMock.put.and.returnValue(Observable.of(mockResponse));
+            httpMock.post.and.returnValue(Observable.of(mockResponse));
+            httpMock.delete.and.returnValue(Observable.of(mockResponse));
         });
-        options = <ShRequestOptions>options.merge({
-            method: RequestMethod.Get,
-            url: urlMock
+
+        describe('get method', () => {
+            const getRequestOptions = Symbol('get request options');
+            const params = {};
+
+            beforeEach(() => {
+                httpMock.get.and.returnValue(Observable.of(mockResponse));
+                sut.getRequestOptions.and.returnValue(getRequestOptions);
+                sut.get(urlMock, params).subscribe(() => {});
+            });
+
+            it('should get proper request options', () => {
+                expect(sut.getRequestOptions).toHaveBeenCalledWith('Get', urlMock, params);
+            });
+
+            it('should get data from server', () => {
+                expect(httpMock.get).toHaveBeenCalledWith(urlMock, getRequestOptions);
+            });
+
+            it('should get data from server response', () => {
+                expect(sut.convertToJson).toHaveBeenCalledWith(mockResponse, jasmine.any(Number));
+            });
         });
-        sut.get(urlMock);
-        expect(httpMock.get).toHaveBeenCalledWith(urlMock, options);
+
+        describe('post method', () => {
+            const postRequestOptions = Symbol('get request options');
+            const requestBody = Symbol('data to send');
+            const strirgBody = Symbol('stringified body');
+
+            beforeEach(() => {
+                spyOn(JSON, 'stringify').and.returnValue(strirgBody);
+                httpMock.post.and.returnValue(Observable.of(mockResponse));
+                sut.getRequestOptions.and.returnValue(postRequestOptions);
+                sut.post(urlMock, requestBody).subscribe(() => {});
+            });
+
+            it('should get proper request options', () => {
+                expect(sut.getRequestOptions).toHaveBeenCalledWith('Post', urlMock);
+            });
+
+            it('should stringify rquest body before send', () => {
+                expect(JSON.stringify).toHaveBeenCalledWith(requestBody);
+            });
+
+            it('should post data to server', () => {
+                expect(httpMock.post).toHaveBeenCalledWith(urlMock, strirgBody, postRequestOptions);
+            });
+
+            it('should get data from server response', () => {
+                expect(sut.convertToJson).toHaveBeenCalledWith(mockResponse, jasmine.any(Number));
+            });
+        });
+
+        describe('put method', () => {
+            const putRequestOptions = Symbol('get request options');
+            const requestBody = Symbol('data to send');
+            const strirgBody = Symbol('stringified body');
+
+            beforeEach(() => {
+                spyOn(JSON, 'stringify').and.returnValue(strirgBody);
+                httpMock.put.and.returnValue(Observable.of(mockResponse));
+                sut.getRequestOptions.and.returnValue(putRequestOptions);
+                sut.put(urlMock, requestBody).subscribe(() => {});
+            });
+
+            it('should get proper request options', () => {
+                expect(sut.getRequestOptions).toHaveBeenCalledWith('Put', urlMock);
+            });
+
+            it('should stringify rquest body before send', () => {
+                expect(JSON.stringify).toHaveBeenCalledWith(requestBody);
+            });
+
+            it('should post data to server', () => {
+                expect(httpMock.put).toHaveBeenCalledWith(urlMock, strirgBody, putRequestOptions);
+            });
+
+            it('should get data from server response', () => {
+                expect(sut.convertToJson).toHaveBeenCalledWith(mockResponse, jasmine.any(Number));
+            });
+        });
+
+        describe('delete method', () => {
+            const deleteRequestOptions = Symbol('delete request options');
+
+            beforeEach(() => {
+                httpMock.get.and.returnValue(Observable.of(mockResponse));
+                sut.getRequestOptions.and.returnValue(deleteRequestOptions);
+                sut.delete(urlMock).subscribe(() => {});
+            });
+
+            it('should get proper request options', () => {
+                expect(sut.getRequestOptions).toHaveBeenCalledWith('Delete', urlMock);
+            });
+
+            it('should delete item', () => {
+                expect(httpMock.delete).toHaveBeenCalledWith(urlMock, deleteRequestOptions);
+            });
+
+            it('should get data from server response', () => {
+                expect(sut.convertToJson).toHaveBeenCalledWith(mockResponse, jasmine.any(Number));
+            });
+        });
     });
 
-    it('should create new item', () => {
-        const urlMock = 'mock';
-        const bodyMock = {};
-        let options = new ShRequestOptions({
-            headers: new Headers({
-                'Content-Type': 'application/json'
-            })
+    describe('request headers', () => {
+        const mockToken = Symbol('some mock token');
+        const mockAuthHeader = `Bearer ${mockToken}`;
+
+        beforeEach(() => {
+            spyOn(sut.headers, 'set');
+            spyOn(sut.headers, 'delete');
         });
-        options = <ShRequestOptions>options.merge({
-            method: RequestMethod.Post,
-            url: urlMock
+
+        it('should be able to set auth headers', () => {
+            sut.setAuthHeader(mockToken);
+
+            expect(sut.headers.set).toHaveBeenCalledWith('Authorization', mockAuthHeader);
         });
-        sut.post(urlMock, bodyMock);
-        expect(httpMock.post).toHaveBeenCalledWith(urlMock, JSON.stringify(bodyMock), options);
+
+        it('should be able to remove auth headers', () => {
+            sut.removeAuthHeader();
+
+            expect(sut.headers.delete).toHaveBeenCalledWith('Authorization');
+        });
     });
 
-    it('should update sensor', () => {
-        const urlMock = 'mock';
-        const bodyMock = {};
-        let options = new ShRequestOptions({
-            headers: new Headers({
-                'Content-Type': 'application/json'
-            })
+    describe('response transformer', () => {
+        let mockServerResponse;
+        const convertedResponse = Symbol('converted server response');
+
+
+        beforeEach(() => {
+            mockServerResponse = {
+                json: jasmine.createSpy('json').and.returnValue(convertedResponse)
+            };
         });
-        options = <ShRequestOptions>options.merge({
-            method: RequestMethod.Put,
-            url: urlMock
+
+        it('should extract data from response', () => {
+            expect(sut.convertToJson(mockServerResponse)).toEqual(convertedResponse);
         });
-        sut.put(urlMock, bodyMock);
-        expect(httpMock.put).toHaveBeenCalledWith(urlMock, JSON.stringify(bodyMock), options);
     });
 
-    it('should remove item', () => {
-        const urlMock = 'mock';
-        let options = new ShRequestOptions({
-            headers: new Headers({
-                'Content-Type': 'application/json'
-            })
+    describe('setting request options', () => {
+        let finalOptions;
+        const params = {};
+        const mockUrl = Symbol('url to call');
+        const method = 'Get';
+        const resultRequestOptions = Symbol('result request options');
+
+        beforeEach(() => {
+            spyOn(sut.options, 'merge').and.returnValue(resultRequestOptions);
+            finalOptions = sut.getRequestOptions(method, mockUrl, params);
         });
-        options = <ShRequestOptions>options.merge({
-            method: RequestMethod.Delete,
-            url: urlMock
+
+        it('should assign request options to existing config', () => {
+            expect(sut.options.merge)
+                .toHaveBeenCalledWith({ search: params, method: jasmine.anything(), url: mockUrl });
         });
-        sut.delete(urlMock);
-        expect(httpMock.delete).toHaveBeenCalledWith(urlMock, options);
+
+        it('should construct final request options', () => {
+            expect(finalOptions).toEqual(resultRequestOptions);
+        });
     });
 });

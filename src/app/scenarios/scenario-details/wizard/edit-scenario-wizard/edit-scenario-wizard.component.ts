@@ -1,21 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { DeviceListService } from '../../../../devices/device-list/device-list.service';
 
 import { ScenarioService } from '../../../shared/scenario.service';
-
-const template = require('./edit-scenario-wizard.template.html');
-
-import { CreateScenarioWizardComponent }
-    from '../create-scenario-wizard/create-scenario-wizard.component';
+import { CreateScenarioWizardComponent } from '../create-scenario-wizard/create-scenario-wizard.component';
 
 import { Condition } from '../scenario-entities/condition';
 import { Action } from '../scenario-entities/action';
 import { Scenario } from '../scenario-entities/scenario';
 
 import { Observable } from 'rxjs/Rx';
+import { DialogService } from '../../../../shared/dialog/dialog.service';
 
+const template = require('./edit-scenario-wizard.template.html');
 
 @Component({
     template
@@ -23,8 +21,12 @@ import { Observable } from 'rxjs/Rx';
 export class EditScenarioWizardComponent extends CreateScenarioWizardComponent implements OnInit {
 
     constructor(
-        _scenarioService: ScenarioService, _route: ActivatedRoute,
-        _router: Router, deviceListService: DeviceListService
+        protected _scenarioService: ScenarioService,
+        protected _route: ActivatedRoute,
+        protected _router: Router,
+        protected dialogService: DialogService,
+        protected viewContainerRef: ViewContainerRef,
+        protected deviceListService: DeviceListService
     ) {
         super(_scenarioService, _route, _router, deviceListService);
     }
@@ -67,12 +69,19 @@ export class EditScenarioWizardComponent extends CreateScenarioWizardComponent i
     }
 
     delete(scenario) {
-        this._scenarioService
-            .delete(scenario)
-            .subscribe(data => {
-                if (data.status === 200) {
-                    this.back();
-                }
+        const confirmOptions = {
+            title: '',
+            message: 'Are you sure you want to delete this scenario?'
+        };
+
+        this.dialogService.confirm(this.viewContainerRef, confirmOptions)
+            .filter(isConfirmed => isConfirmed)
+            .subscribe(() => {
+                this._scenarioService
+                    .delete(scenario)
+                    .subscribe(data => {
+                        this.back();
+                    });
             });
     }
 }

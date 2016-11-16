@@ -1,89 +1,58 @@
-import { async, TestBed } from '@angular/core/testing';
-
-import { ActivatedRoute } from '@angular/router';
-
-import { SensorDetailService } from '../shared/sensor-detail.service';
-import { DialogService } from '../../shared/dialog/dialog.service';
 import { DeviceListComponent } from './device-list.component';
 import { Observable } from 'rxjs';
 
-class SensorDetailServiceMock {
-    delete(data) {
-        return Observable.of(data);
-    }
-}
-
-class DialogServiceMock {
-    confirm(data) {
-        return Observable.of(data);
-    }
-}
-
-const mockDeviceListComponent = ['some data'];
-
-class ActivatedRouteMock {
-    private data: Observable<any>;
-
-    constructor() {
-        this.data = Observable.of({deviceList: mockDeviceListComponent});
-    }
-}
-
 describe('device-list', () => {
     let sut;
-    let sensorsService;
-    let dialogService;
+    let SensorsService;
+    let ActivatedRoute;
+    let DialogService;
+    let ViewContainerRef;
     let listData;
     let numberArr;
-    let activatedRouteMock;
-    let observable;
+    let mockDeviceListComponent;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            declarations: [ DeviceListComponent ],
-            providers: [
-                {provide: SensorDetailService, useClass: SensorDetailServiceMock },
-                {provide: DialogService, useClass: DialogServiceMock },
-                {provide: ActivatedRoute, useClass: ActivatedRouteMock}
-            ]
-        })
-        .overrideComponent(DeviceListComponent, {
-            set: {template: 'mocked template'}
-        })
-        .compileComponents()
-        .then(() => {
-            sut = TestBed.createComponent(DeviceListComponent).componentInstance;
-            activatedRouteMock = TestBed.get(ActivatedRoute);
-            sensorsService = TestBed.get(SensorDetailService);
-            dialogService = TestBed.get(DialogService);
+    beforeEach(() => {
+        mockDeviceListComponent = ['some data'];
 
-            numberArr = [];
-            listData = [
-                {
-                    _id: '1',
-                    mqttId: '1',
-                    type: 'some type',
-                    description: 'some description'
-                },
-                {
-                    _id: '2',
-                    mqttId: '2',
-                    type: 'some other type',
-                    description: 'some other description'
-                }
-            ];
+        numberArr = [];
 
-            spyOn(sensorsService, 'delete').and.callThrough();
-            spyOn(dialogService, 'confirm').and.callThrough();
-            spyOn(activatedRouteMock.data, 'subscribe').and.callThrough();
-        });
-    }));
+        listData = [
+            {
+                _id: '1',
+                mqttId: '1',
+                type: 'some type',
+                description: 'some description'
+            },
+            {
+                _id: '2',
+                mqttId: '2',
+                type: 'some other type',
+                description: 'some other description'
+            }
+        ];
 
+        SensorsService = {
+            delete: jasmine.createSpy('delete')
+        };
+
+        ActivatedRoute = {
+            data: Observable.of({deviceList: mockDeviceListComponent})
+        };
+
+        DialogService = {
+            confirm: jasmine.createSpy('confirm')
+        };
+
+        ViewContainerRef = {};
+
+        sut = new DeviceListComponent(SensorsService, ActivatedRoute, DialogService, ViewContainerRef);
+        spyOn(ActivatedRoute.data, 'subscribe').and.callThrough();
+    });
 
     describe('#init', () => {
         it('should fetch list of sensors', () => {
             sut.ngOnInit();
-            expect(activatedRouteMock.data.subscribe).toHaveBeenCalled();
+            expect(ActivatedRoute.data.subscribe).toHaveBeenCalled();
         });
         it('should take list data from activatedRouteMock', () => {
             sut.ngOnInit();
@@ -110,18 +79,18 @@ describe('device-list', () => {
         });
 
         describe('before user confirmation', () => {
-            beforeEach(() => {
-                observable = Observable.create(observer => {
-                    observer.next();
-                    observer.complete();
-                });
+            const confirmOptions = {
+                title: '',
+                message: 'Are you sure you want to delete this device?'
+            };
 
-                dialogService.confirm = jasmine.createSpy('mdDialogMock.confirm').and.returnValue(observable);
+            beforeEach(() => {
+                DialogService.confirm = jasmine.createSpy('mdDialogMock.confirm').and.returnValue(Observable.of(false));
             });
 
-            it('should show confirm dialog', () => {
+            it('should show confirm dialog with view container ref and options', () => {
                 sut.removeSensor();
-                expect(dialogService.confirm).toHaveBeenCalled();
+                expect(DialogService.confirm).toHaveBeenCalledWith(ViewContainerRef, confirmOptions);
             });
 
             it('should NOT call sensor service if user does not confirm device delete', () => {
@@ -129,22 +98,27 @@ describe('device-list', () => {
 
                 sut.removeSensor(mockedSensor);
 
-                expect(sut.sensorsService.delete).not.toHaveBeenCalledWith(mockedSensor);
+                expect(SensorsService.delete).not.toHaveBeenCalledWith(mockedSensor);
             });
         });
 
         describe('After user confirmation', () => {
-            it('should call sensor service', () => {
-                const mockedSensor = {_id: 'mock'};
-                sut.removeSensor(mockedSensor);
+            let mockedSensor;
 
-                expect(sut.sensorsService.delete).toHaveBeenCalledWith(mockedSensor);
+            beforeEach(() => {
+                mockedSensor = listData[1];
+                DialogService.confirm.and.returnValue(Observable.of(true));
+                SensorsService.delete.and.returnValue(Observable.of(mockedSensor));
+
+                sut.deviceList = listData;
+                sut.removeSensor(mockedSensor);
+            });
+
+            it('should call sensor service', () => {
+                expect(SensorsService.delete).toHaveBeenCalledWith(mockedSensor);
             });
 
             it('should remove sensor from listData', () => {
-                sut.deviceList = listData;
-                sut.removeSensor(listData[1]);
-
                 expect(sut.deviceList).toEqual([listData[0]]);
             });
         });

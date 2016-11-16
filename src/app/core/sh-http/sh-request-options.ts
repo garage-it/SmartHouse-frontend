@@ -9,10 +9,15 @@ export class ShRequestOptions extends BaseRequestOptions {
 
     merge(options: RequestOptionsArgs) {
         const opts = {};
-        Object.assign(opts,
+
+        Object.assign(
+            opts,
             this.options,
             options,
-            {url: `${ENV_PUBLIC_CONFIG.backEndUrl}/api${options.url}`});
+            {
+                url: `${ENV_PUBLIC_CONFIG.backEndUrl}/api${options.url}`
+            }
+        );
         return super.merge(opts);
     }
 }

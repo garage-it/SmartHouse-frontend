@@ -31,10 +31,9 @@ describe('dashboard-resolveService', () => {
     });
 
     describe('on get widget fail', () => {
-        let error;
+        const error = 'Fake error';
 
         beforeEach(() => {
-            error = 'Fake error';
             DashboardService.getWidgets.and.returnValue(Observable.throw(error));
             sut.resolve().subscribe(successCb, failCb);
         });
