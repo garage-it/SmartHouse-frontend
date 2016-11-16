@@ -8,14 +8,15 @@ const MAIN_ROUTE = {
     iconImage: './assets/dashboard.svg',
     main: true
 };
-const NAVIGATION_ROUTES = [
-    MAIN_ROUTE,
-    { path: `/${ROUTING.DEVICES}`, headerName: 'Devices', iconImage: './assets/deviceList.svg' },
-    { path: `/${ROUTING.SCENARIOS}`, headerName: 'Scenarios', iconImage: './assets/scenarioList.png' },
-    { path: `/${ROUTING.HELP}`, headerName: 'Help', iconImage: './assets/help.svg' },
-    { path: `/${ROUTING.LOGIN}`, headerName: 'Login', iconImage: './assets/login.svg' },
-    { path: `/${ROUTING.LOGOUT}`, headerName: 'Logout', iconImage: './assets/logout.svg' },
-    { path: `/${ROUTING.REGISTRATION}`, headerName: 'Registration', iconImage: './assets/registration.svg' },
+
+export const NAVIGATION_ROUTES = [
+    { path: `/${ROUTING.DASHBOARD}`, headerName: 'Dashboard', iconImage: './assets/dashboard.svg', main: true },
+    { path: `/${ROUTING.DEVICES}`, headerName: 'Devices', iconImage: './assets/deviceList.svg', isLoggedIn: true },
+    { path: `/${ROUTING.SCENARIOS}`, headerName: 'Scenarios', iconImage: './assets/scenarioList.png', isLoggedIn: true },
+    { path: `/${ROUTING.HELP}`, headerName: 'Help', iconImage: './assets/help.svg', isLoggedIn: false },
+    { path: `/${ROUTING.LOGIN}`, headerName: 'Login', iconImage: './assets/login.svg', isLoggedIn: false },
+    { path: `/${ROUTING.LOGOUT}`, headerName: 'Logout', iconImage: './assets/logout.svg', isLoggedIn: true },
+    { path: `/${ROUTING.REGISTRATION}`, headerName: 'Registration', iconImage: './assets/registration.svg', isLoggedIn: false }
 ];
 
 describe('Header', () => {
