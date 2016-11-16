@@ -9,5 +9,7 @@ const template = require('./home.template.html');
     styles: [style]
 })
 export class HomeComponent {
+    public createView() {
 
+    }
 }
