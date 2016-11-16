@@ -1,6 +1,8 @@
 # Smart House - Frontend
 [![Build Status](https://travis-ci.org/garage-it/SmartHouse-frontend.svg?branch=master)](https://travis-ci.org/garage-it/SmartHouse-frontend)
 [![codecov.io](https://codecov.io/github/garage-it/SmartHouse-frontend/coverage.svg?branch=master)](https://codecov.io/github/garage-it/SmartHouse-frontend?branch=master)
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+
 
 # Links
 * [Demo](https://garage-it-smart-house.herokuapp.com)
