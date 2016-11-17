@@ -1,9 +1,8 @@
 import { Component, Input } from '@angular/core';
-const template = require('./sensor-widget.template.html');
 
 @Component({
-   selector: 'sm-sensor-widget',
-    template
+    selector: 'sm-sensor-widget',
+    templateUrl: './sensor-widget.template.html'
 })
 export class SensorWidgetComponent {
     @Input() device;

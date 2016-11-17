@@ -3,14 +3,11 @@ import { Component, Input } from '@angular/core';
 import { BaseOutputSensor } from '../shared/base-output-sensor/base-output-sensor';
 import { SensorWidgetService } from '../shared/sensor-widget/sensor-widget.service';
 
-const template = require('./sensor-servo-widget.template.html');
-const baseStyles = require('../shared/sensor-widget/sensor-widget.style.scss');
-const styles = require('./sensor-servo-widget.style.scss');
-
 @Component({
     selector: 'sm-sensor-servo-widget',
-    template,
-    styles: [baseStyles, styles]
+    templateUrl: './sensor-servo-widget.template.html',
+    styleUrls: ['../shared/sensor-widget/sensor-widget.style.scss',
+        './sensor-servo-widget.style.scss']
 })
 export class SensorServoWidgetComponent extends BaseOutputSensor {
 
