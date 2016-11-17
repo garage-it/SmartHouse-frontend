@@ -7,7 +7,8 @@ const CONFIG = {
     CREATE: 'create',
     LOGIN: 'login',
     LOGOUT: 'logout',
-    REGISTRATION: 'registration'
+    REGISTRATION: 'registration',
+    CONSTRUCTOR: 'constructor'
 };
 
 export default CONFIG;

@@ -29,6 +29,10 @@ export const routes = [
                 loadChildren: () => require('es6-promise!./dashboard/dashboard.module')('DashboardModule')
             },
             {
+                path: ROUTING.CONSTRUCTOR,
+                loadChildren: () => require('es6-promise!./constructor/constructor.module')('ConstructorModule')
+            },
+            {
                 path: ROUTING.DEVICES,
                 canActivate: [ LoggedInGuard ],
                 loadChildren: () => require('es6-promise!./devices/devices.module')('DevicesModule')

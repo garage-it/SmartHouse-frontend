@@ -1,0 +1,28 @@
+<h2>Constructor / Map view</h2>
+<h4>Step 1: Name your view</h4>
+
+<label for="name">Name</label>
+<input type="text" id="name" placeholder="Enter name">
+
+<label for="description">Description</label>
+<input type="text" id="description" placeholder="Enter description">
+
+<h4>Step 2: Add picture</h4>
+
+<div>
+    <input class="filled-in" type="checkbox"
+           [attr.id]="active"/>
+    <label [attr.for]="active">Active</label>
+    <input class="filled-in" type="checkbox"
+           [attr.id]="default"/>
+    <label [attr.for]="default">Default</label>
+</div>
+
+<div>Map</div>
+
+<button>Cancel</button>
+<button>Reupload</button>
+<button>Save</button>
+
+<h4>Step 3: Add devices on the map</h4>
+List of devices
