@@ -3,7 +3,7 @@ const commonConfig = require('./webpack.common');
 const env = require('./env.config');
 
 module.exports = webpackMerge(commonConfig, {
-    devtool: 'cheap-source-map',
+    devtool: 'source-map',
     devServer: {
         port: env.staticServer.port,
         host: env.staticServer.host,
