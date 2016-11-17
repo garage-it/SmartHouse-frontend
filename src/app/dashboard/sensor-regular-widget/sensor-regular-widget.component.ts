@@ -6,7 +6,7 @@ const template = require('./sensor-regular-widget.template.html');
 const style = require('../shared/sensor-widget/sensor-widget.style.scss');
 
 @Component({
-    selector: 'sensor-regular-widget',
+    selector: 'sh-sensor-regular-widget',
     template,
     styles: [style]
 })

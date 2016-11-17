@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'sm-help',
+    selector: 'sh-help',
     styles: [require('./help.component.scss')],
     template: require('./help.component.html')
 })

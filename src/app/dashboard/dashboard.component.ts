@@ -8,7 +8,7 @@ const style = require('./dashboard.style.scss');
 const template = require('./dashboard.template.html');
 
 @Component({
-    selector: 'sm-dashboard',
+    selector: 'sh-dashboard',
     template,
     styles: [style]
 })

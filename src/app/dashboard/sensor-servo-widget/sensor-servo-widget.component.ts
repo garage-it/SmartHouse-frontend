@@ -8,7 +8,7 @@ const baseStyles = require('../shared/sensor-widget/sensor-widget.style.scss');
 const styles = require('./sensor-servo-widget.style.scss');
 
 @Component({
-    selector: 'sm-sensor-servo-widget',
+    selector: 'sh-sensor-servo-widget',
     template,
     styles: [baseStyles, styles]
 })

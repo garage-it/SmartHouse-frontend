@@ -4,7 +4,7 @@ const template = require('./dialog-confirm.html');
 
 @Component({
     template,
-    selector: 'dialog-confirm'
+    selector: 'sh-dialog-confirm'
 })
 export class DialogConfirmComponent {
     public title: string = 'Confirm';

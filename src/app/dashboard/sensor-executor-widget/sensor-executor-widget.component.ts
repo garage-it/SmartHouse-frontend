@@ -11,7 +11,7 @@ const template = require('./sensor-executor-widget.template.html');
 const styles = require('../shared/sensor-widget/sensor-widget.style.scss');
 
 @Component({
-    selector: 'sm-sensor-executor-widget',
+    selector: 'sh-sensor-executor-widget',
     template,
     styles: [styles]
 })

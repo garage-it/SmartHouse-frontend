@@ -6,7 +6,7 @@ const styles = require('./gauge.style.scss');
 export const GAUGE_COEFFICIENT = 0.56;
 
 @Component({
-    selector: 'sm-gauge',
+    selector: 'sh-gauge',
     template,
     styles: [styles]
 })

@@ -8,7 +8,7 @@ const styles = require('./login.component.scss');
 const template = require('./login.component.html');
 
 @Component({
-    selector: 'sm-login',
+    selector: 'sh-login',
     styles: [styles],
     template
 })
