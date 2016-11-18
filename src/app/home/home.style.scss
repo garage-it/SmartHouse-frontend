@@ -1,63 +1,66 @@
-.home {
+.button {
+    margin: 20px 10px 0;
+    width: 120px;
+    height: 40px;
+    font-weight: 400;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
 
-    .nav {
-        height: 70px;
+    &_success {
+        background-color: #a3c940;
+    }
+}
 
-        .create {
-            float: right;
-            &__button {
-                margin: 20px 10px 0;
-                width: 120px;
-                height: 40px;
-                background-color: #a3c940;
-                font-weight: 400;
-                color: #fff;
-                border: none;
-                border-radius: 3px;
-            }
-        }
+.menu {
+    font-size: 0.8em;
+    font-weight: 500;
 
-        .menu {
-            float: right;
-            margin: 30px 80px 0 0;
-            font-size: 0.8em;
-            font-weight: 500;
+    &__item {
+        height: 10px;
+        line-height: 10px;
+        display: inline-block;
+        padding: 0 5px;
+        border-right: 1px solid #d1d1d1;
+        color: #d1d1d1;
+        cursor: pointer;
 
-            &__item {
-                height: 10px;
-                line-height: 10px;
-                display: inline-block;
-                padding: 0 5px;
-                border-right: 1px solid #d1d1d1;
-                color: #d1d1d1;
-                cursor: pointer;
-
-                &:last-child {
-                    border-right: none;
-                }
-            }
+        &:last-child {
+            border-right: none;
         }
     }
+}
 
-    .view {
-        background: #f7f7f7;
-        border-top: 2px solid #d1d1d1;
-        border-bottom: 2px solid #d1d1d1;
-        height: 400px;
-        position: relative;
+.home-nav {
+    height: 70px;
 
-        .section {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%,-50%);
-            font-size: 1.5em;
-            color: #6b6b6b;
+    &__buttons {
+        float: right;
+    }
 
-            &__create {
-                color: #a3c940;
-            }
-        }
+    &__menu {
+        float: right;
+        margin: 30px 80px 0 0;
+    }
+}
+
+.home-view {
+    background: #f9f9f9;
+    border: solid 1px #c7c8c2;
+    height: 400px;
+    position: relative;
+}
+
+.empty-home-view {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5em;
+    color: #6b6b6b;
+
+    &__create {
+        color: #a3c940;
     }
 }
 
