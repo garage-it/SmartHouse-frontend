@@ -1,24 +1,22 @@
 <div class="home-nav">
-    <div class="home-nav__buttons">
+    <div class="home-nav__actions">
         <button class="button button_success"
                 (click)="createView()">
             + Create view
         </button>
     </div>
 
-    <div class="home-nav__menu menu">
+    <!--TODO: make a Toggle component-->
+    <div class="home-nav__view-toggle toggle">
         <ul>
             View:
-            <li class="menu__item">
+            <li class="toggle__item toggle__item_active">
                 Map
             </li>
-            <li class="menu__item">
+            <li class="toggle__item">
                 Dashboard
             </li>
         </ul>
-    </div>
-
-    <div class="home-nav__title">
     </div>
 </div>
 
