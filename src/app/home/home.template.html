@@ -1,26 +1,26 @@
 <div class="home">
-    <div class="home-nav">
-        <button (click)="createView()" class="home-nav__create">
-            + Create view
-        </button>
-        <div class="home-nav-menu">
-            <ul class="home-nav-menu-list">
-                <span class="home-nav-menu-list__title">
-                    View:
-                </span>
-                <li class="home-nav-menu-list__item">
+    <div class="nav">
+        <div class="create">
+            <button (click)="createView()" class="create__button">
+                + Create view
+            </button>
+        </div>
+        <div class="menu">
+            <ul>
+                View:
+                <li class="menu__item">
                     Map
                 </li>
-                <li class="home-nav-menu-list__item">
+                <li class="menu__item">
                     Dashboard
                 </li>
             </ul>
         </div>
     </div>
-    <div class="home-view">
-        <div class="home-view-content">
+    <div class="view">
+        <div class="section">
             Please
-            <a (click)="createView()" class="home-view-content__create">
+            <a (click)="createView()" class="section__create">
                 create
             </a>
             view
