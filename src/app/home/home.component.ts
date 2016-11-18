@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
 
-const style = require('./home.style.scss');
-const template = require('./home.template.html');
-
 @Component({
     selector: 'sh-home',
-    template,
-    styles: [style]
+    templateUrl: './home.template.html',
+    styleUrls: [ './home.style.scss' ]
 })
 export class HomeComponent {
 
