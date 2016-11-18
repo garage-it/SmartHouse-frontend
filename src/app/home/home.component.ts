@@ -10,7 +10,7 @@ const template = require('./home.template.html');
 })
 export class HomeComponent {
 
-    public onCreateViewClick():void {
+    public onCreateViewClick(): void {
 
     }
 }
