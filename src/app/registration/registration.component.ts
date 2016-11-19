@@ -4,13 +4,10 @@ import { Subscription } from 'rxjs/Rx';
 import { IUserRegistrationData } from '../core/auth/auth.interfaces';
 import { AuthService } from '../core/auth/auth.service';
 
-const style = require('./registration.style.scss');
-const template = require('./registration.template.html');
-
 @Component({
-    template,
-    styles: [style],
-    selector: 'sh-registration'
+    templateUrl: './registration.template.html',
+    styleUrls: ['./registration.style.scss'],
+    selector: 'sm-registration'
 })
 export class RegistrationComponent {
     private registrationSubscription: Subscription;

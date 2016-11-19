@@ -1,12 +1,9 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 
-const style = require('./app.style.scss');
-const template = require('./app.template.html');
-
 @Component({
     selector: 'sh-app',
-    styles: [style],
-    template,
+    styleUrls: ['./app.style.scss'],
+    templateUrl: './app.template.html',
     encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {}

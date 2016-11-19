@@ -4,14 +4,12 @@ import { DragulaService } from 'ng2-dragula/ng2-dragula';
 import { DashboardService } from '../dashboard.service';
 import { Widget } from '../widget.model';
 
-const template = require('./dashboard-editor.template.html');
-const style = require('../dashboard.style.scss');
 const selector = 'dashboard-editor';
 
 @Component({
     selector,
-    template,
-    styles: [style]
+    templateUrl: './dashboard-editor.template.html',
+    styleUrls: ['../dashboard.style.scss']
 })
 export class DashboardEditorComponent {
     private widgets: Widget[] = [];

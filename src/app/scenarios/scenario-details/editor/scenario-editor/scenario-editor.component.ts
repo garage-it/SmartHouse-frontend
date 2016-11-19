@@ -10,10 +10,8 @@ import 'codemirror/mode/javascript/javascript';
 
 import CODE_MIRROR_EVENTS from './code-mirror-events.const';
 
-const selector = 'scenario-editor';
-
 @Component({
-    selector,
+    selector: 'scenario-editor',
     template: '<div #codeEditor></div>'
 })
 export class ScenarioEditorComponent {

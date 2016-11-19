@@ -1,14 +1,11 @@
 import { ViewChild, Component, OnChanges, Input } from '@angular/core';
 
-const template = require('./gauge.template.html');
-const styles = require('./gauge.style.scss');
-
 export const GAUGE_COEFFICIENT = 0.56;
 
 @Component({
     selector: 'sh-gauge',
-    template,
-    styles: [styles]
+    templateUrl: './gauge.template.html',
+    styleUrls: ['./gauge.style.scss']
 })
 export class GaugeComponent implements OnChanges {
 

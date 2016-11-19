@@ -4,13 +4,10 @@ import { Subscription } from 'rxjs/Rx';
 import { AuthService } from '../core/auth/auth.service';
 import { IUserCredentials } from '../core/auth/auth.interfaces';
 
-const styles = require('./login.component.scss');
-const template = require('./login.component.html');
-
 @Component({
     selector: 'sh-login',
-    styles: [styles],
-    template
+    styleUrls: ['./login.component.scss'],
+    templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnDestroy {
     public credentials: IUserCredentials = {
