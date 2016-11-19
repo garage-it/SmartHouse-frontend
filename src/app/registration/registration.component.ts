@@ -7,7 +7,7 @@ import { AuthService } from '../core/auth/auth.service';
 @Component({
     templateUrl: './registration.template.html',
     styleUrls: ['./registration.style.scss'],
-    selector: 'sm-registration'
+    selector: 'sh-registration'
 })
 export class RegistrationComponent {
     private registrationSubscription: Subscription;

@@ -6,7 +6,7 @@ import { ScenarioService } from '../../../shared/scenario.service';
 import { DialogService } from '../../../../shared/dialog/dialog.service';
 
 @Component({
-    selector: 'scenario-list',
+    selector: 'sh-scenario-list',
     templateUrl: '../../scenario-details.template.html',
     styleUrls: ['../../scenario-details.style.scss']
 })

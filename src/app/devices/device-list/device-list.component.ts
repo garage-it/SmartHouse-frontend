@@ -11,7 +11,7 @@ const headersForDisplay = [
 ];
 
 @Component({
-    selector: 'device-list',
+    selector: 'sh-device-list',
     templateUrl: './device-list.template.html',
     styleUrls: ['./device-list.style.scss']
 })

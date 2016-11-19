@@ -5,7 +5,7 @@ import { Scenario } from '../scenario-entities/scenario';
 import LOGICAL_OPERATORS from '../scenario-entities/logical-operators.const';
 
 @Component({
-    selector: 'scenario-wizard',
+    selector: 'sh-scenario-wizard',
     templateUrl: './scenario-wizard.template.html',
     styleUrls: ['./scenario-wizard.style.scss']
 })
