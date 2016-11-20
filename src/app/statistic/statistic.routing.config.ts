@@ -1,0 +1,5 @@
+const STATISTIC_ROUTING_CONFIG = {
+    BASE: ''
+};
+
+export default STATISTIC_ROUTING_CONFIG;

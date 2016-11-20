@@ -52,6 +52,11 @@ export const routes = [
                 path: ROUTING.REGISTRATION,
                 canActivate: [ GuestGuard ],
                 loadChildren: () => require('es6-promise!./registration/registration.module')('RegistrationModule')
+            },
+            {
+                path: ROUTING.STATISTIC,
+                canActivate: [ LoggedInGuard ],
+                loadChildren: () => require('es6-promise!./statistic/statistic.module')('StatisticModule')
             }
         ]
     },

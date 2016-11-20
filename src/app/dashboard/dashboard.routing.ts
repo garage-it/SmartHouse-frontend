@@ -11,13 +11,20 @@ export const routes = [
     {
         path: DASHBOARD_ROUTING_CONFIG.BASE,
         component: DashboardComponent,
-        resolve: { widgets: DashboardResolveService }
+        resolve: {
+            widgets: DashboardResolveService
+        }
     },
-    { path: DASHBOARD_ROUTING_CONFIG.EDITOR, component: DashboardEditorComponent },
+    {
+        path: DASHBOARD_ROUTING_CONFIG.EDITOR,
+        component: DashboardEditorComponent
+    },
     {
         path: DASHBOARD_ROUTING_CONFIG.SENSOR_DETAILS,
         component: SensorStatisticComponent,
-        resolve: { deviceStatistic: SensorStatisticResolveService }
+        resolve: {
+            deviceStatistic: SensorStatisticResolveService
+        }
     }
 ];
 
