@@ -5,7 +5,7 @@ import { SensorWidgetService } from './shared/sensor-widget/sensor-widget.servic
 import { Widget } from './widget.model';
 
 @Component({
-    selector: 'sm-dashboard',
+    selector: 'sh-dashboard',
     templateUrl: './dashboard.template.html',
     styleUrls: ['./dashboard.style.scss']
 })

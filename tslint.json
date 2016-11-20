@@ -11,7 +11,9 @@
       true,
       "attribute"
     ],
-    "directive-selector-prefix": [true, "sm"],
+    "directive-selector-prefix": [true, "sh"],
+    "component-selector-prefix": [true, "sh"],
+    "component-selector-name": [true, "kebab-case"],
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
     "use-host-property-decorator": true,

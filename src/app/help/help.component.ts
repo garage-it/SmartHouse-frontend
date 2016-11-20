@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'sm-help',
+    selector: 'sh-help',
     styleUrls: ['./help.component.scss'],
     templateUrl: './help.component.html'
 })

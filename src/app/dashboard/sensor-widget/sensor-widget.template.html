@@ -1,13 +1,13 @@
-<sensor-regular-widget
+<sh-sensor-regular-widget
     [device]="device"
     [routerLink]="['./sensor-details', device.mqttId, 'day']"
     *ngIf="!device.executor && !device.servo">
-</sensor-regular-widget>
-<sm-sensor-executor-widget
+</sh-sensor-regular-widget>
+<sh-sensor-executor-widget
     [device]="device"
     *ngIf="device.executor">
-</sm-sensor-executor-widget>
-<sm-sensor-servo-widget
+</sh-sensor-executor-widget>
+<sh-sensor-servo-widget
     [device]="device"
     *ngIf="device.servo">
-</sm-sensor-servo-widget>
+</sh-sensor-servo-widget>

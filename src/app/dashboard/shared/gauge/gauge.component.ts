@@ -3,7 +3,7 @@ import { ViewChild, Component, OnChanges, Input } from '@angular/core';
 export const GAUGE_COEFFICIENT = 0.56;
 
 @Component({
-    selector: 'sm-gauge',
+    selector: 'sh-gauge',
     templateUrl: './gauge.template.html',
     styleUrls: ['./gauge.style.scss']
 })

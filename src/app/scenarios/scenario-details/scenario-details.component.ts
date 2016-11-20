@@ -5,7 +5,7 @@ import { ScenarioService } from '../shared/scenario.service';
 import { Scenario } from '../scenario-details/wizard/scenario-entities/scenario';
 
 @Component({
-    selector: 'scenario-list',
+    selector: 'sh-scenario-list',
     templateUrl: './scenario-details.template.html',
     styleUrls: ['./scenario-details.style.scss']
 })

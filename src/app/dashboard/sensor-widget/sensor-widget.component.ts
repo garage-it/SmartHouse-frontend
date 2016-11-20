@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-    selector: 'sm-sensor-widget',
+    selector: 'sh-sensor-widget',
     templateUrl: './sensor-widget.template.html'
 })
 export class SensorWidgetComponent {
