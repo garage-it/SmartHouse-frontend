@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavigationRoute } from './navigation-route.model';
 import { NAVIGATION_ROUTES, MAIN_ROUTE } from './header-navigation-routes';
 
