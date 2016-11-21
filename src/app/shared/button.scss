@@ -1,0 +1,13 @@
+.button {
+    margin: 20px 10px 0;
+    width: 120px;
+    height: 40px;
+    font-weight: 400;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+
+    &_success {
+        background-color: #a3c940;
+    }
+}
