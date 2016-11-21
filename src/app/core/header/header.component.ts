@@ -25,12 +25,12 @@ export class HeaderComponent implements OnInit {
 
     constructor(private profile: ProfileService) {}
 
-    ngOnInit() {
+    ngOnInit(): void {
         const routes = NAVIGATION_ROUTES.filter(route => route['main']);
         this.mainRoute = routes && routes.length ? routes[0] : null;
     }
 
-    isOptionHidden(route) {
+    isOptionHidden(route): boolean {
         return route.authRequired && this.profile.isGuest();
     }
 
