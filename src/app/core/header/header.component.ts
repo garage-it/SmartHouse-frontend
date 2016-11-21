@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationRoute } from './navigation-route.model';
 import { NAVIGATION_ROUTES } from './header-navigation-routes';
 
 @Component({
@@ -8,7 +9,7 @@ import { NAVIGATION_ROUTES } from './header-navigation-routes';
 })
 export class HeaderComponent implements OnInit {
 
-    private mainRoute: Object;
+    private mainRoute?: NavigationRoute;
 
     ngOnInit() {
         const routes = NAVIGATION_ROUTES.filter(route => route.main);

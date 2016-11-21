@@ -1,4 +1,4 @@
-import { NavigationRoute } from './navigation-route';
+import { NavigationRoute } from './navigation-route.model';
 import ROUTING from '../../config.routing';
 
 export const NAVIGATION_ROUTES: Array<NavigationRoute> = [

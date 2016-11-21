@@ -8,6 +8,6 @@ import { Component } from '@angular/core';
 export class HomeComponent {
 
     public onCreateViewClick(): void {
-
+        // TODO: place logic here
     }
 }
