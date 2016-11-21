@@ -7,8 +7,4 @@ describe('Home', () => {
        sut = new HomeComponent();
     });
 
-    it('should do nothing on create view click', () => {
-        sut.onCreateViewClick();
-    });
-
 });

@@ -1,7 +1,7 @@
 <div class="home-nav">
     <div class="home-nav__actions">
         <button class="button button_success"
-                (click)="onCreateViewClick()">
+                [routerLink]="['constructor']">
             + Create view
         </button>
     </div>
@@ -24,7 +24,7 @@
     <div class="empty-home-view">
         Please
         <a class="empty-home-view__create"
-           (click)="onCreateViewClick()">
+           [routerLink]="['constructor']">
             create
         </a>
         view

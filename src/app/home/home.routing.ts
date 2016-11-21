@@ -5,9 +5,19 @@ import { HomeComponent } from './home.component';
 
 export const routes = [
     {
-        path: HOME_ROUTING_CONFIG.BASE,
-        component: HomeComponent
-    }
+        path: '',
+        children: [
+            {
+                path: HOME_ROUTING_CONFIG.BASE,
+                component: HomeComponent,
+            },
+            {
+                path: HOME_ROUTING_CONFIG.CONSTRUCTOR,
+                loadChildren: () => require('es6-promise!../constructor/constructor.module')('ConstructorModule')
+            }
+        ]
+    },
+
 ];
 
 export const routing = RouterModule.forChild(routes);

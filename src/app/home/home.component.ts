@@ -6,8 +6,4 @@ import { Component } from '@angular/core';
     styleUrls: [ './home.style.scss' ]
 })
 export class HomeComponent {
-
-    public onCreateViewClick(): void {
-        // TODO: place logic here
-    }
 }
