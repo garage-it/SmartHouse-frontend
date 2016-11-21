@@ -1,5 +1,6 @@
 const HOME_ROUTING_CONFIG = {
-    BASE: ''
+    BASE: '',
+    CONSTRUCTOR: 'constructor'
 };
 
 export default HOME_ROUTING_CONFIG;
