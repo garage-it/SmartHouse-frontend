@@ -1,25 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationRoute } from './navigation-route.model';
-import { NAVIGATION_ROUTES } from './header-navigation-routes';
+import { NAVIGATION_ROUTES, MAIN_ROUTE } from './header-navigation-routes';
 
 @Component({
     selector: 'sh-header',
     styleUrls: ['./header.component.scss'],
     templateUrl: './header.component.html'
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
-    private mainRoute?: NavigationRoute;
-
-    ngOnInit() {
-        this.mainRoute = NAVIGATION_ROUTES.find(route => route.main);
+    get mainPageRoute(): NavigationRoute {
+        return MAIN_ROUTE;
     }
 
-    get mainPageRoute() {
-        return this.mainRoute;
-    }
-
-    get navigationRoutes() {
+    get navigationRoutes(): Array<NavigationRoute> {
         return NAVIGATION_ROUTES;
     }
 }
