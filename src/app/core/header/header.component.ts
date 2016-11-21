@@ -12,8 +12,7 @@ export class HeaderComponent implements OnInit {
     private mainRoute?: NavigationRoute;
 
     ngOnInit() {
-        const routes = NAVIGATION_ROUTES.filter(route => route.main);
-        this.mainRoute = routes && routes.length ? routes[0] : null;
+        this.mainRoute = NAVIGATION_ROUTES.find(route => route.main);
     }
 
     get mainPageRoute() {
