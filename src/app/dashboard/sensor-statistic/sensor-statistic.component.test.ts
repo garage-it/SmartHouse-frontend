@@ -55,5 +55,4 @@ describe('SensorStatisticComponent', () => {
             expect(routeSubscription.unsubscribe).toHaveBeenCalled();
         });
     });
-
 });
