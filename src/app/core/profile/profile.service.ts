@@ -57,14 +57,17 @@ export class ProfileService {
     }
 
     getUserRole(): string {
-        if (this.user) {
-            return this.user.role;
-        }
-
-        return '';
+        return this.user ? this.user.role : '';
     }
 
     hasUserRole(roles: Array<string>): boolean {
-        return Boolean(roles && roles.length) && roles.indexOf(this.getUserRole()) !== -1;
+        if (roles && roles.length) {
+            return roles.indexOf(this.getUserRole()) !== -1;
+        }
+        /*
+         * When roles not transferred
+         * we assume that for all roles we want to allow
+         */
+        return true;
     }
 }
