@@ -49,7 +49,7 @@ export class ProfileService {
     }
 
     isLoggedIn(): boolean {
-        return Boolean(this.user && this.user.role);
+        return Boolean(this.getUserRole());
     }
 
     isGuest(): boolean {
@@ -57,6 +57,14 @@ export class ProfileService {
     }
 
     getUserRole(): string {
-        return this.user && this.user.role;
+        if (this.user) {
+            return this.user.role;
+        }
+
+        return '';
+    }
+
+    hasUserRole(roles: Array<string>): boolean {
+        return Boolean(roles && roles.length) && roles.indexOf(this.getUserRole()) !== -1;
     }
 }

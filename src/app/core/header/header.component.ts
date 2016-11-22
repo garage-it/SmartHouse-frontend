@@ -10,12 +10,12 @@ const HEADER_COMPONENT_SELECTOR = 'sh-header';
 
 export const NAVIGATION_ROUTES = [
     { path: `/${ROUTING.DASHBOARD}`, headerName: 'Dashboard', iconImage: './assets/dashboard.svg', main: true },
-    { path: `/${ROUTING.DEVICES}`, headerName: 'Devices', iconImage: './assets/deviceList.svg', isLoggedIn: true },
-    { path: `/${ROUTING.SCENARIOS}`, headerName: 'Scenarios', iconImage: './assets/scenarioList.png', isLoggedIn: true },
-    { path: `/${ROUTING.HELP}`, headerName: 'Help', iconImage: './assets/help.svg', isLoggedIn: false },
-    { path: `/${ROUTING.LOGIN}`, headerName: 'Login', iconImage: './assets/login.svg', isLoggedIn: false },
-    { path: `/${ROUTING.LOGOUT}`, headerName: 'Logout', iconImage: './assets/logout.svg', isLoggedIn: true },
-    { path: `/${ROUTING.REGISTRATION}`, headerName: 'Registration', iconImage: './assets/registration.svg', isLoggedIn: false }
+    { path: `/${ROUTING.DEVICES}`, headerName: 'Devices', iconImage: './assets/deviceList.svg', isAuthorized: true },
+    { path: `/${ROUTING.SCENARIOS}`, headerName: 'Scenarios', iconImage: './assets/scenarioList.png', isAuthorized: true },
+    { path: `/${ROUTING.HELP}`, headerName: 'Help', iconImage: './assets/help.svg', isAuthorized: false },
+    { path: `/${ROUTING.LOGIN}`, headerName: 'Login', iconImage: './assets/login.svg', isAuthorized: false },
+    { path: `/${ROUTING.LOGOUT}`, headerName: 'Logout', iconImage: './assets/logout.svg', isAuthorized: true },
+    { path: `/${ROUTING.REGISTRATION}`, headerName: 'Registration', iconImage: './assets/registration.svg', isAuthorized: false }
 ];
 
 @Component({

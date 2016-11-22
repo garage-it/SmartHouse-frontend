@@ -7,7 +7,6 @@ import { HeaderComponent } from './header/header.component';
 import { MainComponent } from './main/main.component';
 import { ScreenComponent } from './screen/screen.component';
 import { ProtectedComponent } from '../shared/components/protected-component/protected.component';
-import { CheckLoginPipe } from '../shared/components/protected-component/protected.pipe';
 
 import { AuthService } from './auth/auth.service';
 import { GuestGuard, LoggedInGuard } from './profile/profile.guards';
@@ -24,8 +23,7 @@ import { StorageService } from './storage/storage.service';
         HeaderComponent,
         MainComponent,
         ScreenComponent,
-        ProtectedComponent,
-        CheckLoginPipe
+        ProtectedComponent
     ],
     providers: [
         AuthService,
