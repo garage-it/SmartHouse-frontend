@@ -9,10 +9,11 @@ import { DashboardResolveService } from '../core/dashboard/dashboard-resolve.ser
 import { CommonModule } from '@angular/common';
 import { DashboardViewComponent } from './dashboard/dashboard-view/dashboard-view.component';
 import { WidgetComponent } from './dashboard/dashboard-view/widget/widget.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
     id: module.id,
-    imports: [ CommonModule, routing ],
+    imports: [ SharedModule, CommonModule, routing ],
     declarations: [
         ConstructorComponent,
         DashboardConstructorComponent,
