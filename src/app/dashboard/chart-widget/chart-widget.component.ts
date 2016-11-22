@@ -27,6 +27,7 @@ export class ChartWidgetComponent implements OnInit, OnChanges, OnDestroy {
     private periodSubscription;
     private deviceId;
     private period;
+    private modifiedDate;
 
     constructor(private currentRoute: ActivatedRoute) {
         this.deviceId = this.currentRoute.snapshot.params['id'];
@@ -44,6 +45,7 @@ export class ChartWidgetComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     ngOnChanges() {
+        this.modifiedDate = this.deviceStatistic.data.map(item => (new Date(item.date)));
         this.options = {
             chart: { type: 'spline' },
             title: { text : `Statistic for ${this.deviceStatistic.sensor}  sensor`},
@@ -53,7 +55,7 @@ export class ChartWidgetComponent implements OnInit, OnChanges, OnDestroy {
                     rotation: -45,
                     format: dateLabels[this.period]
                 },
-                categories: this.deviceStatistic.data.map(item => (new Date(item.date)))
+                categories: this.modifiedDate
             },
             yAxis: [{
                 labels: {
@@ -64,7 +66,7 @@ export class ChartWidgetComponent implements OnInit, OnChanges, OnDestroy {
                 }
             }],
             series: [{
-                name: `${this.deviceStatistic.sensor}`,
+                name: `Statistics for the ${this.period}`,
                 data: this.deviceStatistic.data.map(item => item.value)
             }]
         };
