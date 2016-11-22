@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
-import { DashboardService } from '../dashboard.service';
+import { DashboardService } from '../../core/dashboard/dashboard.service';
 import { Widget } from '../widget.model';
 
 const selector = 'sh-dashboard-editor';

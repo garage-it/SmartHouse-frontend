@@ -10,9 +10,9 @@ import { routing } from './dashboard.routing';
 import { DashboardComponent } from './dashboard.component';
 
 import { SensorWidgetService } from './shared/sensor-widget/sensor-widget.service';
-import { DashboardResolveService } from './dashboard-resolve.service';
+import { DashboardResolveService } from '../core/dashboard/dashboard-resolve.service';
 import { SensorStatisticResolveService } from './sensor-statistic/sensor-statistic-resolve.service';
-import { DashboardService } from './dashboard.service';
+import { DashboardService } from '../core/dashboard/dashboard.service';
 import { DragulaModule } from 'ng2-dragula/ng2-dragula';
 
 import DASHBOARD_DECLARATIONS from './dashboard.declarations';

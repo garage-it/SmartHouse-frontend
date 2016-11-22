@@ -2,7 +2,7 @@ import { RouterModule } from '@angular/router';
 
 import DASHBOARD_ROUTING_CONFIG from './dashboard.routing.config';
 import { DashboardComponent } from './dashboard.component';
-import { DashboardResolveService } from './dashboard-resolve.service';
+import { DashboardResolveService } from '../core/dashboard/dashboard-resolve.service';
 import { DashboardEditorComponent } from './dashboard-editor/dashboard-editor.component';
 import { SensorStatisticComponent } from './sensor-statistic/sensor-statistic.component';
 import { SensorStatisticResolveService } from './sensor-statistic/sensor-statistic-resolve.service';

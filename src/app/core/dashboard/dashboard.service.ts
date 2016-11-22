@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
-import { ShHttpService } from '../core/sh-http/sh-http.service';
-import { ShHttpUtilsService } from '../core/sh-http/sh-http-utils.service';
-import { Widget } from './widget.model';
+import { ShHttpService } from '../sh-http/sh-http.service';
+import { ShHttpUtilsService } from '../sh-http/sh-http-utils.service';
 import { URLSearchParams } from '@angular/http';
+import { Widget } from '../../dashboard/widget.model';
 
 @Injectable()
 export class DashboardService {
