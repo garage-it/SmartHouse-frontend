@@ -5,7 +5,7 @@ import { AuthService } from '../core/auth/auth.service';
 import { IUserCredentials } from '../core/auth/auth.interfaces';
 
 @Component({
-    selector: 'sm-login',
+    selector: 'sh-login',
     styleUrls: ['./login.component.scss'],
     templateUrl: './login.component.html'
 })

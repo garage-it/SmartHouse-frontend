@@ -45,7 +45,7 @@ describe('DashboardEditor', () => {
         });
 
         it('should set initial data of drag and drop', () => {
-            expect(dragulaService.setOptions).toHaveBeenCalledWith('dashboard-editor', {
+            expect(dragulaService.setOptions).toHaveBeenCalledWith('sh-dashboard-editor', {
                 revertOnSpill: true,
                 direction: 'horizontal'
             });
@@ -58,7 +58,7 @@ describe('DashboardEditor', () => {
         });
 
         it('should destroy drag and drop listeners when component is destroyed', () => {
-            expect(dragulaService.destroy).toHaveBeenCalledWith('dashboard-editor');
+            expect(dragulaService.destroy).toHaveBeenCalledWith('sh-dashboard-editor');
         });
     });
 

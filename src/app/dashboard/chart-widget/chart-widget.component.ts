@@ -17,7 +17,7 @@ const dateLabels = {
 };
 
 @Component({
-    selector: 'sm-chart-widget',
+    selector: 'sh-chart-widget',
     template: template,
     styles: [styles]
 })

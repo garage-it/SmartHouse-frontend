@@ -13,7 +13,7 @@ export const SCENARIO_ACTIVE_STATE = 'active';
 export const SCENARIO_PAUSED_STATE = 'paused';
 
 @Component({
-    selector: 'scenario-list',
+    selector: 'sh-scenario-list',
     templateUrl: './scenario-list.template.html',
     styleUrls: ['./scenario-list.style.scss']
 })

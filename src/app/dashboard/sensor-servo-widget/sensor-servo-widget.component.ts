@@ -4,7 +4,7 @@ import { BaseOutputSensor } from '../shared/base-output-sensor/base-output-senso
 import { SensorWidgetService } from '../shared/sensor-widget/sensor-widget.service';
 
 @Component({
-    selector: 'sm-sensor-servo-widget',
+    selector: 'sh-sensor-servo-widget',
     templateUrl: './sensor-servo-widget.template.html',
     styleUrls: ['../shared/sensor-widget/sensor-widget.style.scss',
         './sensor-servo-widget.style.scss']

@@ -8,7 +8,7 @@ import {
 import { SensorWidgetService } from '../shared/sensor-widget/sensor-widget.service';
 
 @Component({
-    selector: 'sm-sensor-executor-widget',
+    selector: 'sh-sensor-executor-widget',
     templateUrl: './sensor-executor-widget.template.html',
     styleUrls: ['../shared/sensor-widget/sensor-widget.style.scss']
 })

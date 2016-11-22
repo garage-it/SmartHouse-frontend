@@ -4,7 +4,7 @@
     </div>
 
     <div class="dashboard_content">
-        <div class="dashboard_widgets-container" [dragula]="'dashboard-editor'" [dragulaModel]='widgets'>
+        <div class="dashboard_widgets-container" [dragula]="'sh-dashboard-editor'" [dragulaModel]='widgets'>
             <div class="dashboard_widget"
                 *ngFor="let widget of widgets; let index = index"
                 [ngClass]="{ 'dashboard_widget-hidden': widget.hidden }">
@@ -14,8 +14,8 @@
                         [(ngModel)]="widget.hidden"/>
                     <label [attr.for]="'hideWidget' + index">hidden</label>
                 </div>
-                <sm-sensor-widget [device]="widget.device">
-                </sm-sensor-widget>
+                <sh-sensor-widget [device]="widget.device">
+                </sh-sensor-widget>
             </div>
         </div>
 
