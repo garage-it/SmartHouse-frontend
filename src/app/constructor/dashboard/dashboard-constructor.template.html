@@ -1,0 +1,29 @@
+<p class="title">Constructor / Dashboard view</p>
+
+
+<div class="step">
+    <span>Step 4: Add widgets</span>
+
+    <span class="step_options">
+        <input class="filled-in" type="checkbox"
+               [attr.id]="active"/>
+        <label [attr.for]="active">Active</label>
+        <input class="filled-in" type="checkbox"
+               [attr.id]="default"/>
+        <label [attr.for]="default">Default</label>
+    </span>
+
+</div>
+
+<sh-dashboard-view
+        [widgets]="widgets"
+        (onRemoveWidget)="onRemoveWidget($event)">
+</sh-dashboard-view>
+
+<div class="step">
+    <span>Step 5: Add widgets on dashboard</span>
+</div>
+<sh-widget-list
+        [widgets]="widgetList"
+        (onAddWidget)="onAddWidget($event)">
+</sh-widget-list>

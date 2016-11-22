@@ -25,4 +25,8 @@
 <button>Save</button>
 
 <h4>Step 3: Add devices on the map</h4>
-List of devices
+
+<sh-widget-list
+        [widgets]="widgets"
+        (onAddWidget)="onAddWidget($event)">
+</sh-widget-list>

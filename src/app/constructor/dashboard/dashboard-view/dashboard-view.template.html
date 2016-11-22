@@ -1,0 +1,18 @@
+<div class="dashboard-view">
+    <div [ngClass]="{'dashboard-view__centered': !widgets.length, 'dashboard-view__ordered': widgets.length}">
+        <span *ngIf="!widgets.length">
+            Please add your widgets
+        </span>
+
+        <sh-widget
+                *ngFor="let widget of widgets"
+                [widget]="widget"
+                (onRemoveWidget)="removeWidget($event)"></sh-widget>
+    </div>
+</div>
+
+<div class="dashboard-buttons">
+    <button>Cancel</button>
+    <button>Save</button>
+</div>
+

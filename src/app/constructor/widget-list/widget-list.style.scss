@@ -1,0 +1,33 @@
+.widget-list {
+  margin: 0 60px 30px;
+
+  &__item {
+    height: 28px;
+    border: solid 1px #e9e9e9;
+  }
+
+  &__title {
+    position: relative;
+    margin-right: -10px;
+    margin-left: 10px!important;
+
+    &::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      position: absolute;
+      top: 10px;
+      left: 0;
+      background-color: #b8e986;
+      border-radius: 50%;
+    }
+  }
+
+  &__actions {
+    text-align: right;
+  }
+}
+
+.row {
+  margin-bottom: -1px;
+}
