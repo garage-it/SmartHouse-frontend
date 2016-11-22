@@ -30,10 +30,6 @@ export class RegistrationComponent {
             });
     }
 
-    passwordsMatch() {
-        return this.user.password === this.user.passwordConfirm;
-    }
-
     ngOnDestroy() {
         if (this.registrationSubscription) {
             this.registrationSubscription.unsubscribe();
