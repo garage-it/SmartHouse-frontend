@@ -14,16 +14,12 @@ export class ProtectedComponent {
     get allowed(): boolean {
         if (this.isAuthorized) {
             if (this.profileService.isLoggedIn()) {
-                if (this.roles && this.roles.length) {
-                    return this.profileService.hasUserRole(this.roles);
-                }
-
-                return true;
+                return this.profileService.hasUserRole(this.roles);
             }
 
             return false;
-        } else {
-            return this.profileService.isGuest();
         }
+
+        return this.profileService.isGuest();
     }
 }
