@@ -45,7 +45,7 @@ export class ChartWidgetComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     ngOnChanges() {
-        this.modifiedDate = this.deviceStatistic.data.map(item => (new Date(item.date)));
+        this.modifiedDate = this.deviceStatistic.data.map(item => (+(new Date(item.date))));
         this.options = {
             chart: { type: 'spline' },
             title: { text : `Statistic for ${this.deviceStatistic.sensor}  sensor`},

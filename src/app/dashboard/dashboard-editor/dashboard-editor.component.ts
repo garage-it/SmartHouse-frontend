@@ -4,7 +4,7 @@ import { DragulaService } from 'ng2-dragula/ng2-dragula';
 import { DashboardService } from '../dashboard.service';
 import { Widget } from '../widget.model';
 
-const selector = 'dashboard-editor';
+const selector = 'sh-dashboard-editor';
 
 @Component({
     selector,
