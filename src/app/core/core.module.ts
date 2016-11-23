@@ -14,6 +14,7 @@ import { ProfileResolver } from './profile/profile.resolver';
 import { ShHttpService } from './sh-http/sh-http.service';
 import { ShHttpUtilsService } from './sh-http/sh-http-utils.service';
 import { StorageService } from './storage/storage.service';
+import { WindowRef } from './browser/window-ref.service';
 
 @NgModule({
     id: module.id,
@@ -28,6 +29,7 @@ import { StorageService } from './storage/storage.service';
         ShHttpService,
         ShHttpUtilsService,
         StorageService,
+        WindowRef
     ],
     exports: [ HeaderComponent, MainComponent, ScreenComponent ]
 })

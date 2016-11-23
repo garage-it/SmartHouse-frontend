@@ -9,6 +9,7 @@ import { routing } from './login.routing';
 @NgModule({
     id: module.id,
     imports: [ SharedModule, FormsModule, routing ],
+    providers: [],
     declarations: [ LoginComponent ]
 })
 export class LoginModule {}
