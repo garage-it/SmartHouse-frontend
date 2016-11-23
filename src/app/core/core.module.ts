@@ -13,6 +13,7 @@ import { ShHttpService } from './sh-http/sh-http.service';
 import { ShHttpUtilsService } from './sh-http/sh-http-utils.service';
 import { StorageService } from './storage/storage.service';
 import { ShRequestOptions } from './sh-http/sh-request-options';
+import { FilesService } from './files/files.service';
 
 @NgModule({
     id: module.id,
@@ -27,7 +28,8 @@ import { ShRequestOptions } from './sh-http/sh-request-options';
         ShHttpService,
         { provide: RequestOptions, useClass: ShRequestOptions },
         ShHttpUtilsService,
-        StorageService
+        StorageService,
+        FilesService
     ],
     exports: [ HeaderComponent, MainComponent, ScreenComponent ]
 })
