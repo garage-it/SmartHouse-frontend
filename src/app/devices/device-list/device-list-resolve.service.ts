@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { SensorDetailService } from './shared/sensor-detail.service';
+import { SensorDetailService } from '../shared/sensor-detail.service';
 import { Resolve } from '@angular/router';
 
 @Injectable()

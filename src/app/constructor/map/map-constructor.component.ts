@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { Widget } from '../../dashboard/widget.model';
+import { Device } from '../../devices/device.model';
 
 @Component({
     selector: 'sh-map-constructor',
@@ -9,17 +8,13 @@ import { Widget } from '../../dashboard/widget.model';
 })
 export class MapConstructorComponent {
 
-    private widgets: Widget[] = [];
+    private devices: Device[] = [];
 
     constructor(private route: ActivatedRoute) {
     }
 
     ngOnInit(): void {
-        const widgetsSource = this.route.data
-            .flatMap(({ widgets: { devices } }) => Observable.from(devices));
-
-        widgetsSource
-            .subscribe(widget => this.widgets.push(widget));
+        this.devices = this.route.snapshot.data['devices'];
     }
 
     onAddWidget(widget): void {

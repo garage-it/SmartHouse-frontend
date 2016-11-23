@@ -1,6 +1,6 @@
 <div class="dashboard-view">
-    <div [ngClass]="{'dashboard-view__centered': !widgets.length, 'dashboard-view__ordered': widgets.length}">
-        <span *ngIf="!widgets.length">
+    <div [ngClass]="{'dashboard-view__centered': !widgets?.length, 'dashboard-view__ordered': widgets?.length}">
+        <span *ngIf="!widgets?.length">
             Please add your widgets
         </span>
 
@@ -13,6 +13,6 @@
 
 <div class="dashboard-buttons">
     <button class="button button_cancel" (click)="cancel()">Cancel</button>
-    <button class="button button_success">Save</button>
+    <button class="button button_success" (click)="save()">Save</button>
 </div>
 

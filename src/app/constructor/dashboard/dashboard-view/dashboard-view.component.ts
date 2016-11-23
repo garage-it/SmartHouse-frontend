@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
     styleUrls: ['./dashboard-view.style.scss']
 })
 export class DashboardViewComponent {
-    @Input() widgets: Widget[];
+    @Input() widgets: Widget[] = new Array<Widget>();
     @Output() onRemoveWidget: EventEmitter<any> = new EventEmitter();
 
     constructor(private dialogService: DialogService,
@@ -34,5 +34,10 @@ export class DashboardViewComponent {
             .subscribe(() => {
                 this.router.navigate(['/']);
             });
+    }
+
+    save() {
+        // this.dashboardService.applyChanges(this.widgets)
+        //     .subscribe(() => this.router.navigate(['/dashboard'])); //TODO Should be changed on new dashboard view
     }
 }

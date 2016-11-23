@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
-import { DashboardService } from '../../core/dashboard/dashboard.service';
+import { DashboardService } from '../dashboard.service';
 
 @Injectable()
 export class SensorStatisticResolveService implements Resolve<Object> {

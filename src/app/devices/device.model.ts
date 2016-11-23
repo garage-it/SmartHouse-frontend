@@ -1,4 +1,5 @@
 export class Device {
+    _id?: string;
     description: string;
     executor: boolean;
     metrix: string;

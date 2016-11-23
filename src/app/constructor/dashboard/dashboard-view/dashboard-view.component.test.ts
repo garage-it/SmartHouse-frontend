@@ -6,7 +6,6 @@ describe('DashboardView', () => {
     let DialogService;
     let ViewContainerRef;
     let Router;
-    
 
     beforeEach(() => {
         DialogService = jasmine.createSpyObj('DialogService', ['confirm']);
@@ -39,18 +38,18 @@ describe('DashboardView', () => {
             sut.cancel();
             expect(DialogService.confirm).toHaveBeenCalledWith(ViewContainerRef, confirmOptions);
         });
-        
+
         describe('when confirmed', () => {
             beforeEach(() => {
-                DialogService.confirm.and.returnValue(Observable.of(1));
+                DialogService.confirm.and.returnValue(Observable.of(true));
                 sut.cancel();
             });
-            
+
             it('should navigate to home page', () => {
                 expect(Router.navigate).toHaveBeenCalledWith(['/']);
             });
         });
-        
+
         describe('when not confirmed', () => {
             beforeEach(() => {
                 sut.cancel();
@@ -60,5 +59,29 @@ describe('DashboardView', () => {
                 expect(Router.navigate).not.toHaveBeenCalled();
             });
         });
+    });
+
+    describe('save', () => {
+        // it('should save dashboard view', () => {
+        //     DashboardService.applyChanges.and.returnValue(Observable.of(false));
+        //     sut.save();
+        //     expect(DashboardService.applyChanges).toHaveBeenCalledWith(sut.widgets);
+        // });
+        //
+        // describe('successfully saved', () => {
+        //     it('should redirect to dashboard view page', () => {
+        //         DashboardService.applyChanges.and.returnValue(Observable.of(true));
+        //         sut.save();
+        //         expect(Router.navigate).toHaveBeenCalledWith(['/dashboard']);
+        //     });
+        // });
+        //
+        // describe('not saved', () => {
+        //     it('should redirect to dashboard view page', () => {
+        //         DashboardService.applyChanges.and.returnValue(Observable.never());
+        //         sut.save();
+        //         expect(Router.navigate).not.toHaveBeenCalledWith(['/dashboard']);
+        //     });
+        // });
     });
 });

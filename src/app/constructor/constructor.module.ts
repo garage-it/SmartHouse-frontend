@@ -5,15 +5,16 @@ import { ConstructorComponent } from './constructor.component';
 import { DashboardConstructorComponent } from './dashboard/dashboard-constructor.component';
 import { MapConstructorComponent } from './map/map-constructor.component';
 import { WidgetListComponent } from './widget-list/widget-list.component';
-import { DashboardResolveService } from '../core/dashboard/dashboard-resolve.service';
+import { DashboardResolveService } from '../dashboard/dashboard-resolve.service';
 import { CommonModule } from '@angular/common';
 import { DashboardViewComponent } from './dashboard/dashboard-view/dashboard-view.component';
 import { WidgetComponent } from './dashboard/dashboard-view/widget/widget.component';
 import { SharedModule } from '../shared/shared.module';
+import { DeviceListModule } from '../devices/device-list/device-list.module';
 
 @NgModule({
     id: module.id,
-    imports: [ SharedModule, CommonModule, routing ],
+    imports: [ SharedModule, CommonModule, routing, DeviceListModule ],
     declarations: [
         ConstructorComponent,
         DashboardConstructorComponent,

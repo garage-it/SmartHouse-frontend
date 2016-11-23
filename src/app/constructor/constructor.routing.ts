@@ -1,13 +1,15 @@
 import { RouterModule } from '@angular/router';
 
 import { ConstructorComponent } from './constructor.component';
-import { DashboardResolveService } from '../core/dashboard/dashboard-resolve.service';
+import { DeviceListResolveService } from '../devices/device-list/device-list-resolve.service';
 
 export const routes = [
     {
         path: '',
         component: ConstructorComponent,
-        resolve: { widgets: DashboardResolveService }
+        resolve: {
+            devices: DeviceListResolveService
+        }
     }
 ];
 
