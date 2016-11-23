@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { ShHttpService } from '../../core/sh-http/sh-http.service';
-import { MapViewInfoDto, MapViewInfoUpdateDto, MapViewInfoCreateDto } from './map-view.dto';
+import { MapViewInfoDto, MapViewInfoCreateDto } from './map-view.dto';
 import { FilesService } from '../../core/files/files.service';
 
 // TODO: register in map-view module
@@ -16,8 +16,8 @@ export class MapViewService {
         return this.http.get('/map-view');
     }
 
-    public save(dto: MapViewInfoUpdateDto|MapViewInfoCreateDto): Observable<MapViewInfoDto> {
-        return this.http.put('/map-view', dto);
+    public create(dto: MapViewInfoCreateDto): Observable<MapViewInfoDto> {
+        return this.http.post('/map-view', dto);
     }
 
     public resolvePictureUrl({ pictureName }: MapViewInfoDto): string {

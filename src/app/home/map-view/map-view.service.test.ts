@@ -13,7 +13,7 @@ describe('MapViewService', () => {
 
         http = {
             get: jasmine.createSpy('get').and.returnValue(response),
-            put: jasmine.createSpy('put').and.returnValue(response)
+            post: jasmine.createSpy('put').and.returnValue(response)
         };
 
         filesService = {
@@ -39,16 +39,16 @@ describe('MapViewService', () => {
 
     });
 
-    describe('save', () => {
+    describe('create', () => {
 
-        const updates = {};
+        const mapViewCreateDto = {};
 
         beforeEach(() => {
-            result = sut.save(updates);
+            result = sut.create(mapViewCreateDto);
         });
 
         it('should make request to update map view with updates', () => {
-            expect(http.put).toHaveBeenCalledWith('/map-view', updates);
+            expect(http.post).toHaveBeenCalledWith('/map-view', mapViewCreateDto);
         });
 
         it('should return response', () => {
