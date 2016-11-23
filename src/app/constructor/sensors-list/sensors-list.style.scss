@@ -1,4 +1,4 @@
-:host {
+.sensors-list {
   margin: 0 60px 30px;
 
   &__item {
@@ -26,8 +26,8 @@
   &__actions {
     text-align: right;
   }
-}
 
-.row {
-  margin-bottom: -1px;
+  .row {
+    margin-bottom: -1px;
+  }
 }
