@@ -23,22 +23,6 @@ describe('MapViewService', () => {
         sut = new MapViewService(http, filesService);
     });
 
-    describe('get', () => {
-
-        beforeEach(() => {
-            result = sut.get();
-        });
-
-        it('should make request for map view', () => {
-            expect(http.get).toHaveBeenCalledWith('/map-view');
-        });
-
-        it('should return response', () => {
-            expect(result).toEqual(response);
-        });
-
-    });
-
     describe('create', () => {
 
         const mapViewCreateDto = {};

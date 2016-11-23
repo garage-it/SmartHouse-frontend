@@ -12,10 +12,6 @@ export class MapViewService {
                 private filesService: FilesService) {
     }
 
-    public get(): Observable<MapViewInfoDto> {
-        return this.http.get('/map-view');
-    }
-
     public create(dto: MapViewInfoCreateDto): Observable<MapViewInfoDto> {
         return this.http.post('/map-view', dto);
     }
