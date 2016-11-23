@@ -4,6 +4,7 @@ import { ShHttpService } from '../../core/sh-http/sh-http.service';
 import { MapViewInfoDto, MapViewInfoUpdateDto, MapViewInfoCreateDto } from './map-view.dto';
 import { FilesService } from '../../core/files/files.service';
 
+// TODO: register in map-view module
 @Injectable()
 export class MapViewService {
 
