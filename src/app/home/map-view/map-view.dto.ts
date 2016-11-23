@@ -32,7 +32,7 @@ export interface MapViewInfoUpdateDto {
 
 export interface MapViewInfoCreateDto {
     name: string;
-    description?: string;
+    description: string;
     active: boolean;
     sensors: Array<MapViewSensorUpdateDto>;
 }
