@@ -5,7 +5,7 @@ import ChartPeriod from '../chart-widget/chart-period.enum';
 const template = require('./sensor-statistic.template.html');
 const style = require('./sensor-statistic.styles.scss');
 
-const selector = 'sensor-statistic';
+const selector = 'sh-sensor-statistic';
 
 @Component({
     selector,

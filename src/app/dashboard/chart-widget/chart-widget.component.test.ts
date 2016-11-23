@@ -102,9 +102,9 @@ describe('ChartWidgetComponent', () => {
         });
 
         it('should set name of chart series data', () => {
-            sut.deviceStatistic.sensor = 'sensor name';
+            sut.period = 'period';
             sut.ngOnChanges();
-            expect(sut.options.series[0].name).toEqual(sut.deviceStatistic.sensor);
+            expect(sut.options.series[0].name).toEqual('Statistics for the ' + sut.period);
         });
 
         it('should set data value to chart series', () => {

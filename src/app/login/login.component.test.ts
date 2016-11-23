@@ -3,8 +3,11 @@ import { Observable } from 'rxjs/Rx';
 
 describe('Login component', () => {
     let sut;
-    let router;
     let AuthService;
+    let router;
+    let activateRoute;
+    let windowRef;
+    let window;
 
     beforeEach(() => {
         AuthService = {
@@ -13,7 +16,20 @@ describe('Login component', () => {
         router = {
             navigate: jasmine.createSpy('navigate')
         };
-        sut = new LoginComponent(AuthService, router);
+        activateRoute = {
+            params: {
+                subscribe: jasmine.createSpy('params subscribe')
+            }
+        };
+        windowRef = {
+            nativeWindow: window
+        };
+        window = {
+            location: {
+                href: null
+            }
+        };
+        sut = new LoginComponent(AuthService, router, activateRoute, windowRef);
     });
 
     describe('login', () => {
