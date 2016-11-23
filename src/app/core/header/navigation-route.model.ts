@@ -3,4 +3,5 @@ export class NavigationRoute {
     headerName?: string;
     iconImage?: string;
     authRequired?: boolean;
+    isAuthorized?: boolean;
 }
