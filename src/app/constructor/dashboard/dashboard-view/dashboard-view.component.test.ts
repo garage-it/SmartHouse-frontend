@@ -1,6 +1,5 @@
 import { DashboardViewComponent } from './dashboard-view.component';
 import { Observable } from 'rxjs';
-import { DashboardConstructorService } from '../dashboard-constructor.service';
 
 describe('DashboardView', () => {
     let sut;

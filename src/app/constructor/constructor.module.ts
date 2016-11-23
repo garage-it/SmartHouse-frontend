@@ -4,7 +4,7 @@ import { routing } from './constructor.routing';
 import { ConstructorComponent } from './constructor.component';
 import { DashboardConstructorComponent } from './dashboard/dashboard-constructor.component';
 import { MapConstructorComponent } from './map/map-constructor.component';
-import { WidgetListComponent } from './widget-list/widget-list.component';
+import { SensorsListComponent } from './sensors-list/sensors-list.component';
 import { DashboardResolveService } from '../dashboard/dashboard-resolve.service';
 import { CommonModule } from '@angular/common';
 import { DashboardViewComponent } from './dashboard/dashboard-view/dashboard-view.component';
@@ -21,7 +21,7 @@ import { DashboardConstructorService } from './dashboard/dashboard-constructor.s
         ConstructorComponent,
         DashboardConstructorComponent,
         MapConstructorComponent,
-        WidgetListComponent,
+        SensorsListComponent,
         DashboardViewComponent,
         WidgetComponent
     ],

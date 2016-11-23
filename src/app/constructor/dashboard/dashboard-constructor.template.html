@@ -23,7 +23,7 @@
 <div class="step">
     <span>Step 5: Add widgets on dashboard</span>
 </div>
-<sh-widget-list
-        [widgets]="devices"
-        (onAddWidget)="onAddWidget($event)">
-</sh-widget-list>
+<sh-sensors-list
+        [sensors]="sensors"
+        (onAddSensor)="onAddSensor($event)">
+</sh-sensors-list>

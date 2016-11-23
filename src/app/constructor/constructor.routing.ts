@@ -10,7 +10,7 @@ export const routes = [
         component: ConstructorComponent,
         resolve: {
             widgets: DashboardViewResolveService,
-            devices: DeviceListResolveService
+            sensors: DeviceListResolveService
         }
     }
 ];

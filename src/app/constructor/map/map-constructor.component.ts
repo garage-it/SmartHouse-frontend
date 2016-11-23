@@ -8,15 +8,15 @@ import { Device } from '../../devices/device.model';
 })
 export class MapConstructorComponent {
 
-    private devices: Device[] = [];
+    private sensors: Device[] = [];
 
     constructor(private route: ActivatedRoute) {
     }
 
     ngOnInit(): void {
-        this.devices = this.route.snapshot.data['devices'];
+        this.sensors = this.route.snapshot.data['sensors'];
     }
 
-    onAddWidget(widget): void {
+    onAddSensor(sensor): void {
     }
 }

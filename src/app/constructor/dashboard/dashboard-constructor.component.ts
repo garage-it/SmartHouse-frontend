@@ -10,7 +10,7 @@ import { Device } from '../../devices/device.model';
 export class DashboardConstructorComponent {
 
     private widgets: Device[] = [];
-    private devices: Device[] = [];
+    private sensors: Device[] = [];
 
     constructor(private route: ActivatedRoute) {
     }
@@ -19,17 +19,17 @@ export class DashboardConstructorComponent {
         this.widgets = this.route.snapshot.data['widgets'];
         const widgetsIds = this.widgets.map(widget => widget.mqttId);
 
-        this.devices = this.route.snapshot.data['devices']
+        this.sensors = this.route.snapshot.data['sensors']
             .filter(device => !(widgetsIds.indexOf(device.mqttId) + 1));
     }
 
-    onAddWidget(widget): void {
-        this.widgets.push(widget);
-        this.devices = this.devices.filter(device => device.mqttId !== widget.mqttId);
+    onAddSensor(sensor): void {
+        this.widgets.push(sensor);
+        this.sensors = this.sensors.filter(filteredSensor => filteredSensor.mqttId !== sensor.mqttId);
     }
 
     onRemoveWidget(widget): void {
         this.widgets = this.widgets.filter(filteredWidget => filteredWidget.mqttId !== widget.mqttId);
-        this.devices.push(widget);
+        this.sensors.push(widget);
     }
 }

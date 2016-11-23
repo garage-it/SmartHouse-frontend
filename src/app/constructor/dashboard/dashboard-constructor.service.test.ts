@@ -28,7 +28,7 @@ describe('DashboardConstructorService', () => {
         });
 
         it('should get widgets of the dashboard from the server', () => {
-            expect(httpMock.get).toHaveBeenCalledWith('/sensors'); //TODO dashboard-view get
+            expect(httpMock.get).toHaveBeenCalledWith('/sensors'); // TODO dashboard-view get
         });
 
         describe('on get widgets error', () => {

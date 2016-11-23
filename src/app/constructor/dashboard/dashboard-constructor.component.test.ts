@@ -2,7 +2,7 @@ import { DashboardConstructorComponent } from './dashboard-constructor.component
 
 const device1 = {mqttId: 1};
 const device2 = {mqttId: 2};
-const mockDevices = [device1, device2];
+const mockSensors = [device1, device2];
 const mockWidgets = [device1];
 
 describe('DashboardConstructor', () => {
@@ -13,7 +13,7 @@ describe('DashboardConstructor', () => {
         ActivatedRoute = {
             snapshot: {
                 data: {
-                    devices: mockDevices,
+                    sensors: mockSensors,
                     widgets: []
                 }
             }
@@ -25,7 +25,7 @@ describe('DashboardConstructor', () => {
         describe('when dashboard view is empty', () => {
             it('should receive devices from state', () => {
                 sut.ngOnInit();
-                expect(sut.devices).toEqual(mockDevices);
+                expect(sut.sensors).toEqual(mockSensors);
             });
 
             it('should receive dashboard widgets from state', () => {
@@ -40,7 +40,7 @@ describe('DashboardConstructor', () => {
             });
             it('should receive devices from state that is not active widgets', () => {
                 sut.ngOnInit();
-                expect(sut.devices).toEqual([device2]);
+                expect(sut.sensors).toEqual([device2]);
             });
 
             it('should receive dashboard widgets from state', () => {
@@ -52,8 +52,8 @@ describe('DashboardConstructor', () => {
 
     describe('on add widget', () => {
         beforeEach(() => {
-            sut.devices = [device1];
-            sut.onAddWidget(device1);
+            sut.sensors = [device1];
+            sut.onAddSensor(device1);
         });
 
         it('should add widget to dashboard', () => {
@@ -61,7 +61,7 @@ describe('DashboardConstructor', () => {
         });
 
         it('should remove widget from widget list', () => {
-            expect(sut.devices.length).toEqual(0);
+            expect(sut.sensors.length).toEqual(0);
         });
     });
 
@@ -72,7 +72,7 @@ describe('DashboardConstructor', () => {
         });
 
         it('should add widget to widget list', () => {
-            expect(sut.devices[0]).toEqual(device1);
+            expect(sut.sensors[0]).toEqual(device1);
         });
 
         it('should remove widget from dashboard', () => {
