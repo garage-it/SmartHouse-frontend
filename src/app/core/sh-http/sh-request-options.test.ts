@@ -1,21 +1,27 @@
 import { ShRequestOptions } from './sh-request-options';
-import { BaseRequestOptions } from '@angular/http';
 
 describe('ShRequestOptions', () => {
     let sut;
 
     beforeEach(() => {
-        spyOn(BaseRequestOptions.prototype, 'merge').and.callThrough();
-        sut = new ShRequestOptions({ mock: 'mock'});
+        sut = new ShRequestOptions();
     });
 
-    it('should merge by preper options', () => {
-        const passedOptionsMock = { url: 'mock' };
-        sut.merge(passedOptionsMock);
+    it('should use application/json as default content type', () => {
+        expect(sut.headers.get('Content-Type')).toEqual('application/json');
+    });
 
-        expect(BaseRequestOptions.prototype.merge).toHaveBeenCalledWith({
-            url: `${ENV_PUBLIC_CONFIG.backEndUrl}/api${passedOptionsMock.url}`,
-            mock: 'mock',
+    describe('merge', () => {
+        const options = { url: 'url' };
+        let result;
+
+        beforeEach(() => {
+            result = sut.merge(options);
+        });
+
+        it('should prefix url', () => {
+            expect(result.url).toEqual(`${ENV_PUBLIC_CONFIG.backEndUrl}/api${options.url}`);
         });
     });
+
 });

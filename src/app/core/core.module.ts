@@ -2,11 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HttpModule, RequestOptions } from '@angular/http';
-
 import { HeaderComponent } from './header/header.component';
 import { MainComponent } from './main/main.component';
 import { ScreenComponent } from './screen/screen.component';
-
 import { AuthService } from './auth/auth.service';
 import { GuestGuard, LoggedInGuard } from './profile/profile.guards';
 import { ProfileService } from './profile/profile.service';
@@ -27,9 +25,9 @@ import { ShRequestOptions } from './sh-http/sh-request-options';
         ProfileResolver,
         ProfileService,
         ShHttpService,
+        { provide: RequestOptions, useClass: ShRequestOptions },
         ShHttpUtilsService,
-        StorageService,
-        { provide: RequestOptions, useClass: ShRequestOptions }
+        StorageService
     ],
     exports: [ HeaderComponent, MainComponent, ScreenComponent ]
 })
