@@ -1,18 +1,22 @@
 import { DashboardViewComponent } from './dashboard-view.component';
 import { Observable } from 'rxjs';
+import { DashboardConstructorService } from '../dashboard-constructor.service';
 
 describe('DashboardView', () => {
     let sut;
     let DialogService;
     let ViewContainerRef;
     let Router;
+    let DashboardConstructorService;
 
     beforeEach(() => {
         DialogService = jasmine.createSpyObj('DialogService', ['confirm']);
         ViewContainerRef = {};
         Router = jasmine.createSpyObj('Router', ['navigate']);
+        DashboardConstructorService =
+            jasmine.createSpyObj('DashboardConstructorService', ['saveDashboard']);
 
-        sut = new DashboardViewComponent(DialogService, ViewContainerRef, Router);
+        sut = new DashboardViewComponent(DialogService, ViewContainerRef, Router, DashboardConstructorService);
         sut.onRemoveWidget.emit = jasmine.createSpy('emit');
     });
 
@@ -61,27 +65,27 @@ describe('DashboardView', () => {
         });
     });
 
-    describe('save', () => {
-        // it('should save dashboard view', () => {
-        //     DashboardService.applyChanges.and.returnValue(Observable.of(false));
-        //     sut.save();
-        //     expect(DashboardService.applyChanges).toHaveBeenCalledWith(sut.widgets);
-        // });
-        //
-        // describe('successfully saved', () => {
-        //     it('should redirect to dashboard view page', () => {
-        //         DashboardService.applyChanges.and.returnValue(Observable.of(true));
-        //         sut.save();
-        //         expect(Router.navigate).toHaveBeenCalledWith(['/dashboard']);
-        //     });
-        // });
-        //
-        // describe('not saved', () => {
-        //     it('should redirect to dashboard view page', () => {
-        //         DashboardService.applyChanges.and.returnValue(Observable.never());
-        //         sut.save();
-        //         expect(Router.navigate).not.toHaveBeenCalledWith(['/dashboard']);
-        //     });
-        // });
+    describe('save dashboard', () => {
+        it('should save dashboard view', () => {
+            DashboardConstructorService.saveDashboard.and.returnValue(Observable.of(false));
+            sut.save();
+            expect(DashboardConstructorService.saveDashboard).toHaveBeenCalledWith(sut.widgets);
+        });
+
+        describe('successfully saved', () => {
+            it('should redirect to dashboard view page', () => {
+                DashboardConstructorService.saveDashboard.and.returnValue(Observable.of(true));
+                sut.save();
+                expect(Router.navigate).toHaveBeenCalledWith(['/dashboard']);
+            });
+        });
+
+        describe('not saved', () => {
+            it('should redirect to dashboard view page', () => {
+                DashboardConstructorService.saveDashboard.and.returnValue(Observable.never());
+                sut.save();
+                expect(Router.navigate).not.toHaveBeenCalledWith(['/dashboard']);
+            });
+        });
     });
 });

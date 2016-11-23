@@ -1,7 +1,8 @@
 import { Component, Input, Output, EventEmitter, ViewContainerRef } from '@angular/core';
-import { Widget } from '../../../dashboard/widget.model';
 import { DialogService } from '../../../shared/dialog/dialog.service';
 import { Router } from '@angular/router';
+import { DashboardConstructorService } from '../dashboard-constructor.service';
+import { Device } from '../../../devices/device.model';
 
 @Component({
     selector: 'sh-dashboard-view',
@@ -9,12 +10,13 @@ import { Router } from '@angular/router';
     styleUrls: ['./dashboard-view.style.scss']
 })
 export class DashboardViewComponent {
-    @Input() widgets: Widget[] = new Array<Widget>();
+    @Input() widgets: Device[] = [];
     @Output() onRemoveWidget: EventEmitter<any> = new EventEmitter();
 
     constructor(private dialogService: DialogService,
                 private viewContainerRef: ViewContainerRef,
-                private router: Router) {
+                private router: Router,
+                private dashboardConstructorService: DashboardConstructorService) {
     }
 
     removeWidget(widget) {
@@ -37,7 +39,7 @@ export class DashboardViewComponent {
     }
 
     save() {
-        // this.dashboardService.applyChanges(this.widgets)
-        //     .subscribe(() => this.router.navigate(['/dashboard'])); //TODO Should be changed on new dashboard view
+        this.dashboardConstructorService.saveDashboard(this.widgets)
+            .subscribe(() => this.router.navigate(['/dashboard'])); // TODO Should be changed on new dashboard view
     }
 }

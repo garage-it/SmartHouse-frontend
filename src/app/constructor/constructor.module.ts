@@ -11,6 +11,8 @@ import { DashboardViewComponent } from './dashboard/dashboard-view/dashboard-vie
 import { WidgetComponent } from './dashboard/dashboard-view/widget/widget.component';
 import { SharedModule } from '../shared/shared.module';
 import { DeviceListModule } from '../devices/device-list/device-list.module';
+import { DashboardViewResolveService } from './dashboard/dashboard-view/dashboard-view-resolve.service';
+import { DashboardConstructorService } from './dashboard/dashboard-constructor.service';
 
 @NgModule({
     id: module.id,
@@ -24,7 +26,9 @@ import { DeviceListModule } from '../devices/device-list/device-list.module';
         WidgetComponent
     ],
     providers: [
-        DashboardResolveService
+        DashboardResolveService,
+        DashboardConstructorService,
+        DashboardViewResolveService
     ]
 })
 export class ConstructorModule {}
