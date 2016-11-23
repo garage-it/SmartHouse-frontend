@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../core/auth/auth.service';
 
 @Component({
-    selector: 'sm-logout',
+    selector: 'sh-logout',
     template: ''
 })
 export class LogoutComponent implements OnInit {

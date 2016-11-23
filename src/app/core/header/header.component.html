@@ -5,7 +5,7 @@
                [routerLink]="[mainPageRoute.path]"
                [style.background-image]="'url(' + mainPageRoute.iconImage + ')'">Smart House</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li *ngFor="let route of navigationRoutes">
+                <li *ngFor="let route of navigationRoutes" [hidden]="isOptionHidden(route)">
                     <div *ngIf="route.hasOwnProperty('isAuthorized')">
                         <protected [isAuthorized]="route.isAuthorized">
                             <a [routerLink]="[route.path]" [style.background-image]="'url(' + route.iconImage + ')'">
@@ -21,7 +21,7 @@
                 </li>
             </ul>
             <ul id="nav-mobile" class="right hide-on-large-only">
-                <li *ngFor="let route of navigationRoutes">
+                <li *ngFor="let route of navigationRoutes" [hidden]="isOptionHidden(route)">
                     <div *ngIf="route.hasOwnProperty('isAuthorized')">
                         <protected [isAuthorized]="route.isAuthorized">
                             <a [routerLink]="[route.path]" class = "mobile-menu-link" [style.background-image]="'url(' + route.iconImage + ')'">

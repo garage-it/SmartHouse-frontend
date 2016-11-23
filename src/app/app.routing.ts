@@ -16,9 +16,7 @@ export const routes = [
         children: [
             {
                 path: '',
-                redirectTo: ROUTING.DASHBOARD,
-                pathMatch: 'full',
-                useAsDefault: true
+                loadChildren: () => require('es6-promise!./home/home.module')('HomeModule'),
             },
             {
                 path: ROUTING.HELP,
@@ -52,6 +50,16 @@ export const routes = [
                 path: ROUTING.REGISTRATION,
                 canActivate: [ GuestGuard ],
                 loadChildren: () => require('es6-promise!./registration/registration.module')('RegistrationModule')
+            },
+            {
+                path: ROUTING.STATISTIC,
+                canActivate: [ LoggedInGuard ],
+                loadChildren: () => require('es6-promise!./statistic/statistic.module')('StatisticModule')
+            },
+            {
+                path: '**',
+                redirectTo: '',
+                pathMatch: 'full'
             }
         ]
     },

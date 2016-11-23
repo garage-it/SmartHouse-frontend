@@ -23,14 +23,14 @@
 <form class="scenario-details"
         (ngSubmit)="save(scenario)"
         #createScenarioWizardForm="ngForm">
-    <scenario-wizard
+    <sh-scenario-wizard
         *ngIf="scenario && scenario.wizard"
         [scenario]="scenario"
         (onAddCriteria)="onAddCriteria()"
         (onRemoveCriteria)="onRemoveCriteria($event)"
         (onAddAction)="onAddAction()"
         (onRemoveAction)="onRemoveAction($event)">
-    </scenario-wizard>
+    </sh-scenario-wizard>
 
     <button class="waves-effect waves-light btn blue-grey darken-1"
             type="submit"
