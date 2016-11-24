@@ -4,7 +4,8 @@ import { Device } from '../../devices/device.model';
 
 @Component({
     selector: 'sh-map-constructor',
-    templateUrl: './map-constructor.template.html'
+    templateUrl: './map-constructor.template.html',
+    styleUrls: [ './map-constructor.style.scss' ]
 })
 export class MapConstructorComponent {
 
