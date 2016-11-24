@@ -73,7 +73,7 @@ describe('base-sensor', () => {
         beforeEach(() => {
             sut.removeWidget();
         });
-        
+
         it('should emit event', () => {
             expect(sut.onRemoveWidget.emit).toHaveBeenCalled();
         });
