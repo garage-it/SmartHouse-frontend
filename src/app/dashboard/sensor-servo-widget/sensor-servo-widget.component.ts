@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { BaseOutputSensor } from '../shared/base-output-sensor/base-output-sensor';
 import { SensorWidgetService } from '../shared/sensor-widget/sensor-widget.service';
@@ -13,6 +13,7 @@ export class SensorServoWidgetComponent extends BaseOutputSensor {
 
     @Input() device;
     @Input() description;
+    @Output() onRemoveWidget: EventEmitter<any> = new EventEmitter();
 
     constructor(sensorWidgetService: SensorWidgetService) {
         super(sensorWidgetService);
@@ -21,5 +22,4 @@ export class SensorServoWidgetComponent extends BaseOutputSensor {
     changeDegree() {
         return this.pushEvent(true, this.data.value);
     }
-
 }

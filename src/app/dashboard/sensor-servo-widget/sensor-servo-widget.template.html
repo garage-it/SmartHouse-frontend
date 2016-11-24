@@ -1,4 +1,8 @@
 <div class="sensor-widget sensor-servo-widget">
+    <button class="sensor-widget_button"
+            (click)="removeWidget()">
+        x
+    </button>
 
     <div class="sensor-widget_value">
 
@@ -14,7 +18,7 @@
     </div>
 
     <div class="sensor-widget_description">
-        <span>{{device.description}}</span>
+        <span>{{device.mqttId}}</span>
     </div>
 
 </div>

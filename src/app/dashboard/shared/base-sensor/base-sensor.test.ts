@@ -1,4 +1,5 @@
 import { BaseSensor } from './base-sensor';
+import { EventEmitter } from '@angular/core';
 
 let sensorUpdateHandler;
 
@@ -23,6 +24,11 @@ describe('base-sensor', () => {
 
         device = { mqttId: 'For test' };
         sut.device = device;
+        sut.onRemoveWidget.emit = jasmine.createSpy('emit');
+    });
+
+    it('should have event emitter for remove widget event', () => {
+        expect(sut.onRemoveWidget instanceof EventEmitter).toBeTruthy();
     });
 
     describe('when initialize component', () => {
@@ -60,6 +66,16 @@ describe('base-sensor', () => {
 
         it('should unsubscribe by proper device', () => {
             expect(sensorWidgetService.unsubscribe).toHaveBeenCalledWith(device.mqttId);
+        });
+    });
+
+    describe('when remove widget', () => {
+        beforeEach(() => {
+            sut.removeWidget();
+        });
+        
+        it('should emit event', () => {
+            expect(sut.onRemoveWidget.emit).toHaveBeenCalled();
         });
     });
 });

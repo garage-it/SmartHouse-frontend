@@ -1,4 +1,9 @@
 <div class="sensor-widget">
+    <button class="sensor-widget_button"
+            (click)="removeWidget()">
+        x
+    </button>
+
     <div class="sensor-widget_value switch">
         <label>
             OFF
@@ -10,6 +15,6 @@
         </label>
     </div>
     <div class="sensor-widget_description">
-        <span>{{device.description}}</span>
+        <span>{{device.mqttId}}</span>
     </div>
 </div>

@@ -8,22 +8,21 @@ import { SensorsListComponent } from './sensors-list/sensors-list.component';
 import { DashboardResolveService } from '../dashboard/dashboard-resolve.service';
 import { CommonModule } from '@angular/common';
 import { DashboardViewComponent } from './dashboard/dashboard-view/dashboard-view.component';
-import { WidgetComponent } from './dashboard/dashboard-view/widget/widget.component';
 import { SharedModule } from '../shared/shared.module';
 import { DeviceListModule } from '../devices/device-list/device-list.module';
 import { DashboardViewResolveService } from './dashboard/dashboard-view/dashboard-view-resolve.service';
 import { DashboardConstructorService } from './dashboard/dashboard-constructor.service';
+import { DashboardModule } from '../dashboard/dashboard.module';
 
 @NgModule({
     id: module.id,
-    imports: [ SharedModule, CommonModule, routing, DeviceListModule ],
+    imports: [ SharedModule, CommonModule, routing, DeviceListModule, DashboardModule ],
     declarations: [
         ConstructorComponent,
         DashboardConstructorComponent,
         MapConstructorComponent,
         SensorsListComponent,
-        DashboardViewComponent,
-        WidgetComponent
+        DashboardViewComponent
     ],
     providers: [
         DashboardResolveService,

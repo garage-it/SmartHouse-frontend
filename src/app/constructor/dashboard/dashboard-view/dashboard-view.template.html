@@ -4,10 +4,11 @@
             Please add your widgets
         </span>
 
-        <sh-widget
+        <sh-sensor-widget
                 *ngFor="let widget of widgets"
-                [widget]="widget"
-                (onRemoveWidget)="removeWidget($event)"></sh-widget>
+                [device]="widget"
+                (onRemoveWidget)="removeWidget($event)">
+        </sh-sensor-widget>
     </div>
 </div>
 
