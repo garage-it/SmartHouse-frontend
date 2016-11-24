@@ -48,6 +48,7 @@
                        name="password"
                        #password="ngModel"
                        class="registration__field black-text"
+                       autocomplete="new-password"
                        type="password"
                        minlength="8"
                        required
@@ -76,6 +77,8 @@
 
             <button class="registration__button waves-effect waves-light btn blue-grey darken-1" type="submit"
                     [disabled]="!regForm.form.valid">SUBMIT</button>
+            <button class="registration__button btn btn-flat" type="button"
+                    (click)="goToHomePage()">Cancel</button>
         </form>
     </div>
 </div>

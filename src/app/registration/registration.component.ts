@@ -21,10 +21,14 @@ export class RegistrationComponent {
 
     constructor(private authService: AuthService, private router: Router) { }
 
+    goToHomePage() {
+        this.router.navigate(['/']);
+    }
+
     save() {
         this.registrationSubscription = this.authService.register(this.user)
             .subscribe(() => {
-                this.router.navigate(['/']);
+                this.goToHomePage();
             }, err => {
                 this.error = err.json().error || 'Unable to register';
             });
