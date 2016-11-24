@@ -1,5 +1,5 @@
 import { RegistrationComponent } from './registration.component';
-import { EqualToDirective } from './equal-to.directive';
+import { EqualToDirective } from './equal-to-validator/equal-to.directive';
 
 export default [
     RegistrationComponent,
