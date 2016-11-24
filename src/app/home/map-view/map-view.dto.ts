@@ -11,23 +11,16 @@ export interface MapViewSensorDto {
 }
 
 export interface MapViewSensorUpdateDto {
-    sensor: string;
+    sensor: string; // sensor id
     position: Position;
 }
 
 export interface MapViewInfoDto {
-    name?: string;
-    description?: string;
-    pictureName?: string;
+    name: string;
+    description: string;
+    pictureName: string;
     active: boolean;
     sensors: Array<MapViewSensorDto>;
-}
-
-export interface MapViewInfoUpdateDto {
-    name?: string;
-    description?: string;
-    active?: boolean;
-    sensors?: Array<MapViewSensorUpdateDto>;
 }
 
 export interface MapViewInfoCreateDto {
