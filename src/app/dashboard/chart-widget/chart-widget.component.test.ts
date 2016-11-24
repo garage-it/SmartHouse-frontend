@@ -89,6 +89,12 @@ describe('ChartWidgetComponent', () => {
             expect(sut.options.xAxis.labels.format).toEqual('{value:%d}');
         });
 
+        it('should show title due to chosen period of time', () => {
+            sut.period = 'month';
+            sut.ngOnChanges();
+            expect(sut.options.xAxis.title.text).toEqual('dates');
+        });
+
         it('should display data in yAxis depends of type of sensor', () => {
             sut.deviceId = 'temperature';
             sut.ngOnChanges();
