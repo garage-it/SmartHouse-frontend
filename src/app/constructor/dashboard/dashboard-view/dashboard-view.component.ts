@@ -19,11 +19,11 @@ export class DashboardViewComponent {
                 private dashboardConstructorService: DashboardConstructorService) {
     }
 
-    removeWidget(widget) {
+    removeWidget(widget): void {
         this.onRemoveWidget.emit(widget);
     }
 
-    cancel() {
+    cancel(): void {
         const confirmOptions = {
             title: '',
             message: 'Do you want to exit without saving?',
@@ -38,7 +38,7 @@ export class DashboardViewComponent {
             });
     }
 
-    save() {
+    save(): void {
         this.dashboardConstructorService.saveDashboard(this.widgets)
             .subscribe(() => this.router.navigate(['/dashboard'])); // TODO Should be changed on new dashboard view
     }

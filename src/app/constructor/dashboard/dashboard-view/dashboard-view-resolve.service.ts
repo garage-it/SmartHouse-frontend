@@ -6,9 +6,11 @@ import { DashboardConstructorService } from '../dashboard-constructor.service';
 @Injectable()
 export class DashboardViewResolveService {
 
-    constructor(private dashboardConstructorService: DashboardConstructorService, private toastr: ToastsManager) {}
+    constructor(private dashboardConstructorService: DashboardConstructorService,
+                private toastr: ToastsManager) {
+    }
 
-    resolve() {
+    resolve(): Observable<any> {
         return this.dashboardConstructorService.getWidgets()
             .catch(errorMessage => {
                 this.toastr.error(errorMessage);
