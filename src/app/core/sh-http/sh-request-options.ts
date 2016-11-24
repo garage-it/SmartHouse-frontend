@@ -1,23 +1,21 @@
+import { Injectable } from '@angular/core';
 import { BaseRequestOptions, RequestOptionsArgs } from '@angular/http';
 
-
+@Injectable()
 export class ShRequestOptions extends BaseRequestOptions {
 
-    constructor(private options) {
-        super();
+    private static resolveApiUrl(url) {
+        return `${ENV_PUBLIC_CONFIG.backEndUrl}/api${url}`;
     }
 
-    merge(options: RequestOptionsArgs) {
-        const opts = {};
+    constructor() {
+        super();
+        this.headers.set('Content-Type', 'application/json');
+    }
 
-        Object.assign(
-            opts,
-            this.options,
-            options,
-            {
-                url: `${ENV_PUBLIC_CONFIG.backEndUrl}/api${options.url}`
-            }
-        );
-        return super.merge(opts);
+    public merge(options: RequestOptionsArgs) {
+        return super.merge(Object.assign({}, options, {
+            url: ShRequestOptions.resolveApiUrl(options.url)
+        }));
     }
 }
