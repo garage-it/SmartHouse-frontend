@@ -10,8 +10,8 @@ import { IEqualToResult } from './equal-to.interfaces';
 
 export class EqualToDirective implements Validator, OnChanges {
     @Input() equalTo: string;
-    private control: FormControl;
-    private invalidResult: IEqualToResult = {
+    control: FormControl;
+    invalidResult: IEqualToResult = {
         equalTo: {
             valid: false
         }
