@@ -3,13 +3,13 @@ import { Validator, NG_VALIDATORS, AbstractControl, FormControl } from '@angular
 import { IEqualToResult } from './equal-to.interfaces';
 
 @Directive({
-    // tslint:disable-next-line:directive-selector-name directive-selector-prefix
-    selector: '[equalTo][formControlName],[equalTo][formControl],[equalTo][ngModel]',
+    selector: '[shEqualTo]',
     providers: [{provide: NG_VALIDATORS, useExisting: EqualToDirective, multi: true}]
 })
 
 export class EqualToDirective implements Validator, OnChanges {
-    @Input() equalTo: string;
+    // tslint:disable-next-line:no-input-rename
+    @Input('shEqualTo') equalTo: string;
     control: FormControl;
     invalidResult: IEqualToResult = {
         equalTo: {
@@ -29,9 +29,8 @@ export class EqualToDirective implements Validator, OnChanges {
 
     validator(c: AbstractControl) {
         const isInvalid = c && c.value !== this.equalTo;
-        const errors = isInvalid ? this.invalidResult : null;
 
-        return errors;
+        return isInvalid ? this.invalidResult : null;
     }
 
     validate(c: FormControl) {

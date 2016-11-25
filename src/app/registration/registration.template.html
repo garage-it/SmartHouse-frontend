@@ -62,7 +62,7 @@
                 <input [(ngModel)]="user.passwordConfirm"
                        name="passwordConfirm"
                        #passwordConfirm="ngModel"
-                       equalTo="{{user.password}}"
+                       shEqualTo="{{user.password}}"
                        class="registration__field black-text"
                        type="password"
                        required
