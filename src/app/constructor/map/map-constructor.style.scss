@@ -56,13 +56,17 @@
 .field {
     height: 370px;
     background-color: #f9f9f9;
-    border: dashed 1px #92928f;
+    border: dotted 3px #92928f;
+    cursor: pointer;
+}
+
+.nv-file-over {
+    border: dotted 3px red;
 }
 
 .add-picture {
     width: 150px;
     margin: 120px auto;
-    cursor: pointer;
     &__icon {
         width: 60px;
         height: 60px;
