@@ -6,39 +6,69 @@ describe('Login component', () => {
     let authService;
     let router;
     let activateRoute;
+    let location;
     let windowRef;
-    let window;
 
-    function createComponent() {
-        return new LoginComponent(authService, router, activateRoute, windowRef);
-    }
-
-    beforeEach(() => {
-        authService = {
+    function createAuthService() {
+        return {
             login: jasmine.createSpy('login')
         };
-        router = {
+    }
+
+    function createRouter() {
+        return {
             navigate: jasmine.createSpy('navigate')
         };
-        activateRoute = {
+    }
+
+    function createActivateRoute() {
+        return {
             params: Observable.of({})
         };
-        windowRef = {
-            nativeWindow: window
+    }
+
+    function createLocation() {
+        return {
+            prepareExternalUrl: jasmine.createSpy('prepareExternalUrl')
         };
-        window = {
+    }
+
+    function createWindowRef() {
+        const window = {
             location: {
+                origin: null,
                 href: null
             }
         };
 
-    });
+        return {
+            nativeWindow: window
+        };
+    }
 
     describe('constructor', () => {
+        function createComponent() {
+            return new LoginComponent(
+                authService,
+                router,
+                activateRoute,
+                location,
+                windowRef
+            );
+        }
+
+        beforeEach(() => {
+            authService = createAuthService();
+            router = createRouter();
+            activateRoute = createActivateRoute();
+            location = createLocation();
+            windowRef = createWindowRef();
+        });
+
         it('should show FB login error for URL with parameter', () => {
             // Spies & stubs
             activateRoute.params = Observable.of({
-                error: 'fb-error'
+                error: 'fb'
             });
 
             // Run
@@ -75,9 +105,21 @@ describe('Login component', () => {
         });
     });
 
-    describe('methods', () => {
+    describe('method', () => {
         beforeEach(() => {
-            sut = createComponent();
+            authService = createAuthService();
+            router = createRouter();
+            activateRoute = createActivateRoute();
+            location = createLocation();
+            windowRef = createWindowRef();
+
+            sut = new LoginComponent(
+                authService,
+                router,
+                activateRoute,
+                location,
+                windowRef
+            );
         });
 
         describe('login', () => {
@@ -114,9 +156,22 @@ describe('Login component', () => {
         });
 
         describe('FB login', () => {
-            it('should redirect to FB auth page', () => {
+            const fbLoginUrlPath = '/auth/login-facebook';
+            const fbLoginRedirectParam = 'redirect_uri';
+            const fbCallbackUrl = '/fb-callback';
+            const locationOrigin = 'http://domain.com';
+            const fbLoginUrl =
+                `${fbLoginUrlPath}?${fbLoginRedirectParam}=` +
+                encodeURIComponent(locationOrigin + fbCallbackUrl);
+
+            beforeEach(() => {
+                windowRef.nativeWindow.location.origin = locationOrigin;
+                location.prepareExternalUrl.and.returnValue(fbCallbackUrl);
                 sut.loginFb();
-                expect(windowRef.nativeWindow.location.href).toBe(sut.fbLoginUrl);
+            });
+
+            it('should redirect to FB auth page', () => {
+                expect(windowRef.nativeWindow.location.href).toBe(fbLoginUrl);
             });
         });
 
