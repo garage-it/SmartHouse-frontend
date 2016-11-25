@@ -12,15 +12,16 @@ describe('ShRequestOptions', () => {
     });
 
     describe('merge', () => {
-        const options = { url: 'url' };
         let result;
 
-        beforeEach(() => {
-            result = sut.merge(options);
+        it('should prefix url', () => {
+            result = sut.merge({ url: '/url' });
+            expect(result.url).toEqual(`${ENV_PUBLIC_CONFIG.backEndUrl}/api/url`);
         });
 
-        it('should prefix url', () => {
-            expect(result.url).toEqual(`${ENV_PUBLIC_CONFIG.backEndUrl}/api${options.url}`);
+        it('should not prefix empty url', () => {
+            result = sut.merge({url: null});
+            expect(result.url).toEqual(null);
         });
     });
 

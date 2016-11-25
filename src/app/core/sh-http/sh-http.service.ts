@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, URLSearchParams, RequestOptions } from '@angular/http';
 
 @Injectable()
-export class ShHttpService  {
+export class ShHttpService {
 
     public static onResponseSuccess(data) {
         return data.json();
@@ -13,25 +13,25 @@ export class ShHttpService  {
 
     get(url, search?: URLSearchParams) {
         return this.http
-            .get(url, { search })
+            .get(url, this.defaultOptions.merge({ url, search }))
             .map(ShHttpService.onResponseSuccess);
     }
 
     post(url, body) {
         return this.http
-            .post(url, body)
+            .post(url, body, this.defaultOptions.merge({ url }))
             .map(ShHttpService.onResponseSuccess);
     }
 
     put(url, body) {
         return this.http
-            .put(url, body)
+            .put(url, body, this.defaultOptions.merge({ url }))
             .map(ShHttpService.onResponseSuccess);
     }
 
     delete(url) {
         return this.http
-            .delete(url)
+            .delete(url, this.defaultOptions.merge({ url }))
             .map(ShHttpService.onResponseSuccess);
     }
 
