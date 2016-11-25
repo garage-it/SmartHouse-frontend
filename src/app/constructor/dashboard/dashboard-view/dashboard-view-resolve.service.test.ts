@@ -50,4 +50,19 @@ describe('dashboardViewResolveService', () => {
             expect(failCb).not.toHaveBeenCalled();
         });
     });
+
+    describe('when success', () => {
+        const devices = Symbol('devices');
+
+        beforeEach(() => {
+            DashboardConstructorService.getWidgets.and.returnValue(Observable.of({
+                devices
+            }));
+            sut.resolve().subscribe(successCb, failCb);
+        });
+
+        it('should get devices', () => {
+            expect(successCb).toHaveBeenCalledWith(devices);
+        });
+    });
 });

@@ -12,6 +12,7 @@ export class DashboardViewResolveService {
 
     resolve(): Observable<any> {
         return this.dashboardConstructorService.getWidgets()
+            .map(({devices}) => devices)
             .catch(errorMessage => {
                 this.toastr.error(errorMessage);
 

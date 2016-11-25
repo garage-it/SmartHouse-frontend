@@ -10,13 +10,13 @@ export class DashboardConstructorService {
     constructor(private http: ShHttpService, private httpUtils: ShHttpUtilsService) { }
 
     getWidgets(): Observable<any> {
-        return this.http.get('/sensors') // TODO dashboard-view get
+        return this.http.get('/dashboard')
             .catch(error => {
                 return this.httpUtils.extractErrorMessage(error);
             });
     }
 
     saveDashboard(devices: Device[]): Observable<any> {
-        return this.http.put('/dashboard-view', {devices}); // TODO dashboard-view put
+        return this.http.put('/dashboard', {devices});
     }
 }
