@@ -1,4 +1,4 @@
-import { DeviceListResolveService } from './detail-list-resolve.service';
+import { DeviceListResolveService } from './device-list-resolve.service';
 
 describe('sensor-detail-list-resolveService', () => {
     let sut;

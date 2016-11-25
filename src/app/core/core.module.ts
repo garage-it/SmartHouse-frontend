@@ -5,6 +5,7 @@ import { HttpModule, RequestOptions } from '@angular/http';
 import { HeaderComponent } from './header/header.component';
 import { MainComponent } from './main/main.component';
 import { ScreenComponent } from './screen/screen.component';
+
 import { AuthService } from './auth/auth.service';
 import { GuestGuard, LoggedInGuard } from './profile/profile.guards';
 import { ProfileService } from './profile/profile.service';

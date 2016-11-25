@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'sh-sensor-widget',
@@ -6,4 +6,9 @@ import { Component, Input } from '@angular/core';
 })
 export class SensorWidgetComponent {
     @Input() device;
+    @Output() onRemoveWidget: EventEmitter<any> = new EventEmitter();
+
+    removeWidget(): void {
+        this.onRemoveWidget.emit(this.device);
+    }
 }

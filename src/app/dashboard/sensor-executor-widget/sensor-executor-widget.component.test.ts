@@ -1,4 +1,5 @@
 import { SensorExecutorWidgetComponent } from './sensor-executor-widget.component';
+import { EventEmitter } from '@angular/core';
 
 describe('Sensor-executor-widget', () => {
     let sut;
@@ -6,6 +7,10 @@ describe('Sensor-executor-widget', () => {
     beforeEach(() => {
         sut = new SensorExecutorWidgetComponent(null);
         sut.pushEvent = jasmine.createSpy('pushEvent');
+    });
+
+    it('should have event emitter for remove widget event', () => {
+        expect(sut.onRemoveWidget instanceof EventEmitter).toBeTruthy();
     });
 
     describe('Switch executor', () => {
