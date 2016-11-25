@@ -23,13 +23,15 @@ describe('DashboardConstructor', () => {
 
     describe('on init', () => {
         describe('when dashboard view is empty', () => {
-            it('should receive devices from state', () => {
+            beforeEach(() => {
                 sut.ngOnInit();
+            });
+
+            it('should receive devices from state', () => {
                 expect(sut.sensors).toEqual(mockSensors);
             });
 
             it('should receive dashboard widgets from state', () => {
-                sut.ngOnInit();
                 expect(sut.widgets).toEqual([]);
             });
         });
@@ -37,14 +39,13 @@ describe('DashboardConstructor', () => {
         describe('when dashbord has some widgets', () => {
             beforeEach(() => {
                 ActivatedRoute.snapshot.data.widgets = mockWidgets;
+                sut.ngOnInit();
             });
             it('should receive devices from state that is not active widgets', () => {
-                sut.ngOnInit();
                 expect(sut.sensors).toEqual([device2]);
             });
 
             it('should receive dashboard widgets from state', () => {
-                sut.ngOnInit();
                 expect(sut.widgets).toEqual(mockWidgets);
             });
         });

@@ -83,12 +83,12 @@ describe('base-sensor', () => {
             sut.onDeviceDataChanged(data);
         });
 
-        it('should update last update time', () => {
-            expect(sut.data.updateTime).toEqual(currentDate);
-        });
-
         afterEach(() => {
             jasmine.clock().uninstall();
+        });
+
+        it('should update last update time', () => {
+            expect(sut.data.updateTime).toEqual(currentDate);
         });
     });
 

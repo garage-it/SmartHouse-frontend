@@ -159,6 +159,10 @@ describe('base-output-sensor', () => {
                     sut.onDeviceDataChanged(data);
                 });
 
+                afterEach(() => {
+                    jasmine.clock().uninstall();
+                });
+
                 it('should convert data from device`s format using function', () => {
                     expect(sut.fromDeviceRepresentation)
                         .toHaveBeenCalledWith(data.value);
@@ -172,10 +176,6 @@ describe('base-output-sensor', () => {
 
                 it('should update last update time', () => {
                     expect(sut.data.updateTime).toEqual(currentDate);
-                });
-
-                afterEach(() => {
-                    jasmine.clock().uninstall();
                 });
             });
         });
