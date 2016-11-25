@@ -43,6 +43,7 @@ export class BaseOutputSensor extends BaseSensor {
         if (this.device.mqttId === data.device) {
             const rawValue = BaseOutputSensor.generateValue(true, data.value);
             this.data.value = this.fromDeviceRepresentation(rawValue);
+            this.data.updateTime = new Date();
         }
     }
 

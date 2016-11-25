@@ -6,4 +6,5 @@ export class Device {
     mqttId: string;
     servo: boolean;
     type: string;
+    updateTime: string;
 }

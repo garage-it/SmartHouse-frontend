@@ -15,6 +15,10 @@ describe('base-sensor', () => {
     let device;
     let sensorWidgetService;
 
+    beforeAll(() => {
+        jasmine.clock().uninstall();
+    });
+
     beforeEach(() => {
         sensorWidgetService = new SensorWidgetServiceMock();
         spyOn(sensorWidgetService, 'subscribe').and.callThrough();
@@ -37,7 +41,10 @@ describe('base-sensor', () => {
         });
 
         it('should initialize sensor data', () => {
-            expect(sut.data).toEqual({value: null});
+            expect(sut.data).toEqual({
+                value: null,
+                updateTime: null
+            });
         });
 
         it('should subscribe by proper device', () => {
@@ -56,6 +63,32 @@ describe('base-sensor', () => {
             sensorUpdateHandler(data);
 
             expect(sut.data).not.toEqual(data);
+        });
+    });
+
+    describe('when device data changed', () => {
+        const currentDate = new Date();
+        const deviceId = 1;
+        const data = {
+            device: deviceId
+        };
+
+        beforeEach(() => {
+            jasmine.clock().install();
+            jasmine.clock().mockDate(currentDate);
+
+            sut.device = {
+                mqttId: deviceId
+            };
+            sut.onDeviceDataChanged(data);
+        });
+
+        it('should update last update time', () => {
+            expect(sut.data.updateTime).toEqual(currentDate);
+        });
+
+        afterEach(() => {
+            jasmine.clock().uninstall();
         });
     });
 

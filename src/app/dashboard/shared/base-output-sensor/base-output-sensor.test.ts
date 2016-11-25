@@ -137,23 +137,46 @@ describe('base-output-sensor', () => {
                 spyOn(BaseOutputSensor, 'generateValue').and.callThrough();
                 spyOn(sut, 'fromDeviceRepresentation').and.callFake(value => +value);
             });
+
             it('should drop data if still pending', () => {
                 sut[pending] = true;
                 sut.onDeviceDataChanged(data);
                 expect((BaseOutputSensor.generateValue as jasmine.Spy).calls.any()).toEqual(false);
             });
-            it('should convert data from device`s format using function', () => {
-                sut[pending] = null;
-                sut.onDeviceDataChanged(data);
-                expect(sut.fromDeviceRepresentation)
-                    .toHaveBeenCalledWith(data.value);
-                expect(BaseOutputSensor.generateValue)
-                    .toHaveBeenCalledWith(true, positiveValue);
-            });
-            it('should convert data from device`s format', () => {
-                sut[pending] = null;
-                sut.onDeviceDataChanged(data);
-                expect(sut.data.value).toEqual(convertedValue);
+
+            describe('when not pending', () => {
+                const currentDate = new Date();
+
+                beforeAll(() => {
+                    jasmine.clock().uninstall();
+                });
+
+                beforeEach(() => {
+                    jasmine.clock().install();
+                    jasmine.clock().mockDate(currentDate);
+
+                    sut[pending] = null;
+                    sut.onDeviceDataChanged(data);
+                });
+
+                it('should convert data from device`s format using function', () => {
+                    expect(sut.fromDeviceRepresentation)
+                        .toHaveBeenCalledWith(data.value);
+                    expect(BaseOutputSensor.generateValue)
+                        .toHaveBeenCalledWith(true, positiveValue);
+                });
+
+                it('should convert data from device`s format', () => {
+                    expect(sut.data.value).toEqual(convertedValue);
+                });
+
+                it('should update last update time', () => {
+                    expect(sut.data.updateTime).toEqual(currentDate);
+                });
+
+                afterEach(() => {
+                    jasmine.clock().uninstall();
+                });
             });
         });
     });
