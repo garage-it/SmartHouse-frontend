@@ -26,14 +26,12 @@
 
             <label class="registration__label">
                 Email: <b class="red-text">*</b>
-                       <!-- regexp for email need to be updated -->
                 <input [(ngModel)]="user.email"
                        name="email"
                        #email="ngModel"
                        class="registration__field black-text"
                        type="text"
-                       pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
-                       maxlength="63"
+                       pattern="^(?=.{1,254}$)(?=.{1,64}@)[-!#$%&'*+\/0-9=?A-Z^_`a-z{|}~]+(\.[-!#$%&'*+\/0-9=?A-Z^_`a-z{|}~]+)*@[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?(\.[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?)*$"
                        required
                 />
                 <div *ngIf="email.touched && email.errors" class="red-text text-darken-4">
