@@ -15,7 +15,7 @@ export class ShRequestOptions extends BaseRequestOptions {
 
     public merge(options: RequestOptionsArgs) {
         return super.merge(Object.assign({}, options, {
-            url: ShRequestOptions.resolveApiUrl(options.url)
+            url: options.url && ShRequestOptions.resolveApiUrl(options.url)
         }));
     }
 }

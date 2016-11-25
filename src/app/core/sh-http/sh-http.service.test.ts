@@ -7,6 +7,7 @@ describe('ShHttpService', () => {
     let defaultRequestOptions;
     const urlMock = Symbol('url to request');
     const mockResponse = Symbol('some response');
+    const mergedOptions = Symbol('merged options');
 
     beforeEach(() => {
         httpMock = jasmine.createSpyObj('httpMock', ['get', 'post', 'put', 'delete']);
@@ -14,7 +15,8 @@ describe('ShHttpService', () => {
             headers: {
                 set: jasmine.createSpy('setHeader'),
                 delete: jasmine.createSpy('deleteHeader'),
-            }
+            },
+            merge: jasmine.createSpy('merge').and.returnValue(mergedOptions)
         };
         sut = new ShHttpService(httpMock, defaultRequestOptions);
     });
@@ -35,8 +37,15 @@ describe('ShHttpService', () => {
                 sut.get(urlMock, search).subscribe(() => {});
             });
 
+            it('should override url and search params', () => {
+                expect(defaultRequestOptions.merge).toHaveBeenCalledWith({
+                    url: urlMock,
+                    search
+                });
+            });
+
             it('should get data from server', () => {
-                expect(httpMock.get).toHaveBeenCalledWith(urlMock, {search});
+                expect(httpMock.get).toHaveBeenCalledWith(urlMock, mergedOptions);
             });
 
             it('should get data from server response', () => {
@@ -52,8 +61,14 @@ describe('ShHttpService', () => {
                 sut.post(urlMock, requestBody).subscribe(() => {});
             });
 
+            it('should override url', () => {
+                expect(defaultRequestOptions.merge).toHaveBeenCalledWith({
+                    url: urlMock
+                });
+            });
+
             it('should post data to server', () => {
-                expect(httpMock.post).toHaveBeenCalledWith(urlMock, requestBody);
+                expect(httpMock.post).toHaveBeenCalledWith(urlMock, requestBody, mergedOptions);
             });
 
             it('should get data from server response', () => {
@@ -69,8 +84,14 @@ describe('ShHttpService', () => {
                 sut.put(urlMock, requestBody).subscribe(() => {});
             });
 
+            it('should override url', () => {
+                expect(defaultRequestOptions.merge).toHaveBeenCalledWith({
+                    url: urlMock
+                });
+            });
+
             it('should post data to server', () => {
-                expect(httpMock.put).toHaveBeenCalledWith(urlMock, requestBody);
+                expect(httpMock.put).toHaveBeenCalledWith(urlMock, requestBody, mergedOptions);
             });
 
             it('should get data from server response', () => {
@@ -85,8 +106,14 @@ describe('ShHttpService', () => {
                 sut.delete(urlMock).subscribe(() => {});
             });
 
+            it('should override url', () => {
+                expect(defaultRequestOptions.merge).toHaveBeenCalledWith({
+                    url: urlMock
+                });
+            });
+
             it('should delete item', () => {
-                expect(httpMock.delete).toHaveBeenCalledWith(urlMock);
+                expect(httpMock.delete).toHaveBeenCalledWith(urlMock, mergedOptions);
             });
 
             it('should get data from server response', () => {
