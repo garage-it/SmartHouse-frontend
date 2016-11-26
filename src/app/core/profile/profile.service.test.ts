@@ -166,4 +166,38 @@ describe('Profile Service', () => {
             expect(sut.isGuest()).toEqual(false);
         });
     });
+
+    describe('authorized user', () => {
+        it('should have role', () => {
+            const expectedRole = 'admin';
+
+            sut.user = {
+                role: 'admin'
+            };
+
+            expect(sut.getUserRole()).toEqual(expectedRole);
+        });
+    });
+
+    describe('authorized user', () => {
+        beforeEach(() => {
+            spyOn(sut, 'getUserRole').and.returnValue('admin');
+        });
+
+        it('should have one of role', () => {
+            expect(sut.hasUserRole(['admin', 'user'])).toEqual(true);
+        });
+
+        it('role is not suitable', () => {
+            expect(sut.hasUserRole(['user'])).toEqual(false);
+        });
+
+        it('with undefined role', () => {
+            expect(sut.hasUserRole()).toEqual(true);
+        });
+
+        it('with empty role', () => {
+            expect(sut.hasUserRole([])).toEqual(true);
+        });
+    });
 });

@@ -20,8 +20,4 @@ export class HeaderComponent {
     get navigationRoutes(): Array<NavigationRoute> {
         return NAVIGATION_ROUTES;
     }
-
-    isOptionHidden(route): boolean {
-        return route.authRequired && this.profile.isGuest();
-    }
 }
