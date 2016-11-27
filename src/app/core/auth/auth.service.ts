@@ -30,4 +30,10 @@ export class AuthService {
     setUserData({ user, token }): void {
         this.profile.setUserData(user, token);
     }
+
+    loginByAccessToken(token): Observable<any> {
+        return this.http.post('/auth/login-facebook-with-access-token', {access_token: token}).map(data => {
+            this.setUserData(data);
+        });
+    }
 }

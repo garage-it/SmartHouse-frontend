@@ -75,7 +75,7 @@ describe('Login component', () => {
             sut = createComponent();
 
             // Expect
-            expect(sut.fbLoggingError).toBe(true)
+            expect(sut.fbLoggingError).toBe(true);
         });
 
         describe('should not show FB login error', () => {

@@ -52,4 +52,32 @@ describe('AuthService', function () {
             expect(profileMock.removeUserData).toHaveBeenCalled();
         });
     });
+
+    describe('loginByAccessToken', () => {
+        it('should login with access token and set user data', () => {
+            const authWithTokenUrl = '/auth/login-facebook-with-access-token';
+            const token = 'test_token';
+            const authLoginPostData = {
+                user: {},
+                token: 'test-token'
+            };
+
+            const httpPostObservable = {
+                map(next) {
+                    next(authLoginPostData);
+                    return this;
+                }
+            };
+
+            shHttpMock.post.and.returnValue(httpPostObservable);
+
+            // Run
+            const result = service.loginByAccessToken(token);
+
+            // Expect
+            expect(result).toBe(httpPostObservable);
+            expect(shHttpMock.post).toHaveBeenCalledWith(authWithTokenUrl, {access_token: token});
+            expect(profileMock.setUserData).toHaveBeenCalledWith(authLoginPostData.user, authLoginPostData.token);
+        });
+    });
 });
