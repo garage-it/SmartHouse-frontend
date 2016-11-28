@@ -185,19 +185,19 @@ describe('Profile Service', () => {
         });
 
         it('should have one of role', () => {
-            expect(sut.hasUserRole(['admin', 'user'])).toEqual(true);
+            expect(sut.isUserRoleIn(['admin', 'user'])).toEqual(true);
         });
 
         it('role is not suitable', () => {
-            expect(sut.hasUserRole(['user'])).toEqual(false);
+            expect(sut.isUserRoleIn(['user'])).toEqual(false);
         });
 
         it('with undefined role', () => {
-            expect(sut.hasUserRole()).toEqual(true);
+            expect(sut.isUserRoleIn()).toEqual(true);
         });
 
         it('with empty role', () => {
-            expect(sut.hasUserRole([])).toEqual(true);
+            expect(sut.isUserRoleIn([])).toEqual(true);
         });
     });
 });

@@ -2,51 +2,51 @@ import { ProtectedComponent } from './protected.component';
 
 describe('Protected Component', () => {
     let sut;
-    let ProfileService;
+    let profileService;
 
     beforeEach(() => {
-        ProfileService = {
+        profileService = {
             isLoggedIn: jasmine.createSpy('isLoggedIn'),
-            hasUserRole: jasmine.createSpy('hasUserRole'),
+            isUserRoleIn: jasmine.createSpy('isUserRoleIn'),
             isGuest: jasmine.createSpy('isGuest'),
             getUserRole: jasmine.createSpy('getUserRole')
         };
-        sut = new ProtectedComponent(ProfileService);
+        sut = new ProtectedComponent(profileService);
     });
 
     describe('authorized user', () => {
         beforeEach(() => {
             sut.isAuthorized = true;
             sut.roles = ['admin'];
-            ProfileService.getUserRole.and.returnValue('admin');
-            ProfileService.isLoggedIn.and.returnValue(true);
+            profileService.getUserRole.and.returnValue('admin');
+            profileService.isLoggedIn.and.returnValue(true);
         });
 
         it('with right role should be allowed', () => {
-            ProfileService.hasUserRole.and.returnValue(true);
+            profileService.isUserRoleIn.and.returnValue(true);
             expect(sut.allowed).toEqual(true);
         });
 
         it('with transmitted empty roles should be allowed for any roles', () => {
-            ProfileService.hasUserRole.and.returnValue(true);
+            profileService.isUserRoleIn.and.returnValue(true);
             expect(sut.allowed).toEqual(true);
         });
 
         it('without transmitted roles should be allowed for any roles', () => {
-            ProfileService.hasUserRole.and.returnValue(true);
+            profileService.isUserRoleIn.and.returnValue(true);
             expect(sut.allowed).toEqual(true);
         });
 
         it('with incorrect role shouldn\'t be allowed', () => {
-            ProfileService.hasUserRole.and.returnValue(false);
+            profileService.isUserRoleIn.and.returnValue(false);
             expect(sut.allowed).toEqual(false);
         });
     });
 
     describe('for unauthorized user', () => {
         beforeEach(() => {
-            ProfileService.isLoggedIn.and.returnValue(false);
-            ProfileService.isGuest.and.returnValue(true);
+            profileService.isLoggedIn.and.returnValue(false);
+            profileService.isGuest.and.returnValue(true);
             sut.isAuthorized = false;
         });
 

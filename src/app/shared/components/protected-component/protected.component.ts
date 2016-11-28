@@ -14,7 +14,7 @@ export class ProtectedComponent {
     get allowed(): boolean {
         if (this.isAuthorized) {
             if (this.profileService.isLoggedIn()) {
-                return this.profileService.hasUserRole(this.roles);
+                return this.profileService.isUserRoleIn(this.roles);
             }
 
             return false;
