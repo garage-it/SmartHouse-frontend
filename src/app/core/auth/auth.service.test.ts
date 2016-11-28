@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs/Rx';
+
 import { AuthService } from './auth.service';
 
 describe('AuthService', function () {
@@ -11,73 +13,71 @@ describe('AuthService', function () {
         service = new AuthService(shHttpMock, profileMock);
     });
 
-    describe('#login', () => {
-        it('should login and set user data', () => {
-            // Data
-            const authApiUrl = '/auth/login';
-            const credentials = {
+    describe('login', () => {
+        let authApiUrl;
+        let credentials;
+        let authLoginPostData;
+
+        beforeEach(() => {
+            authApiUrl = '/auth/login';
+            credentials = {
                 email: 'valid@valid.com',
                 password: 'valid-pass'
             };
-            const authLoginPostData = {
+            authLoginPostData = {
                 user: {},
                 token: 'test-token'
             };
 
-            // Spies
-            const httpPostObservable = {
-                map(next) {
-                    next(authLoginPostData);
-                    return this;
-                }
-            };
-            shHttpMock.post.and.returnValue(httpPostObservable);
+            shHttpMock.post.and.returnValue(Observable.of(authLoginPostData));
 
-            // Run
-            const result = service.login(credentials);
+            service.login(credentials).subscribe(() => {});
+        });
 
-            // Expect
-            expect(result).toBe(httpPostObservable);
+        it('should send auth request with credentials', () => {
             expect(shHttpMock.post).toHaveBeenCalledWith(authApiUrl, credentials);
+        });
+
+        it('should save user date and token', () => {
             expect(profileMock.setUserData).toHaveBeenCalledWith(authLoginPostData.user, authLoginPostData.token);
         });
     });
 
-    describe('#logout', () => {
-        it('should remove user data', () => {
-            // Run
+    describe('logout', () => {
+        beforeEach(() => {
             service.logout();
+        });
 
-            // Expect
+        it('should remove user data', () => {
             expect(profileMock.removeUserData).toHaveBeenCalled();
         });
     });
 
     describe('loginByAccessToken', () => {
-        it('should login with access token and set user data', () => {
-            const authWithTokenUrl = '/auth/login-facebook-with-access-token';
-            const token = 'test_token';
-            const authLoginPostData = {
+        let authWithTokenUrl;
+        let token;
+        let authLoginPostData;
+
+        beforeEach(() => {
+            authWithTokenUrl = '/auth/login-facebook-with-access-token';
+            token = 'test_token';
+            authLoginPostData = {
                 user: {},
                 token: 'test-token'
             };
 
-            const httpPostObservable = {
-                map(next) {
-                    next(authLoginPostData);
-                    return this;
-                }
-            };
+            shHttpMock.post.and.returnValue(Observable.of(authLoginPostData));
 
-            shHttpMock.post.and.returnValue(httpPostObservable);
+            service.loginByAccessToken(token).subscribe(() => {});
+        });
 
-            // Run
-            const result = service.loginByAccessToken(token);
-
-            // Expect
-            expect(result).toBe(httpPostObservable);
+        it('should send auth request with access token', () => {
             expect(shHttpMock.post).toHaveBeenCalledWith(authWithTokenUrl, {access_token: token});
+        });
+
+        it('should set user data', () => {
             expect(profileMock.setUserData).toHaveBeenCalledWith(authLoginPostData.user, authLoginPostData.token);
         });
+
     });
 });

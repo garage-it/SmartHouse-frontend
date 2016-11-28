@@ -4,11 +4,13 @@ import { WindowRef } from '../core/browser/window-ref.service';
 import { AuthService } from '../core/auth/auth.service';
 import { Router } from '@angular/router';
 
+const FB_LOGIN_SUCCESS_ROUTE = '/';
+const FB_LOGIN_ERROR_ROUTE = '/login/error/fb';
+
 @Component({
     selector: 'sh-fb-callback',
     templateUrl: './fb-callback.component.html'
 })
-
 export class FbCallbackComponent implements OnInit, OnDestroy {
     private subscription: Subscription;
 
@@ -24,16 +26,16 @@ export class FbCallbackComponent implements OnInit, OnDestroy {
         if (accessToken) {
             this.subscription = this.authService.loginByAccessToken(accessToken)
                 .subscribe(() => {
-                    this.router.navigate(['/']);
+                    this.router.navigate([FB_LOGIN_SUCCESS_ROUTE]);
                 }, () => {
-                    this.router.navigate(['login/error/fb']);
+                    this.router.navigate([FB_LOGIN_ERROR_ROUTE]);
                 });
         } else {
-            this.router.navigate(['login/error/fb']);
+            this.router.navigate([FB_LOGIN_ERROR_ROUTE]);
         }
     }
 
-    parseAccessToken() {
+    parseAccessToken(): string {
         const locationHash = this.windowRef.nativeWindow.location.hash.substring(1);
         const match = locationHash.match(new RegExp('access_token=([^&]+)', 'i'));
 

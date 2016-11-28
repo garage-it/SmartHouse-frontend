@@ -46,17 +46,23 @@ describe('FbCallback component', () => {
     describe('ngOnInit', () => {
         beforeEach(() => {
             sut.parseAccessToken =  jasmine.createSpy('parseAccessToken');
-            sut.authService.loginByAccessToken =  jasmine.createSpy('loginByAccessToken');
-
-            sut.ngOnInit();
         });
 
-        it('should not retrieve token and navigate to error page', () => {
-            expect(sut.parseAccessToken).toHaveBeenCalled();
-            expect(router.navigate).toHaveBeenCalledWith(['login/error/fb']);
+        describe('without access token', () => {
+            beforeEach(() => {
+                sut.ngOnInit();
+            });
+
+            it('should parse token', () => {
+                expect(sut.parseAccessToken).toHaveBeenCalled();
+            });
+
+            it('should navigate to error page', () => {
+                expect(router.navigate).toHaveBeenCalledWith(['/login/error/fb']);
+            });
         });
 
-        describe('ngOnIit with access token', () => {
+        describe('with access token', () => {
             beforeEach(() => {
                 sut.parseAccessToken.and.returnValue('AAA');
                 sut.authService.loginByAccessToken.and.returnValue(Observable.of(1));
@@ -64,11 +70,11 @@ describe('FbCallback component', () => {
                 sut.ngOnInit();
             });
 
-            it('should call parseAccessToken within ngOnInit to retrieve token', () => {
+            it('should call parseAccessToken', () => {
                 expect(sut.parseAccessToken).toHaveBeenCalled();
             });
 
-            it('should call loginByAccessToken if token is found', () => {
+            it('should call loginByAccessToken', () => {
                 expect(sut.authService.loginByAccessToken).toHaveBeenCalledWith('AAA');
             });
 
@@ -77,7 +83,7 @@ describe('FbCallback component', () => {
             });
         });
 
-        describe('ngOnIit with failed authService response', () => {
+        describe('with failed authService response', () => {
             beforeEach(() => {
                 sut.parseAccessToken.and.returnValue('AAA');
                 sut.authService.loginByAccessToken.and.returnValue(Observable.throw('error'));
@@ -86,26 +92,34 @@ describe('FbCallback component', () => {
             });
 
             it('should navigate to error page', () => {
-                expect(router.navigate).toHaveBeenCalledWith(['login/error/fb']);
+                expect(router.navigate).toHaveBeenCalledWith(['/login/error/fb']);
             });
         });
     });
 
-    describe('parseAccessToken method', () => {
-        it('should match hash successfully', () => {
-            windowRef.nativeWindow.location.hash = '#access_token=ttRRvb';
+    describe('parseAccessToken', () => {
+        describe('with hash with access token', () => {
+            beforeEach(() => {
+                windowRef.nativeWindow.location.hash = '#access_token=ttRRvb';
+            });
 
-            expect(sut.parseAccessToken()).toEqual('ttRRvb');
+            it('should match hash successfully', () => {
+                expect(sut.parseAccessToken()).toEqual('ttRRvb');
+            });
         });
 
-        it('should return null if hash is not found', () => {
-            windowRef.nativeWindow.location.hash = '#acc_token=ttRRvb';
+        describe('with hash without access token', () => {
+            beforeEach(() => {
+                windowRef.nativeWindow.location.hash = '#error=error-message';
+            });
 
-            expect(sut.parseAccessToken()).toEqual(null);
+            it('should return null', () => {
+                expect(sut.parseAccessToken()).toEqual(null);
+            });
         });
     });
 
-    describe('ngOnDestroy method', () => {
+    describe('ngOnDestroy', () => {
         beforeEach(() => {
             sut.subscription = {
                 unsubscribe: jasmine.createSpy('authService unsubscribe')
