@@ -25,7 +25,7 @@
         <label class="switch__label" [attr.for]="default">Default</label>
     </div>
 
-    <input type="file" ng2FileSelect [uploader]="uploader" #fileUploader style="display: none;" />
+    <input type="file" ng2FileSelect [uploader]="uploader" #fileUploader accept="image/*" style="display: none;" />
     <div ng2FileDrop
         *ngIf="!picture"
         class="field"
@@ -44,11 +44,11 @@
         <img [src]="picture" alt="your image" width="940px" />
     </div>
 
-
     <div class="controls">
         <button class="controls__button controls__button_reject">Cancel</button>
         <button class="controls__button controls__button_retry"
-                (click)="fileUploader.click()">Reupload</button>
+                (click)="fileUploader.click()"
+                [disabled]="!picture">Reupload</button>
         <button class="controls__button controls__button_success">Save</button>
     </div>
 
