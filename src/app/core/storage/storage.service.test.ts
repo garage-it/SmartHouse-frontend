@@ -3,7 +3,7 @@ import { StorageService } from './storage.service';
 describe('Storage', () => {
     let sut;
     const token = Symbol('token');
-    const tokenKey = ENV_PUBLIC_CONFIG.localStorageTokenKey;
+    const tokenKey = 'sh-token';
 
     beforeEach(() => {
         spyOn(localStorage, 'setItem');

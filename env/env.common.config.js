@@ -15,9 +15,6 @@ module.exports = {
         host: 'localhost',
         port: 9000
     },
-    public: {
-        localStorageTokenKey: 'sh-token'
-    },
     root: {
         dir: rootDir
     },
