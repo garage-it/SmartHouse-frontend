@@ -15,6 +15,7 @@ import { ShHttpUtilsService } from './sh-http/sh-http-utils.service';
 import { StorageService } from './storage/storage.service';
 import { ShRequestOptions } from './sh-http/sh-request-options';
 import { FilesService } from './files/files.service';
+import { WindowRef } from './browser/window-ref.service';
 
 @NgModule({
     id: module.id,
@@ -30,6 +31,7 @@ import { FilesService } from './files/files.service';
         { provide: RequestOptions, useClass: ShRequestOptions },
         ShHttpUtilsService,
         StorageService,
+        WindowRef,
         FilesService
     ],
     exports: [ HeaderComponent, MainComponent, ScreenComponent ]

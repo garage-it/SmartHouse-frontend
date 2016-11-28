@@ -3,6 +3,7 @@ import { StorageService } from './storage.service';
 describe('Storage', () => {
     let sut;
     const token = Symbol('token');
+    const tokenKey = 'sh-token';
 
     beforeEach(() => {
         spyOn(localStorage, 'setItem');
@@ -15,7 +16,7 @@ describe('Storage', () => {
     it('should be able to set token to local storage', () => {
         sut.setToken(token);
 
-        expect(localStorage.setItem).toHaveBeenCalledWith('sh-token', token);
+        expect(localStorage.setItem).toHaveBeenCalledWith(tokenKey, token);
     });
 
     it('should be able to get token from local storage', () => {
@@ -27,6 +28,6 @@ describe('Storage', () => {
     it('should be able to get token from local storage', () => {
         sut.removeToken();
 
-        expect(localStorage.removeItem).toHaveBeenCalledWith('sh-token');
+        expect(localStorage.removeItem).toHaveBeenCalledWith(tokenKey);
     });
 });

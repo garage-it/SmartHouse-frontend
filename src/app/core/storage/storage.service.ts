@@ -2,16 +2,17 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class StorageService {
+    private tokenKey: string = 'sh-token';
 
     setToken(token) {
-        localStorage.setItem('sh-token', token);
+        localStorage.setItem(this.tokenKey, token);
     }
 
     getToken() {
-        return localStorage.getItem('sh-token');
+        return localStorage.getItem(this.tokenKey);
     }
 
     removeToken() {
-        localStorage.removeItem('sh-token');
+        localStorage.removeItem(this.tokenKey);
     }
 }

@@ -1,3 +1,5 @@
+const webpack = require('webpack');
+
 const envConfig = require('./env.config');
 
 module.exports = {
@@ -61,5 +63,10 @@ module.exports = {
                 exclude: [/\.test\.ts$/, /\.e2e\.ts$/, /node_modules/]
             }
         ]
-    }
+    },
+    plugins: [
+        new webpack.DefinePlugin({
+            ENV_PUBLIC_CONFIG: JSON.stringify(envConfig.public)
+        })
+    ]
 };
