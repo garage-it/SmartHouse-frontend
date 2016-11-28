@@ -1,7 +1,6 @@
 const DASHBOARD_ROUTING_CONFIG = {
     BASE: '',
-    EDITOR: 'editor',
-    SENSOR_DETAILS: 'sensor-details/:id/:period'
+    EDITOR: 'editor'
 };
 
 export default DASHBOARD_ROUTING_CONFIG;

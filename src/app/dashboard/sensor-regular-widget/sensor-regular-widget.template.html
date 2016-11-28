@@ -5,7 +5,8 @@
     </button>
 
     <button class="sensor-widget_button"
-            (click)="showStatistic()">
+            type="button"
+            [routerLink]="['../statistic/sensor-details', device.mqttId, 'day']">
         Stat
     </button>
 

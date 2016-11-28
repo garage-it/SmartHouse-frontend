@@ -16,7 +16,5 @@ export class SensorRegularWidgetComponent extends BaseSensor {
     constructor(sensorWidgetService: SensorWidgetService) {
         super(sensorWidgetService);
     }
-
-    showStatistic() {} // TODO To be implemented in TG-311
 }
 
