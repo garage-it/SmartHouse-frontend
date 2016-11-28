@@ -15,6 +15,12 @@ const dateLabels = {
     'month': '{value:%d}',
     'year': '{value:%b}'
 };
+const dateTitles = {
+    'day': 'hours',
+    'week': 'days',
+    'month': 'dates',
+    'year': 'months'
+};
 
 @Component({
     selector: 'sh-chart-widget',
@@ -55,6 +61,9 @@ export class ChartWidgetComponent implements OnInit, OnChanges, OnDestroy {
                     rotation: -45,
                     format: dateLabels[this.period]
                 },
+                title: {
+                    text: dateTitles[this.period]
+                },
                 categories: this.modifiedDate
             },
             yAxis: [{
@@ -62,7 +71,7 @@ export class ChartWidgetComponent implements OnInit, OnChanges, OnDestroy {
                     format: `{value}${measurementUnit[this.deviceId]}`,
                 },
                 title: {
-                    text: `${this.deviceStatistic.sensor}`,
+                    text: `${this.deviceStatistic.sensor}`
                 }
             }],
             series: [{

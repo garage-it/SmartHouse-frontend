@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import {
     BaseOutputSensor,
@@ -16,6 +16,7 @@ export class SensorExecutorWidgetComponent extends BaseOutputSensor {
 
     @Input() device;
     @Input() description;
+    @Output() onRemoveWidget: EventEmitter<any> = new EventEmitter();
 
     fromDeviceRepresentation(value) {
         return value === DEVICE_ON_STATE;
@@ -28,5 +29,4 @@ export class SensorExecutorWidgetComponent extends BaseOutputSensor {
     switchExecutor($event) {
         return this.pushEvent($event.target.checked, DEVICE_ON_STATE, DEVICE_OFF_STATE);
     }
-
 }

@@ -12,9 +12,15 @@
                        class="registration__field black-text"
                        type="text"
                        required
+                       minlength="5"
+                       maxlength="12"
+                       pattern="^[a-zA-Z0-9]*$"
                 />
-                <div *ngIf="name.touched && name.invalid" class="registration__field-error-message red-text text-darken-4">
-                    Username should be filled
+                <div *ngIf="name.touched && name.errors" class="red-text text-darken-4">
+                    <span *ngIf="name.errors.required">Username should be filled</span>
+                    <span *ngIf="name.errors.minlength">Username is too short</span>
+                    <span *ngIf="name.errors.maxlength">Username is too long</span>
+                    <span *ngIf="name.errors.pattern">Username can contain only letters or digits</span>
                 </div>
             </label>
 
@@ -25,12 +31,12 @@
                        #email="ngModel"
                        class="registration__field black-text"
                        type="text"
-                       pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+                       pattern="^(?=.{1,254}$)(?=.{1,64}@)[-!#$%&'*+\/0-9=?A-Z^_`a-z{|}~]+(\.[-!#$%&'*+\/0-9=?A-Z^_`a-z{|}~]+)*@[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?(\.[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?)*$"
                        required
                 />
-                <div *ngIf="email.touched && email.errors">
-                    <span *ngIf="email.errors.required" class="red-text text-darken-4">Email should be filled</span>
-                    <span *ngIf="email.errors.pattern" class="red-text text-darken-4">Email has an invalid format</span>
+                <div *ngIf="email.touched && email.errors" class="red-text text-darken-4">
+                    <span *ngIf="email.errors.required">Email should be filled</span>
+                    <span *ngIf="email.errors.pattern">Email has an invalid format</span>
                 </div>
             </label>
 
@@ -40,13 +46,14 @@
                        name="password"
                        #password="ngModel"
                        class="registration__field black-text"
+                       autocomplete="new-password"
                        type="password"
                        minlength="8"
                        required
                 />
-                <div *ngIf="password.touched && password.errors">
-                    <span *ngIf="password.errors.required" class="red-text text-darken-4">Password should be filled</span>
-                    <span *ngIf="password.errors.minlength" class="red-text text-darken-4">Password must have at least 8 characters</span>
+                <div *ngIf="password.touched && password.errors" class="red-text text-darken-4">
+                    <span *ngIf="password.errors.required">Password should be filled</span>
+                    <span *ngIf="password.errors.minlength">Password must have at least 8 characters</span>
                 </div>
             </label>
 
@@ -55,18 +62,21 @@
                 <input [(ngModel)]="user.passwordConfirm"
                        name="passwordConfirm"
                        #passwordConfirm="ngModel"
+                       shEqualTo="{{user.password}}"
                        class="registration__field black-text"
                        type="password"
                        required
                 />
-                <div *ngIf="passwordConfirm.touched">
-                    <span *ngIf="passwordConfirm.errors && passwordConfirm.errors.required" class="red-text text-darken-4">Password confirmation should be filled</span>
-                    <span *ngIf="passwordConfirm.value && !passwordsMatch()" class="red-text text-darken-4">Passwords do not match</span>
+                <div *ngIf="passwordConfirm.touched && passwordConfirm.errors" class="red-text text-darken-4">
+                    <span *ngIf="passwordConfirm.errors.required" >Password confirmation should be filled</span>
+                    <span *ngIf="passwordConfirm.errors.equalTo">Value entered in Confirm password field is not correct</span>
                 </div>
             </label>
 
             <button class="registration__button waves-effect waves-light btn blue-grey darken-1" type="submit"
-                    [disabled]="!regForm.form.valid || !passwordsMatch()">SUBMIT</button>
+                    [disabled]="!regForm.form.valid">SUBMIT</button>
+            <button class="registration__button btn btn-flat" type="button"
+                    (click)="goToHomePage()">Cancel</button>
         </form>
     </div>
 </div>

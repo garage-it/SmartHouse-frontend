@@ -1,28 +1,63 @@
-<h2>Constructor / Map view</h2>
-<h4>Step 1: Name your view</h4>
+<div class="constructor">
+    <h2 class="title">Constructor / Map view</h2>
 
-<label for="name">Name</label>
-<input type="text" id="name" placeholder="Enter name">
+    <h4 class="heading">Step 1: Name your view</h4>
 
-<label for="description">Description</label>
-<input type="text" id="description" placeholder="Enter description">
+    <div class="inputs">
+        <div class="inputs__item">
+            <label class="label" for="name">Name</label>
+            <input class="placeholder" type="text" id="name" placeholder="Enter name">
+        </div>
 
-<h4>Step 2: Add picture</h4>
+        <div class="inputs__item">
+            <label class="label" for="description">Description</label>
+            <input class="placeholder" type="text" id="description" placeholder="Enter description">
+        </div>
+    </div>
+    <h4 class="heading">Step 2: Add picture</h4>
 
-<div>
-    <input class="filled-in" type="checkbox"
-           [attr.id]="active"/>
-    <label [attr.for]="active">Active</label>
-    <input class="filled-in" type="checkbox"
-           [attr.id]="default"/>
-    <label [attr.for]="default">Default</label>
+    <div class="switch">
+        <input class="switch__checkbox filled-in" type="checkbox"
+                [attr.id]="active"/>
+        <label class="switch__label" [attr.for]="active">Active</label>
+        <input class="switch__checkbox filled-in" type="checkbox"
+                [attr.id]="default"/>
+        <label class="switch__label" [attr.for]="default">Default</label>
+    </div>
+
+    <input type="file" ng2FileSelect [uploader]="uploader" #fileUploader accept="image/*" style="display: none;" />
+    <div ng2FileDrop
+        *ngIf="!picture"
+        class="field"
+        [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+        (fileOver)="fileOverBase($event)"
+        (click)="fileUploader.click()"
+        [uploader]="uploader">
+        <div class="add-picture">
+            <div class="add-picture__icon">
+            </div>
+            <p class="add-picture__title">Please add your picture</p>
+        </div>
+    </div>
+
+    <div *ngIf="picture">
+        <img [src]="picture" alt="your image" width="1280px" />
+    </div>
+
+    <div class="controls">
+        <button class="button button_cancel">Cancel</button>
+        <button class="button button_retry"
+                (click)="fileUploader.click()"
+                [disabled]="!picture">Reupload</button>
+        <button class="button button_success">Save</button>
+    </div>
+
+
+    <h4 class="heading">Step 3: Add devices on the map</h4>
+    
+    <sh-sensors-list
+        [sensors]="sensors"
+        (onAddSensor)="onAddSensor($event)">
+    </sh-sensors-list>
+
 </div>
-
-<div>Map</div>
-
-<button>Cancel</button>
-<button>Reupload</button>
-<button>Save</button>
-
-<h4>Step 3: Add devices on the map</h4>
-List of devices

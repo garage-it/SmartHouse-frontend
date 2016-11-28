@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { SensorWidgetService } from '../shared/sensor-widget/sensor-widget.service';
 
 import { BaseSensor } from '../shared/base-sensor/base-sensor';
@@ -11,10 +11,12 @@ import { BaseSensor } from '../shared/base-sensor/base-sensor';
 export class SensorRegularWidgetComponent extends BaseSensor {
 
     @Input() device;
+    @Output() onRemoveWidget: EventEmitter<any> = new EventEmitter();
 
     constructor(sensorWidgetService: SensorWidgetService) {
         super(sensorWidgetService);
     }
 
+    showStatistic() {} // TODO To be implemented in TG-311
 }
 

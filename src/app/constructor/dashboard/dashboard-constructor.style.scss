@@ -1,0 +1,19 @@
+:host {
+  .title {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+
+  .step {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    letter-spacing: 0.2px;
+    margin-bottom: 10px;
+
+    &_options {
+      margin-right: 20px;
+    }
+  }
+}
