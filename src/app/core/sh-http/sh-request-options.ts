@@ -4,8 +4,11 @@ import { BaseRequestOptions, RequestOptionsArgs } from '@angular/http';
 @Injectable()
 export class ShRequestOptions extends BaseRequestOptions {
 
-    private static resolveApiUrl(url) {
-        return `${ENV_PUBLIC_CONFIG.backEndUrl}/api${url}`;
+    private static resolveApiUrl(url: string): string {
+        // For fix issue with incorrect Angular2 merging
+        return url.includes(ENV_PUBLIC_CONFIG.backEndUrl)
+            ? url
+            : `${ENV_PUBLIC_CONFIG.backEndUrl}/api${url}`;
     }
 
     constructor() {
