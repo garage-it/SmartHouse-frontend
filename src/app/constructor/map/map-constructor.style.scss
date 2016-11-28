@@ -60,6 +60,7 @@
     background-color: #f9f9f9;
     border: dotted 3px #92928f;
     cursor: pointer;
+    position: relative;
 }
 
 .nv-file-over {
@@ -87,4 +88,8 @@
 .controls {
     display: flex;
     justify-content: flex-end;
+}
+
+.picture {
+    position: relative;
 }

@@ -14,6 +14,7 @@ import { DashboardViewResolveService } from './dashboard/dashboard-view/dashboar
 import { DashboardConstructorService } from './dashboard/dashboard-constructor.service';
 import { DashboardModule } from '../dashboard/dashboard.module';
 import { FileDropDirective, FileSelectDirective } from 'ng2-file-upload';
+import {MapConstructorDirective} from './map/map-constructor.directive';
 
 @NgModule({
     id: module.id,
@@ -25,7 +26,8 @@ import { FileDropDirective, FileSelectDirective } from 'ng2-file-upload';
         SensorsListComponent,
         DashboardViewComponent,
         FileDropDirective,
-        FileSelectDirective
+        FileSelectDirective,
+        MapConstructorDirective
     ],
     providers: [
         DashboardResolveService,

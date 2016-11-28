@@ -1,7 +1,8 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import {Component, OnInit, NgZone, ContentChildren, ViewChild} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Device } from '../../devices/device.model';
 import { FileUploader } from 'ng2-file-upload';
+import {MapConstructorDirective} from './map-constructor.directive';
 
 @Component({
     selector: 'sh-map-constructor',
@@ -9,6 +10,7 @@ import { FileUploader } from 'ng2-file-upload';
     styleUrls: [ './map-constructor.style.scss' ]
 })
 export class MapConstructorComponent implements OnInit {
+    @ViewChild(MapConstructorDirective) mapConstructorDirective;
     public uploader: FileUploader = new FileUploader({ queueLimit: 1, allowedFileType: ['image'] });
     public hasBaseDropZoneOver: boolean = false;
     public picture: any;
@@ -32,7 +34,11 @@ export class MapConstructorComponent implements OnInit {
         });
     }
 
-    public onAddSensor(sensor: Device): void { }
+    public onAddSensor(sensor: Device): void {
+        if (this.picture) {
+            this.mapConstructorDirective.addSensor(sensor);
+        }
+    }
 
     public fileOverBase(e: any): void {
         this.hasBaseDropZoneOver = e;

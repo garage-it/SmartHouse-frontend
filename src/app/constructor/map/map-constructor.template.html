@@ -40,8 +40,11 @@
         </div>
     </div>
 
-    <div *ngIf="picture">
-        <img [src]="picture" alt="your image" width="1280px" />
+
+    <div class="picture"
+         shMapConstructor
+        *ngIf="picture">
+        <img [src]="picture" alt="your image" width="1280"  height="370"/>
     </div>
 
     <div class="controls">
