@@ -1,5 +1,5 @@
 .constructor {
-    width: 940px;
+    width: 1280px;
     margin:  0 auto;
     margin-top: 30px;
 }
@@ -81,26 +81,6 @@
 }
 
 .controls {
-    margin-top: 15px;
-    float: right;
-    &__button {
-        height: 34px;
-        border-radius: 3px;
-        border: none;
-        font-size: 14px;
-        letter-spacing: 0.2px;
-        font-weight: normal;
-        &_reject {
-            color: #fff;
-            background: #92928f;
-        }
-        &_retry {
-            color: #5f605d;
-            background: #c7c8c2;
-        }
-        &_success {
-            color: #fff;
-            background: #5db85c;
-        }
-    }
+    display: flex;
+    justify-content: flex-end;
 }
