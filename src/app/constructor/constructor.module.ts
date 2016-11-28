@@ -13,6 +13,7 @@ import { DeviceListModule } from '../devices/device-list/device-list.module';
 import { DashboardViewResolveService } from './dashboard/dashboard-view/dashboard-view-resolve.service';
 import { DashboardConstructorService } from './dashboard/dashboard-constructor.service';
 import { DashboardModule } from '../dashboard/dashboard.module';
+import { FileDropDirective, FileSelectDirective } from 'ng2-file-upload';
 
 @NgModule({
     id: module.id,
@@ -22,7 +23,9 @@ import { DashboardModule } from '../dashboard/dashboard.module';
         DashboardConstructorComponent,
         MapConstructorComponent,
         SensorsListComponent,
-        DashboardViewComponent
+        DashboardViewComponent,
+        FileDropDirective,
+        FileSelectDirective
     ],
     providers: [
         DashboardResolveService,

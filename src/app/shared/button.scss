@@ -1,3 +1,11 @@
+$success-button-bg: #5EB75B;
+$success-button-border: #70A972;
+
+$cancel-button-bg: #929290;
+
+$retry-button-bg: #C7C8C2;
+$retry-button: #5E5F5A;
+
 .button {
     margin: 20px 10px 0;
     width: 120px;
@@ -8,11 +16,30 @@
     border-radius: 3px;
 
     &_success {
-        background-color: #a3c940;
+        background-color: $success-button-bg;
+        border: solid 1px $success-button-border;
+
+        &:hover:not(:disabled) {
+            background-color: darken($color: $success-button-bg, $amount: 10%)
+        }
     }
 
     &_cancel {
-        background-color: #92928f;
-        border: solid 1px #92928f;
+        background-color: $cancel-button-bg;
+        border: solid 1px $cancel-button-bg;
+
+        &:hover:not(:disabled) {
+            background-color: darken($color: $cancel-button-bg, $amount: 10%)
+        }
+    }
+
+    &_retry {
+        background-color: $retry-button-bg;
+        border: solid 1px $retry-button-bg;
+        color: $retry-button;
+
+        &:hover:not(:disabled) {
+            background-color: darken($color: $retry-button-bg, $amount: 10%)
+        }
     }
 }

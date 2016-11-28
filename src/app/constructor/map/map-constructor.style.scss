@@ -1,0 +1,90 @@
+.constructor {
+    width: 1280px;
+    margin:  0 auto;
+    margin-top: 30px;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 24px;
+    letter-spacing: 0.3px;
+}
+
+.heading {
+    font-size: 14px;
+    display: inline-block;
+}
+
+.inputs {
+    &__item {
+        width: 48%;
+        float: left;
+        margin-right: 4%;
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+    .label {
+        font-weight: 600;
+        color: #000;
+        font-size: 12px;
+        letter-spacing: 0.2px;
+    }
+
+    .placeholder {
+        font-weight: normal;
+        font-size: 12px;
+        letter-spacing: 0.2px;
+    }
+}
+
+.switch {
+    margin-top: 20px;
+    float: right;
+
+    &__checkbox {
+        height: 15px;
+    }
+
+    &__label {
+        padding-left: 25px;
+        margin-right: 10px;
+        font-size: 14px;
+        color: #000000;
+    }
+}
+
+.field {
+    height: 370px;
+    background-color: #f9f9f9;
+    border: dotted 3px #92928f;
+    cursor: pointer;
+}
+
+.nv-file-over {
+    border: dotted 3px red;
+}
+
+.add-picture {
+    width: 150px;
+    margin: 120px auto;
+
+    &__icon {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto;
+        background-image: url('assets/ic-add-a-photo.svg');
+        background-repeat: no-repeat;
+    }
+
+    &__title {
+        font-size: 14px;
+        color: #5f605d;
+    }
+}
+
+.controls {
+    display: flex;
+    justify-content: flex-end;
+}
