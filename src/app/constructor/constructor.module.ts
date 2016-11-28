@@ -24,7 +24,6 @@ import { FileDropDirective, FileSelectDirective } from 'ng2-file-upload';
         MapConstructorComponent,
         SensorsListComponent,
         DashboardViewComponent,
-        MapConstructorComponent,
         FileDropDirective,
         FileSelectDirective
     ],
