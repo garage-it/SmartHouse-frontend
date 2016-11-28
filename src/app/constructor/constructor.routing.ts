@@ -9,7 +9,7 @@ export const routes = [
         path: '',
         component: ConstructorComponent,
         resolve: {
-            widgets: DashboardViewResolveService,
+            dashboard: DashboardViewResolveService,
             sensors: DeviceListResolveService
         }
     }
