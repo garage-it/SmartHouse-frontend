@@ -1,4 +1,4 @@
-import { Component, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Device } from '../../devices/device.model';
 import { FileUploader } from 'ng2-file-upload';
@@ -8,7 +8,7 @@ import { FileUploader } from 'ng2-file-upload';
     templateUrl: './map-constructor.template.html',
     styleUrls: [ './map-constructor.style.scss' ]
 })
-export class MapConstructorComponent {
+export class MapConstructorComponent implements OnInit {
     public uploader: FileUploader = new FileUploader({ queueLimit: 1, allowedFileType: ['image'] });
     public hasBaseDropZoneOver: boolean = false;
     public picture: any;
@@ -26,7 +26,7 @@ export class MapConstructorComponent {
         /* workaround, because handler code is executed outside of Angular Zone ('this' references to the wrong object) */
         this.uploader.onAfterAddingFile = this.ngZone.run(() => function (fileItem: any) {
             self.reader.readAsDataURL(fileItem._file);
-            this.removeFromQueue(fileItem);
+            (this as FileUploader).removeFromQueue(fileItem);
         });
 
         this.reader.onload = this.ngZone.run(() => function (event: any) {
