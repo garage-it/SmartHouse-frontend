@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { ProfileService } from '../../../core/profile/profile.service';
 
 @Component({
-    selector: 'protected',
+    selector: 'sh-protected',
     template: require('./protected.template.html'),
 })
 export class ProtectedComponent {
