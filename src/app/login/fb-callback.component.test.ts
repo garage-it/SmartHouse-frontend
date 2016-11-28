@@ -7,34 +7,20 @@ describe('FbCallback component', () => {
     let windowRef;
     let sut;
 
-    function createAuthService() {
-        return {
+    beforeEach(() => {
+        authService = {
             loginByAccessToken: jasmine.createSpy('loginByAccessToken')
         };
-    }
-
-    function createRouter() {
-        return {
+        router = {
             navigate: jasmine.createSpy('navigate')
         };
-    }
-
-    function createWindowRef() {
-        const window = {
-            location: {
-                hash: null
+        windowRef = {
+            nativeWindow: {
+                location: {
+                    hash: null
+                }
             }
         };
-
-        return {
-            nativeWindow: window
-        };
-    }
-
-    beforeEach(() => {
-        authService = createAuthService();
-        router = createRouter();
-        windowRef = createWindowRef();
 
         sut = new FbCallbackComponent(
             windowRef,
