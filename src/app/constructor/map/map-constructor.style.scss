@@ -24,6 +24,7 @@
             margin-right: 0;
         }
     }
+
     .label {
         font-weight: 600;
         color: #000;
@@ -45,6 +46,7 @@
     &__checkbox {
         height: 15px;
     }
+
     &__label {
         padding-left: 25px;
         margin-right: 10px;
@@ -74,6 +76,7 @@
         background-image: url('assets/ic-add-a-photo.svg');
         background-repeat: no-repeat;
     }
+
     &__title {
         font-size: 14px;
         color: #5f605d;
