@@ -25,4 +25,8 @@
 <button>Save</button>
 
 <h4>Step 3: Add devices on the map</h4>
-List of devices
+
+<sh-sensors-list
+        [sensors]="sensors"
+        (onAddSensor)="onAddSensor($event)">
+</sh-sensors-list>
