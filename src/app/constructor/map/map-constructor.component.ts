@@ -21,16 +21,14 @@ export class MapConstructorComponent implements OnInit {
     public ngOnInit(): void {
         this.sensors = this.route.snapshot.data['sensors'];
 
-        let self = this;
-
         /* workaround, because handler code is executed outside of Angular Zone ('this' references to the wrong object) */
-        this.uploader.onAfterAddingFile = this.ngZone.run(() => function (fileItem: any) {
-            self.reader.readAsDataURL(fileItem._file);
-            (this as FileUploader).removeFromQueue(fileItem);
+        this.uploader.onAfterAddingFile = this.ngZone.run(() => (fileItem: any) => {
+            this.reader.readAsDataURL(fileItem._file);
+            this.uploader.removeFromQueue(fileItem);
         });
 
-        this.reader.onload = this.ngZone.run(() => function (event: any) {
-            self.picture = event.target.result;
+        this.reader.onload = this.ngZone.run(() => (event: any) => {
+            this.picture = event.target.result;
         });
     }
 
