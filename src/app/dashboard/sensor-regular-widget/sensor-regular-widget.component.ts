@@ -20,4 +20,3 @@ export class SensorRegularWidgetComponent extends BaseSensor {
         super(sensorWidgetService);
     }
 }
-

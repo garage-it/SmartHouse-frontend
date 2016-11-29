@@ -51,5 +51,4 @@ describe('dashboard-resolveService', () => {
         });
     });
 
-
 });

@@ -56,7 +56,6 @@ describe('base-sensor', () => {
             });
         });
 
-
         it('should subscribe by proper device', () => {
             sut.ngOnInit();
 

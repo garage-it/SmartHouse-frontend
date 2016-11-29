@@ -18,6 +18,7 @@
     "use-output-property-decorator": true,
     "use-host-property-decorator": true,
     "no-attribute-parameter-decorator": true,
+    "no-consecutive-blank-lines": true,
     "no-input-rename": true,
     "no-output-rename": true,
     "no-forward-ref": true,

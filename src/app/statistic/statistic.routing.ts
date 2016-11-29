@@ -5,7 +5,6 @@ import { StatisticComponent } from './statistic.component';
 import { SensorStatisticComponent } from './sensor-statistic/sensor-statistic.component';
 import { SensorStatisticResolveService } from './sensor-statistic/sensor-statistic-resolve.service';
 
-
 export const routes = [
     {
         path: STATISTIC_ROUTING_CONFIG.BASE,

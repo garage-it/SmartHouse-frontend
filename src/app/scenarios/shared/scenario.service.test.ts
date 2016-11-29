@@ -142,7 +142,6 @@ describe('ScenarioService', () => {
             };
             const updateScenario = Object.assign({}, scenario);
 
-
             sut.update(updateScenario, true);
             expect(httpMock.put).toHaveBeenCalledWith(`/scenarios/${id}`, expectedScenario);
         });

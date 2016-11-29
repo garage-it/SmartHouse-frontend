@@ -12,7 +12,6 @@ import { DeviceListService } from './device-list/device-list.service';
 import { DeviceListResolveService } from './device-list/device-list-resolve.service';
 import { SensorDetailService } from './shared/sensor-detail.service';
 
-
 @NgModule({
     id: module.id,
     imports: [ RouterModule, FormsModule, SharedModule, DeviceListModule, routing ],

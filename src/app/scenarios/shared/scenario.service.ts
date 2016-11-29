@@ -53,7 +53,6 @@ function mapScenario(scenario) {
         }
     });
 
-
     function getConditions(_conditions) {
         return _conditions.map(condition => ({
             device: condition.selectedDevice,
