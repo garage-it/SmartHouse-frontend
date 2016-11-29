@@ -17,6 +17,7 @@ import { StorageService } from './storage/storage.service';
 import { ShRequestOptions } from './sh-http/sh-request-options';
 import { FilesService } from './files/files.service';
 import { WindowRef } from './browser/window-ref.service';
+import { TimepieceComponent } from './header/timepiece/timepiece.component';
 
 @NgModule({
     id: module.id,
@@ -25,7 +26,8 @@ import { WindowRef } from './browser/window-ref.service';
         HeaderComponent,
         MainComponent,
         ScreenComponent,
-        ProtectedComponent
+        ProtectedComponent,
+        TimepieceComponent
     ],
     providers: [
         AuthService,
@@ -40,6 +42,6 @@ import { WindowRef } from './browser/window-ref.service';
         WindowRef,
         FilesService
     ],
-    exports: [ HeaderComponent, MainComponent, ScreenComponent ]
+    exports: [ HeaderComponent, MainComponent, ScreenComponent, TimepieceComponent ]
 })
 export class CoreModule {}
