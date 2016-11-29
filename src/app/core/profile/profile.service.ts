@@ -49,10 +49,25 @@ export class ProfileService {
     }
 
     isLoggedIn(): boolean {
-        return Boolean(this.user && this.user.role);
+        return !!this.user;
     }
 
     isGuest(): boolean {
         return !this.isLoggedIn();
+    }
+
+    getUserRole(): string {
+        return this.user.role;
+    }
+
+    isUserRoleIn(roles: Array<string>): boolean {
+        if (roles && roles.length) {
+            return roles.indexOf(this.getUserRole()) !== -1;
+        }
+        /*
+         * When roles not transferred
+         * we assume that for all roles we want to allow
+         */
+        return true;
     }
 }

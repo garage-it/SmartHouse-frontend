@@ -5,6 +5,7 @@ import { HttpModule, RequestOptions } from '@angular/http';
 import { HeaderComponent } from './header/header.component';
 import { MainComponent } from './main/main.component';
 import { ScreenComponent } from './screen/screen.component';
+import { ProtectedComponent } from '../shared/components/protected-component/protected.component';
 
 import { AuthService } from './auth/auth.service';
 import { GuestGuard, LoggedInGuard } from './profile/profile.guards';
@@ -20,7 +21,12 @@ import { WindowRef } from './browser/window-ref.service';
 @NgModule({
     id: module.id,
     imports: [ CommonModule, RouterModule, HttpModule ],
-    declarations: [ HeaderComponent, MainComponent, ScreenComponent ],
+    declarations: [
+        HeaderComponent,
+        MainComponent,
+        ScreenComponent,
+        ProtectedComponent
+    ],
     providers: [
         AuthService,
         GuestGuard,
@@ -37,8 +43,3 @@ import { WindowRef } from './browser/window-ref.service';
     exports: [ HeaderComponent, MainComponent, ScreenComponent ]
 })
 export class CoreModule {}
-
-
-
-
-
