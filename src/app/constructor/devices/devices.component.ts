@@ -16,27 +16,11 @@ export class DevicesComponent implements AfterViewInit{
                 private renderer: Renderer,
                 private dragulaService: DragulaService) {
 
-        let posX;
-        let pos = this.element.nativeElement.getBoundingClientRect();
-
         dragulaService.drag.subscribe((value) => {
-            let X;
             console.log(value);
-
-            posX = value.slice(1)[0].style.left;
-            document.onmouseup = function() {
-                console.log(X - parseInt(pos.left) + 'px');
-                value.slice(1)[0].style.left = X - parseInt(pos.left) + 'px';
-                document.onmouseup =  null;
-            };
-
-            document.onmousemove = function(e) {
-                console.log('ss')
-                X = e.pageX;
-            }
         });
         dragulaService.drop.subscribe((value) => {
-            console.log('drop');
+            console.log(value);
         });
     }
 
@@ -54,6 +38,8 @@ export class DevicesComponent implements AfterViewInit{
         let len = this.deviceList.length;
         let last = this.deviceList[len - 1];
         let posX = len * 50;
+        //TODO: change 50 to actual size of the element
+
         let posY = 0;
         this.renderer.setElementAttribute(last, 'style', `left: ${posX}px; top: ${posY}px;`);
 
