@@ -36,22 +36,35 @@ describe('base-sensor', () => {
     });
 
     describe('when initialize component', () => {
-        beforeEach(() => {
+
+        it('should initialize sensor data with provided value', () => {
+            sut.device = { mqttId: 'For test', value: 'initvalue' };
             sut.ngOnInit();
+
+            expect(sut.data).toEqual({
+                value: 'initvalue',
+                updateTime: null
+            });
         });
 
         it('should initialize sensor data', () => {
+            sut.ngOnInit();
+
             expect(sut.data).toEqual({
                 value: null,
                 updateTime: null
             });
         });
 
+
         it('should subscribe by proper device', () => {
+            sut.ngOnInit();
+
             expect(sensorWidgetService.subscribe.calls.mostRecent().args[0]).toEqual(device.mqttId);
         });
 
         it('should update widget data if event addressed to this widget', () => {
+            sut.ngOnInit();
             const data = {device: 'For test'};
             sensorUpdateHandler(data);
 
@@ -59,6 +72,7 @@ describe('base-sensor', () => {
         });
 
         it('should NOT update widget data if event NOT addressed to this widget', () => {
+            sut.ngOnInit();
             const data = {device: 'faked'};
             sensorUpdateHandler(data);
 

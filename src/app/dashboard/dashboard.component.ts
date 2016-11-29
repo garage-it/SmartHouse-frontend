@@ -31,7 +31,8 @@ export class DashboardComponent implements OnInit {
         if (data.event === 'device-add') {
             this.widgets.push({
                 device: data.data,
-                hidden: false
+                hidden: false,
+                value: data.value
             });
         }
     }
