@@ -2,6 +2,8 @@ import { TimepieceComponent } from './timepiece.component';
 
 describe('Timepiece', () => {
     let sut;
+    let mockDueTime;
+    let mockPeriod;
 
     beforeEach(() => {
         sut = new TimepieceComponent();
@@ -23,20 +25,14 @@ describe('Timepiece', () => {
             expect(sut.subscribeToTimer).toHaveBeenCalled();
         });
 
-        it('timer should be undefined', () => {
-            expect(sut.timer).toBeUndefined();
-        });
-
-        it('timeTracker should be undefined', () => {
-            expect(sut.timeTracker).toBeUndefined();
-        });
-
     });
 
     describe('On timer create', () => {
 
         beforeEach(() => {
-            sut.createTimer(0, 1000);
+            mockDueTime = 0;
+            mockPeriod = 1000;
+            sut.createTimer(mockPeriod, mockDueTime);
         });
 
         it('timer should be defined', () => {
@@ -56,7 +52,9 @@ describe('Timepiece', () => {
     describe('On subscribe', () => {
 
         beforeEach(() => {
-            sut.createTimer(0, 1000);
+            mockDueTime = 0;
+            mockPeriod = 1000;
+            sut.createTimer(mockDueTime, mockPeriod);
             sut.subscribeToTimer();
         });
 
@@ -90,7 +88,9 @@ describe('Timepiece', () => {
     describe('On unsubscribe', () => {
 
         beforeEach(() => {
-            sut.createTimer(0, 1000);
+            mockDueTime = 0;
+            mockPeriod = 1000;
+            sut.createTimer(mockDueTime, mockPeriod);
             sut.subscribeToTimer();
             sut.unsubscribeFromTimer();
         });

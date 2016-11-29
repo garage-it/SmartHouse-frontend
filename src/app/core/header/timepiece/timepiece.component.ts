@@ -14,9 +14,6 @@ export class TimepieceComponent implements OnInit, OnDestroy {
     private timer: Observable<Object>;
     private timeTracker: Subscription;
 
-    constructor() {
-    }
-
     ngOnInit() {
         this.createTimer(0, 1000);
         this.subscribeToTimer();
