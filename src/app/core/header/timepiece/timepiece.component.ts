@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
 
 export class TimepieceComponent implements OnInit, OnDestroy {
 
-    private currentTime: string;
+    private currentTime: Date;
     private timer: Observable<Object>;
     private timeTracker: Subscription;
 
@@ -18,7 +18,7 @@ export class TimepieceComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.createTimer();
+        this.createTimer(0, 1000);
         this.subscribeToTimer();
     }
 
@@ -26,23 +26,18 @@ export class TimepieceComponent implements OnInit, OnDestroy {
         this.unsubscribeFromTimer();
     }
 
-    createTimer() {
-        this.timer = Observable.timer(0, 1000);
+    createTimer(dueTime: number, period: number) {
+        this.timer = Observable.timer(dueTime, period);
+        console.log(this.timer);
     }
 
     subscribeToTimer() {
         this.timeTracker = this.timer.subscribe(() => {
-            this.currentTime =  this.dateFormatter(new Date());
+            this.currentTime =  new Date();
         });
     }
 
     unsubscribeFromTimer() {
         this.timeTracker.unsubscribe();
-    }
-
-    dateFormatter(date: Date) {
-        const dateMMDDYYYY = [ date.getMonth() + 1, date.getDate(), date.getFullYear() ].join('.');
-        const timeHHMM = [ date.getHours(), date.getMinutes() ].join(':');
-        return dateMMDDYYYY + ' ' + timeHHMM;
     }
 }

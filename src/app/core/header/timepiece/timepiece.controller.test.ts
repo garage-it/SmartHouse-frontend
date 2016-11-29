@@ -7,27 +7,6 @@ describe('Timepiece', () => {
         sut = new TimepieceComponent();
     });
 
-    describe('Date formatting', () => {
-
-        beforeEach(() => {});
-
-        it('should format Date', () => {
-            const date = new Date('Tue Nov 29 2016 02:13:02 GMT+0200 (FLE Standard Time)');
-            expect(sut.dateFormatter(date)).toEqual('11.29.2016 2:13');
-        });
-
-        it('should format Date', () => {
-            const date = new Date(2016, 10, 5, 10, 10);
-            expect(sut.dateFormatter(date)).toEqual('11.5.2016 10:10');
-        });
-
-        it('should format Date', () => {
-            const date = new Date(1480383147676);
-            expect(sut.dateFormatter(date)).toEqual('11.29.2016 3:32');
-        });
-
-    });
-
     describe('On Init', () => {
 
         beforeEach(() => {
@@ -44,9 +23,59 @@ describe('Timepiece', () => {
             expect(sut.subscribeToTimer).toHaveBeenCalled();
         });
 
+        it('timer should be undefined', () => {
+            expect(sut.timer).toBeUndefined();
+        });
+
+        it('timeTracker should be undefined', () => {
+            expect(sut.timeTracker).toBeUndefined();
+        });
+
+    });
+
+    describe('On timer create', () => {
+
+        beforeEach(() => {
+            sut.createTimer(0, 1000);
+        });
+
+        it('timer should be defined', () => {
+            expect(sut.timer).toBeDefined();
+        });
+
+        it('timer period should be 1000 ms', () => {
+            expect(sut.timer.period).toEqual(1000);
+        });
+
+        it('timer dueTime should be 0 ms', () => {
+            expect(sut.timer.dueTime).toEqual(0);
+        });
+
+    });
+
+    describe('On subscribe', () => {
+
+        beforeEach(() => {
+            sut.createTimer(0, 1000);
+            sut.subscribeToTimer();
+        });
+
+        it('timeTracker should be defined', () => {
+            expect(sut.timeTracker).toBeDefined();
+        });
+
+        it('timeTracker should not be closed', () => {
+            expect(sut.timeTracker.closed).toEqual(false);
+        });
+
+        it('timeTracker should not be stopped', () => {
+            expect(sut.timeTracker.isStopped).toEqual(false);
+        });
+
     });
 
     describe('On Destroy', () => {
+
         beforeEach(() => {
             spyOn(sut, 'unsubscribeFromTimer');
             sut.ngOnDestroy();
@@ -58,26 +87,26 @@ describe('Timepiece', () => {
 
     });
 
-    describe('On init', () => {
+    describe('On unsubscribe', () => {
 
-        it('should create a timer', () => {
-
+        beforeEach(() => {
+            sut.createTimer(0, 1000);
+            sut.subscribeToTimer();
+            sut.unsubscribeFromTimer();
         });
 
-        it('should subscribe to timer', ()=> {
+        it('timeTracker should be defined', () => {
+            expect(sut.timeTracker).toBeDefined();
+        });
 
+        it('timeTracker should be closed', () => {
+            expect(sut.timeTracker.closed).toEqual(true);
+        });
+
+        it('timeTracker should be stopped', () => {
+            expect(sut.timeTracker.isStopped).toEqual(true);
         });
 
     });
-
-    describe('Date formatting', ()=> {
-
-    });
-
-    describe('On destroy', ()=> {
-        it('should unsubscribe from timer', ()=> {
-
-        });
-    })
 
 });
