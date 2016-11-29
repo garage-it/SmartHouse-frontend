@@ -15,10 +15,12 @@ import { DashboardConstructorService } from './dashboard/dashboard-constructor.s
 import { DashboardModule } from '../dashboard/dashboard.module';
 import { FileDropDirective, FileSelectDirective } from 'ng2-file-upload';
 import {MapConstructorDirective} from './map/map-constructor.directive';
+import {DevicesComponent} from './devices/devices.component';
+import { DragulaModule } from 'ng2-dragula/ng2-dragula';
 
 @NgModule({
     id: module.id,
-    imports: [ SharedModule, CommonModule, routing, DeviceListModule, DashboardModule ],
+    imports: [ SharedModule, CommonModule, routing, DeviceListModule, DashboardModule, DragulaModule ],
     declarations: [
         ConstructorComponent,
         DashboardConstructorComponent,
@@ -27,7 +29,8 @@ import {MapConstructorDirective} from './map/map-constructor.directive';
         DashboardViewComponent,
         FileDropDirective,
         FileSelectDirective,
-        MapConstructorDirective
+        MapConstructorDirective,
+        DevicesComponent
     ],
     providers: [
         DashboardResolveService,
