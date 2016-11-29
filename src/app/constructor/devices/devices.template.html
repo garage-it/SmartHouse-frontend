@@ -1,3 +1,8 @@
-<div class="device"
-     #devices
-     *ngFor="let device of sensors"></div>
+<div [dragula]="'sh-constructor-devices'">
+    <div class="device"
+         #devices
+         *ngFor="let device of sensors">{{device.mqttId}}
+    </div>
+</div>
+
+

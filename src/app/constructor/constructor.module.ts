@@ -14,7 +14,6 @@ import { DashboardViewResolveService } from './dashboard/dashboard-view/dashboar
 import { DashboardConstructorService } from './dashboard/dashboard-constructor.service';
 import { DashboardModule } from '../dashboard/dashboard.module';
 import { FileDropDirective, FileSelectDirective } from 'ng2-file-upload';
-import {MapConstructorDirective} from './map/map-constructor.directive';
 import {DevicesComponent} from './devices/devices.component';
 import { DragulaModule } from 'ng2-dragula/ng2-dragula';
 
@@ -29,7 +28,6 @@ import { DragulaModule } from 'ng2-dragula/ng2-dragula';
         DashboardViewComponent,
         FileDropDirective,
         FileSelectDirective,
-        MapConstructorDirective,
         DevicesComponent
     ],
     providers: [
