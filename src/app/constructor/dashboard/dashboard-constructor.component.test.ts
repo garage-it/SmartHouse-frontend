@@ -14,7 +14,9 @@ describe('DashboardConstructor', () => {
             snapshot: {
                 data: {
                     sensors: mockSensors,
-                    widgets: []
+                    dashboard: {
+                        devices: []
+                    }
                 }
             }
         };
@@ -38,9 +40,10 @@ describe('DashboardConstructor', () => {
 
         describe('when dashbord has some widgets', () => {
             beforeEach(() => {
-                ActivatedRoute.snapshot.data.widgets = mockWidgets;
+                ActivatedRoute.snapshot.data.dashboard.devices = mockWidgets;
                 sut.ngOnInit();
             });
+
             it('should receive devices from state that is not active widgets', () => {
                 expect(sut.sensors).toEqual([device2]);
             });
