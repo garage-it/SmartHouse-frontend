@@ -32,19 +32,19 @@ describe('Timepiece', () => {
         beforeEach(() => {
             mockDueTime = 0;
             mockPeriod = 1000;
-            sut.createTimer(mockPeriod, mockDueTime);
+            sut.createTimer(mockDueTime, mockPeriod);
         });
 
         it('timer should be defined', () => {
             expect(sut.timer).toBeDefined();
         });
 
-        it('timer period should be 1000 ms', () => {
-            expect(sut.timer.period).toEqual(1000);
+        it('timer period should be equal to passed value', () => {
+            expect(sut.timer.period).toEqual(mockPeriod);
         });
 
-        it('timer dueTime should be 0 ms', () => {
-            expect(sut.timer.dueTime).toEqual(0);
+        it('timer dueTime should be equal to passed value', () => {
+            expect(sut.timer.dueTime).toEqual(mockDueTime);
         });
 
     });
