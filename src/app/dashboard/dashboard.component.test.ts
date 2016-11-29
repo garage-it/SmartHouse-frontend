@@ -69,10 +69,11 @@ describe('Dashboard', () => {
             });
 
             it('should add new widget if device-add event received', () => {
-                sensorWidgetServiceCallback({event: 'device-add', data: 'faked'});
+                sensorWidgetServiceCallback({event: 'device-add', data: 'faked', value: 'mockValue'});
                 expect(sut.widgets).toContain({
                     device: 'faked',
-                    hidden: false
+                    hidden: false,
+                    value: 'mockValue'
                 });
             });
         });
