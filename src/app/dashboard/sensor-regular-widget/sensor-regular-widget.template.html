@@ -4,11 +4,9 @@
         x
     </button>
 
-    <button class="sensor-widget_button"
-            type="button"
-            [routerLink]="['../statistic/sensor-details', device.mqttId, 'day']">
-        Stat
-    </button>
+    <div class="sensor-widget_statistic-button"
+         [routerLink]="['../statistic/sensor-details', device.mqttId, 'day']">
+    </div>
 
     <span class="sensor-widget_time"
           [hidden]="data.updateTime===undefined">
