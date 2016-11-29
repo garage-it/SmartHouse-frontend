@@ -28,7 +28,6 @@ export class TimepieceComponent implements OnInit, OnDestroy {
 
     createTimer(dueTime: number, period: number) {
         this.timer = Observable.timer(dueTime, period);
-        console.log(this.timer);
     }
 
     subscribeToTimer() {
