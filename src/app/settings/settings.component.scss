@@ -1,0 +1,15 @@
+nav {
+    box-shadow: none;
+
+    .settings-nav {
+        background: #ffffff;
+        display: flex;
+        justify-content: center;
+
+        li a {
+            font-size: 16px;
+            color: #000000;
+            padding: 0 20px 0 20px;
+        }
+    }
+}

@@ -9,13 +9,13 @@
                     <div *ngIf="route.hasOwnProperty('isAuthorized')">
                         <sh-protected [isAuthorized]="route.isAuthorized">
                             <a [routerLink]="[route.path]" [style.background-image]="'url(' + route.iconImage + ')'">
-                                {{route.headerName}}
+                                {{route.name}}
                             </a>
                         </sh-protected>
                     </div>
                     <div *ngIf="!route.hasOwnProperty('isAuthorized')">
                         <a [routerLink]="[route.path]" [style.background-image]="'url(' + route.iconImage + ')'">
-                            {{route.headerName}}
+                            {{route.name}}
                         </a>
                     </div>
                 </li>

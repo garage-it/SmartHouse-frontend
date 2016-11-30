@@ -3,11 +3,9 @@ import { NAVIGATION_ROUTES, MAIN_ROUTE } from './header-navigation-routes';
 
 describe('Header', () => {
     let sut;
-    let profile;
 
     beforeEach(() => {
-        profile = jasmine.createSpyObj('profile', ['isGuest']);
-        sut = new HeaderComponent(profile);
+        sut = new HeaderComponent();
     });
 
     it('should show main page route', () => {

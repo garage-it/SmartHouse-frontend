@@ -1,0 +1,17 @@
+<h1>Settings page</h1>
+
+<nav>
+    <ul class="settings-nav">
+        <li *ngFor="let route of navigationRoutes">
+            <div *ngIf="route.hasOwnProperty('isAuthorized')">
+                <sh-protected [isAuthorized]="route.isAuthorized"
+                              [roles]="route.roles">
+                    <a [routerLink]="[route.path]">{{route.name}}</a>
+                </sh-protected>
+            </div>
+            <div *ngIf="!route.hasOwnProperty('isAuthorized')">
+                <a [routerLink]="[route.path]">{{route.name}}</a>
+            </div>
+        </li>
+    </ul>
+</nav>

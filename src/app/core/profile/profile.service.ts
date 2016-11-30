@@ -11,7 +11,7 @@ export class ProfileService {
     constructor(private http: ShHttpService, private storage: StorageService) {}
 
     /**
-     * In oeder to get profile info use sync public methods (isLoggedIn() and isGuest()) or "user" property
+     * In order to get profile info use sync public methods (isLoggedIn() and isGuest()) or "user" property
      */
     retrieve(): Promise<void> {
         const token = this.storage.getToken();

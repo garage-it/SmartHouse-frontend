@@ -53,12 +53,17 @@ export const routes = [
                 loadChildren: () => require('es6-promise!./statistic/statistic.module')('StatisticModule')
             },
             {
+                path: ROUTING.SETTINGS,
+                canActivate: [ LoggedInGuard ],
+                loadChildren: () => require('es6-promise!./settings/settings.module')('SettingsModule')
+            },
+            {
                 path: '**',
                 redirectTo: '',
                 pathMatch: 'full'
             }
         ]
-    },
+    }
 ];
 
 export const routing = RouterModule.forRoot(routes);
