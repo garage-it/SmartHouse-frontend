@@ -26,9 +26,22 @@
     &__actions {
         text-align: right;
         cursor: pointer;
+        background-repeat: no-repeat;
+        width: 20px;
+        height: 20px;
+        &_add {
+            background-image: url('assets/add-icon.svg');
+        }
+        &_remove {
+            background-image: url('assets/remove-icon.svg');
+        }
     }
 
     .row {
         margin-bottom: -1px;
     }
+}
+
+.disabled {
+    opacity: 0.25;
 }

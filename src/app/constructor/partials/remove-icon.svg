@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 39.1 (31720) - http://www.bohemiancoding.com/sketch -->
+    <title>2A9D8716-03BB-4B9E-A726-7B806961DD30</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Constructor" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="1">
+        <g transform="translate(-1094.000000, -728.000000)" id="Step-3" fill="#5F605D">
+            <g transform="translate(250.000000, 652.000000)">
+                <g id="Device-1" transform="translate(60.000000, 71.000000)">
+                    <g id="add-rem" transform="translate(760.000000, 5.000000)">
+                        <path d="M34,0 C28.4799072,0 24,4.47990233 24,10 C24,15.520093 28.4799072,20 34,20 C39.5200928,20 44,15.520093 44,10 C44,4.47990233 39.5200928,0 34,0 L34,0 Z M38.8097087,10.2825591 L29,10.2825591 L29,9.70001221 L38.8097087,9.70001221 L38.8097087,10.2825591 L38.8097087,10.2825591 Z M34,0.465116279 C39.2687253,0.465116279 43.5348837,4.73126977 43.5348837,10 C43.5348837,15.2687209 39.2687253,19.5348837 34,19.5348837 C28.7312747,19.5348837 24.4651163,15.2687209 24.4651163,10 C24.4651163,4.73126977 28.7312747,0.465116279 34,0.465116279 L34,0.465116279 Z" id="remove-icon"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
