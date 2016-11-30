@@ -1,12 +1,12 @@
-import { Component, OnInit, NgZone, ViewChild, ViewContainerRef, ElementRef, Renderer } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
-import { Device } from "../../devices/device.model";
-import { FileUploader } from "ng2-file-upload";
-import { DevicesComponent } from "../devices/devices.component";
-import { MapViewService } from "../../home/map-view/map-view.service";
-import { MapViewInfoCreateDto } from "../../home/map-view/map-view.dto";
-import { ToastsManager } from "ng2-toastr/ng2-toastr";
-import { DialogService } from "../../shared/dialog/dialog.service";
+import { Component, OnInit, NgZone, ViewChild, ViewContainerRef, ElementRef, Renderer } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Device } from '../../devices/device.model';
+import { FileUploader } from 'ng2-file-upload';
+import { DevicesComponent } from '../devices/devices.component';
+import { MapViewService } from '../../home/map-view/map-view.service';
+import { MapViewInfoCreateDto } from '../../home/map-view/map-view.dto';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { DialogService } from '../../shared/dialog/dialog.service';
 
 @Component({
     selector: 'sh-map-constructor',
