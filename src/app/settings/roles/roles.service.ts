@@ -6,7 +6,8 @@ import { ShHttpService } from '../../core/sh-http/sh-http.service';
 export class RolesService {
     constructor(private http: ShHttpService) {}
 
-    retrieve() {
-        return this.http.get('/user');
+    retrieve(): Promise<any> {
+        return this.http.get('/user').toPromise()
+            .then(data => data.responses);
     }
 }

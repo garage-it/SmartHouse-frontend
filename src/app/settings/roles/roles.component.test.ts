@@ -1,15 +1,14 @@
 import { RolesComponent } from './roles.component';
-import { Observable } from 'rxjs/Rx';
 
 describe('Roles Component', () => {
     const mockedUsers = [1, 2];
 
-    let sut, rolesService;
+    let sut, rolesService, retrievePromise;
 
     beforeEach(() => {
-        rolesService = {
-            retrieve: jasmine.createSpy('retrieve')
-        };
+        retrievePromise = Promise.resolve(mockedUsers);
+        rolesService = jasmine.createSpyObj('rolesService', ['retrieve']);
+        rolesService.retrieve.and.returnValue(retrievePromise);
 
         sut = new RolesComponent(
             rolesService
@@ -18,33 +17,18 @@ describe('Roles Component', () => {
 
     describe('ngOnInit', () => {
         beforeEach(() => {
-            sut.rolesService.retrieve.and.returnValue(Observable.of({
-                responses: mockedUsers
-            }));
-
             sut.ngOnInit();
         });
 
-        it('should call loginByAccessToken', () => {
-            expect(sut.rolesService.retrieve).toHaveBeenCalled();
+        it('should call retrieve', () => {
+            expect(rolesService.retrieve).toHaveBeenCalled();
         });
 
-        it('should return a list of users', () => {
-            expect(sut.users).toEqual(mockedUsers);
-        });
-    });
-
-    describe('ngOnDestroy', () => {
-        beforeEach(() => {
-            sut.subscription = {
-                unsubscribe: jasmine.createSpy('roleService unsubscribe')
-            };
-
-            sut.ngOnDestroy();
-        });
-
-        it('should unsubscribe from roleService events', () => {
-            expect(sut.subscription.unsubscribe).toHaveBeenCalled();
+        it('should return a list of users', (done) => {
+            retrievePromise.then(() => {
+                expect(sut.users).toEqual(mockedUsers);
+                done();
+            }).catch(done);
         });
     });
 });

@@ -5,4 +5,4 @@ import { Component } from '@angular/core';
     templateUrl: './statistic.template.html',
     styleUrls: ['./statistic.style.scss']
 })
-export class StatisticComponent {};
+export class StatisticComponent {}

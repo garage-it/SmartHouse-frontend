@@ -1,15 +1,17 @@
+import { Observable } from 'rxjs/Rx';
 import { RolesService } from './roles.service';
 
 describe('Roles Service', () => {
-    let sut;
-    let ShHttpService;
+    let sut, http;
 
     beforeEach(() => {
-        ShHttpService = {
-            get: jasmine.createSpy('get')
-        };
+        http = jasmine.createSpyObj('http', ['get']);
 
-        sut = new RolesService(ShHttpService);
+        sut = new RolesService(http);
+
+        sut.http.get.and.returnValue(Observable.of({
+            responses: [1, 2]
+        }));
     });
 
     it('should be defined', () => {
@@ -19,6 +21,6 @@ describe('Roles Service', () => {
     it('should retrieve list of users from the server', () => {
         sut.retrieve();
 
-        expect(ShHttpService.get).toHaveBeenCalledWith('/user');
+        expect(sut.http.get).toHaveBeenCalledWith('/user');
     });
 });
