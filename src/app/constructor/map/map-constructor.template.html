@@ -6,22 +6,35 @@
     <div class="inputs">
         <div class="inputs__item">
             <label class="label" for="name">Name</label>
-            <input class="placeholder" type="text" id="name" placeholder="Enter name">
+            <input class="placeholder"
+                   type="text"
+                   id="name"
+                   placeholder="Enter name"
+                   [(ngModel)]="mapViewName"
+                   required>
         </div>
 
         <div class="inputs__item">
             <label class="label" for="description">Description</label>
-            <input class="placeholder" type="text" id="description" placeholder="Enter description">
+            <input class="placeholder"
+                   type="text"
+                   id="description"
+                   placeholder="Enter description"
+                   [(ngModel)]="mapViewDescription"
+                   required>
         </div>
     </div>
     <h4 class="heading">Step 2: Add picture</h4>
 
     <div class="switch">
-        <input class="switch__checkbox filled-in" type="checkbox"
-                [attr.id]="active"/>
+        <input class="switch__checkbox filled-in"
+               type="checkbox"
+               [attr.id]="active"
+               [(ngModel)]="mapViewIsActive"/>
         <label class="switch__label" [attr.for]="active">Active</label>
-        <input class="switch__checkbox filled-in" type="checkbox"
-                [attr.id]="default"/>
+        <input class="switch__checkbox filled-in"
+               type="checkbox"
+               [attr.id]="default"/>
         <label class="switch__label" [attr.for]="default">Default</label>
     </div>
 
@@ -57,7 +70,8 @@
         <button class="button button_retry"
                 (click)="fileUploader.click()"
                 [disabled]="!picture">Reupload</button>
-        <button class="button button_success">Save</button>
+        <button class="button button_success"
+                (click)="saveMapView()">Save</button>
     </div>
 
 

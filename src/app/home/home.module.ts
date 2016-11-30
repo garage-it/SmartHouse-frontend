@@ -10,6 +10,7 @@ import { routing } from './home.routing';
 import { HomeComponent } from './home.component';
 
 import HOME_DECLARATIONS from './home.declarations';
+import { MapViewService } from './map-view/map-view.service';
 
 @NgModule({
     id: module.id,
@@ -17,6 +18,7 @@ import HOME_DECLARATIONS from './home.declarations';
     declarations: [ ...HOME_DECLARATIONS ],
     exports: [ HomeComponent ],
     providers: [
+        MapViewService
     ]
 })
 export class HomeModule {}
