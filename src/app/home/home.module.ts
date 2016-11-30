@@ -11,10 +11,11 @@ import { HomeComponent } from './home.component';
 
 import HOME_DECLARATIONS from './home.declarations';
 import { MapViewService } from './map-view/map-view.service';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
     id: module.id,
-    imports: [ SharedModule, RouterModule, FormsModule, routing, ChartModule ],
+    imports: [ CoreModule, SharedModule, RouterModule, FormsModule, routing, ChartModule ],
     declarations: [ ...HOME_DECLARATIONS ],
     exports: [ HomeComponent ],
     providers: [

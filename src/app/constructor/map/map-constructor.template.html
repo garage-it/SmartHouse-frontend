@@ -1,4 +1,7 @@
-<div class="constructor">
+<form class="constructor"
+      (ngSubmit)="onSubmit()"
+      #mapViewConstructorForm="ngForm"
+      novalidate>
     <h2 class="title">Constructor / Map view</h2>
 
     <h4 class="heading">Step 1: Name your view</h4>
@@ -11,6 +14,8 @@
                    id="name"
                    placeholder="Enter name"
                    [(ngModel)]="mapViewName"
+                   name="mapViewName"
+                   #name="ngModel"
                    required>
         </div>
 
@@ -21,6 +26,8 @@
                    id="description"
                    placeholder="Enter description"
                    [(ngModel)]="mapViewDescription"
+                   name="mapViewDescription"
+                   #name="ngModel"
                    required>
         </div>
     </div>
@@ -66,12 +73,15 @@
     </div>
 
     <div class="controls">
-        <button class="button button_cancel">Cancel</button>
+        <button class="button button_cancel"
+                type="button"
+                (click)="onCancel()">Cancel</button>
         <button class="button button_retry"
+                type="button"
                 (click)="fileUploader.click()"
                 [disabled]="!picture">Reupload</button>
         <button class="button button_success"
-                (click)="saveMapView()">Save</button>
+                type="submit">Save</button>
     </div>
 
 
@@ -84,4 +94,4 @@
         (onRemoveSensor)="onRemoveSensor($event)">
     </sh-sensors-list>
 
-</div>
+</form>

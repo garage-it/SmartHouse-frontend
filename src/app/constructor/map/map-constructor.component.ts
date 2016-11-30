@@ -1,10 +1,12 @@
-import { Component, OnInit, NgZone, ViewChild } from '@angular/core';
+import { Component, OnInit, NgZone, ViewChild, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Device } from '../../devices/device.model';
 import { FileUploader } from 'ng2-file-upload';
 import { DevicesComponent } from '../devices/devices.component';
 import { MapViewService } from '../../home/map-view/map-view.service';
 import { MapViewInfoCreateDto } from '../../home/map-view/map-view.dto';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { DialogService } from '../../shared/dialog/dialog.service';
 
 @Component({
     selector: 'sh-map-constructor',
@@ -27,6 +29,9 @@ export class MapConstructorComponent implements OnInit {
     constructor(private route: ActivatedRoute,
                 private router: Router,
                 private ngZone: NgZone,
+                private toastr: ToastsManager,
+                private dialogService: DialogService,
+                private viewContainerRef: ViewContainerRef,
                 private mapViewService: MapViewService) { }
 
     public ngOnInit(): void {
@@ -38,14 +43,14 @@ export class MapConstructorComponent implements OnInit {
             this.reader.readAsDataURL(fileItem._file);
         });
 
-        this.uploader.onCompleteAll = () => this.whenSuccess();
+        this.uploader.onCompleteAll = () => this.onCreateSuccess();
 
         this.reader.onload = this.ngZone.run(() => (event: any) => {
             this.picture = event.target.result;
         });
     }
 
-    private whenSuccess(): void {
+    private onCreateSuccess(): void {
         this.router.navigate(['..']);
     }
 
@@ -70,7 +75,29 @@ export class MapConstructorComponent implements OnInit {
         this.hasBaseDropZoneOver = e;
     }
 
-    public saveMapView(): void {
+    private isMapViewCanBeSaved(): boolean {
+        return !!this.mapViewName && !!this.mapViewDescription && !!this.picture;
+    }
+
+    public onCancel(): void {
+        const confirmOptions = {
+            title: '',
+            message: 'Do you want to exit without saving?'
+        };
+        this.dialogService
+            .confirm(this.viewContainerRef, confirmOptions)
+            .subscribe((isConfirmed) => {
+                if (isConfirmed) {
+                    this.router.navigate(['..']);
+                }
+            });
+    }
+
+    public onSubmit(): void {
+        if (!this.isMapViewCanBeSaved()) {
+            this.toastr.error('Please fill mandatory fields: "Name", "Description" and "Add Picture"');
+            return ;
+        }
         const mapViewInfoCreateDto: MapViewInfoCreateDto = {
             name: this.mapViewName,
             description: this.mapViewDescription,
