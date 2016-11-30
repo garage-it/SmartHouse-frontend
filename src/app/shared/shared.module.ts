@@ -4,6 +4,7 @@ import { MaterialModule } from '@angular/material';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { DialogConfirmComponent } from './dialog/dialog-confirm.component';
 import { DialogService } from './dialog/dialog.service';
+import { ProtectedComponent } from './components/protected-component/protected.component';
 
 @NgModule({
     id: module.id,
@@ -12,9 +13,9 @@ import { DialogService } from './dialog/dialog.service';
         MaterialModule.forRoot(),
         ToastModule
     ],
-    declarations: [ DialogConfirmComponent ],
+    declarations: [ DialogConfirmComponent, ProtectedComponent ],
     providers: [ DialogService ],
-    exports: [ CommonModule ],
+    exports: [ CommonModule, ProtectedComponent ],
     entryComponents: [ DialogConfirmComponent ]
 })
 export class SharedModule {}

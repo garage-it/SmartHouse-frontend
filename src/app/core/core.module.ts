@@ -5,7 +5,6 @@ import { HttpModule, RequestOptions } from '@angular/http';
 import { HeaderComponent } from './header/header.component';
 import { MainComponent } from './main/main.component';
 import { ScreenComponent } from './screen/screen.component';
-import { ProtectedComponent } from '../shared/components/protected-component/protected.component';
 
 import { AuthService } from './auth/auth.service';
 import { GuestGuard, LoggedInGuard } from './profile/profile.guards';
@@ -18,15 +17,15 @@ import { ShRequestOptions } from './sh-http/sh-request-options';
 import { FilesService } from './files/files.service';
 import { WindowRef } from './browser/window-ref.service';
 import { TimepieceComponent } from './header/timepiece/timepiece.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
     id: module.id,
-    imports: [ CommonModule, RouterModule, HttpModule ],
+    imports: [ CommonModule, RouterModule, HttpModule, SharedModule ],
     declarations: [
         HeaderComponent,
         MainComponent,
         ScreenComponent,
-        ProtectedComponent,
         TimepieceComponent
     ],
     providers: [
