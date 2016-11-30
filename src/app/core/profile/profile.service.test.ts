@@ -125,7 +125,6 @@ describe('Profile Service', () => {
             expect(sut.user).toEqual(null);
         });
 
-
         it('should remove saved token', () => {
             expect(storage.removeToken).toHaveBeenCalled();
         });
@@ -164,6 +163,40 @@ describe('Profile Service', () => {
             };
 
             expect(sut.isGuest()).toEqual(false);
+        });
+    });
+
+    describe('authorized user', () => {
+        it('should have role', () => {
+            const expectedRole = 'admin';
+
+            sut.user = {
+                role: 'admin'
+            };
+
+            expect(sut.getUserRole()).toEqual(expectedRole);
+        });
+    });
+
+    describe('authorized user', () => {
+        beforeEach(() => {
+            spyOn(sut, 'getUserRole').and.returnValue('admin');
+        });
+
+        it('should have one of role', () => {
+            expect(sut.isUserRoleIn(['admin', 'user'])).toEqual(true);
+        });
+
+        it('role is not suitable', () => {
+            expect(sut.isUserRoleIn(['user'])).toEqual(false);
+        });
+
+        it('with undefined role', () => {
+            expect(sut.isUserRoleIn()).toEqual(true);
+        });
+
+        it('with empty role', () => {
+            expect(sut.isUserRoleIn([])).toEqual(true);
         });
     });
 });

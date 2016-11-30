@@ -1,6 +1,7 @@
 export class NavigationRoute {
     path: string;
-    headerName?: string;
+    name?: string;
+    roles?: Array<string>;
     iconImage?: string;
-    authRequired?: boolean;
+    isAuthorized?: boolean;
 }

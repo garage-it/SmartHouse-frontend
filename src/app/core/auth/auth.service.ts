@@ -18,7 +18,6 @@ export class AuthService {
         });
     }
 
-
     logout(): void {
         this.profile.removeUserData();
     }

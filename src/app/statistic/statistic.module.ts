@@ -1,15 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
-import { routing } from './statistic.routing';
+import { ChartModule } from 'angular2-highcharts';
+
+import { SensorStatisticResolveService } from './sensor-statistic/sensor-statistic-resolve.service';
 import STATISTIC_DECLARATIONS from './statistic.declarations';
 import { StatisticComponent } from './statistic.component';
+import { StatisticService } from './statistic.service';
+import { routing } from './statistic.routing';
 
 @NgModule({
     id: module.id,
-    imports: [ RouterModule, routing ],
+    imports: [ RouterModule, routing, ChartModule, CommonModule ],
     declarations: [ ...STATISTIC_DECLARATIONS ],
     exports: [ StatisticComponent ],
-    providers: []
+    providers: [ StatisticService, SensorStatisticResolveService ]
 })
 export class StatisticModule {}

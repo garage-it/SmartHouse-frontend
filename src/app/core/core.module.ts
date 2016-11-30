@@ -16,11 +16,18 @@ import { StorageService } from './storage/storage.service';
 import { ShRequestOptions } from './sh-http/sh-request-options';
 import { FilesService } from './files/files.service';
 import { WindowRef } from './browser/window-ref.service';
+import { TimepieceComponent } from './header/timepiece/timepiece.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
     id: module.id,
-    imports: [ CommonModule, RouterModule, HttpModule ],
-    declarations: [ HeaderComponent, MainComponent, ScreenComponent ],
+    imports: [ CommonModule, RouterModule, HttpModule, SharedModule ],
+    declarations: [
+        HeaderComponent,
+        MainComponent,
+        ScreenComponent,
+        TimepieceComponent
+    ],
     providers: [
         AuthService,
         GuestGuard,
@@ -34,11 +41,6 @@ import { WindowRef } from './browser/window-ref.service';
         WindowRef,
         FilesService
     ],
-    exports: [ HeaderComponent, MainComponent, ScreenComponent ]
+    exports: [ HeaderComponent, MainComponent, ScreenComponent, TimepieceComponent ]
 })
 export class CoreModule {}
-
-
-
-
-

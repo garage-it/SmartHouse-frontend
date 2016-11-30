@@ -1,9 +1,6 @@
 import { Component, Input, OnInit, OnChanges, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-const template = require('./chart-widget.template.html');
-const styles = require('./chart-widget.styles.scss');
-
 const measurementUnit = {
     'distance': 'm',
     'humidity': '%',
@@ -24,8 +21,8 @@ const dateTitles = {
 
 @Component({
     selector: 'sh-chart-widget',
-    template: template,
-    styles: [styles]
+    templateUrl: './chart-widget.template.html',
+    styleUrls: ['./chart-widget.styles.scss']
 })
 export class ChartWidgetComponent implements OnInit, OnChanges, OnDestroy {
     @Input() deviceStatistic;

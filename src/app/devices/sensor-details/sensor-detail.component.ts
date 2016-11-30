@@ -69,7 +69,6 @@ export class SensorDetailComponent {
                     });
             });
 
-
     }
 
     public onExecutorChanged(): void {

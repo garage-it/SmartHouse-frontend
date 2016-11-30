@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { ChartModule } from 'angular2-highcharts';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -15,7 +14,14 @@ import { CoreModule } from '../core/core.module';
 
 @NgModule({
     id: module.id,
-    imports: [ CoreModule, SharedModule, RouterModule, FormsModule, routing, ChartModule ],
+    imports: [
+        CoreModule,
+        SharedModule,
+        RouterModule,
+        FormsModule,
+        routing,
+        ChartModule
+    ],
     declarations: [ ...HOME_DECLARATIONS ],
     exports: [ HomeComponent ],
     providers: [

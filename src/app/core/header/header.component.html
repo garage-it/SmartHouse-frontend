@@ -5,20 +5,39 @@
                [routerLink]="[mainPageRoute.path]"
                [style.background-image]="'url(' + mainPageRoute.iconImage + ')'">Smart House</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li *ngFor="let route of navigationRoutes"
-                    [hidden]="isOptionHidden(route)">
-                    <a [routerLink]="[route.path]"
-                          [style.background-image]="'url(' + route.iconImage + ')'">{{route.headerName}}</a>
+                <li *ngFor="let route of navigationRoutes">
+                    <div *ngIf="route.hasOwnProperty('isAuthorized')">
+                        <sh-protected [isAuthorized]="route.isAuthorized">
+                            <a [routerLink]="[route.path]" [style.background-image]="'url(' + route.iconImage + ')'">
+                                {{route.name}}
+                            </a>
+                        </sh-protected>
+                    </div>
+                    <div *ngIf="!route.hasOwnProperty('isAuthorized')">
+                        <a [routerLink]="[route.path]" [style.background-image]="'url(' + route.iconImage + ')'">
+                            {{route.name}}
+                        </a>
+                    </div>
                 </li>
             </ul>
             <ul id="nav-mobile" class="right hide-on-large-only">
-                <li *ngFor="let route of navigationRoutes"
-                    [hidden]="isOptionHidden(route)">
-                    <a [routerLink]="[route.path]" class = "mobile-menu-link"
-                          [style.background-image]="'url(' + route.iconImage + ')'">&nbsp;</a>
+                <li *ngFor="let route of navigationRoutes">
+                    <div *ngIf="route.hasOwnProperty('isAuthorized')">
+                        <sh-protected [isAuthorized]="route.isAuthorized">
+                            <a [routerLink]="[route.path]" class = "mobile-menu-link" [style.background-image]="'url(' + route.iconImage + ')'">
+                                &nbsp;
+                            </a>
+                        </sh-protected>
+                    </div>
+                    <div *ngIf="!route.hasOwnProperty('isAuthorized')">
+                        <a [routerLink]="[route.path]" class = "mobile-menu-link" [style.background-image]="'url(' + route.iconImage + ')'">
+                            &nbsp;
+                        </a>
+                    </div>
                 </li>
             </ul>
             <div class="clearfix"></div>
-        </div>        
+        </div>
     </nav>
+    <sh-timepiece></sh-timepiece>
 </header>

@@ -12,11 +12,10 @@ export class DashboardConstructorComponent {
     private widgets: Device[] = [];
     private sensors: Device[] = [];
 
-    constructor(private route: ActivatedRoute) {
-    }
+    constructor(private route: ActivatedRoute) { }
 
     ngOnInit(): void {
-        this.widgets = this.route.snapshot.data['widgets'];
+        this.widgets = this.route.snapshot.data['dashboard'].devices;
         const widgetsIds = this.widgets.map(widget => widget.mqttId);
 
         this.sensors = this.route.snapshot.data['sensors']

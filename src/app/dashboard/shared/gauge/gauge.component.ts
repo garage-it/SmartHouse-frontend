@@ -34,4 +34,3 @@ export class GaugeComponent implements OnChanges {
     }
 
 }
-
