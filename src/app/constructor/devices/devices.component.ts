@@ -1,14 +1,11 @@
-import {
-    Component, ViewChildren, AfterViewInit, ElementRef, Renderer, EventEmitter,
-    Output
-} from '@angular/core';
+import { Component, ViewChildren, AfterViewInit, ElementRef, Renderer, EventEmitter, Output } from '@angular/core';
 import { Device } from '../../devices/device.model';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
 
 @Component({
     selector: 'sh-constructor-devices',
     templateUrl: './devices.template.html',
-    styleUrls: ['./devices.style.scss']
+    styleUrls: [ './devices.style.scss' ]
 })
 export class DevicesComponent implements AfterViewInit {
     @ViewChildren('devices') private devices;
@@ -21,7 +18,6 @@ export class DevicesComponent implements AfterViewInit {
                 private renderer: Renderer,
                 private dragulaService: DragulaService) {
     }
-
 
     mappedSensor(sensors: Device[]): void {
         this.onMappedSensor.emit(sensors);
@@ -40,10 +36,10 @@ export class DevicesComponent implements AfterViewInit {
     }
 
     drawSensor(): void {
-        if ( this.sensors.length) {
+        if (this.sensors.length) {
             let len = this.deviceList.length;
-            let last = this.deviceList[len - 1];
-            let sensor = this.sensors[this.sensors.length - 1];
+            let last = this.deviceList[ len - 1 ];
+            let sensor = this.sensors[ this.sensors.length - 1 ];
             let posX = len * 50;
             let posY = 0;
 
@@ -89,7 +85,7 @@ export class DevicesComponent implements AfterViewInit {
     dragAndDrop(): void {
         this.dragulaService.drag.subscribe((value) => {
             let X, Y;
-            let target = value.slice(1)[0];
+            let target = value.slice(1)[ 0 ];
             let targetWidth = Number.parseInt(getComputedStyle(target).width);
             let targetHeight = Number.parseInt(getComputedStyle(target).height);
             let parent = this.element.nativeElement;
