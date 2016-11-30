@@ -3,4 +3,3 @@ const operators = [
     {id: 'OR', name: 'ANY'}
 ];
 export default operators;
-

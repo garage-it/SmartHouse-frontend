@@ -13,7 +13,6 @@ import { Scenario } from '../scenario-entities/scenario';
 import { Observable } from 'rxjs/Rx';
 import { DialogService } from '../../../../shared/dialog/dialog.service';
 
-
 @Component({
     templateUrl: './edit-scenario-wizard.template.html'
 })

@@ -143,7 +143,6 @@ describe('ShHttpService', () => {
         let mockServerResponse;
         const convertedResponse = Symbol('converted server response');
 
-
         beforeEach(() => {
             mockServerResponse = {
                 json: jasmine.createSpy('json').and.returnValue(convertedResponse)

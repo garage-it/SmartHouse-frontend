@@ -10,7 +10,6 @@ import { Action } from '../scenario-entities/action';
 import { Condition } from '../scenario-entities/condition';
 import { Scenario } from '../scenario-entities/scenario';
 
-
 @Component({
     templateUrl: './create-scenario-wizard.template.html',
 })

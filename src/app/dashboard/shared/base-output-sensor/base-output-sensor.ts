@@ -8,7 +8,6 @@ export const DEVICE_RESPOND_TIMEOUT = 1000;
 const pending = Symbol('pending');
 const timeout = Symbol('timeout');
 
-
 export class BaseOutputSensor extends BaseSensor {
 
     static getConditionResult(condition, self, args) {

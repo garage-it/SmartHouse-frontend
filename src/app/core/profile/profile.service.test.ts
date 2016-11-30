@@ -125,7 +125,6 @@ describe('Profile Service', () => {
             expect(sut.user).toEqual(null);
         });
 
-
         it('should remove saved token', () => {
             expect(storage.removeToken).toHaveBeenCalled();
         });
