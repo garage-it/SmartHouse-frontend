@@ -9,9 +9,20 @@ import { Device } from '../../devices/device.model';
 export class SensorsListComponent {
 
     @Input() sensors: Device[];
+    @Input() mappedSensors: Device[];
     @Output() onAddSensor: EventEmitter<any> = new EventEmitter();
+    @Output() onRemoveSensor: EventEmitter<any> = new EventEmitter();
 
-    addSensor(sensors): void {
-        this.onAddSensor.emit(sensors);
+    addSensor(sensor): void {
+        this.onAddSensor.emit(sensor);
+    }
+
+    removeSensor(sensor): void {
+        this.onRemoveSensor.emit(sensor);
+    }
+
+    isSensorOnView(sensor: Device): boolean {
+        return this.mappedSensors
+            .some(s => s._id == sensor._id);
     }
 }

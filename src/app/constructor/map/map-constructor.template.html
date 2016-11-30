@@ -47,7 +47,8 @@
         <img [src]="picture" alt="your image" width="1280"  height="370"/>
 
         <sh-constructor-devices
-            class="constructor-devices">
+            class="constructor-devices"
+            (onMappedSensor)="onMappedSensors($event)">
         </sh-constructor-devices>
     </div>
 
@@ -64,7 +65,9 @@
     
     <sh-sensors-list
         [sensors]="sensors"
-        (onAddSensor)="onAddSensor($event)">
+        [mappedSensors]="mappedSensors"
+        (onAddSensor)="onAddSensor($event)"
+        (onRemoveSensor)="onRemoveSensor($event)">
     </sh-sensors-list>
 
 </div>

@@ -17,6 +17,7 @@ export class MapConstructorComponent implements OnInit {
 
     private reader: FileReader = new FileReader();
     private sensors: Device[] = [];
+    private mappedSensors: Device[] = [];
 
     constructor(private route: ActivatedRoute, private ngZone: NgZone) { }
 
@@ -34,9 +35,20 @@ export class MapConstructorComponent implements OnInit {
         });
     }
 
+    public onMappedSensors(sensors: Device[]): void {
+        this.mappedSensors = sensors;
+        this.ngZone.run(() => {});
+    }
+
     public onAddSensor(sensor: Device): void {
         if (this.picture) {
             this.devicesComponent.addSensor(sensor);
+        }
+    }
+
+    public onRemoveSensor(sensor: Device): void {
+        if (this.picture) {
+            this.devicesComponent.removeSensor(sensor);
         }
     }
 
