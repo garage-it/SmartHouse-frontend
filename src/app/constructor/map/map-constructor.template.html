@@ -12,6 +12,7 @@
             <input class="placeholder"
                    type="text"
                    id="name"
+                   name="name"
                    placeholder="Enter name"
                    [(ngModel)]="mapViewName"
                    name="mapViewName"
@@ -24,6 +25,7 @@
             <input class="placeholder"
                    type="text"
                    id="description"
+                   name="description"
                    placeholder="Enter description"
                    [(ngModel)]="mapViewDescription"
                    name="mapViewDescription"
@@ -36,16 +38,20 @@
     <div class="switch">
         <input class="switch__checkbox filled-in"
                type="checkbox"
+               name="active"
                [attr.id]="active"
                [(ngModel)]="mapViewIsActive"/>
         <label class="switch__label" [attr.for]="active">Active</label>
+
         <input class="switch__checkbox filled-in"
                type="checkbox"
+               name="default"
                [attr.id]="default"/>
         <label class="switch__label" [attr.for]="default">Default</label>
     </div>
 
-    <input type="file" ng2FileSelect [uploader]="uploader" #fileUploader accept="image/*" style="display: none;" />
+    <input type="file" name="picture" ng2FileSelect [uploader]="uploader" #fileUploader accept="image/*" style="display: none;" />
+
     <div ng2FileDrop
         *ngIf="!picture"
         class="field"
