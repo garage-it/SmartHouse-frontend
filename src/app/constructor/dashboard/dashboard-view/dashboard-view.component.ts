@@ -40,6 +40,6 @@ export class DashboardViewComponent {
 
     save(): void {
         this.dashboardConstructorService.saveDashboard(this.widgets)
-            .subscribe(() => this.router.navigate(['/dashboard'])); // TODO Should be changed on new dashboard view
+            .subscribe(() => this.router.navigate(['/']));
     }
 }

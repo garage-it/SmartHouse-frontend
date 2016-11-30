@@ -75,7 +75,7 @@ describe('DashboardView', () => {
             it('should redirect to dashboard view page', () => {
                 DashboardConstructorService.saveDashboard.and.returnValue(Observable.of(true));
                 sut.save();
-                expect(Router.navigate).toHaveBeenCalledWith(['/dashboard']);
+                expect(Router.navigate).toHaveBeenCalledWith(['/']);
             });
         });
 
@@ -83,7 +83,7 @@ describe('DashboardView', () => {
             it('should redirect to dashboard view page', () => {
                 DashboardConstructorService.saveDashboard.and.returnValue(Observable.never());
                 sut.save();
-                expect(Router.navigate).not.toHaveBeenCalledWith(['/dashboard']);
+                expect(Router.navigate).not.toHaveBeenCalledWith(['/']);
             });
         });
     });
