@@ -69,7 +69,7 @@
              [ngClass]="{'picture_file-over': hasBaseDropZoneOver}"
              ng2FileDrop
              (fileOver)="fileOverBase($event)"
-             (click)="fileInput.click()"
+             (click)="onUploadClick()"
              [uploader]="uploader">
             <div class="add-picture">
                 <div class="add-picture__icon">
@@ -98,14 +98,14 @@
 
         <button class="button button_cancel"
                 type="button"
-                (click)="onCancel()">
+                (click)="onCancelClick()">
             Cancel
         </button>
 
         <button class="button button_retry"
                 type="button"
-                (click)="fileInput.click()"
-                [disabled]="!picture">
+                (click)="onUploadClick()"
+                [disabled]="isReUploadDisabled">
             Reupload
         </button>
 

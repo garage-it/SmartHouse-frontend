@@ -1,12 +1,12 @@
-import { Component, OnInit, NgZone, ViewChild, ViewContainerRef } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Device } from '../../devices/device.model';
-import { FileUploader } from 'ng2-file-upload';
-import { DevicesComponent } from '../devices/devices.component';
-import { MapViewService } from '../../home/map-view/map-view.service';
-import { MapViewInfoCreateDto } from '../../home/map-view/map-view.dto';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { DialogService } from '../../shared/dialog/dialog.service';
+import { Component, OnInit, NgZone, ViewChild, ViewContainerRef, ElementRef, Renderer } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Device } from "../../devices/device.model";
+import { FileUploader } from "ng2-file-upload";
+import { DevicesComponent } from "../devices/devices.component";
+import { MapViewService } from "../../home/map-view/map-view.service";
+import { MapViewInfoCreateDto } from "../../home/map-view/map-view.dto";
+import { ToastsManager } from "ng2-toastr/ng2-toastr";
+import { DialogService } from "../../shared/dialog/dialog.service";
 
 @Component({
     selector: 'sh-map-constructor',
@@ -15,7 +15,8 @@ import { DialogService } from '../../shared/dialog/dialog.service';
 })
 export class MapConstructorComponent implements OnInit {
     @ViewChild(DevicesComponent) devicesComponent;
-    public uploader: FileUploader = new FileUploader({ queueLimit: 1, allowedFileType: ['image'] });
+    @ViewChild('fileInput') fileInput: ElementRef;
+    public uploader: FileUploader = new FileUploader({ queueLimit: 1, allowedFileType: [ 'image' ] });
     public hasBaseDropZoneOver: boolean = false;
     public picture: any;
     public mapViewName: string = '';
@@ -32,10 +33,16 @@ export class MapConstructorComponent implements OnInit {
                 private toastr: ToastsManager,
                 private dialogService: DialogService,
                 private viewContainerRef: ViewContainerRef,
-                private mapViewService: MapViewService) { }
+                private renderer: Renderer,
+                private mapViewService: MapViewService) {
+    }
+
+    get isReUploadDisabled(): boolean {
+        return !this.picture;
+    }
 
     public ngOnInit(): void {
-        this.sensors = this.route.snapshot.data['sensors'];
+        this.sensors = this.route.snapshot.data[ 'sensors' ];
 
         /* workaround, because handler code is executed outside of Angular Zone ('this' references to the wrong object) */
         this.uploader.onAfterAddingFile = this.ngZone.run(() => (fileItem: any) => {
@@ -51,12 +58,13 @@ export class MapConstructorComponent implements OnInit {
     }
 
     private onCreateSuccess(): void {
-        this.router.navigate(['..']);
+        this.router.navigate([ '..' ]);
     }
 
     public onMappedSensors(sensors: Device[]): void {
         this.mappedSensors = sensors;
-        this.ngZone.run(() => {});
+        this.ngZone.run(() => {
+        });
     }
 
     public onAddSensor(sensor: Device): void {
@@ -75,11 +83,7 @@ export class MapConstructorComponent implements OnInit {
         this.hasBaseDropZoneOver = e;
     }
 
-    private isMapViewCanBeSaved(): boolean {
-        return !!this.mapViewName && !!this.mapViewDescription && !!this.picture;
-    }
-
-    public onCancel(): void {
+    public onCancelClick(): void {
         const confirmOptions = {
             title: '',
             message: 'Do you want to exit without saving?'
@@ -88,15 +92,21 @@ export class MapConstructorComponent implements OnInit {
             .confirm(this.viewContainerRef, confirmOptions)
             .subscribe((isConfirmed) => {
                 if (isConfirmed) {
-                    this.router.navigate(['..']);
+                    this.router.navigate([ '..' ]);
                 }
             });
+    }
+
+    public onUploadClick() {
+        this.uploader.clearQueue();
+        const event = new MouseEvent('click', { bubbles: true });
+        this.renderer.invokeElementMethod(this.fileInput.nativeElement, 'dispatchEvent', [ event ]);
     }
 
     public onSubmit(): void {
         if (!this.isMapViewCanBeSaved()) {
             this.toastr.error('Please fill mandatory fields: "Name", "Description" and "Add Picture"');
-            return ;
+            return;
         }
         const mapViewInfoCreateDto: MapViewInfoCreateDto = {
             name: this.mapViewName,
@@ -119,6 +129,10 @@ export class MapConstructorComponent implements OnInit {
                     url: this.mapViewService.resolvePictureUploadUrl(mapViewInfoDto)
                 });
                 this.uploader.uploadAll();
-        });
+            });
+    }
+
+    private isMapViewCanBeSaved(): boolean {
+        return !!this.mapViewName && !!this.mapViewDescription && !!this.picture;
     }
 }
