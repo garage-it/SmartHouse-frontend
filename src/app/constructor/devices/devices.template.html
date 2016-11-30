@@ -1,7 +1,10 @@
 <div [dragula]="'sh-constructor-devices'">
     <div class="device"
          #devices
-         *ngFor="let device of sensors">{{device.mqttId}}
+         *ngFor="let device of sensors">
+        <div class="device__description">
+            {{device.mqttId.slice(0,1).toUpperCase()}}
+        </div>
     </div>
 </div>
 

@@ -4,10 +4,11 @@
     &__item {
         height: 28px;
         border: solid 1px #e9e9e9;
+        position: relative;
+        padding-right: 12px;
     }
 
     &__title {
-        position: relative;
         margin-right: -10px;
         margin-left: 10px !important;
 
@@ -17,7 +18,7 @@
             height: 5px;
             position: absolute;
             top: 10px;
-            left: 0;
+            left: 6px;
             background-color: #b8e986;
             border-radius: 50%;
         }
@@ -29,6 +30,9 @@
         background-repeat: no-repeat;
         width: 20px;
         height: 20px;
+        display: inline-block;
+        float: right;
+        margin: 3px 3px 0;
         &_add {
             background-image: url('assets/add-icon.svg');
         }
@@ -42,6 +46,6 @@
     }
 }
 
-.disabled {
+.unactive {
     opacity: 0.25;
 }
