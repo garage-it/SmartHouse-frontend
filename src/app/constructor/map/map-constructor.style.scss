@@ -1,6 +1,6 @@
 .constructor {
     width: 1280px;
-    margin:  0 auto;
+    margin: 0 auto;
     margin-top: 30px;
 }
 
@@ -15,24 +15,23 @@
     display: inline-block;
 }
 
-.inputs {
-    &__item {
-        width: 48%;
-        float: left;
-        margin-right: 4%;
-        &:last-child {
-            margin-right: 0;
-        }
+.input-group {
+    width: 48%;
+    float: left;
+    margin-right: 4%;
+
+    &:last-child {
+        margin-right: 0;
     }
 
-    .label {
+    &__label {
         font-weight: 600;
         color: #000;
         font-size: 12px;
         letter-spacing: 0.2px;
     }
 
-    .placeholder {
+    &__input {
         font-weight: normal;
         font-size: 12px;
         letter-spacing: 0.2px;
@@ -55,16 +54,34 @@
     }
 }
 
-.field {
-    height: 370px;
-    background-color: #f9f9f9;
-    border: dotted 3px #92928f;
-    cursor: pointer;
-    position: relative;
-}
-
 .nv-file-over {
     border: dotted 3px red;
+}
+
+.controls {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.picture {
+    height: 370px;
+    position: relative;
+    background-color: #f9f9f9;
+
+    &_blank {
+        border: dashed 1px #92928f;
+        cursor: pointer;
+    }
+
+    &_file-over {
+        border-style: dotted;
+    }
+
+    &__image {
+        position: absolute;
+        max-width: 1280px;
+        height: 100%;
+    }
 }
 
 .add-picture {
@@ -83,15 +100,6 @@
         font-size: 14px;
         color: #5f605d;
     }
-}
-
-.controls {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.picture {
-    position: relative;
 }
 
 .constructor-devices {

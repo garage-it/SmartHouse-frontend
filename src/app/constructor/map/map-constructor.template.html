@@ -1,39 +1,39 @@
 <form class="constructor"
       (ngSubmit)="onSubmit()"
       #mapViewConstructorForm="ngForm"
-      novalidate>
+      novalidate
+      autocomplete="off">
+
     <h2 class="title">Constructor / Map view</h2>
 
     <section>
+
         <h4 class="heading">Step 1: Name your view</h4>
 
-        <div class="inputs">
-            <div class="inputs__item">
-                <label class="label" for="name">Name</label>
-                <input class="placeholder"
+        <div>
+            <div class="input-group">
+                <label class="input-group__label" for="name">Name</label>
+                <input class="input-group__input"
                        type="text"
                        id="name"
-                       name="name"
                        placeholder="Enter name"
                        [(ngModel)]="mapViewName"
                        name="mapViewName"
-                       #name="ngModel"
                        required>
             </div>
 
-            <div class="inputs__item">
-                <label class="label" for="description">Description</label>
-                <input class="placeholder"
+            <div class="input-group">
+                <label class="input-group__label" for="description">Description</label>
+                <input class="input-group__input"
                        type="text"
                        id="description"
-                       name="description"
                        placeholder="Enter description"
                        [(ngModel)]="mapViewDescription"
                        name="mapViewDescription"
-                       #name="ngModel"
                        required>
             </div>
         </div>
+
     </section>
 
     <section>
@@ -58,10 +58,10 @@
         <input type="file" name="picture" ng2FileSelect [uploader]="uploader" #fileInput accept="image/*"
                style="display: none;"/>
 
-        <div ng2FileDrop
+        <div class="picture picture_blank"
              *ngIf="!picture"
-             class="field"
-             [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+             [ngClass]="{'picture_file-over': hasBaseDropZoneOver}"
+             ng2FileDrop
              (fileOver)="fileOverBase($event)"
              (click)="fileInput.click()"
              [uploader]="uploader">
@@ -72,11 +72,12 @@
             </div>
         </div>
 
-
         <div class="picture"
-             shMapConstructor
              *ngIf="picture">
-            <img [src]="picture" alt="your image" width="1280" height="370"/>
+
+            <img class="picture__image"
+                 [src]="picture"
+                 alt="your image"/>
 
             <sh-constructor-devices
                 class="constructor-devices"
@@ -88,18 +89,24 @@
 
 
     <div class="controls">
+
         <button class="button button_cancel"
                 type="button"
                 (click)="onCancel()">Cancel
         </button>
+
         <button class="button button_retry"
                 type="button"
                 (click)="fileInput.click()"
-                [disabled]="!picture">Reupload
+                [disabled]="!picture">
+            Reupload
         </button>
+
         <button class="button button_success"
-                type="submit">Save
+                type="submit">
+            Save
         </button>
+
     </div>
 
     <section>
