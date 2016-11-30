@@ -133,6 +133,8 @@ export class MapConstructorComponent implements OnInit {
     }
 
     private isMapViewCanBeSaved(): boolean {
-        return !!this.mapViewName && !!this.mapViewDescription && !!this.picture;
+        return this.mapViewName
+            && this.mapViewDescription
+            && this.picture;
     }
 }
