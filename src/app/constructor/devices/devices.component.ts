@@ -1,9 +1,9 @@
 import {
-    OnInit, Component, ViewChildren, AfterViewInit, ElementRef, Renderer, EventEmitter,
+    Component, ViewChildren, AfterViewInit, ElementRef, Renderer, EventEmitter,
     Output
 } from '@angular/core';
-import {Device} from '../../devices/device.model';
-import {DragulaService} from 'ng2-dragula/ng2-dragula';
+import { Device } from '../../devices/device.model';
+import { DragulaService } from 'ng2-dragula/ng2-dragula';
 
 @Component({
     selector: 'sh-constructor-devices',
@@ -73,12 +73,12 @@ export class DevicesComponent implements AfterViewInit {
     }
 
     removeSensor(sensor: Device): void {
-        this.sensors = this.sensors.filter(s => s._id != sensor._id);
+        this.sensors = this.sensors.filter(s => s._id !== sensor._id);
         this.mappedSensor(this.sensors);
     }
 
     saveCoordinates(target, x: number, y: number): void {
-        this.sensors.filter(s => s._id == target.id)
+        this.sensors.filter(s => s._id === target.id)
             .forEach((s) => {
                 s.posX = x;
                 s.posY = y;
@@ -90,16 +90,16 @@ export class DevicesComponent implements AfterViewInit {
         this.dragulaService.drag.subscribe((value) => {
             let X, Y;
             let target = value.slice(1)[0];
-            let targetWidth = parseInt(getComputedStyle(target).width);
-            let targetHeight = parseInt(getComputedStyle(target).height);
+            let targetWidth = Number.parseInt(getComputedStyle(target).width);
+            let targetHeight = Number.parseInt(getComputedStyle(target).height);
             let parent = this.element.nativeElement;
             let parentSize = parent.getBoundingClientRect();
-            let parentWidth = parseInt(getComputedStyle(parent).width);
-            let parentHeight = parseInt(getComputedStyle(parent).height);
+            let parentWidth = Number.parseInt(getComputedStyle(parent).width);
+            let parentHeight = Number.parseInt(getComputedStyle(parent).height);
 
             document.onmouseup = () => {
-                let left = X - parseInt(parentSize.left) - targetWidth / 2;
-                let top = Y - parseInt(parentSize.top) - targetHeight / 2;
+                let left = X - Number.parseInt(parentSize.left) - targetWidth / 2;
+                let top = Y - Number.parseInt(parentSize.top) - targetHeight / 2;
                 if (left > 0 && left < parentWidth
                     && top > 0 && top < parentHeight) {
                     this.renderer.setElementAttribute(target, 'style', `left: ${left}px; top: ${top}px;`);
@@ -112,7 +112,7 @@ export class DevicesComponent implements AfterViewInit {
             document.onmousemove = (e) => {
                 X = e.clientX;
                 Y = e.clientY;
-            }
+            };
         });
     }
 }

@@ -23,6 +23,6 @@ export class SensorsListComponent {
 
     isSensorOnView(sensor: Device): boolean {
         return this.mappedSensors
-            .some(s => s._id == sensor._id);
+            .some(s => s._id === sensor._id);
     }
 }
