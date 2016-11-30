@@ -40,7 +40,8 @@
 
         <h4 class="heading">Step 2: Add picture</h4>
 
-        <div class="switch">
+        <!--<div class="switch">
+            TODO: implement in future stories
             <input class="switch__checkbox filled-in"
                    type="checkbox"
                    name="active"
@@ -53,10 +54,15 @@
                    name="default"
                    [attr.id]="default"/>
             <label class="switch__label" [attr.for]="default">Default</label>
-        </div>
+        </div>-->
 
-        <input type="file" name="picture" ng2FileSelect [uploader]="uploader" #fileInput accept="image/*"
-               style="display: none;"/>
+        <input #fileInput
+               type="file"
+               name="mapViewPicture"
+               accept="image/*"
+               style="display: none;"
+               ng2FileSelect
+               [uploader]="uploader"/>
 
         <div class="picture picture_blank"
              *ngIf="!picture"
@@ -92,7 +98,8 @@
 
         <button class="button button_cancel"
                 type="button"
-                (click)="onCancel()">Cancel
+                (click)="onCancel()">
+            Cancel
         </button>
 
         <button class="button button_retry"
