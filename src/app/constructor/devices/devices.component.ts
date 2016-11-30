@@ -5,7 +5,7 @@ import { DragulaService } from 'ng2-dragula/ng2-dragula';
 @Component({
     selector: 'sh-constructor-devices',
     templateUrl: './devices.template.html',
-    styleUrls: [ './devices.style.scss' ]
+    styleUrls: ['./devices.style.scss']
 })
 export class DevicesComponent implements AfterViewInit {
     @ViewChildren('devices') private devices;
@@ -38,8 +38,8 @@ export class DevicesComponent implements AfterViewInit {
     drawSensor(): void {
         if (this.sensors.length) {
             let len = this.deviceList.length;
-            let last = this.deviceList[ len - 1 ];
-            let sensor = this.sensors[ this.sensors.length - 1 ];
+            let last = this.deviceList[len - 1];
+            let sensor = this.sensors[this.sensors.length - 1];
             let posX = len * 50;
             let posY = 0;
 
@@ -85,7 +85,7 @@ export class DevicesComponent implements AfterViewInit {
     dragAndDrop(): void {
         this.dragulaService.drag.subscribe((value) => {
             let X, Y;
-            const target = value.slice(1)[ 0 ];
+            const target = value.slice(1)[0];
             const targetWidth = Number.parseInt(getComputedStyle(target).width);
             const targetHeight = Number.parseInt(getComputedStyle(target).height);
             const parent = this.element.nativeElement;
@@ -105,7 +105,7 @@ export class DevicesComponent implements AfterViewInit {
                 document.onmousemove = null;
             };
 
-            document.onmousemove = (e) => {
+            document.onmousemove = (e: MouseEvent) => {
                 X = e.clientX;
                 Y = e.clientY;
             };
