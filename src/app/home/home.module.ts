@@ -11,6 +11,7 @@ import { HomeComponent } from './home.component';
 import HOME_DECLARATIONS from './home.declarations';
 import { MapViewService } from './map-view/map-view.service';
 import { CoreModule } from '../core/core.module';
+import { ChartModule } from 'angular2-highcharts';
 
 @NgModule({
     id: module.id,
