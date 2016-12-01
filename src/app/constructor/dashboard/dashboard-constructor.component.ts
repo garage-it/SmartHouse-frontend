@@ -16,19 +16,18 @@ export class DashboardConstructorComponent {
 
     ngOnInit(): void {
         this.widgets = this.route.snapshot.data['dashboard'].devices;
-        const widgetsIds = this.widgets.map(widget => widget.mqttId);
-
-        this.sensors = this.route.snapshot.data['sensors']
-            .filter(device => !(widgetsIds.indexOf(device.mqttId) + 1));
+        this.sensors = this.route.snapshot.data['sensors'];
     }
 
     onAddSensor(sensor): void {
         this.widgets.push(sensor);
-        this.sensors = this.sensors.filter(filteredSensor => filteredSensor.mqttId !== sensor.mqttId);
     }
 
-    onRemoveWidget(widget): void {
+    onRemoveSensor(widget: Device): void {
         this.widgets = this.widgets.filter(filteredWidget => filteredWidget.mqttId !== widget.mqttId);
-        this.sensors.push(widget);
+    }
+
+    onRemoveWidget(widget: Device): void {
+        this.widgets = this.widgets.filter(filteredWidget => filteredWidget.mqttId !== widget.mqttId);
     }
 }
