@@ -14,18 +14,24 @@ describe('StatisticService', () => {
     });
 
     describe('#getStatistics', () => {
-        const deviceId = 'some device id';
         const period = 'some period';
 
-        beforeEach(() => {
-            sut.getStatistic(deviceId, period);
-        });
-
         it('should get statistics of the sensor from the server', () => {
+            const deviceId = 'some device id';
+            sut.getStatistic(deviceId, period);
             const params = new URLSearchParams();
             params.set('period', period);
             params.set('sensor', deviceId);
             expect(httpMock.get).toHaveBeenCalledWith('/timeseries', params);
+        });
+
+        it('should get statistics of the servo from server', () => {
+            const deviceId = 'servo';
+            sut.getStatistic(deviceId, period);
+            const params = new URLSearchParams();
+            params.set('period', period);
+            params.set('sensor', deviceId);
+            expect(httpMock.get).toHaveBeenCalledWith('/servo-statistics', params);
         });
     });
 });

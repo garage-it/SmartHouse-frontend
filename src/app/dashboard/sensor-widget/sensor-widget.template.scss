@@ -1,16 +1,3 @@
-$blockHeight: 75px;
-$fontSize: 20px;
-
-.sensor-servo-widget {
-
-    text-align: center;
-
-    &_controller {
-        width: initial!important;
-    }
-}
-
-//TODO: Currently copy pasted from sensor-regular-widget.template.scss. Should be moved to sensor-widget. Needs investigation.
 .sensor-widget_statistic-button {
     position: relative;
     display: block;

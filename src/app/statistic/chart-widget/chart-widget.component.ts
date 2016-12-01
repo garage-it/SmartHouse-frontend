@@ -1,4 +1,5 @@
-import { Component, Input, OnInit, OnChanges, OnDestroy } from '@angular/core';
+import { Component, OnChanges, Input } from '@angular/core';
+import { BaseChartComponent } from '../base-chart/base-chart.component';
 import { ActivatedRoute } from '@angular/router';
 
 const measurementUnit = {
@@ -24,27 +25,13 @@ const dateTitles = {
     templateUrl: './chart-widget.template.html',
     styleUrls: ['./chart-widget.styles.scss']
 })
-export class ChartWidgetComponent implements OnInit, OnChanges, OnDestroy {
-    @Input() deviceStatistic;
+export class ChartWidgetComponent extends BaseChartComponent implements OnChanges {
     options: Object;
-    private periodSubscription;
-    private deviceId;
-    private period;
+    @Input() deviceStatistic;
     private modifiedDate;
 
-    constructor(private currentRoute: ActivatedRoute) {
-        this.deviceId = this.currentRoute.snapshot.params['id'];
-        this.period = this.currentRoute.snapshot.params['period'];
-    }
-
-    ngOnInit(): void {
-        this.periodSubscription = this.currentRoute.params.subscribe(params => {
-            this.period = params['period'];
-        });
-    }
-
-    ngOnDestroy(): void {
-        this.periodSubscription.unsubscribe();
+    constructor(currentRoute: ActivatedRoute) {
+        super(currentRoute);
     }
 
     ngOnChanges() {

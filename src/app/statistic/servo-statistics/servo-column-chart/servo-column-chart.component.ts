@@ -4,9 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'sh-servo-statistic-column-chart',
-    templateUrl: './servo-column-chart.template.html'
+    templateUrl: 'servo-column-chart.template.html'
 })
-export class SwitcherColumnChartComponent extends BaseChartComponent implements OnChanges {
+export class ServoColumnChartComponent extends BaseChartComponent implements OnChanges {
     options: Object;
     @Input() deviceStatistic; // TODO: Add this to abstract class
 
