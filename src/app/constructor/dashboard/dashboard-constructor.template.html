@@ -23,7 +23,10 @@
 <div class="step">
     <span>Step 5: Add widgets on dashboard</span>
 </div>
+
 <sh-sensors-list
         [sensors]="sensors"
-        (onAddSensor)="onAddSensor($event)">
+        [mappedSensors]="widgets"
+        (onAddSensor)="onAddSensor($event)"
+        (onRemoveSensor)="onRemoveSensor($event)">
 </sh-sensors-list>

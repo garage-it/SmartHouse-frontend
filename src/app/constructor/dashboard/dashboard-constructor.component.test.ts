@@ -41,6 +41,7 @@ describe('DashboardConstructor', () => {
         describe('when dashbord has some widgets', () => {
             beforeEach(() => {
                 ActivatedRoute.snapshot.data.dashboard.devices = mockWidgets;
+                ActivatedRoute.snapshot.data.sensors = [device2];
                 sut.ngOnInit();
             });
 
@@ -64,19 +65,12 @@ describe('DashboardConstructor', () => {
             expect(sut.widgets[0]).toEqual(device1);
         });
 
-        it('should remove widget from widget list', () => {
-            expect(sut.sensors.length).toEqual(0);
-        });
     });
 
     describe('on remove widget', () => {
         beforeEach(() => {
             sut.widgets = [device1];
             sut.onRemoveWidget(device1);
-        });
-
-        it('should add widget to widget list', () => {
-            expect(sut.sensors[0]).toEqual(device1);
         });
 
         it('should remove widget from dashboard', () => {
