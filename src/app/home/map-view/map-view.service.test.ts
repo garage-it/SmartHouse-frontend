@@ -8,6 +8,7 @@ describe('MapViewService', () => {
     let http;
     let result;
     let filesService;
+    let requestOptions;
 
     beforeEach(() => {
 
@@ -20,7 +21,11 @@ describe('MapViewService', () => {
             resolveFileUrl: jasmine.createSpy('resolveFileUrl').and.returnValue('fileUrl')
         };
 
-        sut = new MapViewService(http, filesService);
+        requestOptions = {
+            merge: jasmine.createSpy('merge').and.returnValue({url: 'some url'})
+        };
+
+        sut = new MapViewService(http, filesService, requestOptions);
     });
 
     describe('create', () => {
@@ -37,6 +42,24 @@ describe('MapViewService', () => {
 
         it('should return response', () => {
             expect(result).toEqual(response);
+        });
+
+    });
+
+    describe('resolve picture upload url', () => {
+
+        const mapView = { _id: 'pictureId' };
+
+        beforeEach(() => {
+            result = sut.resolvePictureUploadUrl(mapView);
+        });
+
+        it('should resolve file url by picture name', () => {
+            expect(requestOptions.merge).toHaveBeenCalledWith({ url: `/map-view/${mapView._id}/picture` });
+        });
+
+        it('should return resolved picture url', () => {
+            expect(result).toEqual('some url');
         });
 
     });

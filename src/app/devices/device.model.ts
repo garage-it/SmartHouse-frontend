@@ -7,4 +7,6 @@ export class Device {
     servo: boolean;
     type: string;
     updateTime: string;
+    posX: number;
+    posY: number;
 }
