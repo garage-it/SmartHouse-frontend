@@ -9,7 +9,8 @@ export class BaseSensor implements OnInit, OnDestroy {
     };
     protected device: {
         mqttId: string,
-        value: string|number|boolean|null
+        value: string|number|boolean|null,
+        valueUpdated: string
     };
 
     @Output() onRemoveWidget: EventEmitter<any> = new EventEmitter();
@@ -17,10 +18,9 @@ export class BaseSensor implements OnInit, OnDestroy {
     constructor(protected sensorWidgetService: SensorWidgetService) {}
 
     ngOnInit() {
-        let initValue = this.device.value || null;
         this.data = {
-            value: initValue,
-            updateTime: null
+            value: this.device.value || null,
+            updateTime: this.device.valueUpdated ? new Date(this.device.valueUpdated) : null
         };
         this.sensorWidgetService
             .subscribe(this.device.mqttId, data => this.onDeviceDataChanged(data));

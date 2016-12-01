@@ -47,6 +47,14 @@ describe('base-sensor', () => {
             });
         });
 
+        it('should initialize sensor updateTime with provided valueUpdated', () => {
+            let now = new Date();
+            sut.device = { mqttId: 'For test', value: 'initvalue', valueUpdated: now.toString()};
+            sut.ngOnInit();
+
+            expect(sut.data.updateTime.toString()).toEqual(now.toString());
+        });
+
         it('should initialize sensor data', () => {
             sut.ngOnInit();
 
