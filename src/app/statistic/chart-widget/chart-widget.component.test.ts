@@ -1,4 +1,5 @@
 import { ChartWidgetComponent } from './chart-widget.component';
+// TODO: Move tests related to base-chart class.
 
 describe('ChartWidgetComponent', () => {
     let sut;

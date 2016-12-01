@@ -1,5 +1,8 @@
 <div class="chart-holder">
-    <sh-chart-widget
+    <sh-servo-statistic-column-chart *ngIf="sensorId === 'servo'"
+        [deviceStatistic]="deviceStatistic">
+    </sh-servo-statistic-column-chart>
+    <sh-chart-widget *ngIf="sensorId !== 'servo'"
         [deviceStatistic]="deviceStatistic">
     </sh-chart-widget>
 </div>
