@@ -6,4 +6,5 @@ import { Component } from '@angular/core';
     styleUrls: [ './home.style.scss' ]
 })
 export class HomeComponent {
+    public listMapViews = [{}];
 }

@@ -1,0 +1,20 @@
+.sh-map-view-list {
+    min-height: 100px;
+    background: red;
+
+    &__title {
+        line-height:1.5;
+    }
+
+    &__list {
+        display: block;
+
+        &-title {
+        }
+    }
+
+
+    &__item {
+        display: inline-block;
+    }
+}
