@@ -10,7 +10,8 @@ export class StatisticService {
 
     getStatistic(deviceId, period): Observable<any> {
         const params = new URLSearchParams();
-        const URL = deviceId === 'switcher' ? '/switcher-statistics' : '/timeseries';
+        // TODO change servo to switcher after BE implementation
+        const URL = deviceId === 'switcher' ? '/servo-statistics' : '/timeseries';
         params.set('period', period);
         params.set('sensor', deviceId);
 
