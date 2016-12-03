@@ -3,10 +3,10 @@ import { Component, OnChanges, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-    selector: 'sh-servo-statistic-column-chart',
-    templateUrl: 'servo-column-chart.template.html'
+    selector: 'sh-switcher-statistic-column-chart',
+    templateUrl: 'switcher-column-chart.template.html'
 })
-export class ServoColumnChartComponent extends BaseChartComponent implements OnChanges {
+export class SwitcherColumnChartComponent extends BaseChartComponent implements OnChanges {
     options: Object;
     @Input() deviceStatistic; // TODO: Add this to abstract class
 
