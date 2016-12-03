@@ -1,8 +1,8 @@
 <div class="chart-holder">
-    <sh-switcher-statistic-column-chart *ngIf="sensorId === 'switcher'"
+    <sh-switcher-statistic-column-chart *ngIf="isSwitcherWidgetVisible()"
         [deviceStatistic]="deviceStatistic">
     </sh-switcher-statistic-column-chart>
-    <sh-chart-widget *ngIf="sensorId !== 'switcher'"
+    <sh-chart-widget *ngIf="isChartWidgetVisible()"
         [deviceStatistic]="deviceStatistic">
     </sh-chart-widget>
 </div>
