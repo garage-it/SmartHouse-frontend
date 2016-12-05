@@ -4,7 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'sh-switcher-statistic-column-chart',
-    templateUrl: 'switcher-column-chart.template.html'
+    templateUrl: 'switcher-column-chart.template.html',
+    styleUrls: ['./switcher-column-chart.styles.scss']
 })
 export class SwitcherColumnChartComponent extends BaseChartComponent implements OnChanges {
     options: Object;
