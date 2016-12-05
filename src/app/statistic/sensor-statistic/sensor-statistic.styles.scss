@@ -1,6 +1,9 @@
-.chart-holder {
+.switcher-chart-holder {
     width: 50%;
     float: left;
+}
+.switcher-chart_filter {
+    min-height: 40px;
 }
 .btn_active {
     background-color: #ccc;

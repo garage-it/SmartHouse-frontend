@@ -1,11 +1,22 @@
 <div class="chart-block">
-    <div class="chart-block__switcher" *ngIf="isSwitcherWidgetVisible()">
-        <div class="chart-holder">
+    <div class="switcher-chart clearfix" *ngIf="isSwitcherWidgetVisible()">
+        <h2 class="switcher-chart__header">Device statistics</h2>
+        <div class="switcher-chart-holder">
+            <div class="switcher-chart_filter">
+                Place calendar filter here
+            </div>
             <sh-switcher-statistic-column-chart
                 [deviceStatistic]="deviceStatistic">
             </sh-switcher-statistic-column-chart>
         </div>
-        <div class="chart-holder">
+        <div class="switcher-chart-holder">
+            <div class="clearfix switcher-chart_filter actions-selector">
+                <a class="btn-flat btn-flat_action"
+                   *ngFor="let period of periods"
+                   [routerLink]="['../../../sensor-details', sensorId, period]"
+                   [routerLinkActive]="'btn_active'"
+                >{{period}}</a>
+            </div>
             <sh-switcher-statistic-column-chart
                 [deviceStatistic]="deviceStatistic">
             </sh-switcher-statistic-column-chart>
@@ -16,7 +27,7 @@
     </sh-chart-widget>
 </div>
 
-<div class="clearfix statistic_actions">
+<div class="clearfix statistic_actions" *ngIf="isChartWidgetVisible()">
     <a class="btn-flat btn-flat_statistic"
        *ngFor="let period of periods"
        [routerLink]="['../../../sensor-details', sensorId, period]"
