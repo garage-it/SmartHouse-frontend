@@ -122,5 +122,8 @@
     "webpack-dev-server": "^1.14.1",
     "webpack-merge": "^0.9.0",
     "zone.js": "^0.6.23"
+  },
+  "dependencies": {
+    "ng2-datetime-picker": "^0.11.1"
   }
 }
