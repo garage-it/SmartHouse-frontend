@@ -37,4 +37,12 @@ export class SensorStatisticComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         this.defaultResolver.unsubscribe();
     }
+
+    isSwitcherWidgetVisible() {
+        return this.sensorId === 'switcher';
+    }
+
+    isChartWidgetVisible() {
+        return this.sensorId !== 'switcher';
+    }
 }

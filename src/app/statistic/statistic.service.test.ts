@@ -25,13 +25,13 @@ describe('StatisticService', () => {
             expect(httpMock.get).toHaveBeenCalledWith('/timeseries', params);
         });
 
-        it('should get statistics of the servo from server', () => {
-            const deviceId = 'servo';
+        it('should get statistics of the switcher from server', () => {
+            const deviceId = 'switcher';
             sut.getStatistic(deviceId, period);
             const params = new URLSearchParams();
             params.set('period', period);
             params.set('sensor', deviceId);
-            expect(httpMock.get).toHaveBeenCalledWith('/servo-statistics', params);
+            expect(httpMock.get).toHaveBeenCalledWith('/switcher-statistics', params);
         });
     });
 });

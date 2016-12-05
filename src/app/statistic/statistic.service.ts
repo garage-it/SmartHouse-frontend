@@ -10,7 +10,7 @@ export class StatisticService {
 
     getStatistic(deviceId, period): Observable<any> {
         const params = new URLSearchParams();
-        const URL = deviceId === 'servo' ? '/servo-statistics' : '/timeseries';
+        const URL = deviceId === 'switcher' ? '/switcher-statistics' : '/timeseries';
         params.set('period', period);
         params.set('sensor', deviceId);
 
