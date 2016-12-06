@@ -1,5 +1,3 @@
-<input [(ngModel)]="date2" ng2-datetime-picker
-       date-format="DD-MM-YYYY hh:mm"
-       hour="23"
-       minute='59'
-       close-on-select="false"  />
+<my-date-range-picker [options]="myDateRangePickerOptions"
+                      (dateRangeChanged)="onDateRangeChanged($event)">
+</my-date-range-picker>

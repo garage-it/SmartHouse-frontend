@@ -124,6 +124,6 @@
     "zone.js": "^0.6.23"
   },
   "dependencies": {
-    "ng2-datetime-picker": "^0.11.1"
+    "mydaterangepicker": "^1.0.4"
   }
 }
