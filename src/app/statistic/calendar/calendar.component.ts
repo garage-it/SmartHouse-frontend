@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
     styleUrls: ['./calendar.styles.scss']
 })
 export class CalendarComponent {
+    private myDateRangePickerOptions;
 
     constructor() {
         this.myDateRangePickerOptions = {
@@ -20,7 +21,7 @@ export class CalendarComponent {
             width: '260px',
             inline: false,
             selectionTxtFontSize: '15px',
-            alignSelectorRight: false,
+            alignSelectorRight: true,
             indicateInvalidDateRange: true,
             showDateRangeFormatPlaceholder: false
         };

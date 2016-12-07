@@ -34,7 +34,8 @@ export class SwitcherPieChartComponent extends BaseChartComponent implements OnC
                     allowPointSelect: true,
                     cursor: 'pointer',
                     dataLabels: {
-                        enabled: false
+                        enabled: true,
+                        inside: true
                     },
                     showInLegend: true
                 }
@@ -42,6 +43,9 @@ export class SwitcherPieChartComponent extends BaseChartComponent implements OnC
             series: [{
                 data: this.deviceStatistic.data.map(item => {
                     return {
+                        dataLabels: {
+                            className: item.name
+                        },
                         name: item.name,
                         y: item.value
                     };

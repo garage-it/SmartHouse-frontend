@@ -8,7 +8,7 @@ html {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 15px;
-    color:#000;
+    color: #000;
 }
 
 label {
@@ -104,4 +104,8 @@ nav {
         border-bottom: 1px solid #ee6e73;
         box-shadow: 0 1px 0 0 #ee6e73;
     }
+}
+
+input.selection {
+    box-sizing: border-box;
 }

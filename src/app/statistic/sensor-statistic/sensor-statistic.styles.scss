@@ -1,3 +1,34 @@
+.chart-block {
+    width: 80%;
+    margin: 0 auto;
+}
+input.selection {
+    box-sizing: border-box;
+}
+.switcher-chart{
+    &-holder {
+        width: 50%;
+        float: left;
+    }
+    &__header {
+        font-weight: bold;
+        font-size: 24px;
+        padding-left: 150px;
+    }
+    &__filter {
+        min-height: 40px;
+        &_calendar {
+            text-align: center;
+        }
+        &_periods {
+            text-align: center;
+        }
+    }
+}
+.sh-calendar {
+    display: block;
+    margin: 0 auto;
+}
 .switcher-chart-holder {
     width: 50%;
     float: left;

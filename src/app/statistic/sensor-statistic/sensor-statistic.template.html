@@ -1,8 +1,8 @@
 <div class="chart-block">
     <div class="switcher-chart clearfix" *ngIf="isSwitcherWidgetVisible()">
-        <h2 class="switcher-chart__header">Device statistics</h2>
+        <h3 class="switcher-chart__header">Device statistics</h3>
         <div class="switcher-chart-holder">
-            <div class="switcher-chart_filter">
+            <div class="switcher-chart__filter switcher-chart__filter_calendar">
                 <sh-calendar></sh-calendar>
             </div>
             <sh-switcher-statistic-pie-chart
@@ -10,7 +10,7 @@
             </sh-switcher-statistic-pie-chart>
         </div>
         <div class="switcher-chart-holder">
-            <div class="clearfix switcher-chart_filter actions-selector">
+            <div class="clearfix switcher-chart__filter switcher-chart__filter_periods">
                 <a class="btn-flat btn-flat_action"
                    *ngFor="let period of periods"
                    [routerLink]="['../../../sensor-details', sensorId, period]"
