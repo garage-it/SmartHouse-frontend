@@ -9,7 +9,7 @@ export class HomeService {
     constructor(private http: ShHttpService, private httpUtils: ShHttpUtilsService) { }
 
     getMapList(): Observable<any> {
-        return this.http.get('/dashboard/all')
+        return this.http.get('/map-view')
             .catch(error => {
                 return this.httpUtils.extractErrorMessage(error);
             });

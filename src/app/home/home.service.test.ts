@@ -26,7 +26,7 @@ describe('HomeService', () => {
         });
 
         it('should get list of maps from the server', () => {
-            expect(httpMock.get).toHaveBeenCalledWith('/dashboard/all');
+            expect(httpMock.get).toHaveBeenCalledWith('/map-view');
         });
 
         describe('on get list of maps error', () => {
