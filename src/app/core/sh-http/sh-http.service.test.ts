@@ -4,123 +4,120 @@ import { ShHttpService } from './sh-http.service';
 describe('ShHttpService', () => {
     let sut;
     let httpMock;
+    let defaultRequestOptions;
     const urlMock = Symbol('url to request');
     const mockResponse = Symbol('some response');
+    const mergedOptions = Symbol('merged options');
 
     beforeEach(() => {
         httpMock = jasmine.createSpyObj('httpMock', ['get', 'post', 'put', 'delete']);
-        sut = new ShHttpService(httpMock);
+        defaultRequestOptions = {
+            headers: {
+                set: jasmine.createSpy('setHeader'),
+                delete: jasmine.createSpy('deleteHeader'),
+            },
+            merge: jasmine.createSpy('merge').and.returnValue(mergedOptions)
+        };
+        sut = new ShHttpService(httpMock, defaultRequestOptions);
     });
 
     describe('http methods', () => {
         beforeEach(() => {
-            spyOn(sut, 'getRequestOptions');
-            spyOn(sut, 'convertToJson');
+            spyOn(ShHttpService, 'onResponseSuccess');
             httpMock.put.and.returnValue(Observable.of(mockResponse));
             httpMock.post.and.returnValue(Observable.of(mockResponse));
             httpMock.delete.and.returnValue(Observable.of(mockResponse));
         });
 
         describe('get method', () => {
-            const getRequestOptions = Symbol('get request options');
-            const params = {};
+            const search = {};
 
             beforeEach(() => {
                 httpMock.get.and.returnValue(Observable.of(mockResponse));
-                sut.getRequestOptions.and.returnValue(getRequestOptions);
-                sut.get(urlMock, params).subscribe(() => {});
+                sut.get(urlMock, search).subscribe(() => {});
             });
 
-            it('should get proper request options', () => {
-                expect(sut.getRequestOptions).toHaveBeenCalledWith('Get', urlMock, params);
+            it('should override url and search params', () => {
+                expect(defaultRequestOptions.merge).toHaveBeenCalledWith({
+                    url: urlMock,
+                    search
+                });
             });
 
             it('should get data from server', () => {
-                expect(httpMock.get).toHaveBeenCalledWith(urlMock, getRequestOptions);
+                expect(httpMock.get).toHaveBeenCalledWith(urlMock, mergedOptions);
             });
 
             it('should get data from server response', () => {
-                expect(sut.convertToJson).toHaveBeenCalledWith(mockResponse, jasmine.any(Number));
+                expect(ShHttpService.onResponseSuccess).toHaveBeenCalledWith(mockResponse, jasmine.any(Number));
             });
         });
 
         describe('post method', () => {
-            const postRequestOptions = Symbol('get request options');
             const requestBody = Symbol('data to send');
-            const strirgBody = Symbol('stringified body');
 
             beforeEach(() => {
-                spyOn(JSON, 'stringify').and.returnValue(strirgBody);
                 httpMock.post.and.returnValue(Observable.of(mockResponse));
-                sut.getRequestOptions.and.returnValue(postRequestOptions);
                 sut.post(urlMock, requestBody).subscribe(() => {});
             });
 
-            it('should get proper request options', () => {
-                expect(sut.getRequestOptions).toHaveBeenCalledWith('Post', urlMock);
-            });
-
-            it('should stringify rquest body before send', () => {
-                expect(JSON.stringify).toHaveBeenCalledWith(requestBody);
+            it('should override url', () => {
+                expect(defaultRequestOptions.merge).toHaveBeenCalledWith({
+                    url: urlMock
+                });
             });
 
             it('should post data to server', () => {
-                expect(httpMock.post).toHaveBeenCalledWith(urlMock, strirgBody, postRequestOptions);
+                expect(httpMock.post).toHaveBeenCalledWith(urlMock, requestBody, mergedOptions);
             });
 
             it('should get data from server response', () => {
-                expect(sut.convertToJson).toHaveBeenCalledWith(mockResponse, jasmine.any(Number));
+                expect(ShHttpService.onResponseSuccess).toHaveBeenCalledWith(mockResponse, jasmine.any(Number));
             });
         });
 
         describe('put method', () => {
-            const putRequestOptions = Symbol('get request options');
             const requestBody = Symbol('data to send');
-            const strirgBody = Symbol('stringified body');
 
             beforeEach(() => {
-                spyOn(JSON, 'stringify').and.returnValue(strirgBody);
                 httpMock.put.and.returnValue(Observable.of(mockResponse));
-                sut.getRequestOptions.and.returnValue(putRequestOptions);
                 sut.put(urlMock, requestBody).subscribe(() => {});
             });
 
-            it('should get proper request options', () => {
-                expect(sut.getRequestOptions).toHaveBeenCalledWith('Put', urlMock);
-            });
-
-            it('should stringify rquest body before send', () => {
-                expect(JSON.stringify).toHaveBeenCalledWith(requestBody);
+            it('should override url', () => {
+                expect(defaultRequestOptions.merge).toHaveBeenCalledWith({
+                    url: urlMock
+                });
             });
 
             it('should post data to server', () => {
-                expect(httpMock.put).toHaveBeenCalledWith(urlMock, strirgBody, putRequestOptions);
+                expect(httpMock.put).toHaveBeenCalledWith(urlMock, requestBody, mergedOptions);
             });
 
             it('should get data from server response', () => {
-                expect(sut.convertToJson).toHaveBeenCalledWith(mockResponse, jasmine.any(Number));
+                expect(ShHttpService.onResponseSuccess).toHaveBeenCalledWith(mockResponse, jasmine.any(Number));
             });
         });
 
         describe('delete method', () => {
-            const deleteRequestOptions = Symbol('delete request options');
 
             beforeEach(() => {
                 httpMock.get.and.returnValue(Observable.of(mockResponse));
-                sut.getRequestOptions.and.returnValue(deleteRequestOptions);
                 sut.delete(urlMock).subscribe(() => {});
             });
 
-            it('should get proper request options', () => {
-                expect(sut.getRequestOptions).toHaveBeenCalledWith('Delete', urlMock);
+            it('should override url', () => {
+                expect(defaultRequestOptions.merge).toHaveBeenCalledWith({
+                    url: urlMock
+                });
             });
 
             it('should delete item', () => {
-                expect(httpMock.delete).toHaveBeenCalledWith(urlMock, deleteRequestOptions);
+                expect(httpMock.delete).toHaveBeenCalledWith(urlMock, mergedOptions);
             });
 
             it('should get data from server response', () => {
-                expect(sut.convertToJson).toHaveBeenCalledWith(mockResponse, jasmine.any(Number));
+                expect(ShHttpService.onResponseSuccess).toHaveBeenCalledWith(mockResponse, jasmine.any(Number));
             });
         });
     });
@@ -129,28 +126,22 @@ describe('ShHttpService', () => {
         const mockToken = Symbol('some mock token');
         const mockAuthHeader = `Bearer ${mockToken}`;
 
-        beforeEach(() => {
-            spyOn(sut.headers, 'set');
-            spyOn(sut.headers, 'delete');
-        });
-
         it('should be able to set auth headers', () => {
             sut.setAuthHeader(mockToken);
 
-            expect(sut.headers.set).toHaveBeenCalledWith('Authorization', mockAuthHeader);
+            expect(defaultRequestOptions.headers.set).toHaveBeenCalledWith('Authorization', mockAuthHeader);
         });
 
         it('should be able to remove auth headers', () => {
             sut.removeAuthHeader();
 
-            expect(sut.headers.delete).toHaveBeenCalledWith('Authorization');
+            expect(defaultRequestOptions.headers.delete).toHaveBeenCalledWith('Authorization');
         });
     });
 
     describe('response transformer', () => {
         let mockServerResponse;
         const convertedResponse = Symbol('converted server response');
-
 
         beforeEach(() => {
             mockServerResponse = {
@@ -159,29 +150,7 @@ describe('ShHttpService', () => {
         });
 
         it('should extract data from response', () => {
-            expect(sut.convertToJson(mockServerResponse)).toEqual(convertedResponse);
-        });
-    });
-
-    describe('setting request options', () => {
-        let finalOptions;
-        const params = {};
-        const mockUrl = Symbol('url to call');
-        const method = 'Get';
-        const resultRequestOptions = Symbol('result request options');
-
-        beforeEach(() => {
-            spyOn(sut.options, 'merge').and.returnValue(resultRequestOptions);
-            finalOptions = sut.getRequestOptions(method, mockUrl, params);
-        });
-
-        it('should assign request options to existing config', () => {
-            expect(sut.options.merge)
-                .toHaveBeenCalledWith({ search: params, method: jasmine.anything(), url: mockUrl });
-        });
-
-        it('should construct final request options', () => {
-            expect(finalOptions).toEqual(resultRequestOptions);
+            expect(ShHttpService.onResponseSuccess(mockServerResponse)).toEqual(convertedResponse);
         });
     });
 });

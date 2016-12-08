@@ -1,6 +1,9 @@
 # Smart House - Frontend
 [![Build Status](https://travis-ci.org/garage-it/SmartHouse-frontend.svg?branch=master)](https://travis-ci.org/garage-it/SmartHouse-frontend)
 [![codecov.io](https://codecov.io/github/garage-it/SmartHouse-frontend/coverage.svg?branch=master)](https://codecov.io/github/garage-it/SmartHouse-frontend?branch=master)
+[![npm version](https://badge.fury.io/js/smart-house-frontend.svg)](https://badge.fury.io/js/smart-house-frontend)
+[![dependencies Status](https://david-dm.org/garage-it/SmartHouse-frontend/status.svg)](https://david-dm.org/garage-it/SmartHouse-frontend)
+[![devDependencies Status](https://david-dm.org/garage-it/SmartHouse-frontend/dev-status.svg)](https://david-dm.org/garage-it/SmartHouse-frontend?type=dev)
 
 # Links
 * [Demo](https://garage-it-smart-house.herokuapp.com)

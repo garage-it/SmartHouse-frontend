@@ -14,7 +14,7 @@ const tsRegexp = /\.ts$/;
 module.exports = {
     debug: true,
     context: envConfig.src.dir,
-    devtool: 'cheap-source-map',
+    devtool: 'source-map',
     resolve: {
         root: [envConfig.src.dir],
         extensions: ['', '.ts', '.js']

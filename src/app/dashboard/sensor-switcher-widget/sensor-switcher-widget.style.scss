@@ -1,0 +1,28 @@
+$blockHeight: 75px;
+$fontSize: 20px;
+
+.sensor-switcher-widget {
+
+    text-align: center;
+
+    &_controller {
+        width: initial!important;
+    }
+}
+
+//TODO: Currently copy pasted from sensor-regular-widget.template.scss. Should be moved to sensor-widget. Needs investigation.
+.sensor-widget_statistic-button {
+    position: relative;
+    display: block;
+    float: left;
+    cursor: pointer;
+    width: 24px;
+    height: 26px;
+    margin-top: 1px;
+    background-color: #dedede;
+    background-image: url(../assets/statistic.svg);
+
+    &:hover {
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    }
+}

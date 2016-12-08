@@ -2,7 +2,7 @@ import { RouterModule } from '@angular/router';
 
 import { SensorDetailComponent } from './sensor-details/sensor-detail.component';
 import { DeviceListComponent } from './device-list/device-list.component';
-import { DeviceListResolveService } from './detail-list-resolve.service';
+import { DeviceListResolveService } from './device-list/device-list-resolve.service';
 import ROUTING from './../config.routing';
 
 export const routes = [

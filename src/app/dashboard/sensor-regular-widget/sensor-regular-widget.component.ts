@@ -1,22 +1,22 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { SensorWidgetService } from '../shared/sensor-widget/sensor-widget.service';
 
 import { BaseSensor } from '../shared/base-sensor/base-sensor';
-const template = require('./sensor-regular-widget.template.html');
-const style = require('../shared/sensor-widget/sensor-widget.style.scss');
 
 @Component({
-    selector: 'sensor-regular-widget',
-    template,
-    styles: [style]
+    selector: 'sh-sensor-regular-widget',
+    templateUrl: './sensor-regular-widget.template.html',
+    styleUrls: [
+        '../shared/sensor-widget/sensor-widget.style.scss',
+        './sensor-regular-widget.template.scss'
+    ]
 })
 export class SensorRegularWidgetComponent extends BaseSensor {
 
     @Input() device;
+    @Output() onRemoveWidget: EventEmitter<any> = new EventEmitter();
 
     constructor(sensorWidgetService: SensorWidgetService) {
         super(sensorWidgetService);
     }
-
 }
-

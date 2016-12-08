@@ -1,0 +1,51 @@
+.sensors-list {
+    margin: 0 60px 30px;
+
+    &__item {
+        height: 28px;
+        border: solid 1px #e9e9e9;
+        position: relative;
+        padding-right: 12px;
+    }
+
+    &__title {
+        margin-right: -10px;
+        margin-left: 10px !important;
+
+        &::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            position: absolute;
+            top: 10px;
+            left: 6px;
+            background-color: #b8e986;
+            border-radius: 50%;
+        }
+    }
+
+    &__actions {
+        text-align: right;
+        cursor: pointer;
+        background-repeat: no-repeat;
+        width: 20px;
+        height: 20px;
+        display: inline-block;
+        float: right;
+        margin: 3px 3px 0;
+        &_add {
+            background-image: url('assets/add-icon.svg');
+        }
+        &_remove {
+            background-image: url('assets/remove-icon.svg');
+        }
+    }
+
+    .row {
+        margin-bottom: -1px;
+    }
+}
+
+.unactive {
+    opacity: 0.25;
+}

@@ -1,0 +1,110 @@
+.constructor {
+    width: 1280px;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 24px;
+    letter-spacing: 0.3px;
+}
+
+.heading {
+    font-size: 14px;
+    display: inline-block;
+}
+
+.input-group {
+    width: 48%;
+    float: left;
+    margin-right: 4%;
+
+    &:last-child {
+        margin-right: 0;
+    }
+
+    &__label {
+        font-weight: 600;
+        color: #000;
+        font-size: 12px;
+        letter-spacing: 0.2px;
+    }
+
+    &__input {
+        font-weight: normal;
+        font-size: 12px;
+        letter-spacing: 0.2px;
+    }
+}
+
+.switch {
+    margin-top: 20px;
+    float: right;
+
+    &__checkbox {
+        height: 15px;
+    }
+
+    &__label {
+        padding-left: 25px;
+        margin-right: 10px;
+        font-size: 14px;
+        color: #000000;
+    }
+}
+
+.nv-file-over {
+    border: dotted 3px red;
+}
+
+.controls {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.picture {
+    height: 370px;
+    position: relative;
+    background-color: #f9f9f9;
+
+    &_blank {
+        border: dashed 1px #92928f;
+        cursor: pointer;
+    }
+
+    &_file-over {
+        border-style: dotted;
+    }
+
+    &__image {
+        position: absolute;
+        max-width: 1280px;
+        height: 100%;
+    }
+}
+
+.add-picture {
+    width: 150px;
+    margin: 120px auto;
+
+    &__icon {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto;
+        background-image: url('assets/ic-add-a-photo.svg');
+        background-repeat: no-repeat;
+    }
+
+    &__title {
+        font-size: 14px;
+        color: #5f605d;
+    }
+}
+
+.constructor-devices {
+    position: absolute;
+    top: 0;
+    width: 1280px;
+    height: 370px;
+}

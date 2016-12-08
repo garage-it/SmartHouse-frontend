@@ -1,0 +1,29 @@
+<div class="sensor-widget sensor-servo-widget">
+    <button class="sensor-widget_button"
+            (click)="removeWidget()">
+        x
+    </button>
+
+    <span class="sensor-widget_time"
+          [hidden]="data.updateTime===undefined">
+        {{data.updateTime | date:"HH:mm:ss" }}
+    </span>
+
+    <div class="sensor-widget_value">
+
+        <span [hidden]="data.value">.</span>
+        <sh-gauge [degree]="data.value" [hidden]="data.value==undefined" ></sh-gauge>
+    </div>
+
+    <input class="sensor-servo-widget_controller" type="range" [min]="0" [max]="180" [(ngModel)]="data.value" (change)="changeDegree()">
+
+
+    <div class="sensor-widget__metrics" [hidden]="data.value==undefined">
+        {{device.metrics}}
+    </div>
+
+    <div class="sensor-widget_description">
+        <span>{{device.mqttId}}</span>
+    </div>
+
+</div>

@@ -1,13 +1,9 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-const template = require('./device-list.template.html');
-const style = require('./device-list.style.scss');
-
 import { SensorDetailService } from '../shared/sensor-detail.service';
 import { DialogService } from '../../shared/dialog/dialog.service';
 
-const selector = 'device-list';
 const headersForDisplay = [
     { topic: 'mqttId', name: 'ID', sortable: true },
     { topic: 'type', name: 'Type', sortable: true },
@@ -15,9 +11,9 @@ const headersForDisplay = [
 ];
 
 @Component({
-    selector,
-    template,
-    styles: [style]
+    selector: 'sh-device-list',
+    templateUrl: './device-list.template.html',
+    styleUrls: ['./device-list.style.scss']
 })
 export class DeviceListComponent implements OnInit {
     private deviceList = [];

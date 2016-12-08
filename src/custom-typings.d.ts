@@ -1,5 +1,3 @@
-
-
 declare var ENV_PUBLIC_CONFIG: {
     backEndWebSocketUrl: string,
     backEndUrl: string

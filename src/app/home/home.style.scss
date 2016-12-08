@@ -1,0 +1,56 @@
+.home-nav {
+    height: 70px;
+
+    &__actions {
+        float: right;
+    }
+
+    &__view-toggle {
+        float: right;
+        margin: 30px 80px 0 0;
+    }
+}
+
+.toggle {
+    font-size: 0.8em;
+    font-weight: 500;
+
+    &__item {
+        height: 10px;
+        line-height: 10px;
+        display: inline-block;
+        padding: 0 5px;
+        border-right: 1px solid #d1d1d1;
+        color: #d1d1d1;
+        cursor: pointer;
+
+        &_active {
+            color: #000000;
+        }
+
+        &:last-child {
+            border-right: none;
+        }
+    }
+}
+
+.home-view {
+    background: #f9f9f9;
+    border: solid 1px #c7c8c2;
+    height: 400px;
+    position: relative;
+}
+
+.empty-home-view {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5em;
+    color: #6b6b6b;
+
+    &__create {
+        color: #a3c940;
+    }
+}
+

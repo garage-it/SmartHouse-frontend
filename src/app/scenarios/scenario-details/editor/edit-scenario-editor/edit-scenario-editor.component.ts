@@ -5,15 +5,10 @@ import { ScenarioDetailsComponent } from '../../scenario-details.component';
 import { ScenarioService } from '../../../shared/scenario.service';
 import { DialogService } from '../../../../shared/dialog/dialog.service';
 
-const template = require('../../scenario-details.template.html');
-const style = require('../../scenario-details.style.scss');
-
-const selector = 'scenario-list';
-
 @Component({
-    selector,
-    template,
-    styles: [style]
+    selector: 'sh-scenario-list',
+    templateUrl: '../../scenario-details.template.html',
+    styleUrls: ['../../scenario-details.style.scss']
 })
 export class EditScenarioEditorComponent extends ScenarioDetailsComponent implements OnInit {
 

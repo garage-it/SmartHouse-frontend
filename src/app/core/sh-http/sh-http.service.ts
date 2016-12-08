@@ -1,58 +1,45 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestMethod, Headers, URLSearchParams } from '@angular/http';
-import { ShRequestOptions } from './sh-request-options';
+import { Http, URLSearchParams, RequestOptions } from '@angular/http';
 
 @Injectable()
 export class ShHttpService {
-    private headers: Headers;
-    private options: ShRequestOptions;
 
-    constructor(private http: Http) {
-        this.headers = new Headers({ 'Content-Type': 'application/json' });
-        this.options = new ShRequestOptions({ headers: this.headers });
+    public static onResponseSuccess(data) {
+        return data.json();
     }
 
-    get(url, params?: URLSearchParams) {
+    constructor(private http: Http, private defaultOptions: RequestOptions) {
+    }
+
+    get(url, search?: URLSearchParams) {
         return this.http
-            .get(url, this.getRequestOptions('Get', url, params))
-            .map(this.convertToJson);
+            .get(url, this.defaultOptions.merge({ url, search }))
+            .map(ShHttpService.onResponseSuccess);
     }
 
     post(url, body) {
         return this.http
-            .post(url, JSON.stringify(body), this.getRequestOptions('Post', url))
-            .map(this.convertToJson);
+            .post(url, body, this.defaultOptions.merge({ url }))
+            .map(ShHttpService.onResponseSuccess);
     }
 
     put(url, body) {
         return this.http
-            .put(url, JSON.stringify(body), this.getRequestOptions('Put', url))
-            .map(this.convertToJson);
+            .put(url, body, this.defaultOptions.merge({ url }))
+            .map(ShHttpService.onResponseSuccess);
     }
 
     delete(url) {
         return this.http
-            .delete(url, this.getRequestOptions('Delete', url))
-            .map(this.convertToJson);
+            .delete(url, this.defaultOptions.merge({ url }))
+            .map(ShHttpService.onResponseSuccess);
     }
 
     setAuthHeader(token) {
-        this.headers.set('Authorization', `Bearer ${token}`);
+        this.defaultOptions.headers.set('Authorization', `Bearer ${token}`);
     }
 
     removeAuthHeader() {
-        this.headers.delete('Authorization');
-    }
-
-    private convertToJson(data) {
-        return data.json();
-    }
-
-    private getRequestOptions(method, url, params?: URLSearchParams) {
-        return this.options.merge({
-            search: params,
-            method: RequestMethod[method],
-            url
-        });
+        this.defaultOptions.headers.delete('Authorization');
     }
 }

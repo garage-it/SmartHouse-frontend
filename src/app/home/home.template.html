@@ -1,0 +1,32 @@
+<div class="home-nav">
+    <div class="home-nav__actions">
+        <button class="button button_success"
+                [routerLink]="['constructor']">
+            + Create view
+        </button>
+    </div>
+
+    <!--TODO: make a Toggle component-->
+    <div class="home-nav__view-toggle toggle">
+        <ul>
+            View:
+            <li class="toggle__item toggle__item_active">
+                Map
+            </li>
+            <li class="toggle__item">
+                Dashboard
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="home-view">
+    <div class="empty-home-view">
+        Please
+        <a class="empty-home-view__create"
+           [routerLink]="['constructor']">
+            create
+        </a>
+        view
+    </div>
+</div>

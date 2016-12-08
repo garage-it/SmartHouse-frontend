@@ -16,17 +16,11 @@ export const routes = [
         children: [
             {
                 path: '',
-                redirectTo: ROUTING.DASHBOARD,
-                pathMatch: 'full',
-                useAsDefault: true
+                loadChildren: () => require('es6-promise!./home/home.module')('HomeModule'),
             },
             {
                 path: ROUTING.HELP,
                 loadChildren: () => require('es6-promise!./help/help.module')('HelpModule')
-            },
-            {
-                path: ROUTING.DASHBOARD,
-                loadChildren: () => require('es6-promise!./dashboard/dashboard.module')('DashboardModule')
             },
             {
                 path: ROUTING.DEVICES,
@@ -52,9 +46,24 @@ export const routes = [
                 path: ROUTING.REGISTRATION,
                 canActivate: [ GuestGuard ],
                 loadChildren: () => require('es6-promise!./registration/registration.module')('RegistrationModule')
+            },
+            {
+                path: ROUTING.STATISTIC,
+                canActivate: [ LoggedInGuard ],
+                loadChildren: () => require('es6-promise!./statistic/statistic.module')('StatisticModule')
+            },
+            {
+                path: ROUTING.SETTINGS,
+                canActivate: [ LoggedInGuard ],
+                loadChildren: () => require('es6-promise!./settings/settings.module')('SettingsModule')
+            },
+            {
+                path: '**',
+                redirectTo: '',
+                pathMatch: 'full'
             }
         ]
-    },
+    }
 ];
 
-export const routing = RouterModule.forRoot(routes, { useHash: true });
+export const routing = RouterModule.forRoot(routes);

@@ -9,9 +9,8 @@ import { routing } from './devices.routing';
 
 import { SensorDetailComponent } from './sensor-details/sensor-detail.component';
 import { DeviceListService } from './device-list/device-list.service';
-import { DeviceListResolveService } from './detail-list-resolve.service';
+import { DeviceListResolveService } from './device-list/device-list-resolve.service';
 import { SensorDetailService } from './shared/sensor-detail.service';
-
 
 @NgModule({
     id: module.id,

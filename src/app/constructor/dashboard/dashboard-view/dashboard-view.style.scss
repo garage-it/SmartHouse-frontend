@@ -1,0 +1,26 @@
+:host {
+  .dashboard-view {
+    width: 100%;
+    height: 373px;
+    background-color: #e9e9e9;
+    border: solid 1px #c7c8c2;
+    margin-bottom: 20px;
+
+    &__centered {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+
+    &__ordered {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+
+  .dashboard-buttons {
+    display: flex;
+    justify-content: flex-end;
+  }
+}

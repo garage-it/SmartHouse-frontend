@@ -1,15 +1,10 @@
 import { Component, ViewContainerRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-const template = require('./scenario-list.template.html');
-const style = require('./scenario-list.style.scss');
-
 import { ScenarioService } from './../shared/scenario.service';
 import { ScenarioStatusService } from './scenario-status.service';
 import { DialogService } from '../../shared/dialog/dialog.service';
 
-
-const selector = 'scenario-list';
 const headersForDisplay = [
     { topic: 'name', name: 'Name', sortable: true },
     { topic: 'status', name: 'Status', sortable: false }
@@ -18,9 +13,9 @@ export const SCENARIO_ACTIVE_STATE = 'active';
 export const SCENARIO_PAUSED_STATE = 'paused';
 
 @Component({
-    selector,
-    template,
-    styles: [style]
+    selector: 'sh-scenario-list',
+    templateUrl: './scenario-list.template.html',
+    styleUrls: ['./scenario-list.style.scss']
 })
 export class ScenarioListComponent {
     private scenarioList = [];

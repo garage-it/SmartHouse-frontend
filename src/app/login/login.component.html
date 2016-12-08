@@ -2,7 +2,7 @@
     <div class="col m3"></div>
     <div class="col m6 section">
         <h2>Login</h2><br />
-        <button (click)="login($event)" class="btn btn-facebook">
+        <button (click)="loginFb($event)" class="btn btn-facebook">
             <i></i>Login with Facebook
         </button>
         <div
@@ -10,6 +10,13 @@
             class="validation-message-wrapper red-text text-darken-4">
             <div class="validation-message red-text text-darken-4">
                 Email or password is invalid
+            </div>
+        </div>
+        <div
+            [hidden]="!fbLoggingError"
+            class="validation-message-wrapper red-text text-darken-4">
+            <div class="validation-message red-text text-darken-4">
+                Facebook login error
             </div>
         </div>
         <form

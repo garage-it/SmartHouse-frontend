@@ -8,7 +8,6 @@ export const DEVICE_RESPOND_TIMEOUT = 1000;
 const pending = Symbol('pending');
 const timeout = Symbol('timeout');
 
-
 export class BaseOutputSensor extends BaseSensor {
 
     static getConditionResult(condition, self, args) {
@@ -43,6 +42,7 @@ export class BaseOutputSensor extends BaseSensor {
         if (this.device.mqttId === data.device) {
             const rawValue = BaseOutputSensor.generateValue(true, data.value);
             this.data.value = this.fromDeviceRepresentation(rawValue);
+            this.data.updateTime = new Date();
         }
     }
 
@@ -56,6 +56,7 @@ export class BaseOutputSensor extends BaseSensor {
         }, DEVICE_RESPOND_TIMEOUT);
 
         this.data.value = BaseOutputSensor.generateValue(condition, positiveValue, negativeValue, self, args);
+        this.data.updateTime = new Date();
 
         this.sensorWidgetService.pushEvent({
             device: this.device.mqttId,

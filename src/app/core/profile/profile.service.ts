@@ -11,7 +11,7 @@ export class ProfileService {
     constructor(private http: ShHttpService, private storage: StorageService) {}
 
     /**
-     * In oeder to get profile info use sync public methods (isLoggedIn() and isGuest()) or "user" property
+     * In order to get profile info use sync public methods (isLoggedIn() and isGuest()) or "user" property
      */
     retrieve(): Promise<void> {
         const token = this.storage.getToken();
@@ -49,10 +49,25 @@ export class ProfileService {
     }
 
     isLoggedIn(): boolean {
-        return Boolean(this.user && this.user.role);
+        return !!this.user;
     }
 
     isGuest(): boolean {
         return !this.isLoggedIn();
+    }
+
+    getUserRole(): string {
+        return this.user.role;
+    }
+
+    isUserRoleIn(roles: Array<string>): boolean {
+        if (roles && roles.length) {
+            return roles.indexOf(this.getUserRole()) !== -1;
+        }
+        /*
+         * When roles not transferred
+         * we assume that for all roles we want to allow
+         */
+        return true;
     }
 }

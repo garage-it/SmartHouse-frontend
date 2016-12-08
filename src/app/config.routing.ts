@@ -1,13 +1,14 @@
 const CONFIG = {
     BASE: '',
     HELP: 'help',
-    DASHBOARD: 'dashboard',
     DEVICES: 'devices',
     SCENARIOS: 'scenarios',
     CREATE: 'create',
     LOGIN: 'login',
     LOGOUT: 'logout',
-    REGISTRATION: 'registration'
+    REGISTRATION: 'registration',
+    STATISTIC: 'statistic',
+    SETTINGS: 'settings'
 };
 
 export default CONFIG;

@@ -1,0 +1,16 @@
+<div class="chart-holder">
+    <sh-switcher-statistic-column-chart *ngIf="isSwitcherWidgetVisible()"
+        [deviceStatistic]="deviceStatistic">
+    </sh-switcher-statistic-column-chart>
+    <sh-chart-widget *ngIf="isChartWidgetVisible()"
+        [deviceStatistic]="deviceStatistic">
+    </sh-chart-widget>
+</div>
+
+<div class="clearfix statistic_actions">
+    <a class="btn-flat btn-flat_statistic"
+       *ngFor="let period of periods"
+       [routerLink]="['../../../sensor-details', sensorId, period]"
+       [routerLinkActive]="'btn_active'"
+    >{{period}}</a>
+</div>

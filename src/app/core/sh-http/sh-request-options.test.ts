@@ -1,21 +1,40 @@
 import { ShRequestOptions } from './sh-request-options';
-import { BaseRequestOptions } from '@angular/http';
 
 describe('ShRequestOptions', () => {
     let sut;
 
     beforeEach(() => {
-        spyOn(BaseRequestOptions.prototype, 'merge').and.callThrough();
-        sut = new ShRequestOptions({ mock: 'mock'});
+        Object.assign(global, {
+            ENV_PUBLIC_CONFIG: {
+                backEndUrl: 'backEndUrl'
+            }
+        });
+
+        sut = new ShRequestOptions();
     });
 
-    it('should merge by preper options', () => {
-        const passedOptionsMock = { url: 'mock' };
-        sut.merge(passedOptionsMock);
+    it('should use application/json as default content type', () => {
+        expect(sut.headers.get('Content-Type')).toEqual('application/json');
+    });
 
-        expect(BaseRequestOptions.prototype.merge).toHaveBeenCalledWith({
-            url: `${ENV_PUBLIC_CONFIG.backEndUrl}/api${passedOptionsMock.url}`,
-            mock: 'mock',
+    describe('merge', () => {
+        let result;
+
+        it('should prefix url', () => {
+            result = sut.merge({ url: '/url' });
+            expect(result.url).toEqual(`${ENV_PUBLIC_CONFIG.backEndUrl}/api/url`);
+        });
+
+        it('should not prefix url again when it already contains prefix', () => {
+            const url = `${ENV_PUBLIC_CONFIG.backEndUrl}/api/url`;
+            result = sut.merge({ url });
+            expect(result.url).toEqual(url);
+        });
+
+        it('should not prefix empty url', () => {
+            result = sut.merge({url: null});
+            expect(result.url).toEqual(null);
         });
     });
+
 });

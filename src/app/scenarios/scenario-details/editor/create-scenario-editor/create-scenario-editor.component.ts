@@ -1,15 +1,12 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-const template = require('./create-scenario-editor.template.html');
-const style = require('./scenario-editor.style.scss');
-
 import { ScenarioService } from '../../../shared/scenario.service';
 import { ScenarioDetailsComponent } from '../../scenario-details.component';
 
 @Component({
-    template,
-    styles: [style]
+    templateUrl: './create-scenario-editor.template.html',
+    styleUrls: ['./scenario-editor.style.scss']
 })
 export class CreateScenarioEditorComponent extends ScenarioDetailsComponent {
 

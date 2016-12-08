@@ -4,13 +4,10 @@ import { ActivatedRoute } from '@angular/router';
 import { SensorWidgetService } from './shared/sensor-widget/sensor-widget.service';
 import { Widget } from './widget.model';
 
-const style = require('./dashboard.style.scss');
-const template = require('./dashboard.template.html');
-
 @Component({
-    selector: 'sm-dashboard',
-    template,
-    styles: [style]
+    selector: 'sh-dashboard',
+    templateUrl: './dashboard.template.html',
+    styleUrls: ['./dashboard.style.scss']
 })
 export class DashboardComponent implements OnInit {
 
@@ -34,7 +31,8 @@ export class DashboardComponent implements OnInit {
         if (data.event === 'device-add') {
             this.widgets.push({
                 device: data.data,
-                hidden: false
+                hidden: false,
+                value: data.value
             });
         }
     }

@@ -4,14 +4,10 @@ import { Component, Output, Input } from '@angular/core';
 import { Scenario } from '../scenario-entities/scenario';
 import LOGICAL_OPERATORS from '../scenario-entities/logical-operators.const';
 
-const template = require('./scenario-wizard.template.html');
-const style = require('./scenario-wizard.style.scss');
-const selector = 'scenario-wizard';
-
 @Component({
-    selector,
-    template,
-    styles: [style]
+    selector: 'sh-scenario-wizard',
+    templateUrl: './scenario-wizard.template.html',
+    styleUrls: ['./scenario-wizard.style.scss']
 })
 export class ScenarioWizardComponent {
 

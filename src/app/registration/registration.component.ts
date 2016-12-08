@@ -4,13 +4,10 @@ import { Subscription } from 'rxjs/Rx';
 import { IUserRegistrationData } from '../core/auth/auth.interfaces';
 import { AuthService } from '../core/auth/auth.service';
 
-const style = require('./registration.style.scss');
-const template = require('./registration.template.html');
-
 @Component({
-    template,
-    styles: [style],
-    selector: 'sm-registration'
+    templateUrl: './registration.template.html',
+    styleUrls: ['./registration.style.scss'],
+    selector: 'sh-registration'
 })
 export class RegistrationComponent {
     private registrationSubscription: Subscription;
@@ -24,17 +21,17 @@ export class RegistrationComponent {
 
     constructor(private authService: AuthService, private router: Router) { }
 
+    goToHomePage() {
+        this.router.navigate(['/']);
+    }
+
     save() {
         this.registrationSubscription = this.authService.register(this.user)
             .subscribe(() => {
-                this.router.navigate(['/']);
+                this.goToHomePage();
             }, err => {
                 this.error = err.json().error || 'Unable to register';
             });
-    }
-
-    passwordsMatch() {
-        return this.user.password === this.user.passwordConfirm;
     }
 
     ngOnDestroy() {

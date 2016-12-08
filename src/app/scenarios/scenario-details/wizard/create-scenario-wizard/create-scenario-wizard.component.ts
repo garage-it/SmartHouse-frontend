@@ -3,8 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { DeviceListService } from '../../../../devices/device-list/device-list.service';
 
-const template = require('./create-scenario-wizard.template.html');
-
 import { ScenarioDetailsComponent } from '../../scenario-details.component';
 import { ScenarioService } from '../../../shared/scenario.service';
 
@@ -12,9 +10,8 @@ import { Action } from '../scenario-entities/action';
 import { Condition } from '../scenario-entities/condition';
 import { Scenario } from '../scenario-entities/scenario';
 
-
 @Component({
-    template
+    templateUrl: './create-scenario-wizard.template.html',
 })
 export class CreateScenarioWizardComponent extends ScenarioDetailsComponent implements OnInit {
     protected devices: Array<Object>;

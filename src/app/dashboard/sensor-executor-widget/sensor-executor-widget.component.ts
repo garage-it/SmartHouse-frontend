@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import {
     BaseOutputSensor,
@@ -7,18 +7,17 @@ import {
 } from '../shared/base-output-sensor/base-output-sensor';
 import { SensorWidgetService } from '../shared/sensor-widget/sensor-widget.service';
 
-const template = require('./sensor-executor-widget.template.html');
-const styles = require('../shared/sensor-widget/sensor-widget.style.scss');
-
 @Component({
-    selector: 'sm-sensor-executor-widget',
-    template,
-    styles: [styles]
+    selector: 'sh-sensor-executor-widget',
+    templateUrl: './sensor-executor-widget.template.html',
+    styleUrls: ['../shared/sensor-widget/sensor-widget.style.scss', '../sensor-switcher-widget/sensor-switcher-widget.style.scss']
+
 })
 export class SensorExecutorWidgetComponent extends BaseOutputSensor {
 
     @Input() device;
     @Input() description;
+    @Output() onRemoveWidget: EventEmitter<any> = new EventEmitter();
 
     fromDeviceRepresentation(value) {
         return value === DEVICE_ON_STATE;
@@ -31,5 +30,4 @@ export class SensorExecutorWidgetComponent extends BaseOutputSensor {
     switchExecutor($event) {
         return this.pushEvent($event.target.checked, DEVICE_ON_STATE, DEVICE_OFF_STATE);
     }
-
 }
