@@ -1,7 +1,7 @@
 import { SensorDetailComponent } from './sensor-detail.component';
 import { Sensor } from './sensor';
 
-import ROUTING from './../../config.routing';
+import ROUTING from './../../../config.routing';
 
 import { Observable } from 'rxjs';
 
@@ -76,7 +76,7 @@ describe('sensor-detail', () => {
         it('should navigate to the list of sensors on save', (done) => {
             sut.needUpdate = true;
             sut.save();
-            expect(Router.navigate).toHaveBeenCalledWith(['/devices']);
+            expect(Router.navigate).toHaveBeenCalledWith(['/settings/devices']);
             done();
         });
 
@@ -90,7 +90,7 @@ describe('sensor-detail', () => {
     describe('#cancel', () => {
         it('should navigate to the list of devices on cancel', () => {
             sut.cancel();
-            expect(Router.navigate).toHaveBeenCalledWith(['/devices']);
+            expect(Router.navigate).toHaveBeenCalledWith(['/settings/devices']);
         });
     });
 
@@ -132,7 +132,7 @@ describe('sensor-detail', () => {
             });
 
             it('should navigate to the list of sensors on remove', () => {
-                expect(Router.navigate).toHaveBeenCalledWith(['/devices']);
+                expect(Router.navigate).toHaveBeenCalledWith(['/settings/devices']);
             });
         });
 

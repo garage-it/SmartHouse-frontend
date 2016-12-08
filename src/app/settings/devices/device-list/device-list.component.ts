@@ -2,7 +2,7 @@ import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { SensorDetailService } from '../shared/sensor-detail.service';
-import { DialogService } from '../../shared/dialog/dialog.service';
+import { DialogService } from '../../../shared/dialog/dialog.service';
 
 const headersForDisplay = [
     { topic: 'mqttId', name: 'ID', sortable: true },
