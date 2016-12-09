@@ -2,7 +2,6 @@ import { NavigationRoute } from '../navigation-route.model';
 import ROUTING from '../../config.routing';
 
 export const NAVIGATION_ROUTES: Array<NavigationRoute> = [
-    {path: `/${ROUTING.DEVICES}`, name: 'Devices', iconImage: './assets/deviceList.svg', isAuthorized: true},
     {path: `/${ROUTING.SCENARIOS}`, name: 'Scenarios', iconImage: './assets/scenarioList.png', isAuthorized: true},
     {path: `/${ROUTING.STATISTIC}`, name: 'Statistic', iconImage: './assets/statistic.svg', isAuthorized: true},
     {path: `/${ROUTING.SETTINGS}`, name: 'Settings', iconImage: './assets/settings.svg', isAuthorized: true},

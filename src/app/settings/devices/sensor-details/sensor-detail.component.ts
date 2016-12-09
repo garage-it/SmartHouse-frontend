@@ -3,8 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { Sensor } from './sensor';
 import { SensorDetailService } from '../shared/sensor-detail.service';
-import { DialogService } from '../../shared/dialog/dialog.service';
-import ROUTING from './../../config.routing';
+import { DialogService } from '../../../shared/dialog/dialog.service';
+import ROUTING from './../../../config.routing';
 
 @Component({
     selector: 'sh-sensor-detail',
@@ -86,6 +86,6 @@ export class SensorDetailComponent {
     }
 
     private _navigateToList(): void {
-        this.router.navigate(['/devices']);
+        this.router.navigate(['/settings/devices']);
     }
 }

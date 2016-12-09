@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 import { SharedModule } from '../shared/shared.module';
-import { DeviceListModule } from '../devices/device-list/device-list.module';
+import { DeviceListModule } from '../settings/devices/device-list/device-list.module';
 
 import { routing } from './scenarios.routing';
 

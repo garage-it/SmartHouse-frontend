@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ShHttpService } from '../../core/sh-http/sh-http.service';
+import { ShHttpService } from '../../../core/sh-http/sh-http.service';
 
 @Injectable()
 export class DeviceListService {

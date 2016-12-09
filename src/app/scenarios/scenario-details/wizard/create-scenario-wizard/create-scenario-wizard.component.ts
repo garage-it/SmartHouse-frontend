@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { DeviceListService } from '../../../../devices/device-list/device-list.service';
+import { DeviceListService } from '../../../../settings/devices/device-list/device-list.service';
 
 import { ScenarioDetailsComponent } from '../../scenario-details.component';
 import { ScenarioService } from '../../../shared/scenario.service';

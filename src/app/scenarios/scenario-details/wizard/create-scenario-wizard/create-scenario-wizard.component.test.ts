@@ -1,6 +1,6 @@
 import { CreateScenarioWizardComponent } from './create-scenario-wizard.component';
 import { ScenarioService } from '../../../shared/scenario.service';
-import { DeviceListService } from '../../../../devices/device-list/device-list.service';
+import { DeviceListService } from '../../../../settings/devices/device-list/device-list.service';
 
 import { Action } from '../scenario-entities/action';
 import { Condition } from '../scenario-entities/condition';

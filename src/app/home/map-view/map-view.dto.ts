@@ -1,4 +1,4 @@
-import { Sensor } from '../../devices/sensor-details/sensor';
+import { Sensor } from '../../settings/devices/sensor-details/sensor';
 
 export interface Position {
     x: Number;
