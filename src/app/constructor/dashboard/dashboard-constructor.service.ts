@@ -9,7 +9,7 @@ export class DashboardConstructorService {
 
     constructor(private http: ShHttpService, private httpUtils: ShHttpUtilsService) { }
 
-    getWidgets(): Observable<any> {
+    getWidgets(): Observable<any> { //TODO Only for edit, Should be modified in TG-291
         return this.http.get('/dashboard')
             .catch(error => {
                 return this.httpUtils.extractErrorMessage(error);
@@ -17,6 +17,6 @@ export class DashboardConstructorService {
     }
 
     saveDashboard(devices: Device[]): Observable<any> {
-        return this.http.put('/dashboard', {devices});
+        return this.http.post('/dashboard', {devices});
     }
 }

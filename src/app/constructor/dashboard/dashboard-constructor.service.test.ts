@@ -14,7 +14,7 @@ describe('DashboardConstructorService', () => {
         httpUtilsMock = {
             extractErrorMessage: jasmine.createSpy('extractErrorMessage')
         };
-        httpMock = jasmine.createSpyObj('mock http', ['get', 'put']);
+        httpMock = jasmine.createSpyObj('mock http', ['get', 'post']);
     });
 
     beforeEach(() => {
@@ -59,7 +59,7 @@ describe('DashboardConstructorService', () => {
         });
 
         it('should save dashboard with widgets', () => {
-            expect(httpMock.put).toHaveBeenCalledWith('/dashboard', {devices: widgets});
+            expect(httpMock.post).toHaveBeenCalledWith('/dashboard', {devices: widgets});
         });
     });
 });
