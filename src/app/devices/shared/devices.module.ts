@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 
 import { SharedModule } from '../../shared/shared.module';
 
+import { DeviceListComponent } from './device-list/device-list.component';
+
 import { DevicesService } from './devices.service';
 import { DeviceListResolver } from './devices.resolver';
 
@@ -14,8 +16,12 @@ import { DeviceListResolver } from './devices.resolver';
         FormsModule,
         SharedModule
     ],
-    declarations: [],
-    exports: [],
+    declarations: [
+        DeviceListComponent
+    ],
+    exports: [
+        DeviceListComponent
+    ],
     providers: [
         DevicesService,
         DeviceListResolver

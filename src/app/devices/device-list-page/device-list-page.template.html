@@ -15,35 +15,4 @@
     </div><!-- empty-list__container -->
 </div><!-- empty-list -->
 
-<div *ngIf="deviceList.length !== 0" class="sensors-list">
-    <table class="highlight responsive-table sensors-list-table">
-        <thead class="sensors-list-table__head">
-            <th *ngFor="let header of headers"
-                (click)="setSortBy(header.topic)"
-                class="sensors-list-table__head__item"
-                [class.active]="isActive(header.topic)"
-                [class.sortable]="header.sortable">
-                {{ header.name }}
-                <div [class]="reverse ? 'up' : 'down'"></div>
-            </th><!-- sensors-list-table__head__item -->
-        </thead><!-- sensors-list-table__head -->
-        <tbody class="sensors-list-table__body">
-            <tr *ngFor="let item of deviceList"
-                [routerLink]="['/devices', item._id]"
-                class="sensors-list-table__body__row">
-                <td *ngFor="let header of headers"
-                    class="sensors-list-table__body__row__item">
-                    {{item[header.topic]}}
-                </td><!-- sensors-list-table__body__row__item -->
-                <td class="sensors-list-table__body__row__actions">
-                    <button (click)="removeSensor(item); $event.stopPropagation()"
-                            class="waves-effect waves-light btn sensors-list-table__body__row__actions__remove"
-                            name="remove-device"
-                            type="remove">
-                        <i class="material-icons sensors-list-table__body__row__actions__remove__icon">delete</i>
-                    </button><!-- sensors-list-table__body__row__actions__remove -->
-                </td><!-- sensors-list-table__body__row__actions -->
-            </tr><!-- sensors-list-table__body__row -->
-        </tbody><!-- sensors-list-table__body -->
-    </table><!-- sensors-list-table -->
-</div><!-- sensors-list -->
+<sh-device-list *ngIf="deviceList.length !== 0" [deviceList]="deviceList"></sh-device-list>
