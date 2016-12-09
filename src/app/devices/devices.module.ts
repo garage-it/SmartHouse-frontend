@@ -8,7 +8,7 @@ import { DevicesModule } from './shared/devices.module';
 import { routing } from './devices.routing';
 
 import { SensorDetailComponent } from './sensor-details/sensor-detail.component';
-import { DeviceListComponent } from './device-list/device-list.component';
+import { DeviceListPageComponent } from './device-list-page/device-list-page.component';
 
 @NgModule({
     id: module.id,
@@ -21,11 +21,11 @@ import { DeviceListComponent } from './device-list/device-list.component';
     ],
     declarations: [
         SensorDetailComponent,
-        DeviceListComponent
+        DeviceListPageComponent
     ],
     exports: [
         SensorDetailComponent,
-        DeviceListComponent
+        DeviceListPageComponent
     ],
     providers: []
 })

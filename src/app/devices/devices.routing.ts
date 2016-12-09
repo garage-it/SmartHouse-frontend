@@ -1,7 +1,7 @@
 import { RouterModule } from '@angular/router';
 
 import { SensorDetailComponent } from './sensor-details/sensor-detail.component';
-import { DeviceListComponent } from './device-list/device-list.component';
+import { DeviceListPageComponent } from './device-list-page/device-list-page.component';
 import { DeviceListResolver } from './shared/devices.resolver';
 import ROUTING from './../config.routing';
 
@@ -10,7 +10,7 @@ export const routes = [
         path: '',
         children: [
             {
-                path: '', component: DeviceListComponent,
+                path: '', component: DeviceListPageComponent,
                 resolve: {
                     deviceList: DeviceListResolver
                 }
