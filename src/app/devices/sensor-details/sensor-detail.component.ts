@@ -2,7 +2,7 @@ import { Component, ViewContainerRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Sensor } from './sensor';
-import { SensorDetailService } from '../shared/sensor-detail.service';
+import { DevicesService } from '../shared/devices.service';
 import { DialogService } from '../../shared/dialog/dialog.service';
 import ROUTING from './../../config.routing';
 
@@ -17,7 +17,7 @@ export class SensorDetailComponent {
     private sensor: Sensor;
 
     constructor(
-        private sensorDetailService: SensorDetailService,
+        private sensorDetailService: DevicesService,
         private router: Router,
         private route: ActivatedRoute,
         private dialogService: DialogService,

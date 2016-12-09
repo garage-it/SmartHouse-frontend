@@ -2,7 +2,7 @@ import { RouterModule } from '@angular/router';
 
 import { SensorDetailComponent } from './sensor-details/sensor-detail.component';
 import { DeviceListComponent } from './device-list/device-list.component';
-import { DeviceListResolveService } from './device-list/device-list-resolve.service';
+import { DeviceListResolver } from './shared/devices.resolver';
 import ROUTING from './../config.routing';
 
 export const routes = [
@@ -11,10 +11,18 @@ export const routes = [
         children: [
             {
                 path: '', component: DeviceListComponent,
-                resolve: {deviceList: DeviceListResolveService}
+                resolve: {
+                    deviceList: DeviceListResolver
+                }
             },
-            { path: ':id', component: SensorDetailComponent },
-            { path: ROUTING.CREATE, component: SensorDetailComponent },
+            {
+                path: ':id',
+                component: SensorDetailComponent
+            },
+            {
+                path: ROUTING.CREATE,
+                component: SensorDetailComponent
+            }
         ]
     }
 ];

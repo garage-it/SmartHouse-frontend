@@ -25,7 +25,7 @@ export const routes = [
             {
                 path: ROUTING.DEVICES,
                 canActivate: [ LoggedInGuard ],
-                loadChildren: () => require('es6-promise!./devices/devices.module')('DevicesModule')
+                loadChildren: () => require('es6-promise!./devices/devices.module')('DevicesPageModule')
             },
             {
                 path: ROUTING.SCENARIOS,

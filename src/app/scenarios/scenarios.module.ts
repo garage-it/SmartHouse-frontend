@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 import { SharedModule } from '../shared/shared.module';
-import { DeviceListModule } from '../devices/device-list/device-list.module';
+import { DevicesModule } from '../devices/shared/devices.module';
 
 import { routing } from './scenarios.routing';
 
@@ -15,11 +15,19 @@ import SCENARIOS_DECLARATIONS from './scenarios.declarations';
 
 @NgModule({
     id: module.id,
-    imports: [ RouterModule, FormsModule, SharedModule, routing, DeviceListModule ],
+    imports: [
+        RouterModule,
+        FormsModule,
+        SharedModule,
+        DevicesModule,
+        routing
+    ],
     declarations: [ ...SCENARIOS_DECLARATIONS ],
     exports: [ ...SCENARIOS_DECLARATIONS ],
     providers: [
-        ScenarioListResolveService, ScenarioStatusService, ScenarioService
+        ScenarioListResolveService,
+        ScenarioStatusService,
+        ScenarioService
     ]
 })
 export class ScenariosModule {}

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { SensorDetailService } from '../shared/sensor-detail.service';
+import { DevicesService } from '../shared/devices.service';
 import { DialogService } from '../../shared/dialog/dialog.service';
 
 const headersForDisplay = [
@@ -22,7 +22,7 @@ export class DeviceListComponent implements OnInit {
     private _headers = [];
 
     constructor(
-        private sensorsService: SensorDetailService,
+        private sensorsService: DevicesService,
         private route: ActivatedRoute,
         private dialogService: DialogService,
         private viewContainerRef: ViewContainerRef
