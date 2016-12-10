@@ -15,7 +15,6 @@ export class DashboardConstructorComponent {
     constructor(private route: ActivatedRoute) { }
 
     ngOnInit(): void {
-        this.widgets = this.route.snapshot.data['dashboard'].devices;
         this.sensors = this.route.snapshot.data['sensors'];
     }
 

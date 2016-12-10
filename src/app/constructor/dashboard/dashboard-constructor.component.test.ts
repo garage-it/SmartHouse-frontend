@@ -3,7 +3,6 @@ import { DashboardConstructorComponent } from './dashboard-constructor.component
 const device1 = {mqttId: 1};
 const device2 = {mqttId: 2};
 const mockSensors = [device1, device2];
-const mockWidgets = [device1];
 
 describe('DashboardConstructor', () => {
     let sut;
@@ -40,17 +39,12 @@ describe('DashboardConstructor', () => {
 
         describe('when dashbord has some widgets', () => {
             beforeEach(() => {
-                ActivatedRoute.snapshot.data.dashboard.devices = mockWidgets;
                 ActivatedRoute.snapshot.data.sensors = [device2];
                 sut.ngOnInit();
             });
 
             it('should receive devices from state that is not active widgets', () => {
                 expect(sut.sensors).toEqual([device2]);
-            });
-
-            it('should receive dashboard widgets from state', () => {
-                expect(sut.widgets).toEqual(mockWidgets);
             });
         });
     });
