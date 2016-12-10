@@ -15,4 +15,8 @@
     </div><!-- empty-list__container -->
 </div><!-- empty-list -->
 
-<sh-device-list *ngIf="deviceList.length !== 0" [deviceList]="deviceList"></sh-device-list>
+<sh-device-list
+    *ngIf="deviceList.length !== 0"
+    [showStatisticLink]="false"
+    [deviceList]="deviceList">
+</sh-device-list>

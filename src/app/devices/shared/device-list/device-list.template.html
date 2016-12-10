@@ -18,7 +18,13 @@
                     class="sensors-list-table__body__row__item">
                     {{item[header.topic]}}
                 </td><!-- sensors-list-table__body__row__item -->
-                <td class="sensors-list-table__body__row__actions">
+                <td *ngIf="showStatisticLink">
+                    <div class="sensor-widget_statistic-button"
+                        [routerLink]="['./sensor-details', item.mqttId, 'day']">
+                    </div>
+                </td>
+                <td *ngIf="showDeleteButton"
+                    class="sensors-list-table__body__row__actions">
                     <button (click)="removeSensor(item); $event.stopPropagation()"
                             class="waves-effect waves-light btn sensors-list-table__body__row__actions__remove"
                             name="remove-device"

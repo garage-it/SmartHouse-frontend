@@ -17,6 +17,8 @@ const headersForDisplay = [
 })
 export class DeviceListComponent {
     @Input() deviceList: Array<Device>;
+    @Input() showDeleteButton: boolean = true;
+    @Input() showStatisticLink: boolean = true;
 
     private sortBy = '';
     private reverse = false;
