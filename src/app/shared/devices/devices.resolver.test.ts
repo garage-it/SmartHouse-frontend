@@ -1,12 +1,12 @@
 import { DeviceListResolver } from './devices.resolver';
 
-describe('sensor-detail-list-resolveService', () => {
+describe('Devices Resolver', () => {
     let sut;
     let DevicesService;
 
     beforeEach(() => {
         DevicesService = {
-            get: jasmine.createSpy('get')
+            getSensors: jasmine.createSpy('get')
         };
 
         sut = new DeviceListResolver(DevicesService);
@@ -14,6 +14,6 @@ describe('sensor-detail-list-resolveService', () => {
 
     it('should call sensorsService get method', () => {
         sut.resolve();
-        expect(DevicesService.get).toHaveBeenCalled();
+        expect(DevicesService.getSensors).toHaveBeenCalled();
     });
 });

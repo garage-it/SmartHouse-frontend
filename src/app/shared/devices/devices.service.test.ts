@@ -2,19 +2,19 @@ import { DevicesService } from './devices.service';
 
 describe('DevicesService', () => {
     let sut;
-    let ShHttpService;
+    let http;
     const idMock = 'mock';
     const sensorMock = {_id: idMock};
 
     beforeEach(() => {
-        ShHttpService = {
+        http = {
             get: jasmine.createSpy('get'),
             post: jasmine.createSpy('post'),
             put: jasmine.createSpy('put'),
             delete: jasmine.createSpy('delete')
         };
 
-        sut = new DevicesService(ShHttpService);
+        sut = new DevicesService(http);
     });
 
     it('should be defined', () => {
@@ -23,7 +23,7 @@ describe('DevicesService', () => {
 
     it('should retrieve list of sensors from the server', () => {
         sut.getSensors();
-        expect(ShHttpService.get).toHaveBeenCalledWith('/sensors');
+        expect(http.get).toHaveBeenCalledWith('/sensors');
     });
 
     it('should get sensor data from the server', () => {

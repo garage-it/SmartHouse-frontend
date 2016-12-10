@@ -46,7 +46,7 @@ describe('sensor-detail', () => {
     describe('#ngOnInit', () => {
         it('should not make get request when creating new sensor', () => {
             ActivatedRoute.snapshot.params.id = ROUTING.CREATE;
-            sut = new SensorDetailComponent(DevicesService, Router, ActivatedRoute, DialogService, ViewContainerRef);
+            sut = new DeviceDetailsPageComponent(DevicesService, Router, ActivatedRoute, DialogService, ViewContainerRef);
             sut.ngOnInit();
             expect(DevicesService.get).not.toHaveBeenCalled();
         });

@@ -25,7 +25,7 @@ export class DeviceListComponent {
     private _headers = [];
 
     constructor(
-        private sensorsService: DevicesService,
+        private devicesService: DevicesService,
         private dialogService: DialogService,
         private viewContainerRef: ViewContainerRef
     ) {
@@ -60,7 +60,7 @@ export class DeviceListComponent {
         this.dialogService.confirm(this.viewContainerRef, confirmOptions)
             .filter(isConfirmed => isConfirmed)
             .subscribe(() => {
-                this.sensorsService
+                this.devicesService
                     .delete(item)
                     .subscribe(data => {
                         this.deviceList = this.deviceList.filter(elem => elem._id !== data._id);

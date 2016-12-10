@@ -3,17 +3,13 @@ import { Observable } from 'rxjs';
 
 describe('device-list', () => {
     let sut;
-    let SensorsService;
-    let ActivatedRoute;
+    let DevicesService;
     let DialogService;
     let ViewContainerRef;
     let listData;
     let numberArr;
-    let mockDeviceListComponent;
 
     beforeEach(() => {
-        mockDeviceListComponent = ['some data'];
-
         numberArr = [];
 
         listData = [
@@ -31,12 +27,8 @@ describe('device-list', () => {
             }
         ];
 
-        SensorsService = {
+        DevicesService = {
             delete: jasmine.createSpy('delete')
-        };
-
-        ActivatedRoute = {
-            data: Observable.of({deviceList: mockDeviceListComponent})
         };
 
         DialogService = {
@@ -45,19 +37,7 @@ describe('device-list', () => {
 
         ViewContainerRef = {};
 
-        sut = new DeviceListComponent(SensorsService, ActivatedRoute, DialogService, ViewContainerRef);
-        spyOn(ActivatedRoute.data, 'subscribe').and.callThrough();
-    });
-
-    describe('#init', () => {
-        it('should fetch list of sensors', () => {
-            sut.ngOnInit();
-            expect(ActivatedRoute.data.subscribe).toHaveBeenCalled();
-        });
-        it('should take list data from activatedRouteMock', () => {
-            sut.ngOnInit();
-            expect(mockDeviceListComponent).toEqual(sut.deviceList);
-        });
+        sut = new DeviceListComponent(DevicesService, DialogService, ViewContainerRef);
     });
 
     describe('#headers', () => {
@@ -98,7 +78,7 @@ describe('device-list', () => {
 
                 sut.removeSensor(mockedSensor);
 
-                expect(SensorsService.delete).not.toHaveBeenCalledWith(mockedSensor);
+                expect(DevicesService.delete).not.toHaveBeenCalledWith(mockedSensor);
             });
         });
 
@@ -108,14 +88,14 @@ describe('device-list', () => {
             beforeEach(() => {
                 mockedSensor = listData[1];
                 DialogService.confirm.and.returnValue(Observable.of(true));
-                SensorsService.delete.and.returnValue(Observable.of(mockedSensor));
+                DevicesService.delete.and.returnValue(Observable.of(mockedSensor));
 
                 sut.deviceList = listData;
                 sut.removeSensor(mockedSensor);
             });
 
             it('should call sensor service', () => {
-                expect(SensorsService.delete).toHaveBeenCalledWith(mockedSensor);
+                expect(DevicesService.delete).toHaveBeenCalledWith(mockedSensor);
             });
 
             it('should remove sensor from listData', () => {
