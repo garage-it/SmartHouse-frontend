@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { DevicesService } from '../../../../devices/shared/devices.service';
+import { DevicesService } from '../../../../shared/devices/devices.service';
 
 import { ScenarioService } from '../../../shared/scenario.service';
 import { CreateScenarioWizardComponent } from '../create-scenario-wizard/create-scenario-wizard.component';

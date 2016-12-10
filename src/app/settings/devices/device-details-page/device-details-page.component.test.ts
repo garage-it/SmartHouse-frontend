@@ -1,5 +1,5 @@
 import { DeviceDetailsPageComponent } from './device-details-page.component';
-import { Sensor } from './sensor';
+import { Device } from '../../../shared/devices/device.model';
 
 import ROUTING from './../../../config.routing';
 
@@ -140,7 +140,7 @@ describe('sensor-detail', () => {
 
     describe('#onExecutorChanged', () => {
         it('should not allow both executor and servo to be checked at one time (executor changed)', () => {
-            const sensorMock = new Sensor({
+            const sensorMock = new Device({
                 servo: true,
                 executor: true
             });
@@ -154,7 +154,7 @@ describe('sensor-detail', () => {
 
     describe('#onServoChanged', () => {
         it('should not allow both executor and servo to be checked at one time (servo changed)', () => {
-            const sensorMock = new Sensor({
+            const sensorMock = new Device({
                 servo: true,
                 executor: true
             });
