@@ -1,7 +1,7 @@
-import { SensorDetailComponent } from './sensor-detail.component';
+import { DeviceDetailsPageComponent } from './device-details-page.component';
 import { Sensor } from './sensor';
 
-import ROUTING from './../../config.routing';
+import ROUTING from './../../../config.routing';
 
 import { Observable } from 'rxjs';
 
@@ -36,7 +36,7 @@ describe('sensor-detail', () => {
             update: jasmine.createSpy('update'),
             delete: jasmine.createSpy('delete')
         };
-        sut = new SensorDetailComponent(DevicesService, Router, ActivatedRoute, DialogService, ViewContainerRef);
+        sut = new DeviceDetailsPageComponent(DevicesService, Router, ActivatedRoute, DialogService, ViewContainerRef);
     });
 
     it('should create new sensor if id isn\'t passed to class', () => {
@@ -76,7 +76,7 @@ describe('sensor-detail', () => {
         it('should navigate to the list of sensors on save', (done) => {
             sut.needUpdate = true;
             sut.save();
-            expect(Router.navigate).toHaveBeenCalledWith(['/devices']);
+            expect(Router.navigate).toHaveBeenCalledWith(['/settings/devices']);
             done();
         });
 
@@ -90,7 +90,7 @@ describe('sensor-detail', () => {
     describe('#cancel', () => {
         it('should navigate to the list of devices on cancel', () => {
             sut.cancel();
-            expect(Router.navigate).toHaveBeenCalledWith(['/devices']);
+            expect(Router.navigate).toHaveBeenCalledWith(['/settings/devices']);
         });
     });
 
@@ -132,7 +132,7 @@ describe('sensor-detail', () => {
             });
 
             it('should navigate to the list of sensors on remove', () => {
-                expect(Router.navigate).toHaveBeenCalledWith(['/devices']);
+                expect(Router.navigate).toHaveBeenCalledWith(['/settings/devices']);
             });
         });
 

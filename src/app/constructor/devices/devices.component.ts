@@ -1,5 +1,5 @@
 import { Component, ViewChildren, AfterViewInit, ElementRef, Renderer, EventEmitter, Output } from '@angular/core';
-import { Device } from '../../devices/shared/device.model';
+import { Device } from '../../shared/devices/device.model';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
 
 @Component({

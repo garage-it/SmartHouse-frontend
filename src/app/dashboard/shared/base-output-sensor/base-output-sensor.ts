@@ -56,6 +56,7 @@ export class BaseOutputSensor extends BaseSensor {
         }, DEVICE_RESPOND_TIMEOUT);
 
         this.data.value = BaseOutputSensor.generateValue(condition, positiveValue, negativeValue, self, args);
+        this.data.updateTime = new Date();
 
         this.sensorWidgetService.pushEvent({
             device: this.device.mqttId,

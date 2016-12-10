@@ -2,16 +2,16 @@ import { Component, ViewContainerRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Sensor } from './sensor';
-import { DevicesService } from '../shared/devices.service';
+import { DevicesService } from '../../shared/devices/devices.service';
 import { DialogService } from '../../shared/dialog/dialog.service';
 import ROUTING from './../../config.routing';
 
 @Component({
-    selector: 'sh-sensor-detail',
-    templateUrl: './sensor-detail.template.html',
-    styleUrls: ['./sensor-detail.style.scss']
+    selector: 'sh-device-details-page',
+    templateUrl: './device-details.template.html',
+    styleUrls: ['./device-details.style.scss']
 })
-export class SensorDetailComponent {
+export class DeviceDetailsPageComponent {
 
     private needUpdate: boolean;
     private sensor: Sensor;
@@ -86,6 +86,6 @@ export class SensorDetailComponent {
     }
 
     private _navigateToList(): void {
-        this.router.navigate(['/devices']);
+        this.router.navigate(['/settings/devices']);
     }
 }

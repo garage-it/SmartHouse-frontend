@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DashboardViewComponent } from './dashboard/dashboard-view/dashboard-view.component';
 import { SharedModule } from '../shared/shared.module';
-import { DevicesModule } from '../devices/shared/devices.module';
+import { DevicesModule } from '../shared/devices/devices.module';
 import { DashboardViewResolveService } from './dashboard/dashboard-view/dashboard-view-resolve.service';
 import { DashboardConstructorService } from './dashboard/dashboard-constructor.service';
 import { DashboardModule } from '../dashboard/dashboard.module';

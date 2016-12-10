@@ -1,7 +1,7 @@
 import { RouterModule } from '@angular/router';
 
 import { ConstructorComponent } from './constructor.component';
-import { DeviceListResolver } from '../devices/shared/devices.resolver';
+import { DeviceListResolver } from '../shared/devices/devices.resolver';
 import { DashboardViewResolveService } from './dashboard/dashboard-view/dashboard-view-resolve.service';
 
 export const routes = [
