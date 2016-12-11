@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, ViewContainerRef, Input } from '@angular/core';
 
-import { SensorDetailService } from '../shared/sensor-detail.service';
+import { DevicesService } from '../devices.service';
 import { DialogService } from '../../../shared/dialog/dialog.service';
+import { Device } from '../device.model';
 
 const headersForDisplay = [
     { topic: 'mqttId', name: 'ID', sortable: true },
@@ -15,25 +15,21 @@ const headersForDisplay = [
     templateUrl: './device-list.template.html',
     styleUrls: ['./device-list.style.scss']
 })
-export class DeviceListComponent implements OnInit {
-    private deviceList = [];
+export class DeviceListComponent {
+    @Input() deviceList: Array<Device>;
+    @Input() showDeleteButton: boolean = true;
+    @Input() showStatisticLink: boolean = true;
+
     private sortBy = '';
     private reverse = false;
     private _headers = [];
 
     constructor(
-        private sensorsService: SensorDetailService,
-        private route: ActivatedRoute,
+        private devicesService: DevicesService,
         private dialogService: DialogService,
         private viewContainerRef: ViewContainerRef
     ) {
         this._headers = headersForDisplay;
-    }
-
-    ngOnInit() {
-        this.route.data.subscribe(data => {
-            this.deviceList = data['deviceList'];
-        });
     }
 
     setSortBy(sortByValue) {
@@ -55,10 +51,6 @@ export class DeviceListComponent implements OnInit {
         return val === this.sortBy;
     }
 
-    get headers() {
-        return this._headers;
-    }
-
     removeSensor(item) {
         const confirmOptions = {
             title: '',
@@ -68,11 +60,15 @@ export class DeviceListComponent implements OnInit {
         this.dialogService.confirm(this.viewContainerRef, confirmOptions)
             .filter(isConfirmed => isConfirmed)
             .subscribe(() => {
-                this.sensorsService
+                this.devicesService
                     .delete(item)
                     .subscribe(data => {
                         this.deviceList = this.deviceList.filter(elem => elem._id !== data._id);
                     });
             });
+    }
+
+    get headers() {
+        return this._headers;
     }
 }

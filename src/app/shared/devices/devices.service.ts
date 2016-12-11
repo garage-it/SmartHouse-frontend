@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
-import { ShHttpService } from '../../../core/sh-http/sh-http.service';
+import { ShHttpService } from '../../core/sh-http/sh-http.service';
 
 @Injectable()
-export class SensorDetailService {
+export class DevicesService {
+    constructor(private http: ShHttpService) { }
 
-    constructor(private http: ShHttpService) {}
+    getSensors() {
+        return this.http.get('/sensors');
+    }
 
     get(id = '') {
         return this.http.get(`/sensors/${id}`);

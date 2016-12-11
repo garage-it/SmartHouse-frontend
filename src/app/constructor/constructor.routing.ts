@@ -1,14 +1,14 @@
 import { RouterModule } from '@angular/router';
 
 import { ConstructorComponent } from './constructor.component';
-import { DeviceListResolveService } from '../settings/devices/device-list/device-list-resolve.service';
+import { DeviceListResolver } from '../shared/devices/devices.resolver';
 
 export const routes = [
     {
         path: '',
         component: ConstructorComponent,
         resolve: {
-            sensors: DeviceListResolveService
+            sensors: DeviceListResolver
         }
     }
 ];

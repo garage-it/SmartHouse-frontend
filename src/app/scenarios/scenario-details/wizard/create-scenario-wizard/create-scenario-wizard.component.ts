@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { DeviceListService } from '../../../../settings/devices/device-list/device-list.service';
+import { DevicesService } from '../../../../shared/devices/devices.service';
 
 import { ScenarioDetailsComponent } from '../../scenario-details.component';
 import { ScenarioService } from '../../../shared/scenario.service';
@@ -20,13 +20,13 @@ export class CreateScenarioWizardComponent extends ScenarioDetailsComponent impl
         protected _scenarioService: ScenarioService,
         protected _route: ActivatedRoute,
         protected _router: Router,
-        protected deviceListService: DeviceListService
+        protected devicesService: DevicesService
     ) {
         super(_scenarioService, _route, _router);
     }
 
     ngOnInit() {
-        this.deviceListService
+        this.devicesService
             .getSensors()
             .subscribe(devices => {
                 this.devices = devices;

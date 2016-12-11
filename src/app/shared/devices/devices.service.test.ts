@@ -1,9 +1,8 @@
-import { SensorDetailService } from './sensor-detail.service';
+import { DevicesService } from './devices.service';
 
-describe('SensorDetailService', () => {
+describe('DevicesService', () => {
     let sut;
     let http;
-
     const idMock = 'mock';
     const sensorMock = {_id: idMock};
 
@@ -14,11 +13,17 @@ describe('SensorDetailService', () => {
             put: jasmine.createSpy('put'),
             delete: jasmine.createSpy('delete')
         };
-        sut = new SensorDetailService(http);
+
+        sut = new DevicesService(http);
     });
 
     it('should be defined', () => {
         expect(sut).toBeDefined();
+    });
+
+    it('should retrieve list of sensors from the server', () => {
+        sut.getSensors();
+        expect(http.get).toHaveBeenCalledWith('/sensors');
     });
 
     it('should get sensor data from the server', () => {

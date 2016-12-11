@@ -4,10 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { SharedModule } from '../shared/shared.module';
 import { RolesService } from './roles/roles.service';
-
-import { DeviceListService } from './devices/device-list/device-list.service';
-import { DeviceListResolveService } from './devices/device-list/device-list-resolve.service';
-import { SensorDetailService } from './devices/shared/sensor-detail.service';
+import { DevicesModule } from '../shared/devices/devices.module.ts';
 
 import { routing } from './settings.routing';
 
@@ -15,14 +12,17 @@ import SETTINGS_DECLARATIONS from './settings.declarations';
 
 @NgModule({
     id: module.id,
-    imports: [ RouterModule, FormsModule, SharedModule, routing ],
+    imports: [
+        RouterModule,
+        FormsModule,
+        SharedModule,
+        DevicesModule,
+        routing
+    ],
     declarations: [ ...SETTINGS_DECLARATIONS ],
     exports: [ ...SETTINGS_DECLARATIONS ],
     providers: [
-        RolesService,
-        SensorDetailService,
-        DeviceListService,
-        DeviceListResolveService
+        RolesService
     ]
 })
 export class SettingsModule {}

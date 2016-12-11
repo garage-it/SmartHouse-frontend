@@ -1,23 +1,4 @@
-<sh-settings></sh-settings>
-
-<div class="sub-header row">
-  <div id="page-title" class="col s5 sub-header__title"><h2>Devices</h2></div>
-  <div class="sub-header__actions col s3 right">
-    <button [routerLink]="['/settings/devices/create']"
-        class="waves-effect waves-light btn blue-grey darken-1">Add new device</button>
-  </div><!-- sub-header__actions -->
-</div><!-- sub-header -->
-
-<div *ngIf="deviceList.length === 0" class="empty-list">
-    <div class="container empty-list__container">
-        <div class="empty-list__container__text">
-            <h3 class="empty-list__container__text__main">There are no devices yet</h3>
-            <h4 class="empty-list__container__text__additional">Once you connect your device to the system, it will be listed here.</h4>
-        </div><!-- empty-list__container__text -->
-    </div><!-- empty-list__container -->
-</div><!-- empty-list -->
-
-<div *ngIf="deviceList.length !== 0" class="sensors-list">
+<div class="sensors-list">
     <table class="highlight responsive-table sensors-list-table">
         <thead class="sensors-list-table__head">
             <th *ngFor="let header of headers"
@@ -31,13 +12,19 @@
         </thead><!-- sensors-list-table__head -->
         <tbody class="sensors-list-table__body">
             <tr *ngFor="let item of deviceList"
-                [routerLink]="['/settings/devices', item._id]"
+                [routerLink]="['./', item._id]"
                 class="sensors-list-table__body__row">
                 <td *ngFor="let header of headers"
                     class="sensors-list-table__body__row__item">
                     {{item[header.topic]}}
                 </td><!-- sensors-list-table__body__row__item -->
-                <td class="sensors-list-table__body__row__actions">
+                <td *ngIf="showStatisticLink">
+                    <div class="sensor-widget_statistic-button"
+                        [routerLink]="['./sensor-details', item.mqttId, 'day']">
+                    </div>
+                </td>
+                <td *ngIf="showDeleteButton"
+                    class="sensors-list-table__body__row__actions">
                     <button (click)="removeSensor(item); $event.stopPropagation()"
                             class="waves-effect waves-light btn sensors-list-table__body__row__actions__remove"
                             name="remove-device"

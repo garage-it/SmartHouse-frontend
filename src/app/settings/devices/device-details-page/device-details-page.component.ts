@@ -1,30 +1,30 @@
 import { Component, ViewContainerRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { Sensor } from './sensor';
-import { SensorDetailService } from '../shared/sensor-detail.service';
+import { Device } from '../../../shared/devices/device.model';
+import { DevicesService } from '../../../shared/devices/devices.service';
 import { DialogService } from '../../../shared/dialog/dialog.service';
 import ROUTING from './../../../config.routing';
 
 @Component({
-    selector: 'sh-sensor-detail',
-    templateUrl: './sensor-detail.template.html',
-    styleUrls: ['./sensor-detail.style.scss']
+    selector: 'sh-device-details-page',
+    templateUrl: './device-details-page.template.html',
+    styleUrls: ['./device-details-page.style.scss']
 })
-export class SensorDetailComponent {
+export class DeviceDetailsPageComponent {
 
     private needUpdate: boolean;
-    private sensor: Sensor;
+    private sensor: Device;
 
     constructor(
-        private sensorDetailService: SensorDetailService,
+        private sensorDetailService: DevicesService,
         private router: Router,
         private route: ActivatedRoute,
         private dialogService: DialogService,
         private viewContainerRef: ViewContainerRef
     ) {
         this.needUpdate = true;
-        this.sensor = new Sensor();
+        this.sensor = new Device();
     }
 
     public ngOnInit(): void {
@@ -36,7 +36,7 @@ export class SensorDetailComponent {
         this.sensorDetailService
             .get(id)
             .subscribe(data => {
-                this.sensor = new Sensor(data);
+                this.sensor = new Device(data);
             });
     }
 

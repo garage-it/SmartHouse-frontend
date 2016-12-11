@@ -1,5 +1,5 @@
-import { SensorDetailComponent } from './sensor-detail.component';
-import { Sensor } from './sensor';
+import { DeviceDetailsPageComponent } from './device-details-page.component';
+import { Device } from '../../../shared/devices/device.model';
 
 import ROUTING from './../../../config.routing';
 
@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 
 describe('sensor-detail', () => {
     let sut;
-    let SensorDetailService;
+    let DevicesService;
     let DialogService;
     let ActivatedRoute;
     let Router;
@@ -30,13 +30,13 @@ describe('sensor-detail', () => {
         Router = {
             navigate: jasmine.createSpy('navigate')
         };
-        SensorDetailService = {
+        DevicesService = {
             get: jasmine.createSpy('get'),
             save: jasmine.createSpy('save'),
             update: jasmine.createSpy('update'),
             delete: jasmine.createSpy('delete')
         };
-        sut = new SensorDetailComponent(SensorDetailService, Router, ActivatedRoute, DialogService, ViewContainerRef);
+        sut = new DeviceDetailsPageComponent(DevicesService, Router, ActivatedRoute, DialogService, ViewContainerRef);
     });
 
     it('should create new sensor if id isn\'t passed to class', () => {
@@ -46,23 +46,23 @@ describe('sensor-detail', () => {
     describe('#ngOnInit', () => {
         it('should not make get request when creating new sensor', () => {
             ActivatedRoute.snapshot.params.id = ROUTING.CREATE;
-            sut = new SensorDetailComponent(SensorDetailService, Router, ActivatedRoute, DialogService, ViewContainerRef);
+            sut = new DeviceDetailsPageComponent(DevicesService, Router, ActivatedRoute, DialogService, ViewContainerRef);
             sut.ngOnInit();
-            expect(SensorDetailService.get).not.toHaveBeenCalled();
+            expect(DevicesService.get).not.toHaveBeenCalled();
         });
 
         it('should get sensor by given id', () => {
-            SensorDetailService.get.and.returnValue(Observable.of(idMock));
+            DevicesService.get.and.returnValue(Observable.of(idMock));
             sut.ngOnInit();
-            expect(SensorDetailService.get).toHaveBeenCalledWith(idMock);
+            expect(DevicesService.get).toHaveBeenCalledWith(idMock);
         });
     });
 
     describe('#save', () => {
         const sensorMock = {};
         beforeEach(() => {
-            SensorDetailService.save.and.returnValue(Observable.of(sensorMock));
-            SensorDetailService.update.and.returnValue(Observable.of(sensorMock));
+            DevicesService.save.and.returnValue(Observable.of(sensorMock));
+            DevicesService.update.and.returnValue(Observable.of(sensorMock));
 
             sut.sensor = sensorMock;
         });
@@ -70,7 +70,7 @@ describe('sensor-detail', () => {
         it('should save new sensor', () => {
             sut.needUpdate = false;
             sut.save();
-            expect(SensorDetailService.save).toHaveBeenCalledWith(sensorMock);
+            expect(DevicesService.save).toHaveBeenCalledWith(sensorMock);
         });
 
         it('should navigate to the list of sensors on save', (done) => {
@@ -83,7 +83,7 @@ describe('sensor-detail', () => {
         it('should update sensor', () => {
             sut.needUpdate = true;
             sut.save();
-            expect(SensorDetailService.update).toHaveBeenCalledWith(sensorMock);
+            expect(DevicesService.update).toHaveBeenCalledWith(sensorMock);
         });
     });
 
@@ -116,19 +116,19 @@ describe('sensor-detail', () => {
             });
 
             it('should not remove sensor if user cancel confirmation', () => {
-                expect(SensorDetailService.delete).not.toHaveBeenCalled;
+                expect(DevicesService.delete).not.toHaveBeenCalled;
             });
         });
 
         describe('should remove sensor if user confirms', () => {
             beforeEach(() => {
-                SensorDetailService.delete.and.returnValues(Observable.of(1));
+                DevicesService.delete.and.returnValues(Observable.of(1));
                 DialogService.confirm.and.returnValue(Observable.of(true));
                 sut.remove();
             });
 
             it('should remove sensor', () => {
-                expect(SensorDetailService.delete).toHaveBeenCalledWith(sensorMock);
+                expect(DevicesService.delete).toHaveBeenCalledWith(sensorMock);
             });
 
             it('should navigate to the list of sensors on remove', () => {
@@ -140,7 +140,7 @@ describe('sensor-detail', () => {
 
     describe('#onExecutorChanged', () => {
         it('should not allow both executor and servo to be checked at one time (executor changed)', () => {
-            const sensorMock = new Sensor({
+            const sensorMock = new Device({
                 servo: true,
                 executor: true
             });
@@ -154,7 +154,7 @@ describe('sensor-detail', () => {
 
     describe('#onServoChanged', () => {
         it('should not allow both executor and servo to be checked at one time (servo changed)', () => {
-            const sensorMock = new Sensor({
+            const sensorMock = new Device({
                 servo: true,
                 executor: true
             });

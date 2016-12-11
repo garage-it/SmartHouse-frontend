@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter, ViewContainerRef } from '@angul
 import { DialogService } from '../../../shared/dialog/dialog.service';
 import { Router } from '@angular/router';
 import { DashboardConstructorService } from '../dashboard-constructor.service';
-import { Device } from '../../../settings/devices/device.model';
+import { Device } from '../../../shared/devices/device.model';
 
 @Component({
     selector: 'sh-dashboard-view',

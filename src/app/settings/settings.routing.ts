@@ -2,9 +2,9 @@ import { RouterModule } from '@angular/router';
 
 import { GeneralComponent } from './general/general.component';
 import { RolesComponent } from './roles/roles.component';
-import { SensorDetailComponent } from './devices/sensor-details/sensor-detail.component';
-import { DeviceListComponent } from './devices/device-list/device-list.component';
-import { DeviceListResolveService } from './devices/device-list/device-list-resolve.service';
+import { DeviceDetailsPageComponent } from './devices/device-details-page/device-details-page.component';
+import { DeviceListPageComponent } from './devices/device-list-page/device-list-page.component';
+import { DeviceListResolver } from '../shared/devices/devices.resolver';
 
 import ROUTING from './../config.routing';
 
@@ -18,18 +18,18 @@ export const routes = [
             },
             {
                 path: 'devices',
-                component: DeviceListComponent,
+                component: DeviceListPageComponent,
                 resolve: {
-                    deviceList: DeviceListResolveService
+                    deviceList: DeviceListResolver
                 }
             },
             {
                 path: `devices/:id`,
-                component: SensorDetailComponent
+                component: DeviceDetailsPageComponent
             },
             {
                 path: `devices/${ROUTING.CREATE}`,
-                component: SensorDetailComponent
+                component: DeviceDetailsPageComponent
             },
             {
                 path: 'general',

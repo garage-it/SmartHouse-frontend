@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Device } from '../../settings/devices/device.model';
+import { Device } from '../../shared/devices/device.model';
 
 @Component({
     selector: 'sh-dashboard-constructor',

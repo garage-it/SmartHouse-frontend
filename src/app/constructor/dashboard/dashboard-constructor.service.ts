@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { ShHttpService } from '../../core/sh-http/sh-http.service';
 import { ShHttpUtilsService } from '../../core/sh-http/sh-http-utils.service';
-import { Device } from '../../settings/devices/device.model';
+import { Device } from '../../shared/devices/device.model';
 
 @Injectable()
 export class DashboardConstructorService {

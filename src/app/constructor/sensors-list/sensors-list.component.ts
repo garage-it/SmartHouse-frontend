@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output, Input } from '@angular/core';
-import { Device } from '../../settings/devices/device.model';
+import { Device } from '../../shared/devices/device.model';
 
 @Component({
     selector: 'sh-sensors-list',

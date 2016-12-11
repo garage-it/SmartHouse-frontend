@@ -1,9 +1,14 @@
-export class Sensor {
-    mqttId: string;
-    type: string;
+export class Device {
+    _id?: string;
+    description: string;
     executor: boolean;
+    metrix: string;
+    mqttId: string;
     servo: boolean;
-    metrics: string;
+    type: string;
+    updateTime: string;
+    posX: number;
+    posY: number;
 
     constructor(data = {}) {
         Object.assign(this, {
