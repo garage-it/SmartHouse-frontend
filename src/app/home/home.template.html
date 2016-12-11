@@ -1,5 +1,8 @@
 <div class="home-nav">
-    <div class="home-nav__logo">{{currentMapView.name}} view</div>
+    <div class="home-nav__logo"
+         *ngIf="currentMapView.name">
+        {{currentMapView.name}} view
+    </div>
 
     <div class="home-nav__actions">
         <button class="button button_success"
@@ -34,12 +37,10 @@
     </div>
 </div>
 
-<div class="current-view">
-    <sh-map-view [currentMapView]="currentMapView"></sh-map-view>
-</div>
-
 <div class="home-view"
      *ngIf="listMapViews.length">
+    <sh-map-view [currentMapView]="currentMapView"></sh-map-view>
+
     <sh-map-view-list [listMapViews]="listMapViews"
                       (onSelectMapView)="setCurrentMapView($event)">
     </sh-map-view-list>
