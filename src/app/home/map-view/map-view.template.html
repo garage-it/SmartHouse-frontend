@@ -1,0 +1,17 @@
+<div class="map-view">
+    <div class="picture"
+         *ngIf="currentMapView.pictureName">
+
+        <img class="picture__image"
+             [src]="getImage()"
+             alt="your image"/>
+
+        <div class="sensor"
+             [ngStyle]="{'left': sensor.position.x + 'px', 'top': sensor.position.y + 'px'}"
+             *ngFor="let sensor of currentMapView.sensors">
+            <div class="sensor__description">
+                s <!--{{sensor.type?.slice(0,1).toUpperCase()}}-->
+            </div>
+        </div>
+    </div>
+</div>

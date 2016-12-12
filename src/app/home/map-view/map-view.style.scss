@@ -1,0 +1,22 @@
+.map-view {
+    position: relative;
+    width: 1280px;
+    height: 370px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+}
+.sensor {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    background: #30d16a;
+    color: #fff;
+    position: absolute;
+    cursor: move;
+
+    &__description {
+        margin-left: 6px;
+        font-weight: bold;
+    }
+}

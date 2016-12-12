@@ -1,0 +1,14 @@
+<div class="sh-map-view-list">
+    <div class="sh-map-view-list__title">Views</div>
+    <div class="sh-map-view-list__items">
+        <div class="sh-map-view-list__item"
+             *ngFor="let mapView of listMapViews">
+            <span class="col s3 sh-map-view-list__item-name">{{mapView.name}}</span>
+            <span class="col s3 sh-map-view-list__item-description">{{mapView.description}}</span>
+            <button class="col s3 sh-map-view-list__item-button"
+                    (click)="viewMap(mapView)">
+                View
+            </button>
+        </div>
+    </div>
+</div>
