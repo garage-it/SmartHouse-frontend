@@ -13,6 +13,7 @@ export class DevicesComponent implements AfterViewInit {
 
     public sensors: Device[] = [];
     public deviceList: ElementRef[] = [];
+    public switcher: boolean = false;
 
     constructor(private element: ElementRef,
                 private renderer: Renderer,
@@ -21,6 +22,20 @@ export class DevicesComponent implements AfterViewInit {
 
     mappedSensor(sensors: Device[]): void {
         this.onMappedSensor.emit(sensors);
+    }
+
+    switchSensor(device: Device): void {
+        if (device.mqttId === 'switcher') {
+            this.switcher = !this.switcher;
+        }
+    }
+    
+    switcherStatus(device: Device): string {
+        if (device.mqttId === 'switcher') {
+            return this.switcher ? 'ON' : 'OFF';
+        } else {
+            return ''
+        }
     }
 
     ngAfterViewInit() {

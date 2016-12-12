@@ -2,10 +2,11 @@
     <div class="device"
          #devices
          *ngFor="let device of sensors">
-        <div class="device__description">
-            {{device.mqttId.slice(0,1).toUpperCase()}}
+        <div class="device__icon"
+             [style.background-image]="'url(assets/' + device.mqttId + switcherStatus(device) + '.svg)'">
+        </div>
+        <div class="device__clickable"
+            (click)="switchSensor(device)">
         </div>
     </div>
 </div>
-
-
