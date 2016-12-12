@@ -12,6 +12,8 @@ import HOME_DECLARATIONS from './home.declarations';
 import { MapViewService } from './map-view/map-view.service';
 import { CoreModule } from '../core/core.module';
 import { ChartModule } from 'angular2-highcharts';
+import { HomeService } from './home.service';
+import { HomeResolveService } from './home-resolve.service';
 
 @NgModule({
     id: module.id,
@@ -26,7 +28,9 @@ import { ChartModule } from 'angular2-highcharts';
     declarations: [ ...HOME_DECLARATIONS ],
     exports: [ HomeComponent ],
     providers: [
-        MapViewService
+        MapViewService,
+        HomeService,
+        HomeResolveService
     ]
 })
 export class HomeModule {}

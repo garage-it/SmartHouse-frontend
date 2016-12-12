@@ -1,4 +1,9 @@
 <div class="home-nav">
+    <div class="home-nav__logo"
+         *ngIf="currentMapView.name">
+        {{currentMapView.name}} view
+    </div>
+
     <div class="home-nav__actions">
         <button class="button button_success"
                 [routerLink]="['constructor']">
@@ -20,7 +25,8 @@
     </div>
 </div>
 
-<div class="home-view">
+<div class="home-view"
+     *ngIf="!listMapViews.length">
     <div class="empty-home-view">
         Please
         <a class="empty-home-view__create"
@@ -29,4 +35,13 @@
         </a>
         view
     </div>
+</div>
+
+<div class="home-view"
+     *ngIf="listMapViews.length">
+    <sh-map-view [currentMapView]="currentMapView"></sh-map-view>
+
+    <sh-map-view-list [listMapViews]="listMapViews"
+                      (onSelectMapView)="setCurrentMapView($event)">
+    </sh-map-view-list>
 </div>

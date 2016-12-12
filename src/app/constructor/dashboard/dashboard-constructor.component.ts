@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Device } from '../../devices/device.model';
+import { Device } from '../../shared/devices/device.model';
 
 @Component({
     selector: 'sh-dashboard-constructor',
@@ -15,7 +15,6 @@ export class DashboardConstructorComponent {
     constructor(private route: ActivatedRoute) { }
 
     ngOnInit(): void {
-        this.widgets = this.route.snapshot.data['dashboard'].devices;
         this.sensors = this.route.snapshot.data['sensors'];
     }
 

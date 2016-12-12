@@ -1,4 +1,4 @@
-import { Sensor } from '../../devices/sensor-details/sensor';
+import { Device } from '../../shared/devices/device.model';
 
 export interface Position {
     x: Number;
@@ -6,7 +6,7 @@ export interface Position {
 }
 
 export interface MapViewSensorDto {
-    sensor: Sensor;
+    sensor: Device;
     position: Position;
 }
 

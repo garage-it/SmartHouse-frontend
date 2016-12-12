@@ -1,1 +1,7 @@
 <h1>Statistic page</h1>
+
+<sh-device-list
+    *ngIf="deviceList.length !== 0"
+    [showDeleteButton]="false"
+    [deviceList]="deviceList">
+</sh-device-list>

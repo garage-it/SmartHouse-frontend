@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { DeviceListService } from '../../../../devices/device-list/device-list.service';
+import { DevicesService } from '../../../../shared/devices/devices.service';
 
 import { ScenarioService } from '../../../shared/scenario.service';
 import { CreateScenarioWizardComponent } from '../create-scenario-wizard/create-scenario-wizard.component';
@@ -24,13 +24,13 @@ export class EditScenarioWizardComponent extends CreateScenarioWizardComponent i
         protected _router: Router,
         protected dialogService: DialogService,
         protected viewContainerRef: ViewContainerRef,
-        protected deviceListService: DeviceListService
+        protected devicesService: DevicesService
     ) {
-        super(_scenarioService, _route, _router, deviceListService);
+        super(_scenarioService, _route, _router, devicesService);
     }
 
     ngOnInit() {
-        const deviceListStream = this.deviceListService.getSensors();
+        const deviceListStream = this.devicesService.getSensors();
         const scenarioStream = this._scenarioService.get(this._route.snapshot.params['id']);
         const source = Observable.forkJoin(
             deviceListStream, scenarioStream

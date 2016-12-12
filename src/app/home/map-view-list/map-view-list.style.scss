@@ -1,0 +1,55 @@
+.sh-map-view-list {
+    width: 1280px;
+    height: 398px;
+    margin: 0 auto;
+    overflow-y: scroll;
+
+    &__title {
+        padding: 10px 0;
+        margin-bottom: 30px;
+    }
+
+    &__item {
+        margin: 0 30px;
+        border-bottom: 1px solid gray;
+
+        &:first-child {
+            border-top: 1px solid gray;
+        }
+    }
+
+    &__item-name {
+        position: relative;
+        width: 35%;
+        display: inline-block;
+        padding: 10px 20px;
+
+        &::before {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            content: '';
+            top: 15px;
+            left: 5px;
+            background-image: url('../assets/shape-copy-7.svg');
+            background-repeat: no-repeat;
+        }
+    }
+
+    &__item-description {
+        width: 49%;
+        display: inline-block;
+    }
+
+    &__item-button {
+        width: 10%;
+        height: 25px;
+        display: inline-block;
+        margin: 0 15px;
+        background-color: #37c4d8;
+
+        &:active {
+            opacity: .54;
+        }
+    }
+}

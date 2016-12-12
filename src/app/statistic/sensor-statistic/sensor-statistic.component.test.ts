@@ -55,4 +55,28 @@ describe('SensorStatisticComponent', () => {
             expect(routeSubscription.unsubscribe).toHaveBeenCalled();
         });
     });
+
+    describe('when correct sensor selected', () => {
+        const correctMockSensorId = 'switcher';
+        it('switcher widget should be visible', () => {
+            sut.sensorId = correctMockSensorId;
+            expect(sut.isSwitcherWidgetVisible()).toEqual(true);
+        });
+        it('chat widget should not be visible', () => {
+            sut.sensorId = correctMockSensorId;
+            expect(sut.isChartWidgetVisible()).toEqual(false);
+        });
+    });
+
+    describe('when incorrect sensor selected', () => {
+        const incorrectMockSensorId = 'servo';
+        it('switcher widget should be visible', () => {
+            sut.sensorId = incorrectMockSensorId;
+            expect(sut.isSwitcherWidgetVisible()).toEqual(false);
+        });
+        it('chat widget should not be visible', () => {
+            sut.sensorId = incorrectMockSensorId;
+            expect(sut.isChartWidgetVisible()).toEqual(true);
+        });
+    });
 });

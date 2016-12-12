@@ -1,6 +1,6 @@
 import { CreateScenarioWizardComponent } from './create-scenario-wizard.component';
 import { ScenarioService } from '../../../shared/scenario.service';
-import { DeviceListService } from '../../../../devices/device-list/device-list.service';
+import { DevicesService } from '../../../../shared/devices/devices.service';
 
 import { Action } from '../scenario-entities/action';
 import { Condition } from '../scenario-entities/condition';
@@ -8,7 +8,7 @@ import { Scenario } from '../scenario-entities/scenario';
 
 describe('CreateScenarioWizardComponent', () => {
     let scenarioService;
-    let deviceListService;
+    let devicesService;
     let scenario;
     let devices;
     let subscribeHandler;
@@ -30,22 +30,22 @@ describe('CreateScenarioWizardComponent', () => {
         scenarioService = jasmine.createSpyComponent(ScenarioService);
         scenarioService.create.and.returnValue({ subscribe(fn) { fn(); } });
 
-        deviceListService = jasmine.createSpyComponent(DeviceListService);
-        deviceListService.getSensors.and.returnValue({
+        devicesService = jasmine.createSpyComponent(DevicesService);
+        devicesService.getSensors.and.returnValue({
             subscribe: (callback) => {
                 subscribeHandler = callback;
             }
         });
         expectedScenario = createScenario();
 
-        sut = new CreateScenarioWizardComponent(scenarioService, null, null, deviceListService);
+        sut = new CreateScenarioWizardComponent(scenarioService, null, null, devicesService);
         spyOn(sut, 'back');
     });
 
     describe('On Init', () => {
         it('get devices list', () => {
             sut.ngOnInit();
-            expect(deviceListService.getSensors).toHaveBeenCalled();
+            expect(devicesService.getSensors).toHaveBeenCalled();
         });
 
         it('should have scenario', () => {

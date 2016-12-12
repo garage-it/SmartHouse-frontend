@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { DashboardConstructorService } from '../dashboard-constructor.service';
-import { Device } from '../../../devices/device.model';
+import { Device } from '../../../shared/devices/device.model';
 
 @Component({
     selector: 'sh-dashboard-view',

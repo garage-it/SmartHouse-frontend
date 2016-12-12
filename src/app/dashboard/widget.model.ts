@@ -1,4 +1,4 @@
-import { Device } from '../devices/device.model';
+import { Device } from '../shared/devices/device.model';
 
 export class Widget {
     _id?: string;
