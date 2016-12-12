@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-
 import { routing } from './constructor.routing';
 import { ConstructorComponent } from './constructor.component';
 import { DashboardConstructorComponent } from './dashboard/dashboard-constructor.component';
@@ -15,6 +14,7 @@ import { DashboardModule } from '../dashboard/dashboard.module';
 import { FileDropDirective, FileSelectDirective } from 'ng2-file-upload';
 import { DevicesComponent } from './devices/devices.component';
 import { DragulaModule } from 'ng2-dragula/ng2-dragula';
+import { CanDeactivateConstructor } from './can-deactivate-constructor';
 
 @NgModule({
     id: module.id,
@@ -38,7 +38,8 @@ import { DragulaModule } from 'ng2-dragula/ng2-dragula';
         DevicesComponent
     ],
     providers: [
-        DashboardConstructorService
+        DashboardConstructorService,
+        CanDeactivateConstructor
     ]
 })
 export class ConstructorModule {}

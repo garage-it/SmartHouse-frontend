@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone, ViewChild, ViewContainerRef, ElementRef, Renderer } from '@angular/core';
+import { Component, OnInit, NgZone, ViewChild, ElementRef, Renderer } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Device } from '../../shared/devices/device.model';
 import { FileUploader } from 'ng2-file-upload';
@@ -6,7 +6,6 @@ import { DevicesComponent } from '../devices/devices.component';
 import { MapViewService } from '../../home/map-view/map-view.service';
 import { MapViewInfoCreateDto } from '../../home/map-view/map-view.dto';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { DialogService } from '../../shared/dialog/dialog.service';
 
 @Component({
     selector: 'sh-map-constructor',
@@ -31,8 +30,6 @@ export class MapConstructorComponent implements OnInit {
                 private router: Router,
                 private ngZone: NgZone,
                 private toastr: ToastsManager,
-                private dialogService: DialogService,
-                private viewContainerRef: ViewContainerRef,
                 private renderer: Renderer,
                 private mapViewService: MapViewService) {
     }
@@ -81,20 +78,6 @@ export class MapConstructorComponent implements OnInit {
 
     public fileOverBase(e: any): void {
         this.hasBaseDropZoneOver = e;
-    }
-
-    public onCancelClick(): void {
-        const confirmOptions = {
-            title: '',
-            message: 'Do you want to exit without saving?'
-        };
-        this.dialogService
-            .confirm(this.viewContainerRef, confirmOptions)
-            .subscribe((isConfirmed) => {
-                if (isConfirmed) {
-                    this.router.navigate([ '..' ]);
-                }
-            });
     }
 
     public onUploadClick() {

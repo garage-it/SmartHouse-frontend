@@ -1,5 +1,4 @@
-import { Component, Input, Output, EventEmitter, ViewContainerRef } from '@angular/core';
-import { DialogService } from '../../../shared/dialog/dialog.service';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { DashboardConstructorService } from '../dashboard-constructor.service';
 import { Device } from '../../../shared/devices/device.model';
@@ -13,29 +12,12 @@ export class DashboardViewComponent {
     @Input() widgets: Device[] = [];
     @Output() onRemoveWidget: EventEmitter<any> = new EventEmitter();
 
-    constructor(private dialogService: DialogService,
-                private viewContainerRef: ViewContainerRef,
-                private router: Router,
+    constructor(private router: Router,
                 private dashboardConstructorService: DashboardConstructorService) {
     }
 
     removeWidget(widget): void {
         this.onRemoveWidget.emit(widget);
-    }
-
-    cancel(): void {
-        const confirmOptions = {
-            title: '',
-            message: 'Do you want to exit without saving?',
-            ok: 'Yes',
-            cancel: 'No'
-        };
-
-        this.dialogService.confirm(this.viewContainerRef, confirmOptions)
-            .filter(isConfirmed => isConfirmed)
-            .subscribe(() => {
-                this.router.navigate(['/']);
-            });
     }
 
     save(): void {
