@@ -24,10 +24,8 @@ export class DevicesComponent implements AfterViewInit {
         this.onMappedSensor.emit(sensors);
     }
 
-    switchSensor(device: Device): void {
-        if (device.mqttId === 'switcher') {
-            this.switcher = !this.switcher;
-        }
+    switchSensor(): void {
+        this.switcher = !this.switcher;
     }
     
     switcherStatus(device: Device): string {

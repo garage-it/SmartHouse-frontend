@@ -6,7 +6,8 @@
              [style.background-image]="'url(assets/' + device.mqttId + switcherStatus(device) + '.svg)'">
         </div>
         <div class="device__clickable"
-            (click)="switchSensor(device)">
+             *ngIf="device.mqttId === 'switcher'"
+            (click)="switchSensor()">
         </div>
     </div>
 </div>
