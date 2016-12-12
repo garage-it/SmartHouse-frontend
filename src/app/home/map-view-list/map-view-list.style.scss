@@ -1,7 +1,8 @@
 .sh-map-view-list {
-    width: 1280px;
+    width: 100%;
     margin: 0 auto;
     padding: 0 120px;
+    background-color: #fff;
 
     &__title {
         padding: 10px 0;
@@ -9,7 +10,7 @@
     }
 
     &__items {
-        height: 398px;
+        height: 344px;
         overflow-y: scroll;
     }
 

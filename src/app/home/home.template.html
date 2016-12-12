@@ -1,6 +1,6 @@
 <div class="home-nav">
     <div class="home-nav__logo"
-         *ngIf="currentMapView.name">
+         *ngIf="currentMapView?.name">
         {{currentMapView.name}} view
     </div>
 
@@ -25,11 +25,11 @@
     </div>
 </div>
 
-<div class="home-view"
+<div class="home-view home-view_empty"
      *ngIf="!listMapViews.length">
-    <div class="empty-home-view">
+    <div class="home-view__empty-content">
         Please
-        <a class="empty-home-view__create"
+        <a class="home-view__create-view"
            [routerLink]="['constructor']">
             create
         </a>
@@ -37,7 +37,7 @@
     </div>
 </div>
 
-<div class="home-view"
+<div class="home-view home-view_not-empty"
      *ngIf="listMapViews.length">
     <sh-map-view [currentMapView]="currentMapView"></sh-map-view>
 
