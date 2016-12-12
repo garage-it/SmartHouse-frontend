@@ -1,12 +1,16 @@
 .sh-map-view-list {
     width: 1280px;
-    height: 398px;
     margin: 0 auto;
-    overflow-y: scroll;
+    padding: 0 120px;
 
     &__title {
         padding: 10px 0;
-        margin-bottom: 30px;
+        margin: 10px 0;
+    }
+
+    &__items {
+        height: 398px;
+        overflow-y: scroll;
     }
 
     &__item {
@@ -46,6 +50,7 @@
         height: 25px;
         display: inline-block;
         margin: 0 15px;
+        border: 0;
         background-color: #37c4d8;
 
         &:active {
