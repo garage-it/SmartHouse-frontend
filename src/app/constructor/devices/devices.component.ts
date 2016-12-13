@@ -13,6 +13,7 @@ export class DevicesComponent implements AfterViewInit {
 
     public sensors: Device[] = [];
     public deviceList: ElementRef[] = [];
+    public switcher: boolean = false;
 
     constructor(private element: ElementRef,
                 private renderer: Renderer,
@@ -21,6 +22,14 @@ export class DevicesComponent implements AfterViewInit {
 
     mappedSensor(sensors: Device[]): void {
         this.onMappedSensor.emit(sensors);
+    }
+
+    switchSensor(device: Device): void {
+        device.executor = !device.executor;
+    }
+
+    switcherImageUrl(device: Device): string {
+        return device.executor ? 'url(assets/switcherON.svg)' : 'url(assets/switcherOFF.svg)'
     }
 
     ngAfterViewInit() {
@@ -40,7 +49,7 @@ export class DevicesComponent implements AfterViewInit {
             let len = this.deviceList.length;
             let last = this.deviceList[len - 1];
             let sensor = this.sensors[this.sensors.length - 1];
-            let posX = len * 50;
+            let posX = (len - 1) * 100;
             let posY = 0;
 
             if (!sensor.posX) {
