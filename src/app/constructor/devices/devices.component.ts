@@ -29,7 +29,7 @@ export class DevicesComponent implements AfterViewInit {
     }
 
     switcherImageUrl(device: Device): string {
-        return device.executor ? 'url(assets/switcherON.svg)' : 'url(assets/switcherOFF.svg)'
+        return device.executor ? 'url(assets/switcherON.svg)' : 'url(assets/switcherOFF.svg)';
     }
 
     ngAfterViewInit() {
