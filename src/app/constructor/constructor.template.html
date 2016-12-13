@@ -1,6 +1,12 @@
-<sh-map-constructor></sh-map-constructor>
+<sh-map-constructor
+    [canBeActive]="canBeMapActive"
+    (isActiveChange)="onMapActiveChanged($event)"
+></sh-map-constructor>
 
-<sh-dashboard-constructor></sh-dashboard-constructor>
+<sh-dashboard-constructor
+    [canBeActive]="canBeDashboardActive"
+    (isActiveChange)="onDashboardActiveChanged($event)"
+></sh-dashboard-constructor>
 
 <div>
     <button [routerLink]="['../']">
@@ -8,4 +14,3 @@
     </button>
     <button>Save</button>
 </div>
-

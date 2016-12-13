@@ -15,6 +15,7 @@ import { FileDropDirective, FileSelectDirective } from 'ng2-file-upload';
 import { DevicesComponent } from './devices/devices.component';
 import { DragulaModule } from 'ng2-dragula/ng2-dragula';
 import { CanDeactivateConstructor } from './can-deactivate-constructor';
+import { OptionsComponent } from './options/options.component';
 
 @NgModule({
     id: module.id,
@@ -35,7 +36,8 @@ import { CanDeactivateConstructor } from './can-deactivate-constructor';
         DashboardViewComponent,
         FileDropDirective,
         FileSelectDirective,
-        DevicesComponent
+        DevicesComponent,
+        OptionsComponent
     ],
     providers: [
         DashboardConstructorService,

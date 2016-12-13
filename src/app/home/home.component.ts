@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MapViewInfoDto } from './map-view/map-view.dto';
 
+import { Subscription } from 'rxjs';
+
 @Component({
     selector: 'sh-home',
     templateUrl: './home.template.html',
@@ -10,7 +12,7 @@ import { MapViewInfoDto } from './map-view/map-view.dto';
 export class HomeComponent {
     public listMapViews = [];
     public currentMapView: MapViewInfoDto;
-    private defaultResolver;
+    private defaultResolver: Subscription;
 
     constructor(private activeRoute: ActivatedRoute) {};
 
