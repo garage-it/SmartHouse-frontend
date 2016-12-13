@@ -17,14 +17,10 @@ export class MapViewComponent {
     }
 
     switchSensor(device): void {
-        if (device) {
-            device.executor = !device.executor;
-        }
+        device.executor = !device.executor;
     }
 
     switcherImageUrl(device): string {
-        if (device) {
-            return device.executor ? 'url(assets/switcherON.svg)' : 'url(assets/switcherOFF.svg)';
-        }
+        return device.executor ? 'url(assets/switcherON.svg)' : 'url(assets/switcherOFF.svg)';
     }
 }
