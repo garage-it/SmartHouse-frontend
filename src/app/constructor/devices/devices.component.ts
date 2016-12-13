@@ -93,18 +93,15 @@ export class DevicesComponent implements AfterViewInit {
 
     dragAndDrop(): void {
         this.dragulaService.drag.subscribe((value) => {
-            let X, Y;
+            let X, Y, curX, curY;
             const target = value.slice(1)[0];
-            const targetWidth = Number.parseInt(getComputedStyle(target).width);
-            const targetHeight = Number.parseInt(getComputedStyle(target).height);
             const parent = this.element.nativeElement;
-            const parentSize = parent.getBoundingClientRect();
             const parentWidth = Number.parseInt(getComputedStyle(parent).width);
             const parentHeight = Number.parseInt(getComputedStyle(parent).height);
 
             document.onmouseup = () => {
-                const left = X - Number.parseInt(parentSize.left) - targetWidth / 2;
-                const top = Y - Number.parseInt(parentSize.top) - targetHeight / 2;
+                const left = X - curX + Number.parseInt(getComputedStyle(target).left);
+                const top =  Y - curY + Number.parseInt(getComputedStyle(target).top);
                 if (left > 0 && left < parentWidth
                     && top > 0 && top < parentHeight) {
                     this.renderer.setElementAttribute(target, 'style', `left: ${left}px; top: ${top}px;`);
@@ -115,6 +112,8 @@ export class DevicesComponent implements AfterViewInit {
             };
 
             document.onmousemove = (e: MouseEvent) => {
+                curX = curX ? curX : e.clientX;
+                curY = curY ? curY : e.clientY;
                 X = e.clientX;
                 Y = e.clientY;
             };
