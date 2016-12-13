@@ -21,7 +21,7 @@
         </thead><!-- sensors-list-table__head -->
         <tbody class="sensors-list-table__body">
             <tr *ngFor="let item of deviceList"
-                [routerLink]="editOnItemClick ? ['./', item._id] : []"
+                [routerLink]="getItemEditLink(item._id)"
                 class="sensors-list-table__body__row">
                 <td *ngFor="let header of headers"
                     class="sensors-list-table__body__row__item">

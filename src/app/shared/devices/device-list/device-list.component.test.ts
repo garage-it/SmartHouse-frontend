@@ -148,6 +148,22 @@ describe('device-list', () => {
         });
     });
 
+    describe('#getItemEditLink', () => {
+        const deviceId = Symbol('passed device id');
+
+        it('should go to device edit page if allowed', () => {
+            sut.editOnItemClick = true;
+
+            expect(sut.getItemEditLink(deviceId)).toEqual(['./', deviceId]);
+        });
+
+        it('should go stay on current page on item click if option is NOT allowed', () => {
+            sut.editOnItemClick = false;
+
+            expect(sut.getItemEditLink(deviceId)).toEqual([]);
+        });
+    });
+
     describe('#setSortBy', () => {
         it('will sort by number column in  ascending order', () => {
             sut.sortBy = 'mqttId';

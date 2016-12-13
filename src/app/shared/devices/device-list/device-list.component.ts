@@ -54,6 +54,10 @@ export class DeviceListComponent {
         return val === this.sortBy;
     }
 
+    getItemEditLink(id: string) {
+        return this.editOnItemClick ? ['./', id] : [];
+    }
+
     goToDeviceStatistic(mqttId: string, $event: MouseEvent) {
         $event.stopPropagation();
         this.router.navigate([this.statisticLink, mqttId, 'day']);
