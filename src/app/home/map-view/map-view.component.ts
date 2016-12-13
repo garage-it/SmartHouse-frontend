@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MapViewInfoDto } from './map-view.dto';
+import { MapViewService } from './map-view.service';
 
 @Component({
     selector: 'sh-map-view',
@@ -9,7 +10,9 @@ import { MapViewInfoDto } from './map-view.dto';
 export class MapViewComponent {
     @Input() currentMapView: MapViewInfoDto;
 
-    getImage() {
-        return 'http://localhost:3000/api/files/' + this.currentMapView.pictureName;
+    constructor(private mapViewService: MapViewService) {}
+
+    getImage(): string {
+        return this.mapViewService.resolvePictureUrl(this.currentMapView);
     }
 }

@@ -43,21 +43,23 @@
 
 .home-view {
     position: relative;
-    height: 400px;
     background: #f9f9f9;
     border: solid 1px #c7c8c2;
-}
 
-.empty-home-view {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 1.5em;
-    color: #6b6b6b;
+    &_empty {
+        height: 400px;
+    }
 
-    &__create {
+    &__empty-content {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 1.5em;
+        color: #6b6b6b;
+    }
+
+    &__create-view {
         color: #a3c940;
     }
 }
-

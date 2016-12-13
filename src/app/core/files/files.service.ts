@@ -8,6 +8,6 @@ export class FilesService {
     }
 
     public resolveFileUrl(fileName: string): string {
-        return this.requestOptions.merge({ url: `files/${fileName}` }).url;
+        return this.requestOptions.merge({ url: `/files/${fileName}` }).url;
     }
 }

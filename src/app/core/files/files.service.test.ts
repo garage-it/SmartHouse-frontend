@@ -27,7 +27,7 @@ describe('FilesService', () => {
         });
 
         it('should merge with default request options', () => {
-            expect(requestOptions.merge).toHaveBeenCalledWith({ url: 'files/myFile' });
+            expect(requestOptions.merge).toHaveBeenCalledWith({ url: '/files/myFile' });
         });
 
         it('should return default url', () => {
