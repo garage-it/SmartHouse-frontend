@@ -36,7 +36,7 @@ describe('Home', () => {
         });
 
         it('should set resolved list of map views to scope', () => {
-            expect(sut.listMapViews).toEqual([viewListFirst.mapView, viewListSecond.mapView]);
+            expect(sut.listViews).toEqual([viewListFirst.mapView, viewListSecond.mapView]);
         });
 
         it('should set default map view', () => {

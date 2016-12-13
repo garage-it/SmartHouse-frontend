@@ -26,7 +26,7 @@
 </div>
 
 <div class="home-view home-view_empty"
-     *ngIf="!listMapViews.length">
+     *ngIf="!listViews.length">
     <div class="home-view__empty-content">
         Please
         <a class="home-view__create-view"
@@ -38,10 +38,10 @@
 </div>
 
 <div class="home-view home-view_not-empty"
-     *ngIf="listMapViews.length">
+     *ngIf="listViews.length">
     <sh-map-view [currentMapView]="currentMapView"></sh-map-view>
 
-    <sh-map-view-list [listMapViews]="listMapViews"
-                      (onSelectMapView)="setCurrentMapView($event)">
-    </sh-map-view-list>
+    <sh-view-list [listViews]="listViews"
+                  (onSelectView)="setCurrentMapView($event)">
+    </sh-view-list>
 </div>

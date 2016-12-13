@@ -8,7 +8,7 @@ import { MapViewInfoDto } from './map-view/map-view.dto';
     styleUrls: [ './home.style.scss' ]
 })
 export class HomeComponent {
-    public listMapViews = [];
+    public listViews = [];
     public currentMapView: MapViewInfoDto;
     private defaultResolver;
 
@@ -16,8 +16,8 @@ export class HomeComponent {
 
     ngOnInit() {
         this.defaultResolver = this.activeRoute.data.subscribe(({viewList}) => {
-            this.listMapViews = viewList.map(({mapView}) => mapView);
-            this.currentMapView = this.listMapViews[0];
+            this.listViews = viewList.map(({mapView}) => mapView);
+            this.currentMapView = this.listViews[0];
         });
     }
 

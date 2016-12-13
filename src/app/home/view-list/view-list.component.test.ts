@@ -1,27 +1,27 @@
 import { EventEmitter } from '@angular/core';
-import { MapViewListComponent } from './map-view-list.component';
+import { ViewListComponent } from './view-list.component';
 
 describe('Map View List', () => {
     let sut;
 
     beforeEach(() => {
-        sut = new MapViewListComponent();
+        sut = new ViewListComponent();
     });
 
     describe('view map', () => {
         const mapView = {};
 
         beforeEach(() => {
-            sut.onSelectMapView.emit = jasmine.createSpy('emit');
+            sut.onSelectView.emit = jasmine.createSpy('emit');
             sut.viewMap(mapView);
         });
 
         it('should have event emitter for select map view event', () => {
-            expect(sut.onSelectMapView instanceof EventEmitter).toBeTruthy();
+            expect(sut.onSelectView instanceof EventEmitter).toBeTruthy();
         });
 
         it('should emit event that current map view was changed', () => {
-            expect(sut.onSelectMapView.emit).toHaveBeenCalledWith(mapView);
+            expect(sut.onSelectView.emit).toHaveBeenCalledWith(mapView);
         });
     });
 
