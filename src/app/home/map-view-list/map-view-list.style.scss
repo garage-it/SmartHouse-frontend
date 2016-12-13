@@ -1,25 +1,23 @@
+$lightgrey: lightgrey;
+$info: #36C4D7;
+
 .sh-map-view-list {
     width: 100%;
-    margin: 0 auto;
     padding: 0 120px;
-    background-color: #fff;
+    font-size: 13px;
 
     &__title {
         padding: 10px 0;
         margin: 10px 0;
-    }
-
-    &__items {
-        height: 344px;
-        overflow-y: scroll;
+        font-weight: bold;
     }
 
     &__item {
         margin: 0 30px;
-        border-bottom: 1px solid gray;
+        border-top: 1px solid $lightgrey;
 
         &:first-child {
-            border-top: 1px solid gray;
+            border-top: 1px solid $lightgrey;
         }
     }
 
@@ -27,14 +25,14 @@
         position: relative;
         width: 35%;
         display: inline-block;
-        padding: 10px 20px;
+        padding: 5px 20px;
 
         &::before {
             position: absolute;
             width: 10px;
             height: 10px;
             content: '';
-            top: 15px;
+            top: 9px;
             left: 5px;
             background-image: url('../assets/shape-copy-7.svg');
             background-repeat: no-repeat;
@@ -47,12 +45,16 @@
     }
 
     &__item-button {
-        width: 10%;
-        height: 25px;
-        display: inline-block;
-        margin: 0 15px;
-        border: 0;
-        background-color: #37c4d8;
+        float: right;
+        padding: 3px 10px;
+        margin: 5px 0 5px 5px;
+        width: auto;
+        height: auto;
+        border-radius: 1px;
+        border: none;
+        padding-top: 0;
+        padding-bottom: 0;
+        background-color: $info;
 
         &:active {
             opacity: .54;

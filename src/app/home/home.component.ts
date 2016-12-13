@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 export class HomeComponent {
     public listMapViews = [];
     public currentMapView: MapViewInfoDto;
+    public currentViewType: 'map' | 'dashboard' = 'map';
     private defaultResolver: Subscription;
 
     constructor(private activeRoute: ActivatedRoute) {};
@@ -29,5 +30,9 @@ export class HomeComponent {
 
     setCurrentMapView(mapView: MapViewInfoDto) {
         this.currentMapView = mapView;
+    }
+
+    changeViewType(type) {
+        this.currentViewType = type;
     }
 }

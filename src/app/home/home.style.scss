@@ -1,22 +1,47 @@
+$grey: #929292;
+$success: #A3C844;
+
 .home-nav {
-    height: 70px;
+    overflow: auto;
 
     &__logo {
-        float: left;
-        margin: 30px 0 0;
+        display: inline-block;
         font-weight: bold;
         text-transform: capitalize;
+        font-size: 20px;
+        height: 40px;
+        line-height: 40px;
+        margin: 10px 0;
+        vertical-align: bottom;
     }
 
     &__actions {
         float: right;
-    }
 
-    &__view-toggle {
-        float: right;
-        margin: 30px 80px 0 0;
+        .button {
+            margin: 10px 0 10px 5px;
+            width: auto;
+            padding-left: 15px;
+            padding-right: 15px;
+            border-radius: 2px;
+        }
+
+        .button_default {
+            background-color: $grey;
+        }
+
+        .button_success {
+            background-color: $success;
+            border-color: $success;
+        }
+
+        .home-nav__view-toggle {
+            display: inline-block;
+            vertical-align: bottom;
+        }
     }
 }
+
 
 .toggle {
     font-size: 0.8em;
@@ -31,8 +56,17 @@
         color: #d1d1d1;
         cursor: pointer;
 
+        &:hover {
+            text-decoration: underline;
+        }
+
         &_active {
             color: #000000;
+            cursor: default;
+
+            &:hover {
+                text-decoration: none;
+            }
         }
 
         &:last-child {

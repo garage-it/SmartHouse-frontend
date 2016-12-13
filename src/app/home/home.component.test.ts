@@ -59,4 +59,17 @@ describe('Home', () => {
             expect(sut.currentMapView).toEqual(newMapView);
         });
     });
+
+    describe('on current view type change', () => {
+        it('should have default map view type in scope', () => {
+            const defaultViewType = 'map';
+            expect(sut.currentViewType).toEqual(defaultViewType);
+        });
+
+        it('should set new view type to scope', () => {
+            const newViewType = 'dashboard';
+            sut.changeViewType(newViewType);
+            expect(sut.currentViewType).toEqual(newViewType);
+        });
+    });
 });
