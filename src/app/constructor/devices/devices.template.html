@@ -7,13 +7,8 @@
         </div>
         <div *ngIf="device.type === 'switcher'"
              (click)="switchSensor(device)">
-            <div class="device__clickable"
-                 *ngIf="device.executor"
-                 [style.background-image]="'url(assets/switcherON.svg)'">
-            </div>
-            <div class="device__clickable"
-                 *ngIf="!device.executor"
-                 [style.background-image]="'url(assets/switcherOFF.svg)'">
+            <div class="device__switcher"
+                 [style.background-image]="switcherImageUrl(device)">
             </div>
         </div>
     </div>
