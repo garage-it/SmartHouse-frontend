@@ -36,7 +36,7 @@ describe('Home', () => {
         });
 
         it('should set default map view', () => {
-            expect(sut.currentMapView).toEqual(subscribedData.mapList[0]);
+            expect(sut.currentMapView).toEqual(subscribedData.mapList.find(map => map.default));
         });
     });
 

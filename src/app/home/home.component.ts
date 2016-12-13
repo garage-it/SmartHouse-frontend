@@ -17,7 +17,7 @@ export class HomeComponent {
     ngOnInit() {
         this.defaultResolver = this.activeRoute.data.subscribe(({mapList}) => {
             this.listMapViews = mapList;
-            this.currentMapView = this.listMapViews[0];
+            this.currentMapView = this.listMapViews.find(view => view.default);
         });
     }
 
