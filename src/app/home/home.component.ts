@@ -15,8 +15,8 @@ export class HomeComponent {
     constructor(private activeRoute: ActivatedRoute) {};
 
     ngOnInit() {
-        this.defaultResolver = this.activeRoute.data.subscribe(({mapList}) => {
-            this.listMapViews = mapList;
+        this.defaultResolver = this.activeRoute.data.subscribe(({viewList}) => {
+            this.listMapViews = viewList.map(({mapView}) => mapView);
             this.currentMapView = this.listMapViews[0];
         });
     }

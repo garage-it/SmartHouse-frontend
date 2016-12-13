@@ -8,7 +8,7 @@ describe('HomeResolveService', () => {
 
     beforeEach(() => {
         HomeService = {
-            getMapList: jasmine.createSpy('getMapList')
+            getViewList: jasmine.createSpy('getViewList')
         };
         ToastsManager = {
             error: jasmine.createSpy('error')
@@ -17,9 +17,9 @@ describe('HomeResolveService', () => {
     });
 
     it('should resolve list of maps for home page', () => {
-        HomeService.getMapList.and.returnValue(Observable.create());
+        HomeService.getViewList.and.returnValue(Observable.create());
         sut.resolve();
-        expect(HomeService.getMapList).toHaveBeenCalled();
+        expect(HomeService.getViewList).toHaveBeenCalled();
     });
 
     describe('when resolve gets error', () => {
@@ -30,7 +30,7 @@ describe('HomeResolveService', () => {
         beforeEach(() => {
             successCb = jasmine.createSpy('successCb');
             failCb = jasmine.createSpy('failCb');
-            HomeService.getMapList.and.returnValue(Observable.throw(error));
+            HomeService.getViewList.and.returnValue(Observable.throw(error));
             sut.resolve().subscribe(successCb, failCb);
         });
 

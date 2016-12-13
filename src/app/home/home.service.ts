@@ -8,8 +8,8 @@ export class HomeService {
 
     constructor(private http: ShHttpService, private httpUtils: ShHttpUtilsService) { }
 
-    getMapList(): Observable<any> {
-        return this.http.get('/map-view')
+    getViewList(): Observable<any> {
+        return this.http.get('/views')
             .catch(error => {
                 return this.httpUtils.extractErrorMessage(error);
             });

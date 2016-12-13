@@ -9,7 +9,7 @@ export class HomeResolveService {
     constructor(private homeService: HomeService, private toastr: ToastsManager) {}
 
     resolve() {
-        return this.homeService.getMapList()
+        return this.homeService.getViewList()
             .catch(errorMessage => {
                 this.toastr.error(errorMessage);
 

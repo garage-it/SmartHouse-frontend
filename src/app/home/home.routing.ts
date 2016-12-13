@@ -12,7 +12,7 @@ export const routes = [
                 path: HOME_ROUTING_CONFIG.BASE,
                 component: HomeComponent,
                 resolve: {
-                    mapList: HomeResolveService
+                    viewList: HomeResolveService
                 }
             },
             {
