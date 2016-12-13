@@ -1,4 +1,5 @@
 import { Component, ViewContainerRef, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { DevicesService } from '../devices.service';
 import { DialogService } from '../../../shared/dialog/dialog.service';
@@ -17,8 +18,9 @@ const headersForDisplay = [
 })
 export class DeviceListComponent {
     @Input() deviceList: Array<Device>;
+    @Input() editOnItemClick: boolean = true;
     @Input() showDeleteButton: boolean = true;
-    @Input() showStatisticLink: boolean = true;
+    @Input() statisticLink: string|boolean = false;
 
     private sortBy = '';
     private reverse = false;
@@ -27,7 +29,8 @@ export class DeviceListComponent {
     constructor(
         private devicesService: DevicesService,
         private dialogService: DialogService,
-        private viewContainerRef: ViewContainerRef
+        private viewContainerRef: ViewContainerRef,
+        private router: Router
     ) {
         this._headers = headersForDisplay;
     }
@@ -51,11 +54,18 @@ export class DeviceListComponent {
         return val === this.sortBy;
     }
 
-    removeSensor(item) {
+    goToDeviceStatistic(mqttId: string, $event: MouseEvent) {
+        $event.stopPropagation();
+        this.router.navigate([this.statisticLink, mqttId, 'day']);
+    }
+
+    removeSensor(item: Device, $event: MouseEvent) {
         const confirmOptions = {
             title: '',
             message: 'Are you sure you want to delete this device?'
         };
+
+        $event.stopPropagation();
 
         this.dialogService.confirm(this.viewContainerRef, confirmOptions)
             .filter(isConfirmed => isConfirmed)
