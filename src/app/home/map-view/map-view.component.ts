@@ -21,6 +21,6 @@ export class MapViewComponent {
     }
 
     switcherImageUrl(device): string {
-        return device.executor ? 'url(assets/switcherON.svg)' : 'url(assets/switcherOFF.svg)'
+        return device.executor ? 'url(assets/switcherON.svg)' : 'url(assets/switcherOFF.svg)';
     }
 }
