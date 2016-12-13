@@ -13,7 +13,6 @@ export class MapViewComponent {
     constructor(private mapViewService: MapViewService) {}
 
     getImage(): string {
-        console.log(this.currentMapView);
         return this.mapViewService.resolvePictureUrl(this.currentMapView);
     }
 
