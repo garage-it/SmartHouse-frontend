@@ -1,18 +1,14 @@
 <p class="title">Constructor / Dashboard view</p>
 
 
-<div class="step">
+<div class="heading">
     <span>Step 4: Add widgets</span>
 
-    <span class="step_options">
-        <input class="filled-in" type="checkbox"
-               [attr.id]="active"/>
-        <label [attr.for]="active">Active</label>
-        <input class="filled-in" type="checkbox"
-               [attr.id]="default"/>
-        <label [attr.for]="default">Default</label>
-    </span>
-
+    <sh-options
+        [id]="'Dashboard'"
+        [(isActive)]="isActive"
+        [canBeActive]="canBeActive"
+    ></sh-options>
 </div>
 
 <sh-dashboard-view
