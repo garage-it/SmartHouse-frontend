@@ -46,7 +46,7 @@ describe('device-list', () => {
     });
 
     it('should not show statistic link by default', () => {
-        expect(sut.statisticLink).toEqual(false);
+        expect(sut.statisticLink).toEqual('');
     });
 
     it('should show delete device button by default', () => {

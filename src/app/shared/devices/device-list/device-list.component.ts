@@ -20,7 +20,7 @@ export class DeviceListComponent {
     @Input() deviceList: Array<Device>;
     @Input() editOnItemClick: boolean = true;
     @Input() showDeleteButton: boolean = true;
-    @Input() statisticLink: string|boolean = false;
+    @Input() statisticLink: string = '';
 
     private sortBy = '';
     private reverse = false;
