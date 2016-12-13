@@ -41,7 +41,7 @@
      *ngIf="listViews.length">
     <sh-map-view [currentMapView]="currentMapView"></sh-map-view>
 
-    <sh-view-list [listViews]="listViews"
+    <sh-view-list [listViews]="listMapViews"
                   (onSelectView)="setCurrentMapView($event)">
     </sh-view-list>
 </div>
