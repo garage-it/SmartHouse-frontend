@@ -1,4 +1,15 @@
-import { Component, OnInit, NgZone, ViewChild, ElementRef, Renderer } from '@angular/core';
+import {
+    Component,
+    OnInit,
+    NgZone,
+    ViewChild,
+    ElementRef,
+    Renderer,
+    Input,
+    Output,
+    EventEmitter
+} from '@angular/core';
+
 import { ActivatedRoute, Router } from '@angular/router';
 import { Device } from '../../shared/devices/device.model';
 import { FileUploader } from 'ng2-file-upload';
@@ -15,12 +26,22 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 export class MapConstructorComponent implements OnInit {
     @ViewChild(DevicesComponent) devicesComponent;
     @ViewChild('fileInput') fileInput: ElementRef;
+
+    @Input() canBeActive: boolean;
+    @Output() isActiveChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+
     public uploader: FileUploader = new FileUploader({ queueLimit: 1, allowedFileType: [ 'image' ] });
     public hasBaseDropZoneOver: boolean = false;
     public picture: any;
-    public mapViewName: string = '';
-    public mapViewDescription: string = '';
-    public mapViewIsActive: boolean = false;
+    public name: string = '';
+    public description: string = '';
+
+    private currentActive: boolean = false;
+    public set isActive(value: boolean) {
+        this.currentActive = value;
+        this.isActiveChange.emit(value);
+    }
+    public get isActive() { return this.currentActive; };
 
     private reader: FileReader = new FileReader();
     private sensors: Device[] = [];
@@ -92,9 +113,9 @@ export class MapConstructorComponent implements OnInit {
             return;
         }
         const mapViewInfoCreateDto: MapViewInfoCreateDto = {
-            name: this.mapViewName,
-            description: this.mapViewDescription,
-            active: this.mapViewIsActive,
+            name: this.name,
+            description: this.description,
+            active: this.isActive,
             sensors: this.devicesComponent.sensors.map(({ _id, posX, posY }) => {
                 return {
                     sensor: _id,
@@ -116,8 +137,8 @@ export class MapConstructorComponent implements OnInit {
     }
 
     private isMapViewCanBeSaved(): boolean {
-        return this.mapViewName
-            && this.mapViewDescription
+        return this.name
+            && this.description
             && this.picture;
     }
 }

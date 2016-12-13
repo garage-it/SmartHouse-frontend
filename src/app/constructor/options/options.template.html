@@ -1,0 +1,19 @@
+<div class="options">
+    <input class="options__checkbox filled-in"
+            type="checkbox"
+            [attr.name]="'active' + id"
+            [attr.id]="'active' + id"
+            #active="ngModel"
+            [(ngModel)]="isActive"
+            [disabled]="!canBeActive"/>
+    <label class="options__label" [attr.for]="'active' + id">Active</label>
+
+    <input class="options__checkbox filled-in"
+            type="checkbox"
+            [attr.name]="'default' + id"
+            [attr.id]="'default' + id"
+            #default="ngModel"
+            [(ngModel)]="isDefault"
+            [disabled]="!canBeDefault"/>
+    <label class="options__label" [attr.for]="'default' + id">Default</label>
+</div>
