@@ -1,4 +1,4 @@
-.sh-map-view-list {
+.sh-view-list {
     width: 100%;
     margin: 0 auto;
     padding: 0 120px;
@@ -11,7 +11,7 @@
 
     &__items {
         height: 344px;
-        overflow-y: scroll;
+        overflow-y: auto;
     }
 
     &__item {

@@ -22,11 +22,11 @@ describe('HomeService', () => {
     describe('get list of maps', () => {
         beforeEach(() => {
             httpMock.get.and.returnValue(Observable.create());
-            sut.getMapList();
+            sut.getViewList();
         });
 
         it('should get list of maps from the server', () => {
-            expect(httpMock.get).toHaveBeenCalledWith('/map-view');
+            expect(httpMock.get).toHaveBeenCalledWith('/views');
         });
 
         describe('on get list of maps error', () => {
@@ -36,7 +36,7 @@ describe('HomeService', () => {
             beforeEach(() => {
                 httpMock.get.and.returnValue(Observable.throw(error));
                 httpUtilsMock.extractErrorMessage.and.returnValue(Observable.throw(errorMessage));
-                sut.getMapList().subscribe(successCb, failCb);
+                sut.getViewList().subscribe(successCb, failCb);
             });
 
             it('should extract error message', () => {

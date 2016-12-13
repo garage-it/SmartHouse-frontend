@@ -11,7 +11,7 @@
                  [ngStyle]="{'left': sensor.position.x + 'px', 'top': sensor.position.y + 'px'}"
                  *ngFor="let sensor of currentMapView.sensors">
                 <div class="sensor__description">
-                    s <!--{{sensor.type?.slice(0,1).toUpperCase()}}-->
+                    {{sensor?.sensor?.mqttId?.slice(0,1).toUpperCase()}}
                 </div>
             </div>
         </div>
