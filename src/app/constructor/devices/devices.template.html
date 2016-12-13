@@ -3,11 +3,18 @@
          #devices
          *ngFor="let device of sensors">
         <div class="device__icon"
-             [style.background-image]="'url(assets/' + device.mqttId + switcherStatus(device) + '.svg)'">
+             [style.background-image]="'url(assets/' + device.mqttId + '.svg)'">
         </div>
-        <div class="device__clickable"
-             *ngIf="device.mqttId === 'switcher'"
-            (click)="switchSensor()">
+        <div *ngIf="device.type === 'switcher'"
+             (click)="switchSensor(device)">
+            <div class="device__clickable"
+                 *ngIf="device.executor"
+                 [style.background-image]="'url(assets/switcherON.svg)'">
+            </div>
+            <div class="device__clickable"
+                 *ngIf="!device.executor"
+                 [style.background-image]="'url(assets/switcherOFF.svg)'">
+            </div>
         </div>
     </div>
 </div>

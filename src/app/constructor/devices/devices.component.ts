@@ -24,16 +24,8 @@ export class DevicesComponent implements AfterViewInit {
         this.onMappedSensor.emit(sensors);
     }
 
-    switchSensor(): void {
-        this.switcher = !this.switcher;
-    }
-    
-    switcherStatus(device: Device): string {
-        if (device.mqttId === 'switcher') {
-            return this.switcher ? 'ON' : 'OFF';
-        } else {
-            return ''
-        }
+    switchSensor(device: Device): void {
+        device.executor = !device.executor;
     }
 
     ngAfterViewInit() {
@@ -53,7 +45,7 @@ export class DevicesComponent implements AfterViewInit {
             let len = this.deviceList.length;
             let last = this.deviceList[len - 1];
             let sensor = this.sensors[this.sensors.length - 1];
-            let posX = len * 50;
+            let posX = (len - 1) * 100;
             let posY = 0;
 
             if (!sensor.posX) {
