@@ -6,6 +6,7 @@ describe('device-list', () => {
     let DevicesService;
     let DialogService;
     let ViewContainerRef;
+    let Router;
     let listData;
     let numberArr;
 
@@ -27,6 +28,10 @@ describe('device-list', () => {
             }
         ];
 
+        Router = {
+            navigate: jasmine.createSpy('navigate')
+        };
+
         DevicesService = {
             delete: jasmine.createSpy('delete')
         };
@@ -37,7 +42,19 @@ describe('device-list', () => {
 
         ViewContainerRef = {};
 
-        sut = new DeviceListComponent(DevicesService, DialogService, ViewContainerRef);
+        sut = new DeviceListComponent(DevicesService, DialogService, ViewContainerRef, Router);
+    });
+
+    it('should not show statistic link by default', () => {
+        expect(sut.statisticLink).toEqual('');
+    });
+
+    it('should show delete device button by default', () => {
+        expect(sut.showDeleteButton).toEqual(true);
+    });
+
+    it('should navigate to device edit page on item click by default', () => {
+        expect(sut.editOnItemClick).toEqual(true);
     });
 
     describe('#headers', () => {
@@ -53,9 +70,38 @@ describe('device-list', () => {
         });
     });
 
+    describe('#goToDeviceStatistic', () => {
+        let event;
+        const mqttId = Symbol('device id to show statistic');
+        const statisticLink = 'path to statistic';
+
+        beforeEach(() => {
+            event = {
+                stopPropagation: jasmine.createSpy('stopPropagation')
+            };
+            sut.statisticLink = statisticLink;
+
+            sut.goToDeviceStatistic(mqttId, event);
+        });
+
+        it('should stop event propagation', () => {
+            expect(event.stopPropagation).toHaveBeenCalled();
+        });
+
+        it('should navigate to statistic of proder device', () => {
+            expect(Router.navigate).toHaveBeenCalledWith([statisticLink, mqttId, 'day']);
+        });
+    });
+
     describe('#removeSensor', () => {
-        it('should be defined', () => {
-            expect(sut.removeSensor).toBeDefined();
+        let event;
+        let mockedSensor;
+
+        beforeEach(() => {
+            mockedSensor = listData[1];
+            event = {
+                stopPropagation: jasmine.createSpy('stopPropagation')
+            };
         });
 
         describe('before user confirmation', () => {
@@ -66,32 +112,30 @@ describe('device-list', () => {
 
             beforeEach(() => {
                 DialogService.confirm = jasmine.createSpy('mdDialogMock.confirm').and.returnValue(Observable.of(false));
+                sut.removeSensor(mockedSensor, event);
+            });
+
+            it('should stop event propagation', () => {
+                expect(event.stopPropagation).toHaveBeenCalled();
             });
 
             it('should show confirm dialog with view container ref and options', () => {
-                sut.removeSensor();
                 expect(DialogService.confirm).toHaveBeenCalledWith(ViewContainerRef, confirmOptions);
             });
 
             it('should NOT call sensor service if user does not confirm device delete', () => {
-                const mockedSensor = {_id: 'mock'};
-
-                sut.removeSensor(mockedSensor);
-
                 expect(DevicesService.delete).not.toHaveBeenCalledWith(mockedSensor);
             });
         });
 
         describe('After user confirmation', () => {
-            let mockedSensor;
-
             beforeEach(() => {
                 mockedSensor = listData[1];
                 DialogService.confirm.and.returnValue(Observable.of(true));
                 DevicesService.delete.and.returnValue(Observable.of(mockedSensor));
 
                 sut.deviceList = listData;
-                sut.removeSensor(mockedSensor);
+                sut.removeSensor(mockedSensor, event);
             });
 
             it('should call sensor service', () => {
@@ -101,6 +145,22 @@ describe('device-list', () => {
             it('should remove sensor from listData', () => {
                 expect(sut.deviceList).toEqual([listData[0]]);
             });
+        });
+    });
+
+    describe('#getItemEditLink', () => {
+        const deviceId = Symbol('passed device id');
+
+        it('should go to device edit page if allowed', () => {
+            sut.editOnItemClick = true;
+
+            expect(sut.getItemEditLink(deviceId)).toEqual(['./', deviceId]);
+        });
+
+        it('should go stay on current page on item click if option is NOT allowed', () => {
+            sut.editOnItemClick = false;
+
+            expect(sut.getItemEditLink(deviceId)).toEqual([]);
         });
     });
 

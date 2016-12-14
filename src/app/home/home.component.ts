@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MapViewInfoDto } from './map-view/map-view.dto';
+import { ViewInfoDto } from './view.dto';
 
 import { Subscription } from 'rxjs';
 
@@ -10,7 +11,8 @@ import { Subscription } from 'rxjs';
     styleUrls: [ './home.style.scss' ]
 })
 export class HomeComponent {
-    public listMapViews = [];
+    public listViews: Array<ViewInfoDto>;
+    public listMapViews: Array<MapViewInfoDto>;
     public currentMapView: MapViewInfoDto;
     public currentViewType: 'map' | 'dashboard' = 'map';
     private defaultResolver: Subscription;
@@ -18,8 +20,11 @@ export class HomeComponent {
     constructor(private activeRoute: ActivatedRoute) {};
 
     ngOnInit() {
-        this.defaultResolver = this.activeRoute.data.subscribe(({mapList}) => {
-            this.listMapViews = mapList;
+        this.defaultResolver = this.activeRoute.data.subscribe(({viewList}) => {
+            this.listViews = viewList;
+            this.listMapViews = this.listViews.filter(view => {
+                return view.mapView && view.mapView.name;
+            }).map(view => view.mapView);
             this.currentMapView = this.listMapViews[0];
         });
     }

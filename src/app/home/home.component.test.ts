@@ -20,9 +20,13 @@ describe('Home', () => {
     describe('on init', () => {
 
         let subscribedData;
+        let viewListFirst;
+        let viewListSecond;
 
         beforeEach(() => {
-            subscribedData = {mapList: [{}, {}]};
+            viewListFirst = {mapView: {name: 'some name'}};
+            viewListSecond = {mapView: {name: 'some name'}};
+            subscribedData = {viewList: [viewListFirst, viewListSecond]};
             sut.ngOnInit();
             ActivatedRoute.data.subscribe.calls.first().args[0](subscribedData);
         });
@@ -31,12 +35,16 @@ describe('Home', () => {
             expect(ActivatedRoute.data.subscribe).toHaveBeenCalled();
         });
 
+        it('should set resolved list of views to scope', () => {
+            expect(sut.listViews).toEqual([viewListFirst, viewListSecond]);
+        });
+
         it('should set resolved list of map views to scope', () => {
-            expect(sut.listMapViews).toEqual(subscribedData.mapList);
+            expect(sut.listMapViews).toEqual([viewListFirst.mapView, viewListSecond.mapView]);
         });
 
         it('should set default map view', () => {
-            expect(sut.currentMapView).toEqual(subscribedData.mapList[0]);
+            expect(sut.currentMapView).toEqual(viewListFirst.mapView);
         });
     });
 
@@ -56,7 +64,7 @@ describe('Home', () => {
         it('should set changed map view to scope', () => {
             const newMapView = {};
             sut.setCurrentMapView(newMapView);
-            expect(sut.currentMapView).toEqual(newMapView);
+            expect(sut.currentMapView    ).toEqual(newMapView);
         });
     });
 
