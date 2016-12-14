@@ -1,28 +1,64 @@
-$blockHeight: 75px;
-$fontSize: 20px;
-
-.sensor-switcher-widget {
-
-    text-align: center;
-
-    &_controller {
-        width: initial!important;
+.sensor-servo-widget {
+    input[type=range] {
+        -webkit-appearance: none;
+        width: 100%;
+        background: transparent;
+        border-color: transparent;
+        color: transparent;
+        margin: 0 0 10px 0;
     }
-}
+    /* Special styling for WebKit/Blink */
+    input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 29px;
+        height: 29px;
+        border-radius: 29px;
+        background-color: #ffffff;
+        margin-top: -14px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.19);
+        border: solid 0.5px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+    }
+    input[type=range]::-moz-range-thumb {
+        width: 29px;
+        height: 29px;
+        border-radius: 29px;
+        background-color: #ffffff;
+        margin-top: -14px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.19);
+        border: solid 0.5px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+    }
+    input[type=range]::-ms-thumb {
+        width: 29px;
+        height: 29px;
+        border-radius: 29px;
+        background-color: #ffffff;
+        margin-top: -14px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.19);
+        border: solid 0.5px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+    }
 
-//TODO: Currently copy pasted from sensor-regular-widget.template.scss. Should be moved to sensor-widget. Needs investigation.
-.sensor-widget_statistic-button {
-    position: relative;
-    display: block;
-    float: left;
-    cursor: pointer;
-    width: 24px;
-    height: 26px;
-    margin-top: 1px;
-    background-color: #dedede;
-    background-image: url(../assets/statistic.svg);
-
-    &:hover {
-        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    &_label {
+        font-size: 10px;
+        margin-bottom: 12px;
+        font-weight: normal;
+        position: relative;
+        top: 12px;
+        &-left {
+            float: left;
+        }
+        &-right {
+            float: right;
+        }
+        &:after {
+            clear: both;
+        }
+    }
+    &_value_wrap {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
 }

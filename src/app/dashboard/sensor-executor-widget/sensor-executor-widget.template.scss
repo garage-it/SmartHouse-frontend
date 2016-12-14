@@ -1,0 +1,85 @@
+$switch-bg-color: #9AC352;
+$switch-unchecked-bg: #FFFFFF;
+$input-disabled-solid-color: #777777;
+
+.sh-switch,
+.sh-switch * {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -ms-user-select: none;
+}
+
+.sh-switch label {
+  cursor: pointer;
+}
+
+.sh-switch label input[type=checkbox] {
+    & + .sh-lever {
+        background-color: $switch-unchecked-bg;
+    }
+}
+
+.sh-switch label input[type=checkbox] {
+  opacity: 0;
+  width: 0;
+  height: 0;
+
+  &:checked + .sh-lever {
+    background-color: $switch-bg-color;
+
+    &:after {
+        background-color: #FFFFFF;
+        left: 2px;
+        top: 2px;
+    }
+  }
+}
+
+.sh-switch label .sh-lever {
+  content: "";
+  display: inline-block;
+  position: relative;
+  width: 33px;
+  height: 58px;
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  margin-right: 10px;
+  transition: background 0.3s ease;
+  vertical-align: middle;
+  margin: 12px 0;
+
+  &:after {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    width: 29px;
+    height: 29px;
+    border-radius: 29px;
+    box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.19);
+    left: 2px;
+    top: 27px;
+    transition: left 0.3s ease, background .3s ease, box-shadow 0.1s ease;
+  }
+}
+
+// Switch active style
+input[type=checkbox]:checked:not(:disabled) ~ .sh-lever:active::after,
+input[type=checkbox]:checked:not(:disabled).tabbed:focus ~ .sh-lever::after {
+  box-shadow: 0 1px 3px 1px rgba(0,0,0,.4), 0 0 0 15px transparentize($switch-bg-color, .9);
+}
+
+input[type=checkbox]:not(:disabled) ~ .sh-lever:active:after,
+input[type=checkbox]:not(:disabled).tabbed:focus ~ .sh-lever::after {
+  box-shadow: 0 1px 3px 1px rgba(0,0,0,.4), 0 0 0 15px rgba(0, 0, 0, .08);
+}
+
+// Disabled Styles
+.switch input[type=checkbox][disabled] + .sh-lever {
+  cursor: default;
+}
+
+.switch label input[type=checkbox][disabled] + .sh-lever:after,
+.switch label input[type=checkbox][disabled]:checked + .sh-lever:after {
+  background-color: $input-disabled-solid-color;
+}
