@@ -20,13 +20,15 @@ describe('Home', () => {
     describe('on init', () => {
 
         let subscribedData;
+        let defaultMapView;
         let viewListFirst;
         let viewListSecond;
         let viewListThird;
 
         beforeEach(() => {
-            viewListFirst = {mapView: {name: 'some name'}};
-            viewListSecond = {mapView: {name: 'some name'}};
+            defaultMapView = {name: 'some name', default: true};
+            viewListFirst = {mapView: {name: 'some name 2'}};
+            viewListSecond = {mapView: defaultMapView};
             viewListThird = {dashboard: {devices: []}};
             subscribedData = {viewList: [viewListFirst, viewListSecond, viewListThird]};
             sut.ngOnInit();
@@ -46,7 +48,7 @@ describe('Home', () => {
         });
 
         it('should set default map view', () => {
-            expect(sut.currentView).toEqual(viewListFirst.mapView);
+            expect(sut.currentView).toEqual(defaultMapView);
         });
     });
 
