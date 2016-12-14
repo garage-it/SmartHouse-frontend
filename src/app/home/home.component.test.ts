@@ -87,4 +87,29 @@ describe('Home', () => {
             expect(sut.isMapView()).toBeFalsy();
         });
     });
+
+    describe('on get current views list', () => {
+        let mapView;
+        let dashboardView;
+
+        beforeEach(() => {
+            mapView = {name: 'name'};
+            dashboardView = {devices: []};
+
+            sut.listMapViews = [mapView];
+            sut.listDashboardViews = [dashboardView];
+        });
+
+        it('should return list of map view if current view is map view', () => {
+            sut.currentView = mapView;
+
+            expect(sut.getCurrentListViews()).toBe(sut.listMapViews);
+        });
+
+        it('should return list of map view if current view is map view', () => {
+            sut.currentView = dashboardView;
+
+            expect(sut.getCurrentListViews()).toBe(sut.listDashboardViews);
+        });
+    });
 });

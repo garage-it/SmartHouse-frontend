@@ -57,7 +57,7 @@
             *ngIf="!isMapView()"
         ></sh-dashboard-view>
     </div>
-    <sh-view-list [listViews]="isMapView() ? listMapViews : listDashboardViews"
+    <sh-view-list [listViews]="getCurrentListViews()"
                   (onSelectView)="setCurrentView($event)">
     </sh-view-list>
 </div>

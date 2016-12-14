@@ -43,4 +43,8 @@ export class HomeComponent {
     isMapView() {
         return this.listMapViews.find((view => view === this.currentView));
     }
+
+    getCurrentListViews() {
+        return this.isMapView() ? this.listMapViews : this.listDashboardViews;
+    }
 }
