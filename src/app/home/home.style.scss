@@ -43,12 +43,8 @@
 
 .home-view {
     position: relative;
-    background: #f9f9f9;
+    height: 576px;
     border: solid 1px #c7c8c2;
-
-    &_empty {
-        height: 400px;
-    }
 
     &__empty-content {
         position: absolute;
@@ -61,5 +57,13 @@
 
     &__create-view {
         color: #a3c940;
+    }
+
+    &_empty {
+        background: #f9f9f9;
+    }
+
+    &_not-empty {
+        background: #fafafa;
     }
 }

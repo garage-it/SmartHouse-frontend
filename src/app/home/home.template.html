@@ -37,8 +37,8 @@
     </div>
 </div>
 
-<div class="home-view home-view_not-empty"
-     *ngIf="listViews.length">
+<div *ngIf="listViews.length"
+     class="home-view home-view_not-empty">
     <sh-map-view [currentMapView]="currentMapView"></sh-map-view>
 
     <sh-view-list [listViews]="listMapViews"
