@@ -1,6 +1,6 @@
 <div class="map-view">
     <div class="map-view__picture"
-         *ngIf="currentMapView.pictureName">
+         *ngIf="currentMapView?.pictureName">
 
         <img class="map-view__image"
              [src]="getImage()"
@@ -9,14 +9,14 @@
         <div class="map-view__devices">
             <div class="sensor"
                  [ngStyle]="{'left': sensor.position.x + 'px', 'top': sensor.position.y + 'px'}"
-                 *ngFor="let sensor of currentMapView.sensors">
+                 *ngFor="let sensor of currentMapView?.sensors">
                 <div class="sensor__description"
-                     [style.background-image]="'url(assets/' + sensor.sensor?.mqttId + '.svg)'">
+                     [style.background-image]="'url(assets/' + sensor?.sensor?.mqttId + '.svg)'">
                 </div>
-                <div *ngIf="sensor.sensor?.type === 'switcher'"
-                     (click)="switchSensor(sensor.sensor)">
+                <div *ngIf="sensor?.sensor?.type === 'switcher'"
+                     (click)="switchSensor(sensor?.sensor)">
                     <div class="sensor__switcher"
-                         [style.background-image]="switcherImageUrl(sensor.sensor)">
+                         [style.background-image]="switcherImageUrl(sensor?.sensor)">
                     </div>
                 </div>
             </div>
