@@ -21,6 +21,7 @@ export interface MapViewInfoDto {
     description: string;
     pictureName: string;
     active: boolean;
+    default: boolean;
     sensors: Array<MapViewSensorDto>;
 }
 

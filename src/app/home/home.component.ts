@@ -24,7 +24,7 @@ export class HomeComponent {
             this.listMapViews = this.listViews.filter(view => {
                 return view.mapView && view.mapView.name;
             }).map(view => view.mapView);
-            this.currentMapView = this.listMapViews[0];
+            this.currentMapView = this.listMapViews.find(view => view.default);
         });
     }
 
