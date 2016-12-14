@@ -1,7 +1,8 @@
 <h1>Statistic page</h1>
 
 <sh-device-list
-    *ngIf="deviceList.length !== 0"
     [showDeleteButton]="false"
+    [editOnItemClick]="false"
+    [statisticLink]="'/statistic/sensor-details'"
     [deviceList]="deviceList">
 </sh-device-list>

@@ -8,17 +8,6 @@
   </div><!-- sub-header__actions -->
 </div><!-- sub-header -->
 
-<div *ngIf="deviceList.length === 0" class="empty-list">
-    <div class="container empty-list__container">
-        <div class="empty-list__container__text">
-            <h3 class="empty-list__container__text__main">There are no devices yet</h3>
-            <h4 class="empty-list__container__text__additional">Once you connect your device to the system, it will be listed here.</h4>
-        </div><!-- empty-list__container__text -->
-    </div><!-- empty-list__container -->
-</div><!-- empty-list -->
-
 <sh-device-list
-    *ngIf="deviceList.length !== 0"
-    [showStatisticLink]="false"
     [deviceList]="deviceList">
 </sh-device-list>

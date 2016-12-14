@@ -26,17 +26,21 @@
 }
 
 .sensor {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    border: 5px solid #fff;
-    background: #30d16a;
-    color: #fff;
+    width: 42px;
+    height: 42px;
     position: absolute;
-    cursor: move;
 
     &__description {
-        margin-left: 6px;
-        font-weight: bold;
+        width: 42px;
+        height: 42px;
+    }
+
+    &__switcher {
+        position: absolute;
+        left: 42px;
+        top: 0;
+        width: 42px;
+        height: 42px;
+        cursor: pointer;
     }
 }
