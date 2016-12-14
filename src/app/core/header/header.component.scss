@@ -4,10 +4,9 @@
 }
 
 .main-nav {
-    background: #ffffff;
-    box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.50);
-    height: auto !important;
-    min-height: 56px;
+    background: #393b3a;
+    height: auto;
+    line-height: 1;
     margin-bottom: 15px;
 
     .container {
@@ -15,10 +14,14 @@
     }
 
     li a {
-        font-size: 18px;
-        color: #000000;
-        padding: 0 20px 0 45px;
-        @include bg-icon(20px);
+        border-bottom: 3px solid transparent;
+        font-size: 16px;
+        line-height: 47px;
+        padding: 0 13px;
+
+        &.active {
+            border-bottom-color: #a2c844;
+        }
     }
 
 
@@ -28,15 +31,12 @@
     }
 }
 
-#nav-mobile .router-link-active {
-    border-bottom: 6px solid #546e7a;
-}
-
 .logo {
-    font-size:20px;
-    color:#000000;
-    font-weight: 900;
-    padding: 10px 0px 10px 40px;
     @include bg-icon(10px);
-    background-position: 0px center;
+
+    background-position: 0 center;
+    font: 700 21px 'Oswald', sans-serif;
+    float: left;
+    line-height: 50px;
+    padding: 0 23px;
 }

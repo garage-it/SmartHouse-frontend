@@ -70,4 +70,8 @@ export class ProfileService {
          */
         return true;
     }
+
+    getUserName(): string {
+        return this.user && this.user.name;
+    }
 }
