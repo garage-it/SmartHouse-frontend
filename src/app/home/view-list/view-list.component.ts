@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { MapViewInfoDto } from '../map-view/map-view.dto';
+import { DashboardViewInfoDto } from '../dashboard-view/dashboard-view.dto';
 
 @Component({
     selector: 'sh-view-list',
@@ -7,7 +8,7 @@ import { MapViewInfoDto } from '../map-view/map-view.dto';
     styleUrls: [ 'view-list.style.scss' ]
 })
 export class ViewListComponent {
-    @Input() listViews: MapViewInfoDto[] = [];
+    @Input() listViews: Array<DashboardViewInfoDto | MapViewInfoDto> = [];
     @Output() onSelectView: EventEmitter<any> = new EventEmitter();
 
     viewMap(view: MapViewInfoDto): void {

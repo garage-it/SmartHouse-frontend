@@ -2,8 +2,8 @@
     <div class="sh-view-list__title">Views</div>
     <div class="sh-view-list__items">
         <div class="sh-view-list__item"
-             *ngFor="let view of listViews">
-            <span class="sh-view-list__item-name">{{view.name}}</span>
+             *ngFor="let view of listViews; let i = index">
+            <span class="sh-view-list__item-name">{{view.name || 'Dashboard ' + i}}</span>
             <span class="sh-view-list__item-description">{{view.description}}</span>
             <button class="button sh-view-list__item-button"
                     (click)="viewMap(view)">

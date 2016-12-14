@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { MapViewInfoDto } from '../map-view/map-view.dto';
+import { DashboardViewInfoDto } from './dashboard-view.dto';
 
 @Component({
     selector: 'sh-dashboard-view',
@@ -8,5 +8,5 @@ import { MapViewInfoDto } from '../map-view/map-view.dto';
 })
 
 export class DashboardViewComponent {
-    @Input() currentView: MapViewInfoDto;
+    @Input() currentDasboardView: DashboardViewInfoDto;
 }
