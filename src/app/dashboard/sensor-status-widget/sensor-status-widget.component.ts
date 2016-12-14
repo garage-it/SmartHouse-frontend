@@ -5,8 +5,10 @@ import { BaseSensor } from '../shared/base-sensor/base-sensor';
 @Component({
     selector: 'sh-sensor-status-widget',
     templateUrl: './sensor-status-widget.template.html',
-    styleUrls: ['../shared/sensor-widget/sensor-widget.style.scss',
-        './sensor-status-widget.style.scss']
+    styleUrls: [
+        '../sensor-widget/sensor-widget.template.scss',
+        './sensor-status-widget.style.scss'
+    ]
 })
 export class SensorStatusWidgetComponent extends BaseSensor {
 

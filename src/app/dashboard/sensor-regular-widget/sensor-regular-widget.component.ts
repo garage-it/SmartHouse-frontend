@@ -7,7 +7,7 @@ import { BaseSensor } from '../shared/base-sensor/base-sensor';
     selector: 'sh-sensor-regular-widget',
     templateUrl: './sensor-regular-widget.template.html',
     styleUrls: [
-        '../shared/sensor-widget/sensor-widget.style.scss',
+        '../sensor-widget/sensor-widget.template.scss',
         './sensor-regular-widget.template.scss'
     ]
 })
