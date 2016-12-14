@@ -1,12 +1,12 @@
-<div class="sh-map-view-list">
-    <div class="sh-map-view-list__title">Views</div>
-    <div class="sh-map-view-list__items">
-        <div class="sh-map-view-list__item"
-             *ngFor="let mapView of listMapViews">
-            <span class="sh-map-view-list__item-name">{{mapView.name}}</span>
-            <span class="sh-map-view-list__item-description">{{mapView.description}}</span>
-            <button class="button sh-map-view-list__item-button"
-                    (click)="viewMap(mapView)">
+<div class="sh-view-list">
+    <div class="sh-view-list__title">Views</div>
+    <div class="sh-view-list__items">
+        <div class="sh-view-list__item"
+             *ngFor="let view of listViews">
+            <span class="sh-view-list__item-name">{{view.name}}</span>
+            <span class="sh-view-list__item-description">{{view.description}}</span>
+            <button class="button sh-view-list__item-button"
+                    (click)="viewMap(view)">
                 View
             </button>
         </div>
