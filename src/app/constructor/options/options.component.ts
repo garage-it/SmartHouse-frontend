@@ -15,12 +15,14 @@ export class OptionsComponent {
 
     private currentActive: boolean;
     @Output() isActiveChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+    @Output() isDefaultChange: EventEmitter<string> = new EventEmitter<string>();
     @Input() set isActive(value: boolean) {
         this.currentActive = value;
         this.isActiveChange.emit(value);
     };
     @Input() canBeActive: boolean = true;
 
-    @Input() isDefault: boolean = false;
-    @Input() canBeDefault: boolean = true;
+    @Input() set isDefault(value: string) {
+        this.isDefaultChange.emit(value);
+    };
 }
