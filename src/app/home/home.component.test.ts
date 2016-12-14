@@ -23,12 +23,14 @@ describe('Home', () => {
         let defaultMapView;
         let viewListFirst;
         let viewListSecond;
+        let viewListThird;
 
         beforeEach(() => {
             defaultMapView = {name: 'some name', default: true};
             viewListFirst = {mapView: {name: 'some name 2'}};
             viewListSecond = {mapView: defaultMapView};
-            subscribedData = {viewList: [viewListFirst, viewListSecond]};
+            viewListThird = {dashboard: {devices: []}};
+            subscribedData = {viewList: [viewListFirst, viewListSecond, viewListThird]};
             sut.ngOnInit();
             ActivatedRoute.data.subscribe.calls.first().args[0](subscribedData);
         });
@@ -37,16 +39,16 @@ describe('Home', () => {
             expect(ActivatedRoute.data.subscribe).toHaveBeenCalled();
         });
 
-        it('should set resolved list of views to scope', () => {
-            expect(sut.listViews).toEqual([viewListFirst, viewListSecond]);
-        });
-
         it('should set resolved list of map views to scope', () => {
             expect(sut.listMapViews).toEqual([viewListFirst.mapView, viewListSecond.mapView]);
         });
 
+        it('should set resolved list of dasboard views to scope', () => {
+            expect(sut.listDashboardViews).toEqual([viewListThird.dashboard]);
+        });
+
         it('should set default map view', () => {
-            expect(sut.currentMapView).toEqual(defaultMapView);
+            expect(sut.currentView).toEqual(defaultMapView);
         });
     });
 
@@ -65,8 +67,49 @@ describe('Home', () => {
     describe('on current map view change', () => {
         it('should set changed map view to scope', () => {
             const newMapView = {};
-            sut.setCurrentMapView(newMapView);
-            expect(sut.currentMapView).toEqual(newMapView);
+            sut.setCurrentView(newMapView);
+            expect(sut.currentView).toEqual(newMapView);
+        });
+    });
+
+    describe('on view type check', () => {
+        it('should be truthy if current view is map view', () => {
+            sut.currentView = {};
+            sut.listMapViews = [sut.currentView];
+
+            expect(sut.isMapView()).toBeTruthy();
+        });
+
+        it('should set new view type to scope', () => {
+            sut.currentView = {};
+            sut.listDashboardViews = [sut.currentView];
+
+            expect(sut.isMapView()).toBeFalsy();
+        });
+    });
+
+    describe('on get current views list', () => {
+        let mapView;
+        let dashboardView;
+
+        beforeEach(() => {
+            mapView = {name: 'name'};
+            dashboardView = {devices: []};
+
+            sut.listMapViews = [mapView];
+            sut.listDashboardViews = [dashboardView];
+        });
+
+        it('should return list of map view if current view is map view', () => {
+            sut.currentView = mapView;
+
+            expect(sut.getCurrentListViews()).toBe(sut.listMapViews);
+        });
+
+        it('should return list of map view if current view is map view', () => {
+            sut.currentView = dashboardView;
+
+            expect(sut.getCurrentListViews()).toBe(sut.listDashboardViews);
         });
     });
 });
