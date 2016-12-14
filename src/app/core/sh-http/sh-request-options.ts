@@ -8,7 +8,9 @@ export class ShRequestOptions extends BaseRequestOptions {
         // For fix issue with incorrect Angular2 merging
         return url.includes(ENV_PUBLIC_CONFIG.backEndUrl)
             ? url
-            : `${ENV_PUBLIC_CONFIG.backEndUrl}/api${url}`;
+            : url.includes('/api')
+                ? `${ENV_PUBLIC_CONFIG.backEndUrl}/${url}`
+                : `${ENV_PUBLIC_CONFIG.backEndUrl}/api${url}`;
     }
 
     constructor() {
