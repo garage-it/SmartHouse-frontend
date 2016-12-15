@@ -15,4 +15,11 @@ export class HomeService {
                 return this.httpUtils.extractErrorMessage(error);
             });
     }
+
+    getView(viewId: string): Observable<ViewInfoDto|Error> {
+        return this.http.get(`/views/${viewId}`)
+            .catch(error => {
+                return this.httpUtils.extractErrorMessage(error);
+            });
+    }
 }

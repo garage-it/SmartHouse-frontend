@@ -16,6 +16,7 @@ import { DevicesComponent } from './devices/devices.component';
 import { DragulaModule } from 'ng2-dragula/ng2-dragula';
 import { CanDeactivateConstructor } from './can-deactivate-constructor';
 import { OptionsComponent } from './options/options.component';
+import { ViewResolveService } from './view-resolve.service';
 
 @NgModule({
     id: module.id,
@@ -41,7 +42,8 @@ import { OptionsComponent } from './options/options.component';
     ],
     providers: [
         DashboardConstructorService,
-        CanDeactivateConstructor
+        CanDeactivateConstructor,
+        ViewResolveService
     ]
 })
 export class ConstructorModule {}

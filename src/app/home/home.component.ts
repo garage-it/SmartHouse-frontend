@@ -4,6 +4,7 @@ import { MapViewInfoDto } from './map-view/map-view.dto';
 import { DashboardViewInfoDto } from './dashboard-view/dashboard-view.dto';
 
 import { Subscription } from 'rxjs';
+import { ViewInfoDto } from './view.dto';
 
 @Component({
     selector: 'sh-home',
@@ -20,6 +21,8 @@ export class HomeComponent {
 
     ngOnInit() {
         this.defaultResolver = this.activeRoute.data.subscribe(({viewList}) => {
+            viewList.map(view => this.setCrutch(view));
+
             this.listMapViews = viewList
                 .filter(view => !!view.mapView)
                 .map(view => view.mapView);
@@ -30,6 +33,15 @@ export class HomeComponent {
 
             this.currentView = this.listMapViews.find(view => view.default) || this.listMapViews[0];
         });
+    }
+
+    private setCrutch(view: ViewInfoDto) {
+        if (view.mapView) {
+            view.mapView.parentViewId = view['_id'];
+        }
+        if (view.dashboard) {
+            view.dashboard.parentViewId = view['_id'];
+        }
     }
 
     ngOnDestroy() {
