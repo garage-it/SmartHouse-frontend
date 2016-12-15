@@ -20,6 +20,7 @@ describe('DashboardConstructor', () => {
             }
         };
         sut = new DashboardConstructorComponent(ActivatedRoute);
+        sut.isDefaultChange = jasmine.createSpyObj('isDefaultChange', ['emit']);
     });
 
     describe('on init', () => {
@@ -69,6 +70,18 @@ describe('DashboardConstructor', () => {
 
         it('should remove widget from dashboard', () => {
             expect(sut.widgets.length).toEqual(0);
+        });
+    });
+
+    describe('default', () => {
+        const defaultView = 'Dashboard';
+
+        beforeEach(() => {
+            sut.isDefault = defaultView;
+        });
+
+        it('should emit changes when default radio is changed', () => {
+            expect(sut.isDefaultChange.emit).toHaveBeenCalledWith(defaultView);
         });
     });
 });

@@ -1,11 +1,15 @@
 <sh-map-constructor
     [canBeActive]="canBeMapActive"
+    [default]="default"
     (isActiveChange)="onMapActiveChanged($event)"
+    (isDefaultChange)="onMapDefaultChange($event)"
+
 ></sh-map-constructor>
 
 <sh-dashboard-constructor
     [canBeActive]="canBeDashboardActive"
     (isActiveChange)="onDashboardActiveChanged($event)"
+    (isDefaultChange)="onDashboardDefaultChange($event)"
 ></sh-dashboard-constructor>
 
 <div>

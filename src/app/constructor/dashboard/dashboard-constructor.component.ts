@@ -9,7 +9,9 @@ import { Device } from '../../shared/devices/device.model';
 })
 export class DashboardConstructorComponent {
     @Input() canBeActive: boolean;
+    @Input() default: string;
     @Output() isActiveChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+    @Output() isDefaultChange: EventEmitter<string> = new EventEmitter<string>();
 
     private widgets: Device[] = [];
     private sensors: Device[] = [];
@@ -20,6 +22,10 @@ export class DashboardConstructorComponent {
         this.isActiveChange.emit(value);
     }
     public get isActive() { return this.activeState; };
+
+    public set isDefault(value: string) {
+        this.isDefaultChange.emit(value);
+    }
 
     constructor(private route: ActivatedRoute) { }
 

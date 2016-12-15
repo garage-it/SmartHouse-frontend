@@ -28,7 +28,9 @@ export class MapConstructorComponent implements OnInit {
     @ViewChild('fileInput') fileInput: ElementRef;
 
     @Input() canBeActive: boolean;
+    @Input() default: string;
     @Output() isActiveChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+    @Output() isDefaultChange: EventEmitter<string> = new EventEmitter<string>();
 
     public uploader: FileUploader = new FileUploader({ queueLimit: 1, allowedFileType: [ 'image' ] });
     public hasBaseDropZoneOver: boolean = false;
@@ -42,6 +44,10 @@ export class MapConstructorComponent implements OnInit {
         this.isActiveChange.emit(value);
     }
     public get isActive() { return this.currentActive; };
+
+    public set isDefault(value: string) {
+        this.isDefaultChange.emit(value);
+    }
 
     private reader: FileReader = new FileReader();
     private sensors: Device[] = [];
@@ -76,6 +82,7 @@ export class MapConstructorComponent implements OnInit {
     }
 
     private onCreateSuccess(): void {
+
         this.router.navigate([ '..' ]);
     }
 
@@ -116,6 +123,7 @@ export class MapConstructorComponent implements OnInit {
             name: this.name,
             description: this.description,
             active: this.isActive,
+            default: this.default === 'Map',
             sensors: this.devicesComponent.sensors.map(({ _id, posX, posY }) => {
                 return {
                     sensor: _id,
