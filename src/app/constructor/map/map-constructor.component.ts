@@ -123,6 +123,7 @@ export class MapConstructorComponent implements OnInit {
             name: this.name,
             description: this.description,
             active: this.isActive,
+            default: this.default === 'Map',
             sensors: this.devicesComponent.sensors.map(({ _id, posX, posY }) => {
                 return {
                     sensor: _id,

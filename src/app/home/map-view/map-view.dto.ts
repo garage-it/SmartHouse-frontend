@@ -29,5 +29,6 @@ export interface MapViewInfoCreateDto {
     name: string;
     description: string;
     active: boolean;
+    default: boolean;
     sensors: Array<MapViewSensorUpdateDto>;
 }
