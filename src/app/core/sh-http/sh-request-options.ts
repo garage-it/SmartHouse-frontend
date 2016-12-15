@@ -12,9 +12,7 @@ export class ShRequestOptions extends BaseRequestOptions {
          */
         return url.includes('/api')
             ? url
-            : url.includes('/api')
-                ? `${ENV_PUBLIC_CONFIG.backEndUrl}/${url}`
-                : `${ENV_PUBLIC_CONFIG.backEndUrl}/api${url}`;
+            : `${ENV_PUBLIC_CONFIG.backEndUrl}/api${url}`;
     }
 
     constructor() {
