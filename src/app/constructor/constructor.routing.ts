@@ -18,6 +18,7 @@ export const routes = [
         component: ConstructorComponent,
         canDeactivate: [CanDeactivateConstructor],
         resolve: {
+            sensors: DeviceListResolver,
             view: ViewResolveService
         }
     }

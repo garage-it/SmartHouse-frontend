@@ -17,11 +17,12 @@ import { DevicesComponent } from '../devices/devices.component';
 import { MapViewService } from '../../home/map-view/map-view.service';
 import { MapViewInfoCreateDto } from '../../home/map-view/map-view.dto';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { ViewInfoDto } from '../../home/view.dto';
 
 @Component({
     selector: 'sh-map-constructor',
     templateUrl: './map-constructor.template.html',
-    styleUrls: [ './map-constructor.style.scss' ]
+    styleUrls: ['./map-constructor.style.scss']
 })
 export class MapConstructorComponent implements OnInit {
     @ViewChild(DevicesComponent) devicesComponent;
@@ -32,18 +33,22 @@ export class MapConstructorComponent implements OnInit {
     @Output() isActiveChange: EventEmitter<boolean> = new EventEmitter<boolean>();
     @Output() isDefaultChange: EventEmitter<string> = new EventEmitter<string>();
 
-    public uploader: FileUploader = new FileUploader({ queueLimit: 1, allowedFileType: [ 'image' ] });
+    public uploader: FileUploader = new FileUploader({ queueLimit: 1, allowedFileType: ['image'] });
     public hasBaseDropZoneOver: boolean = false;
     public picture: any;
     public name: string = '';
     public description: string = '';
 
     private currentActive: boolean = false;
+
     public set isActive(value: boolean) {
         this.currentActive = value;
         this.isActiveChange.emit(value);
     }
-    public get isActive() { return this.currentActive; };
+
+    public get isActive() {
+        return this.currentActive;
+    };
 
     public set isDefault(value: string) {
         this.isDefaultChange.emit(value);
@@ -52,6 +57,7 @@ export class MapConstructorComponent implements OnInit {
     private reader: FileReader = new FileReader();
     private sensors: Device[] = [];
     private mappedSensors: Device[] = [];
+    public view: ViewInfoDto;
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
@@ -66,7 +72,11 @@ export class MapConstructorComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.sensors = this.route.snapshot.data[ 'sensors' ];
+        this.sensors = this.route.snapshot.data['sensors'];
+        this.view = this.route.snapshot.data['view'];
+        if (this.view) {
+            this.initializeEditedView(this.view);
+        }
 
         /* workaround, because handler code is executed outside of Angular Zone ('this' references to the wrong object) */
         this.uploader.onAfterAddingFile = this.ngZone.run(() => (fileItem: any) => {
@@ -81,9 +91,20 @@ export class MapConstructorComponent implements OnInit {
         });
     }
 
+    private initializeEditedView(view: ViewInfoDto): void {
+        if (view.mapView) {
+            this.name = view.mapView.name;
+            this.description = view.mapView.description;
+            this.picture = this.mapViewService.resolvePictureUrl(view.mapView);
+        }
+        if (view.dashboard) {
+            this.mappedSensors = view.dashboard.devices;
+        }
+    }
+
     private onCreateSuccess(): void {
 
-        this.router.navigate([ '..' ]);
+        this.router.navigate(['..']);
     }
 
     public onMappedSensors(sensors: Device[]): void {
@@ -111,7 +132,7 @@ export class MapConstructorComponent implements OnInit {
     public onUploadClick() {
         this.uploader.clearQueue();
         const event = new MouseEvent('click', { bubbles: true });
-        this.renderer.invokeElementMethod(this.fileInput.nativeElement, 'dispatchEvent', [ event ]);
+        this.renderer.invokeElementMethod(this.fileInput.nativeElement, 'dispatchEvent', [event]);
     }
 
     public onSubmit(): void {
