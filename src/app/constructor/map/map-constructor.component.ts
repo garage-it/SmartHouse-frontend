@@ -73,10 +73,10 @@ export class MapConstructorComponent implements OnInit {
 
     public ngOnInit(): void {
         this.sensors = this.route.snapshot.data['sensors'];
-        this.view = this.route.snapshot.data['view'];
-        if (this.view) {
-            this.initializeEditedView(this.view);
-        }
+        // this.view = this.route.snapshot.data['view'];
+        // if (this.view) {
+        //     this.initializeEditedView(this.view);
+        // }
 
         /* workaround, because handler code is executed outside of Angular Zone ('this' references to the wrong object) */
         this.uploader.onAfterAddingFile = this.ngZone.run(() => (fileItem: any) => {
@@ -91,16 +91,16 @@ export class MapConstructorComponent implements OnInit {
         });
     }
 
-    private initializeEditedView(view: ViewInfoDto): void {
-        if (view.mapView) {
-            this.name = view.mapView.name;
-            this.description = view.mapView.description;
-            this.picture = this.mapViewService.resolvePictureUrl(view.mapView);
-        }
-        if (view.dashboard) {
-            this.mappedSensors = view.dashboard.devices;
-        }
-    }
+    // private initializeEditedView(view: ViewInfoDto): void {
+    //     if (view.mapView) {
+    //         this.name = view.mapView.name;
+    //         this.description = view.mapView.description;
+    //         this.picture = this.mapViewService.resolvePictureUrl(view.mapView);
+    //     }
+    //     if (view.dashboard) {
+    //         this.mappedSensors = view.dashboard.devices;
+    //     }
+    // }
 
     private onCreateSuccess(): void {
 

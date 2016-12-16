@@ -7,6 +7,7 @@
 ></sh-map-constructor>
 
 <sh-dashboard-constructor
+    [dashboardSubView]="view?.dashboard"
     [canBeActive]="canBeDashboardActive"
     (isActiveChange)="onDashboardActiveChanged($event)"
     (isDefaultChange)="onDashboardDefaultChange($event)"
