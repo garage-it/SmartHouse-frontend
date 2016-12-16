@@ -1,4 +1,7 @@
-import { Component, ViewChildren, AfterViewInit, ElementRef, Renderer, EventEmitter, Output } from '@angular/core';
+import {
+    Component, ViewChildren, AfterViewInit, ElementRef, Renderer, EventEmitter, Output,
+    Input
+} from '@angular/core';
 import { Device } from '../../shared/devices/device.model';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
 
@@ -8,6 +11,7 @@ import { DragulaService } from 'ng2-dragula/ng2-dragula';
     styleUrls: ['./devices.style.scss']
 })
 export class DevicesComponent implements AfterViewInit {
+    @Input() edittedDevices: Device[];
     @ViewChildren('devices') private devices;
     @Output() onMappedSensor: EventEmitter<any> = new EventEmitter();
 
@@ -30,6 +34,10 @@ export class DevicesComponent implements AfterViewInit {
 
     switcherImageUrl(device: Device): string {
         return device.executor ? 'url(assets/switcherON.svg)' : 'url(assets/switcherOFF.svg)';
+    }
+
+    ngOnInit() {
+        this.sensors = this.edittedDevices;
     }
 
     ngAfterViewInit() {

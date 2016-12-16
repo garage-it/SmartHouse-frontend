@@ -15,9 +15,8 @@ import { Device } from '../../shared/devices/device.model';
 import { FileUploader } from 'ng2-file-upload';
 import { DevicesComponent } from '../devices/devices.component';
 import { MapViewService } from '../../home/map-view/map-view.service';
-import { MapViewInfoCreateDto } from '../../home/map-view/map-view.dto';
+import { MapViewInfoCreateDto, MapViewInfoDto } from '../../home/map-view/map-view.dto';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { ViewInfoDto } from '../../home/view.dto';
 
 @Component({
     selector: 'sh-map-constructor',
@@ -29,6 +28,7 @@ export class MapConstructorComponent implements OnInit {
     @ViewChild('fileInput') fileInput: ElementRef;
 
     @Input() canBeActive: boolean;
+    @Input() mapSubView: MapViewInfoDto;
     @Input() default: string;
     @Output() isActiveChange: EventEmitter<boolean> = new EventEmitter<boolean>();
     @Output() isDefaultChange: EventEmitter<string> = new EventEmitter<string>();
@@ -56,8 +56,8 @@ export class MapConstructorComponent implements OnInit {
 
     private reader: FileReader = new FileReader();
     private sensors: Device[] = [];
+    public edittedDevices: Device[] = [];
     private mappedSensors: Device[] = [];
-    public view: ViewInfoDto;
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
@@ -73,10 +73,9 @@ export class MapConstructorComponent implements OnInit {
 
     public ngOnInit(): void {
         this.sensors = this.route.snapshot.data['sensors'];
-        // this.view = this.route.snapshot.data['view'];
-        // if (this.view) {
-        //     this.initializeEditedView(this.view);
-        // }
+        if (this.mapSubView) {
+            this.initializeEditedView(this.mapSubView);
+        }
 
         /* workaround, because handler code is executed outside of Angular Zone ('this' references to the wrong object) */
         this.uploader.onAfterAddingFile = this.ngZone.run(() => (fileItem: any) => {
@@ -91,19 +90,18 @@ export class MapConstructorComponent implements OnInit {
         });
     }
 
-    // private initializeEditedView(view: ViewInfoDto): void {
-    //     if (view.mapView) {
-    //         this.name = view.mapView.name;
-    //         this.description = view.mapView.description;
-    //         this.picture = this.mapViewService.resolvePictureUrl(view.mapView);
-    //     }
-    //     if (view.dashboard) {
-    //         this.mappedSensors = view.dashboard.devices;
-    //     }
-    // }
+    private initializeEditedView(mapView: MapViewInfoDto): void {
+        this.name = mapView.name;
+        this.description = mapView.description;
+        this.picture = this.mapViewService.resolvePictureUrl(mapView);
+        this.edittedDevices = mapView.sensors.map(sensor => {
+            sensor.sensor.posX = sensor.position.x;
+            sensor.sensor.posY = sensor.position.y;
+            return sensor.sensor;
+        });
+    }
 
     private onCreateSuccess(): void {
-
         this.router.navigate(['..']);
     }
 

@@ -1,9 +1,10 @@
 <sh-map-constructor
+    [mapSubView]="view?.mapView"
     [canBeActive]="canBeMapActive"
     [default]="default"
     (isActiveChange)="onMapActiveChanged($event)"
     (isDefaultChange)="onMapDefaultChange($event)"
-
+    (saveView)="onSaveView($event)"
 ></sh-map-constructor>
 
 <sh-dashboard-constructor
@@ -11,6 +12,7 @@
     [canBeActive]="canBeDashboardActive"
     (isActiveChange)="onDashboardActiveChanged($event)"
     (isDefaultChange)="onDashboardDefaultChange($event)"
+    (saveView)="onSaveView($event)"
 ></sh-dashboard-constructor>
 
 <div>

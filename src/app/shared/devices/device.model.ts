@@ -7,8 +7,8 @@ export class Device {
     servo: boolean;
     type: string;
     updateTime: string;
-    posX: number;
-    posY: number;
+    posX: Number;
+    posY: Number;
 
     constructor(data = {}) {
         Object.assign(this, {

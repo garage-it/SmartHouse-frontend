@@ -34,5 +34,5 @@ export class ConstructorComponent {
         this.default = value;
     }
 
-    // private saveView(): void {}
+    public onSaveView(): void {}
 }
