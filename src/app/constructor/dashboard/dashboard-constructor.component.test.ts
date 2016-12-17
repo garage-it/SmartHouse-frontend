@@ -6,20 +6,9 @@ const mockSensors = [device1, device2];
 
 describe('DashboardConstructor', () => {
     let sut;
-    let ActivatedRoute;
 
     beforeEach(() => {
-        ActivatedRoute = {
-            snapshot: {
-                data: {
-                    sensors: mockSensors,
-                    dashboard: {
-                        devices: []
-                    }
-                }
-            }
-        };
-        sut = new DashboardConstructorComponent(ActivatedRoute);
+        sut = new DashboardConstructorComponent();
         sut.isDefaultChange = jasmine.createSpyObj('isDefaultChange', ['emit']);
     });
 
@@ -29,23 +18,16 @@ describe('DashboardConstructor', () => {
                 sut.ngOnInit();
             });
 
-            it('should receive devices from state', () => {
-                expect(sut.devices).toEqual(mockSensors);
-            });
-
-            it('should receive dashboard selected devices from state', () => {
+            it('should selected devices be empty when create mode', () => {
                 expect(sut.selectedDevices).toEqual([]);
             });
-        });
 
-        describe('when dashbord has some devices', () => {
-            beforeEach(() => {
-                ActivatedRoute.snapshot.data.sensors = [device2];
+            it('should set existed devices to selected devices property when edit mode', () => {
+                sut.dashboardSubView = {
+                    devices: mockSensors
+                };
                 sut.ngOnInit();
-            });
-
-            it('should receive devices from state that is not active devices', () => {
-                expect(sut.devices).toEqual([device2]);
+                expect(sut.selectedDevices).toEqual(mockSensors);
             });
         });
     });

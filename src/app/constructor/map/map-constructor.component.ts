@@ -10,7 +10,7 @@ import {
     EventEmitter
 } from '@angular/core';
 
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Device } from '../../shared/devices/device.model';
 import { FileUploader } from 'ng2-file-upload';
 import { DevicesComponent } from '../devices/devices.component';
@@ -55,12 +55,10 @@ export class MapConstructorComponent implements OnInit {
     }
 
     private reader: FileReader = new FileReader();
-    private sensors: Device[] = [];
     public edittedDevices: Device[] = [];
     private mappedSensors: Device[] = [];
 
-    constructor(private route: ActivatedRoute,
-                private router: Router,
+    constructor(private router: Router,
                 private ngZone: NgZone,
                 private toastr: ToastsManager,
                 private renderer: Renderer,
@@ -72,7 +70,6 @@ export class MapConstructorComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.sensors = this.route.snapshot.data['sensors'];
         if (this.mapSubView) {
             this.initializeEditedView(this.mapSubView);
         }

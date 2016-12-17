@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Device } from '../../shared/devices/device.model';
 import { DashboardViewInfoDto } from '../../home/dashboard-view/dashboard-view.dto';
 
@@ -15,7 +14,6 @@ export class DashboardConstructorComponent {
     @Output() isActiveChange: EventEmitter<boolean> = new EventEmitter<boolean>();
     @Output() isDefaultChange: EventEmitter<string> = new EventEmitter<string>();
 
-    public devices: Device[] = [];
     public selectedDevices: Device[] = [];
 
     private activeState: boolean = false;
@@ -33,11 +31,7 @@ export class DashboardConstructorComponent {
         this.isDefaultChange.emit(value);
     }
 
-    constructor(private route: ActivatedRoute) {
-    }
-
     public ngOnInit(): void {
-        this.devices = this.route.snapshot.data['sensors'];
         if (this.dashboardSubView && this.dashboardSubView.devices) {
             this.selectedDevices = this.dashboardSubView.devices;
         }
@@ -48,10 +42,14 @@ export class DashboardConstructorComponent {
     }
 
     public onRemoveDevice(device: Device): void {
-        this.selectedDevices = this.selectedDevices.filter(filteredWidget => filteredWidget.mqttId !== device.mqttId);
+        this.filterSelectedDevices(device);
     }
 
     public onRemoveSelectedDevice(device: Device): void {
+        this.filterSelectedDevices(device);
+    }
+
+    private filterSelectedDevices(device: Device): void {
         this.selectedDevices = this.selectedDevices.filter(filteredWidget => filteredWidget.mqttId !== device.mqttId);
     }
 }
