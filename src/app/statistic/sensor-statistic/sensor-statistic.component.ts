@@ -45,4 +45,12 @@ export class SensorStatisticComponent implements OnInit, OnDestroy {
     isChartWidgetVisible() {
         return this.sensorId !== 'switcher';
     }
+
+    startDateChanged({value}) {
+        console.log(value);
+    }
+
+    endDateChanged({value}) {
+        console.log(value);
+    }
 }

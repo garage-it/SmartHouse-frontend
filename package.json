@@ -95,6 +95,7 @@
     "karma-webpack": "1.8.0",
     "materialize-css": "^0.97.6",
     "mqtt": "^1.11.2",
+    "ng2-datetime-picker": "^0.12.0",
     "ng2-dragula": "^1.2.1",
     "ng2-file-upload": "^1.1.4-2",
     "ng2-toastr": "1.3.0",
@@ -124,6 +125,7 @@
     "zone.js": "^0.6.23"
   },
   "dependencies": {
-    "mydaterangepicker": "^1.0.4"
+    "mydaterangepicker": "^1.0.4",
+    "ng2-datetime-picker": "^0.12.0"
   }
 }
