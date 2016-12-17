@@ -28,7 +28,7 @@ export class MapConstructorComponent implements OnInit {
     @ViewChild('fileInput') fileInput: ElementRef;
 
     @Input() canBeActive: boolean;
-    @Input() mapSubView: MapViewInfoDto;
+    @Input() mapSubViewData: MapViewInfoDto;
     @Input() default: string;
     @Output() isActiveChange: EventEmitter<boolean> = new EventEmitter<boolean>();
     @Output() isDefaultChange: EventEmitter<string> = new EventEmitter<string>();
@@ -70,8 +70,8 @@ export class MapConstructorComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        if (this.mapSubView) {
-            this.initializeEditedView(this.mapSubView);
+        if (this.mapSubViewData) {
+            this.initializeEditedView(this.mapSubViewData);
         }
 
         /* workaround, because handler code is executed outside of Angular Zone ('this' references to the wrong object) */

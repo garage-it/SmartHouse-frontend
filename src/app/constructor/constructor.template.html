@@ -1,5 +1,5 @@
 <sh-map-constructor
-    [mapSubView]="view?.mapView"
+    [mapSubViewData]="view?.mapView"
     [canBeActive]="canBeMapActive"
     [default]="default"
     (isActiveChange)="onMapActiveChanged($event)"
@@ -8,7 +8,7 @@
 ></sh-map-constructor>
 
 <sh-dashboard-constructor
-    [dashboardSubView]="view?.dashboard"
+    [dashboardSubViewData]="view?.dashboard"
     [canBeActive]="canBeDashboardActive"
     (isActiveChange)="onDashboardActiveChanged($event)"
     (isDefaultChange)="onDashboardDefaultChange($event)"

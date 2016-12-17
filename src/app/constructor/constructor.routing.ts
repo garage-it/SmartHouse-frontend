@@ -14,7 +14,7 @@ export const routes = [
         }
     },
     {
-        path: 'editor/:id',
+        path: ':id',
         component: ConstructorComponent,
         canDeactivate: [CanDeactivateConstructor],
         resolve: {

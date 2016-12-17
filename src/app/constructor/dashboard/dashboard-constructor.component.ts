@@ -10,7 +10,7 @@ import { DashboardViewInfoDto } from '../../home/dashboard-view/dashboard-view.d
 export class DashboardConstructorComponent {
     @Input() canBeActive: boolean;
     @Input() default: string;
-    @Input() dashboardSubView: DashboardViewInfoDto;
+    @Input() dashboardSubViewData: DashboardViewInfoDto;
     @Output() isActiveChange: EventEmitter<boolean> = new EventEmitter<boolean>();
     @Output() isDefaultChange: EventEmitter<string> = new EventEmitter<string>();
 
@@ -32,8 +32,8 @@ export class DashboardConstructorComponent {
     }
 
     public ngOnInit(): void {
-        if (this.dashboardSubView && this.dashboardSubView.devices) {
-            this.selectedDevices = this.dashboardSubView.devices;
+        if (this.dashboardSubViewData && this.dashboardSubViewData.devices) {
+            this.selectedDevices = this.dashboardSubViewData.devices;
         }
     }
 
