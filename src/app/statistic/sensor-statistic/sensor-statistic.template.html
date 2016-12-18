@@ -3,8 +3,7 @@
         <h3 class="switcher-chart__header">Device statistics</h3>
         <div class="switcher-chart-holder">
             <div class="switcher-chart__filter switcher-chart__filter_calendar">
-                <sh-calendar class="date-wrapper" (dateChanged)="startDateChanged($event)"></sh-calendar>
-                <sh-calendar class="date-wrapper" (dateChanged)="endDateChanged($event)"></sh-calendar>
+                <sh-calendar (rangeChanged)="rangeChanged($event)"></sh-calendar>
             </div>
             <sh-switcher-statistic-pie-chart
                 [deviceStatistic]="deviceStatistic">

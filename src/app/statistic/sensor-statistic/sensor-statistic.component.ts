@@ -46,11 +46,7 @@ export class SensorStatisticComponent implements OnInit, OnDestroy {
         return this.sensorId !== 'switcher';
     }
 
-    startDateChanged({value}) {
-        console.log(value);
-    }
-
-    endDateChanged({value}) {
-        console.log(value);
+    rangeChanged(range) {
+        console.log(range);
     }
 }

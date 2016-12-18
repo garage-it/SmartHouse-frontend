@@ -1,0 +1,15 @@
+<input [(ngModel)]="startDate" ng2-datetime-picker
+       date-format="DD-MM-YYYY hh:mm"
+       hour="23"
+       minute='59'
+       year="2016"
+       close-on-select="false"
+       (ngModelChange)="startDateChanged($event)"/>
+
+<input [(ngModel)]="endDate" ng2-datetime-picker
+       date-format="DD-MM-YYYY hh:mm"
+       hour="23"
+       minute='59'
+       year="2016"
+       close-on-select="false"
+       (ngModelChange)="endDateChanged($event)"/>
