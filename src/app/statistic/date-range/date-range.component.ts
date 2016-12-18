@@ -10,6 +10,13 @@ export class DateRangeComponent {
     startDate: Date;
     endDate: Date;
     @Output() rangeChanged = new EventEmitter();
+    constructor() {
+        // TODO: These should be passed to component by some ngModel
+        this.startDate = new Date();
+        this.endDate = new Date();
+        this.startDate.setDate(this.startDate.getDate() - 3);
+    }
+
     startDateChanged() {
         this.emitRangeChangd();
     }
