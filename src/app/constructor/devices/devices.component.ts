@@ -17,14 +17,6 @@ export class DevicesComponent {
                 private dragulaService: DragulaService) {
     }
 
-    switchSensor(device: Device): void {
-        device.executor = !device.executor;
-    }
-
-    switcherImageUrl(device: Device): string {
-        return device.executor ? 'url(assets/switcherON.svg)' : 'url(assets/switcherOFF.svg)';
-    }
-
     ngOnInit() {
         this.dragAndDrop();
     }
