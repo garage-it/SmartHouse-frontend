@@ -13,7 +13,6 @@ import {
 import { Router } from '@angular/router';
 import { Device } from '../../shared/devices/device.model';
 import { FileUploader } from 'ng2-file-upload';
-import { DevicesComponent } from '../devices/devices.component';
 import { MapViewService } from '../../home/map-view/map-view.service';
 import { MapViewInfoCreateDto, MapViewInfoDto } from '../../home/map-view/map-view.dto';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
@@ -24,7 +23,6 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
     styleUrls: ['./map-constructor.style.scss']
 })
 export class MapConstructorComponent implements OnInit {
-    @ViewChild(DevicesComponent) devicesComponent;
     @ViewChild('fileInput') fileInput: ElementRef;
 
     @Input() canBeActive: boolean;
@@ -56,7 +54,6 @@ export class MapConstructorComponent implements OnInit {
 
     private reader: FileReader = new FileReader();
     public edittedDevices: Device[] = [];
-    private mappedSensors: Device[] = [];
 
     constructor(private router: Router,
                 private ngZone: NgZone,
@@ -102,21 +99,22 @@ export class MapConstructorComponent implements OnInit {
         this.router.navigate(['..']);
     }
 
-    public onMappedSensors(sensors: Device[]): void {
-        this.mappedSensors = sensors;
-        this.ngZone.run(() => {
-        });
+    sensorIsUnique(sensor: Device): boolean {
+        return this.edittedDevices
+            .some(s => s._id === sensor._id);
     }
 
     public onAddSensor(sensor: Device): void {
         if (this.picture) {
-            this.devicesComponent.addSensor(sensor);
+            if (!this.sensorIsUnique(sensor)) {
+                this.edittedDevices.push(sensor);
+            }
         }
     }
 
     public onRemoveSensor(sensor: Device): void {
         if (this.picture) {
-            this.devicesComponent.removeSensor(sensor);
+            this.edittedDevices = this.edittedDevices.filter(s => s._id !== sensor._id);
         }
     }
 
@@ -140,7 +138,7 @@ export class MapConstructorComponent implements OnInit {
             description: this.description,
             active: this.isActive,
             default: this.default === 'Map',
-            sensors: this.devicesComponent.sensors.map(({ _id, posX, posY }) => {
+            sensors: this.edittedDevices.map(({ _id, posX, posY }) => {
                 return {
                     sensor: _id,
                     position: {

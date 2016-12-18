@@ -73,8 +73,7 @@
 
             <sh-constructor-devices
                 [edittedDevices]="edittedDevices"
-                class="constructor-devices"
-                (onMappedSensor)="onMappedSensors($event)">
+                class="constructor-devices">
             </sh-constructor-devices>
         </div>
 
@@ -108,7 +107,7 @@
         <h4 class="heading">Step 3: Add devices on the map</h4>
 
         <sh-sensors-list
-            [mappedSensors]="mappedSensors"
+            [mappedSensors]="edittedDevices"
             (onAddSensor)="onAddSensor($event)"
             (onRemoveSensor)="onRemoveSensor($event)">
         </sh-sensors-list>

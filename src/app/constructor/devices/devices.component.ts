@@ -1,7 +1,4 @@
-import {
-    Component, ElementRef, Renderer, EventEmitter, Output,
-    Input
-} from '@angular/core';
+import { Component, ElementRef, Renderer, Input } from '@angular/core';
 import { Device } from '../../shared/devices/device.model';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
 
@@ -12,19 +9,12 @@ import { DragulaService } from 'ng2-dragula/ng2-dragula';
 })
 export class DevicesComponent {
     @Input() edittedDevices: Device[];
-    @Output() onMappedSensor: EventEmitter<any> = new EventEmitter();
 
-    public sensors: Device[] = [];
-    public deviceList: ElementRef[] = [];
     public switcher: boolean = false;
 
     constructor(private element: ElementRef,
                 private renderer: Renderer,
                 private dragulaService: DragulaService) {
-    }
-
-    mappedSensor(sensors: Device[]): void {
-        this.onMappedSensor.emit(sensors);
     }
 
     switchSensor(device: Device): void {
@@ -36,25 +26,7 @@ export class DevicesComponent {
     }
 
     ngOnInit() {
-        this.sensors = this.edittedDevices;
         this.dragAndDrop();
-    }
-
-    sensorIsUnique(sensor: Device): boolean {
-        return this.sensors
-            .some(s => s._id === sensor._id);
-    }
-
-    addSensor(sensor: Device): void {
-        if (!this.sensorIsUnique(sensor)) {
-            this.sensors.push(sensor);
-            this.mappedSensor(this.sensors);
-        }
-    }
-
-    removeSensor(sensor: Device): void {
-        this.sensors = this.sensors.filter(s => s._id !== sensor._id);
-        this.mappedSensor(this.sensors);
     }
 
     saveCoordinates(target, x: number, y: number): void {
