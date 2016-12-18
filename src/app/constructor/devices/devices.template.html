@@ -1,11 +1,12 @@
 <div [dragula]="'sh-constructor-devices'">
     <div class="device"
-         #devices
+         [ngStyle]="{'left': device.posX + 'px', 'top': device.posY + 'px'}"
+         id="{{device._id}}"
          *ngFor="let device of sensors">
         <div class="device__icon"
-             [style.background-image]="'url(assets/' + device.mqttId + '.svg)'">
+             [style.background-image]="'url(assets/' + device?.mqttId + '.svg)'">
         </div>
-        <div *ngIf="device.type === 'switcher'"
+        <div *ngIf="device?.type === 'switcher'"
              (click)="switchSensor(device)">
             <div class="device__switcher"
                  [style.background-image]="switcherImageUrl(device)">

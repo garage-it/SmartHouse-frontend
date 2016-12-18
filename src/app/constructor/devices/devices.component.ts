@@ -1,5 +1,5 @@
 import {
-    Component, ViewChildren, AfterViewInit, ElementRef, Renderer, EventEmitter, Output,
+    Component, ElementRef, Renderer, EventEmitter, Output,
     Input
 } from '@angular/core';
 import { Device } from '../../shared/devices/device.model';
@@ -10,9 +10,8 @@ import { DragulaService } from 'ng2-dragula/ng2-dragula';
     templateUrl: './devices.template.html',
     styleUrls: ['./devices.style.scss']
 })
-export class DevicesComponent implements AfterViewInit {
+export class DevicesComponent {
     @Input() edittedDevices: Device[];
-    @ViewChildren('devices') private devices;
     @Output() onMappedSensor: EventEmitter<any> = new EventEmitter();
 
     public sensors: Device[] = [];
@@ -38,39 +37,7 @@ export class DevicesComponent implements AfterViewInit {
 
     ngOnInit() {
         this.sensors = this.edittedDevices;
-    }
-
-    ngAfterViewInit() {
-        this.devices
-            .changes
-            .subscribe(() => {
-                this.deviceList = this.devices
-                    .map(ref => ref.nativeElement);
-                this.drawSensor();
-            });
-
         this.dragAndDrop();
-    }
-
-    drawSensor(): void {
-        if (this.sensors.length) {
-            let len = this.deviceList.length;
-            let last = this.deviceList[len - 1];
-            let sensor = this.sensors[this.sensors.length - 1];
-            let posX = (len - 1) * 100;
-            let posY = 0;
-
-            if (!sensor.posX) {
-                sensor.posX = posX;
-            }
-            if (!sensor.posY) {
-                sensor.posY = posY;
-            }
-
-            this.renderer.setElementAttribute(last, 'style', `left: ${sensor.posX}px; top: ${sensor.posY}px;`);
-
-            this.renderer.setElementAttribute(last, 'id', sensor._id);
-        }
     }
 
     sensorIsUnique(sensor: Device): boolean {
@@ -91,18 +58,19 @@ export class DevicesComponent implements AfterViewInit {
     }
 
     saveCoordinates(target, x: number, y: number): void {
-        this.sensors.filter(s => s._id === target.id)
-            .forEach((s) => {
-                s.posX = x;
-                s.posY = y;
-            });
-        this.mappedSensor(this.sensors);
+        this.edittedDevices.forEach(device => {
+            if (device._id === target) {
+                device.posX = x;
+                device.posY = y;
+            }
+        });
     }
 
     dragAndDrop(): void {
         this.dragulaService.drag.subscribe((value) => {
             let X, Y, curX, curY;
             const target = value.slice(1)[0];
+            const targetId = target.getAttribute('id');
             const parent = this.element.nativeElement;
             const parentWidth = Number.parseInt(getComputedStyle(parent).width);
             const parentHeight = Number.parseInt(getComputedStyle(parent).height);
@@ -113,7 +81,7 @@ export class DevicesComponent implements AfterViewInit {
                 if (left > 0 && left < parentWidth
                     && top > 0 && top < parentHeight) {
                     this.renderer.setElementAttribute(target, 'style', `left: ${left}px; top: ${top}px;`);
-                    this.saveCoordinates(target, left, top);
+                    this.saveCoordinates(targetId, left, top);
                 }
                 document.onmouseup = null;
                 document.onmousemove = null;
