@@ -33,7 +33,7 @@ describe('SwitcherStatisticsService', () => {
         });
 
         it('should return the result of endpoint', () => {
-            result.subscribe((data) => {
+            result.then((data) => {
                 expect(data).toBe(pieChartData);
             });
         });

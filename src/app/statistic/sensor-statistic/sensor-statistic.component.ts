@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { SwitcherStatisticsService } from './switcher-statistic.service';
 
 const CHART_PERIODS: Array<string> = [
     'day',
@@ -15,11 +16,12 @@ const CHART_PERIODS: Array<string> = [
 })
 export class SensorStatisticComponent implements OnInit, OnDestroy {
     private defaultResolver;
-    private deviceStatistic;
+    private deviceStatistic = [];
+    private pieChartStatistic = {data: []};
     private sensorId;
 
-    constructor(private currentRoute: ActivatedRoute) {
-        this.deviceStatistic = [];
+    constructor(private currentRoute: ActivatedRoute,
+                private switcherStatisticsService: SwitcherStatisticsService) {
     }
 
     get periods(): Array<string> {
@@ -46,7 +48,8 @@ export class SensorStatisticComponent implements OnInit, OnDestroy {
         return this.sensorId !== 'switcher';
     }
 
-    rangeChanged(range) {
-        console.log(range);
+    dateRangeChanged(dateRange) {
+        this.switcherStatisticsService.getPieChartData(this.sensorId, dateRange)
+            .then((pieChartStatistic) => this.pieChartStatistic = pieChartStatistic);
     }
 }

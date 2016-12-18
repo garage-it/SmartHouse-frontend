@@ -1,25 +1,32 @@
 import { SensorStatisticComponent } from './sensor-statistic.component';
+import { SwitcherStatisticsService } from './switcher-statistic.service';
+import { flushMicrotasks, fakeAsync } from '@angular/core/testing';
 
 describe('SensorStatisticComponent', () => {
     let sut;
     let ActivatedRoute;
     let routeSubscription;
+    let switcherStatisticsService;
+    const fakeSensorId = 123;
 
     beforeEach(() => {
+        switcherStatisticsService = new SwitcherStatisticsService(null);
+        spyOn(switcherStatisticsService, 'getPieChartData');
+
         routeSubscription = {
             unsubscribe: jasmine.createSpy('unsubscribe')
         };
         ActivatedRoute = {
             snapshot: {
                 params: {
-                    id: 123
+                    id: fakeSensorId
                 }
             },
             data: {
                 subscribe: jasmine.createSpy('subscribe').and.returnValue(routeSubscription)
             }
         };
-        sut = new SensorStatisticComponent(ActivatedRoute);
+        sut = new SensorStatisticComponent(ActivatedRoute, switcherStatisticsService);
     });
 
     describe('when component is initialized', () => {
@@ -45,7 +52,6 @@ describe('SensorStatisticComponent', () => {
             ActivatedRoute.data.subscribe.calls.first().args[0](subscribedData);
             expect(sut.deviceStatistic).toEqual(subscribedData.deviceStatistic);
         });
-
     });
 
     describe('when component is destroyed', () => {
@@ -78,5 +84,25 @@ describe('SensorStatisticComponent', () => {
             sut.sensorId = incorrectMockSensorId;
             expect(sut.isChartWidgetVisible()).toEqual(true);
         });
+    });
+
+    describe('#dateRangeChanged', () => {
+        const pieChartStatistic = {};
+
+        beforeEach(() => {
+            sut.ngOnInit();
+        });
+
+        it('should change pie chart date when date range changes', fakeAsync(() => {
+            const pieChartDataPromise = new Promise((resolve) => resolve(pieChartStatistic));
+            const dateRange = {};
+            switcherStatisticsService.getPieChartData.and.returnValue(pieChartDataPromise);
+
+            sut.dateRangeChanged(dateRange);
+            flushMicrotasks();
+
+            expect(switcherStatisticsService.getPieChartData).toHaveBeenCalledWith(fakeSensorId, dateRange);
+            expect(sut.pieChartStatistic).toBe(pieChartStatistic);
+        }));
     });
 });
