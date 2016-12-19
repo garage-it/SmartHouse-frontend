@@ -16,17 +16,11 @@ export class ConstructorComponent {
 
     public ngOnInit(): void {
         this.view = this.route.snapshot.data['view'] || {
-                name: '123',
-                description: '123',
+                name: '',
+                description: '',
                 defaultSubview: 'mapSubview',
-                dashboardSubview: {
-                    active: false,
-                    devices: []
-                },
-                mapSubview: {
-                    active: false,
-                    sensors: []
-                }
+                dashboardSubview: {},
+                mapSubview: {}
             };
         console.log(this.view);
     }

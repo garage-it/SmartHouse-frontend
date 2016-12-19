@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 import { Device } from '../../shared/devices/device.model';
 import { FileUploader } from 'ng2-file-upload';
 import { MapViewService } from '../../home/map-view/map-view.service';
-import { MapViewInfoCreateDto, MapViewInfoDto } from '../../home/map-view/map-view.dto';
+import { MapViewInfoCreateDto, MapViewInfoDto, MapViewSensorUpdateDto } from '../../home/map-view/map-view.dto';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { ViewInfoDto } from '../../home/view.dto';
 
@@ -27,7 +27,7 @@ export class MapConstructorComponent implements OnInit {
     @ViewChild('fileInput') fileInput: ElementRef;
 
     @Input() canBeActive: boolean;
-    @Input() mapSubViewData: MapViewInfoDto;
+    @Input() mapSubViewData: MapViewInfoCreateDto | MapViewInfoDto;
 
     @Output() defaultSubviewChange: EventEmitter<string> = new EventEmitter<string>();
     @Input()
@@ -95,7 +95,7 @@ export class MapConstructorComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        if (this.mapSubViewData) {
+        if (Object.keys(this.mapSubViewData).length !== 0) {
             this.initializeEditedView(this.mapSubViewData);
         }
 
@@ -112,7 +112,7 @@ export class MapConstructorComponent implements OnInit {
         });
     }
 
-    private initializeEditedView(mapView: MapViewInfoDto): void {
+    private initializeEditedView(mapView): void {
         this.picture = this.mapViewService.resolvePictureUrl(mapView);
         this.edittedDevices = mapView.sensors.map(sensor => {
             sensor.sensor.posX = sensor.position.x;
@@ -134,6 +134,7 @@ export class MapConstructorComponent implements OnInit {
         if (this.picture) {
             if (!this.sensorIsUnique(sensor)) {
                 this.edittedDevices.push(sensor);
+                this.updateEdittedSensors();
             }
         }
     }
@@ -141,6 +142,7 @@ export class MapConstructorComponent implements OnInit {
     public onRemoveSensor(sensor: Device): void {
         if (this.picture) {
             this.edittedDevices = this.edittedDevices.filter(s => s._id !== sensor._id);
+            this.updateEdittedSensors();
         }
     }
 
@@ -154,8 +156,12 @@ export class MapConstructorComponent implements OnInit {
         this.renderer.invokeElementMethod(this.fileInput.nativeElement, 'dispatchEvent', [event]);
     }
 
+    public onDeviceMoved(): void {
+        this.updateEdittedSensors();
+    }
+
     public onSubmit(): void {
-        console.log('onSubmit map-constructor');
+        console.log('onSubmit map-constructor', this.edittedDevices);
         // const mapViewInfoCreateDto: MapViewInfoCreateDto = {
         //     active: this.isActive,
         //     sensors: this.edittedDevices.map(({ _id, posX, posY }) => {
@@ -212,5 +218,17 @@ export class MapConstructorComponent implements OnInit {
         return this.name
             && this.description
             && this.picture;
+    }
+
+    private updateEdittedSensors(): void {
+        this.mapSubViewData['sensors'] = this.edittedDevices.map(({ _id, posX, posY }) => {
+            return {
+                sensor: _id,
+                position: {
+                    x: posX,
+                    y: posY
+                }
+            };
+        });
     }
 }

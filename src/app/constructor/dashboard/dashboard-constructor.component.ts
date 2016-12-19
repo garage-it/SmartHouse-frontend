@@ -81,6 +81,6 @@ export class DashboardConstructorComponent {
     }
 
     private storeDevices(): void {
-        this.dashboardSubViewData.devices = this.selectedDevices;
+        this.dashboardSubViewData['devices'] = this.selectedDevices;
     }
 }
