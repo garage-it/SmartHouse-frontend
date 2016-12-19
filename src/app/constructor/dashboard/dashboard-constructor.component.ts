@@ -12,17 +12,34 @@ export class DashboardConstructorComponent {
     @Input() canBeActive: boolean;
 
     @Output() defaultSubviewChange: EventEmitter<string> = new EventEmitter<string>();
-    @Input() set defaultSubview(value) {
+    @Input()
+    set defaultSubview(value) {
+        this.defaultSubviewValue = value;
         this.defaultSubviewChange.emit(value);
     };
+    get defaultSubview(): string {
+        return this.defaultSubviewValue;
+    };
 
-    @Input() dashboardSubViewData: DashboardViewInfoDto;
+    @Output() dashboardSubViewDataChange: EventEmitter<DashboardViewInfoDto> = new EventEmitter<DashboardViewInfoDto>();
+    @Input()
+    set dashboardSubViewData(dashboardViewInfoDto) {
+        console.log('dashboardSubViewDataChange', dashboardViewInfoDto);
+        this.dashboardSubViewDataValue = dashboardViewInfoDto;
+        this.dashboardSubViewDataChange.emit(dashboardViewInfoDto);
+    }
+    get dashboardSubViewData(): DashboardViewInfoDto {
+        return this.dashboardSubViewDataValue;
+    }
+
     @Output() isActiveChange: EventEmitter<boolean> = new EventEmitter<boolean>();
     @Output() saveView: EventEmitter<ViewInfoDto> = new EventEmitter<ViewInfoDto>();
 
     public selectedDevices: Device[] = [];
 
     private activeState: boolean = false;
+    private defaultSubviewValue: string = '';
+    private dashboardSubViewDataValue: DashboardViewInfoDto = null;
 
     public set isActive(value: boolean) {
         this.activeState = value;
@@ -41,14 +58,17 @@ export class DashboardConstructorComponent {
 
     public onAddDevice(device): void {
         this.selectedDevices.push(device);
+        this.storeDevices();
     }
 
     public onRemoveDevice(device: Device): void {
         this.filterSelectedDevices(device);
+        this.storeDevices();
     }
 
     public onRemoveSelectedDevice(device: Device): void {
         this.filterSelectedDevices(device);
+        this.storeDevices();
     }
 
     public onSubmit(): void {
@@ -58,5 +78,9 @@ export class DashboardConstructorComponent {
 
     private filterSelectedDevices(device: Device): void {
         this.selectedDevices = this.selectedDevices.filter(filteredWidget => filteredWidget.mqttId !== device.mqttId);
+    }
+
+    private storeDevices(): void {
+        this.dashboardSubViewData.devices = this.selectedDevices;
     }
 }

@@ -30,18 +30,33 @@ export class MapConstructorComponent implements OnInit {
     @Input() mapSubViewData: MapViewInfoDto;
 
     @Output() defaultSubviewChange: EventEmitter<string> = new EventEmitter<string>();
-    @Input() set defaultSubview(value) {
+    @Input()
+    set defaultSubview(value) {
+        this.defaultSubviewValue = value;
         this.defaultSubviewChange.emit(value);
+    };
+    get defaultSubview(): string {
+        return this.defaultSubviewValue;
     };
 
     @Output() nameChange: EventEmitter<string> = new EventEmitter<string>();
-    @Input() set name(value) {
+    @Input()
+    set name(value) {
+        this.nameValue = value;
         this.nameChange.emit(value);
+    };
+    get name(): string {
+        return this.nameValue;
     };
 
     @Output() descriptionChange: EventEmitter<string> = new EventEmitter<string>();
-    @Input() set description(value) {
+    @Input()
+    set description(value) {
+        this.descriptionValue = value;
         this.descriptionChange.emit(value);
+    };
+    get description(): string {
+        return this.descriptionValue;
     };
 
     @Output() isActiveChange: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -52,6 +67,9 @@ export class MapConstructorComponent implements OnInit {
     public picture: any;
 
     private currentActive: boolean = false;
+    private nameValue: string = '';
+    private descriptionValue: string = '';
+    private defaultSubviewValue: string = '';
 
     public set isActive(value: boolean) {
         this.currentActive = value;

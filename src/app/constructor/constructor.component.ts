@@ -16,10 +16,19 @@ export class ConstructorComponent {
 
     public ngOnInit(): void {
         this.view = this.route.snapshot.data['view'] || {
-                name: '',
-                description: '',
-                defaultSubview: ''
+                name: '123',
+                description: '123',
+                defaultSubview: 'mapSubview',
+                dashboardSubview: {
+                    active: false,
+                    devices: []
+                },
+                mapSubview: {
+                    active: false,
+                    sensors: []
+                }
             };
+        console.log(this.view);
     }
 
     public onMapActiveChanged(value: boolean) {

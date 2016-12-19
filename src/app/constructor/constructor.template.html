@@ -1,21 +1,23 @@
 <pre>{{view | json}}</pre>
 
 <sh-map-constructor
-    [mapSubViewData]="view?.mapSubview"
-    [canBeActive]="canBeMapActive"
-    [(defaultSubview)]="view.defaultSubview"
     [(name)]="view.name"
     [(description)]="view.description"
+    [(defaultSubview)]="view.defaultSubview"
+    [(mapSubViewData)]="view.mapSubview"
+
     (isActiveChange)="onMapActiveChanged($event)"
+    [canBeActive]="canBeMapActive"
 
     (saveView)="onSaveView($event)"
 
 ></sh-map-constructor>
 
 <sh-dashboard-constructor
-    [dashboardSubViewData]="view?.dashboardSubview"
-    [canBeActive]="canBeDashboardActive"
+    [(dashboardSubViewData)]="view.dashboardSubview"
     [(defaultSubview)]="view.defaultSubview"
+
+    [canBeActive]="canBeDashboardActive"
     (isActiveChange)="onDashboardActiveChanged($event)"
 
     (saveView)="onSaveView($event)"
