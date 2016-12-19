@@ -4,7 +4,7 @@ import { NavigationRoute } from '../../navigation-route.model';
 import { LOGIN_ROUTE, REGISTRATION_ROUTE, LOGOUT_ROUTE } from '../header-navigation-routes';
 import { ProfileService } from '../../profile/profile.service';
 import { Avatar } from './user.interfaces';
-import AVATAR from './config.avatar';
+import { CONFIG as AVATAR } from './config.avatar';
 
 @Component({
     selector: 'sh-user',

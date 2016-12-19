@@ -1,5 +1,4 @@
 import { UserComponent } from './user.component';
-import { LOGIN_ROUTE, REGISTRATION_ROUTE } from '../header-navigation-routes';
 
 describe('User', () => {
     let sut;
@@ -13,12 +12,12 @@ describe('User', () => {
     });
 
     describe('routing', () => {
-        it('should show log in route', () => {
-            expect(sut.loginRoute).toEqual(LOGIN_ROUTE);
+        it('should show login route', () => {
+            expect(sut.loginRoute.path).toEqual('/login');
         });
 
         it('should show registration route', () => {
-            expect(sut.registrationRoute).toEqual(REGISTRATION_ROUTE);
+            expect(sut.registrationRoute.path).toEqual('/registration');
         });
     });
 
