@@ -16,7 +16,7 @@ import { FileUploader } from 'ng2-file-upload';
 import { MapViewService } from '../../home/map-view/map-view.service';
 import { MapViewInfoCreateDto, MapViewInfoDto, MapViewSensorUpdateDto } from '../../home/map-view/map-view.dto';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { ViewInfoDto } from '../../home/view.dto';
+import { ViewInfoDto } from '../../home/view/view.dto';
 
 @Component({
     selector: 'sh-map-constructor',
@@ -161,29 +161,6 @@ export class MapConstructorComponent implements OnInit {
     }
 
     public onSubmit(): void {
-        console.log('onSubmit map-constructor', this.edittedDevices);
-        // const mapViewInfoCreateDto: MapViewInfoCreateDto = {
-        //     active: this.isActive,
-        //     sensors: this.edittedDevices.map(({ _id, posX, posY }) => {
-        //         return {
-        //             sensor: _id,
-        //             position: {
-        //                 x: posX,
-        //                 y: posY
-        //             }
-        //         };
-        //     })
-        // };
-        //
-        // const viewDto: ViewInfoDto = {
-        //     name: this.name,
-        //     description: this.description,
-        //     defaultSubview: this.default,
-        //     mapSubview: mapViewInfoCreateDto
-        // };
-
-
-
         this.saveView.emit();
         // if (!this.isMapViewCanBeSaved()) {
         //     this.toastr.error('Please fill mandatory fields: "Name", "Description" and "Add Picture"');

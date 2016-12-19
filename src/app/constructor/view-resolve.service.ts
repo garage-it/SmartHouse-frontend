@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Rx';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { HomeService } from '../home/home.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { ViewInfoDto } from '../home/view.dto';
+import { ViewInfoDto } from '../home/view/view.dto';
 
 @Injectable()
 export class ViewResolveService implements Resolve<ViewInfoDto> {

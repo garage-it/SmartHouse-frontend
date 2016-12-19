@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Device } from '../../shared/devices/device.model';
 import { DashboardViewInfoDto } from '../../home/dashboard-view/dashboard-view.dto';
-import { ViewInfoDto } from '../../home/view.dto';
+import { ViewInfoDto } from '../../home/view/view.dto';
 
 @Component({
     selector: 'sh-dashboard-constructor',
@@ -72,7 +72,6 @@ export class DashboardConstructorComponent {
     }
 
     public onSubmit(): void {
-        console.log('onSubmit dashboard-constructor');
         this.saveView.emit();
     }
 

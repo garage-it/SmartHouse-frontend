@@ -4,7 +4,7 @@ import { MapViewInfoDto } from './map-view/map-view.dto';
 import { DashboardViewInfoDto } from './dashboard-view/dashboard-view.dto';
 
 import { Subscription } from 'rxjs';
-import { ViewInfoDto } from './view.dto';
+import { ViewInfoDto } from './view/view.dto';
 
 @Component({
     selector: 'sh-home',

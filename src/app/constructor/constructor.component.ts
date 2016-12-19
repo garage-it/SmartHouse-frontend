@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { ViewInfoDto } from '../home/view.dto';
+import { ViewInfoDto } from '../home/view/view.dto';
 import { ActivatedRoute } from '@angular/router';
+import { ViewService } from '../home/view/view.service';
 
 @Component({
     selector: 'sh-constructor',
@@ -12,7 +13,7 @@ export class ConstructorComponent {
     public canBeDashboardActive: boolean = true;
     private view: ViewInfoDto;
 
-    constructor(private route: ActivatedRoute) {}
+    constructor(private route: ActivatedRoute, private viewService: ViewService) {}
 
     public ngOnInit(): void {
         this.view = this.route.snapshot.data['view'] || {
@@ -22,7 +23,6 @@ export class ConstructorComponent {
                 dashboardSubview: {},
                 mapSubview: {}
             };
-        console.log(this.view);
     }
 
     public onMapActiveChanged(value: boolean) {
@@ -34,6 +34,9 @@ export class ConstructorComponent {
     }
 
     public onSaveView(): void {
-        console.log('I want to be saved', this.view);
+        this.viewService.create(this.view).subscribe(view => {
+            // TODO Save image??? and redirect
+            console.log('view saved', view);
+        });
     }
 }
