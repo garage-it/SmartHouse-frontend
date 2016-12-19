@@ -25,22 +25,6 @@
     }
 }
 
-.sensor {
-    width: 42px;
-    height: 42px;
+sh-device {
     position: absolute;
-
-    &__description {
-        width: 42px;
-        height: 42px;
-    }
-
-    &__switcher {
-        position: absolute;
-        left: 42px;
-        top: 0;
-        width: 42px;
-        height: 42px;
-        cursor: pointer;
-    }
 }

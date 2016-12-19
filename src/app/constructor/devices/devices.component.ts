@@ -1,4 +1,4 @@
-import { Component, ViewChildren, AfterViewInit, ElementRef, Renderer, EventEmitter, Output } from '@angular/core';
+import { Component, ElementRef, Renderer, Input } from '@angular/core';
 import { Device } from '../../shared/devices/device.model';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
 
@@ -7,12 +7,9 @@ import { DragulaService } from 'ng2-dragula/ng2-dragula';
     templateUrl: './devices.template.html',
     styleUrls: ['./devices.style.scss']
 })
-export class DevicesComponent implements AfterViewInit {
-    @ViewChildren('devices') private devices;
-    @Output() onMappedSensor: EventEmitter<any> = new EventEmitter();
+export class DevicesComponent {
+    @Input() edittedDevices: Device[];
 
-    public sensors: Device[] = [];
-    public deviceList: ElementRef[] = [];
     public switcher: boolean = false;
 
     constructor(private element: ElementRef,
@@ -20,81 +17,24 @@ export class DevicesComponent implements AfterViewInit {
                 private dragulaService: DragulaService) {
     }
 
-    mappedSensor(sensors: Device[]): void {
-        this.onMappedSensor.emit(sensors);
-    }
-
-    switchSensor(device: Device): void {
-        device.executor = !device.executor;
-    }
-
-    switcherImageUrl(device: Device): string {
-        return device.executor ? 'url(assets/switcherON.svg)' : 'url(assets/switcherOFF.svg)';
-    }
-
-    ngAfterViewInit() {
-        this.devices
-            .changes
-            .subscribe(() => {
-                this.deviceList = this.devices
-                    .map(ref => ref.nativeElement);
-                this.drawSensor();
-            });
-
+    ngOnInit() {
         this.dragAndDrop();
     }
 
-    drawSensor(): void {
-        if (this.sensors.length) {
-            let len = this.deviceList.length;
-            let last = this.deviceList[len - 1];
-            let sensor = this.sensors[this.sensors.length - 1];
-            let posX = (len - 1) * 100;
-            let posY = 0;
-
-            if (!sensor.posX) {
-                sensor.posX = posX;
-            }
-            if (!sensor.posY) {
-                sensor.posY = posY;
-            }
-
-            this.renderer.setElementAttribute(last, 'style', `left: ${sensor.posX}px; top: ${sensor.posY}px;`);
-
-            this.renderer.setElementAttribute(last, 'id', sensor._id);
-        }
-    }
-
-    sensorIsUnique(sensor: Device): boolean {
-        return this.sensors
-            .some(s => s._id === sensor._id);
-    }
-
-    addSensor(sensor: Device): void {
-        if (!this.sensorIsUnique(sensor)) {
-            this.sensors.push(sensor);
-            this.mappedSensor(this.sensors);
-        }
-    }
-
-    removeSensor(sensor: Device): void {
-        this.sensors = this.sensors.filter(s => s._id !== sensor._id);
-        this.mappedSensor(this.sensors);
-    }
-
     saveCoordinates(target, x: number, y: number): void {
-        this.sensors.filter(s => s._id === target.id)
-            .forEach((s) => {
-                s.posX = x;
-                s.posY = y;
-            });
-        this.mappedSensor(this.sensors);
+        this.edittedDevices.forEach(device => {
+            if (device._id === target) {
+                device.posX = x;
+                device.posY = y;
+            }
+        });
     }
 
     dragAndDrop(): void {
         this.dragulaService.drag.subscribe((value) => {
             let X, Y, curX, curY;
             const target = value.slice(1)[0];
+            const targetId = target.getAttribute('id');
             const parent = this.element.nativeElement;
             const parentWidth = Number.parseInt(getComputedStyle(parent).width);
             const parentHeight = Number.parseInt(getComputedStyle(parent).height);
@@ -105,7 +45,7 @@ export class DevicesComponent implements AfterViewInit {
                 if (left > 0 && left < parentWidth
                     && top > 0 && top < parentHeight) {
                     this.renderer.setElementAttribute(target, 'style', `left: ${left}px; top: ${top}px;`);
-                    this.saveCoordinates(target, left, top);
+                    this.saveCoordinates(targetId, left, top);
                 }
                 document.onmouseup = null;
                 document.onmousemove = null;

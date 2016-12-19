@@ -5,6 +5,7 @@ import {
 
 export interface MapSubviewDto {
     _id: string,
+    parentViewId?: string;
     active: boolean;
     sensors: Array<SensorDto>;
     pictureName: string;

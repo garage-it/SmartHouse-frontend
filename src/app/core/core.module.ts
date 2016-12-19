@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HttpModule, RequestOptions } from '@angular/http';
 import { HeaderComponent } from './header/header.component';
+import { UserComponent } from './header/user/user.component';
 import { MainComponent } from './main/main.component';
 import { ScreenComponent } from './screen/screen.component';
 
@@ -19,12 +20,14 @@ import { WindowRef } from './browser/window-ref.service';
 import { MapSubviewService } from './views/map-subview.service';
 import { TimepieceComponent } from './header/timepiece/timepiece.component';
 import { SharedModule } from '../shared/shared.module';
+import { MdMenuModule } from '@angular/material';
 
 @NgModule({
     id: module.id,
-    imports: [ CommonModule, RouterModule, HttpModule, SharedModule ],
+    imports: [ CommonModule, RouterModule, HttpModule, SharedModule, MdMenuModule ],
     declarations: [
         HeaderComponent,
+        UserComponent,
         MainComponent,
         ScreenComponent,
         TimepieceComponent

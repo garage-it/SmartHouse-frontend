@@ -176,6 +176,13 @@ describe('Profile Service', () => {
 
             expect(sut.getUserRole()).toEqual(expectedRole);
         });
+
+        it('should return user name', () => {
+            sut.user = {
+                name: 'username'
+            };
+            expect(sut.getUserName()).toEqual('username');
+        });
     });
 
     describe('authorized user', () => {

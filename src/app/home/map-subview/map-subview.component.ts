@@ -15,12 +15,4 @@ export class MapSubviewComponent {
     getImage(): string {
         return this.mapViewService.resolvePictureUrl(this.mapSubview);
     }
-
-    switchSensor(device): void {
-        device.executor = !device.executor;
-    }
-
-    switcherImageUrl(device): string {
-        return device.executor ? 'url(assets/switcherON.svg)' : 'url(assets/switcherOFF.svg)';
-    }
 }
