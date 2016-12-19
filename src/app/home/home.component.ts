@@ -28,7 +28,7 @@ export class HomeComponent {
                 .map(view => view.mapSubview);
 
             this.listDashboardViews = viewList
-                .filter(view => !!view.dashboard)
+                .filter(view => !!view.dashboardSubview)
                 .map(view => view.dashboard);
 
             this.currentView = this.listMapViews.find(view => view.default) || this.listMapViews[0];
@@ -39,8 +39,8 @@ export class HomeComponent {
         if (view.mapSubview) {
             view.mapSubview.parentViewId = view['_id'];
         }
-        if (view.dashboard) {
-            view.dashboard.parentViewId = view['_id'];
+        if (view.dashboardSubview) {
+            view.dashboardSubview.parentViewId = view['_id'];
         }
     }
 

@@ -6,5 +6,5 @@ export interface ViewInfoDto {
     description: string,
     defaultSubview: string,
     mapSubview?: MapViewInfoDto | MapViewInfoCreateDto;
-    dashboard?: DashboardViewInfoDto;
+    dashboardSubview?: DashboardViewInfoDto;
 }
