@@ -1,6 +1,6 @@
-import { MapViewService } from './map-view.service';
+import { MapSubviewService } from './map-subview.service';
 
-describe('MapViewService', () => {
+describe('MapSubviewService', () => {
     const fileUrl = 'fileUrl';
     const response = {};
 
@@ -25,7 +25,7 @@ describe('MapViewService', () => {
             merge: jasmine.createSpy('merge').and.returnValue({url: 'some url'})
         };
 
-        sut = new MapViewService(http, filesService, requestOptions);
+        sut = new MapSubviewService(http, filesService, requestOptions);
     });
 
     describe('create', () => {

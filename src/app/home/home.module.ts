@@ -9,7 +9,6 @@ import { routing } from './home.routing';
 import { HomeComponent } from './home.component';
 
 import HOME_DECLARATIONS from './home.declarations';
-import { MapViewService } from './map-view/map-view.service';
 import { CoreModule } from '../core/core.module';
 import { ChartModule } from 'angular2-highcharts';
 import { HomeService } from './home.service';
@@ -30,7 +29,6 @@ import { DevicesModule } from '../shared/devices/devices.module';
     declarations: [ ...HOME_DECLARATIONS ],
     exports: [ HomeComponent ],
     providers: [
-        MapViewService,
         HomeService,
         HomeResolveService
     ]

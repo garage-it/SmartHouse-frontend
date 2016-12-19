@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { ViewInfoDto } from '../home/view.dto';
+// TODO: Refactor with subview
+// import { ViewInfoDto } from '../home/view.dto';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -10,7 +11,9 @@ export class ConstructorComponent {
     public canBeMapActive: boolean = true;
     public canBeDashboardActive: boolean = true;
     public default: string;
-    public view: ViewInfoDto;
+    // TODO: Refactor with subview
+    // public view: ViewInfoDto;
+    public view: any;
 
     constructor(private route: ActivatedRoute) {}
 

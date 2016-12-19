@@ -17,6 +17,7 @@ import { StorageService } from './storage/storage.service';
 import { ShRequestOptions } from './sh-http/sh-request-options';
 import { FilesService } from './files/files.service';
 import { WindowRef } from './browser/window-ref.service';
+import { MapSubviewService } from './views/map-subview.service';
 import { TimepieceComponent } from './header/timepiece/timepiece.component';
 import { SharedModule } from '../shared/shared.module';
 import { MdMenuModule } from '@angular/material';
@@ -42,7 +43,8 @@ import { MdMenuModule } from '@angular/material';
         ShHttpUtilsService,
         StorageService,
         WindowRef,
-        FilesService
+        FilesService,
+        MapSubviewService
     ],
     exports: [ HeaderComponent, MainComponent, ScreenComponent, TimepieceComponent ]
 })

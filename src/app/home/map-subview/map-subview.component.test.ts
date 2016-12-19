@@ -1,16 +1,16 @@
-import { MapViewComponent } from './map-view.component';
+import { MapSubviewComponent } from './map-subview.component';
 
-describe('Map View', () => {
+describe('Map Subview', () => {
     let sut;
-    let MapViewService;
+    let MapSubviewService;
     const resolvedUrl = {};
 
     beforeEach(() => {
-        MapViewService = {
+        MapSubviewService = {
             resolvePictureUrl: jasmine.createSpy('resolvePictureUrl').and.returnValue(resolvedUrl)
         };
 
-        sut = new MapViewComponent(MapViewService);
+        sut = new MapSubviewComponent(MapSubviewService);
     });
 
     describe('get image', () => {
@@ -18,12 +18,12 @@ describe('Map View', () => {
         let result;
 
         beforeEach(() => {
-            sut.currentMapView = jasmine.createSpy('currentMapView').and.returnValue({});
+            sut.mapSubview = jasmine.createSpy('mapSubview').and.returnValue({});
             result = sut.getImage();
         });
 
         it('should resolve image url which should be loaded', () => {
-            expect(MapViewService.resolvePictureUrl).toHaveBeenCalledWith(sut.currentMapView);
+            expect(MapSubviewService.resolvePictureUrl).toHaveBeenCalledWith(sut.mapSubview);
         });
 
         it('should get appropriate url where image can be loaded', () => {

@@ -1,12 +1,12 @@
-<div class="map-view">
-    <div class="map-view__picture"
-         *ngIf="currentMapView?.pictureName">
+<div class="map-subview">
+    <div class="map-subview__picture"
+         *ngIf="mapSubview?.pictureName">
 
-        <img class="map-view__image"
+        <img class="map-subview__image"
              [src]="getImage()"
              alt="your image"/>
 
-        <div class="map-view__devices">
+        <div class="map-subview__devices">
             <sh-device *ngFor="let device of currentMapView?.sensors"
                        [device]="device.sensor"
                        [ngStyle]="{'left': device?.position?.x + 'px', 'top': device?.position?.y + 'px'}">

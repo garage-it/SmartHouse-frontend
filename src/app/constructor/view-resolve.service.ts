@@ -3,10 +3,13 @@ import { Observable } from 'rxjs/Rx';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { HomeService } from '../home/home.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { ViewInfoDto } from '../home/view.dto';
+// TODO: Refactor with subview
+// import { ViewInfoDto } from '../home/view.dto';
 
 @Injectable()
-export class ViewResolveService implements Resolve<ViewInfoDto> {
+// TODO: Refactor with subview
+// export class ViewResolveService implements Resolve<ViewInfoDto> {
+export class ViewResolveService implements Resolve<any> {
 
     constructor(private homeService: HomeService,
                 private toastr: ToastsManager) {
