@@ -14,12 +14,14 @@ import { CoreModule } from '../core/core.module';
 import { ChartModule } from 'angular2-highcharts';
 import { HomeService } from './home.service';
 import { HomeResolveService } from './home-resolve.service';
+import { DevicesModule } from '../shared/devices/devices.module';
 
 @NgModule({
     id: module.id,
     imports: [
         CoreModule,
         SharedModule,
+        DevicesModule,
         RouterModule,
         FormsModule,
         routing,

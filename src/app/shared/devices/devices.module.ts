@@ -8,6 +8,7 @@ import { DeviceListComponent } from './device-list/device-list.component';
 
 import { DevicesService } from './devices.service';
 import { DeviceListResolver } from './devices.resolver';
+import { DeviceComponent } from './device/device.component';
 
 @NgModule({
     id: module.id,
@@ -17,10 +18,12 @@ import { DeviceListResolver } from './devices.resolver';
         SharedModule
     ],
     declarations: [
-        DeviceListComponent
+        DeviceListComponent,
+        DeviceComponent
     ],
     exports: [
-        DeviceListComponent
+        DeviceListComponent,
+        DeviceComponent
     ],
     providers: [
         DevicesService,

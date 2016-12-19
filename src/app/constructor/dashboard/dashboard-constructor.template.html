@@ -13,8 +13,8 @@
 </div>
 
 <sh-dashboard-view
-        [widgets]="widgets"
-        (onRemoveWidget)="onRemoveWidget($event)">
+        [widgets]="selectedDevices"
+        (onRemoveWidget)="onRemoveSelectedDevice($event)">
 </sh-dashboard-view>
 
 <div class="step">
@@ -22,8 +22,7 @@
 </div>
 
 <sh-sensors-list
-        [sensors]="sensors"
-        [mappedSensors]="widgets"
-        (onAddSensor)="onAddSensor($event)"
-        (onRemoveSensor)="onRemoveSensor($event)">
+        [mappedSensors]="selectedDevices"
+        (onAddSensor)="onAddDevice($event)"
+        (onRemoveSensor)="onRemoveDevice($event)">
 </sh-sensors-list>

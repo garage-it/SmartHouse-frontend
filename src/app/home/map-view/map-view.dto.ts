@@ -6,6 +6,7 @@ export interface Position {
 }
 
 export interface MapViewSensorDto {
+    _id: string;
     sensor: Device;
     position: Position;
 }
@@ -17,6 +18,7 @@ export interface MapViewSensorUpdateDto {
 
 export interface MapViewInfoDto {
     _id: string;
+    parentViewId?: string;
     name: string;
     description: string;
     pictureName: string;
