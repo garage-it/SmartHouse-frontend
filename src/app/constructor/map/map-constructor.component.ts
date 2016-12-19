@@ -14,8 +14,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Device } from '../../shared/devices/device.model';
 import { FileUploader } from 'ng2-file-upload';
 import { DevicesComponent } from '../devices/devices.component';
-import { MapViewService } from '../../home/map-view/map-view.service';
-import { MapViewInfoCreateDto } from '../../home/map-view/map-view.dto';
+import { MapSubviewService } from '../../core/views/map-subview.service';
+// import { MapSubviewCreateDto } from '../../core/views/map-subview.dto';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
@@ -58,7 +58,7 @@ export class MapConstructorComponent implements OnInit {
                 private ngZone: NgZone,
                 private toastr: ToastsManager,
                 private renderer: Renderer,
-                private mapViewService: MapViewService) {
+                private mapSubviewService: MapSubviewService) {
     }
 
     get isReUploadDisabled(): boolean {
@@ -115,33 +115,34 @@ export class MapConstructorComponent implements OnInit {
     }
 
     public onSubmit(): void {
-        if (!this.isMapViewCanBeSaved()) {
-            this.toastr.error('Please fill mandatory fields: "Name", "Description" and "Add Picture"');
-            return;
-        }
-        const mapViewInfoCreateDto: MapViewInfoCreateDto = {
-            name: this.name,
-            description: this.description,
-            active: this.isActive,
-            default: this.default === 'Map',
-            sensors: this.devicesComponent.sensors.map(({ _id, posX, posY }) => {
-                return {
-                    sensor: _id,
-                    position: {
-                        x: posX,
-                        y: posY
-                    }
-                };
-            })
-        };
-
-        this.mapViewService.create(mapViewInfoCreateDto)
-            .subscribe((mapViewInfoDto) => {
-                this.uploader.setOptions({
-                    url: this.mapViewService.resolvePictureUploadUrl(mapViewInfoDto)
-                });
-                this.uploader.uploadAll();
-            });
+        // TODO: Refactor when back-end is ready
+        // if (!this.isMapViewCanBeSaved()) {
+        //     this.toastr.error('Please fill mandatory fields: "Name", "Description" and "Add Picture"');
+        //     return;
+        // }
+        // const mapViewInfoCreateDto: MapSubviewCreateDto = {
+        //     name: this.name,
+        //     description: this.description,
+        //     active: this.isActive,
+        //     default: this.default === 'Map',
+        //     sensors: this.devicesComponent.sensors.map(({ _id, posX, posY }) => {
+        //         return {
+        //             sensor: _id,
+        //             position: {
+        //                 x: posX,
+        //                 y: posY
+        //             }
+        //         };
+        //     })
+        // };
+        //
+        // this.mapSubviewService.create(mapViewInfoCreateDto)
+        //     .subscribe((mapViewInfoDto) => {
+        //         this.uploader.setOptions({
+        //             url: this.mapSubviewService.resolvePictureUploadUrl(mapViewInfoDto)
+        //         });
+        //         this.uploader.uploadAll();
+        //     });
     }
 
     private isMapViewCanBeSaved(): boolean {

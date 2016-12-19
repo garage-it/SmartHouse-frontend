@@ -9,11 +9,12 @@ describe('Map View List', () => {
     });
 
     describe('view map', () => {
-        const mapView = {};
+        let view;
 
         beforeEach(() => {
+            view = {};
             sut.onSelectView.emit = jasmine.createSpy('emit');
-            sut.viewMap(mapView);
+            sut.selectView(view);
         });
 
         it('should have event emitter for select map view event', () => {
@@ -21,7 +22,7 @@ describe('Map View List', () => {
         });
 
         it('should emit event that current map view was changed', () => {
-            expect(sut.onSelectView.emit).toHaveBeenCalledWith(mapView);
+            expect(sut.onSelectView.emit).toHaveBeenCalledWith(view);
         });
     });
 

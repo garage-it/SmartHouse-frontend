@@ -1,15 +1,15 @@
-<div class="map-view">
-    <div class="map-view__picture"
-         *ngIf="currentMapView?.pictureName">
+<div class="map-subview">
+    <div class="map-subview__picture"
+         *ngIf="mapSubview?.pictureName">
 
-        <img class="map-view__image"
+        <img class="map-subview__image"
              [src]="getImage()"
              alt="your image"/>
 
-        <div class="map-view__devices">
+        <div class="map-subview__devices">
             <div class="sensor"
-                 [ngStyle]="{'left': sensor.position.x + 'px', 'top': sensor.position.y + 'px'}"
-                 *ngFor="let sensor of currentMapView?.sensors">
+                 *ngFor="let sensor of mapSubview?.sensors"
+                 [ngStyle]="{'left': sensor.position.x + 'px', 'top': sensor.position.y + 'px'}">
                 <div class="sensor__description"
                      [style.background-image]="'url(assets/' + sensor?.sensor?.mqttId + '.svg)'">
                 </div>
