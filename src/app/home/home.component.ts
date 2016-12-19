@@ -25,7 +25,7 @@ export class HomeComponent {
 
             this.listMapViews = viewList
                 .filter(view => !!view.mapView)
-                .map(view => view.mapView);
+                .map(view => view.mapSubview);
 
             this.listDashboardViews = viewList
                 .filter(view => !!view.dashboard)
@@ -36,8 +36,8 @@ export class HomeComponent {
     }
 
     private setCrutch(view: ViewInfoDto) {
-        if (view.mapView) {
-            view.mapView.parentViewId = view['_id'];
+        if (view.mapSubview) {
+            view.mapSubview.parentViewId = view['_id'];
         }
         if (view.dashboard) {
             view.dashboard.parentViewId = view['_id'];

@@ -1,7 +1,10 @@
-import { MapViewInfoDto } from './map-view/map-view.dto';
+import { MapViewInfoDto, MapViewInfoCreateDto } from './map-view/map-view.dto';
 import { DashboardViewInfoDto } from './dashboard-view/dashboard-view.dto';
 
 export interface ViewInfoDto {
-    mapView?: MapViewInfoDto;
+    name: string,
+    description: string,
+    defaultSubview: string,
+    mapSubview?: MapViewInfoDto | MapViewInfoCreateDto;
     dashboard?: DashboardViewInfoDto;
 }

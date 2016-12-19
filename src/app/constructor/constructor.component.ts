@@ -4,18 +4,22 @@ import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'sh-constructor',
-    templateUrl: './constructor.template.html'
+    templateUrl: './constructor.template.html',
+    styleUrls: ['./constructor.style.scss']
 })
 export class ConstructorComponent {
     public canBeMapActive: boolean = true;
     public canBeDashboardActive: boolean = true;
-    public default: string;
-    public view: ViewInfoDto;
+    private view: ViewInfoDto;
 
     constructor(private route: ActivatedRoute) {}
 
     public ngOnInit(): void {
-        this.view = this.route.snapshot.data['view'];
+        this.view = this.route.snapshot.data['view'] || {
+                name: '',
+                description: '',
+                defaultSubview: ''
+            };
     }
 
     public onMapActiveChanged(value: boolean) {
@@ -26,13 +30,7 @@ export class ConstructorComponent {
         this.canBeMapActive = !value;
     }
 
-    public onDashboardDefaultChange(value: string) {
-        this.default = value;
+    public onSaveView(): void {
+        console.log('I want to be saved', this.view);
     }
-
-    public onMapDefaultChange(value: string) {
-        this.default = value;
-    }
-
-    public onSaveView(): void {}
 }

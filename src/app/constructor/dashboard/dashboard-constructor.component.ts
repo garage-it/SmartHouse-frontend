@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Device } from '../../shared/devices/device.model';
 import { DashboardViewInfoDto } from '../../home/dashboard-view/dashboard-view.dto';
+import { ViewInfoDto } from '../../home/view.dto';
 
 @Component({
     selector: 'sh-dashboard-constructor',
@@ -9,10 +10,15 @@ import { DashboardViewInfoDto } from '../../home/dashboard-view/dashboard-view.d
 })
 export class DashboardConstructorComponent {
     @Input() canBeActive: boolean;
-    @Input() default: string;
+
+    @Output() defaultSubviewChange: EventEmitter<string> = new EventEmitter<string>();
+    @Input() set defaultSubview(value) {
+        this.defaultSubviewChange.emit(value);
+    };
+
     @Input() dashboardSubViewData: DashboardViewInfoDto;
     @Output() isActiveChange: EventEmitter<boolean> = new EventEmitter<boolean>();
-    @Output() isDefaultChange: EventEmitter<string> = new EventEmitter<string>();
+    @Output() saveView: EventEmitter<ViewInfoDto> = new EventEmitter<ViewInfoDto>();
 
     public selectedDevices: Device[] = [];
 
@@ -26,10 +32,6 @@ export class DashboardConstructorComponent {
     public get isActive() {
         return this.activeState;
     };
-
-    public set isDefault(value: string) {
-        this.isDefaultChange.emit(value);
-    }
 
     public ngOnInit(): void {
         if (this.dashboardSubViewData && this.dashboardSubViewData.devices) {
@@ -47,6 +49,11 @@ export class DashboardConstructorComponent {
 
     public onRemoveSelectedDevice(device: Device): void {
         this.filterSelectedDevices(device);
+    }
+
+    public onSubmit(): void {
+        console.log('onSubmit dashboard-constructor');
+        this.saveView.emit();
     }
 
     private filterSelectedDevices(device: Device): void {

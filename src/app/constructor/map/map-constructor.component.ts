@@ -16,6 +16,7 @@ import { FileUploader } from 'ng2-file-upload';
 import { MapViewService } from '../../home/map-view/map-view.service';
 import { MapViewInfoCreateDto, MapViewInfoDto } from '../../home/map-view/map-view.dto';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { ViewInfoDto } from '../../home/view.dto';
 
 @Component({
     selector: 'sh-map-constructor',
@@ -27,15 +28,28 @@ export class MapConstructorComponent implements OnInit {
 
     @Input() canBeActive: boolean;
     @Input() mapSubViewData: MapViewInfoDto;
-    @Input() default: string;
+
+    @Output() defaultSubviewChange: EventEmitter<string> = new EventEmitter<string>();
+    @Input() set defaultSubview(value) {
+        this.defaultSubviewChange.emit(value);
+    };
+
+    @Output() nameChange: EventEmitter<string> = new EventEmitter<string>();
+    @Input() set name(value) {
+        this.nameChange.emit(value);
+    };
+
+    @Output() descriptionChange: EventEmitter<string> = new EventEmitter<string>();
+    @Input() set description(value) {
+        this.descriptionChange.emit(value);
+    };
+
     @Output() isActiveChange: EventEmitter<boolean> = new EventEmitter<boolean>();
-    @Output() isDefaultChange: EventEmitter<string> = new EventEmitter<string>();
+    @Output() saveView: EventEmitter<ViewInfoDto> = new EventEmitter<ViewInfoDto>();
 
     public uploader: FileUploader = new FileUploader({ queueLimit: 1, allowedFileType: ['image'] });
     public hasBaseDropZoneOver: boolean = false;
     public picture: any;
-    public name: string = '';
-    public description: string = '';
 
     private currentActive: boolean = false;
 
@@ -47,10 +61,6 @@ export class MapConstructorComponent implements OnInit {
     public get isActive() {
         return this.currentActive;
     };
-
-    public set isDefault(value: string) {
-        this.isDefaultChange.emit(value);
-    }
 
     private reader: FileReader = new FileReader();
     public edittedDevices: Device[] = [];
@@ -85,8 +95,6 @@ export class MapConstructorComponent implements OnInit {
     }
 
     private initializeEditedView(mapView: MapViewInfoDto): void {
-        this.name = mapView.name;
-        this.description = mapView.description;
         this.picture = this.mapViewService.resolvePictureUrl(mapView);
         this.edittedDevices = mapView.sensors.map(sensor => {
             sensor.sensor.posX = sensor.position.x;
@@ -129,33 +137,57 @@ export class MapConstructorComponent implements OnInit {
     }
 
     public onSubmit(): void {
-        if (!this.isMapViewCanBeSaved()) {
-            this.toastr.error('Please fill mandatory fields: "Name", "Description" and "Add Picture"');
-            return;
-        }
-        const mapViewInfoCreateDto: MapViewInfoCreateDto = {
-            name: this.name,
-            description: this.description,
-            active: this.isActive,
-            default: this.default === 'Map',
-            sensors: this.edittedDevices.map(({ _id, posX, posY }) => {
-                return {
-                    sensor: _id,
-                    position: {
-                        x: posX,
-                        y: posY
-                    }
-                };
-            })
-        };
+        console.log('onSubmit map-constructor');
+        // const mapViewInfoCreateDto: MapViewInfoCreateDto = {
+        //     active: this.isActive,
+        //     sensors: this.edittedDevices.map(({ _id, posX, posY }) => {
+        //         return {
+        //             sensor: _id,
+        //             position: {
+        //                 x: posX,
+        //                 y: posY
+        //             }
+        //         };
+        //     })
+        // };
+        //
+        // const viewDto: ViewInfoDto = {
+        //     name: this.name,
+        //     description: this.description,
+        //     defaultSubview: this.default,
+        //     mapSubview: mapViewInfoCreateDto
+        // };
 
-        this.mapViewService.create(mapViewInfoCreateDto)
-            .subscribe((mapViewInfoDto) => {
-                this.uploader.setOptions({
-                    url: this.mapViewService.resolvePictureUploadUrl(mapViewInfoDto)
-                });
-                this.uploader.uploadAll();
-            });
+
+
+        this.saveView.emit();
+        // if (!this.isMapViewCanBeSaved()) {
+        //     this.toastr.error('Please fill mandatory fields: "Name", "Description" and "Add Picture"');
+        //     return;
+        // }
+        // const mapViewInfoCreateDto: MapViewInfoCreateDto = {
+        //     name: this.name,
+        //     description: this.description,
+        //     active: this.isActive,
+        //     default: this.default === 'Map',
+        //     sensors: this.edittedDevices.map(({ _id, posX, posY }) => {
+        //         return {
+        //             sensor: _id,
+        //             position: {
+        //                 x: posX,
+        //                 y: posY
+        //             }
+        //         };
+        //     })
+        // };
+        //
+        // this.mapViewService.create(mapViewInfoCreateDto)
+        //     .subscribe((mapViewInfoDto) => {
+        //         this.uploader.setOptions({
+        //             url: this.mapViewService.resolvePictureUploadUrl(mapViewInfoDto)
+        //         });
+        //         this.uploader.uploadAll();
+        //     });
     }
 
     private isMapViewCanBeSaved(): boolean {
