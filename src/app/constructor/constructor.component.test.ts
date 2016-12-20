@@ -100,14 +100,14 @@ describe('Home', () => {
                 expect(Router.navigate).not.toHaveBeenCalled();
             });
         });
-        
+
         describe('when all mandatory fields are entered', () => {
             beforeEach(() => {
                 sut.view.name = 'name';
                 sut.view.description = 'description';
                 sut.uploadPicture = jasmine.createSpy('create');
             });
-            
+
             describe('when entered dashboard subview', () => {
                 beforeEach(() => {
                     sut.view.dashboardSubview = {

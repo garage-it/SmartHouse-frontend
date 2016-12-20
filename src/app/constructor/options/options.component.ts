@@ -23,8 +23,6 @@ export class OptionsComponent {
     };
     @Input() canBeActive: boolean = true;
 
-
-
     @Output() defaultSubviewChange: EventEmitter<string> = new EventEmitter<string>();
     @Input()
     set defaultSubview(value) {

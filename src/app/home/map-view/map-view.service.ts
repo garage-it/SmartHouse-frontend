@@ -1,7 +1,6 @@
-import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { ShHttpService } from '../../core/sh-http/sh-http.service';
-import { MapViewInfoDto, MapViewInfoCreateDto } from './map-view.dto';
+import { MapViewInfoDto } from './map-view.dto';
 import { FilesService } from '../../core/files/files.service';
 import { RequestOptions } from '@angular/http';
 

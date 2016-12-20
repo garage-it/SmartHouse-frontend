@@ -18,7 +18,6 @@ export interface MapViewSensorUpdateDto {
 
 export interface MapViewInfoDto {
     _id: string;
-    parentViewId?: string;
     pictureName: string;
     active: boolean;
     sensors: Array<MapViewSensorDto>;

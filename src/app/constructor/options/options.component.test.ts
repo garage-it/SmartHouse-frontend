@@ -15,7 +15,7 @@ describe('Home', () => {
         });
 
         it('should able to set and get defaultSubview', () => {
-            expect(sut.defaultSubview).toEqual(defaultSubview)
+            expect(sut.defaultSubview).toEqual(defaultSubview);
         });
 
         it('should emit defaultSubview value on change', () => {
