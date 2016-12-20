@@ -21,15 +21,15 @@ export class DashboardConstructorComponent {
         return this.defaultSubviewValue;
     };
 
-    @Output() dashboardSubViewDataChange: EventEmitter<DashboardViewInfoDto> = new EventEmitter<DashboardViewInfoDto>();
+    @Output() dashboardSubviewChange: EventEmitter<DashboardViewInfoDto> = new EventEmitter<DashboardViewInfoDto>();
     @Input()
-    set dashboardSubViewData(dashboardViewInfoDto) {
-        console.log('dashboardSubViewDataChange', dashboardViewInfoDto);
-        this.dashboardSubViewDataValue = dashboardViewInfoDto;
-        this.dashboardSubViewDataChange.emit(dashboardViewInfoDto);
+    set dashboardSubview(dashboardViewInfoDto) {
+        console.log('dashboardSubviewChange', dashboardViewInfoDto);
+        this.dashboardSubviewValue = dashboardViewInfoDto;
+        this.dashboardSubviewChange.emit(dashboardViewInfoDto);
     }
-    get dashboardSubViewData(): DashboardViewInfoDto {
-        return this.dashboardSubViewDataValue;
+    get dashboardSubview(): DashboardViewInfoDto {
+        return this.dashboardSubviewValue;
     }
 
     @Output() isActiveChange: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -39,7 +39,7 @@ export class DashboardConstructorComponent {
 
     private activeState: boolean = false;
     private defaultSubviewValue: string = '';
-    private dashboardSubViewDataValue: DashboardViewInfoDto = null;
+    private dashboardSubviewValue: DashboardViewInfoDto = null;
 
     public set isActive(value: boolean) {
         this.activeState = value;
@@ -51,8 +51,8 @@ export class DashboardConstructorComponent {
     };
 
     public ngOnInit(): void {
-        if (this.dashboardSubViewData && this.dashboardSubViewData.devices) {
-            this.selectedDevices = this.dashboardSubViewData.devices;
+        if (this.dashboardSubview && this.dashboardSubview.devices) {
+            this.selectedDevices = this.dashboardSubview.devices;
         }
     }
 
@@ -80,6 +80,6 @@ export class DashboardConstructorComponent {
     }
 
     private storeDevices(): void {
-        this.dashboardSubViewData['devices'] = this.selectedDevices;
+        this.dashboardSubview['devices'] = this.selectedDevices;
     }
 }

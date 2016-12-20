@@ -23,7 +23,7 @@ describe('DashboardConstructor', () => {
             });
 
             it('should set existed devices to selected devices property when edit mode', () => {
-                sut.dashboardSubViewData = {
+                sut.dashboardSubview = {
                     devices: mockSensors
                 };
                 sut.ngOnInit();

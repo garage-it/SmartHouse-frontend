@@ -1,6 +1,6 @@
 import { HomeComponent } from './home.component';
 
-describe('Home', () => {
+fdescribe('Home', () => {
     let sut;
     let ActivatedRoute;
     let undubscribeObj;
