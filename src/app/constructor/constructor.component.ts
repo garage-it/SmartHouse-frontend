@@ -15,7 +15,7 @@ export class ConstructorComponent {
     public canBeMapActive: boolean = true;
     public canBeDashboardActive: boolean = true;
     public uploader: FileUploader;
-    private view: ViewInfoDto;
+    public view: ViewInfoDto;
 
     constructor(
         private route: ActivatedRoute,
@@ -45,7 +45,7 @@ export class ConstructorComponent {
 
     public onSaveView(): void {
         if (!this.isViewCanBeSaved()) {
-            this.toastr.error('Please fill mandatory fields: "Name", "Description" and (("Add Picture") or ("Dashboard"))');
+            this.toastr.error('Please fill mandatory fields: "Name", "Description" and "Add Picture" or "Dashboard"');
             return;
         }
         this.viewService.create(this.view).subscribe(({mapSubview}) => {
@@ -63,16 +63,22 @@ export class ConstructorComponent {
     private isViewCanBeSaved(): boolean {
         return this.view.name
             && this.view.description
-            && (
-                (
-                    this.uploader
-                    && this.uploader.queue.length > 0
-                )
-                || (
-                    this.view.dashboardSubview.devices
-                    && this.view.dashboardSubview.devices.length > 0
-                )
-            );
+            && this.isAnySubviewExists();
+    }
+
+    private isAnySubviewExists(): boolean {
+        return this.isMapSubviewExists()
+            || this.isDashboardSubviewExists();
+    }
+
+    private isMapSubviewExists(): boolean {
+        return this.uploader
+            && this.uploader.queue.length > 0;
+    }
+
+    private isDashboardSubviewExists(): boolean {
+        return this.view.dashboardSubview.devices
+            && this.view.dashboardSubview.devices.length > 0;
     }
 
     private uploadPicture(mapSubview) {

@@ -115,8 +115,10 @@ export class MapConstructorComponent implements OnInit {
     private initializeEditedView(mapView): void {
         this.picture = mapView.pictureName && this.mapViewService.resolvePictureUrl(mapView);
         this.edittedDevices = mapView.sensors.map(sensor => {
-            sensor.sensor.posX = sensor.position && sensor.position.x;
-            sensor.sensor.posY = sensor.position && sensor.position.y;
+            if (sensor.position) {
+                sensor.sensor.posX = sensor.position.x;
+                sensor.sensor.posY = sensor.position.y;
+            }
             return sensor.sensor;
         });
     }
