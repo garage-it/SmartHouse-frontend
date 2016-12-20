@@ -6,7 +6,6 @@ import { MapConstructorComponent } from './map/map-constructor.component';
 import { SensorsListComponent } from './sensors-list/sensors-list.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { DashboardViewComponent } from './dashboard/dashboard-view/dashboard-view.component';
 import { SharedModule } from '../shared/shared.module';
 import { DevicesModule } from '../shared/devices/devices.module';
 import { DashboardConstructorService } from './dashboard/dashboard-constructor.service';
@@ -34,7 +33,6 @@ import { ViewResolveService } from './view-resolve.service';
         DashboardConstructorComponent,
         MapConstructorComponent,
         SensorsListComponent,
-        DashboardViewComponent,
         FileDropDirective,
         FileSelectDirective,
         DevicesComponent,

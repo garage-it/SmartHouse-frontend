@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MapViewInfoDto } from './map-view/map-view.dto';
-import { DashboardViewInfoDto } from './dashboard-view/dashboard-view.dto';
 
 import { Subscription } from 'rxjs';
-import { ViewInfoDto } from './view.dto';
+import { ViewInfoDto } from './view/view.dto';
 
 @Component({
     selector: 'sh-home',
@@ -12,51 +10,30 @@ import { ViewInfoDto } from './view.dto';
     styleUrls: [ './home.style.scss' ]
 })
 export class HomeComponent {
-    public listMapViews: Array<MapViewInfoDto> = [];
-    public listDashboardViews: Array<DashboardViewInfoDto> = [];
-    public currentView: MapViewInfoDto | DashboardViewInfoDto;
-    private defaultResolver: Subscription;
+    public viewList: Array<ViewInfoDto> = [];
+    public currentView: ViewInfoDto;
+    public currentSubview: string;
+    private activeRouteDataSubscription: Subscription;
 
     constructor(private activeRoute: ActivatedRoute) {};
 
     ngOnInit() {
-        this.defaultResolver = this.activeRoute.data.subscribe(({viewList}) => {
-            viewList.map(view => this.setCrutch(view));
-
-            this.listMapViews = viewList
-                .filter(view => !!view.mapView)
-                .map(view => view.mapView);
-
-            this.listDashboardViews = viewList
-                .filter(view => !!view.dashboard)
-                .map(view => view.dashboard);
-
-            this.currentView = this.listMapViews.find(view => view.default) || this.listMapViews[0];
+        this.activeRouteDataSubscription = this.activeRoute.data.subscribe(({viewList}) => {
+            this.viewList = viewList;
+            this.setCurrentView(viewList[0]);
         });
     }
 
-    private setCrutch(view: ViewInfoDto) {
-        if (view.mapView) {
-            view.mapView.parentViewId = view['_id'];
-        }
-        if (view.dashboard) {
-            view.dashboard.parentViewId = view['_id'];
-        }
-    }
-
     ngOnDestroy() {
-        this.defaultResolver.unsubscribe();
+        this.activeRouteDataSubscription.unsubscribe();
     }
 
-    setCurrentView(view: MapViewInfoDto | DashboardViewInfoDto) {
+    setCurrentView(view: ViewInfoDto) {
         this.currentView = view;
+        this.setCurrentSubview(view.defaultSubview);
     }
 
-    isMapView() {
-        return this.listMapViews.find((view => view === this.currentView));
-    }
-
-    getCurrentListViews() {
-        return this.isMapView() ? this.listMapViews : this.listDashboardViews;
+    setCurrentSubview(subview: string) {
+        this.currentSubview = subview;
     }
 }

@@ -36,10 +36,10 @@
             <span>Step 2: Add picture</span>
 
             <sh-options
-                [id]="'Map'"
+                [id]="'mapSubview'"
                 [(isActive)]="isActive"
-                [(isDefault)]="isDefault"
                 [canBeActive]="canBeActive"
+                [(defaultSubview)]="defaultSubview"
             ></sh-options>
         </div>
 
@@ -73,6 +73,7 @@
 
             <sh-constructor-devices
                 [edittedDevices]="edittedDevices"
+                (deviceMoved)="onDeviceMoved()"
                 class="constructor-devices">
             </sh-constructor-devices>
         </div>

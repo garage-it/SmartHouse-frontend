@@ -15,7 +15,7 @@ import { Device } from '../../shared/devices/device.model';
 import { FileUploader } from 'ng2-file-upload';
 import { MapViewService } from '../../home/map-view/map-view.service';
 import { MapViewInfoCreateDto, MapViewInfoDto } from '../../home/map-view/map-view.dto';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { ViewInfoDto } from '../../home/view/view.dto';
 
 @Component({
     selector: 'sh-map-constructor',
@@ -26,18 +26,50 @@ export class MapConstructorComponent implements OnInit {
     @ViewChild('fileInput') fileInput: ElementRef;
 
     @Input() canBeActive: boolean;
-    @Input() mapSubViewData: MapViewInfoDto;
-    @Input() default: string;
+    @Input() mapSubview: MapViewInfoCreateDto | MapViewInfoDto;
+
+    @Output() defaultSubviewChange: EventEmitter<string> = new EventEmitter<string>();
+    @Input()
+    set defaultSubview(value) {
+        this.defaultSubviewValue = value;
+        this.defaultSubviewChange.emit(value);
+    };
+    get defaultSubview(): string {
+        return this.defaultSubviewValue;
+    };
+
+    @Output() nameChange: EventEmitter<string> = new EventEmitter<string>();
+    @Input()
+    set name(value) {
+        this.nameValue = value;
+        this.nameChange.emit(value);
+    };
+    get name(): string {
+        return this.nameValue;
+    };
+
+    @Output() descriptionChange: EventEmitter<string> = new EventEmitter<string>();
+    @Input()
+    set description(value) {
+        this.descriptionValue = value;
+        this.descriptionChange.emit(value);
+    };
+    get description(): string {
+        return this.descriptionValue;
+    };
+
     @Output() isActiveChange: EventEmitter<boolean> = new EventEmitter<boolean>();
-    @Output() isDefaultChange: EventEmitter<string> = new EventEmitter<string>();
+    @Output() saveView: EventEmitter<ViewInfoDto> = new EventEmitter<ViewInfoDto>();
+    @Output() uploadPicture: EventEmitter<any> = new EventEmitter<any>();
 
     public uploader: FileUploader = new FileUploader({ queueLimit: 1, allowedFileType: ['image'] });
     public hasBaseDropZoneOver: boolean = false;
     public picture: any;
-    public name: string = '';
-    public description: string = '';
 
     private currentActive: boolean = false;
+    private nameValue: string = '';
+    private descriptionValue: string = '';
+    private defaultSubviewValue: string = '';
 
     public set isActive(value: boolean) {
         this.currentActive = value;
@@ -48,16 +80,11 @@ export class MapConstructorComponent implements OnInit {
         return this.currentActive;
     };
 
-    public set isDefault(value: string) {
-        this.isDefaultChange.emit(value);
-    }
-
     private reader: FileReader = new FileReader();
     public edittedDevices: Device[] = [];
 
     constructor(private router: Router,
                 private ngZone: NgZone,
-                private toastr: ToastsManager,
                 private renderer: Renderer,
                 private mapViewService: MapViewService) {
     }
@@ -67,8 +94,8 @@ export class MapConstructorComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        if (this.mapSubViewData) {
-            this.initializeEditedView(this.mapSubViewData);
+        if (Object.keys(this.mapSubview).length !== 0) {
+            this.initializeEditedView(this.mapSubview);
         }
 
         /* workaround, because handler code is executed outside of Angular Zone ('this' references to the wrong object) */
@@ -81,16 +108,17 @@ export class MapConstructorComponent implements OnInit {
 
         this.reader.onload = this.ngZone.run(() => (event: any) => {
             this.picture = event.target.result;
+            this.uploadPicture.emit(this.uploader);
         });
     }
 
-    private initializeEditedView(mapView: MapViewInfoDto): void {
-        this.name = mapView.name;
-        this.description = mapView.description;
-        this.picture = this.mapViewService.resolvePictureUrl(mapView);
+    private initializeEditedView(mapView): void {
+        this.picture = mapView.pictureName && this.mapViewService.resolvePictureUrl(mapView);
         this.edittedDevices = mapView.sensors.map(sensor => {
-            sensor.sensor.posX = sensor.position.x;
-            sensor.sensor.posY = sensor.position.y;
+            if (sensor.position) {
+                sensor.sensor.posX = sensor.position.x;
+                sensor.sensor.posY = sensor.position.y;
+            }
             return sensor.sensor;
         });
     }
@@ -108,6 +136,7 @@ export class MapConstructorComponent implements OnInit {
         if (this.picture) {
             if (!this.sensorIsUnique(sensor)) {
                 this.edittedDevices.push(sensor);
+                this.updateEdittedSensors();
             }
         }
     }
@@ -115,6 +144,7 @@ export class MapConstructorComponent implements OnInit {
     public onRemoveSensor(sensor: Device): void {
         if (this.picture) {
             this.edittedDevices = this.edittedDevices.filter(s => s._id !== sensor._id);
+            this.updateEdittedSensors();
         }
     }
 
@@ -128,39 +158,23 @@ export class MapConstructorComponent implements OnInit {
         this.renderer.invokeElementMethod(this.fileInput.nativeElement, 'dispatchEvent', [event]);
     }
 
-    public onSubmit(): void {
-        if (!this.isMapViewCanBeSaved()) {
-            this.toastr.error('Please fill mandatory fields: "Name", "Description" and "Add Picture"');
-            return;
-        }
-        const mapViewInfoCreateDto: MapViewInfoCreateDto = {
-            name: this.name,
-            description: this.description,
-            active: this.isActive,
-            default: this.default === 'Map',
-            sensors: this.edittedDevices.map(({ _id, posX, posY }) => {
-                return {
-                    sensor: _id,
-                    position: {
-                        x: posX,
-                        y: posY
-                    }
-                };
-            })
-        };
-
-        this.mapViewService.create(mapViewInfoCreateDto)
-            .subscribe((mapViewInfoDto) => {
-                this.uploader.setOptions({
-                    url: this.mapViewService.resolvePictureUploadUrl(mapViewInfoDto)
-                });
-                this.uploader.uploadAll();
-            });
+    public onDeviceMoved(): void {
+        this.updateEdittedSensors();
     }
 
-    private isMapViewCanBeSaved(): boolean {
-        return this.name
-            && this.description
-            && this.picture;
+    public onSubmit(): void {
+        this.saveView.emit();
+    }
+
+    private updateEdittedSensors(): void {
+        this.mapSubview['sensors'] = this.edittedDevices.map(({ _id, posX, posY }) => {
+            return {
+                sensor: _id,
+                position: {
+                    x: posX,
+                    y: posY
+                }
+            };
+        });
     }
 }

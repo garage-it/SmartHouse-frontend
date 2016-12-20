@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { SharedModule } from '../shared/shared.module';
 import { RolesService } from './roles/roles.service';
-import { DevicesModule } from '../shared/devices/devices.module.ts';
+import { DevicesModule } from '../shared/devices/devices.module';
 
 import { routing } from './settings.routing';
 

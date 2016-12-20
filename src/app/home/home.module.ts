@@ -15,6 +15,7 @@ import { ChartModule } from 'angular2-highcharts';
 import { HomeService } from './home.service';
 import { HomeResolveService } from './home-resolve.service';
 import { DevicesModule } from '../shared/devices/devices.module';
+import { ViewService } from './view/view.service';
 
 @NgModule({
     id: module.id,
@@ -32,7 +33,8 @@ import { DevicesModule } from '../shared/devices/devices.module';
     providers: [
         MapViewService,
         HomeService,
-        HomeResolveService
+        HomeResolveService,
+        ViewService
     ]
 })
 export class HomeModule {}

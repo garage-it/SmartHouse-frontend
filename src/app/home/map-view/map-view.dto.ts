@@ -18,19 +18,12 @@ export interface MapViewSensorUpdateDto {
 
 export interface MapViewInfoDto {
     _id: string;
-    parentViewId?: string;
-    name: string;
-    description: string;
     pictureName: string;
     active: boolean;
-    default: boolean;
     sensors: Array<MapViewSensorDto>;
 }
 
 export interface MapViewInfoCreateDto {
-    name: string;
-    description: string;
     active: boolean;
-    default: boolean;
     sensors: Array<MapViewSensorUpdateDto>;
 }

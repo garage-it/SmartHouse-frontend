@@ -1,4 +1,4 @@
-import { Component, ElementRef, Renderer, Input } from '@angular/core';
+import { Component, ElementRef, Renderer, Input, Output, EventEmitter } from '@angular/core';
 import { Device } from '../../shared/devices/device.model';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
 
@@ -9,6 +9,7 @@ import { DragulaService } from 'ng2-dragula/ng2-dragula';
 })
 export class DevicesComponent {
     @Input() edittedDevices: Device[];
+    @Output() deviceMoved: EventEmitter<any> = new EventEmitter();
 
     public switcher: boolean = false;
 
@@ -28,6 +29,7 @@ export class DevicesComponent {
                 device.posY = y;
             }
         });
+        this.deviceMoved.emit();
     }
 
     dragAndDrop(): void {

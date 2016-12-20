@@ -9,7 +9,12 @@ describe('DashboardConstructor', () => {
 
     beforeEach(() => {
         sut = new DashboardConstructorComponent();
-        sut.isDefaultChange = jasmine.createSpyObj('isDefaultChange', ['emit']);
+        sut.defaultSubviewChange = jasmine.createSpyObj('defaultSubviewChange', ['emit']);
+        sut.dashboardSubviewChange = jasmine.createSpyObj('dashboardSubviewChange', ['emit']);
+        sut.saveView = jasmine.createSpyObj('saveView', ['emit']);
+        sut.dashboardSubview = {
+            devices: []
+        };
     });
 
     describe('on init', () => {
@@ -23,7 +28,7 @@ describe('DashboardConstructor', () => {
             });
 
             it('should set existed devices to selected devices property when edit mode', () => {
-                sut.dashboardSubViewData = {
+                sut.dashboardSubview = {
                     devices: mockSensors
                 };
                 sut.ngOnInit();
@@ -42,6 +47,13 @@ describe('DashboardConstructor', () => {
             expect(sut.selectedDevices[0]).toEqual(device1);
         });
 
+        it('should update dashboard subview', () => {
+            expect(sut.dashboardSubview['devices']).toEqual(sut.selectedDevices);
+        });
+
+        it('should update dashboard subview', () => {
+            expect(sut.dashboardSubview['devices']).toEqual(sut.selectedDevices);
+        });
     });
 
     describe('on remove device', () => {
@@ -53,17 +65,35 @@ describe('DashboardConstructor', () => {
         it('should remove device from list of selected devices', () => {
             expect(sut.selectedDevices.length).toEqual(0);
         });
+
+        it('should update dashboard subview', () => {
+            expect(sut.dashboardSubview['devices']).toEqual(sut.selectedDevices);
+        });
     });
 
     describe('default', () => {
         const defaultView = 'Dashboard';
 
         beforeEach(() => {
-            sut.isDefault = defaultView;
+            sut.defaultSubview = defaultView;
         });
 
         it('should emit changes when default radio is changed', () => {
-            expect(sut.isDefaultChange.emit).toHaveBeenCalledWith(defaultView);
+            expect(sut.defaultSubviewChange.emit).toHaveBeenCalledWith(defaultView);
+        });
+    });
+
+    describe('on submit', () => {
+        it('should emit save view event', () => {
+            sut.onSubmit();
+            expect(sut.saveView.emit).toHaveBeenCalled();
+        });
+    });
+
+    describe('store devices', () => {
+        it('should emit dashboard subview event on change', () => {
+            sut.storeDevices();
+            expect(sut.dashboardSubviewChange.emit).toHaveBeenCalled();
         });
     });
 });

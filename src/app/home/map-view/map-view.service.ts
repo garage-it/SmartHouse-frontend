@@ -1,7 +1,6 @@
-import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { ShHttpService } from '../../core/sh-http/sh-http.service';
-import { MapViewInfoDto, MapViewInfoCreateDto } from './map-view.dto';
+import { MapViewInfoDto } from './map-view.dto';
 import { FilesService } from '../../core/files/files.service';
 import { RequestOptions } from '@angular/http';
 
@@ -11,10 +10,6 @@ export class MapViewService {
     constructor(private http: ShHttpService,
                 private filesService: FilesService,
                 private requestOptions: RequestOptions) {
-    }
-
-    public create(dto: MapViewInfoCreateDto): Observable<MapViewInfoDto> {
-        return this.http.post('/map-view', dto);
     }
 
     public resolvePictureUploadUrl({ _id }: MapViewInfoDto): string {
