@@ -16,7 +16,6 @@ export class ConstructorComponent {
     public canBeDashboardActive: boolean = true;
     public uploader: FileUploader;
     private view: ViewInfoDto;
-    private picture: any;
 
     constructor(
         private route: ActivatedRoute,
@@ -57,7 +56,7 @@ export class ConstructorComponent {
         });
     }
 
-    public onUploadPicture(uploader) {
+    public onUploadPicture(uploader: FileUploader) {
         this.uploader = uploader;
     }
 
