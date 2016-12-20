@@ -19,7 +19,7 @@
     "e2e:run": "protractor ./env/protractor.conf.ts",
     "presemantic-release": "npm run build:production",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "precommit": "npm test"
+    "commitmsg": "validate-commit-msg"
   },
   "repository": {
     "type": "git",
@@ -120,6 +120,7 @@
     "tslint-loader": "^2.1.0",
     "typedoc": "^0.4.4",
     "typescript": "2.0.2",
+    "validate-commit-msg": "^2.8.2",
     "webpack": "^1.12.14",
     "webpack-dev-server": "^1.14.1",
     "webpack-merge": "^0.9.0",
