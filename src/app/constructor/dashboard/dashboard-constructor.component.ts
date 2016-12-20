@@ -24,7 +24,6 @@ export class DashboardConstructorComponent {
     @Output() dashboardSubviewChange: EventEmitter<DashboardViewInfoDto> = new EventEmitter<DashboardViewInfoDto>();
     @Input()
     set dashboardSubview(dashboardViewInfoDto) {
-        console.log('dashboardSubviewChange', dashboardViewInfoDto);
         this.dashboardSubviewValue = dashboardViewInfoDto;
         this.dashboardSubviewChange.emit(dashboardViewInfoDto);
     }
