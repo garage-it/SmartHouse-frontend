@@ -31,7 +31,7 @@ export class HomeComponent {
                 .filter(view => !!view.dashboardSubview)
                 .map(view => view.dashboard);
 
-            this.currentView = this.listMapViews.find(view => view.default) || this.listMapViews[0];
+            // this.currentView = this.listMapViews.find(view => view.default) || this.listMapViews[0]; // TODO use view.defaultSubview
         });
     }
 
