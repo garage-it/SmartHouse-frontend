@@ -14,8 +14,7 @@ import { Router } from '@angular/router';
 import { Device } from '../../shared/devices/device.model';
 import { FileUploader } from 'ng2-file-upload';
 import { MapViewService } from '../../home/map-view/map-view.service';
-import { MapViewInfoCreateDto, MapViewInfoDto, MapViewSensorUpdateDto } from '../../home/map-view/map-view.dto';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { MapViewInfoCreateDto, MapViewInfoDto } from '../../home/map-view/map-view.dto';
 import { ViewInfoDto } from '../../home/view/view.dto';
 
 @Component({
@@ -61,6 +60,7 @@ export class MapConstructorComponent implements OnInit {
 
     @Output() isActiveChange: EventEmitter<boolean> = new EventEmitter<boolean>();
     @Output() saveView: EventEmitter<ViewInfoDto> = new EventEmitter<ViewInfoDto>();
+    @Output() uploadPicture: EventEmitter<any> = new EventEmitter<any>();
 
     public uploader: FileUploader = new FileUploader({ queueLimit: 1, allowedFileType: ['image'] });
     public hasBaseDropZoneOver: boolean = false;
@@ -85,7 +85,6 @@ export class MapConstructorComponent implements OnInit {
 
     constructor(private router: Router,
                 private ngZone: NgZone,
-                private toastr: ToastsManager,
                 private renderer: Renderer,
                 private mapViewService: MapViewService) {
     }
@@ -109,14 +108,15 @@ export class MapConstructorComponent implements OnInit {
 
         this.reader.onload = this.ngZone.run(() => (event: any) => {
             this.picture = event.target.result;
+            this.uploadPicture.emit(this.uploader);
         });
     }
 
     private initializeEditedView(mapView): void {
         this.picture = this.mapViewService.resolvePictureUrl(mapView);
         this.edittedDevices = mapView.sensors.map(sensor => {
-            sensor.sensor.posX = sensor.position.x;
-            sensor.sensor.posY = sensor.position.y;
+            sensor.sensor.posX = sensor.position && sensor.position.x;
+            sensor.sensor.posY = sensor.position && sensor.position.y;
             return sensor.sensor;
         });
     }
@@ -162,39 +162,6 @@ export class MapConstructorComponent implements OnInit {
 
     public onSubmit(): void {
         this.saveView.emit();
-        // if (!this.isMapViewCanBeSaved()) {
-        //     this.toastr.error('Please fill mandatory fields: "Name", "Description" and "Add Picture"');
-        //     return;
-        // }
-        // const mapViewInfoCreateDto: MapViewInfoCreateDto = {
-        //     name: this.name,
-        //     description: this.description,
-        //     active: this.isActive,
-        //     default: this.default === 'Map',
-        //     sensors: this.edittedDevices.map(({ _id, posX, posY }) => {
-        //         return {
-        //             sensor: _id,
-        //             position: {
-        //                 x: posX,
-        //                 y: posY
-        //             }
-        //         };
-        //     })
-        // };
-        //
-        // this.mapViewService.create(mapViewInfoCreateDto)
-        //     .subscribe((mapViewInfoDto) => {
-        //         this.uploader.setOptions({
-        //             url: this.mapViewService.resolvePictureUploadUrl(mapViewInfoDto)
-        //         });
-        //         this.uploader.uploadAll();
-        //     });
-    }
-
-    private isMapViewCanBeSaved(): boolean {
-        return this.name
-            && this.description
-            && this.picture;
     }
 
     private updateEdittedSensors(): void {

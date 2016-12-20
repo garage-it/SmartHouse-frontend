@@ -10,7 +10,6 @@ export class ViewService {
     }
 
     public create(dto: ViewInfoDto): Observable<ViewInfoDto> {
-        console.log('CREATE', dto);
         return this.http.post('/views', dto);
     }
 }
