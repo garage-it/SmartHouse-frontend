@@ -13,10 +13,6 @@ export class MapViewService {
                 private requestOptions: RequestOptions) {
     }
 
-    public create(dto: MapViewInfoCreateDto): Observable<MapViewInfoDto> {
-        return this.http.post('/map-view', dto);
-    }
-
     public resolvePictureUploadUrl({ _id }: MapViewInfoDto): string {
         return this.requestOptions.merge({ url: `/map-view/${_id}/picture` }).url;
     }
