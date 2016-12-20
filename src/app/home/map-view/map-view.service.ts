@@ -18,7 +18,6 @@ export class MapViewService {
     }
 
     public resolvePictureUploadUrl({ _id }: MapViewInfoDto): string {
-        debugger;
         return this.requestOptions.merge({ url: `/map-view/${_id}/picture` }).url;
     }
 

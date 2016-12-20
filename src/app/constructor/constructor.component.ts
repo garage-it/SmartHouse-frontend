@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ViewInfoDto } from '../home/view/view.dto';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ViewService } from '../home/view/view.service';
 import { ToastsManager } from 'ng2-toastr';
 import { FileUploader } from 'ng2-file-upload';
@@ -20,6 +20,7 @@ export class ConstructorComponent {
 
     constructor(
         private route: ActivatedRoute,
+        private router: Router,
         private viewService: ViewService,
         private toastr: ToastsManager,
         private mapViewService: MapViewService
@@ -49,10 +50,10 @@ export class ConstructorComponent {
             return;
         }
         this.viewService.create(this.view).subscribe(({mapSubview}) => {
-            this.uploader.setOptions({
-                url: this.mapViewService.resolvePictureUploadUrl(mapSubview)
-            });
-            this.uploader.uploadAll();
+            if (this.uploader) {
+                return this.uploadPicture(mapSubview);
+            }
+            this.router.navigate(['..']);
         });
     }
 
@@ -73,5 +74,12 @@ export class ConstructorComponent {
                     && this.view.dashboardSubview.devices.length > 0
                 )
             );
+    }
+
+    private uploadPicture(mapSubview) {
+        this.uploader.setOptions({
+            url: this.mapViewService.resolvePictureUploadUrl(mapSubview)
+        });
+        this.uploader.uploadAll();
     }
 }
