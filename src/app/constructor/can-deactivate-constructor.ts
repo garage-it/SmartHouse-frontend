@@ -10,7 +10,10 @@ export class CanDeactivateConstructor implements CanDeactivate<ConstructorCompon
     constructor(private dialogService: DialogService) {
     }
 
-    canDeactivate(): Observable<boolean> {
+    canDeactivate(constructor: ConstructorComponent): Observable<boolean> {
+        if (constructor.isSave) {
+            return Observable.of(constructor.isSave);
+        }
         return this.dialogService.confirm(null, {
             title: '',
             message: 'Do you want to exit without saving?',
