@@ -56,7 +56,6 @@ describe('constructor routing deactivate hook', () => {
             });
         });
 
-
     });
 
 });

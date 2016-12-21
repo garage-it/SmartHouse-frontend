@@ -58,17 +58,7 @@ export class ConstructorComponent {
 
         this.constructorService.confirm()
             .filter(isConfirmed => isConfirmed)
-            .subscribe(onSuccessConfirm.bind(this));
-
-        function onSuccessConfirm() {
-            this.isSave = true;
-            return this.constructorService.createOrUpdate(this.view).subscribe(({mapSubview}) => {
-                if (this.uploader) {
-                    return this.uploadPicture(mapSubview);
-                }
-                this.router.navigate(['..']);
-            });
-        }
+            .subscribe(() => this.onSuccessConfirm());
     }
 
     public onUploadPicture(uploader: FileUploader) {
@@ -105,5 +95,15 @@ export class ConstructorComponent {
             url: this.mapViewService.resolvePictureUploadUrl(mapSubview)
         });
         this.uploader.uploadAll();
+    }
+
+    private onSuccessConfirm() {
+        this.isSave = true;
+        return this.constructorService.createOrUpdate(this.view).subscribe(({mapSubview}) => {
+            if (this.uploader) {
+                return this.uploadPicture(mapSubview);
+            }
+            this.router.navigate(['..']);
+        });
     }
 }

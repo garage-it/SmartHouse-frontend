@@ -38,7 +38,7 @@ describe('ConstructorService', () => {
         });
 
     });
-
+    
     describe('confirm', () => {
         beforeEach(() => {
             result = sut.confirm();
