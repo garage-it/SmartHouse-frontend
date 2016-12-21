@@ -1,6 +1,6 @@
-import { ViewService } from './view.service';
+import { ConstructorService } from './constructor.service';
 
-describe('ViewService', () => {
+describe('ConstructorService', () => {
     const response = {};
 
     let sut;
@@ -10,10 +10,10 @@ describe('ViewService', () => {
     beforeEach(() => {
 
         http = {
-            post: jasmine.createSpy('put').and.returnValue(response)
+            post: jasmine.createSpy('post').and.returnValue(response)
         };
 
-        sut = new ViewService(http);
+        sut = new ConstructorService(http);
     });
 
     describe('create', () => {
@@ -21,7 +21,7 @@ describe('ViewService', () => {
         const viewInfoDto = {};
 
         beforeEach(() => {
-            result = sut.create(viewInfoDto);
+            result = sut.createOrUpdate(viewInfoDto);
         });
 
         it('should make request to create view', () => {

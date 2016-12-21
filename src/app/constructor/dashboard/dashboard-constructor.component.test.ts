@@ -10,7 +10,6 @@ describe('DashboardConstructor', () => {
     beforeEach(() => {
         sut = new DashboardConstructorComponent();
         sut.defaultSubviewChange = jasmine.createSpyObj('defaultSubviewChange', ['emit']);
-        sut.dashboardSubviewChange = jasmine.createSpyObj('dashboardSubviewChange', ['emit']);
         sut.saveView = jasmine.createSpyObj('saveView', ['emit']);
         sut.dashboardSubview = {
             devices: []
@@ -87,13 +86,6 @@ describe('DashboardConstructor', () => {
         it('should emit save view event', () => {
             sut.onSubmit();
             expect(sut.saveView.emit).toHaveBeenCalled();
-        });
-    });
-
-    describe('store devices', () => {
-        it('should emit dashboard subview event on change', () => {
-            sut.storeDevices();
-            expect(sut.dashboardSubviewChange.emit).toHaveBeenCalled();
         });
     });
 });

@@ -8,7 +8,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { DevicesModule } from '../shared/devices/devices.module';
-import { DashboardConstructorService } from './dashboard/dashboard-constructor.service';
 import { DashboardModule } from '../dashboard/dashboard.module';
 import { FileDropDirective, FileSelectDirective } from 'ng2-file-upload';
 import { DevicesComponent } from './devices/devices.component';
@@ -16,6 +15,7 @@ import { DragulaModule } from 'ng2-dragula/ng2-dragula';
 import { CanDeactivateConstructor } from './can-deactivate-constructor';
 import { OptionsComponent } from './options/options.component';
 import { ViewResolveService } from './view-resolve.service';
+import { ConstructorService } from './constructor.service';
 
 @NgModule({
     id: module.id,
@@ -39,9 +39,9 @@ import { ViewResolveService } from './view-resolve.service';
         OptionsComponent
     ],
     providers: [
-        DashboardConstructorService,
         CanDeactivateConstructor,
-        ViewResolveService
+        ViewResolveService,
+        ConstructorService
     ]
 })
 export class ConstructorModule {}

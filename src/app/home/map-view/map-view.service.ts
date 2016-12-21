@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ShHttpService } from '../../core/sh-http/sh-http.service';
-import { MapViewInfoDto } from './map-view.dto';
+import { MapViewInfoDto } from '../../shared/view/map-view.dto';
 import { FilesService } from '../../core/files/files.service';
 import { RequestOptions } from '@angular/http';
 

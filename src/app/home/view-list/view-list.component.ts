@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { MapViewInfoDto } from '../map-view/map-view.dto';
-import { DashboardViewInfoDto } from '../dashboard-view/dashboard-view.dto';
+import { MapViewInfoDto } from '../../shared/view/map-view.dto';
+import { DashboardViewInfoDto } from '../../shared/view/dashboard-view.dto';
 
 @Component({
     selector: 'sh-view-list',
