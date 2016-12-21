@@ -3,12 +3,12 @@ import { ViewResolveService } from './view-resolve.service';
 
 describe('ViewResolveService', () => {
     let sut;
-    let HomeService;
+    let ConstructorService;
     let ToastsManager;
     let route;
 
     beforeEach(() => {
-        HomeService = {
+        ConstructorService = {
             getView: jasmine.createSpy('getView')
         };
         ToastsManager = {
@@ -16,13 +16,13 @@ describe('ViewResolveService', () => {
         };
         route = {params: {id: Math.random()}};
 
-        sut = new ViewResolveService(HomeService, ToastsManager);
+        sut = new ViewResolveService(ConstructorService, ToastsManager);
     });
 
     it('should resolve view by id', () => {
-        HomeService.getView.and.returnValue(Observable.create());
+        ConstructorService.getView.and.returnValue(Observable.create());
         sut.resolve(route);
-        expect(HomeService.getView).toHaveBeenCalledWith(route.params.id);
+        expect(ConstructorService.getView).toHaveBeenCalledWith(route.params.id);
     });
 
     describe('when resolve gets error', () => {
@@ -33,7 +33,7 @@ describe('ViewResolveService', () => {
         beforeEach(() => {
             successCb = jasmine.createSpy('successCb');
             failCb = jasmine.createSpy('failCb');
-            HomeService.getView.and.returnValue(Observable.throw(error));
+            ConstructorService.getView.and.returnValue(Observable.throw(error));
             sut.resolve(route).subscribe(successCb, failCb);
         });
 

@@ -14,8 +14,8 @@ import { Router } from '@angular/router';
 import { Device } from '../../shared/devices/device.model';
 import { FileUploader } from 'ng2-file-upload';
 import { MapViewService } from '../../home/map-view/map-view.service';
-import { MapViewInfoCreateDto, MapViewInfoDto } from '../../home/map-view/map-view.dto';
-import { ViewInfoDto } from '../../home/view/view.dto';
+import { MapViewInfoCreateDto, MapViewInfoDto } from '../../shared/view/map-view.dto';
+import { ViewInfoDto } from '../../shared/view/view.dto';
 
 @Component({
     selector: 'sh-map-constructor',
@@ -66,18 +66,17 @@ export class MapConstructorComponent implements OnInit {
     public hasBaseDropZoneOver: boolean = false;
     public picture: any;
 
-    private currentActive: boolean = false;
     private nameValue: string = '';
     private descriptionValue: string = '';
     private defaultSubviewValue: string = '';
 
     public set isActive(value: boolean) {
-        this.currentActive = value;
+        this.mapSubview.active = value;
         this.isActiveChange.emit(value);
     }
 
     public get isActive() {
-        return this.currentActive;
+        return this.mapSubview.active;
     };
 
     private reader: FileReader = new FileReader();
@@ -95,7 +94,9 @@ export class MapConstructorComponent implements OnInit {
 
     public ngOnInit(): void {
         if (Object.keys(this.mapSubview).length !== 0) {
-            this.initializeEditedView(this.mapSubview);
+            this.initEditedView(<MapViewInfoDto>this.mapSubview);
+        } else {
+            this.initNewView();
         }
 
         /* workaround, because handler code is executed outside of Angular Zone ('this' references to the wrong object) */
@@ -112,8 +113,14 @@ export class MapConstructorComponent implements OnInit {
         });
     }
 
-    private initializeEditedView(mapView): void {
+    private initNewView(): void {
+        this.isActive = true;
+        this.defaultSubview = 'mapSubview';
+    }
+
+    private initEditedView(mapView: MapViewInfoDto): void {
         this.picture = mapView.pictureName && this.mapViewService.resolvePictureUrl(mapView);
+        this.isActive = mapView.active;
         this.edittedDevices = mapView.sensors.map(sensor => {
             if (sensor.position) {
                 sensor.sensor.posX = sensor.position.x;

@@ -6,14 +6,14 @@
            #active="ngModel"
            [(ngModel)]="isActive"
            [disabled]="!canBeActive"/>
-    <label class="options__label" [attr.for]="'active' + id">Active</label>
+    <label class="options__label checkbox-label" [attr.for]="'active' + id">Active</label>
 
-    <input class="options__checkbox filled-in"
+    <input class="options__radio filled-in"
            type="radio"
            [attr.name]="'default' + id"
            [attr.id]="'default' + id"
            #default="ngModel"
            [(ngModel)]="defaultSubview"
            [value]="id"/>
-    <label class="options__label" [attr.for]="'default' + id">Default</label>
+    <label class="options__label radio-label" [attr.for]="'default' + id">Default</label>
 </div>

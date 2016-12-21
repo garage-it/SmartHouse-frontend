@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Subscription } from 'rxjs';
-import { ViewInfoDto } from './view/view.dto';
+import { ViewInfoDto } from '../shared/view/view.dto';
 
 @Component({
     selector: 'sh-home',

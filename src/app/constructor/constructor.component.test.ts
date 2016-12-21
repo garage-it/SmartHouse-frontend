@@ -5,7 +5,7 @@ describe('Home', () => {
     let sut;
     let ActivatedRoute;
     let Router;
-    let ViewService;
+    let ConstructorService;
     let ToastsManager;
     let MapViewService;
     const someView = 'some view';
@@ -24,8 +24,8 @@ describe('Home', () => {
             navigate: jasmine.createSpy('navigate')
         };
 
-        ViewService = {
-            create: jasmine.createSpy('create')
+        ConstructorService = {
+            createOrUpdate: jasmine.createSpy('createOrUpdate')
         };
 
         ToastsManager = {
@@ -39,7 +39,7 @@ describe('Home', () => {
         sut = new ConstructorComponent(
             ActivatedRoute,
             Router,
-            ViewService,
+            ConstructorService,
             ToastsManager,
             MapViewService
         );
@@ -89,7 +89,7 @@ describe('Home', () => {
             });
 
             it('should not be able to save', () => {
-                expect(ViewService.create).not.toHaveBeenCalled();
+                expect(ConstructorService.createOrUpdate).not.toHaveBeenCalled();
             });
 
             it('should not save picture', () => {
@@ -113,7 +113,7 @@ describe('Home', () => {
                     sut.view.dashboardSubview = {
                         devices: [1]
                     };
-                    ViewService.create.and.returnValue(Observable.of({}));
+                    ConstructorService.createOrUpdate.and.returnValue(Observable.of({}));
                     sut.onSaveView();
                 });
                 it('should not appear error popup', () => {
@@ -121,7 +121,7 @@ describe('Home', () => {
                 });
 
                 it('should be able to save', () => {
-                    expect(ViewService.create).toHaveBeenCalledWith(sut.view);
+                    expect(ConstructorService.createOrUpdate).toHaveBeenCalledWith(sut.view);
                 });
 
                 it('should not save picture', () => {
@@ -138,7 +138,7 @@ describe('Home', () => {
                     sut.uploader = {
                         queue: [1]
                     };
-                    ViewService.create.and.returnValue(Observable.of({mapSubview}));
+                    ConstructorService.createOrUpdate.and.returnValue(Observable.of({mapSubview}));
                     sut.onSaveView();
                 });
                 it('should not appear error popup', () => {
@@ -146,7 +146,7 @@ describe('Home', () => {
                 });
 
                 it('should be able to save', () => {
-                    expect(ViewService.create).toHaveBeenCalledWith(sut.view);
+                    expect(ConstructorService.createOrUpdate).toHaveBeenCalledWith(sut.view);
                 });
 
                 it('should save picture', () => {

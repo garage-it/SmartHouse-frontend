@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { DashboardViewInfoDto } from './dashboard-view.dto';
+import { DashboardViewInfoDto } from '../../shared/view/dashboard-view.dto';
 
 @Component({
     selector: 'sh-dashboard-view',

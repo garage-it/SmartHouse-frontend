@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { ViewInfoDto } from '../home/view/view.dto';
+import { ViewInfoDto } from '../shared/view/view.dto';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ViewService } from '../home/view/view.service';
+import { ConstructorService } from './constructor.service';
 import { ToastsManager } from 'ng2-toastr';
 import { FileUploader } from 'ng2-file-upload';
 import { MapViewService } from '../home/map-view/map-view.service';
@@ -20,7 +20,7 @@ export class ConstructorComponent {
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        private viewService: ViewService,
+        private constructorService: ConstructorService,
         private toastr: ToastsManager,
         private mapViewService: MapViewService
     ) {}
@@ -36,11 +36,17 @@ export class ConstructorComponent {
     }
 
     public onMapActiveChanged(value: boolean) {
-        this.canBeDashboardActive = !value;
+        this.canBeDashboardActive = value;
+        if (!this.canBeDashboardActive) {
+            this.view.defaultSubview = 'dashboardSubview';
+        }
     }
 
     public onDashboardActiveChanged(value: boolean) {
-        this.canBeMapActive = !value;
+        this.canBeMapActive = value;
+        if (!this.canBeMapActive) {
+            this.view.defaultSubview = 'mapSubview';
+        }
     }
 
     public onSaveView(): void {
@@ -48,7 +54,7 @@ export class ConstructorComponent {
             this.toastr.error('Please fill mandatory fields: "Name", "Description" and "Add Picture" or "Dashboard"');
             return;
         }
-        this.viewService.create(this.view).subscribe(({mapSubview}) => {
+        this.constructorService.createOrUpdate(this.view).subscribe(({mapSubview}) => {
             if (this.uploader) {
                 return this.uploadPicture(mapSubview);
             }
@@ -60,10 +66,14 @@ export class ConstructorComponent {
         this.uploader = uploader;
     }
 
+    private isEditingMode(): boolean {
+        return this.view._id != null;
+    }
+
     private isViewCanBeSaved(): boolean {
         return this.view.name
             && this.view.description
-            && this.isAnySubviewExists();
+            && (this.isAnySubviewExists() || this.isEditingMode());
     }
 
     private isAnySubviewExists(): boolean {

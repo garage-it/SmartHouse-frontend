@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { MapViewInfoDto } from './map-view.dto';
+import { MapViewInfoDto } from '../../shared/view/map-view.dto';
 import { MapViewService } from './map-view.service';
 
 @Component({

@@ -2,7 +2,7 @@
     [(name)]="view.name"
     [(description)]="view.description"
     [(defaultSubview)]="view.defaultSubview"
-    [(mapSubview)]="view.mapSubview"
+    [mapSubview]="view.mapSubview"
 
     (isActiveChange)="onMapActiveChanged($event)"
     [canBeActive]="canBeMapActive"
@@ -13,8 +13,8 @@
 ></sh-map-constructor>
 
 <sh-dashboard-constructor
-    [(dashboardSubview)]="view.dashboardSubview"
     [(defaultSubview)]="view.defaultSubview"
+    [dashboardSubview]="view.dashboardSubview"
 
     [canBeActive]="canBeDashboardActive"
     (isActiveChange)="onDashboardActiveChanged($event)"
