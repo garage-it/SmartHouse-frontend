@@ -92,19 +92,32 @@ describe('Home', () => {
 
     describe('set current sub view', () => {
 
-        const currentView2 = {
-            _id: 'some id',
-            name: 'some name',
-            description: 'some desc',
-            defaultSubview: 'mapSubview'
-        };
-
-        beforeEach(() => {
-            sut.setCurrentSubview(currentView2.defaultSubview);
-        });
+        function getView(subviewActive: boolean): any {
+            return {
+                _id: 'some id',
+                name: 'some name',
+                description: 'some desc',
+                defaultSubview: 'mapSubview',
+                mapSubview: {
+                    active: subviewActive
+                }
+            };
+        }
 
         it('should set sub view to scope', () => {
-            expect(sut.currentSubview).toEqual(currentView2.defaultSubview);
+            const view = getView(true);
+            sut.setCurrentView(view);
+            sut.setCurrentSubview(view.defaultSubview);
+
+            expect(sut.currentSubview).toEqual(view.defaultSubview);
+        });
+
+        it('should not set sub view to scope', () => {
+            const view = getView(false);
+            sut.setCurrentView(view);
+            sut.setCurrentSubview(view.defaultSubview);
+
+            expect(sut.currentSubview).toBeUndefined();
         });
 
     });

@@ -1,26 +1,27 @@
 <div class="home-nav">
     <div class="home-nav__logo"
-         *ngIf="currentView.name">
+         *ngIf="currentView?.name">
         {{currentView.name}}
     </div>
-    <div class="home-nav__actions">    
+    <div class="home-nav__actions">
         <!--TODO: make a Toggle component-->
         <div class="home-nav__view-toggle toggle">
             <ul>
                 View:
                 <li class="toggle__item"
-                    [ngClass]="{'toggle__item_active': (currentSubview == 'mapSubview')}"
+                    [ngClass]="{'toggle__item_active': (currentSubview === 'mapSubview'), 'toggle__item_disabled': (!isMapSubviewActive)}"
                     (click)="setCurrentSubview('mapSubview')">
                     Map
                 </li>
                 <li class="toggle__item"
-                    [ngClass]="{'toggle__item_active': (currentSubview == 'dashboardSubview')}"
+                    [ngClass]="{'toggle__item_active': (currentSubview === 'dashboardSubview'), 'toggle__item_disabled': (!isDashboardSubviewActive)}"
                     (click)="setCurrentSubview('dashboardSubview')">
                     Dashboard
                 </li>
             </ul>
         </div>
         <button class="button button_default"
+                *ngIf="currentView"
                 [routerLink]="['constructor', currentView._id]">
             Edit
         </button>
@@ -55,6 +56,8 @@
         *ngIf="currentSubview == 'dashboardSubview'"
     ></sh-dashboard-subview>-->
 </div>
-<sh-view-list [listViews]="viewList"
-              (onSelectView)="setCurrentView($event)">
+<sh-view-list
+    *ngIf="viewList.length > 0"
+    [listViews]="viewList"
+    (onSelectView)="setCurrentView($event)">
 </sh-view-list>

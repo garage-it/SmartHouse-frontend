@@ -69,6 +69,14 @@ $success: #A3C844;
             }
         }
 
+        &_disabled {
+            cursor: default;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+
         &:last-child {
             border-right: none;
         }
