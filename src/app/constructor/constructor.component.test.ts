@@ -1,7 +1,7 @@
 import { ConstructorComponent } from './constructor.component';
 import { Observable } from 'rxjs';
 
-describe('Home', () => {
+describe('Constructor component', () => {
     let sut;
     let ActivatedRoute;
     let Router;
@@ -25,7 +25,8 @@ describe('Home', () => {
         };
 
         ConstructorService = {
-            createOrUpdate: jasmine.createSpy('createOrUpdate')
+            createOrUpdate: jasmine.createSpy('createOrUpdate'),
+            confirm: jasmine.createSpy('confirm')
         };
 
         ToastsManager = {
@@ -108,14 +109,32 @@ describe('Home', () => {
                 sut.uploadPicture = jasmine.createSpy('create');
             });
 
+            describe('when constructor is not gonna be saved', () => {
+                beforeEach(() => {
+                    sut.view.dashboardSubview = {
+                        devices: [1]
+                    };
+
+                    ConstructorService.confirm.and.returnValue(Observable.of(false));
+                    sut.onSaveView();
+                });
+
+                it('should not save view', () => {
+                    expect(ConstructorService.createOrUpdate).not.toHaveBeenCalled();
+                });
+            });
+
             describe('when entered dashboard subview', () => {
                 beforeEach(() => {
                     sut.view.dashboardSubview = {
                         devices: [1]
                     };
                     ConstructorService.createOrUpdate.and.returnValue(Observable.of({}));
+                    ConstructorService.confirm.and.returnValue(Observable.of(true));
+
                     sut.onSaveView();
                 });
+
                 it('should not appear error popup', () => {
                     expect(ToastsManager.error).not.toHaveBeenCalled();
                 });
@@ -139,6 +158,8 @@ describe('Home', () => {
                         queue: [1]
                     };
                     ConstructorService.createOrUpdate.and.returnValue(Observable.of({mapSubview}));
+                    ConstructorService.confirm.and.returnValue(Observable.of(true));
+
                     sut.onSaveView();
                 });
                 it('should not appear error popup', () => {
