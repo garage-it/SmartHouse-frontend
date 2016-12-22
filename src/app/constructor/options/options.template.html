@@ -14,6 +14,7 @@
            [attr.id]="'default' + id"
            #default="ngModel"
            [(ngModel)]="defaultSubview"
+           (click)="isActive = true"
            [value]="id"/>
     <label class="options__label radio-label" [attr.for]="'default' + id">Default</label>
 </div>

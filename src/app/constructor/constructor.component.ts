@@ -38,14 +38,16 @@ export class ConstructorComponent {
 
     public onMapActiveChanged(value: boolean) {
         this.canBeDashboardActive = value;
-        if (!this.canBeDashboardActive) {
+
+        if (!value && this.view.defaultSubview === 'mapSubview') {
             this.view.defaultSubview = 'dashboardSubview';
         }
     }
 
     public onDashboardActiveChanged(value: boolean) {
         this.canBeMapActive = value;
-        if (!this.canBeMapActive) {
+
+        if (!value && this.view.defaultSubview === 'dashboardSubview') {
             this.view.defaultSubview = 'mapSubview';
         }
     }

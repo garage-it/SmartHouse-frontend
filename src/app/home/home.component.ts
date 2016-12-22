@@ -17,10 +17,25 @@ export class HomeComponent {
 
     constructor(private activeRoute: ActivatedRoute) {};
 
+    private isSubviewApplicable(subview: string) {
+        return this.currentSubview !== subview &&
+            this.currentView[subview].active;
+    }
+
+    get isMapSubviewActive() {
+        return this.currentView && this.currentView.mapSubview.active;
+    }
+
+    get isDashboardSubviewActive() {
+        return this.currentView && this.currentView.dashboardSubview.active;
+    }
+
     ngOnInit() {
         this.activeRouteDataSubscription = this.activeRoute.data.subscribe(({viewList}) => {
             this.viewList = viewList;
-            this.setCurrentView(viewList[0]);
+            if (viewList.length > 0) {
+                this.setCurrentView(viewList[0]);
+            }
         });
     }
 
@@ -34,6 +49,8 @@ export class HomeComponent {
     }
 
     setCurrentSubview(subview: string) {
-        this.currentSubview = subview;
+        if (this.currentView && this.isSubviewApplicable(subview)) {
+            this.currentSubview = subview;
+        }
     }
 }
