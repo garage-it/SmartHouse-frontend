@@ -98,8 +98,9 @@ describe('ChartWidgetComponent', () => {
 
         it('should display data in yAxis depends of type of sensor', () => {
             sut.deviceId = 'temperature';
+            sut.deviceStatistic.measurementUnit = 'KILOGRAM';
             sut.ngOnChanges();
-            expect(sut.options.yAxis[0].labels.format).toEqual('{value}°C');
+            expect(sut.options.yAxis[0].labels.format).toEqual(`{value} ${sut.deviceStatistic.measurementUnit}`);
         });
 
         it('should display sensor name on yAxis title', () => {
