@@ -142,6 +142,7 @@ export class MapConstructorComponent implements OnInit {
     public onAddSensor(sensor: Device): void {
         if (this.picture) {
             if (!this.sensorIsUnique(sensor)) {
+                this.setInitCoordinates(sensor);
                 this.edittedDevices.push(sensor);
                 this.updateEdittedSensors();
             }
@@ -153,6 +154,12 @@ export class MapConstructorComponent implements OnInit {
             this.edittedDevices = this.edittedDevices.filter(s => s._id !== sensor._id);
             this.updateEdittedSensors();
         }
+    }
+
+    private setInitCoordinates(sensor: Device) {
+        const offset = this.edittedDevices.length * 100;
+        sensor.posX = offset;
+        sensor.posY = 0;
     }
 
     public fileOverBase(e: any): void {
