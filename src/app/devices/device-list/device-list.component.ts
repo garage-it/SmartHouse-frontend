@@ -2,7 +2,7 @@ import { Component, ViewContainerRef, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { DevicesService } from '../devices.service';
-import { DialogService } from '../../../shared/dialog/dialog.service';
+import { DialogService } from '../../shared/dialog/dialog.service';
 import { Device } from '../device.model';
 
 const headersForDisplay = [
@@ -13,8 +13,8 @@ const headersForDisplay = [
 
 @Component({
     selector: 'sh-device-list',
-    templateUrl: './device-list.template.html',
-    styleUrls: ['./device-list.style.scss']
+    templateUrl: 'device-list.template.html',
+    styleUrls: ['device-list.style.scss']
 })
 export class DeviceListComponent {
     @Input() deviceList: Array<Device>;

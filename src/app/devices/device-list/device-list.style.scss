@@ -52,7 +52,7 @@
         &::before {
             content: '';
             display: block;
-            background: url('./assets/empty-sensors-list.png') no-repeat;
+            background: url('assets/empty-sensors-list.png') no-repeat;
             background-size: 150px;
             background-position: calc(100%/2);
             height: 150px;
@@ -84,7 +84,7 @@
     height: 26px;
     margin-top: 1px;
     background-color: #dedede;
-    background-image: url(./assets/statistic.svg);
+    background-image: url(assets/statistic.svg);
 
     &:hover {
         box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);

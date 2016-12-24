@@ -14,7 +14,7 @@ import { CoreModule } from '../core/core.module';
 import { ChartModule } from 'angular2-highcharts';
 import { HomeService } from './home.service';
 import { HomeResolveService } from './home-resolve.service';
-import { DevicesModule } from '../shared/devices/devices.module';
+import { DevicesModule } from '../devices/devices.module';
 import { SensorsModule } from '../sensors/sensors.module';
 
 @NgModule({
