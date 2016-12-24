@@ -51,11 +51,11 @@ $widget-width: 182px;
         }
         &-close {
             right: 0;
-            background-image: url(assets/close-icon.svg);
+            background-image: url(./assets/close-icon.svg);
         }
         &-statistics {
             left: 0;
-            background-image: url(assets/statistics-icon.svg);
+            background-image: url(./assets/statistics-icon.svg);
         }
     }
     &_header_info {

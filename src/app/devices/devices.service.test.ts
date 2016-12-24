@@ -21,7 +21,7 @@ describe('DevicesService', () => {
         expect(sut).toBeDefined();
     });
 
-    it('should retrieve list of device-widgets from the server', () => {
+    it('should retrieve list of sensors from the server', () => {
         sut.getSensors();
         expect(http.get).toHaveBeenCalledWith('/sensors');
     });

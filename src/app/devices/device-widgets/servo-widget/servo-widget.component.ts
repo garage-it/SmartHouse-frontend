@@ -5,10 +5,10 @@ import { DeviceWidgetService } from '../device-widget.service';
 
 @Component({
     selector: 'sh-servo-widget',
-    templateUrl: 'servo-widget.template.html',
+    templateUrl: './servo-widget.template.html',
     styleUrls: [
         '../device-widget.style.scss',
-        'servo-widget.style.scss'
+        './servo-widget.style.scss'
     ]
 })
 export class ServoWidgetComponent extends BaseOutputSensor {

@@ -9,9 +9,9 @@ import { DeviceWidgetService } from '../device-widget.service';
 
 @Component({
     selector: 'sh-switcher-widget',
-    templateUrl: 'switcher-widget.template.html',
+    templateUrl: './switcher-widget.template.html',
     styleUrls: [
-        'switcher-widget.style.scss',
+        './switcher-widget.style.scss',
         '../device-widget.style.scss'
     ]
 })

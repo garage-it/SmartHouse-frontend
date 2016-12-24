@@ -5,7 +5,7 @@ import { BaseSensor } from '../shared/base-sensor/base-sensor';
 
 @Component({
     selector: 'sh-sensor-widget',
-    templateUrl: 'sensor-widget.template.html',
+    templateUrl: './sensor-widget.template.html',
     styleUrls: [
         '../device-widget.style.scss'
     ]

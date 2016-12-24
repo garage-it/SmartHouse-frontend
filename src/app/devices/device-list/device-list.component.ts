@@ -13,8 +13,8 @@ const headersForDisplay = [
 
 @Component({
     selector: 'sh-device-list',
-    templateUrl: 'device-list.template.html',
-    styleUrls: ['device-list.style.scss']
+    templateUrl: './device-list.template.html',
+    styleUrls: ['./device-list.style.scss']
 })
 export class DeviceListComponent {
     @Input() deviceList: Array<Device>;

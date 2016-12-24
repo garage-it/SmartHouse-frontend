@@ -3,8 +3,8 @@ import { Device } from '../device.model';
 
 @Component({
     selector: 'sh-device',
-    templateUrl: 'device.template.html',
-    styleUrls: ['device.style.scss']
+    templateUrl: './device.template.html',
+    styleUrls: ['./device.style.scss']
 })
 export class DeviceComponent {
     @Input() device: Device;
