@@ -66,6 +66,7 @@ $widget-width: 182px;
         text-overflow: ellipsis;
     }
     &_info {
+        margin-top: $widget-padding;
         padding: $widget-padding $widget-padding;
         display: table;
         height: 100%;
