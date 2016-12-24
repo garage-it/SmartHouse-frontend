@@ -11,9 +11,9 @@ import { DeviceWidgetComponent } from './device-widgets/device-widget.component'
 import { DevicesService } from './devices.service';
 import { DeviceListResolver } from './devices.resolver';
 import { DeviceWidgetService } from './device-widgets/device-widget.service';
-import { DeviceServoWidgetComponent } from './device-widgets/device-servo-widget/device-servo-widget.component';
-import { DeviceSwitcherWidgetComponent } from './device-widgets/device-switcher-widget/device-switcher-widget.component';
-import { DeviceSensorWidgetComponent } from './device-widgets/device-sensor-widget/device-sensor-widget.component';
+import { ServoWidgetComponent } from './device-widgets/servo-widget/servo-widget.component';
+import { SwitcherWidgetComponent } from './device-widgets/switcher-widget/switcher-widget.component';
+import { SensorWidgetComponent } from './device-widgets/sensor-widget/sensor-widget.component';
 
 @NgModule({
     id: module.id,
@@ -24,9 +24,9 @@ import { DeviceSensorWidgetComponent } from './device-widgets/device-sensor-widg
     ],
     declarations: [
         DeviceWidgetComponent,
-        DeviceSensorWidgetComponent,
-        DeviceSwitcherWidgetComponent,
-        DeviceServoWidgetComponent,
+        SensorWidgetComponent,
+        SwitcherWidgetComponent,
+        ServoWidgetComponent,
         DeviceListComponent,
         DeviceComponent
     ],

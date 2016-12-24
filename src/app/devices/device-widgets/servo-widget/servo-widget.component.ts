@@ -4,14 +4,14 @@ import { BaseOutputSensor } from '../shared/base-output-sensor/base-output-senso
 import { DeviceWidgetService } from '../device-widget.service';
 
 @Component({
-    selector: 'sh-device-servo-widget',
-    templateUrl: 'device-servo-widget.template.html',
+    selector: 'sh-servo-widget',
+    templateUrl: 'servo-widget.template.html',
     styleUrls: [
         '../device-widget.style.scss',
-        'device-servo-widget.style.scss'
+        'servo-widget.style.scss'
     ]
 })
-export class DeviceServoWidgetComponent extends BaseOutputSensor {
+export class ServoWidgetComponent extends BaseOutputSensor {
 
     @Input() device;
 

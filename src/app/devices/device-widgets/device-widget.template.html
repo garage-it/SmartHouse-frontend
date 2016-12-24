@@ -12,17 +12,17 @@
         </button>
     </div>
     <div>
-        <sh-device-sensor-widget
+        <sh-sensor-widget
             [device]="device"
             *ngIf="!device.executor && !device.servo">
-        </sh-device-sensor-widget>
-        <sh-device-switcher-widget
+        </sh-sensor-widget>
+        <sh-switcher-widget
             [device]="device"
             *ngIf="device.executor">
-        </sh-device-switcher-widget>
-        <sh-device-servo-widget
+        </sh-switcher-widget>
+        <sh-servo-widget
             [device]="device"
             *ngIf="device.servo">
-        </sh-device-servo-widget>
+        </sh-servo-widget>
     </div>
 </div>

@@ -8,14 +8,14 @@ import {
 import { DeviceWidgetService } from '../device-widget.service';
 
 @Component({
-    selector: 'sh-device-switcher-widget',
-    templateUrl: 'device-switcher-widget.template.html',
+    selector: 'sh-switcher-widget',
+    templateUrl: 'switcher-widget.template.html',
     styleUrls: [
-        'device-switcher-widget.style.scss',
+        'switcher-widget.style.scss',
         '../device-widget.style.scss'
     ]
 })
-export class DeviceSwitcherWidgetComponent extends BaseOutputSensor {
+export class SwitcherWidgetComponent extends BaseOutputSensor {
 
     @Input() device;
 

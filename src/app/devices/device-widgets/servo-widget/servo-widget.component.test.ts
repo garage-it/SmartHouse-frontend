@@ -1,10 +1,10 @@
-import { DeviceServoWidgetComponent } from './device-servo-widget.component';
+import { ServoWidgetComponent } from './servo-widget.component';
 
 describe('Device-servo-widget', () => {
     let sut;
 
     beforeEach(() => {
-        sut = new DeviceServoWidgetComponent(null);
+        sut = new ServoWidgetComponent(null);
         sut.pushEvent = jasmine.createSpy('pushEvent');
     });
 
