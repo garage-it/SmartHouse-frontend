@@ -13,6 +13,10 @@ describe('Sensor-regular-widget', () => {
         expect(sut.onRemoveWidget instanceof EventEmitter).toBeTruthy();
     });
 
+    it('should have disabled edit mode by default', () => {
+        expect(sut.isEditMode).toBeFalsy();
+    });
+
     describe('when remove widget', () => {
         beforeEach(() => {
             sut.removeWidget();

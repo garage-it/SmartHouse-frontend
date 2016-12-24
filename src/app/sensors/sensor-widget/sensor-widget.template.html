@@ -7,7 +7,9 @@
             <span>{{device.description}}</span>
         </div>
         <button class="sensor-widget_button-close"
-                (click)="removeWidget()"></button>
+                *ngIf="isEditMode"
+                (click)="removeWidget()">
+        </button>
     </div>
     <div>
         <sh-sensor-regular-widget

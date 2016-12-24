@@ -7,6 +7,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class SensorWidgetComponent {
     @Input() device;
+    @Input() isEditMode: boolean = false;
     @Output() onRemoveWidget: EventEmitter<any> = new EventEmitter();
 
     removeWidget(): void {
