@@ -1,5 +1,6 @@
 const CONFIG = {
     BASE: '',
+    HOME: 'home',
     HELP: 'help',
     DEVICES: 'devices',
     SCENARIOS: 'scenarios',
