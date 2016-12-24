@@ -1,9 +1,4 @@
-<form class="constructor"
-      (ngSubmit)="onSubmit()"
-      #mapViewConstructorForm="ngForm"
-      novalidate
-      autocomplete="off">
-
+<div class="constructor">
     <h2 class="title">Constructor / Map view</h2>
 
     <section>
@@ -17,7 +12,7 @@
                        type="text"
                        id="name"
                        placeholder="Enter name"
-                       [(ngModel)]="mapViewName"
+                       [(ngModel)]="name"
                        name="mapViewName"
                        required>
             </div>
@@ -28,7 +23,7 @@
                        type="text"
                        id="description"
                        placeholder="Enter description"
-                       [(ngModel)]="mapViewDescription"
+                       [(ngModel)]="description"
                        name="mapViewDescription"
                        required>
             </div>
@@ -37,24 +32,16 @@
     </section>
 
     <section>
+        <div class="heading">
+            <span>Step 2: Add picture</span>
 
-        <h4 class="heading">Step 2: Add picture</h4>
-
-        <!--<div class="switch">
-            TODO: implement in future stories
-            <input class="switch__checkbox filled-in"
-                   type="checkbox"
-                   name="active"
-                   [attr.id]="active"
-                   [(ngModel)]="mapViewIsActive"/>
-            <label class="switch__label" [attr.for]="active">Active</label>
-
-            <input class="switch__checkbox filled-in"
-                   type="checkbox"
-                   name="default"
-                   [attr.id]="default"/>
-            <label class="switch__label" [attr.for]="default">Default</label>
-        </div>-->
+            <sh-options
+                [id]="'mapSubview'"
+                [(isActive)]="isActive"
+                [canBeActive]="canBeActive"
+                [(defaultSubview)]="defaultSubview"
+            ></sh-options>
+        </div>
 
         <input #fileInput
                type="file"
@@ -72,8 +59,7 @@
              (click)="onUploadClick()"
              [uploader]="uploader">
             <div class="add-picture">
-                <div class="add-picture__icon">
-                </div>
+                <div class="add-picture__icon"></div>
                 <p class="add-picture__title">Please add your picture</p>
             </div>
         </div>
@@ -86,8 +72,9 @@
                  alt="your image"/>
 
             <sh-constructor-devices
-                class="constructor-devices"
-                (onMappedSensor)="onMappedSensors($event)">
+                [edittedDevices]="edittedDevices"
+                (deviceMoved)="onDeviceMoved()"
+                class="constructor-devices">
             </sh-constructor-devices>
         </div>
 
@@ -98,7 +85,7 @@
 
         <button class="button button_cancel"
                 type="button"
-                (click)="onCancelClick()">
+                [routerLink]="['']">
             Cancel
         </button>
 
@@ -110,7 +97,8 @@
         </button>
 
         <button class="button button_success"
-                type="submit">
+                type="button"
+                (click)="onSubmit()">
             Save
         </button>
 
@@ -120,10 +108,9 @@
         <h4 class="heading">Step 3: Add devices on the map</h4>
 
         <sh-sensors-list
-            [sensors]="sensors"
-            [mappedSensors]="mappedSensors"
+            [mappedSensors]="edittedDevices"
             (onAddSensor)="onAddSensor($event)"
             (onRemoveSensor)="onRemoveSensor($event)">
         </sh-sensors-list>
     </section>
-</form>
+</div>

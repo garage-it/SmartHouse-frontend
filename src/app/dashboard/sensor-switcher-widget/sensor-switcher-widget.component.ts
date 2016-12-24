@@ -6,8 +6,10 @@ import { SensorWidgetService } from '../shared/sensor-widget/sensor-widget.servi
 @Component({
     selector: 'sh-sensor-servo-widget',
     templateUrl: 'sensor-switcher-widget.template.html',
-    styleUrls: ['../shared/sensor-widget/sensor-widget.style.scss',
-        'sensor-switcher-widget.style.scss']
+    styleUrls: [
+        '../sensor-widget/sensor-widget.template.scss',
+        'sensor-switcher-widget.style.scss'
+    ]
 })
 export class SensorSwitcherWidgetComponent extends BaseOutputSensor {
 

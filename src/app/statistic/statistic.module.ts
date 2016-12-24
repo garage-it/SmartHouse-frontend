@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 import { ChartModule } from 'angular2-highcharts';
+import { DevicesModule } from '../shared/devices/devices.module';
 import { Ng2DatetimePickerModule } from 'ng2-datetime-picker';
 
 // TODO: Create SensorStatisticModule and move these file there.
@@ -16,7 +17,14 @@ import { routing } from './statistic.routing';
 
 @NgModule({
     id: module.id,
-    imports: [ RouterModule, routing, ChartModule, Ng2DatetimePickerModule, CommonModule ],
+    imports: [
+        RouterModule,
+        ChartModule,
+        CommonModule,
+        DevicesModule,
+        Ng2DatetimePickerModule,
+        routing
+    ],
     declarations: [ ...STATISTIC_DECLARATIONS ],
     exports: [ StatisticComponent ],
     providers: [ StatisticService, SensorStatisticResolveService, SwitcherStatisticsService ]

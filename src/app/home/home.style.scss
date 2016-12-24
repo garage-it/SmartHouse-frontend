@@ -1,15 +1,47 @@
+$grey: #929292;
+$success: #A3C844;
+
 .home-nav {
-    height: 70px;
+    overflow: auto;
+
+    &__logo {
+        display: inline-block;
+        font-weight: bold;
+        text-transform: capitalize;
+        font-size: 20px;
+        height: 40px;
+        line-height: 40px;
+        margin: 10px 0;
+        vertical-align: bottom;
+    }
 
     &__actions {
         float: right;
-    }
 
-    &__view-toggle {
-        float: right;
-        margin: 30px 80px 0 0;
+        .button {
+            margin: 10px 0 10px 5px;
+            width: auto;
+            padding-left: 15px;
+            padding-right: 15px;
+            border-radius: 2px;
+        }
+
+        .button_default {
+            background-color: $grey;
+        }
+
+        .button_success {
+            background-color: $success;
+            border-color: $success;
+        }
+
+        .home-nav__view-toggle {
+            display: inline-block;
+            vertical-align: bottom;
+        }
     }
 }
+
 
 .toggle {
     font-size: 0.8em;
@@ -24,8 +56,25 @@
         color: #d1d1d1;
         cursor: pointer;
 
+        &:hover {
+            text-decoration: underline;
+        }
+
         &_active {
             color: #000000;
+            cursor: default;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+
+        &_disabled {
+            cursor: default;
+
+            &:hover {
+                text-decoration: none;
+            }
         }
 
         &:last-child {
@@ -35,22 +84,24 @@
 }
 
 .home-view {
+    position: relative;
     background: #f9f9f9;
     border: solid 1px #c7c8c2;
-    height: 400px;
-    position: relative;
-}
 
-.empty-home-view {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 1.5em;
-    color: #6b6b6b;
+    &_empty {
+        height: 400px;
+    }
 
-    &__create {
+    &__empty-content {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 1.5em;
+        color: #6b6b6b;
+    }
+
+    &__create-view {
         color: #a3c940;
     }
 }
-

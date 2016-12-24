@@ -18,7 +18,8 @@
     "e2e:update": "webdriver-manager update --standalone",
     "e2e:run": "protractor ./env/protractor.conf.ts",
     "presemantic-release": "npm run build:production",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "commitmsg": "validate-commit-msg"
   },
   "repository": {
     "type": "git",
@@ -79,6 +80,7 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
     "html-webpack-plugin": "^2.14.0",
+    "husky": "^0.12.0",
     "istanbul-instrumenter-loader": "^0.2.0",
     "jasmine": "^2.4.1",
     "jasmine-core": "^2.3.4",
@@ -119,6 +121,7 @@
     "tslint-loader": "^2.1.0",
     "typedoc": "^0.4.4",
     "typescript": "2.0.2",
+    "validate-commit-msg": "^2.8.2",
     "webpack": "^1.12.14",
     "webpack-dev-server": "^1.14.1",
     "webpack-merge": "^0.9.0",

@@ -2,6 +2,7 @@ import { RouterModule } from '@angular/router';
 
 import HOME_ROUTING_CONFIG from './home.routing.config';
 import { HomeComponent } from './home.component';
+import { HomeResolveService } from './home-resolve.service';
 
 export const routes = [
     {
@@ -10,6 +11,9 @@ export const routes = [
             {
                 path: HOME_ROUTING_CONFIG.BASE,
                 component: HomeComponent,
+                resolve: {
+                    viewList: HomeResolveService
+                }
             },
             {
                 path: HOME_ROUTING_CONFIG.CONSTRUCTOR,

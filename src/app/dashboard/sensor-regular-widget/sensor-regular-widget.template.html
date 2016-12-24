@@ -1,28 +1,22 @@
-<div class="sensor-widget">
-    <button class="sensor-widget_button"
-            (click)="removeWidget()">
-        x
-    </button>
-
-    <div class="sensor-widget_statistic-button"
-         [routerLink]="['../statistic/sensor-details', device.mqttId, 'day']">
+<div class="sensor-widget sensor-regular-widget">
+    <div class="sensor-widget_header">
+        <div class="sensor-widget_button-statistics"
+             [routerLink]="['../statistic/sensor-details', device.mqttId, 'day']">
+        </div>
+        <div class="sensor-widget_header_info">
+            <span>{{device.description}}</span>
+        </div>
+        <button class="sensor-widget_button-close"
+                (click)="removeWidget()"></button>
     </div>
-
-    <span class="sensor-widget_time"
+    <div class="sensor-widget_info">
+        <div class="sensor-widget_info_value">
+            <span [hidden]="data.value===undefined">{{data.value}} {{device.metrics}}</span>
+            <span [hidden]="data.value">.</span>
+        </div>
+    </div>
+    <div class="sensor-widget_footer"
           [hidden]="data.updateTime===undefined">
-        {{data.updateTime | date:"HH:m:s" }}
-    </span>
-
-
-    <div class="sensor-widget_value">
-        <span [hidden]="data.value===undefined">{{data.value}}</span>
-        <span [hidden]="data.value">.</span>
-    </div>
-
-    <div class="sensor-widget__metrics" *ngIf="data.value===undefined">
-        {{device.metrics}}
-    </div>
-    <div class="sensor-widget_description">
-        <span>{{device.mqttId}}</span>
+        {{data.updateTime | date:"MM.dd.y HH:mm:ss" }}
     </div>
 </div>

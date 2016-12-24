@@ -61,6 +61,10 @@ describe('base-output-sensor', () => {
                 expect(sut.data.value).toEqual(positiveValue);
             });
 
+            it('should set updateTime', () => {
+                expect(sut.data.updateTime).toBeDefined();
+            });
+
             describe('value conversation', () => {
                 it('should convert data to device`s format', () => {
                     expect(sut.toDeviceRepresentation).toHaveBeenCalledWith(1);

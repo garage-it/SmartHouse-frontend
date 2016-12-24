@@ -1,0 +1,63 @@
+$lightgrey: lightgrey;
+$info: #36C4D7;
+
+.sh-view-list {
+    width: 100%;
+    padding: 0 120px;
+    font-size: 13px;
+
+    &__title {
+        padding: 10px 0;
+        margin: 10px 0;
+        font-weight: bold;
+    }
+
+    &__item {
+        margin: 0 30px;
+        border-top: 1px solid $lightgrey;
+
+        &:first-child {
+            border-top: 1px solid $lightgrey;
+        }
+    }
+
+    &__item-name {
+        position: relative;
+        width: 35%;
+        display: inline-block;
+        padding: 5px 20px;
+
+        &::before {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            content: '';
+            top: 9px;
+            left: 5px;
+            background-image: url('../assets/shape-copy-7.svg');
+            background-repeat: no-repeat;
+        }
+    }
+
+    &__item-description {
+        width: 49%;
+        display: inline-block;
+    }
+
+    &__item-button {
+        float: right;
+        padding: 3px 10px;
+        margin: 5px 0 5px 5px;
+        width: auto;
+        height: auto;
+        border-radius: 1px;
+        border: none;
+        padding-top: 0;
+        padding-bottom: 0;
+        background-color: $info;
+
+        &:active {
+            opacity: .54;
+        }
+    }
+}

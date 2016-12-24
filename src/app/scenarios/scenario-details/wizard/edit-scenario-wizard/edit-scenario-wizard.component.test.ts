@@ -11,7 +11,7 @@ describe('EditScenarioWizardComponent', () => {
     let Router;
     let DialogService;
     let ViewContainerRef;
-    let DeviceListService;
+    let DevicesService;
 
     const id = 123;
     const expectedDevices = [
@@ -51,7 +51,7 @@ describe('EditScenarioWizardComponent', () => {
         };
         ViewContainerRef = {};
 
-        DeviceListService = {
+        DevicesService = {
             getSensors: jasmine.createSpy('getSensors').and.returnValue(Observable.of(['device1', 'device2']))
         };
 
@@ -61,7 +61,7 @@ describe('EditScenarioWizardComponent', () => {
             Router,
             DialogService,
             ViewContainerRef,
-            DeviceListService);
+            DevicesService);
 
         sut.back = jasmine.createSpy('back');
     });

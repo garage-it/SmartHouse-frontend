@@ -1,16 +1,25 @@
 import { RouterModule } from '@angular/router';
-
 import { ConstructorComponent } from './constructor.component';
-import { DeviceListResolveService } from '../devices/device-list/device-list-resolve.service';
-import { DashboardViewResolveService } from './dashboard/dashboard-view/dashboard-view-resolve.service';
+import { DeviceListResolver } from '../shared/devices/devices.resolver';
+import { CanDeactivateConstructor } from './can-deactivate-constructor';
+import { ViewResolveService } from './view-resolve.service';
 
 export const routes = [
     {
         path: '',
         component: ConstructorComponent,
+        canDeactivate: [CanDeactivateConstructor],
         resolve: {
-            dashboard: DashboardViewResolveService,
-            sensors: DeviceListResolveService
+            sensors: DeviceListResolver
+        }
+    },
+    {
+        path: ':id',
+        component: ConstructorComponent,
+        canDeactivate: [CanDeactivateConstructor],
+        resolve: {
+            sensors: DeviceListResolver,
+            view: ViewResolveService
         }
     }
 ];

@@ -1,32 +1,63 @@
 <div class="home-nav">
+    <div class="home-nav__logo"
+         *ngIf="currentView?.name">
+        {{currentView.name}}
+    </div>
     <div class="home-nav__actions">
+        <!--TODO: make a Toggle component-->
+        <div class="home-nav__view-toggle toggle">
+            <ul>
+                View:
+                <li class="toggle__item"
+                    [ngClass]="{'toggle__item_active': (currentSubview === 'mapSubview'), 'toggle__item_disabled': (!isMapSubviewActive)}"
+                    (click)="setCurrentSubview('mapSubview')">
+                    Map
+                </li>
+                <li class="toggle__item"
+                    [ngClass]="{'toggle__item_active': (currentSubview === 'dashboardSubview'), 'toggle__item_disabled': (!isDashboardSubviewActive)}"
+                    (click)="setCurrentSubview('dashboardSubview')">
+                    Dashboard
+                </li>
+            </ul>
+        </div>
+        <button class="button button_default"
+                *ngIf="currentView"
+                [routerLink]="['constructor', currentView._id]">
+            Edit
+        </button>
         <button class="button button_success"
                 [routerLink]="['constructor']">
             + Create view
         </button>
     </div>
-
-    <!--TODO: make a Toggle component-->
-    <div class="home-nav__view-toggle toggle">
-        <ul>
-            View:
-            <li class="toggle__item toggle__item_active">
-                Map
-            </li>
-            <li class="toggle__item">
-                Dashboard
-            </li>
-        </ul>
-    </div>
 </div>
 
-<div class="home-view">
-    <div class="empty-home-view">
+<div class="home-view home-view_empty"
+     *ngIf="!currentView">
+    <div class="home-view__empty-content">
         Please
-        <a class="empty-home-view__create"
+        <a class="home-view__create-view"
            [routerLink]="['constructor']">
             create
         </a>
         view
     </div>
 </div>
+
+<div
+    class="home-view home-view_not-empty"
+    *ngIf="currentView">
+    <sh-map-view
+        [currentMapView]="currentView.mapSubview"
+        *ngIf="currentSubview == 'mapSubview'"
+    ></sh-map-view>
+    <!--<sh-dashboard-subview
+        [dasboardSubview]="currentView.dashboardSubview"
+        *ngIf="currentSubview == 'dashboardSubview'"
+    ></sh-dashboard-subview>-->
+</div>
+<sh-view-list
+    *ngIf="viewList.length > 0"
+    [listViews]="viewList"
+    (onSelectView)="setCurrentView($event)">
+</sh-view-list>

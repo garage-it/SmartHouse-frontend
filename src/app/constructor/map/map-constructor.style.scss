@@ -10,11 +10,6 @@
     letter-spacing: 0.3px;
 }
 
-.heading {
-    font-size: 14px;
-    display: inline-block;
-}
-
 .input-group {
     width: 48%;
     float: left;
@@ -38,20 +33,11 @@
     }
 }
 
-.switch {
+.heading {
+    display: flex;
+    justify-content: space-between;
     margin-top: 20px;
-    float: right;
-
-    &__checkbox {
-        height: 15px;
-    }
-
-    &__label {
-        padding-left: 25px;
-        margin-right: 10px;
-        font-size: 14px;
-        color: #000000;
-    }
+    width: 100%;
 }
 
 .nv-file-over {
@@ -105,6 +91,7 @@
 .constructor-devices {
     position: absolute;
     top: 0;
+    left: 0;
     width: 1280px;
     height: 370px;
 }

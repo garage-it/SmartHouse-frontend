@@ -1,0 +1,16 @@
+<div class="map-view">
+    <div class="map-view__picture"
+         *ngIf="currentMapView?.pictureName">
+
+        <img class="map-view__image"
+             [src]="getImage()"
+             alt="your image"/>
+
+        <div class="map-view__devices">
+            <sh-device *ngFor="let device of currentMapView?.sensors"
+                       [device]="device.sensor"
+                       [ngStyle]="{'left': device?.position?.x + 'px', 'top': device?.position?.y + 'px'}">
+            </sh-device>
+        </div>
+    </div>
+</div>

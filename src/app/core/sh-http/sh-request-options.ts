@@ -5,8 +5,12 @@ import { BaseRequestOptions, RequestOptionsArgs } from '@angular/http';
 export class ShRequestOptions extends BaseRequestOptions {
 
     private static resolveApiUrl(url: string): string {
-        // For fix issue with incorrect Angular2 merging
-        return url.includes(ENV_PUBLIC_CONFIG.backEndUrl)
+        /*
+         * For fix issue with incorrect Angular2 merging
+         * Because Angular 2 run merge method twice for get type http request
+         * and once for other types.
+         */
+        return url.includes('/api')
             ? url
             : `${ENV_PUBLIC_CONFIG.backEndUrl}/api${url}`;
     }

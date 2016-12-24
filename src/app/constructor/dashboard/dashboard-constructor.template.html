@@ -1,32 +1,41 @@
 <p class="title">Constructor / Dashboard view</p>
 
-
-<div class="step">
+<div class="heading">
     <span>Step 4: Add widgets</span>
 
-    <span class="step_options">
-        <input class="filled-in" type="checkbox"
-               [attr.id]="active"/>
-        <label [attr.for]="active">Active</label>
-        <input class="filled-in" type="checkbox"
-               [attr.id]="default"/>
-        <label [attr.for]="default">Default</label>
-    </span>
-
+    <sh-options
+        [id]="'dashboardSubview'"
+        [(isActive)]="isActive"
+        [canBeActive]="canBeActive"
+        [(defaultSubview)]="defaultSubview"
+    ></sh-options>
 </div>
 
-<sh-dashboard-view
-        [widgets]="widgets"
-        (onRemoveWidget)="onRemoveWidget($event)">
-</sh-dashboard-view>
+<div class="dashboard-view">
+    <div [ngClass]="{'dashboard-view__centered': !selectedDevices?.length, 'dashboard-view__ordered': selectedDevices?.length}">
+        <span *ngIf="!selectedDevices?.length">
+            Please add your widgets
+        </span>
+
+        <sh-sensor-widget
+                *ngFor="let device of selectedDevices"
+                [device]="device"
+                (onRemoveWidget)="onRemoveSelectedDevice($event)">
+        </sh-sensor-widget>
+    </div>
+</div>
+
+<div class="dashboard-buttons">
+    <button class="button button_cancel" [routerLink]="['']">Cancel</button>
+    <button class="button button_success" (click)="onSubmit()">Save</button>
+</div>
 
 <div class="step">
     <span>Step 5: Add widgets on dashboard</span>
 </div>
 
 <sh-sensors-list
-        [sensors]="sensors"
-        [mappedSensors]="widgets"
-        (onAddSensor)="onAddSensor($event)"
-        (onRemoveSensor)="onRemoveSensor($event)">
+        [mappedSensors]="selectedDevices"
+        (onAddSensor)="onAddDevice($event)"
+        (onRemoveSensor)="onRemoveDevice($event)">
 </sh-sensors-list>

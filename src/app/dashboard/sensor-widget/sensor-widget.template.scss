@@ -1,15 +1,82 @@
-.sensor-widget_statistic-button {
-    position: relative;
-    display: block;
-    float: left;
-    cursor: pointer;
-    width: 24px;
-    height: 26px;
-    margin-top: 1px;
-    background-color: #dedede;
-    background-image: url(../assets/statistic.svg);
+$value-color: #f3ac2e;
+$widget-padding: 27px;
+$widget-width: 182px;
 
-    &:hover {
-        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+.sensor-widget {
+    position: relative;
+    width: $widget-width;
+    height: $widget-width;
+    padding: 2px;
+    font-family: Roboto;
+    text-align: center;
+    color: white;
+    background-color: #169eb1;
+    border: solid 1px white;
+    overflow: hidden;
+
+    &_footer, &_header {
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        height: $widget-padding;
+        max-height: $widget-padding;
+        overflow: hidden;
+    }
+    &_footer {
+        bottom: 0;
+    }
+    &_header {
+        top: 0;
+    }
+    &_button {
+        &-close, &-statistics {
+            position: absolute;
+            top: 0;
+            width: $widget-padding;
+            height: $widget-padding;
+
+            border: none;
+            box-shadow: none;
+            cursor: pointer;
+
+            background: transparent;
+            background-repeat: no-repeat;
+            background-position: center;
+
+            opacity: 0.5;
+            &:hover, &:active, &:focus {
+                opacity: 1;
+            }
+        }
+        &-close {
+            right: 0;
+            background-image: url(../assets/close-icon.svg);
+        }
+        &-statistics {
+            left: 0;
+            background-image: url(../assets/statistics-icon.svg);
+        }
+    }
+    &_header_info {
+        line-height: $widget-padding;
+        padding: 0 $widget-padding;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    &_info {
+        padding: $widget-padding $widget-padding;
+        display: table;
+        height: 100%;
+        width: 100%;
+        &_value {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+            font-size: 24px;
+            line-height: 1.5;
+            font-weight: bold;
+            width: 100%;
+        }
     }
 }

@@ -1,11 +1,7 @@
 <div [dragula]="'sh-constructor-devices'">
-    <div class="device"
-         #devices
-         *ngFor="let device of sensors">
-        <div class="device__description">
-            {{device.mqttId.slice(0,1).toUpperCase()}}
-        </div>
-    </div>
+    <sh-device *ngFor="let device of edittedDevices"
+               [device]="device"
+               [ngStyle]="{'left': device.posX + 'px', 'top': device.posY + 'px'}"
+               id="{{device._id}}">
+    </sh-device>
 </div>
-
-

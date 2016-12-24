@@ -1,0 +1,13 @@
+<sh-settings></sh-settings>
+
+<div class="sub-header row">
+  <div id="page-title" class="col s5 sub-header__title"><h2>Devices</h2></div>
+  <div class="sub-header__actions col s3 right">
+    <button [routerLink]="['create']"
+        class="waves-effect waves-light btn blue-grey darken-1">Add new device</button>
+  </div><!-- sub-header__actions -->
+</div><!-- sub-header -->
+
+<sh-device-list
+    [deviceList]="deviceList">
+</sh-device-list>
