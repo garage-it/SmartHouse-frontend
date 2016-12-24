@@ -57,25 +57,25 @@ describe('SensorStatisticComponent', () => {
     });
 
     describe('when correct sensor selected', () => {
-        const correctMockSensorId = 'switcher';
+        const correctMockSensorType = 'switcher';
         it('switcher widget should be visible', () => {
-            sut.sensorId = correctMockSensorId;
+            sut.type = correctMockSensorType;
             expect(sut.isSwitcherWidgetVisible()).toEqual(true);
         });
         it('chat widget should not be visible', () => {
-            sut.sensorId = correctMockSensorId;
+            sut.type = correctMockSensorType;
             expect(sut.isChartWidgetVisible()).toEqual(false);
         });
     });
 
     describe('when incorrect sensor selected', () => {
-        const incorrectMockSensorId = 'servo';
+        const correctMockSensorType = 'servo';
         it('switcher widget should be visible', () => {
-            sut.sensorId = incorrectMockSensorId;
+            sut.type = correctMockSensorType;
             expect(sut.isSwitcherWidgetVisible()).toEqual(false);
         });
         it('chat widget should not be visible', () => {
-            sut.sensorId = incorrectMockSensorId;
+            sut.type = correctMockSensorType;
             expect(sut.isChartWidgetVisible()).toEqual(true);
         });
     });

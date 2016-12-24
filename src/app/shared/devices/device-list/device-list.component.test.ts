@@ -73,6 +73,7 @@ describe('device-list', () => {
     describe('#goToDeviceStatistic', () => {
         let event;
         const mqttId = Symbol('device id to show statistic');
+        const type = Symbol('device type to show statistic');
         const statisticLink = 'path to statistic';
 
         beforeEach(() => {
@@ -81,7 +82,7 @@ describe('device-list', () => {
             };
             sut.statisticLink = statisticLink;
 
-            sut.goToDeviceStatistic(mqttId, event);
+            sut.goToDeviceStatistic(mqttId, type, event);
         });
 
         it('should stop event propagation', () => {
@@ -89,7 +90,7 @@ describe('device-list', () => {
         });
 
         it('should navigate to statistic of proder device', () => {
-            expect(Router.navigate).toHaveBeenCalledWith([statisticLink, mqttId, 'day']);
+            expect(Router.navigate).toHaveBeenCalledWith([statisticLink, mqttId, 'day', type]);
         });
     });
 

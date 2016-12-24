@@ -58,9 +58,9 @@ export class DeviceListComponent {
         return this.editOnItemClick ? ['./', id] : [];
     }
 
-    goToDeviceStatistic(mqttId: string, $event: MouseEvent) {
+    goToDeviceStatistic(mqttId: string, type: string, $event: MouseEvent) {
         $event.stopPropagation();
-        this.router.navigate([this.statisticLink, mqttId, 'day']);
+        this.router.navigate([this.statisticLink, mqttId, 'day', type]);
     }
 
     removeSensor(item: Device, $event: MouseEvent) {

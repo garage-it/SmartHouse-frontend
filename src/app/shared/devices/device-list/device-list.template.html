@@ -29,7 +29,7 @@
                 </td><!-- sensors-list-table__body__row__item -->
                 <td *ngIf="statisticLink">
                     <div class="sensor-widget_statistic-button"
-                        (click)="goToDeviceStatistic(item.mqttId, $event)">
+                        (click)="goToDeviceStatistic(item.mqttId, item.type, $event)">
                     </div>
                 </td>
                 <td *ngIf="showDeleteButton"
