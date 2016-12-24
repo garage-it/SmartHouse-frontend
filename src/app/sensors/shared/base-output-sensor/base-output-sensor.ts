@@ -1,5 +1,5 @@
 import { BaseSensor } from '../base-sensor/base-sensor';
-import { SensorWidgetService } from '../sensor-widget/sensor-widget.service';
+import { DeviceWidgetService } from '../../device-widget.service';
 
 export const DEVICE_ON_STATE = 'ON';
 export const DEVICE_OFF_STATE = 'OFF';
@@ -19,7 +19,7 @@ export class BaseOutputSensor extends BaseSensor {
         return BaseOutputSensor.getConditionResult(condition, self, args) ? positiveValue : negativeValue;
     }
 
-    constructor(sensorWidgetService: SensorWidgetService) {
+    constructor(sensorWidgetService: DeviceWidgetService) {
         super(sensorWidgetService);
         this[pending] = null;
     }

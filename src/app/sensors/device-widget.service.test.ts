@@ -1,4 +1,4 @@
-import { SensorWidgetService } from './sensor-widget.service';
+import { DeviceWidgetService } from './device-widget.service';
 
 const mockSocketIo = {
     connect: () => ({
@@ -8,13 +8,13 @@ const mockSocketIo = {
     })
 };
 
-describe('SensorWidgetService', () => {
+describe('DeviceWidgetService', () => {
     let sut;
     let device = {};
 
     beforeEach(() => {
 
-        sut = new SensorWidgetService();
+        sut = new DeviceWidgetService();
         sut.io = mockSocketIo;
         spyOn(sut.io, 'connect');
         spyOn(sut.socket, 'on').and.callThrough();

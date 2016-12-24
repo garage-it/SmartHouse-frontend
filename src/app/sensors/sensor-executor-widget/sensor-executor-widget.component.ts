@@ -5,7 +5,7 @@ import {
     DEVICE_ON_STATE,
     DEVICE_OFF_STATE
 } from '../shared/base-output-sensor/base-output-sensor';
-import { SensorWidgetService } from '../shared/sensor-widget/sensor-widget.service';
+import { DeviceWidgetService } from '../device-widget.service';
 
 @Component({
     selector: 'sh-sensor-executor-widget',
@@ -24,7 +24,7 @@ export class SensorExecutorWidgetComponent extends BaseOutputSensor {
         return value === DEVICE_ON_STATE;
     }
 
-    constructor(sensorWidgetService: SensorWidgetService) {
+    constructor(sensorWidgetService: DeviceWidgetService) {
         super(sensorWidgetService);
     }
 

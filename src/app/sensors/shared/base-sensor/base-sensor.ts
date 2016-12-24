@@ -1,5 +1,5 @@
 import { OnInit, OnDestroy } from '@angular/core';
-import { SensorWidgetService } from '../sensor-widget/sensor-widget.service';
+import { DeviceWidgetService } from '../../device-widget.service';
 
 export class BaseSensor implements OnInit, OnDestroy {
 
@@ -13,7 +13,7 @@ export class BaseSensor implements OnInit, OnDestroy {
         valueUpdated: string
     };
 
-    constructor(protected sensorWidgetService: SensorWidgetService) {}
+    constructor(protected sensorWidgetService: DeviceWidgetService) {}
 
     ngOnInit() {
         this.data = {

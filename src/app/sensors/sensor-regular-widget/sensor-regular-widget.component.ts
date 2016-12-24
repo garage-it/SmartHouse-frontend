@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { SensorWidgetService } from '../shared/sensor-widget/sensor-widget.service';
+import { DeviceWidgetService } from '../device-widget.service';
 
 import { BaseSensor } from '../shared/base-sensor/base-sensor';
 
@@ -14,7 +14,7 @@ export class SensorRegularWidgetComponent extends BaseSensor {
 
     @Input() device;
 
-    constructor(sensorWidgetService: SensorWidgetService) {
+    constructor(sensorWidgetService: DeviceWidgetService) {
         super(sensorWidgetService);
     }
 }

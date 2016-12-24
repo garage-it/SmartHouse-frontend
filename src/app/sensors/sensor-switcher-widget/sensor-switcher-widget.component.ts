@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 import { BaseOutputSensor } from '../shared/base-output-sensor/base-output-sensor';
-import { SensorWidgetService } from '../shared/sensor-widget/sensor-widget.service';
+import { DeviceWidgetService } from '../device-widget.service';
 
 @Component({
     selector: 'sh-sensor-servo-widget',
@@ -15,7 +15,7 @@ export class SensorSwitcherWidgetComponent extends BaseOutputSensor {
 
     @Input() device;
 
-    constructor(sensorWidgetService: SensorWidgetService) {
+    constructor(sensorWidgetService: DeviceWidgetService) {
         super(sensorWidgetService);
     }
 
