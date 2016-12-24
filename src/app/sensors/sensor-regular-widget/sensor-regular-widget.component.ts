@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { SensorWidgetService } from '../shared/sensor-widget/sensor-widget.service';
 
 import { BaseSensor } from '../shared/base-sensor/base-sensor';

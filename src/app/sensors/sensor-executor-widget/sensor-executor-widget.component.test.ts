@@ -1,5 +1,4 @@
 import { SensorExecutorWidgetComponent } from './sensor-executor-widget.component';
-import { EventEmitter } from '@angular/core';
 
 describe('Sensor-executor-widget', () => {
     let sut;
