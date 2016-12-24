@@ -2,8 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 const CHART_PERIODS: Array<string> = [
+    'hour',
     'day',
-    'week',
     'month',
     'year'
 ];
