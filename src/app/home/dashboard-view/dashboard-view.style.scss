@@ -1,0 +1,17 @@
+:host {
+  .dashboard-view {
+    height: 370px;
+
+    &__centered {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+
+    &__ordered {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+}
