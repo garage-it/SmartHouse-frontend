@@ -1,10 +1,10 @@
-import { SensorSwitcherWidgetComponent } from './sensor-switcher-widget.component';
+import { DeviceServoWidgetComponent } from './device-servo-widget.component';
 
-describe('Sensor-servo-widget', () => {
+describe('Device-servo-widget', () => {
     let sut;
 
     beforeEach(() => {
-        sut = new SensorSwitcherWidgetComponent(null);
+        sut = new DeviceServoWidgetComponent(null);
         sut.pushEvent = jasmine.createSpy('pushEvent');
     });
 
