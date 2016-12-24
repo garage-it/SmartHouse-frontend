@@ -14,7 +14,6 @@ import { SensorWidgetService } from '../shared/sensor-widget/sensor-widget.servi
 export class SensorSwitcherWidgetComponent extends BaseOutputSensor {
 
     @Input() device;
-    @Input() description;
     @Output() onRemoveWidget: EventEmitter<any> = new EventEmitter();
 
     constructor(sensorWidgetService: SensorWidgetService) {

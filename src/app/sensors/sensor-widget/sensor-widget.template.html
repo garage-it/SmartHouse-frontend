@@ -1,15 +1,26 @@
-<sh-sensor-regular-widget
-    [device]="device"
-    (onRemoveWidget)="removeWidget()"
-    *ngIf="!device.executor && !device.servo">
-</sh-sensor-regular-widget>
-<sh-sensor-executor-widget
-    [device]="device"
-    (onRemoveWidget)="removeWidget()"
-    *ngIf="device.executor">
-</sh-sensor-executor-widget>
-<sh-sensor-servo-widget
-    [device]="device"
-    (onRemoveWidget)="removeWidget()"
-    *ngIf="device.servo">
-</sh-sensor-servo-widget>
+<div class="sensor-widget">
+    <div class="sensor-widget_header">
+        <div class="sensor-widget_button-statistics"
+             [routerLink]="['../statistic/sensor-details', device.mqttId, 'day']">
+        </div>
+        <div class="sensor-widget_header_info">
+            <span>{{device.description}}</span>
+        </div>
+        <button class="sensor-widget_button-close"
+                (click)="removeWidget()"></button>
+    </div>
+    <div>
+        <sh-sensor-regular-widget
+            [device]="device"
+            *ngIf="!device.executor && !device.servo">
+        </sh-sensor-regular-widget>
+        <sh-sensor-executor-widget
+            [device]="device"
+            *ngIf="device.executor">
+        </sh-sensor-executor-widget>
+        <sh-sensor-servo-widget
+            [device]="device"
+            *ngIf="device.servo">
+        </sh-sensor-servo-widget>
+    </div>
+</div>

@@ -27,6 +27,7 @@ $widget-width: 182px;
     }
     &_header {
         top: 0;
+        z-index: 1;
     }
     &_button {
         &-close, &-statistics {
