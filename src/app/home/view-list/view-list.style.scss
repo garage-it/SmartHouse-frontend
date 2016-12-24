@@ -1,5 +1,7 @@
 $lightgrey: lightgrey;
 $info: #36C4D7;
+$green: #a2c844;
+$transparent-grey: rgba(0, 0, 0, .05);
 
 .sh-view-list {
     width: 100%;
@@ -14,7 +16,19 @@ $info: #36C4D7;
 
     &__item {
         margin: 0 30px;
-        border-top: 1px solid $lightgrey;
+        padding: 0 5px;
+        border-bottom: 1px solid $lightgrey;
+        border-left: 3px solid transparent;
+
+        &--active {
+            border-left-color: $green;
+            background-color: $transparent-grey;
+
+            .sh-view-list__item-button {
+                opacity: .6;
+                cursor: default;
+            }
+        }
 
         &:first-child {
             border-top: 1px solid $lightgrey;

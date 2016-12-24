@@ -2,6 +2,7 @@
     <div class="sh-view-list__title">Views</div>
     <div class="sh-view-list__items">
         <div class="sh-view-list__item"
+             [ngClass]="{ 'sh-view-list__item--active': view._id === currentView._id }"
              *ngFor="let view of listViews; let i = index">
             <span class="sh-view-list__item-name">{{view.name || 'Dashboard ' + i}}</span>
             <span class="sh-view-list__item-description">{{view.description}}</span>
