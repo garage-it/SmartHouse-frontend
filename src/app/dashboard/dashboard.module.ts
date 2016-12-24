@@ -4,11 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { SharedModule } from '../shared/shared.module';
 
-import { DashboardComponent } from './dashboard.component';
-
 import { SensorWidgetService } from './shared/sensor-widget/sensor-widget.service';
-import { DashboardResolveService } from './dashboard-resolve.service';
-import { DashboardService } from './dashboard.service';
 import { DragulaModule } from 'ng2-dragula/ng2-dragula';
 
 import DASHBOARD_DECLARATIONS from './dashboard.declarations';
@@ -18,11 +14,9 @@ import { SensorWidgetComponent } from './sensor-widget/sensor-widget.component';
     id: module.id,
     imports: [ SharedModule, RouterModule, FormsModule, DragulaModule ],
     declarations: [ ...DASHBOARD_DECLARATIONS ],
-    exports: [ DashboardComponent, SensorWidgetComponent ],
+    exports: [ SensorWidgetComponent ],
     providers: [
-        SensorWidgetService,
-        DashboardService,
-        DashboardResolveService
+        SensorWidgetService
     ]
 })
 export class DashboardModule {}
