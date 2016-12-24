@@ -85,6 +85,57 @@ export class DeviceDetailsPageComponent {
         }
     }
 
+    /* TODO: move to the seperate file */
+    public get typeList(): any[] {
+        return [{
+            text: 'Servo',
+            value: 'servo'
+        },
+        {
+            text: 'Switcher',
+            value: 'switcher'
+        },
+        {
+            text: 'Sensor',
+            value: 'sensor'
+        },
+        {
+            text: 'Camera',
+            value: 'camera'
+        }];
+    }
+
+    public get subTypeList(): any[] {
+        return [{
+            text: 'Socket',
+            value: 'socket'
+        },
+        {
+            text: 'Lock',
+            value: 'lock'
+        },
+        {
+            text: 'Temperature',
+            value: 'temperature'
+        },
+        {
+            text: 'Humidity',
+            value: 'humidity'
+        },
+        {
+            text: 'Electricity',
+            value: 'electricity'
+        },
+        {
+            text: 'Pressure',
+            value: 'pressure'
+        },
+        {
+            text: 'CO2',
+            value: 'co2'
+        }];
+    }
+
     private _navigateToList(): void {
         this.router.navigate(['/settings/devices']);
     }

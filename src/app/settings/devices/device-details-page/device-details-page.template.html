@@ -23,13 +23,31 @@
     </div>
     <div class="sensor-detail__type">
         <label for="sensor-detail__type">Type</label>
-        <input [(ngModel)]="sensor.type"
-               name="type"
-               #type="ngModel"
-               type="text"
-               id="sensor-detail__type"
-               placeholder="Enter type"
-               />
+        <select
+            class="sensor-detail__type browser-default"
+            name="type"
+            id="sensor-detail__type"
+            #type="ngModel"
+            [(ngModel)]="sensor.type">
+            <option *ngFor="let item of typeList"
+                [value]="item.value">
+                {{item.text}}
+            </option>
+        </select>
+    </div>
+    <div class="sensor-detail__subtype">
+        <label for="sensor-detail__subtype">Subtype</label>
+        <select
+            class="sensor-detail__subtype browser-default"
+            name="subType"
+            id="sensor-detail__subtype"
+            #subType="ngModel"
+            [(ngModel)]="sensor.subType">
+            <option *ngFor="let item of subTypeList"
+                [value]="item.value">
+                {{item.text}}
+            </option>
+        </select>
     </div>
     <div class="sensor-detail__description">
         <label for="sensor-detail__description">Description</label>

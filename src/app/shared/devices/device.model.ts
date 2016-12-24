@@ -6,6 +6,7 @@ export class Device {
     mqttId: string;
     servo: boolean;
     type: string;
+    subType: string;
     updateTime: string;
     posX: Number;
     posY: Number;
@@ -13,7 +14,8 @@ export class Device {
     constructor(data = {}) {
         Object.assign(this, {
             mqttId: '',
-            type: '',
+            type: 'servo',
+            subType: 'socket',
             description: '',
             executor: false,
             sensor: false
