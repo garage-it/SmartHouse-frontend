@@ -1,10 +1,10 @@
-import { SensorExecutorWidgetComponent } from './sensor-executor-widget.component';
+import { DeviceSwitcherWidgetComponent } from './device-switcher-widget.component';
 
 describe('Sensor-executor-widget', () => {
     let sut;
 
     beforeEach(() => {
-        sut = new SensorExecutorWidgetComponent(null);
+        sut = new DeviceSwitcherWidgetComponent(null);
         sut.pushEvent = jasmine.createSpy('pushEvent');
     });
 

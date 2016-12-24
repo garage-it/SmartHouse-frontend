@@ -16,10 +16,10 @@
             [device]="device"
             *ngIf="!device.executor && !device.servo">
         </sh-sensor-regular-widget>
-        <sh-sensor-executor-widget
+        <sh-device-switcher-widget
             [device]="device"
             *ngIf="device.executor">
-        </sh-sensor-executor-widget>
+        </sh-device-switcher-widget>
         <sh-device-servo-widget
             [device]="device"
             *ngIf="device.servo">
