@@ -5,6 +5,7 @@ import { Device } from '../../../shared/devices/device.model';
 import { DevicesService } from '../../../shared/devices/devices.service';
 import { DialogService } from '../../../shared/dialog/dialog.service';
 import ROUTING from './../../../config.routing';
+import { TYPES, SUBTYPES } from '../../../shared/devices/device.types';
 
 @Component({
     selector: 'sh-device-details-page',
@@ -85,55 +86,12 @@ export class DeviceDetailsPageComponent {
         }
     }
 
-    /* TODO: move to the seperate file */
     public get typeList(): any[] {
-        return [{
-            text: 'Servo',
-            value: 'servo'
-        },
-        {
-            text: 'Switcher',
-            value: 'switcher'
-        },
-        {
-            text: 'Sensor',
-            value: 'sensor'
-        },
-        {
-            text: 'Camera',
-            value: 'camera'
-        }];
+        return TYPES;
     }
 
     public get subTypeList(): any[] {
-        return [{
-            text: 'Socket',
-            value: 'socket'
-        },
-        {
-            text: 'Lock',
-            value: 'lock'
-        },
-        {
-            text: 'Temperature',
-            value: 'temperature'
-        },
-        {
-            text: 'Humidity',
-            value: 'humidity'
-        },
-        {
-            text: 'Electricity',
-            value: 'electricity'
-        },
-        {
-            text: 'Pressure',
-            value: 'pressure'
-        },
-        {
-            text: 'CO2',
-            value: 'co2'
-        }];
+        return SUBTYPES;
     }
 
     private _navigateToList(): void {
