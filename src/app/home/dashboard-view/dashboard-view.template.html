@@ -1,13 +1,8 @@
 <div class="dashboard-view">
-    <div [ngClass]="{'dashboard-view__centered': !currentDasboardView.devices?.length, 'dashboard-view__ordered': currentDasboardView.devices?.length}">
-        <span *ngIf="!currentDasboardView.devices?.length">
-            Please add your widgets
-        </span>
-
+    <div class="dashboard-view__ordered">
         <sh-sensor-widget
                 *ngFor="let device of currentDasboardView.devices"
-                [device]="device"
-                (onRemoveWidget)="onRemoveSelectedDevice($event)">
+                [device]="device">
         </sh-sensor-widget>
     </div>
 </div>

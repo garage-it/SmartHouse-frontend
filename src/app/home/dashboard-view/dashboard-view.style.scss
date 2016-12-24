@@ -1,13 +1,6 @@
 :host {
   .dashboard-view {
-    height: 370px;
-
-    &__centered {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-    }
+    min-height: 370px;
 
     &__ordered {
       display: flex;
