@@ -12,10 +12,10 @@
         </button>
     </div>
     <div>
-        <sh-sensor-regular-widget
+        <sh-device-sensor-widget
             [device]="device"
             *ngIf="!device.executor && !device.servo">
-        </sh-sensor-regular-widget>
+        </sh-device-sensor-widget>
         <sh-device-switcher-widget
             [device]="device"
             *ngIf="device.executor">

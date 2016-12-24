@@ -4,13 +4,13 @@ import { DeviceWidgetService } from '../device-widget.service';
 import { BaseSensor } from '../shared/base-sensor/base-sensor';
 
 @Component({
-    selector: 'sh-sensor-regular-widget',
-    templateUrl: './sensor-regular-widget.template.html',
+    selector: 'sh-device-sensor-widget',
+    templateUrl: 'device-sensor-widget.template.html',
     styleUrls: [
         '../device-widget.style.scss'
     ]
 })
-export class SensorRegularWidgetComponent extends BaseSensor {
+export class DeviceSensorWidgetComponent extends BaseSensor {
 
     @Input() device;
 
