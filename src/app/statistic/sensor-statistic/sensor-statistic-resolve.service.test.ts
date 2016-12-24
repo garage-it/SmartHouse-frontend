@@ -6,7 +6,8 @@ describe('SensorStatisticResolveService', () => {
     let route = {
         params: {
             id: 123,
-            period: 'day'
+            period: 'day',
+            type: 'switcher'
         }
     };
 
@@ -19,6 +20,6 @@ describe('SensorStatisticResolveService', () => {
 
     it('should resolve default statistic for sensor', () => {
         sut.resolve(route);
-        expect(DashboardService.getStatistic).toHaveBeenCalledWith(route.params.id, route.params.period);
+        expect(DashboardService.getStatistic).toHaveBeenCalledWith(route.params.id, route.params.period, route.params.type);
     });
 });

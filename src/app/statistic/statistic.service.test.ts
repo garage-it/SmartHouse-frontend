@@ -18,7 +18,8 @@ describe('StatisticService', () => {
 
         it('should get statistics of the sensor from the server', () => {
             const deviceId = 'some device id';
-            sut.getStatistic(deviceId, period);
+            const type = 'some device type';
+            sut.getStatistic(deviceId, period, type);
             const params = new URLSearchParams();
             params.set('period', period);
             params.set('sensor', deviceId);
@@ -26,8 +27,9 @@ describe('StatisticService', () => {
         });
 
         it('should get statistics of the switcher from server', () => {
-            const deviceId = 'switcher';
-            sut.getStatistic(deviceId, period);
+            const deviceId = 'switchers id';
+            const type = 'switcher';
+            sut.getStatistic(deviceId, period, type);
             const params = new URLSearchParams();
             params.set('period', period);
             params.set('sensor', deviceId);

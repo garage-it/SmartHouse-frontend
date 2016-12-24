@@ -8,9 +8,9 @@ export class StatisticService {
 
     constructor(private http: ShHttpService) { }
 
-    getStatistic(deviceId, period): Observable<any> {
+    getStatistic(deviceId, period, type): Observable<any> {
         const params = new URLSearchParams();
-        const URL = deviceId === 'switcher' ? '/switcher-statistics' : '/timeseries';
+        const URL = type === 'switcher' ? '/switcher-statistics' : '/timeseries';
         params.set('period', period);
         params.set('sensor', deviceId);
 
