@@ -1,11 +1,11 @@
-import { SensorWidgetComponent } from './sensor-widget.component';
+import { DeviceWidgetComponent } from './device-widget.component';
 import { EventEmitter } from '@angular/core';
 
 describe('Sensor-regular-widget', () => {
     let sut;
 
     beforeEach(() => {
-        sut = new SensorWidgetComponent();
+        sut = new DeviceWidgetComponent();
         sut.onRemoveWidget.emit = jasmine.createSpy('emit');
     });
 

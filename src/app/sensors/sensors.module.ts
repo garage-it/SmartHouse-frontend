@@ -8,13 +8,13 @@ import { SensorWidgetService } from './shared/sensor-widget/sensor-widget.servic
 import { DragulaModule } from 'ng2-dragula/ng2-dragula';
 
 import DASHBOARD_DECLARATIONS from './sensors.declarations';
-import { SensorWidgetComponent } from './sensor-widget/sensor-widget.component';
+import { DeviceWidgetComponent } from './device-widget.component';
 
 @NgModule({
     id: module.id,
     imports: [ SharedModule, RouterModule, FormsModule, DragulaModule ],
     declarations: [ ...DASHBOARD_DECLARATIONS ],
-    exports: [ SensorWidgetComponent ],
+    exports: [ DeviceWidgetComponent ],
     providers: [
         SensorWidgetService
     ]

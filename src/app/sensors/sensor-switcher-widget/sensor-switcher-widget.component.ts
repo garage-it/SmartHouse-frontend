@@ -7,7 +7,7 @@ import { SensorWidgetService } from '../shared/sensor-widget/sensor-widget.servi
     selector: 'sh-sensor-servo-widget',
     templateUrl: 'sensor-switcher-widget.template.html',
     styleUrls: [
-        '../sensor-widget/sensor-widget.template.scss',
+        '../device-widget.style.scss',
         'sensor-switcher-widget.style.scss'
     ]
 })

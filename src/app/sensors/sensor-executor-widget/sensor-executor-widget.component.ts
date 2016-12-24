@@ -12,7 +12,7 @@ import { SensorWidgetService } from '../shared/sensor-widget/sensor-widget.servi
     templateUrl: './sensor-executor-widget.template.html',
     styleUrls: [
         'sensor-executor-widget.template.scss',
-        '../sensor-widget/sensor-widget.template.scss'
+        '../device-widget.style.scss'
     ]
 
 })
