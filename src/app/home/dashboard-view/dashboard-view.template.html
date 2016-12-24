@@ -1,5 +1,8 @@
-<div class="dasboard-view">
-    <div *ngFor="let device of currentDasboardView.devices">
-        {{device._id}} - {{device.description}}
+<div class="dashboard-view">
+    <div class="dashboard-view__ordered">
+        <sh-sensor-widget
+                *ngFor="let device of currentDasboardView.devices"
+                [device]="device">
+        </sh-sensor-widget>
     </div>
 </div>

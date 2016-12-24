@@ -51,10 +51,10 @@
         [currentMapView]="currentView.mapSubview"
         *ngIf="currentSubview == 'mapSubview'"
     ></sh-map-view>
-    <!--<sh-dashboard-subview
-        [dasboardSubview]="currentView.dashboardSubview"
+    <sh-dashboard-view
+        [currentDasboardView]="currentView.dashboardSubview"
         *ngIf="currentSubview == 'dashboardSubview'"
-    ></sh-dashboard-subview>-->
+    ></sh-dashboard-view>
 </div>
 <sh-view-list
     *ngIf="viewList.length > 0"

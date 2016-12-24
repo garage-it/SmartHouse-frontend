@@ -12,11 +12,10 @@
 </div>
 
 <div class="dashboard-view">
-    <div [ngClass]="{'dashboard-view__centered': !selectedDevices?.length, 'dashboard-view__ordered': selectedDevices?.length}">
-        <span *ngIf="!selectedDevices?.length">
-            Please add your widgets
-        </span>
-
+    <div class="dashboard-view__centered" *ngIf="!selectedDevices?.length">
+        <span>Please add your widgets</span>
+    </div>
+    <div class="dashboard-view__ordered" *ngIf="selectedDevices?.length">
         <sh-sensor-widget
                 *ngFor="let device of selectedDevices"
                 [device]="device"
