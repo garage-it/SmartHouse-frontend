@@ -28,7 +28,7 @@ describe('MapConstructor', () => {
         });
 
         describe('when there is no map image', () => {
-            it('should not add sensors to map view', () => {
+            it('should not add device-widgets to map view', () => {
                 sut.onAddSensor(sensor);
                 expect(sut.edittedDevices).toEqual(addedSensors);
             });
@@ -76,7 +76,7 @@ describe('MapConstructor', () => {
             sut.onRemoveSensor(sensor);
         });
 
-        it('should remove sensor from list of added sensors to map view', () => {
+        it('should remove sensor from list of added device-widgets to map view', () => {
             expect(sut.edittedDevices).toEqual([{_id: '234'}, {_id: '345'}]);
         });
     });

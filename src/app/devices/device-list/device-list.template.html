@@ -17,8 +17,8 @@
                 [class.sortable]="header.sortable">
                 {{ header.name }}
                 <div [class]="reverse ? 'up' : 'down'"></div>
-            </th><!-- sensors-list-table__head__item -->
-        </thead><!-- sensors-list-table__head -->
+            </th><!-- device-widgets-list-table__head__item -->
+        </thead><!-- device-widgets-list-table__head -->
         <tbody class="sensors-list-table__body">
             <tr *ngFor="let item of deviceList"
                 [routerLink]="getItemEditLink(item._id)"
@@ -26,7 +26,7 @@
                 <td *ngFor="let header of headers"
                     class="sensors-list-table__body__row__item">
                     {{item[header.topic]}}
-                </td><!-- sensors-list-table__body__row__item -->
+                </td><!-- device-widgets-list-table__body__row__item -->
                 <td *ngIf="statisticLink">
                     <div class="sensor-widget_statistic-button"
                         (click)="goToDeviceStatistic(item.mqttId, item.type, $event)">
@@ -39,9 +39,9 @@
                             name="remove-device"
                             type="remove">
                         <i class="material-icons sensors-list-table__body__row__actions__remove__icon">delete</i>
-                    </button><!-- sensors-list-table__body__row__actions__remove -->
-                </td><!-- sensors-list-table__body__row__actions -->
-            </tr><!-- sensors-list-table__body__row -->
-        </tbody><!-- sensors-list-table__body -->
-    </table><!-- sensors-list-table -->
-</div><!-- sensors-list -->
+                    </button><!-- device-widgets-list-table__body__row__actions__remove -->
+                </td><!-- device-widgets-list-table__body__row__actions -->
+            </tr><!-- device-widgets-list-table__body__row -->
+        </tbody><!-- device-widgets-list-table__body -->
+    </table><!-- device-widgets-list-table -->
+</div><!-- device-widgets-list -->

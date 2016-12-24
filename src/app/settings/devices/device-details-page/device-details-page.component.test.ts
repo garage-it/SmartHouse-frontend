@@ -73,7 +73,7 @@ describe('sensor-detail', () => {
             expect(DevicesService.save).toHaveBeenCalledWith(sensorMock);
         });
 
-        it('should navigate to the list of sensors on save', (done) => {
+        it('should navigate to the list of device-widgets on save', (done) => {
             sut.needUpdate = true;
             sut.save();
             expect(Router.navigate).toHaveBeenCalledWith(['/settings/devices']);
@@ -131,7 +131,7 @@ describe('sensor-detail', () => {
                 expect(DevicesService.delete).toHaveBeenCalledWith(sensorMock);
             });
 
-            it('should navigate to the list of sensors on remove', () => {
+            it('should navigate to the list of device-widgets on remove', () => {
                 expect(Router.navigate).toHaveBeenCalledWith(['/settings/devices']);
             });
         });
