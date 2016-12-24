@@ -2,12 +2,10 @@ import { SensorRegularWidgetComponent } from './sensor-regular-widget/sensor-reg
 import { SensorWidgetComponent } from './sensor-widget/sensor-widget.component';
 import { SensorExecutorWidgetComponent } from './sensor-executor-widget/sensor-executor-widget.component';
 import { SensorSwitcherWidgetComponent } from './sensor-switcher-widget/sensor-switcher-widget.component';
-import { GaugeComponent } from './shared/gauge/gauge.component';
 
 export default [
     SensorWidgetComponent,
     SensorRegularWidgetComponent,
     SensorExecutorWidgetComponent,
-    SensorSwitcherWidgetComponent,
-    GaugeComponent
+    SensorSwitcherWidgetComponent
 ];
