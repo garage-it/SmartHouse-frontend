@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { DevicesModule } from '../shared/devices/devices.module';
-import { DashboardModule } from '../dashboard/dashboard.module';
+import { SensorsModule } from '../sensors/sensors.module';
 import { FileDropDirective, FileSelectDirective } from 'ng2-file-upload';
 import { DevicesComponent } from './devices/devices.component';
 import { DragulaModule } from 'ng2-dragula/ng2-dragula';
@@ -24,7 +24,7 @@ import { ConstructorService } from './constructor.service';
         CommonModule,
         FormsModule,
         DevicesModule,
-        DashboardModule,
+        SensorsModule,
         DragulaModule,
         routing
     ],

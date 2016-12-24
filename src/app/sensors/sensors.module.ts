@@ -7,7 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { SensorWidgetService } from './shared/sensor-widget/sensor-widget.service';
 import { DragulaModule } from 'ng2-dragula/ng2-dragula';
 
-import DASHBOARD_DECLARATIONS from './dashboard.declarations';
+import DASHBOARD_DECLARATIONS from './sensors.declarations';
 import { SensorWidgetComponent } from './sensor-widget/sensor-widget.component';
 
 @NgModule({
@@ -19,4 +19,4 @@ import { SensorWidgetComponent } from './sensor-widget/sensor-widget.component';
         SensorWidgetService
     ]
 })
-export class DashboardModule {}
+export class SensorsModule {}
