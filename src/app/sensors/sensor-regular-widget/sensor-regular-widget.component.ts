@@ -13,7 +13,6 @@ import { BaseSensor } from '../shared/base-sensor/base-sensor';
 export class SensorRegularWidgetComponent extends BaseSensor {
 
     @Input() device;
-    @Output() onRemoveWidget: EventEmitter<any> = new EventEmitter();
 
     constructor(sensorWidgetService: SensorWidgetService) {
         super(sensorWidgetService);

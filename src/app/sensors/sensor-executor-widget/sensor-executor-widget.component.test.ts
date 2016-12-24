@@ -9,10 +9,6 @@ describe('Sensor-executor-widget', () => {
         sut.pushEvent = jasmine.createSpy('pushEvent');
     });
 
-    it('should have event emitter for remove widget event', () => {
-        expect(sut.onRemoveWidget instanceof EventEmitter).toBeTruthy();
-    });
-
     describe('Switch executor', () => {
         it('should push command when executor change state', () => {
             const $event = {
