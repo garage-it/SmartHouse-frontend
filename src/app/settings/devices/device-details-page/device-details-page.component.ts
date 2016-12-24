@@ -5,6 +5,7 @@ import { Device } from '../../../shared/devices/device.model';
 import { DevicesService } from '../../../shared/devices/devices.service';
 import { DialogService } from '../../../shared/dialog/dialog.service';
 import ROUTING from './../../../config.routing';
+import { TYPES, SUBTYPES } from '../../../shared/devices/device.types';
 
 @Component({
     selector: 'sh-device-details-page',
@@ -83,6 +84,14 @@ export class DeviceDetailsPageComponent {
         if (this.sensor.executor && this.sensor.servo) {
             this.sensor.executor = false;
         }
+    }
+
+    public get typeList(): any[] {
+        return TYPES;
+    }
+
+    public get subTypeList(): any[] {
+        return SUBTYPES;
     }
 
     private _navigateToList(): void {
