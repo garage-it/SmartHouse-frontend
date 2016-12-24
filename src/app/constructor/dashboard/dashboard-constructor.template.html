@@ -19,6 +19,7 @@
         <sh-sensor-widget
                 *ngFor="let device of selectedDevices"
                 [device]="device"
+                [isEditMode]="true"
                 (onRemoveWidget)="onRemoveSelectedDevice($event)">
         </sh-sensor-widget>
     </div>

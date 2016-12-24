@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import {
     BaseOutputSensor,
@@ -19,8 +19,6 @@ import { SensorWidgetService } from '../shared/sensor-widget/sensor-widget.servi
 export class SensorExecutorWidgetComponent extends BaseOutputSensor {
 
     @Input() device;
-    @Input() description;
-    @Output() onRemoveWidget: EventEmitter<any> = new EventEmitter();
 
     fromDeviceRepresentation(value) {
         return value === DEVICE_ON_STATE;

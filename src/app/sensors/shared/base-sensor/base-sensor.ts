@@ -1,4 +1,4 @@
-import { OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
+import { OnInit, OnDestroy } from '@angular/core';
 import { SensorWidgetService } from '../sensor-widget/sensor-widget.service';
 
 export class BaseSensor implements OnInit, OnDestroy {
@@ -12,8 +12,6 @@ export class BaseSensor implements OnInit, OnDestroy {
         value: string|number|boolean|null,
         valueUpdated: string
     };
-
-    @Output() onRemoveWidget: EventEmitter<any> = new EventEmitter();
 
     constructor(protected sensorWidgetService: SensorWidgetService) {}
 
@@ -36,9 +34,5 @@ export class BaseSensor implements OnInit, OnDestroy {
     ngOnDestroy() {
         this.sensorWidgetService
             .unsubscribe(this.device.mqttId);
-    }
-
-    removeWidget() {
-        this.onRemoveWidget.emit();
     }
 }

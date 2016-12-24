@@ -1,14 +1,4 @@
-<div class="sensor-widget sensor-servo-widget">
-    <div class="sensor-widget_header">
-        <div class="sensor-widget_button-statistics"
-             [routerLink]="['../statistic/sensor-details', device.mqttId, 'day']">
-        </div>
-        <div class="sensor-widget_header_info">
-            <span>{{device.description}}</span>
-        </div>
-        <button class="sensor-widget_button-close"
-                (click)="removeWidget()"></button>
-    </div>
+<div>
     <div class="sensor-widget_info">
         <div class="sensor-widget_info_value">
             <div class="sensor-servo-widget_label">
