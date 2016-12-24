@@ -1,21 +1,19 @@
-<div>
-    <div class="sensor-widget_info">
-        <div class="sensor-widget_info_value">
-            <div class="sh-switch">
-                <label>
-                    <input type="checkbox"
-                           [(ngModel)]="data.value"
-                           (change)="switchExecutor($event)">
-                    <span class="sh-lever"></span>
-                </label>
-            </div>
-            <div class="sensor-widget_info_value--wrap">
-                <span [hidden]="data.value===undefined">{{data.value ? 'ON': 'OFF'}}</span>
-            </div>            
+<div class="sensor-widget_info">
+    <div class="sensor-widget_info_value">
+        <div class="sh-switch">
+            <label>
+                <input type="checkbox"
+                       [(ngModel)]="data.value"
+                       (change)="switchExecutor($event)">
+                <span class="sh-lever"></span>
+            </label>
+        </div>
+        <div class="sensor-widget_info_value--wrap">
+            <span [hidden]="data.value===undefined">{{data.value ? 'ON': 'OFF'}}</span>
         </div>
     </div>
-    <div class="sensor-widget_footer"
-          [hidden]="data.updateTime===undefined">
-        {{data.updateTime | date:"MM.dd.y HH:mm:ss" }}
-    </div>
+</div>
+<div class="sensor-widget_footer"
+     [hidden]="data.updateTime===undefined">
+    {{data.updateTime | date:"MM.dd.y HH:mm:ss" }}
 </div>
