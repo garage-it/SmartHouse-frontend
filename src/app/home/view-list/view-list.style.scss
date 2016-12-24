@@ -20,7 +20,7 @@ $transparent-grey: rgba(0, 0, 0, .05);
         border-bottom: 1px solid $lightgrey;
         border-left: 3px solid transparent;
 
-        &--active {
+        &_active {
             border-left-color: $green;
             background-color: $transparent-grey;
 
