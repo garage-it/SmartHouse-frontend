@@ -18,8 +18,8 @@
                 />
                 <div *ngIf="name.touched && name.errors" class="red-text text-darken-4">
                     <span *ngIf="name.errors.required">Username should be filled</span>
-                    <span *ngIf="name.errors.minlength">Username is too short</span>
-                    <span *ngIf="name.errors.maxlength">Username is too long</span>
+                    <span *ngIf="name.errors.minlength && !name.errors.pattern">Username is too short</span>
+                    <span *ngIf="name.errors.maxlength && !name.errors.pattern">Username is too long</span>
                     <span *ngIf="name.errors.pattern">Username can contain only letters or digits</span>
                 </div>
             </label>

@@ -3,14 +3,14 @@ import { BaseChartComponent } from '../base-chart/base-chart.component';
 import { ActivatedRoute } from '@angular/router';
 
 const dateLabels = {
+    'hour': '{value:%M}',
     'day': '{value:%H}',
-    'week': '{value:%a}',
     'month': '{value:%d}',
     'year': '{value:%b}'
 };
 const dateTitles = {
+    'hour': 'minutes',
     'day': 'hours',
-    'week': 'days',
     'month': 'dates',
     'year': 'months'
 };

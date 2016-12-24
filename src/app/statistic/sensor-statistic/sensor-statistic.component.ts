@@ -3,8 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { SwitcherStatisticsService } from './switcher-statistic.service';
 
 const CHART_PERIODS: Array<string> = [
+    'hour',
     'day',
-    'week',
     'month',
     'year'
 ];
@@ -19,6 +19,7 @@ export class SensorStatisticComponent implements OnInit, OnDestroy {
     private deviceStatistic = [];
     private pieChartStatistic = {data: []};
     private sensorId;
+    private type;
 
     constructor(private currentRoute: ActivatedRoute,
                 private switcherStatisticsService: SwitcherStatisticsService) {
@@ -30,6 +31,7 @@ export class SensorStatisticComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.sensorId = this.currentRoute.snapshot.params['id'];
+        this.type = this.currentRoute.snapshot.params['type'];
 
         this.defaultResolver = this.currentRoute.data.subscribe(({deviceStatistic}) => {
             this.deviceStatistic = deviceStatistic;
@@ -41,11 +43,11 @@ export class SensorStatisticComponent implements OnInit, OnDestroy {
     }
 
     isSwitcherWidgetVisible() {
-        return this.sensorId === 'switcher';
+        return this.type === 'switcher';
     }
 
     isChartWidgetVisible() {
-        return this.sensorId !== 'switcher';
+        return this.type !== 'switcher';
     }
 
     dateRangeChanged(dateRange) {
