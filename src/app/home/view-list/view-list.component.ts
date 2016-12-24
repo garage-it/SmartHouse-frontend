@@ -9,6 +9,7 @@ import { DashboardViewInfoDto } from '../../shared/view/dashboard-view.dto';
 })
 export class ViewListComponent {
     @Input() listViews: Array<DashboardViewInfoDto | MapViewInfoDto> = [];
+    @Input() currentView: DashboardViewInfoDto | MapViewInfoDto;
     @Output() onSelectView: EventEmitter<any> = new EventEmitter();
 
     viewMap(view: MapViewInfoDto): void {

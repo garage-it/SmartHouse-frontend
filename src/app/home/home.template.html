@@ -59,5 +59,6 @@
 <sh-view-list
     *ngIf="viewList.length > 0"
     [listViews]="viewList"
+    [currentView]="currentView"
     (onSelectView)="setCurrentView($event)">
 </sh-view-list>
