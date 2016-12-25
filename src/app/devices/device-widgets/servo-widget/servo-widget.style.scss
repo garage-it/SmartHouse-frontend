@@ -1,4 +1,28 @@
 .sensor-servo-widget {
+    &_label {
+        font-size: 10px;
+        margin-bottom: 12px;
+        font-weight: normal;
+        position: relative;
+        top: 12px;
+        &-left {
+            float: left;
+        }
+        &-right {
+            float: right;
+        }
+        &:after {
+            clear: both;
+        }
+    }
+    &_value_wrap {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}
+
+.sensor-widget_info {
     input[type=range] {
         -webkit-appearance: none;
         width: 100%;
@@ -38,27 +62,5 @@
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.19);
         border: solid 0.5px rgba(0, 0, 0, 0.1);
         cursor: pointer;
-    }
-
-    &_label {
-        font-size: 10px;
-        margin-bottom: 12px;
-        font-weight: normal;
-        position: relative;
-        top: 12px;
-        &-left {
-            float: left;
-        }
-        &-right {
-            float: right;
-        }
-        &:after {
-            clear: both;
-        }
-    }
-    &_value_wrap {
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
     }
 }
