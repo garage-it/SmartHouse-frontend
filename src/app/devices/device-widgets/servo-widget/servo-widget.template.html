@@ -1,0 +1,18 @@
+<div class="sensor-widget_info">
+    <div class="sensor-widget_info_value">
+        <div class="sensor-servo-widget_label">
+            <div class="sensor-servo-widget_label-left">0</div>
+            <div class="sensor-servo-widget_label-right">180</div>
+        </div>
+        <input class="sensor-servo-widget_controller" type="range" [min]="0" [max]="180" [(ngModel)]="data.value"
+               (change)="changeDegree()">
+
+        <div class="sensor-servo-widget_value_wrap">
+            <span [hidden]="data.value===undefined">{{data.value}} {{device.metrics}}</span>
+        </div>
+    </div>
+</div>
+<div class="sensor-widget_footer"
+     [hidden]="data.updateTime===undefined">
+    {{data.updateTime | date:"MM.dd.y HH:mm:ss" }}
+</div>

@@ -1,5 +1,5 @@
 import { Component, ElementRef, Renderer, Input, Output, EventEmitter } from '@angular/core';
-import { Device } from '../../shared/devices/device.model';
+import { Device } from '../../devices/device.model';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
 
 @Component({
