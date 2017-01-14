@@ -13,7 +13,7 @@
             <div class="clearfix switcher-chart__filter switcher-chart__filter_periods">
                 <a class="btn-flat btn-flat_action"
                    *ngFor="let period of periods"
-                   [routerLink]="['../../../sensor-details', sensorId, period]"
+                   [routerLink]="['../../../../sensor-details', sensorId, period, type]"
                    [routerLinkActive]="'btn_active'"
                 >{{period}}</a>
             </div>
