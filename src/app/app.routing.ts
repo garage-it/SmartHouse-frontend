@@ -15,8 +15,9 @@ export const routes = [
         },
         children: [
             {
-                path: '',
-                loadChildren: () => require('es6-promise!./home/home.module')('HomeModule'),
+                path: ROUTING.HOME,
+                useAsDefault: true,
+                loadChildren: () => require('es6-promise!./home/home.module')('HomeModule')
             },
             {
                 path: ROUTING.HELP,
@@ -51,13 +52,13 @@ export const routes = [
                 path: ROUTING.SETTINGS,
                 canActivate: [ LoggedInGuard ],
                 loadChildren: () => require('es6-promise!./settings/settings.module')('SettingsModule')
-            },
-            {
-                path: '**',
-                redirectTo: '',
-                pathMatch: 'full'
             }
         ]
+    },
+    {
+        path: '**',
+        redirectTo: '/home',
+        pathMatch: 'full'
     }
 ];
 

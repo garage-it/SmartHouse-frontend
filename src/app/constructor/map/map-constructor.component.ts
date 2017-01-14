@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 
 import { Router } from '@angular/router';
-import { Device } from '../../shared/devices/device.model';
+import { Device } from '../../devices/device.model';
 import { FileUploader } from 'ng2-file-upload';
 import { MapViewService } from '../../home/map-view/map-view.service';
 import { MapViewInfoCreateDto, MapViewInfoDto } from '../../shared/view/map-view.dto';

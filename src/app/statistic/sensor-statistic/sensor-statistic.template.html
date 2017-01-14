@@ -30,7 +30,7 @@
 <div class="clearfix statistic_actions" *ngIf="isChartWidgetVisible()">
     <a class="btn-flat btn-flat_statistic"
        *ngFor="let period of periods"
-       [routerLink]="['../../../sensor-details', sensorId, period]"
+       [routerLink]="['../../../../sensor-details', sensorId, period, type]"
        [routerLinkActive]="'btn_active'"
     >{{period}}</a>
 </div>

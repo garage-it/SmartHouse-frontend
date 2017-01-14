@@ -4,7 +4,7 @@ import { GeneralComponent } from './general/general.component';
 import { RolesComponent } from './roles/roles.component';
 import { DeviceDetailsPageComponent } from './devices/device-details-page/device-details-page.component';
 import { DeviceListPageComponent } from './devices/device-list-page/device-list-page.component';
-import { DeviceListResolver } from '../shared/devices/devices.resolver';
+import { DeviceListResolver } from '../devices/devices.resolver';
 
 import ROUTING from './../config.routing';
 

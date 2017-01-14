@@ -1,6 +1,6 @@
 import { RouterModule } from '@angular/router';
 
-import { DeviceListResolver } from '../shared/devices/devices.resolver';
+import { DeviceListResolver } from '../devices/devices.resolver';
 import STATISTIC_ROUTING_CONFIG from './statistic.routing.config';
 import { StatisticComponent } from './statistic.component';
 import { SensorStatisticComponent } from './sensor-statistic/sensor-statistic.component';

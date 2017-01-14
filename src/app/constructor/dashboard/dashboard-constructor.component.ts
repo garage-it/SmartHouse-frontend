@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Device } from '../../shared/devices/device.model';
+import { Device } from '../../devices/device.model';
 import { DashboardViewInfoDto } from '../../shared/view/dashboard-view.dto';
 import { ViewInfoDto } from '../../shared/view/view.dto';
 

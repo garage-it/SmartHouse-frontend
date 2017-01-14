@@ -1,0 +1,66 @@
+.sensor-servo-widget {
+    &_label {
+        font-size: 10px;
+        margin-bottom: 12px;
+        font-weight: normal;
+        position: relative;
+        top: 12px;
+        &-left {
+            float: left;
+        }
+        &-right {
+            float: right;
+        }
+        &:after {
+            clear: both;
+        }
+    }
+    &_value_wrap {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}
+
+.sensor-widget_info {
+    input[type=range] {
+        -webkit-appearance: none;
+        width: 100%;
+        background: transparent;
+        border-color: transparent;
+        color: transparent;
+        margin: 0 0 10px 0;
+    }
+    /* Special styling for WebKit/Blink */
+    input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 29px;
+        height: 29px;
+        border-radius: 29px;
+        background-color: #ffffff;
+        margin-top: -14px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.19);
+        border: solid 0.5px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+    }
+    input[type=range]::-moz-range-thumb {
+        width: 29px;
+        height: 29px;
+        border-radius: 29px;
+        background-color: #ffffff;
+        margin-top: -14px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.19);
+        border: solid 0.5px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+    }
+    input[type=range]::-ms-thumb {
+        width: 29px;
+        height: 29px;
+        border-radius: 29px;
+        background-color: #ffffff;
+        margin-top: -14px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.19);
+        border: solid 0.5px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+    }
+}

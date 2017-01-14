@@ -1,4 +1,4 @@
-import { Device } from '../../shared/devices/device.model';
+import { Device } from '../../devices/device.model';
 
 export interface DashboardViewInfoDto {
     _id: string;

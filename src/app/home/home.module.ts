@@ -14,8 +14,7 @@ import { CoreModule } from '../core/core.module';
 import { ChartModule } from 'angular2-highcharts';
 import { HomeService } from './home.service';
 import { HomeResolveService } from './home-resolve.service';
-import { DevicesModule } from '../shared/devices/devices.module';
-import { SensorsModule } from '../sensors/sensors.module';
+import { DevicesModule } from '../devices/devices.module';
 
 @NgModule({
     id: module.id,
@@ -26,8 +25,7 @@ import { SensorsModule } from '../sensors/sensors.module';
         RouterModule,
         FormsModule,
         routing,
-        ChartModule,
-        SensorsModule
+        ChartModule
     ],
     declarations: [ ...HOME_DECLARATIONS ],
     exports: [ HomeComponent ],

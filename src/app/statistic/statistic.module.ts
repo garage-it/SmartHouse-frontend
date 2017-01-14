@@ -3,8 +3,8 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 import { ChartModule } from 'angular2-highcharts';
-import { DevicesModule } from '../shared/devices/devices.module';
 import { Ng2DatetimePickerModule } from 'ng2-datetime-picker';
+import { DevicesModule } from '../devices/devices.module';
 
 // TODO: Create SensorStatisticModule and move these file there.
 import { SensorStatisticResolveService } from './sensor-statistic/sensor-statistic-resolve.service';

@@ -16,11 +16,12 @@
         <span>Please add your widgets</span>
     </div>
     <div class="dashboard-view__ordered" *ngIf="selectedDevices?.length">
-        <sh-sensor-widget
+        <sh-device-widget
                 *ngFor="let device of selectedDevices"
                 [device]="device"
+                [isEditMode]="true"
                 (onRemoveWidget)="onRemoveSelectedDevice($event)">
-        </sh-sensor-widget>
+        </sh-device-widget>
     </div>
 </div>
 

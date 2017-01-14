@@ -12,4 +12,4 @@ export const LOGIN_ROUTE: NavigationRoute = {path: `/${ROUTING.LOGIN}`, name: 'L
 export const REGISTRATION_ROUTE: NavigationRoute = {path: `/${ROUTING.REGISTRATION}`, name: 'Sign Up', isAuthorized: false};
 export const LOGOUT_ROUTE: NavigationRoute = {path: `/${ROUTING.LOGOUT}`, name: 'Logout', isAuthorized: true};
 
-export const MAIN_ROUTE: NavigationRoute = {path: `/${ROUTING.BASE}`, name: 'Home', iconImage: './assets/logo.svg'};
+export const MAIN_ROUTE: NavigationRoute = {path: `/${ROUTING.HOME}`, name: 'Home', iconImage: './assets/logo.svg'};
