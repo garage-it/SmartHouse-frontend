@@ -81,4 +81,10 @@ $widget-width: 182px;
             width: 100%;
         }
     }
+    &_switcher-info {
+        padding: $widget-padding $widget-padding;
+        display: table;
+        height: 100%;
+        width: 100%;
+    }
 }
