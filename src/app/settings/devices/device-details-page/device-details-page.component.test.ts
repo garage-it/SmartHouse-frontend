@@ -1,5 +1,5 @@
 import { DeviceDetailsPageComponent } from './device-details-page.component';
-import { Device } from '../../../shared/devices/device.model';
+import { Device } from '../../../devices/device.model';
 
 import ROUTING from './../../../config.routing';
 

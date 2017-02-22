@@ -14,7 +14,6 @@ describe('MapViewService', () => {
 
         http = {
             get: jasmine.createSpy('get').and.returnValue(response),
-            post: jasmine.createSpy('put').and.returnValue(response)
         };
 
         filesService = {
@@ -26,24 +25,6 @@ describe('MapViewService', () => {
         };
 
         sut = new MapViewService(http, filesService, requestOptions);
-    });
-
-    describe('create', () => {
-
-        const mapViewCreateDto = {};
-
-        beforeEach(() => {
-            result = sut.create(mapViewCreateDto);
-        });
-
-        it('should make request to update map view with updates', () => {
-            expect(http.post).toHaveBeenCalledWith('/map-view', mapViewCreateDto);
-        });
-
-        it('should return response', () => {
-            expect(result).toEqual(response);
-        });
-
     });
 
     describe('resolve picture upload url', () => {

@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 import { ChartModule } from 'angular2-highcharts';
-import { DevicesModule } from '../shared/devices/devices.module';
+import { DevicesModule } from '../devices/devices.module';
 
 import { SensorStatisticResolveService } from './sensor-statistic/sensor-statistic-resolve.service';
 import STATISTIC_DECLARATIONS from './statistic.declarations';

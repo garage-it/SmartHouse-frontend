@@ -36,10 +36,10 @@
             <span>Step 2: Add picture</span>
 
             <sh-options
-                [id]="'Map'"
+                [id]="'mapSubview'"
                 [(isActive)]="isActive"
-                [(isDefault)]="isDefault"
                 [canBeActive]="canBeActive"
+                [(defaultSubview)]="defaultSubview"
             ></sh-options>
         </div>
 
@@ -59,8 +59,7 @@
              (click)="onUploadClick()"
              [uploader]="uploader">
             <div class="add-picture">
-                <div class="add-picture__icon">
-                </div>
+                <div class="add-picture__icon"></div>
                 <p class="add-picture__title">Please add your picture</p>
             </div>
         </div>
@@ -73,8 +72,9 @@
                  alt="your image"/>
 
             <sh-constructor-devices
-                class="constructor-devices"
-                (onMappedSensor)="onMappedSensors($event)">
+                [edittedDevices]="edittedDevices"
+                (deviceMoved)="onDeviceMoved()"
+                class="constructor-devices">
             </sh-constructor-devices>
         </div>
 
@@ -85,7 +85,7 @@
 
         <button class="button button_cancel"
                 type="button"
-                [routerLink]="['../']">
+                [routerLink]="['']">
             Cancel
         </button>
 
@@ -108,8 +108,7 @@
         <h4 class="heading">Step 3: Add devices on the map</h4>
 
         <sh-sensors-list
-            [sensors]="sensors"
-            [mappedSensors]="mappedSensors"
+            [mappedSensors]="edittedDevices"
             (onAddSensor)="onAddSensor($event)"
             (onRemoveSensor)="onRemoveSensor($event)">
         </sh-sensors-list>

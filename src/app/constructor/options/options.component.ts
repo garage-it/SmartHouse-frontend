@@ -14,15 +14,26 @@ export class OptionsComponent {
     @Input() id: string;
 
     private currentActive: boolean;
+    private defaultSubviewValue: string;
+
     @Output() isActiveChange: EventEmitter<boolean> = new EventEmitter<boolean>();
-    @Output() isDefaultChange: EventEmitter<string> = new EventEmitter<string>();
-    @Input() set isActive(value: boolean) {
+    @Input()
+    set isActive(value: boolean) {
         this.currentActive = value;
         this.isActiveChange.emit(value);
     };
+    get isActive() {
+        return this.currentActive;
+    }
     @Input() canBeActive: boolean = true;
 
-    @Input() set isDefault(value: string) {
-        this.isDefaultChange.emit(value);
+    @Output() defaultSubviewChange: EventEmitter<string> = new EventEmitter<string>();
+    @Input()
+    set defaultSubview(value) {
+        this.defaultSubviewValue = value;
+        this.defaultSubviewChange.emit(value);
+    };
+    get defaultSubview(): string {
+        return this.defaultSubviewValue;
     };
 }

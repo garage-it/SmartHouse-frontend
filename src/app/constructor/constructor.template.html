@@ -1,20 +1,24 @@
 <sh-map-constructor
-    [canBeActive]="canBeMapActive"
-    [default]="default"
+    [(name)]="view.name"
+    [(description)]="view.description"
+    [(defaultSubview)]="view.defaultSubview"
+    [mapSubview]="view.mapSubview"
+
     (isActiveChange)="onMapActiveChanged($event)"
-    (isDefaultChange)="onMapDefaultChange($event)"
+    [canBeActive]="canBeMapActive"
+
+    (uploadPicture)="onUploadPicture($event)"
+    (saveView)="onSaveView($event)"
 
 ></sh-map-constructor>
 
 <sh-dashboard-constructor
+    [(defaultSubview)]="view.defaultSubview"
+    [dashboardSubview]="view.dashboardSubview"
+
     [canBeActive]="canBeDashboardActive"
     (isActiveChange)="onDashboardActiveChanged($event)"
-    (isDefaultChange)="onDashboardDefaultChange($event)"
-></sh-dashboard-constructor>
 
-<div>
-    <button [routerLink]="['../']">
-        Cancel
-    </button>
-    <button>Save</button>
-</div>
+    (saveView)="onSaveView($event)"
+
+></sh-dashboard-constructor>

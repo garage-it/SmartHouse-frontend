@@ -20,17 +20,16 @@ describe('Home', () => {
     describe('on init', () => {
 
         let subscribedData;
-        let defaultMapView;
         let viewListFirst;
         let viewListSecond;
         let viewListThird;
 
         beforeEach(() => {
-            defaultMapView = {name: 'some name', default: true};
-            viewListFirst = {mapView: {name: 'some name 2'}};
-            viewListSecond = {mapView: defaultMapView};
-            viewListThird = {dashboard: {devices: []}};
+            viewListFirst = {};
+            viewListSecond = {};
+            viewListThird = {};
             subscribedData = {viewList: [viewListFirst, viewListSecond, viewListThird]};
+            sut.setCurrentView = jasmine.createSpy('setCurrentView');
             sut.ngOnInit();
             ActivatedRoute.data.subscribe.calls.first().args[0](subscribedData);
         });
@@ -39,16 +38,12 @@ describe('Home', () => {
             expect(ActivatedRoute.data.subscribe).toHaveBeenCalled();
         });
 
-        it('should set resolved list of map views to scope', () => {
-            expect(sut.listMapViews).toEqual([viewListFirst.mapView, viewListSecond.mapView]);
-        });
-
-        it('should set resolved list of dasboard views to scope', () => {
-            expect(sut.listDashboardViews).toEqual([viewListThird.dashboard]);
+        it('should set resolved list of views to scope', () => {
+            expect(sut.viewList).toEqual(subscribedData.viewList);
         });
 
         it('should set default map view', () => {
-            expect(sut.currentView).toEqual(defaultMapView);
+            expect(sut.setCurrentView).toHaveBeenCalledWith(viewListFirst);
         });
     });
 
@@ -72,44 +67,58 @@ describe('Home', () => {
         });
     });
 
-    describe('on view type check', () => {
-        it('should be truthy if current view is map view', () => {
-            sut.currentView = {};
-            sut.listMapViews = [sut.currentView];
+    describe('set current view', () => {
 
-            expect(sut.isMapView()).toBeTruthy();
+        const currentView = {
+            _id: 'some id',
+            name: 'some name',
+            description: 'some desc',
+            defaultSubview: 'mapSubview'
+        };
+
+        beforeEach(() => {
+            sut.setCurrentSubview = jasmine.createSpy('setCurrentSubview');
+            sut.setCurrentView(currentView);
         });
 
-        it('should set new view type to scope', () => {
-            sut.currentView = {};
-            sut.listDashboardViews = [sut.currentView];
+        it('should set current view to scope', () => {
+            expect(sut.currentView).toEqual(currentView);
+        });
 
-            expect(sut.isMapView()).toBeFalsy();
+        it('should set current sub view to scope', () => {
+            expect(sut.setCurrentSubview).toHaveBeenCalledWith(currentView.defaultSubview);
         });
     });
 
-    describe('on get current views list', () => {
-        let mapView;
-        let dashboardView;
+    describe('set current sub view', () => {
 
-        beforeEach(() => {
-            mapView = {name: 'name'};
-            dashboardView = {devices: []};
+        function getView(subviewActive: boolean): any {
+            return {
+                _id: 'some id',
+                name: 'some name',
+                description: 'some desc',
+                defaultSubview: 'mapSubview',
+                mapSubview: {
+                    active: subviewActive
+                }
+            };
+        }
 
-            sut.listMapViews = [mapView];
-            sut.listDashboardViews = [dashboardView];
+        it('should set sub view to scope', () => {
+            const view = getView(true);
+            sut.setCurrentView(view);
+            sut.setCurrentSubview(view.defaultSubview);
+
+            expect(sut.currentSubview).toEqual(view.defaultSubview);
         });
 
-        it('should return list of map view if current view is map view', () => {
-            sut.currentView = mapView;
+        it('should not set sub view to scope', () => {
+            const view = getView(false);
+            sut.setCurrentView(view);
+            sut.setCurrentSubview(view.defaultSubview);
 
-            expect(sut.getCurrentListViews()).toBe(sut.listMapViews);
+            expect(sut.currentSubview).toBeUndefined();
         });
 
-        it('should return list of map view if current view is map view', () => {
-            sut.currentView = dashboardView;
-
-            expect(sut.getCurrentListViews()).toBe(sut.listDashboardViews);
-        });
     });
 });

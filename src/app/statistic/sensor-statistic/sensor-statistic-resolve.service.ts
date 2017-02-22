@@ -10,7 +10,7 @@ export class SensorStatisticResolveService implements Resolve<Object> {
     constructor(private statisticService: StatisticService) {}
 
     resolve(route: ActivatedRouteSnapshot) {
-        const {id, period} = route.params;
-        return this.statisticService.getStatistic(id, period);
+        const {id, period, type} = route.params;
+        return this.statisticService.getStatistic(id, period, type);
     }
 }

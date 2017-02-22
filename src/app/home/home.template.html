@@ -1,31 +1,28 @@
 <div class="home-nav">
     <div class="home-nav__logo"
          *ngIf="currentView?.name">
-        {{currentView.name || 'Dashboard'}}
+        {{currentView.name}}
     </div>
-    <div class="home-nav__actions">    
+    <div class="home-nav__actions">
         <!--TODO: make a Toggle component-->
         <div class="home-nav__view-toggle toggle">
             <ul>
                 View:
-                <li 
-                    class="toggle__item"
-                    [ngClass]="{'toggle__item_active': isMapView()}"
-                    (click)="setCurrentView(listMapViews[0])"
-                >
+                <li class="toggle__item"
+                    [ngClass]="{'toggle__item_active': (currentSubview === 'mapSubview'), 'toggle__item_disabled': (!isMapSubviewActive)}"
+                    (click)="setCurrentSubview('mapSubview')">
                     Map
                 </li>
-                <li 
-                    class="toggle__item"
-                    [ngClass]="{'toggle__item_active': !isMapView()}"
-                    (click)="setCurrentView(listDashboardViews[0])"
-                >
+                <li class="toggle__item"
+                    [ngClass]="{'toggle__item_active': (currentSubview === 'dashboardSubview'), 'toggle__item_disabled': (!isDashboardSubviewActive)}"
+                    (click)="setCurrentSubview('dashboardSubview')">
                     Dashboard
                 </li>
             </ul>
         </div>
         <button class="button button_default"
-                [routerLink]="['constructor']">
+                *ngIf="currentView"
+                [routerLink]="['constructor', currentView._id]">
             Edit
         </button>
         <button class="button button_success"
@@ -46,18 +43,22 @@
         view
     </div>
 </div>
-<div *ngIf="currentView">
-    <div class="home-view home-view_not-empty">
-        <sh-map-view 
-            [currentMapView]="currentView" 
-            *ngIf="isMapView()"
-        ></sh-map-view>
-        <sh-dashboard-view 
-            [currentDasboardView]="currentView" 
-            *ngIf="!isMapView()"
-        ></sh-dashboard-view>
-    </div>
-    <sh-view-list [listViews]="getCurrentListViews()"
-                  (onSelectView)="setCurrentView($event)">
-    </sh-view-list>
+
+<div
+    class="home-view home-view_not-empty"
+    *ngIf="currentView">
+    <sh-map-view
+        [currentMapView]="currentView.mapSubview"
+        *ngIf="currentSubview == 'mapSubview'"
+    ></sh-map-view>
+    <sh-dashboard-view
+        [currentDasboardView]="currentView.dashboardSubview"
+        *ngIf="currentSubview == 'dashboardSubview'"
+    ></sh-dashboard-view>
 </div>
+<sh-view-list
+    *ngIf="viewList.length > 0"
+    [listViews]="viewList"
+    [currentView]="currentView"
+    (onSelectView)="setCurrentView($event)">
+</sh-view-list>

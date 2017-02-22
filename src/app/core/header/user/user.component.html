@@ -1,0 +1,35 @@
+<div class="user">
+    <div class="user__avatar">
+        <sh-protected [isAuthorized]="true">
+            <a class="user__avatar-link" md-icon-button [md-menu-trigger-for]="menu">
+                <img [src]="avatar.url" [width]="avatar.width" [height]="avatar.height" />
+            </a>
+
+            <md-menu x-position="before" #menu="mdMenu">
+                <button md-menu-item disabled>{{ userName }}</button>
+                <a [routerLink]="logoutRoute.path" md-menu-item>Profile settings</a>
+                <a [routerLink]="logoutRoute.path" md-menu-item>{{ logoutRoute.name }}</a>
+            </md-menu>
+        </sh-protected>
+
+        <sh-protected [isAuthorized]="false">
+            <span class="user__avatar-link"></span>
+        </sh-protected>
+    </div>
+
+    <div class="user-auth">
+        <sh-timepiece></sh-timepiece>
+
+        <sh-protected [isAuthorized]="false">
+            <a [routerLink]="[loginRoute.path]" class="user-login">
+                {{loginRoute.name}}
+            </a>
+
+            <span class="user-delimeter">or</span>
+
+            <a [routerLink]="[registrationRoute.path]" class="user-signup">
+                {{registrationRoute.name}}
+            </a>
+        </sh-protected>
+    </div>
+</div>

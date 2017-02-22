@@ -1,0 +1,11 @@
+<div class="device">
+    <div class="device__icon"
+         [style.background-image]="'url(assets/' + device?.subType + '.svg)'">
+    </div>
+    <div *ngIf="device?.type === 'switcher'"
+         (click)="switchSensor()">
+        <div class="device__switcher"
+             [style.background-image]="switcherImageUrl()">
+        </div>
+    </div>
+</div>

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 const CHART_PERIODS: Array<string> = [
-    'week',
+    'day',
     'month',
     'year'
 ];
@@ -16,6 +16,7 @@ export class SensorStatisticComponent implements OnInit, OnDestroy {
     private defaultResolver;
     private deviceStatistic;
     private sensorId;
+    private type;
 
     constructor(private currentRoute: ActivatedRoute) {
         this.deviceStatistic = [];
@@ -27,6 +28,7 @@ export class SensorStatisticComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.sensorId = this.currentRoute.snapshot.params['id'];
+        this.type = this.currentRoute.snapshot.params['type'];
 
         this.defaultResolver = this.currentRoute.data.subscribe(({deviceStatistic}) => {
             this.deviceStatistic = deviceStatistic;
@@ -38,10 +40,10 @@ export class SensorStatisticComponent implements OnInit, OnDestroy {
     }
 
     isSwitcherWidgetVisible() {
-        return this.sensorId === 'switcher';
+        return this.type === 'switcher';
     }
 
     isChartWidgetVisible() {
-        return this.sensorId !== 'switcher';
+        return this.type !== 'switcher';
     }
 }

@@ -6,16 +6,15 @@ import { MapConstructorComponent } from './map/map-constructor.component';
 import { SensorsListComponent } from './sensors-list/sensors-list.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { DashboardViewComponent } from './dashboard/dashboard-view/dashboard-view.component';
 import { SharedModule } from '../shared/shared.module';
-import { DevicesModule } from '../shared/devices/devices.module';
-import { DashboardConstructorService } from './dashboard/dashboard-constructor.service';
-import { DashboardModule } from '../dashboard/dashboard.module';
+import { DevicesModule } from '../devices/devices.module';
 import { FileDropDirective, FileSelectDirective } from 'ng2-file-upload';
 import { DevicesComponent } from './devices/devices.component';
 import { DragulaModule } from 'ng2-dragula/ng2-dragula';
 import { CanDeactivateConstructor } from './can-deactivate-constructor';
 import { OptionsComponent } from './options/options.component';
+import { ViewResolveService } from './view-resolve.service';
+import { ConstructorService } from './constructor.service';
 
 @NgModule({
     id: module.id,
@@ -24,7 +23,6 @@ import { OptionsComponent } from './options/options.component';
         CommonModule,
         FormsModule,
         DevicesModule,
-        DashboardModule,
         DragulaModule,
         routing
     ],
@@ -33,15 +31,15 @@ import { OptionsComponent } from './options/options.component';
         DashboardConstructorComponent,
         MapConstructorComponent,
         SensorsListComponent,
-        DashboardViewComponent,
         FileDropDirective,
         FileSelectDirective,
         DevicesComponent,
         OptionsComponent
     ],
     providers: [
-        DashboardConstructorService,
-        CanDeactivateConstructor
+        CanDeactivateConstructor,
+        ViewResolveService,
+        ConstructorService
     ]
 })
 export class ConstructorModule {}

@@ -1,0 +1,10 @@
+<div class="sensor-widget_info">
+    <div class="sensor-widget_info_value">
+        <span [hidden]="data.value===undefined">{{data.value}} {{device.metrics}}</span>
+        <span [hidden]="data.value">.</span>
+    </div>
+</div>
+<div class="sensor-widget_footer"
+     [hidden]="data.updateTime===undefined">
+    {{data.updateTime | date:"MM.dd.y HH:mm:ss" }}
+</div>

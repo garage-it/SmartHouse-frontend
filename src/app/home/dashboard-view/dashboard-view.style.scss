@@ -1,0 +1,10 @@
+:host {
+  .dashboard-view {
+    min-height: 370px;
+
+    &__ordered {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+}

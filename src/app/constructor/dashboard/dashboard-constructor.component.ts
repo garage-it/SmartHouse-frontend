@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Device } from '../../shared/devices/device.model';
+import { Device } from '../../devices/device.model';
+import { DashboardViewInfoDto } from '../../shared/view/dashboard-view.dto';
+import { ViewInfoDto } from '../../shared/view/view.dto';
 
 @Component({
     selector: 'sh-dashboard-constructor',
@@ -9,39 +10,84 @@ import { Device } from '../../shared/devices/device.model';
 })
 export class DashboardConstructorComponent {
     @Input() canBeActive: boolean;
-    @Input() default: string;
+
+    @Output() defaultSubviewChange: EventEmitter<string> = new EventEmitter<string>();
+    @Input()
+    set defaultSubview(value) {
+        this.defaultSubviewValue = value;
+        this.defaultSubviewChange.emit(value);
+    };
+    get defaultSubview(): string {
+        return this.defaultSubviewValue;
+    };
+
     @Output() isActiveChange: EventEmitter<boolean> = new EventEmitter<boolean>();
-    @Output() isDefaultChange: EventEmitter<string> = new EventEmitter<string>();
+    @Output() saveView: EventEmitter<ViewInfoDto> = new EventEmitter<ViewInfoDto>();
 
-    private widgets: Device[] = [];
-    private sensors: Device[] = [];
+    public selectedDevices: Device[] = [];
 
-    private activeState: boolean = false;
+    private defaultSubviewValue: string = '';
+    @Input() dashboardSubview: DashboardViewInfoDto;
+
     public set isActive(value: boolean) {
-        this.activeState = value;
+        this.dashboardSubview.active = value;
         this.isActiveChange.emit(value);
     }
-    public get isActive() { return this.activeState; };
 
-    public set isDefault(value: string) {
-        this.isDefaultChange.emit(value);
-    }
-
-    constructor(private route: ActivatedRoute) { }
+    public get isActive() {
+        return this.dashboardSubview.active;
+    };
 
     public ngOnInit(): void {
-        this.sensors = this.route.snapshot.data['sensors'];
+        if (Object.keys(this.dashboardSubview).length !== 0) {
+            this.initEditedView(this.dashboardSubview);
+        } else {
+            this.initNewView();
+        }
     }
 
-    public onAddSensor(sensor): void {
-        this.widgets.push(sensor);
+    private initEditedView(view: DashboardViewInfoDto): void {
+        if (view.devices) {
+            this.selectedDevices = view.devices;
+        }
     }
 
-    public onRemoveSensor(widget: Device): void {
-        this.widgets = this.widgets.filter(filteredWidget => filteredWidget.mqttId !== widget.mqttId);
+    private initNewView() {
+        this.isActive = true;
+        this.defaultSubview = 'mapSubview';
     }
 
-    public onRemoveWidget(widget: Device): void {
-        this.widgets = this.widgets.filter(filteredWidget => filteredWidget.mqttId !== widget.mqttId);
+    private deviceIsAdded(sensor: Device): boolean {
+        return this.selectedDevices
+            .some(s => s._id === sensor._id);
+    }
+
+    public onAddDevice(device): void {
+        if (!this.deviceIsAdded(device)) {
+            this.selectedDevices.push(device);
+            this.storeDevices();
+        }
+    }
+
+    public onRemoveDevice(device: Device): void {
+        this.filterSelectedDevices(device);
+        this.storeDevices();
+    }
+
+    public onRemoveSelectedDevice(device: Device): void {
+        this.filterSelectedDevices(device);
+        this.storeDevices();
+    }
+
+    public onSubmit(): void {
+        this.saveView.emit();
+    }
+
+    private filterSelectedDevices(device: Device): void {
+        this.selectedDevices = this.selectedDevices.filter(filteredWidget => filteredWidget.mqttId !== device.mqttId);
+    }
+
+    private storeDevices(): void {
+        this.dashboardSubview['devices'] = this.selectedDevices;
     }
 }

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output, Input } from '@angular/core';
-import { Device } from '../../shared/devices/device.model';
+import { Device } from '../../devices/device.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'sh-sensors-list',
@@ -8,10 +9,16 @@ import { Device } from '../../shared/devices/device.model';
 })
 export class SensorsListComponent {
 
-    @Input() sensors: Device[];
     @Input() mappedSensors: Device[];
     @Output() onAddSensor: EventEmitter<any> = new EventEmitter();
     @Output() onRemoveSensor: EventEmitter<any> = new EventEmitter();
+    public devices: Device[];
+
+    constructor(private route: ActivatedRoute) {}
+
+    public ngOnInit(): void {
+        this.devices = this.route.snapshot.data['sensors'];
+    }
 
     addSensor(sensor): void {
         this.onAddSensor.emit(sensor);

@@ -1,5 +1,4 @@
 import { ChartWidgetComponent } from './chart-widget.component';
-// TODO: Move tests related to base-chart class.
 
 describe('ChartWidgetComponent', () => {
     let sut;
@@ -24,36 +23,6 @@ describe('ChartWidgetComponent', () => {
             }
         };
         sut = new ChartWidgetComponent(ActivatedRoute);
-    });
-
-    describe('when component is initialized', () => {
-
-        beforeEach(() => {
-            sut.ngOnInit();
-        });
-
-        it('should subscribe to state params', () => {
-            expect(ActivatedRoute.params.subscribe).toHaveBeenCalled();
-        });
-
-        it('should update period on scope', () => {
-            let params = {period: 'some period'};
-            ActivatedRoute.params.subscribe.calls.first().args[0](params);
-            expect(sut.period).toEqual(params.period);
-        });
-
-        it('should subscribe to state params', () => {
-            expect(ActivatedRoute.params.subscribe).toHaveBeenCalled();
-        });
-
-    });
-
-    describe('when component is destroyed', () => {
-        it('should unsubscribe from state params', () => {
-            sut.ngOnInit();
-            sut.ngOnDestroy();
-            expect(routeSubscription.unsubscribe).toHaveBeenCalled();
-        });
     });
 
     describe('when component is changed', () => {
@@ -98,8 +67,9 @@ describe('ChartWidgetComponent', () => {
 
         it('should display data in yAxis depends of type of sensor', () => {
             sut.deviceId = 'temperature';
+            sut.deviceStatistic.measurementUnit = 'KILOGRAM';
             sut.ngOnChanges();
-            expect(sut.options.yAxis[0].labels.format).toEqual('{value}°C');
+            expect(sut.options.yAxis[0].labels.format).toEqual(`{value} ${sut.deviceStatistic.measurementUnit}`);
         });
 
         it('should display sensor name on yAxis title', () => {
