@@ -33,7 +33,7 @@ describe('SensorStatisticComponent', () => {
         });
 
         it('should set periods to scope', () => {
-            expect(sut.periods).toEqual(['hour', 'day', 'month', 'year']);
+            expect(sut.periods).toEqual(['day', 'month', 'year']);
         });
 
         it('should subscribe to state params changes', () => {
