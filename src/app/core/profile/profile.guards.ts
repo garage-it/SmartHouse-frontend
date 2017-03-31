@@ -13,6 +13,7 @@ export class GuestGuard implements CanActivate {
             }
 
             this.router.navigate(['/']);
+            return false;
         });
     }
 }
@@ -28,6 +29,7 @@ export class LoggedInGuard implements CanActivate {
             }
 
             this.router.navigate(['/login']);
+            return false;
         });
     }
 }

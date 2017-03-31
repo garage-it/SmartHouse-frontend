@@ -15,7 +15,7 @@ import { routing } from './statistic.routing';
     id: module.id,
     imports: [
         RouterModule,
-        ChartModule,
+        ChartModule.forRoot(require('highcharts')),
         CommonModule,
         DevicesModule,
         routing

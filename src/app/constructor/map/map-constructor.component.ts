@@ -13,7 +13,7 @@ import {
 import { Router } from '@angular/router';
 import { Device } from '../../devices/device.model';
 import { FileUploader } from 'ng2-file-upload';
-import { MapViewService } from '../../home/map-view/map-view.service';
+import { PictureResolverService } from '../../shared/picture-resolver/picture-resolver.service';
 import { MapViewInfoCreateDto, MapViewInfoDto } from '../../shared/view/map-view.dto';
 import { ViewInfoDto } from '../../shared/view/view.dto';
 
@@ -85,7 +85,7 @@ export class MapConstructorComponent implements OnInit {
     constructor(private router: Router,
                 private ngZone: NgZone,
                 private renderer: Renderer,
-                private mapViewService: MapViewService) {
+                private pictureResolverService: PictureResolverService) {
     }
 
     get isReUploadDisabled(): boolean {
@@ -119,7 +119,7 @@ export class MapConstructorComponent implements OnInit {
     }
 
     private initEditedView(mapView: MapViewInfoDto): void {
-        this.picture = mapView.pictureName && this.mapViewService.resolvePictureUrl(mapView);
+        this.picture = mapView.pictureName && this.pictureResolverService.resolvePictureUrl(mapView);
         this.isActive = mapView.active;
         this.edittedDevices = mapView.sensors.map(sensor => {
             if (sensor.position) {

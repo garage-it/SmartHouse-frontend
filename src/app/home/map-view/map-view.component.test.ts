@@ -2,15 +2,15 @@ import { MapViewComponent } from './map-view.component';
 
 describe('Map View', () => {
     let sut;
-    let MapViewService;
+    let PictureResolverService;
     const resolvedUrl = {};
 
     beforeEach(() => {
-        MapViewService = {
+        PictureResolverService = {
             resolvePictureUrl: jasmine.createSpy('resolvePictureUrl').and.returnValue(resolvedUrl)
         };
 
-        sut = new MapViewComponent(MapViewService);
+        sut = new MapViewComponent(PictureResolverService);
     });
 
     describe('get image', () => {
@@ -23,7 +23,7 @@ describe('Map View', () => {
         });
 
         it('should resolve image url which should be loaded', () => {
-            expect(MapViewService.resolvePictureUrl).toHaveBeenCalledWith(sut.currentMapView);
+            expect(PictureResolverService.resolvePictureUrl).toHaveBeenCalledWith(sut.currentMapView);
         });
 
         it('should get appropriate url where image can be loaded', () => {

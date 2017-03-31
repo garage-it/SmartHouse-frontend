@@ -9,14 +9,14 @@ export class HomeService {
 
     constructor(private http: ShHttpService, private httpUtils: ShHttpUtilsService) { }
 
-    getViewList(): Observable<ViewInfoDto[]|Error> {
+    getViewList(): Observable<ViewInfoDto[]|string> {
         return this.http.get('/views')
             .catch(error => {
                 return this.httpUtils.extractErrorMessage(error);
             });
     }
 
-    getView(viewId: string): Observable<ViewInfoDto|Error> {
+    getView(viewId: string): Observable<ViewInfoDto|string> {
         return this.http.get(`/views/${viewId}`)
             .catch(error => {
                 return this.httpUtils.extractErrorMessage(error);

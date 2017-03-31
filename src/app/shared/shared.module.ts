@@ -4,6 +4,7 @@ import { MaterialModule } from '@angular/material';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { DialogConfirmComponent } from './dialog/dialog-confirm.component';
 import { DialogService } from './dialog/dialog.service';
+import { PictureResolverService } from './picture-resolver/picture-resolver.service';
 import { ProtectedComponent } from './components/protected-component/protected.component';
 
 @NgModule({
@@ -14,7 +15,7 @@ import { ProtectedComponent } from './components/protected-component/protected.c
         ToastModule
     ],
     declarations: [ DialogConfirmComponent, ProtectedComponent ],
-    providers: [ DialogService ],
+    providers: [ DialogService, PictureResolverService ],
     exports: [ CommonModule, ProtectedComponent ],
     entryComponents: [ DialogConfirmComponent ]
 })

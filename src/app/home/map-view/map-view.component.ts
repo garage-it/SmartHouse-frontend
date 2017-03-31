@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MapViewInfoDto } from '../../shared/view/map-view.dto';
-import { MapViewService } from './map-view.service';
+import { PictureResolverService } from '../../shared/picture-resolver/picture-resolver.service';
 
 @Component({
     selector: 'sh-map-view',
@@ -10,9 +10,9 @@ import { MapViewService } from './map-view.service';
 export class MapViewComponent {
     @Input() currentMapView: MapViewInfoDto;
 
-    constructor(private mapViewService: MapViewService) {}
+    constructor(private pictureResolverService: PictureResolverService) {}
 
     getImage(): string {
-        return this.mapViewService.resolvePictureUrl(this.currentMapView);
+        return this.pictureResolverService.resolvePictureUrl(this.currentMapView);
     }
 }

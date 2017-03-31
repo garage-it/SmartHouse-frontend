@@ -2,36 +2,36 @@ const webpack = require('webpack');
 
 const envConfig = require('./env.config');
 
+const tsRegexp = /\.ts$/;
+
 module.exports = {
-    debug: true,
-
     devtool: 'inline-source-map',
-
     resolve: {
-        root: [envConfig.src.dir],
-        extensions: ['', '.js', '.ts']
+        modules: [
+            envConfig.src.dir,
+            envConfig.nodeModules.dir
+        ],
+        extensions: ['.js', '.ts']
     },
     stats: {
-        // Configure the console output
-        errorDetails: true, //this does show errors
+        errorDetails: true,
         colors: false,
         modules: true,
         reasons: true
     },
     module: {
-        preLoaders: [
+        rules: [
             {
-                test: /\.ts$/,
-                loader: 'tslint-loader',
+                test: tsRegexp,
+                use: 'tslint-loader',
+                enforce: 'pre',
                 exclude: [/node_modules/]
-            }
-        ],
-        loaders: [
+            },
             {
-                test: /\.ts$/,
+                test: tsRegexp,
+                exclude: [/\.(spec|e2e)\.ts$/, /node_modules\/(?!(ng2-.+))/],
                 loader: 'awesome-typescript-loader',
-                exclude: [/\.(e2e)\.ts$/],
-                query: {
+                options: {
                     sourceMap: false,
                     inlineSourceMap: true,
                     compilerOptions: {
@@ -39,27 +39,31 @@ module.exports = {
                     }
                 }
             },
-
             {
                 test: /\.html$/,
-                loader: 'raw'
+                use: 'raw-loader'
             },
             {
                 test: /\.(scss|css)$/,
                 exclude: [/node_modules/],
-                loaders: ['raw', 'sass']
+                use: [
+                    'raw-loader',
+                    'sass-loader'
+                ]
             },
             {
                 test: /\.css$/,
                 include: [/node_modules/],
-                loader: 'style!css'
-            }
-        ],
-        postLoaders: [
+                use: [
+                    'style-loader',
+                    'css-loader'
+                ]
+            },
             {
-                test: /\.ts$/,
+                test: tsRegexp,
                 include: envConfig.src.dir,
-                loader: 'istanbul-instrumenter-loader',
+                enforce: 'post',
+                use: 'istanbul-instrumenter-loader',
                 exclude: [/\.test\.ts$/, /\.e2e\.ts$/, /node_modules/]
             }
         ]
@@ -67,6 +71,10 @@ module.exports = {
     plugins: [
         new webpack.DefinePlugin({
             ENV_PUBLIC_CONFIG: JSON.stringify(envConfig.public)
-        })
+        }),
+        new webpack.ContextReplacementPlugin(
+            /angular(\\|\/)core(\\|\/)src(\\|\/)linker/,
+            envConfig.root.dir
+        )
     ]
 };

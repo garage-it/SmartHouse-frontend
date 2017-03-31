@@ -1,4 +1,5 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, ViewContainerRef } from '@angular/core';
+import { ToastsManager } from 'ng2-toastr';
 
 @Component({
     selector: 'sh-app',
@@ -6,4 +7,8 @@ import { Component, ViewEncapsulation } from '@angular/core';
     templateUrl: './app.template.html',
     encapsulation: ViewEncapsulation.None
 })
-export class AppComponent {}
+export class AppComponent {
+    constructor(public toastr: ToastsManager, vRef: ViewContainerRef) {
+        this.toastr.setRootViewContainerRef(vRef);
+    }
+}
