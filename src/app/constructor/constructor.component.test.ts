@@ -7,7 +7,7 @@ describe('Constructor component', () => {
     let Router;
     let ConstructorService;
     let ToastsManager;
-    let MapViewService;
+    let PictureResolverService;
     const someView = 'some view';
     const mapSubview = Symbol('mapSubview');
     const pictureUploadUrl = Symbol('pictureUploadUrl');
@@ -33,7 +33,7 @@ describe('Constructor component', () => {
             error: jasmine.createSpy('error')
         };
 
-        MapViewService = {
+        PictureResolverService = {
             resolvePictureUploadUrl: jasmine.createSpy('resolvePictureUploadUrl').and.returnValue(pictureUploadUrl)
         };
 
@@ -42,7 +42,7 @@ describe('Constructor component', () => {
             Router,
             ConstructorService,
             ToastsManager,
-            MapViewService
+            PictureResolverService
         );
     });
 

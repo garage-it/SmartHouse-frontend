@@ -6,60 +6,57 @@ import { ProfileResolver } from './core/profile/profile.resolver';
 
 import ROUTING from './config.routing';
 
-export const routes = [
-    {
-        path: ROUTING.BASE,
-        component: ScreenComponent,
-        resolve: {
-            resolved: ProfileResolver
-        },
-        children: [
-            {
-                path: ROUTING.HOME,
-                useAsDefault: true,
-                loadChildren: () => require('es6-promise!./home/home.module')('HomeModule')
-            },
-            {
-                path: ROUTING.HELP,
-                loadChildren: () => require('es6-promise!./help/help.module')('HelpModule')
-            },
-            {
-                path: ROUTING.SCENARIOS,
-                canActivate: [ LoggedInGuard ],
-                loadChildren: () => require('es6-promise!./scenarios/scenarios.module')('ScenariosModule')
-            },
-            {
-                path: ROUTING.LOGIN,
-                canActivate: [ GuestGuard ],
-                loadChildren: () => require('es6-promise!./login/login.module')('LoginModule')
-            },
-            {
-                path: ROUTING.LOGOUT,
-                canActivate: [ LoggedInGuard ],
-                loadChildren: () => require('es6-promise!./logout/logout.module')('LogoutModule')
-            },
-            {
-                path: ROUTING.REGISTRATION,
-                canActivate: [ GuestGuard ],
-                loadChildren: () => require('es6-promise!./registration/registration.module')('RegistrationModule')
-            },
-            {
-                path: ROUTING.STATISTIC,
-                canActivate: [ LoggedInGuard ],
-                loadChildren: () => require('es6-promise!./statistic/statistic.module')('StatisticModule')
-            },
-            {
-                path: ROUTING.SETTINGS,
-                canActivate: [ LoggedInGuard ],
-                loadChildren: () => require('es6-promise!./settings/settings.module')('SettingsModule')
-            }
-        ]
+export const routes = {
+    path: ROUTING.BASE,
+    component: ScreenComponent,
+    resolve: {
+        resolved: ProfileResolver
     },
-    {
-        path: '**',
-        redirectTo: '/home',
-        pathMatch: 'full'
-    }
-];
+    children: [
+        {
+            path: ROUTING.HOME,
+            loadChildren: './home/home.module#HomeModule'
+        },
+        {
+            path: ROUTING.HELP,
+            loadChildren: './help/help.module#HelpModule'
+        },
+        {
+            path: ROUTING.SCENARIOS,
+            canActivate: [ LoggedInGuard ],
+            loadChildren: './scenarios/scenarios.module#ScenariosModule'
+        },
+        {
+            path: ROUTING.LOGIN,
+            canActivate: [ GuestGuard ],
+            loadChildren: './login/login.module#LoginModule'
+        },
+        {
+            path: ROUTING.LOGOUT,
+            canActivate: [ LoggedInGuard ],
+            loadChildren: './logout/logout.module#LogoutModule'
+        },
+        {
+            path: ROUTING.REGISTRATION,
+            canActivate: [ GuestGuard ],
+            loadChildren: './registration/registration.module#RegistrationModule'
+        },
+        {
+            path: ROUTING.STATISTIC,
+            canActivate: [ LoggedInGuard ],
+            loadChildren: './statistic/statistic.module#StatisticModule'
+        },
+        {
+            path: ROUTING.SETTINGS,
+            canActivate: [ LoggedInGuard ],
+            loadChildren: './settings/settings.module#SettingsModule'
+        },
+        {
+            path: '**',
+            redirectTo: ROUTING.HOME,
+            pathMatch: 'full'
+        }
+    ]
+};
 
-export const routing = RouterModule.forRoot(routes);
+export const routing = RouterModule.forRoot([routes]);

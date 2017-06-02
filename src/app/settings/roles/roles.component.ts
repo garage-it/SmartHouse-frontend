@@ -3,7 +3,6 @@ import { RolesService } from './roles.service';
 
 @Component({
     selector: 'sh-roles',
-    styleUrls: ['./roles.style.scss'],
     templateUrl: './roles.template.html'
 })
 export class RolesComponent {

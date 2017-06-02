@@ -17,11 +17,10 @@ export const routes = [
             },
             {
                 path: HOME_ROUTING_CONFIG.CONSTRUCTOR,
-                loadChildren: () => require('es6-promise!../constructor/constructor.module')('ConstructorModule')
+                loadChildren: '../constructor/constructor.module#ConstructorModule'
             }
         ]
-    },
-
+    }
 ];
 
 export const routing = RouterModule.forChild(routes);

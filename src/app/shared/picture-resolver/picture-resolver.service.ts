@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
-import { ShHttpService } from '../../core/sh-http/sh-http.service';
-import { MapViewInfoDto } from '../../shared/view/map-view.dto';
-import { FilesService } from '../../core/files/files.service';
 import { RequestOptions } from '@angular/http';
 
-@Injectable()
-export class MapViewService {
+import { MapViewInfoDto } from '../view/map-view.dto';
+import { FilesService } from '../../core/files/files.service';
 
-    constructor(private http: ShHttpService,
-                private filesService: FilesService,
+@Injectable()
+export class PictureResolverService {
+
+    constructor(private filesService: FilesService,
                 private requestOptions: RequestOptions) {
     }
 

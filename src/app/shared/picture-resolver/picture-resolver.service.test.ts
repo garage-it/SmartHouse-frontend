@@ -1,6 +1,6 @@
-import { MapViewService } from './map-view.service';
+import { PictureResolverService } from './picture-resolver.service';
 
-describe('MapViewService', () => {
+describe('PictureResolverService', () => {
     const fileUrl = 'fileUrl';
     const response = {};
 
@@ -24,7 +24,7 @@ describe('MapViewService', () => {
             merge: jasmine.createSpy('merge').and.returnValue({url: 'some url'})
         };
 
-        sut = new MapViewService(http, filesService, requestOptions);
+        sut = new PictureResolverService(filesService, requestOptions);
     });
 
     describe('resolve picture upload url', () => {

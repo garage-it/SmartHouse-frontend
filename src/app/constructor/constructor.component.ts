@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ConstructorService } from './constructor.service';
 import { ToastsManager } from 'ng2-toastr';
 import { FileUploader } from 'ng2-file-upload';
-import { MapViewService } from '../home/map-view/map-view.service';
+import { PictureResolverService } from '../shared/picture-resolver/picture-resolver.service';
 
 @Component({
     selector: 'sh-constructor',
@@ -23,7 +23,7 @@ export class ConstructorComponent {
         private router: Router,
         private constructorService: ConstructorService,
         private toastr: ToastsManager,
-        private mapViewService: MapViewService
+        private pictureResolverService: PictureResolverService
     ) {}
 
     public ngOnInit(): void {
@@ -94,7 +94,7 @@ export class ConstructorComponent {
 
     private uploadPicture(mapSubview) {
         this.uploader.setOptions({
-            url: this.mapViewService.resolvePictureUploadUrl(mapSubview)
+            url: this.pictureResolverService.resolvePictureUploadUrl(mapSubview)
         });
         this.uploader.uploadAll();
     }

@@ -3,7 +3,7 @@ import { ProfileService } from '../../../core/profile/profile.service';
 
 @Component({
     selector: 'sh-protected',
-    template: require('./protected.template.html'),
+    templateUrl: './protected.template.html',
 })
 export class ProtectedComponent {
     @Input() isAuthorized: boolean;

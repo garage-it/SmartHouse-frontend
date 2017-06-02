@@ -4,14 +4,8 @@ const webpack = require('webpack');
 
 module.exports = webpackMerge(commonConfig, {
     plugins: [
-        new webpack.optimize.DedupePlugin(),
         new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            }
+            sourceMap: true
         })
-    ],
-    module: {
-        preLoaders: []
-    }
+    ]
 });

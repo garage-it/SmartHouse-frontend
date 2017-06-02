@@ -3,8 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'sh-device-list-page',
-    templateUrl: './device-list-page.template.html',
-    styleUrls: ['./device-list-page.style.scss']
+    templateUrl: './device-list-page.template.html'
 })
 export class DeviceListPageComponent implements OnInit {
     private deviceList = [];

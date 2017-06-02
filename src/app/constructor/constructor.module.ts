@@ -15,10 +15,12 @@ import { CanDeactivateConstructor } from './can-deactivate-constructor';
 import { OptionsComponent } from './options/options.component';
 import { ViewResolveService } from './view-resolve.service';
 import { ConstructorService } from './constructor.service';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
     id: module.id,
     imports: [
+        CoreModule,
         SharedModule,
         CommonModule,
         FormsModule,
