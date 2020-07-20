@@ -1,3 +1,11 @@
+# Status 
+
+This project is archived until next garage-it iteration.
+
+See you then!
+
+## 😉
+
 # Smart House - Frontend
 
 [![Build Status](https://travis-ci.org/garage-it/SmartHouse-frontend.svg?branch=master)](https://travis-ci.org/garage-it/SmartHouse-frontend)
